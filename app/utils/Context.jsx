@@ -81,9 +81,9 @@ export default class Context extends Component {
 		this.defaultSnackbarOptions = {
 
 			active: true,
-			type: 'cancel',
+			type: 'accept',
 			action: 'OK',
-			icon: 'help',
+			icon: '',
 			label: '',
 			onClick: this._hideSnackbar,
 			onTimeout: this._hideSnackbar,
@@ -107,13 +107,15 @@ export default class Context extends Component {
 
 		let { showLoader, dialogOptions, snackbarOptions } = this.state;
 
+		//console.log( dialogOptions );
+
 		return (
 
 			<div id="Context">
 				{ showLoader && <ProgressBar type="linear" mode="indeterminate" /> }
 				<Dialog { ...dialogOptions }>{ dialogOptions.content }</Dialog>
 				{ this.props.children }
-				<Snackbar { ...snackbarOptions } />
+				<Snackbar { ...snackbarOptions } ref="snackbar" />
 			</div>
 
 		)
@@ -128,31 +130,41 @@ export default class Context extends Component {
 
 	_showDialog = ( o ) => {
 
-		let options = _.extend( this.defaultDialogOptions, o );
-		this.setState( { showDialog: true, dialogOptions: options } );
+		let defaults = _.clone( this.defaultDialogOptions );
+		let options = _.extend( defaults, o );
+		this.setState( { dialogOptions: options } );
 
 	}
 
 	_hideDialog = () => {
 
-		let options = _.extend( this.defaultDialogOptions, { active: false } );
-		this.setState( { snackbarOptions: options } );
+		let options = _.extend( this.state.dialogOptions, { active: false } );
+		this.setState( { dialogOptions: options } );
 
 	}
 
 	_showSnackbar = ( o ) => {
 
+		let defaults = _.clone( this.defaultSnackbarOptions );
 		let max = _.max( [ o.timeout, o.label.length * 100, 3000 ] );
-		let options = _.extend( this.defaultSnackbarOptions, o, { timeout: max } );
+		let options = _.extend( defaults, o, { timeout: max } );
+
 		this.setState( { snackbarOptions: options } );
 
 	}
 
 	_hideSnackbar = () => {
 
-		let options = _.extend( this.defaultSnackbarOptions, { active: false } );
+		let options = _.extend( this.state.snackbarOptions, { active: false } );
 		this.setState( { snackbarOptions: options } );
 
 	}
 
 }
+
+
+
+
+
+
+

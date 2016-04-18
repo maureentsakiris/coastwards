@@ -31,7 +31,8 @@ export default class I18n extends Component {
 	static contextTypes = {
 
 		showLoader: PropTypes.func,
-		showSnackbar: PropTypes.func
+		showSnackbar: PropTypes.func,
+		showDialog: PropTypes.func
 		
 	}
 
@@ -70,7 +71,7 @@ export default class I18n extends Component {
 
 		const propsSwitch = {
 
-			onSwitch: this._handleSwitch.bind( this ),
+			onSwitch: this._handleSwitch,
 			locales: i18nLocales.locales,
 			locale: this.state.locale,
 			dir: this.state.dir
@@ -81,11 +82,11 @@ export default class I18n extends Component {
 
 			<div id="i18n" dir={ this.state.dir } lang={ this.state.locale }>
 
-				<I18nSwitch {...propsSwitch} />
+				<I18nSwitch { ...propsSwitch } />
 
 				{ this.state.messages &&
-					<IntlProvider {...this.state} >
-						{this.props.children}
+					<IntlProvider { ...this.state } >
+						{ this.props.children }
 					</IntlProvider>
 				}
 
@@ -95,7 +96,7 @@ export default class I18n extends Component {
 
 	}
 
-	_handleSwitch = function ( locale ) {
+	_handleSwitch = ( locale ) => {
 
 		if( locale !== this.state.locale ) {
 
@@ -105,7 +106,7 @@ export default class I18n extends Component {
 
 	}
 
-	_loadLocale = function ( locale ) {
+	_loadLocale = ( locale ) => {
 
 		let cached = _.findWhere( this.loadedLocales, { locale: locale } );
 
@@ -134,15 +135,15 @@ export default class I18n extends Component {
 
 					let snackbarOptions = {
 
-						active: true,
-						msg: i18nLocales.messages.missing_translations_msg,
+						label: i18nLocales.messages.missing_translations_msg,
 						action: i18nLocales.messages.missing_translations_link,
-						onActionClick: this._goTranslate,
-						delay: 1500
+						icon: 'translate',
+						onClick: this._goTranslate
 
 					}
 
-					this.context.showSnackbar( snackbarOptions )
+					// this.context.showSnackbar( snackbarOptions );
+					this.context.showDialog( { title: "!", content: i18nLocales.messages.missing_translations_msg } );
 
 				}
 
@@ -160,14 +161,14 @@ export default class I18n extends Component {
 
 	}
 
-	_getNegotiatedLocale ( ){
+	_getNegotiatedLocale = ( ) => {
 
 		let negotiatedLocale = document.documentElement.getAttribute( 'lang' );
 		return negotiatedLocale;
 
 	}
 
-	_goTranslate () {
+	_goTranslate = () => {
 
 		console.log( "Sending user to translation page" );
 
