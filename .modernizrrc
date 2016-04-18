@@ -1,0 +1,16 @@
+{
+  "minify": true,
+  "enableJSClass": true,
+  "options": [
+    "setClasses",
+    "addTest"
+  ],
+  "feature-detects": [ 
+  	"canvas",
+  	"css/pointerevents",
+  	"css/transitions",
+  	"css/transforms",
+    "css/flexbox",
+    "css/flexwrap"
+  ]
+}
