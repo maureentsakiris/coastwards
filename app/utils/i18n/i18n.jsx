@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { IntlProvider } from 'react-intl';
 import _ from 'underscore';
+import util from 'util';
 import I18nSwitch from './I18nSwitch';
 import i18nLocales from './i18nLocales';
 
@@ -135,15 +136,14 @@ export default class I18n extends Component {
 
 					let snackbarOptions = {
 
-						label: i18nLocales.messages.missing_translations_msg,
-						action: i18nLocales.messages.missing_translations_link,
-						icon: 'translate',
+						label: util.format( 'Help us translate this page into %s', i18nLocales.english ),
+						action: 'Go Crowdtranslate',
 						onClick: this._goTranslate
 
 					}
 
-					// this.context.showSnackbar( snackbarOptions );
-					this.context.showDialog( { title: "!", content: i18nLocales.messages.missing_translations_msg } );
+					this.context.showSnackbar( snackbarOptions );
+					// this.context.showDialog( { title: "!", content: i18nLocales.messages.missing_translations_msg } );
 
 				}
 
