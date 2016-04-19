@@ -4,7 +4,7 @@ import Classnames from 'classnames';
 import _ from 'underscore';
 
 import Button from 'react-toolbox/lib/button';
-
+/*import Tabs from '../Tabs/Tabs';*/
 
 /*
  *	Loads language locales and names from i18n and creates a list of language links. Locale of link clicked is passed on to onSwitch

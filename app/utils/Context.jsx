@@ -50,7 +50,6 @@ export default class Context extends Component {
 
 	componentDidMount (){
 
-		// this._showLoader( true );
 		// this._showDialog( { title: "HEYHO", content: "GOOOOOOOD MORNING KIEEEEEEEL!!" } );
 		// this._showSnackbar( { label: 'this is a snackthis is a snackthis is a snackthis is a snackthis is a snack' } );
 

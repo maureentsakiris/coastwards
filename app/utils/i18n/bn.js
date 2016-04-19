@@ -1,9 +1,8 @@
 module.exports = {
 	locale: 'bn',
 	direction: 'ltr',
+	english: 'Bengali',
 	messages: {
-		'missing_translations_msg': 'Help us translate this page into bengali!',
-		'missing_translations_link': 'GO',
 		'hello': 'আপনি কেমন আছেন'
 	}
 };
