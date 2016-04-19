@@ -2,14 +2,13 @@ import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { defineMessages, injectIntl, intlShape, FormattedMessage } from 'react-intl';
 
-import Intro from './Intro';
-import Info from './Info';
+import Tabs from '../utils/Tabs/Tabs';
 
 const messages = defineMessages( {
 
 } );
 
-class App extends Component {
+class Info extends Component {
 
 	constructor ( props ) {
 
@@ -28,9 +27,12 @@ class App extends Component {
 
 		return (
 
-			<div id="Content">
-				<Intro />
-				<Info />
+			<div id="Info">
+				<Tabs className="pad">
+					<div>How does a picture help?</div>
+					<div>What kind of pictures?</div>
+					<div>Who are you?</div>
+				</Tabs>
 			</div>
 
 		)
@@ -39,19 +41,19 @@ class App extends Component {
 
 }
 
-App.propTypes = {
+Info.propTypes = {
 
 	intl: intlShape.isRequired
 
 };
 
-App.defaultProps = {
+Info.defaultProps = {
 
 	
 
 };
 
-App.contextTypes = {
+Info.contextTypes = {
 
 	showDialog: PropTypes.func,
 	showLoader: PropTypes.func,
@@ -59,4 +61,4 @@ App.contextTypes = {
 
 };
 
-export default injectIntl( App );
+export default injectIntl( Info );
