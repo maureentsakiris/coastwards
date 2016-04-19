@@ -70,6 +70,7 @@ export default class I18n extends Component {
 
 	render () {
 
+
 		const propsSwitch = {
 
 			onSwitch: this._handleSwitch,

@@ -2,13 +2,23 @@ import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { defineMessages, injectIntl, intlShape, FormattedMessage } from 'react-intl';
 
-import Intro from './Intro';
-
 const messages = defineMessages( {
+
+	intro:{
+		id: "intro",
+		description: "0 - Intro (Super duper important)",
+		defaultMessage: "Help Science study the risks of sea-level rise by uploading pictures of coasts"
+	},
+	tagline:{
+		id: "tagline",
+		description: "0 - Tagline",
+		defaultMessage: "No account. Just drag & drop."
+	}
+	
 
 } );
 
-class App extends Component {
+class Intro extends Component {
 
 	constructor ( props ) {
 
@@ -27,8 +37,11 @@ class App extends Component {
 
 		return (
 
-			<div id="Content">
-				<Intro />
+			<div id="Intro" className="flexcontainer">
+				<div className="flexitem corset pad">
+					<h1>{ formatMessage( messages.intro ) }</h1>
+					<p>{ formatMessage( messages.tagline ) }</p>
+				</div>
 			</div>
 
 		)
@@ -37,19 +50,19 @@ class App extends Component {
 
 }
 
-App.propTypes = {
+Intro.propTypes = {
 
 	intl: intlShape.isRequired
 
 };
 
-App.defaultProps = {
+Intro.defaultProps = {
 
 	
 
 };
 
-App.contextTypes = {
+Intro.contextTypes = {
 
 	showDialog: PropTypes.func,
 	showLoader: PropTypes.func,
@@ -57,4 +70,4 @@ App.contextTypes = {
 
 };
 
-export default injectIntl( App );
+export default injectIntl( Intro );

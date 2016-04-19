@@ -10,7 +10,12 @@ const ENTRY_ROOT = path.join( PROJECT_ROOT, 'app/index.jsx' );
 
 const APP_ROOT = path.join( PROJECT_ROOT, 'app' );
 /*const STYLES_ROOT = path.join( APP_ROOT, 'styles' );*/
+const TOOLBOX_ROOT = path.join( PROJECT_ROOT, 'node_modules/react-toolbox' );
 const ASSETS_ROOT = path.join( PROJECT_ROOT, 'public/assets' );
+
+
+const extractToolbox = new ExtractTextPlugin( 'toolbox.css', { allChunks: true } );
+const extractStyles = new ExtractTextPlugin( 'styles.css', { allChunks: true } );
 
 
 const config = {
@@ -47,7 +52,13 @@ const config = {
 			},
 			{
 				test: /(\.scss|\.css)$/,
-				loader: ExtractTextPlugin.extract( 'style', 'css?sourceMap&modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss!sass?sourceMap!toolbox' )
+				include: TOOLBOX_ROOT,
+				loader: extractToolbox.extract( 'style', 'css?sourceMap&modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss!sass?sourceMap!toolbox' )
+			},
+			{
+				test: /(\.scss|\.css)$/,
+				include: APP_ROOT,
+				loader: extractStyles.extract( 'style', 'css?sourceMap!postcss!sass?sourceMap' )
 			},
 			{ 
 				test: /\.(jpe?g|png|gif|svg)$/i,
@@ -76,10 +87,12 @@ const config = {
 		]
 	},
 	toolbox: { 
-		theme: 'theme.scss' 
+		theme: './app/styles/_theme.scss' 
 	},
+	postcss: [ autoprefixer ],
 	plugins: [
-		new ExtractTextPlugin( 'styles.css' ),
+		extractToolbox,
+		extractStyles,
 		new webpack.optimize.DedupePlugin(),
 		new webpack.optimize.UglifyJsPlugin( {
 			minimize: true,

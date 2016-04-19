@@ -1,8 +1,27 @@
 const express = require( 'express' );
 /*const path = require( 'path' );*/
 const httpProxy = require( 'http-proxy' );
-
 const helmet = require( 'helmet' );
+
+
+var SERVER = {};
+
+if( process.argv[ 3 ] == 'office' ){
+
+	SERVER = {
+		IP: '134.245.149.30',
+		PORT: 3000
+	};
+
+}else{
+
+	SERVER = {
+		IP: '127.0.0.1',
+		PORT: 3000
+	};
+
+}
+
 
 const isProduction = process.env.NODE_ENV === 'production';
 const port = isProduction ? process.env.PORT : 8888;
@@ -47,7 +66,7 @@ if ( !isProduction ) {
 
 		proxy.web( req, res, {
 
-			target: 'http://134.245.149.30:3000'
+			target: 'http://' + SERVER.IP + ':' + SERVER.PORT
 
 		} );
 

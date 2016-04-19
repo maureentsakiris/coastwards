@@ -14,7 +14,8 @@ export default class Tabs extends Component {
 	static propTypes = {
 
 		children: PropTypes.node,
-		id: PropTypes.string
+		id: PropTypes.string,
+		className: PropTypes.string
 
 	};
 
@@ -50,9 +51,11 @@ export default class Tabs extends Component {
 
 		const children = this._extendChildren();
 
+		const cls = Classnames( this.props.className, 'tabcontainer' );
+
 		return (
 
-			<div id={ this.props.id } className="tabcontainer" dir="ltr">
+			<div id={ this.props.id } className={ cls } dir="ltr">
 				<div className="tabitem left">
 					<i className="material-icons">&#xE5CB;</i>
 				</div>

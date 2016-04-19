@@ -1,4 +1,3 @@
-@import "~react-toolbox/lib/commons";
 @import '_base';
 
 
@@ -11,8 +10,17 @@
 
 }
 
+.pad{
+
+	padding: 0 $layout-gutter-width;
+	box-sizing: border-box;
+
+}
+
 
 //################################################################## CONTEXT
+
+
 
 //################################ LOADER
 
@@ -118,9 +126,54 @@
 
 //################################################################## CONTENT
 
-#Content{
 
-	height: 70vh;
-	background-color: rgba(0,0,0,0.2);
+//################################## INTRO
+
+#Intro{
+
+	min-height: 70vh;
+	padding: $layout-gutter-width 0;
+	box-sizing: border-box;
+	text-align: center;
+	color: $palette-blue-grey-500;
+
+	&>div{
+
+		align-self: center;
+
+	}
+
+	p{
+
+		margin-top: $layout-gutter-width;
+		@include typo-headline( );
+		color: $palette-grey-500;
+
+	}
 
 }
+
+@include StSM{
+
+	#Intro{
+
+		h1{
+
+			font-size: 3.6rem;
+
+		}
+
+		p{
+
+			font-size: 2rem;
+
+		}
+
+	}
+
+}
+
+
+
+
+

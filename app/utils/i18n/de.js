@@ -3,6 +3,6 @@ module.exports = {
 	direction: 'ltr',
 	english: 'German',
 	messages: {
-		'intro': 'Hallo. Wir sind eine Gruppe von Wissenschaftlern, die die Risiken des Meeresspiegelanstiegs untersuchen. Hilf uns, indem Du Deine Fotos von Küsten hochlädst.'
+		'intro': 'Lade deine Fotos von Küsten hoch, um der Wissenschaft zu helfen die Risiken des Meeresspiegelanstiegs zu untersuchen.'
 	}
 };

@@ -1,6 +1,8 @@
-@import '../../node_modules/react-toolbox/components/_colors';
-@import '../../node_modules/react-toolbox/components/_mixins';
-@import '_theme';
+@import "~react-toolbox/lib/commons";
+
+
+//############################################################################################ FLEX
+
 
 //https://css-tricks.com/using-flexbox/
 %flexcontainer{
@@ -10,6 +12,12 @@
 	display: -ms-flexbox;      /* TWEENER - IE 10 */
 	display: -webkit-flex;     /* NEW - Chrome */
 	display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
+
+}
+
+.flexcontainer{
+
+	@extend %flexcontainer;
 
 }
 
@@ -28,6 +36,12 @@
 
 }
 
+.flexitem{
+
+	@extend %flexitem;
+
+}
+
 //https://css-tricks.com/using-flexbox/
 @mixin flexorder( $order ) {
 
@@ -38,6 +52,10 @@
 	order: $order;                       /* NEW, Spec - Opera 12.1, Firefox 20+ */
 
 }
+
+
+
+//############################################################################################ MEDIAQUERIES
 
 @mixin XXS {
 
@@ -59,7 +77,7 @@
 
 }
 
-/* @mixin SM-Tablet {
+@mixin SM-T {
 
   @media ( min-width: #{ $layout-breakpoint-xs + 1px } ) and (max-width: #{ $layout-breakpoint-sm-tablet } ) {
 
@@ -67,7 +85,7 @@
 
   }
 
-} */
+}
 
 @mixin SM {
 
@@ -230,3 +248,4 @@
   }
 
 }
+
