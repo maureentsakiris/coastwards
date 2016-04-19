@@ -39,7 +39,139 @@
 
 }
 
-@mixin GtSm {
+@mixin XXS {
+
+  @media ( max-width: #{ $layout-breakpoint-xxs } ) {
+
+    @content;
+
+  }
+
+}
+
+@mixin XS {
+
+  @media ( min-width: #{ $layout-breakpoint-xxs + 1px } ) and (max-width: #{ $layout-breakpoint-xs } ) {
+
+    @content;
+
+  }
+
+}
+
+/* @mixin SM-Tablet {
+
+  @media ( min-width: #{ $layout-breakpoint-xs + 1px } ) and (max-width: #{ $layout-breakpoint-sm-tablet } ) {
+
+    @content;
+
+  }
+
+} */
+
+@mixin SM {
+
+  @media ( min-width: #{ $layout-breakpoint-xs + 1px } ) and (max-width: #{ $layout-breakpoint-sm } ) {
+
+    @content;
+
+  }
+
+}
+
+@mixin MD {
+
+  @media ( min-width: #{ $layout-breakpoint-sm + 1px } ) and (max-width: #{ $layout-breakpoint-md } ) {
+
+    @content;
+
+  }
+
+}
+
+@mixin LG {
+
+  @media ( min-width: #{ $layout-breakpoint-md + 1px } ) and (max-width: #{ $layout-breakpoint-lg } ) {
+
+    @content;
+
+  }
+
+}
+
+@mixin XL {
+
+  @media ( min-width: #{ $layout-breakpoint-lg + 1px } ) and (max-width: #{ $layout-breakpoint-xl } ) {
+
+    @content;
+
+  }
+
+}
+
+@mixin XXL {
+
+  @media ( min-width: #{ $layout-breakpoint-xl + 1px } ) and (max-width: #{ $layout-breakpoint-xxl } ) {
+
+    @content;
+
+  }
+
+}
+
+@mixin XXXL {
+
+  @media ( min-width: #{ $layout-breakpoint-xxl + 1px } ) and (max-width: #{ $layout-breakpoint-xxxl } ) {
+
+    @content;
+
+  }
+
+}
+
+//################################################################## GT/SM
+
+@mixin GtXXS {
+
+  @media (min-width: #{ $layout-breakpoint-xxs }) {
+
+    @content;
+
+  }
+
+}
+
+@mixin StXXS {
+
+  @media (max-width: #{ $layout-breakpoint-xxs }) {
+
+    @content;
+
+  }
+
+}
+
+@mixin GtXS {
+
+  @media (min-width: #{ $layout-breakpoint-xs }) {
+
+    @content;
+
+  }
+
+}
+
+@mixin StXS {
+
+  @media (max-width: #{ $layout-breakpoint-xs }) {
+
+    @content;
+
+  }
+
+}
+
+@mixin GtSM {
 
   @media (min-width: #{ $layout-breakpoint-sm }) {
 
@@ -49,9 +181,49 @@
 
 }
 
-@mixin GtSm {
+@mixin StSM {
 
-  @media (min-width: #{ $layout-breakpoint-sm }) {
+  @media (max-width: #{ $layout-breakpoint-sm }) {
+
+    @content;
+
+  }
+
+}
+
+@mixin GtMD {
+
+  @media (min-width: #{ $layout-breakpoint-md }) {
+
+    @content;
+
+  }
+
+}
+
+@mixin StMD {
+
+  @media (max-width: #{ $layout-breakpoint-md }) {
+
+    @content;
+
+  }
+
+}
+
+@mixin GtLG {
+
+  @media (min-width: #{ $layout-breakpoint-lg }) {
+
+    @content;
+
+  }
+
+}
+
+@mixin StLG {
+
+  @media (max-width: #{ $layout-breakpoint-lg }) {
 
     @content;
 

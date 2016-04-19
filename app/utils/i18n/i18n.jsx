@@ -137,7 +137,7 @@ export default class I18n extends Component {
 					let snackbarOptions = {
 
 						label: util.format( 'Help us translate this page into %s', i18nLocales.english ),
-						action: 'Go Crowdtranslate',
+						action: 'GO',
 						onClick: this._goTranslate
 
 					}

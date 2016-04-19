@@ -3,6 +3,10 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import _ from 'underscore';
 import Classnames from 'classnames';
 
+/*
+ * NOTE: Set height of tab container manually in main.scss to hide scrollbar
+*/
+
 require ( './style.scss' );
 
 export default class Tabs extends Component {

@@ -38,8 +38,8 @@ export default class App extends Component {
 
 		return (
 
-			<div>
-				<p>App</p>
+			<div id="Content">
+				<div className="corset">App</div>
 			</div>
 
 		)
