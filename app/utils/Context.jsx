@@ -88,7 +88,7 @@ export default class Context extends Component {
 			onClick: this._hideSnackbar,
 			onTimeout: this._hideSnackbar,
 			timeout: 3000,
-			className: ''
+			className: 'snackbar'
 
 
 		}

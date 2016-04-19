@@ -142,8 +142,7 @@ export default class I18n extends Component {
 
 					}
 
-					// this.context.showSnackbar( snackbarOptions );
-					this.context.showDialog( { title: "!", content: i18nLocales.messages.missing_translations_msg } );
+					this.context.showSnackbar( snackbarOptions );
 
 				}
 

@@ -72,7 +72,7 @@ export default class I18nSwitch extends Component {
 				className: cls,
 				disabled: current,
 				flat: true,
-				primary: true
+				accent: true
 
 			}, locale.name );
 					
