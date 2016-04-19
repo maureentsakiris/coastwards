@@ -3,6 +3,7 @@
  * 1. Add in Locales (i18nLocales.js)
  * 2. Add loaders method (i18nLocales.js)
  * 3. Add in acceptsLanguages (server.js)
+ * 4. Adjust mediaqueries to show/hide arrows and justify-content left/center
 */
 
 import { addLocaleData } from 'react-intl';

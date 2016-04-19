@@ -111,7 +111,7 @@ export default class Context extends Component {
 		return (
 
 			<div id="Context">
-				{ showLoader && <ProgressBar type="linear" mode="indeterminate" /> }
+				{ showLoader && <ProgressBar type="linear" mode="indeterminate" className="contextLoader" /> }
 				<Dialog { ...dialogOptions }>{ dialogOptions.content }</Dialog>
 				{ this.props.children }
 				<Snackbar { ...snackbarOptions } ref="snackbar" />

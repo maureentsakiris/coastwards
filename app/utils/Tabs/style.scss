@@ -1,0 +1,62 @@
+@import '../../styles/_base';
+
+%control{
+
+	flex-grow: 0;
+	flex-shrink: 1;
+	width: 24px;
+	color: $color-accent;
+
+}
+
+.tabcontainer{
+
+	@extend %flexcontainer;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	align-items: flex-start;
+	overflow: hidden;
+	@include no-webkit-scrollbar();
+
+}
+
+.tabitem{
+
+	@extend %flexitem;
+	flex-grow: 1;
+	align-self: center;
+
+	&.left{
+
+		@extend %control;
+		text-align: left;
+
+	}
+
+	&.content{
+
+		flex-grow: 2;
+		overflow-x: scroll;
+		overflow-y: hidden;
+		-webkit-overflow-scrolling: touch;
+		align-self: flex-start;
+    	padding-bottom: 80px;
+
+		.tabitem{
+
+			flex-grow: 0;
+			width: auto;
+
+		}
+
+	}
+
+	&.right{
+
+		@extend %control;
+		text-align: right;
+
+	}
+
+}
