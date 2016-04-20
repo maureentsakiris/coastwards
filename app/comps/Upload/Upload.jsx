@@ -1,14 +1,17 @@
 import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import { defineMessages, injectIntl, intlShape, FormattedMessage } from 'react-intl';
+import { defineMessages, injectIntl, intlShape } from 'react-intl';
+import Classnames from 'classnames';
 
-import Tabs from '../utils/Tabs/Tabs';
+import style from './_styleUpload';
+
+import Leaflet from '../../utils/Leaflet/Leaflet';
 
 const messages = defineMessages( {
 
 } );
 
-class Info extends Component {
+class Upload extends Component {
 
 	constructor ( props ) {
 
@@ -25,35 +28,33 @@ class Info extends Component {
 
 		const { formatMessage } = this.props.intl;
 
+		const clsLeaflet = Classnames( style.leaflet );
+
 		return (
 
-			<div id="Info">
-				<Tabs className="pad">
-					<div>How does a picture help?</div>
-					<div>What kind of pictures?</div>
-					<div>Who are you?</div>
-				</Tabs>
+			<div id="Upload">
+				<Leaflet className={ clsLeaflet } />
 			</div>
 
 		)
 
-	}
+	} 
 
 }
 
-Info.propTypes = {
+Upload.propTypes = {
 
 	intl: intlShape.isRequired
 
 };
 
-Info.defaultProps = {
+Upload.defaultProps = {
 
 	
 
 };
 
-Info.contextTypes = {
+Upload.contextTypes = {
 
 	showDialog: PropTypes.func,
 	showLoader: PropTypes.func,
@@ -61,4 +62,4 @@ Info.contextTypes = {
 
 };
 
-export default injectIntl( Info );
+export default injectIntl( Upload );

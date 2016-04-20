@@ -1,13 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import { defineMessages, injectIntl, intlShape, FormattedMessage } from 'react-intl';
+import { injectIntl, intlShape } from 'react-intl';
 
-import Intro from './Intro';
-import Info from './Info';
+import Intro from '../Intro/Intro';
+import Info from '../Info/Info';
+import Upload from '../Upload/Upload';
 
-const messages = defineMessages( {
-
-} );
+import style from './_styleApp';
 
 class App extends Component {
 
@@ -24,13 +23,12 @@ class App extends Component {
 
 	render () {
 
-		const { formatMessage } = this.props.intl;
-
 		return (
 
-			<div id="Content">
+			<div id="Content" className={ style.content }>
 				<Intro />
 				<Info />
+				<Upload />
 			</div>
 
 		)

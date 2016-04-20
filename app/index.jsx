@@ -1,12 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Context from './utils/Context';
+import Context from './utils/Context/Context';
 import I18n from './utils/i18n/I18n';
-import App from './comps/App';
+import App from './comps/App/App';
 
-
-require ( './styles/main.scss' );
-
+import './_styleIndex';
 
 ReactDOM.render( 
 

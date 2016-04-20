@@ -1,102 +1,5 @@
-@import '_base';
-
-
-//################################################################## LAYOUT
-
-.corset{
-
-	max-width: 1200px;
-	margin: 0 auto;
-
-}
-
-.pad{
-
-	padding: 0 $layout-gutter-width;
-	box-sizing: border-box;
-
-}
-
-
-//################################################################## CONTEXT
-
-
-
-//################################ LOADER
-
-.contextLoader{
-
-	position: fixed;
-	top: 0;
-
-}
-
-//################################ SNACKBAR
-
-.snackbar{
-
-	right: 33%;
-	left: 33%;
-	border-radius: 0.2rem 0.2rem 0 0;
-
-}
-
-
-@include XXS{
-
-	.snackbar{
-
-		right: 0;
-		left: 0;
-		border-radius: 0;
-
-	}
-
-}
-
-@include XS{
-
-	.snackbar{
-
-		right: 10%;
-		left: 10%;
-
-	}
-
-}
-
-@include SM{
-
-	.snackbar{
-
-		right: 20%;
-		left: 20%;
-
-	}
-
-}
-
-@include MD{
-
-	.snackbar{
-
-		right: 25%;
-		left: 25%;
-
-	}
-
-}
-
-@include LG{
-
-	.snackbar{
-
-		right: 30%;
-		left: 30%;
-
-	}
-
-}
+/* @import '~react-toolbox/lib/base';
+@import './_base';
  
 //################################################################## LANGUAGES
 
@@ -177,3 +80,4 @@
 
 
 
+ */

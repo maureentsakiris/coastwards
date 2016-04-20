@@ -6,6 +6,8 @@ import _ from 'underscore';
 import Button from 'react-toolbox/lib/button';
 import Tabs from '../Tabs/Tabs';
 
+import style from './_stylei18nSwitch';
+
 /*
  *	Loads language locales and names from i18n and creates a list of language links. Locale of link clicked is passed on to onSwitch
 */
@@ -42,10 +44,11 @@ export default class I18nSwitch extends Component {
 	render () {
 
 		const links = this._createLanguageLinks( );
+		const cls = Classnames( style.pad, style.languages );
 
 		return (
 
-			<Tabs id="Languages" className="pad">
+			<Tabs id="Languages" center={ true } className={ cls }>
 				{ links }
 			</Tabs>
 
@@ -60,18 +63,11 @@ export default class I18nSwitch extends Component {
 			let lang = locale.locale;
 			let current = lang == this.state.current;
 
-			const cls = Classnames( {
-
-				'current': current
-
-			} )
-
 			return React.createElement( Button, {
 
 				key: lang,
 				hrefLang: lang,
 				onClick: this._handleClick.bind( this, lang ),
-				className: cls,
 				disabled: current,
 				flat: true,
 				accent: true

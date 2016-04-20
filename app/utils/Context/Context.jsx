@@ -8,7 +8,7 @@ import ProgressBar from 'react-toolbox/lib/progress_bar';
 import Dialog from 'react-toolbox/lib/dialog';
 import Snackbar from 'react-toolbox/lib/snackbar';
 
-
+import style from './_styleContext';
 
 
 Modernizr.addTest( 'draganddrop', function () {
@@ -106,15 +106,13 @@ export default class Context extends Component {
 
 		let { showLoader, dialogOptions, snackbarOptions } = this.state;
 
-		//console.log( dialogOptions );
-
 		return (
 
 			<div id="Context">
-				{ showLoader && <ProgressBar type="linear" mode="indeterminate" className="contextLoader" /> }
+				{ showLoader && <ProgressBar type="linear" mode="indeterminate" className={ style.contextLoader } /> }
 				<Dialog { ...dialogOptions }>{ dialogOptions.content }</Dialog>
 				{ this.props.children }
-				<Snackbar { ...snackbarOptions } ref="snackbar" />
+				<Snackbar { ...snackbarOptions } ref="snackbar" className={ style.snackbar } />
 			</div>
 
 		)

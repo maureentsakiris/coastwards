@@ -3,11 +3,8 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import _ from 'underscore';
 import Classnames from 'classnames';
 
-/*
- * NOTE: Set height of tab container manually in main.scss to hide scrollbar
-*/
+import style from './_styleTabs';
 
-require ( './style.scss' );
 
 export default class Tabs extends Component {
 
@@ -15,13 +12,15 @@ export default class Tabs extends Component {
 
 		children: PropTypes.node,
 		id: PropTypes.string,
-		className: PropTypes.string
+		className: PropTypes.string,
+		center: PropTypes.bool,
+		arrows: PropTypes.bool
 
 	};
 
 	static defaultProps = {
 
-
+		arrows: true
 
 	};
 
@@ -33,15 +32,31 @@ export default class Tabs extends Component {
 		
 	}
 
+	componentDidMount ( ){
+
+		window.addEventListener( 'resize', this._update );
+		this.contentWidth = this._getContentWidth();
+		this._update();
+
+	}
+
+	componentWillUnmount ( ){
+
+		window.removeEventListener( 'resize', this._update );
+
+	}
+
 
 	constructor ( props ) {
 
 		super ( props );
 		this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind( this );
 
+		this.contentWidth;
+
 		this.state = {
 
-			scroll: false
+			overflow: false
 
 		}
 
@@ -49,22 +64,40 @@ export default class Tabs extends Component {
 
 	render () {
 
+		const { center, arrows } = this.props;
+
 		const children = this._extendChildren();
 
-		const cls = Classnames( this.props.className, 'tabcontainer' );
+		const cls = Classnames( style.tabcontainer, this.props.className );
+
+		const clsLeft = Classnames( style.tabitem, style.left, {
+
+			[ style.hide ]: !this.state.overflow
+
+		} );
+		const clsContent = Classnames( style.tabitem, style.content, style.tabcontainer, {
+
+			[ style.center ]: center && !this.state.overflow
+
+		} );
+		const clsRight = Classnames( style.tabitem, style.right, {
+
+			[ style.hide ]: !this.state.overflow
+
+		} );
 
 		return (
 
 			<div id={ this.props.id } className={ cls } dir="ltr">
-				<div className="tabitem left">
+				{ arrows && <div className={ clsLeft } ref="left">
 					<i className="material-icons">&#xE5CB;</i>
-				</div>
-				<div className="tabitem content tabcontainer">
+				</div> }
+				<div className={ clsContent } ref="content">
 					{ children }
 				</div>
-				<div className="tabitem right">
+				{ arrows && <div className={ clsRight } ref="right">
 					<i className="material-icons">&#xE5CC;</i>
-				</div>
+				</div> }
 			</div>
 
 		)
@@ -73,13 +106,36 @@ export default class Tabs extends Component {
 
 	_extendChildren = () => {
 
-		return _.map( this.props.children, ( child ) => {
+		return _.map( this.props.children, ( child, key ) => {
 
-			let cls = Classnames( child.className, 'tabitem' );
-
-			return React.cloneElement( child, { className: cls } );
+			let cls = Classnames( style.tabitem, child.props.className );
+			return React.cloneElement( child, { key: key, className: cls } );
 
 		} );
+
+	}
+
+	_getContentWidth = ( ) => {
+
+		var children = this.refs.content.children;
+		var totalWidth = 0;
+
+		for ( var i = 0; i < children.length; i++ ) {
+
+			totalWidth += children[ i ].offsetWidth;
+
+		}
+
+		return totalWidth;
+
+	}
+
+	_update = ( ) => {
+
+		let containerWidth = this.refs.content.clientWidth;
+		let overflow = containerWidth - this.contentWidth < 0 ? true : false;
+
+		this.setState( { overflow: overflow } );
 
 	}
 

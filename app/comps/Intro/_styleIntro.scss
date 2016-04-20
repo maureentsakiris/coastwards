@@ -1,0 +1,42 @@
+@import '~react-toolbox/lib/base';
+@import '../../../app/styles/_base';
+
+
+
+.intro{
+
+	min-height: 60vh;
+	padding: $layout-gutter-width 0;
+	box-sizing: border-box;
+	text-align: center;
+	color: $palette-blue-grey-500;
+
+	&>div{
+
+		align-self: center;
+
+	}
+
+	p{
+
+		margin-top: $layout-gutter-width;
+		@include typo-headline( );
+		color: $palette-grey-500;
+
+	}
+
+}
+
+@include StMD(){
+
+	.intro{
+
+		h1{
+
+			font-size: 3.2rem;
+
+		}
+
+	}
+
+}

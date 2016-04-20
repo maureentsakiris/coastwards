@@ -1,6 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import { defineMessages, injectIntl, intlShape, FormattedMessage } from 'react-intl';
+import { defineMessages, injectIntl, intlShape } from 'react-intl';
+import Classnames from 'classnames';
+
+import style from './_styleIntro';
 
 const messages = defineMessages( {
 
@@ -35,10 +38,13 @@ class Intro extends Component {
 
 		const { formatMessage } = this.props.intl;
 
+		const cls = Classnames( style.intro, style.flexcontainer );
+		const corset = Classnames( style.flexitem, style.corset, style.pad );
+
 		return (
 
-			<div id="Intro" className="flexcontainer">
-				<div className="flexitem corset pad">
+			<div id="Intro" className={ cls }>
+				<div className={ corset }>
 					<h1>{ formatMessage( messages.intro ) }</h1>
 					<p>{ formatMessage( messages.tagline ) }</p>
 				</div>

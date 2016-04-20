@@ -4,21 +4,18 @@ const httpProxy = require( 'http-proxy' );
 const helmet = require( 'helmet' );
 
 
-var SERVER = {};
+var SERVER = { PORT: 3000 };
 
-if( process.argv[ 3 ] == 'office' ){
+switch ( process.argv[ 3 ] ){
 
-	SERVER = {
-		IP: '134.245.149.30',
-		PORT: 3000
-	};
-
-}else{
-
-	SERVER = {
-		IP: '127.0.0.1',
-		PORT: 3000
-	};
+case 'office':
+	SERVER.IP = '134.245.149.30'
+	break;
+case 'gerhard':
+	SERVER.IP= '192.168.0.12'
+	break;
+default:
+	SERVER.IP= '127.0.0.1'
 
 }
 

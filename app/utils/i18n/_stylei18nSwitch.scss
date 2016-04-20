@@ -1,0 +1,15 @@
+@import '~react-toolbox/lib/base';
+@import '../../../app/styles/_base';  
+
+
+.languages{
+
+	height: 36px;
+	overflow: hidden;
+	margin: $layout-gutter-width 0;
+
+	/* position: absolute;
+    width: 100%;
+    z-index: 1; */
+
+}

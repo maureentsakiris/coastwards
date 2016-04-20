@@ -1,4 +1,5 @@
-@import '../../styles/_base';
+@import '~react-toolbox/lib/base';
+@import '../../../app/styles/_base'; 
 
 %control{
 
@@ -6,6 +7,12 @@
 	flex-shrink: 1;
 	width: 24px;
 	color: $color-accent;
+
+	&.hide{
+
+		visibility: hidden;
+
+	}
 
 }
 
@@ -36,12 +43,18 @@
 
 	&.content{
 
+		&.center{
+
+			justify-content: center;
+
+		}
+
 		flex-grow: 2;
 		overflow-x: scroll;
 		overflow-y: hidden;
 		-webkit-overflow-scrolling: touch;
-		align-self: flex-start;
-    	padding-bottom: 80px;
+		align-self: center;
+		align-items: stretch;
 
 		.tabitem{
 
