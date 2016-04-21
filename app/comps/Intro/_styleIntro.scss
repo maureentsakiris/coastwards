@@ -5,21 +5,27 @@
 
 .intro{
 
-	min-height: 60vh;
-	padding: $layout-gutter-width 0;
+	min-height: 88vh;
+	/*padding: $layout-gutter-width 0;*/
 	box-sizing: border-box;
 	text-align: center;
 	color: $palette-blue-grey-500;
+	/*color: #383838;*/
+
+	/*background-image: url('./shoreline.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;*/
 
 	&>div{
 
 		align-self: center;
+		/*margin-bottom: 10vh;*/
 
 	}
 
 	p{
 
-		margin-top: $layout-gutter-width;
+		margin-top: 10vh;
 		@include typo-headline( );
 		color: $palette-grey-500;
 
