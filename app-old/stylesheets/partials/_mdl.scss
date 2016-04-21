@@ -1,0 +1,66 @@
+/********************************************************************* PROGRESS */
+
+.mdl-progress{
+	position: fixed;
+	width: 100%;
+}
+
+/********************************************************************* DIALOG */
+
+dialog.polyfill{
+	display: none;
+}
+
+/********************************************************************* DIALOG */
+
+.mdl-snackbar{
+
+	border-radius: 2px 2px 0 0;
+
+}
+
+/********************************************************************* FORMELEMENTS */
+
+.mdl-textfield{
+
+	display: block;
+	margin: 10px 0;
+
+}
+
+.mdl-radio{
+
+	margin: 0 10px 0 0;
+
+}
+
+/********************************************************************* CARDS */
+
+.mdl-card{
+
+	width: 100%;
+	margin-bottom: 16px;
+	min-height: 0;
+
+}
+
+/*html.flexbox.flexwrap .mdl-card{
+
+	width: 330px;
+	margin-bottom: initial;
+	min-height: 200px;
+
+}*/
+
+/*.mdl-card__title-text {
+
+	margin: 0 auto;
+	color: #fff;
+
+}*/
+
+html.flexbox.flexwrap .mdl-card__title-text {
+
+	margin: initial;
+
+}

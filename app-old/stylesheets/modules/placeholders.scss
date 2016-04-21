@@ -1,0 +1,30 @@
+/*http://zerosixthree.se/8-sass-mixins-you-must-have-in-your-toolbox/*/
+
+%clearfix {
+  *zoom: 1;
+  &:before, &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+%visuallyhidden {
+  margin: -1px;
+  padding: 0;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip: rect(0, 0, 0, 0);
+  position: absolute;
+}
+
+/* my own placeholders */
+
+%fake-float-right{
+	display: block;
+	text-align: right;
+}

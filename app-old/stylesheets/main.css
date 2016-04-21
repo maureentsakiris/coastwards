@@ -1,0 +1,117 @@
+@import '_base';
+
+
+html {
+
+    color: rgba(0, 0, 0, 0.5);
+
+}
+
+.globalProgressbar{
+
+	position: fixed;
+
+}
+
+/*nav {
+
+	width: 100%;
+	position: absolute;
+	padding: $padding;
+	z-index: 1;
+	overflow-x: scroll;
+    overflow-y: hidden;
+    box-sizing: border-box;
+    -webkit-overflow-scrolling: touch;
+
+	ul {
+
+		padding: 0;
+		margin: 0;
+		list-style-type: none;
+		display: flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
+
+		li{
+			flex-shrink: 0;
+			flex-basis: auto;
+		}
+
+	}
+}*/
+
+#Content{
+
+	text-align: center;
+	position: absolute;
+    top: 0;
+    width: 100%;
+
+}
+
+
+.section{
+
+	height: 90vh;
+	position: relative;
+
+}
+
+.vertical-align{
+
+	@include vertical-align();
+
+}
+
+.limit-width{
+
+	max-width: 960px;
+	margin: 0 auto;
+	padding: 0 $padding;
+
+}
+
+.context{
+
+	position: relative;
+
+}
+
+#Intro{
+
+	height: 70vh;
+
+}
+
+h1{
+
+	color: $color;
+	margin: 0 0 24px 0;
+
+}
+
+#Info{
+
+	height: 20vh;
+
+}
+
+#Upload{
+
+	background-color: $color;
+	position: relative;
+	height: 70vh;
+
+}
+
+
+#Map{
+
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+
+}
