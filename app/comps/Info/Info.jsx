@@ -4,7 +4,7 @@ import { defineMessages, injectIntl, intlShape } from 'react-intl';
 import Classnames from 'classnames';
 
 import Tabs from '../../utils/Tabs/Tabs';
-import { Button, IconButton } from 'react-toolbox/lib/button';
+import { Button } from 'react-toolbox/lib/button';
 
 import style from './_styleInfo';
 
@@ -42,6 +42,8 @@ class Info extends Component {
 
 		this.state = {
 
+			/*showDrawer: false*/
+
 		}
 
 	}
@@ -50,27 +52,27 @@ class Info extends Component {
 
 		const { formatMessage } = this.props.intl;
 
-		const cls = Classnames(  );
+		/*const clsDrawer = Classnames( style.drawer, {
+
+			[ style.open ]: this.state.showDrawer
+
+		} );*/
 
 		return (
 
-			<div id="Info">
-				<Tabs arrows={ false } className={ cls } style={ { alignItems: 'stretch' } }>
+			<div id="Info" className={ style.info }>
+				<Tabs arrows={ true } style={ { alignItems: 'stretch' } }>
 					<div className={ style.how }>
-						<Button label={ formatMessage( messages.how_does_a_picture_help ) } flat inverse />
-						<IconButton icon="expand_more" flat inverse />
+						<Button className={ style.tabButton } label={ formatMessage( messages.how_does_a_picture_help ) } flat inverse />
 					</div>
 					<div className={ style.guidelines }>
-						<Button label={ formatMessage( messages.just_any_picture ) } flat inverse />
-						<IconButton icon="expand_more" flat inverse />
+						<Button className={ style.tabButton } label={ formatMessage( messages.just_any_picture ) } flat inverse />
 					</div>
 					<div className={ style.team }>
-						<Button label={ formatMessage( messages.who_are_you ) } flat inverse />
-						<IconButton icon="expand_more" flat inverse />
+						<Button className={ style.tabButton } label={ formatMessage( messages.who_are_you ) } flat inverse />
 					</div>
 					<div className={ style.faqs }>
-						<Button label={ formatMessage( messages.other_questions ) } flat inverse />
-						<IconButton icon="expand_more" flat inverse />
+						<Button className={ style.tabButton } label={ formatMessage( messages.other_questions ) } flat inverse />
 					</div>
 				</Tabs>
 			</div>
@@ -78,6 +80,14 @@ class Info extends Component {
 		)
 
 	}
+
+	/*_openDrawer ( content ){
+
+		console.log( content );
+
+		this.setState( { showDrawer: true } );
+
+	}*/
 
 }
 

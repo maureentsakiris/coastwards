@@ -5,7 +5,7 @@
 
 .intro{
 
-	min-height: 88vh;
+	min-height: 89vh;
 	/*padding: $layout-gutter-width 0;*/
 	box-sizing: border-box;
 	text-align: center;
@@ -15,6 +15,12 @@
 	/*background-image: url('./shoreline.jpg');
 	background-repeat: no-repeat;
 	background-size: cover;*/
+
+	h1{
+
+		font-weight: $font-weight-thin;
+
+	}
 
 	&>div{
 

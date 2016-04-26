@@ -58,12 +58,14 @@ export default class Leaflet extends Component {
 
 	_createMap ( ){
 
-		const mymap = L.map( 'Map', {
+		const map = L.map( 'Map', {
 
 			scrollWheelZoom: false,
-			zoomControl: true
+			worldCopyJump: true,
+			zoomControl: false,
+			attributionControl: false
 
-		} ).setView( [ 38.97416, -95.23252 ], 4 );
+		} ).setView( [ 40.737, -73.923 ], 3 );
 
 
 		L.tileLayer( 'https://api.mapbox.com/styles/v1/mapbox/emerald-v8/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWF1cmVlbnRzYWtpcmlzIiwiYSI6ImNpanB0NzgwMjAxZDB0b2tvamNpYXQyeTMifQ.HVQAxH-RQKZBss1u3zIoxA', {
@@ -72,7 +74,9 @@ export default class Leaflet extends Component {
 			zoomOffset: -1,
 			attribution: ''
 
-		} ).addTo( mymap );
+		} ).addTo( map );
+
+		map.fitWorld().zoomIn();
 
 	}
 

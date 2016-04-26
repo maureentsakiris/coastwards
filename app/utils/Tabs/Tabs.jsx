@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import _ from 'underscore';
 import Classnames from 'classnames';
+import { IconButton } from 'react-toolbox/lib/button';
 
 import style from './_styleTabs';
 
@@ -14,13 +15,15 @@ export default class Tabs extends Component {
 		id: PropTypes.string,
 		className: PropTypes.string,
 		center: PropTypes.bool,
-		arrows: PropTypes.bool
+		arrows: PropTypes.bool,
+		scrollStep: PropTypes.number
 
 	};
 
 	static defaultProps = {
 
-		arrows: true
+		arrows: true,
+		scrollStep: 100
 
 	};
 
@@ -36,7 +39,9 @@ export default class Tabs extends Component {
 
 		window.addEventListener( 'resize', this._update );
 		this.contentWidth = this._getContentWidth();
+		this.content = this.refs.content;
 		this._update();
+		this._onScroll();
 
 	}
 
@@ -46,17 +51,19 @@ export default class Tabs extends Component {
 
 	}
 
-
 	constructor ( props ) {
 
 		super ( props );
 		this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind( this );
 
 		this.contentWidth;
+		this.content;
 
 		this.state = {
 
-			overflow: false
+			overflow: false,
+			showLeft: false,
+			showRight: false
 
 		}
 
@@ -64,13 +71,14 @@ export default class Tabs extends Component {
 
 	render () {
 
-		const { center, arrows } = this.props;
+		const { center, arrows, scrollStep } = this.props;
+		const { showLeft, showRight } = this.state;
 
 		const children = this._extendChildren();
 
 		const cls = Classnames( style.tabcontainer, this.props.className );
 
-		const clsLeft = Classnames( style.tabitem, style.left, {
+		const clsLeft = Classnames( style.tabitem, style.control, {
 
 			[ style.hide ]: !this.state.overflow
 
@@ -80,7 +88,7 @@ export default class Tabs extends Component {
 			[ style.center ]: center && !this.state.overflow
 
 		} );
-		const clsRight = Classnames( style.tabitem, style.right, {
+		const clsRight = Classnames( style.tabitem, style.control, {
 
 			[ style.hide ]: !this.state.overflow
 
@@ -90,13 +98,13 @@ export default class Tabs extends Component {
 
 			<div id={ this.props.id } className={ cls } dir="ltr">
 				{ arrows && <div className={ clsLeft } ref="left">
-					<i className="material-icons">&#xE5CB;</i>
+					<IconButton icon="chevron_left" accent disabled={ !showLeft } onClick={ this._scrollTo.bind( this, -scrollStep ) } />
 				</div> }
-				<div className={ clsContent } ref="content">
+				<div className={ clsContent } ref="content" onScroll={ this._onScroll } >
 					{ children }
 				</div>
 				{ arrows && <div className={ clsRight } ref="right">
-					<i className="material-icons">&#xE5CC;</i>
+					<IconButton icon="chevron_right" accent  disabled={ !showRight } onClick={ this._scrollTo.bind( this, scrollStep ) } />
 				</div> }
 			</div>
 
@@ -136,6 +144,26 @@ export default class Tabs extends Component {
 		let overflow = containerWidth - this.contentWidth < 0 ? true : false;
 
 		this.setState( { overflow: overflow } );
+
+	}
+
+	_onScroll = ( ) => {
+
+		let canScrollLeft = this.content.scrollLeft > 0;
+		let canScrollRight = ( this.content.scrollWidth - ( this.content.scrollLeft + this.content.clientWidth ) ) > 0;
+
+		this.setState( {
+
+			showLeft: canScrollLeft,
+			showRight: canScrollRight
+
+		} );
+
+	}
+
+	_scrollTo ( s ){
+
+		this.content.scrollLeft += s;
 
 	}
 

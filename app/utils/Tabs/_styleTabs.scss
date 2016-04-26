@@ -1,20 +1,6 @@
 @import '~react-toolbox/lib/base';
 @import '../../../app/styles/_base'; 
 
-%control{
-
-	flex-grow: 0;
-	flex-shrink: 1;
-	width: 24px;
-	color: $color-accent;
-
-	&.hide{
-
-		visibility: hidden;
-
-	}
-
-}
 
 .tabcontainer{
 
@@ -34,10 +20,20 @@
 	flex-grow: 1;
 	align-self: center;
 
-	&.left{
+	&.control{
 
-		@extend %control;
-		text-align: left;
+		flex-grow: 0;
+		flex-shrink: 1;
+		width: 24px;
+		color: $color-accent;
+		width: 60px;
+		text-align: center;
+
+	}
+
+	&.hide{
+
+		visibility: hidden;
 
 	}
 
@@ -62,13 +58,6 @@
 			width: auto;
 
 		}
-
-	}
-
-	&.right{
-
-		@extend %control;
-		text-align: right;
 
 	}
 

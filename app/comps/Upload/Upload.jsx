@@ -28,12 +28,12 @@ class Upload extends Component {
 
 		const { formatMessage } = this.props.intl;
 
-		const clsLeaflet = Classnames( style.leaflet );
+		const cls = Classnames( style.upload );
 
 		return (
 
-			<div id="Upload">
-				<Leaflet className={ clsLeaflet } />
+			<div id="Upload" className={ cls }>
+				<Leaflet  />
 			</div>
 
 		)

@@ -2,13 +2,24 @@
 @import '../../../app/styles/_base'; 
 
 
+$bg: $color-primary-dark;
+
+
+.info{
+
+	background-color: $bg;
+
+}
+
 %tab{
 
-	padding: 5vh;
-	border-top: 1px solid $palette-grey-200;
-	border-bottom: 1px solid $palette-grey-200;
+	/* border-top: 1px solid $palette-grey-200; */
+	/* border-bottom: 2px solid $bg; */
 	flex-grow: 1 !important;
-	background-color: $color-primary-dark;
+	background-color: $bg;
+	/* border-right: 1px solid $color-primary;
+	border-bottom: 1px solid $color-primary; */
+
 
 	@include typo-button();
 
@@ -17,27 +28,55 @@
 .how{
 
 	@extend %tab;
-	/* background-color: blue; */
 
 }
 
 .guidelines{
 
 	@extend %tab;
-	/* background-color: pink; */
 
 }
 
 .team{
 
 	@extend %tab;
-	/* background-color: green; */
 
 }
 
 .faqs{
 
 	@extend %tab;
-	/* background-color: orange; */
 
 }
+
+.tabButton{
+
+	padding: 5vh;
+	width: 100%;
+	height: auto;
+
+}
+
+.drawer{
+
+	height: 0;
+	transition-property: height;
+    transition-duration: 200ms;
+    transition-timing-function: ease-out;
+    transition-delay: 0;
+    background-color: $bg;
+
+	.content{
+
+		opacity: 0;
+
+	}
+
+}
+
+.open{
+
+	height: auto;
+
+}
+

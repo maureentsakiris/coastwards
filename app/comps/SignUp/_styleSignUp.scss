@@ -1,0 +1,18 @@
+@import '~react-toolbox/lib/base';
+@import '../../../app/styles/_base'; 
+
+$padding: 10vh;
+
+.signUp{
+
+	color: $palette-blue-grey-500;
+	padding-top: $padding;
+	padding-bottom: $padding;
+
+	h2{
+
+		font-weight: $font-weight-thin;
+
+	}
+
+}

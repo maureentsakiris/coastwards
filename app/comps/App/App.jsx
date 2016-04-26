@@ -5,6 +5,7 @@ import { injectIntl, intlShape } from 'react-intl';
 import Intro from '../Intro/Intro';
 import Info from '../Info/Info';
 import Upload from '../Upload/Upload';
+import SignUp from '../SignUp/SignUp';
 
 import style from './_styleApp';
 
@@ -29,6 +30,7 @@ class App extends Component {
 				<Intro />
 				<Info />
 				<Upload />
+				<SignUp />
 			</div>
 
 		)
