@@ -81,6 +81,7 @@ class SignUp extends Component {
 						label={ formatMessage( messages.form_label_email ) }
 						validations={ emailValidation }
 						required
+						type="email"
 					/>
 					<Submit 
 						name="submit" 

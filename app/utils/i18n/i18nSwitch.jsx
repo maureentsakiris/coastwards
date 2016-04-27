@@ -44,7 +44,7 @@ export default class I18nSwitch extends Component {
 	render () {
 
 		const links = this._createLanguageLinks( );
-		const cls = Classnames( style.pad, style.languages );
+		const cls = Classnames( style.languages );
 
 		return (
 

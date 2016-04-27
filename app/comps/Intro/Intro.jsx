@@ -5,6 +5,9 @@ import Classnames from 'classnames';
 
 import style from './_styleIntro';
 
+import logo from '../../../public/assets/coastwards_red.png'; 
+
+
 const messages = defineMessages( {
 
 	intro:{
@@ -22,6 +25,12 @@ const messages = defineMessages( {
 } );
 
 class Intro extends Component {
+
+	static propTypes = {
+
+		scrollToInfo: PropTypes.func
+
+	}
 
 	constructor ( props ) {
 
@@ -45,8 +54,10 @@ class Intro extends Component {
 
 			<div id="Intro" className={ cls }>
 				<div className={ corset }>
+					<img src={ logo } />
 					<h1>{ formatMessage( messages.intro ) }</h1>
-					<p>{ formatMessage( messages.tagline ) }</p>
+					<p className={ style.tagline }>{ formatMessage( messages.tagline ) }</p>
+					<p className={ style.down }><i className="material-icons" onClick={ this.props.scrollToInfo }>arrow_downward</i></p>
 				</div>
 			</div>
 

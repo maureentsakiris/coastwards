@@ -10,6 +10,11 @@ import style from './_styleInfo';
 
 const messages = defineMessages( {
 
+	upload_pictures:{
+		id: "upload_pictures",
+		description: "0 - ",
+		defaultMessage: "upload_pictures"
+	},
 	how_does_a_picture_help:{
 		id: "how_does_a_picture_help",
 		description: "0 - Main menu",
@@ -42,7 +47,6 @@ class Info extends Component {
 
 		this.state = {
 
-			/*showDrawer: false*/
 
 		}
 
@@ -52,16 +56,13 @@ class Info extends Component {
 
 		const { formatMessage } = this.props.intl;
 
-		/*const clsDrawer = Classnames( style.drawer, {
-
-			[ style.open ]: this.state.showDrawer
-
-		} );*/
-
 		return (
 
 			<div id="Info" className={ style.info }>
-				<Tabs arrows={ true } style={ { alignItems: 'stretch' } }>
+				<Tabs arrows={ true } style={ { alignItems: 'stretch' } } activeCls={ style.active } accent={ false } inverse={ true } >
+					<div className={ style.upload }>
+						<Button className={ style.tabButton } label={ formatMessage( messages.upload_pictures ) } flat inverse />
+					</div>
 					<div className={ style.how }>
 						<Button className={ style.tabButton } label={ formatMessage( messages.how_does_a_picture_help ) } flat inverse />
 					</div>
@@ -80,14 +81,6 @@ class Info extends Component {
 		)
 
 	}
-
-	/*_openDrawer ( content ){
-
-		console.log( content );
-
-		this.setState( { showDrawer: true } );
-
-	}*/
 
 }
 

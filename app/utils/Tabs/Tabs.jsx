@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import _ from 'underscore';
+import util from 'util';
 import Classnames from 'classnames';
 import { IconButton } from 'react-toolbox/lib/button';
 
@@ -16,14 +17,21 @@ export default class Tabs extends Component {
 		className: PropTypes.string,
 		center: PropTypes.bool,
 		arrows: PropTypes.bool,
-		scrollStep: PropTypes.number
+		scrollStep: PropTypes.number,
+		activeCls: PropTypes.string,
+		active: PropTypes.number,
+		accent: PropTypes.bool,
+		inverse: PropTypes.bool
 
 	};
 
 	static defaultProps = {
 
 		arrows: true,
-		scrollStep: 100
+		scrollStep: 100,
+		active: 0,
+		accent: true,
+		inverse: false
 
 	};
 
@@ -63,7 +71,8 @@ export default class Tabs extends Component {
 
 			overflow: false,
 			showLeft: false,
-			showRight: false
+			showRight: false,
+			active: this.props.active
 
 		}
 
@@ -71,7 +80,7 @@ export default class Tabs extends Component {
 
 	render () {
 
-		const { center, arrows, scrollStep } = this.props;
+		const { center, arrows, scrollStep, accent, inverse } = this.props;
 		const { showLeft, showRight } = this.state;
 
 		const children = this._extendChildren();
@@ -98,13 +107,13 @@ export default class Tabs extends Component {
 
 			<div id={ this.props.id } className={ cls } dir="ltr">
 				{ arrows && <div className={ clsLeft } ref="left">
-					<IconButton icon="chevron_left" accent disabled={ !showLeft } onClick={ this._scrollTo.bind( this, -scrollStep ) } />
+					<IconButton icon="chevron_left" accent={ accent } inverse={ inverse } disabled={ !showLeft } onClick={ this._scrollTo.bind( this, -scrollStep ) } />
 				</div> }
 				<div className={ clsContent } ref="content" onScroll={ this._onScroll } >
 					{ children }
 				</div>
 				{ arrows && <div className={ clsRight } ref="right">
-					<IconButton icon="chevron_right" accent  disabled={ !showRight } onClick={ this._scrollTo.bind( this, scrollStep ) } />
+					<IconButton icon="chevron_right" accent={ accent } inverse={ inverse }  disabled={ !showRight } onClick={ this._scrollTo.bind( this, scrollStep ) } />
 				</div> }
 			</div>
 
@@ -116,10 +125,30 @@ export default class Tabs extends Component {
 
 		return _.map( this.props.children, ( child, key ) => {
 
-			let cls = Classnames( style.tabitem, child.props.className );
-			return React.cloneElement( child, { key: key, className: cls } );
+			let ref = util.format( 'tab-%s', key );
+			let active = util.format( 'tab-%s', this.state.active );
+			let isActive = ref == active ? true: false;
+			let cls = Classnames( style.tabitem, child.props.className, {
+
+				[ this.props.activeCls ]: isActive
+
+			} );
+
+			return React.cloneElement( child, { 
+				key: key, 
+				className: cls,
+				ref: ref,
+				onClick: this._onClick.bind( this, key, child.props.onClick )
+			} );
 
 		} );
+
+	}
+
+	_onClick = ( e, onClick ) => {
+
+		this.setState( { active: e } );
+		onClick();
 
 	}
 

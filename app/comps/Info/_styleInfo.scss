@@ -2,12 +2,16 @@
 @import '../../../app/styles/_base'; 
 
 
-$bg: $color-primary-dark;
+$bg: $color-accent-dark;
 
 
 .info{
 
 	background-color: $bg;
+	height: $heightInfo;
+	@include shadow-2dp();
+	position: relative;
+    z-index: 2;
 
 }
 
@@ -51,9 +55,10 @@ $bg: $color-primary-dark;
 
 .tabButton{
 
-	padding: 5vh;
 	width: 100%;
-	height: auto;
+	height: 100%;
+	padding: 0 $layout-gutter-width;
+	border-radius: 0;
 
 }
 
@@ -80,3 +85,8 @@ $bg: $color-primary-dark;
 
 }
 
+.active{
+
+	background-color: #AF2C2C;
+
+}

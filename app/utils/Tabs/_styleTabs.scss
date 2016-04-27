@@ -10,6 +10,7 @@
 	justify-content: space-between;
 	align-items: flex-start;
 	overflow: hidden;
+	height: 100%;
 	@include no-webkit-scrollbar();
 
 }
@@ -17,8 +18,11 @@
 .tabitem{
 
 	@extend %flexitem;
+	@extend %flexcontainer;
 	flex-grow: 1;
 	align-self: center;
+	align-items: center;
+	height: 100%;
 
 	&.control{
 
@@ -27,7 +31,12 @@
 		width: 24px;
 		color: $color-accent;
 		width: 60px;
-		text-align: center;
+
+		button{
+
+			margin: 0 auto;
+
+		}
 
 	}
 

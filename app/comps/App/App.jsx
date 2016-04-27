@@ -1,13 +1,17 @@
 import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { injectIntl, intlShape } from 'react-intl';
+import Scroll from 'react-scroll';
 
 import Intro from '../Intro/Intro';
 import Info from '../Info/Info';
 import Upload from '../Upload/Upload';
-import SignUp from '../SignUp/SignUp';
+import Footer from '../Footer/Footer';
 
 import style from './_styleApp';
+
+const scroller = Scroll.scroller;
+const Element = Scroll.Element;
 
 class App extends Component {
 
@@ -27,13 +31,18 @@ class App extends Component {
 		return (
 
 			<div id="Content" className={ style.content }>
-				<Intro />
-				<Info />
+				<Intro scrollToInfo={ this._scrollToInfo } />
+				<Element name="Info"><Info /></Element>
 				<Upload />
-				<SignUp />
 			</div>
 
 		)
+
+	}
+
+	_scrollToInfo = ( ) => {
+
+		scroller.scrollTo( "Info", { smooth: true } );
 
 	}
 
