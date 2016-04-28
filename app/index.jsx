@@ -13,6 +13,6 @@ ReactDOM.render(
 			<App />
 		</I18n>
 	</Context>, 
-	document.getElementById( 'App' ) 
+	document.getElementById( 'Body' ) 
 
 );

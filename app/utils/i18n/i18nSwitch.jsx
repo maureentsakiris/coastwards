@@ -48,7 +48,7 @@ export default class I18nSwitch extends Component {
 
 		return (
 
-			<Tabs id="Languages" center={ true } className={ cls }>
+			<Tabs id="Languages" className={ cls }>
 				{ links }
 			</Tabs>
 

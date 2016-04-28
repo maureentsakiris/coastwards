@@ -3,7 +3,8 @@
   "enableJSClass": true,
   "options": [
     "setClasses",
-    "addTest"
+    "addTest",
+    "prefixed"
   ],
   "feature-detects": [ 
   	"canvas",
@@ -11,6 +12,7 @@
   	"css/transitions",
   	"css/transforms",
     "css/flexbox",
-    "css/flexwrap"
+    "css/flexwrap",
+    "css/transforms3d"
   ]
 }

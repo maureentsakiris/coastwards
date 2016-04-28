@@ -1,19 +1,25 @@
 import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { injectIntl, intlShape } from 'react-intl';
+import Sticky from 'react-stickynode';
 import Scroll from 'react-scroll';
 
 import Intro from '../Intro/Intro';
 import Info from '../Info/Info';
 import Upload from '../Upload/Upload';
-import Footer from '../Footer/Footer';
 
 import style from './_styleApp';
 
 const scroller = Scroll.scroller;
-const Element = Scroll.Element;
 
 class App extends Component {
+
+	componentWillMount (){
+
+		let content = React.createElement( Upload );
+		this.setState( { content: content } );
+
+	}
 
 	constructor ( props ) {
 
@@ -21,6 +27,8 @@ class App extends Component {
 		this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind( this );
 
 		this.state = {
+
+			content: ''
 
 		}
 
@@ -30,10 +38,14 @@ class App extends Component {
 
 		return (
 
-			<div id="Content" className={ style.content }>
-				<Intro scrollToInfo={ this._scrollToInfo } />
-				<Element name="Info"><Info /></Element>
-				<Upload />
+			<div id="App" className={ style.app }>
+				<Intro onArrowClick={ this._scrollToInfo } />
+				<Sticky enableTransforms={ true } className={ style.sticky }>
+					<Info onTabClick={ this._loadContent } />
+				</Sticky>
+				<div id="Content" className={ style.content }>
+					{ this.state.content }
+				</div>
 			</div>
 
 		)
@@ -42,6 +54,14 @@ class App extends Component {
 
 	_scrollToInfo = ( ) => {
 
+		scroller.scrollTo( "Info", { smooth: true } );
+
+	}
+
+	_loadContent = ( comp ) => {
+
+		let content = React.createElement( comp );
+		this.setState( { content: content } );
 		scroller.scrollTo( "Info", { smooth: true } );
 
 	}

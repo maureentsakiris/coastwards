@@ -54,10 +54,21 @@
 //############################################################################################ VARS
 
 
-$heightIntro: 100vh;
-$heightInfo: 7vh;
-$heightUpload: 93vh;
+$heightIntro: 90vh;
+$heightInfo: 10vh;
+$heightContent: 90vh;
 $heightFooter: 13vh;
+
+
+//############################################################################################ TYPOGRAPHY
+
+
+.headline{
+
+  font-weight: $font-weight-semi-bold;
+  font-size: 3vh;
+
+}
 
 
 //############################################################################################ LAYOUT
@@ -75,6 +86,50 @@ $heightFooter: 13vh;
   box-sizing: border-box;
 
 }
+
+
+@mixin IconButtonSize( $size ){
+
+  width: $size;
+  height: $size;
+
+  span[data-react-toolbox="font-icon"] {
+
+    line-height: $size;
+    font-size: $size;
+
+  }
+
+  span[data-react-toolbox="ripple"] {
+
+    line-height: $size;
+
+  }
+
+}
+
+//############################################################################################ VIDEO
+
+.videoWrapper {
+
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 */
+  padding-top: 25px;
+  height: 0;
+  background-color: rgba( 0,0,0,0.3 );
+
+}
+
+.videoWrapper iframe {
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+}
+
 
 //############################################################################################ MEDIAQUERIES
 

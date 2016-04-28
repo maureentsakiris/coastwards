@@ -6,25 +6,21 @@
 .intro{
 
 	height: $heightIntro;
-	/*padding: $layout-gutter-width 0;*/
 	box-sizing: border-box;
 	text-align: center;
 	color: $color-primary;
-	/*color: #383838;*/
-
-	/*background-image: url('./shoreline.jpg');
-	background-repeat: no-repeat;
-	background-size: cover;*/
 
 	img{
 
-		max-width: 100%;
+		max-width: 500px;
+    	width: 50vw;
 
 	}
 
 	h1{
 
 		font-weight: $font-weight-thin;
+		font-size: 5vh;
 		margin-top: 3vh;
 
 	}
@@ -32,7 +28,7 @@
 	&>div{
 
 		align-self: center;
-		/*margin-bottom: 10vh;*/
+		margin-top: 5vh;
 
 	}
 
@@ -40,15 +36,8 @@
 
 .down{
 
-	margin-top: 10vh;
-	color: $color-accent;
-
-	i{
-
-		font-size: 48px;
-		cursor: pointer;
-
-	}
+	margin-top: 6vh;
+	@include IconButtonSize( 4.8rem );
 
 }
 
@@ -56,20 +45,7 @@
 
 	margin-top: 4vh;
 	@include typo-headline( );
+	font-size: 2vh;
 	color: $palette-grey-500;
-
-}
-
-@include StMD(){
-
-	.intro{
-
-		h1{
-
-			font-size: 3.2rem;
-
-		}
-
-	}
 
 }

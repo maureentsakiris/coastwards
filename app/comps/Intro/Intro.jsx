@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { defineMessages, injectIntl, intlShape } from 'react-intl';
 import Classnames from 'classnames';
+import { Button, IconButton } from 'react-toolbox/lib/button';
 
 import style from './_styleIntro';
 
@@ -28,7 +29,7 @@ class Intro extends Component {
 
 	static propTypes = {
 
-		scrollToInfo: PropTypes.func
+		onArrowClick: PropTypes.func
 
 	}
 
@@ -57,7 +58,7 @@ class Intro extends Component {
 					<img src={ logo } />
 					<h1>{ formatMessage( messages.intro ) }</h1>
 					<p className={ style.tagline }>{ formatMessage( messages.tagline ) }</p>
-					<p className={ style.down }><i className="material-icons" onClick={ this.props.scrollToInfo }>arrow_downward</i></p>
+					<IconButton className={ style.down } icon="arrow_downward" accent onClick={ this.props.onArrowClick } />
 				</div>
 			</div>
 

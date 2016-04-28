@@ -11,45 +11,7 @@ $bg: $color-accent-dark;
 	height: $heightInfo;
 	@include shadow-2dp();
 	position: relative;
-    z-index: 2;
-
-}
-
-%tab{
-
-	/* border-top: 1px solid $palette-grey-200; */
-	/* border-bottom: 2px solid $bg; */
-	flex-grow: 1 !important;
-	background-color: $bg;
-	/* border-right: 1px solid $color-primary;
-	border-bottom: 1px solid $color-primary; */
-
-
-	@include typo-button();
-
-}
-
-.how{
-
-	@extend %tab;
-
-}
-
-.guidelines{
-
-	@extend %tab;
-
-}
-
-.team{
-
-	@extend %tab;
-
-}
-
-.faqs{
-
-	@extend %tab;
+	z-index: 1;
 
 }
 
@@ -59,23 +21,6 @@ $bg: $color-accent-dark;
 	height: 100%;
 	padding: 0 $layout-gutter-width;
 	border-radius: 0;
-
-}
-
-.drawer{
-
-	height: 0;
-	transition-property: height;
-    transition-duration: 200ms;
-    transition-timing-function: ease-out;
-    transition-delay: 0;
-    background-color: $bg;
-
-	.content{
-
-		opacity: 0;
-
-	}
 
 }
 

@@ -1,0 +1,1007 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"show",
+				"showDialog"
+			],
+			[
+				"de",
+				"defaultSnackbarOptions"
+			],
+			[
+				"sna",
+				"snackbarOptions"
+			],
+			[
+				"dial",
+				"dialogMessage"
+			],
+			[
+				"dialog",
+				"dialogOptions"
+			],
+			[
+				"_show",
+				"_showProgressBar"
+			],
+			[
+				"moder",
+				"modernizrrc"
+			],
+			[
+				"is",
+				"isRequired"
+			],
+			[
+				"pr",
+				"promptClick"
+			],
+			[
+				"pro",
+				"promptDnD"
+			],
+			[
+				"propmt",
+				"promptClick"
+			],
+			[
+				"prompt",
+				"promptDnD"
+			],
+			[
+				"drop",
+				"dropzoneHandlers"
+			],
+			[
+				"Form",
+				"FormDropzoneZone"
+			],
+			[
+				"id",
+				"isDragActive"
+			],
+			[
+				"on",
+				"onDrop"
+			],
+			[
+				"_on",
+				"_onDrageLeave"
+			],
+			[
+				"ri",
+				"ripplePosition"
+			],
+			[
+				"ripple",
+				"ripplePosition"
+			],
+			[
+				"ripl",
+				"ripplePosition"
+			],
+			[
+				"FormDropo",
+				"FormDropzoneDropper"
+			],
+			[
+				"pos",
+				"posY"
+			],
+			[
+				"page",
+				"pageX"
+			],
+			[
+				"tra",
+				"transition-delay"
+			],
+			[
+				"tran",
+				"transition-delay"
+			],
+			[
+				"b",
+				"background"
+			],
+			[
+				"t",
+				"transition"
+			],
+			[
+				"ease",
+				"ease-in-out"
+			],
+			[
+				"bord",
+				"border-radius"
+			],
+			[
+				"sc",
+				"screenY"
+			],
+			[
+				"in",
+				"initial"
+			],
+			[
+				"con",
+				"con	con"
+			],
+			[
+				"rg",
+				"rgba()"
+			],
+			[
+				"em",
+				"emailValidation"
+			],
+			[
+				"ele",
+				"elementStates"
+			],
+			[
+				"el",
+				"elementStates"
+			],
+			[
+				"elem",
+				"elementProps"
+			],
+			[
+				"e",
+				"elementHandlers"
+			],
+			[
+				"aler",
+				"alertUserTitle"
+			],
+			[
+				"al",
+				"alertUserMsg"
+			],
+			[
+				"c",
+				"className"
+			],
+			[
+				"clas",
+				"className"
+			],
+			[
+				"err",
+				"error_accept"
+			],
+			[
+				"pass",
+				"passesWhen"
+			],
+			[
+				"test",
+				"testStatus"
+			],
+			[
+				"cl",
+				"callMethod"
+			],
+			[
+				"method",
+				"methodName"
+			],
+			[
+				"vali",
+				"validatorStack"
+			],
+			[
+				"file",
+				"fileValidation"
+			],
+			[
+				"re",
+				"required"
+			],
+			[
+				"dropzone",
+				"dropzoneValidation"
+			],
+			[
+				"FOrm",
+				"FormDropzone"
+			],
+			[
+				"do",
+				"dropzoneValidation"
+			],
+			[
+				"class",
+				"classnames"
+			],
+			[
+				"prev",
+				"preventDefault"
+			],
+			[
+				"dr",
+				"dropzoneInput"
+			],
+			[
+				"For",
+				"FormDropzoneFile"
+			],
+			[
+				"fi",
+				"filetype_warning"
+			],
+			[
+				"max",
+				"max_warning"
+			],
+			[
+				"uplo",
+				"uploads_left"
+			],
+			[
+				"war",
+				"warnings"
+			],
+			[
+				"_onD",
+				"_onDragEnter"
+			],
+			[
+				"previ",
+				"previousState"
+			],
+			[
+				"F",
+				"FormSubmit"
+			],
+			[
+				"cla",
+				"classNames"
+			],
+			[
+				"sub",
+				"submitting"
+			],
+			[
+				"default",
+				"defaultValue"
+			],
+			[
+				"form",
+				"formIsValid"
+			],
+			[
+				"error",
+				"errorMsg"
+			],
+			[
+				"er",
+				"errorMsg"
+			],
+			[
+				"bor",
+				"border-color"
+			],
+			[
+				"P",
+				"PropTypes"
+			],
+			[
+				"com",
+				"componentName"
+			],
+			[
+				"next",
+				"nextProps"
+			],
+			[
+				"fun",
+				"func"
+			],
+			[
+				"p",
+				"prop	prop"
+			],
+			[
+				"defau",
+				"defaultChecked"
+			],
+			[
+				"prop",
+				"propTypes"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "app/comps/App.jsx",
+			"settings":
+			{
+				"buffer_size": 578,
+				"line_ending": "Unix",
+				"name": "App.jsx"
+			}
+		},
+		{
+			"file": "webpack.config.js",
+			"settings":
+			{
+				"buffer_size": 2875,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "webpack.production.config.js",
+			"settings":
+			{
+				"buffer_size": 2899,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "views/index.pug",
+			"settings":
+			{
+				"buffer_size": 1954,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/index.jsx",
+			"settings":
+			{
+				"buffer_size": 339,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/utils/Context.jsx",
+			"settings":
+			{
+				"buffer_size": 3190,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/utils/i18n/i18n.jsx",
+			"settings":
+			{
+				"buffer_size": 3421,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/utils/i18n/i18nSwitch.jsx",
+			"settings":
+			{
+				"buffer_size": 1565,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 231.0,
+		"last_filter": "install",
+		"selected_items":
+		[
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"Snippet: ",
+				"Snippet: comp"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Enable Package"
+			],
+			[
+				"",
+				"Package Control: Enable Package"
+			]
+		],
+		"width": 475.0
+	},
+	"console":
+	{
+		"height": 123.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/maureen/coastwards",
+		"/Users/maureen/coastwards/app",
+		"/Users/maureen/coastwards/app/utils/i18n",
+		"/Users/maureen/coastwards/node_modules",
+		"/Users/maureen/coastwards/node_modules/react-toolbox",
+		"/Users/maureen/coastwards/node_modules/react-toolbox/components",
+		"/Users/maureen/coastwards/node_modules/react-toolbox/components/dialog",
+		"/Users/maureen/coastwards/views"
+	],
+	"file_history":
+	[
+		"/Users/maureen/coastwards/app/styles/main.scss",
+		"/Users/maureen/coastwards/app/utils/i18n/es.js",
+		"/Users/maureen/coastwards/node_modules/react-toolbox/components/dialog/Dialog.js",
+		"/Users/maureen/coastwards/node_modules/react-toolbox/components/snackbar/Snackbar.js",
+		"/Users/maureen/coastwards/node_modules/react-toolbox/components/hoc/ActivableRenderer.js",
+		"/Users/maureen/coastwards/package.json",
+		"/Users/maureen/coastwards/webpack.production.config.js",
+		"/Users/maureen/coastwards/webpack.config.js",
+		"/Users/maureen/coastwards/theme.scss",
+		"/Users/maureen/coastwards/views/index.pug",
+		"/Users/maureen/coastwards/app/utils/i18n/i18nLocales.js",
+		"/Users/maureen/coastwards/app/utils/i18n/i18n.jsx",
+		"/Users/maureen/coastwards/app/utils/i18n/i18n.js",
+		"/Users/maureen/Documents/main.scss",
+		"/Users/maureen/coastwards/server.js",
+		"/Users/maureen/coastwards/server/bundle.js",
+		"/Users/maureen/coastwards/.eslintignore",
+		"/Users/maureen/coastwards/.eslintrc",
+		"/Users/maureen/coastwards/.gitignore",
+		"/Users/maureen/Library/Application Support/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/Users/maureen/Library/Application Support/Sublime Text 3/Packages/SublimeLinter/SublimeLinter.sublime-settings",
+		"/Users/maureen/coastwards/views/index.jade",
+		"/Users/maureen/coastwards/app/utils/GlobalWrapper.jsx",
+		"/Users/maureen/coastwards/app/utils/i18n/i18nWrapper.jsx",
+		"/Users/maureen/coastwards/SCRAPS.jsx",
+		"/Users/maureen/coastwards/app/utils/Form/Form.jsx",
+		"/Users/maureen/coastwards/app/utils/Form/FormElement.jsx",
+		"/Users/maureen/coastwards/app/utils/Form/FormDropzone.jsx",
+		"/Users/maureen/Library/Application Support/Sublime Text 3/Packages/User/SublimeLinter.sublime-settings",
+		"/Users/maureen/coastwards/app/utils/Form/FormDropzoneFile.jsx",
+		"/Users/maureen/coastwards/app/App.jsx",
+		"/Users/maureen/coastwards/public/index.html",
+		"/Users/maureen/coastwards/app/index.jsx",
+		"/Users/maureen/coastwards/app/upload/Upload.jsx",
+		"/Users/maureen/coastwards/app/upload/UploadForm.jsx",
+		"/Users/maureen/coastwards/app/utils/Form/FormInput.jsx",
+		"/Users/maureen/coastwards/src/components/upload/UploadForm.jsx",
+		"/Users/maureen/coastwards/app/utils/MDL/Grid.jsx",
+		"/Users/maureen/coastwards/src/components/App.jsx",
+		"/Users/maureen/coastwards/src/components/utils/Form/FormDropzone.jsx",
+		"/Users/maureen/coastwards/src/components/utils/Form/FormDropzoneZone.jsx",
+		"/Users/maureen/coastwards/src/stylesheets/_base.scss",
+		"/Users/maureen/coastwards/src/components/utils/Form/FormDropzoneFile.jsx",
+		"/Users/maureen/coastwards/src/components/utils/Form/FormElement.jsx",
+		"/Users/maureen/coastwards/src/stylesheets/partials/mdl.scss",
+		"/Users/maureen/coastwards/src/stylesheets/main.scss",
+		"/Users/maureen/coastwards/src/stylesheets/partials/dropzone.scss",
+		"/Users/maureen/coastwards/src/stylesheets/modules/mixin.scss",
+		"/Users/maureen/coastwards/.modernizrrc",
+		"/Users/maureen/coastwards/src/components/utils/Leaflet/Leaflet.jsx",
+		"/Users/maureen/coastwards/src/components/utils/Leaflet.js",
+		"/Users/maureen/coastwards/index.html",
+		"/Users/maureen/coastwards/src/components/utils/GlobalWrapper.jsx",
+		"/Users/maureen/coastwards/src/components/utils/MDL/Cell.jsx",
+		"/Users/maureen/coastwards/src/components/utils/i18n/i18nWrapper.jsx",
+		"/Users/maureen/coastwards/src/components/utils/i18n/i18nSwitch.jsx",
+		"/Users/maureen/coastwards/src/components/utils/Form/Form.jsx",
+		"/Users/maureen/coastwards/src/components/utils/Form/FormSubmit.jsx",
+		"/Users/maureen/coastwards/src/components/utils/Form/FormDropzoneDropper.jsx",
+		"/Users/maureen/coastwards/src/components/utils/MDL/Rippler.jsx",
+		"/Users/maureen/coastwards/src/components/utils/Form/FormInput.jsx",
+		"/Users/maureen/coastwards/src/components/FormTester.jsx",
+		"/Users/maureen/coastwards/src/components/utils/MDL/Progressbar.jsx",
+		"/Users/maureen/coastwards/src/components/utils/MDL/Spinner.jsx",
+		"/Users/maureen/coastwards/webpack-development.config.js",
+		"/Users/maureen/coastwards/src/components/utils/Form/FormRadio.jsx",
+		"/Users/maureen/coastwards/src/components/upload/Upload.jsx",
+		"/Users/maureen/coastwards/src/stylesheets/partials/config.scss",
+		"/Users/maureen/coastwards/src/components/utils/MDL/Dialog.jsx",
+		"/Users/maureen/coastwards/src/components/utils/Form/FormRadioOption.jsx",
+		"/Users/maureen/coastwards/src/components/utils/Form/FormSelectOption.jsx",
+		"/Users/maureen/coastwards/src/components/utils/Form/FormSelect.jsx",
+		"/Users/maureen/coastwards/src/components/utils/Form/FormCheckbox.jsx",
+		"/Users/maureen/coastwards/src/components/utils/Form/FormTextarea.jsx",
+		"/Users/maureen/coastwards/src/components/utils/MDL/Checkbox.jsx",
+		"/Users/maureen/coastwards/src/entry/index.jsx",
+		"/Users/maureen/Downloads/mdl/material.css",
+		"/Users/maureen/coastwards/src/stylesheets/partials/forms.scss",
+		"/Users/maureen/coastwards/src/components/utils/Dialog.jsx",
+		"/Users/maureen/coastwards/src/components/utils/i18n/i18n.js",
+		"/Users/maureen/coastwards/src/components/utils/Form/FormEXIF.js",
+		"/Users/maureen/coastwards/src/components/utils/Form/FormEXIF.jsx",
+		"/Users/maureen/coastwards/SCRAPS.js",
+		"/Users/maureen/coastwards/src/components/intro/Intro.jsx",
+		"/Users/maureen/coastwards/src/components/utils/Form/FormButton.jsx",
+		"/Users/maureen/coastwards/src/components/utils/Form/FormDatalistOption.jsx",
+		"/Users/maureen/coastwards/src/components/utils/Form/FormKeygen.jsx",
+		"/Users/maureen/coastwards/src/components/utils/Form/FormDatalist.jsx",
+		"/Users/maureen/coastwards/src/components/utils/Form/FormLabel.jsx",
+		"/Users/maureen/coastwards/src/stylesheets/modules/placeholders.scss",
+		"/Users/maureen/coastwards/src/components/intro/AnyQuestions.jsx",
+		"/Users/maureen/coastwards/src/components/intro/How.jsx",
+		"/Users/maureen/coastwards/src/components/utils/Vimeo.jsx",
+		"/Users/maureen/coastwards/src/stylesheets/partials/video.scss",
+		"/Users/maureen/coastwards/src/components/intro/Faq.jsx",
+		"/Users/maureen/coastwards/src/components/intro/Faqs.jsx",
+		"/Users/maureen/coastwards/src/components/intro/Transcript.jsx",
+		"/Users/maureen/coastwards/src/components/intro/TranscriptLine.jsx",
+		"/Users/maureen/coastwards/src/components/map/Map.jsx",
+		"/Users/maureen/coastwards/src/components/utils/Toggle.jsx",
+		"/Users/maureen/coastwards/src/components/utils/MapTo.jsx",
+		"/Users/maureen/Library/Application Support/Sublime Text 3/Packages/User/comp",
+		"/Users/maureen/coastwards/build/main.js",
+		"/Users/maureen/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/maureen/coastwards/i18n/index.js",
+		"/Users/maureen/Library/Application Support/Sublime Text 3/Packages/Babel/Babel.sublime-settings",
+		"/Users/maureen/Library/Application Support/Sublime Text 3/Packages/User/Babel.sublime-settings",
+		"/Users/maureen/coastwards/src/App.jsx",
+		"/Users/maureen/Library/Application Support/Sublime Text 3/Packages/User/Package Control.sublime-settings"
+	],
+	"find":
+	{
+		"height": 38.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"bind",
+			"i18n",
+			"showProgressBar",
+			"I18nWrapper",
+			"helmet",
+			"shell_time",
+			"showError",
+			"React",
+			"var",
+			"import Leaflet from './utils/Leaflet/Leaflet.jsx';",
+			"class",
+			"enterCounter",
+			"Progressbar",
+			"class",
+			"Grid",
+			"visually",
+			"hide",
+			"class",
+			"classname",
+			"class",
+			"max_warning",
+			"value.files",
+			"this.state.value.files",
+			"!!",
+			"setTimeout",
+			");\n",
+			"ImageValidators",
+			"hasIntl",
+			"segmentSize",
+			"fileReader",
+			"FileReader",
+			"fileReader",
+			"util",
+			"max_warning",
+			"dropzoneInput",
+			"FormSubmit",
+			"allFilesAccepted",
+			"(this)",
+			"FormDropzone",
+			"FormTextarea",
+			"FormInput",
+			"hocProps.",
+			"FormButton",
+			"Name",
+			"name",
+			"validations",
+			"inputs",
+			"../utils",
+			"AnyQuestions",
+			"FormInput",
+			"FormSelectOption",
+			"FormSelect",
+			"defaultValue",
+			"FormRadio",
+			"FormInput",
+			"\"transcript_00\"",
+			"$1",
+			"App"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"folders":
+	[
+		{
+			"path": "/Users/maureen/coastwards"
+		}
+	],
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "app/comps/App.jsx",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 578,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"auto_name": "App.jsx",
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 6,
+			"sheets":
+			[
+				{
+					"buffer": 1,
+					"file": "webpack.config.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2875,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								825,
+								412
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "webpack.production.config.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2899,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								770,
+								770
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "views/index.pug",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1954,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1166,
+								1166
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "app/index.jsx",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 339,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								339,
+								339
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "app/utils/Context.jsx",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3190,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1537,
+								1537
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "app/utils/i18n/i18n.jsx",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3421,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								823,
+								823
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 749.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "app/utils/i18n/i18nSwitch.jsx",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1565,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1422,
+								1422
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 322.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 29.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.754566495083,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"~/coastal-nation/package.sublime-workspace"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 293.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

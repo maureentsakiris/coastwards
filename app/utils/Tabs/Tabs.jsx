@@ -27,8 +27,8 @@ export default class Tabs extends Component {
 
 	static defaultProps = {
 
+		center: true,
 		arrows: true,
-		scrollStep: 100,
 		active: 0,
 		accent: true,
 		inverse: false
@@ -47,6 +47,7 @@ export default class Tabs extends Component {
 
 		window.addEventListener( 'resize', this._update );
 		this.contentWidth = this._getContentWidth();
+		this.scrollStep = this.props.scrollStep || this.refs.content.children[ 0 ].offsetWidth;
 		this.content = this.refs.content;
 		this._update();
 		this._onScroll();
@@ -66,6 +67,7 @@ export default class Tabs extends Component {
 
 		this.contentWidth;
 		this.content;
+		this.scrollStep;
 
 		this.state = {
 
@@ -80,7 +82,7 @@ export default class Tabs extends Component {
 
 	render () {
 
-		const { center, arrows, scrollStep, accent, inverse } = this.props;
+		const { center, arrows, accent, inverse } = this.props;
 		const { showLeft, showRight } = this.state;
 
 		const children = this._extendChildren();
@@ -107,13 +109,13 @@ export default class Tabs extends Component {
 
 			<div id={ this.props.id } className={ cls } dir="ltr">
 				{ arrows && <div className={ clsLeft } ref="left">
-					<IconButton icon="chevron_left" accent={ accent } inverse={ inverse } disabled={ !showLeft } onClick={ this._scrollTo.bind( this, -scrollStep ) } />
+					<IconButton icon="chevron_left" accent={ accent } inverse={ inverse } disabled={ !showLeft } onClick={ this._scrollTo.bind( this, -this.scrollStep ) } />
 				</div> }
 				<div className={ clsContent } ref="content" onScroll={ this._onScroll } >
 					{ children }
 				</div>
 				{ arrows && <div className={ clsRight } ref="right">
-					<IconButton icon="chevron_right" accent={ accent } inverse={ inverse }  disabled={ !showRight } onClick={ this._scrollTo.bind( this, scrollStep ) } />
+					<IconButton icon="chevron_right" accent={ accent } inverse={ inverse }  disabled={ !showRight } onClick={ this._scrollTo.bind( this, this.scrollStep ) } />
 				</div> }
 			</div>
 
@@ -148,7 +150,11 @@ export default class Tabs extends Component {
 	_onClick = ( e, onClick ) => {
 
 		this.setState( { active: e } );
-		onClick();
+		if( onClick ){
+
+			onClick();
+
+		}
 
 	}
 
@@ -192,6 +198,7 @@ export default class Tabs extends Component {
 
 	_scrollTo ( s ){
 
+		console.log( s );
 		this.content.scrollLeft += s;
 
 	}
