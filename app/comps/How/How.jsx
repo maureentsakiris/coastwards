@@ -34,13 +34,13 @@ class How extends Component {
 
 		const { formatMessage } = this.props.intl;
 
-		const cls = Classnames( style.corset, style.pad, style.how );
+		const cls = Classnames( style.how );
 
 		return (
 
 			<div className={ cls }>
 				<div className={ style.videoWrapper }>
-					<span></span>
+					<iframe></iframe>
 				</div>
 			</div>
 

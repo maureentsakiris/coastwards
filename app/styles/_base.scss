@@ -54,7 +54,7 @@
 //############################################################################################ VARS
 
 
-$heightIntro: 90vh;
+$heightIntro: 100vh;
 $heightInfo: 10vh;
 $heightContent: 90vh;
 $heightFooter: 13vh;
@@ -116,7 +116,6 @@ $heightFooter: 13vh;
   padding-bottom: 56.25%; /* 16:9 */
   padding-top: 25px;
   height: 0;
-  background-color: rgba( 0,0,0,0.3 );
 
 }
 
@@ -127,6 +126,7 @@ $heightFooter: 13vh;
   left: 0;
   width: 100%;
   height: 100%;
+  background-color: rgba( 0,0,0,0.3 );
 
 }
 
