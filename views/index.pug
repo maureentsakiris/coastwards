@@ -25,20 +25,22 @@ html(lang=lang, dir="ltr", class="no-js")
 		<![endif]-->
 		style.
 			.frameworkAlert {
-				background-image: url( "./assets/coastwards.png" );
-				background-repeat: no-repeat;
-				background-position: top center;
 				text-align: center;
-				padding: 150px 10px 10px 10px;
 				margin: 50px;
+				color: #333;
+			}
+			.frameworkAlert img{
+				max-width: 100%;
 			}
 	body
 		<!--[if lt IE 9]>
 		div(class="frameworkAlert")
-			h5 You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.
+			img(src="./assets/coastwards.png")
+			h4 You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.
 		<![endif]-->
 		noscript
 			div(class="frameworkAlert")
-				h5 You have javascript disabled in your browser. To view this site, please enable javascript.
+				img(src="./assets/coastwards.png")
+				h4 You have javascript disabled in your browser. To view this site, please enable javascript.
 		div(id="Body")
 		script(src="./build/bundle.js")

@@ -22,7 +22,8 @@ export default class Context extends Component {
 
 	static propTypes = {
 
-		children: PropTypes.node
+		children: PropTypes.node,
+		className: PropTypes.string
 
 	};
 
@@ -104,14 +105,15 @@ export default class Context extends Component {
 
 	render () {
 
+		let { children, className } = this.props;
 		let { showLoader, dialogOptions, snackbarOptions } = this.state;
 
 		return (
 
-			<div id="Context">
+			<div id="Context" className={ className } >
 				{ showLoader && <ProgressBar type="linear" mode="indeterminate" className={ style.contextLoader } /> }
 				<Dialog { ...dialogOptions }>{ dialogOptions.content }</Dialog>
-				{ this.props.children }
+				{ children }
 				<Snackbar { ...snackbarOptions } ref="snackbar" className={ style.snackbar } />
 			</div>
 

@@ -6,7 +6,7 @@ import { Button, IconButton } from 'react-toolbox/lib/button';
 
 import style from './_styleIntro';
 
-import logo from '../../../public/assets/coastwards_red.png'; 
+import logo from '../../../public/assets/coastwards.png'; 
 
 
 const messages = defineMessages( {

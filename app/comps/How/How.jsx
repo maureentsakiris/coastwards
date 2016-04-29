@@ -5,8 +5,6 @@ import Classnames from 'classnames';
 
 import style from './_styleHow';
 
-import poster from '../../../public/assets/coastwards_red.png'; 
-
 const messages = defineMessages( {
 
 	how_headline:{

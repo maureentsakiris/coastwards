@@ -11,14 +11,14 @@ import Guidelines from '../Guidelines/Guidelines';
 import Team from '../Team/Team';
 import FAQs from '../FAQs/FAQs';
 
-import style from './_styleInfo';
+import style from './_styleInfo'; 
 
 const messages = defineMessages( {
 
 	upload_pictures:{
 		id: "upload_pictures",
 		description: "0 - ",
-		defaultMessage: "upload_pictures"
+		defaultMessage: "Upload pictures!"
 	},
 	how_does_a_picture_help:{
 		id: "how_does_a_picture_help",
@@ -38,7 +38,7 @@ const messages = defineMessages( {
 	other_questions:{
 		id: "other_questions",
 		description: "0 - Main menu",
-		defaultMessage: "other_questions"
+		defaultMessage: "Other questions ..."
 	}
 
 } );
