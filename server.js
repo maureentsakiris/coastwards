@@ -1,5 +1,7 @@
+// http://www.christianalfoni.com/articles/2015_04_19_The-ultimate-webpack-setup
+
 const express = require( 'express' );
-/*const path = require( 'path' );*/
+const path = require( 'path' );
 const httpProxy = require( 'http-proxy' );
 const helmet = require( 'helmet' );
 
@@ -22,27 +24,14 @@ default:
 
 const isProduction = process.env.NODE_ENV === 'production';
 const port = isProduction ? process.env.PORT : 8888;
-/*const publicPath = path.resolve( __dirname, 'public' );*/
+const publicPath = path.resolve( __dirname, 'public' );
 
 const proxy = httpProxy.createProxyServer();
 const app = express();
 
 app.use( helmet() );
+app.use( express.static( publicPath ) );
 app.set( 'view engine', 'pug' );
-
-app.post( '/', function ( req, res ) {
-
-	res.send( 'Got a POST request' );
-
-} );
-
-/*app.all( '/', function ( req, res, next ) {
-
-	//https://strongloop.com/strongblog/bypassing-express-view-rendering-for-speed-and-modularity/
-	res.lang = req.acceptsLanguages( 'es', 'en', 'de' );
-	next();
-
-}, express.static( publicPath ) );*/
 
 app.get( '/', function ( req, res ) {
 
@@ -51,8 +40,13 @@ app.get( '/', function ( req, res ) {
 
 } );
 
+app.post( '/', function ( req, res ) {
 
-//app.use( express.static( publicPath ) );
+	res.send( 'Got a POST request' );
+
+} );
+
+
 
 if ( !isProduction ) {
 
