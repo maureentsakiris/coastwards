@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { defineMessages, injectIntl, intlShape } from 'react-intl';
 import Classnames from 'classnames';
+import { Button } from 'react-toolbox/lib/button';
 
 import style from './_styleUpload';
 
@@ -33,7 +34,8 @@ class Upload extends Component {
 		return (
 
 			<div id="Upload" className={ cls }>
-				<Leaflet  />
+				<Button icon="add" floating accent className={ style.uploadBtn } />
+				<Leaflet  className={ style.map } />  
 			</div>
 
 		)

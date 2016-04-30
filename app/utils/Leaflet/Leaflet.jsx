@@ -9,7 +9,7 @@ export default class Leaflet extends Component {
 
 	static propTypes = {
 
-
+		className: PropTypes.string
 
 	};
 
@@ -46,7 +46,8 @@ export default class Leaflet extends Component {
 
 	render () {
 
-		const cls = Classnames( style.map );
+		const { className } = this.props;
+		const cls = Classnames( style.map, className );
 
 		return (
 
