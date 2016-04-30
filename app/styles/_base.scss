@@ -60,6 +60,7 @@ $heightContent: 90vh;
 $heightFooter: 13vh;
 
 
+
 //############################################################################################ TYPOGRAPHY
 
 
@@ -84,6 +85,19 @@ $heightFooter: 13vh;
 
   padding: 0 $layout-gutter-width;
   box-sizing: border-box;
+
+}
+
+.padContent{
+ 
+  min-height: 90vh;
+  padding-top: $layout-gutter-width;
+
+  h2{
+
+    @include typo-display-2(true, true);
+
+  }
 
 }
 

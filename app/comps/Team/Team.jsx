@@ -25,12 +25,12 @@ class Team extends Component {
 	render () {
 
 		const { formatMessage } = this.props.intl;
-		const cls = Classnames( style.corset, style.pad, style.how );
+		const cls = Classnames( style.corset, style.pad, style.padContent );
 
 		return (
 
 			<div className={ cls }>
-				<p>Team</p>
+				<h2>Team</h2>
 			</div>
 
 		)

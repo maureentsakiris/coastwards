@@ -3,9 +3,6 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { defineMessages, injectIntl, intlShape, FormattedMessage } from 'react-intl';
 import Classnames from 'classnames';
 
-import { Toggle, ToggleLink, ToToggle } from '../../utils/Toggle/Toggle';
-import Transcript from './Transcript';
-
 import style from './_styleHow';
 
 const messages = defineMessages( {
@@ -40,8 +37,8 @@ class How extends Component {
 
 		const { formatMessage } = this.props.intl;
 
-		const cls = Classnames( style.corset, style.how );
-		const clsWrapper = Classnames( style.videoWrapper, style.video );
+		const cls = Classnames( style.corset, style.pad, style.padContent );
+		const clsWrapper = Classnames( style.videoWrapper );
 
 		return (
 
@@ -49,12 +46,6 @@ class How extends Component {
 				<div id="Video" className={ clsWrapper }>
 					<iframe></iframe>
 				</div>
-				<Toggle>
-					<ToggleLink>{ formatMessage( messages.show_transcript ) }</ToggleLink>
-					<ToToggle>
-						<Transcript id="Transcript" />
-					</ToToggle>
-				</Toggle>
 			</div>
 
 		)

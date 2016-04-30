@@ -25,12 +25,12 @@ class Guidelines extends Component {
 	render () {
 
 		const { formatMessage } = this.props.intl;
-		const cls = Classnames( style.corset, style.pad, style.guidelines );
+		const cls = Classnames( style.corset, style.pad, style.padContent, style.guidelines );
 
 		return (
 
 			<div className={ cls }>
-				<p>Guidelines</p>
+				<h2>Guidelines</h2>
 			</div>
 
 		)

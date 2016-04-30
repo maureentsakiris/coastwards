@@ -94,7 +94,7 @@ export default class Tabs extends Component {
 			[ style.hide ]: !this.state.overflow
 
 		} );
-		const clsContent = Classnames( style.tabitem, style.content, style.tabcontainer, {
+		const clsContent = Classnames( style.tabitem, style.tabcontent, style.tabcontainer, {
 
 			[ style.center ]: center && !this.state.overflow
 

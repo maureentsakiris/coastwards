@@ -25,12 +25,12 @@ class FAQs extends Component {
 	render () {
 
 		const { formatMessage } = this.props.intl;
-		const cls = Classnames( style.corset, style.pad, style.how );
+		const cls = Classnames( style.corset, style.pad, style.padContent );
 
 		return (
 
 			<div className={ cls }>
-				<p>FAQs</p>
+				<h2>FAQs</h2>
 			</div>
 
 		)
