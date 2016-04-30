@@ -6,7 +6,7 @@ import { Button } from 'react-toolbox/lib/button';
 
 import style from './_styleUpload';
 
-import Leaflet from '../../utils/Leaflet/Leaflet';
+import MapboxGL from '../../utils/MapboxGL/MapboxGL';
 
 const messages = defineMessages( {
 
@@ -21,7 +21,7 @@ class Upload extends Component {
 
 		this.state = {
 
-		}
+		} 
 
 	}
 
@@ -30,12 +30,12 @@ class Upload extends Component {
 		const { formatMessage } = this.props.intl;
 
 		const cls = Classnames( style.upload );
-
+		
 		return (
 
 			<div id="Upload" className={ cls }>
 				<Button icon="add" floating accent className={ style.uploadBtn } />
-				<Leaflet  className={ style.map } />  
+				<MapboxGL  className={ style.map } />  
 			</div>
 
 		)

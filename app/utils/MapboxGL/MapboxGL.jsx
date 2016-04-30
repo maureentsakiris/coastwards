@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import Classnames from 'classnames';
-import MapGL from 'react-map-gl';
+import mapboxgl from 'mapbox-gl';
 
 import style from './_styleMapboxGL';
 
@@ -51,14 +51,7 @@ export default class MapboxGL extends Component {
 
 		return (
 
-			<MapGL 
-				mapboxApiAccessToken="pk.eyJ1IjoibWF1cmVlbnRzYWtpcmlzIiwiYSI6ImNpanB0NzgwMjAxZDB0b2tvamNpYXQyeTMifQ.HVQAxH-RQKZBss1u3zIoxA" 
-				width={ 900 } 
-				height={600} 
-				latitude={37.7577} 
-				longitude={-122.4376} 
-				zoom={1} 
-			/>
+			<div id="MapboxGl" className={ cls } />
 
 		)
 
@@ -66,6 +59,11 @@ export default class MapboxGL extends Component {
 
 	_createMap = ( ) => {
  
+		mapboxgl.accessToken = 'pk.eyJ1IjoibWF1cmVlbnRzYWtpcmlzIiwiYSI6ImNpanB0NzgwMjAxZDB0b2tvamNpYXQyeTMifQ.HVQAxH-RQKZBss1u3zIoxA';
+		new mapboxgl.Map( {
+			container: 'MapboxGl',
+			style: 'mapbox://styles/maureentsakiris/cinnokj3e005ed6m4s3mpu48t'
+		} );
 
 	}
 

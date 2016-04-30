@@ -27,7 +27,7 @@ module.exports = function () {
 		publicPath: '/build/',
 		hot: true,
 		historyApiFallback: true,
-		quiet: true,
+		quiet: false,
 		noInfo: true,
 		progress: true,
 		colors: true,

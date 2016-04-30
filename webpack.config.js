@@ -31,6 +31,7 @@ const ENTRY_ROOT = path.join( PROJECT_ROOT, 'app/index.jsx' );
 const APP_ROOT = path.join( PROJECT_ROOT, 'app' );
 const ASSETS_ROOT = path.join( PROJECT_ROOT, 'public/assets' );
 const TOOLBOX_ROOT = path.join( PROJECT_ROOT, 'node_modules/react-toolbox' );
+const MAPBOX_ROOT = path.join( PROJECT_ROOT, 'node_modules/mapbox-gl' );
 
 const extractStyles = new ExtractTextPlugin( 'styles.css', { allChunks: true } );
 
@@ -49,7 +50,9 @@ const config = {
 	resolve: {
 		extensions: [ '', '.js', '.jsx', '.scss' ],
 		alias: {
-			modernizr$:  path.join( PROJECT_ROOT, './.modernizrrc' )
+			modernizr$:  path.join( PROJECT_ROOT, './.modernizrrc' ),
+			// for mapbox-gl see: https://github.com/mapbox/mapbox-gl-js/issues/1649
+			webworkify: 'webworkify-webpack'
 		}
 	},
 	output: {
@@ -100,6 +103,19 @@ const config = {
 			{
 				test: /\.modernizrrc$/,
 				loader: 'modernizr'
+			},
+			// for mapbox-gl see: https://github.com/mapbox/mapbox-gl-js/issues/1649
+			{
+				test: /\.json$/,
+				include: MAPBOX_ROOT,
+				loader: 'json-loader'
+			}
+		],
+		postLoaders: [
+			{
+				include: MAPBOX_ROOT,
+				loader: 'transform',
+				query: 'brfs'
 			}
 		]
 	},
