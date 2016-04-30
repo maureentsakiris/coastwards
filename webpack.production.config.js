@@ -9,8 +9,8 @@ const BUILD_ROOT = path.join( PROJECT_ROOT, 'public/build' );
 const ENTRY_ROOT = path.join( PROJECT_ROOT, 'app/index.jsx' );
 
 const APP_ROOT = path.join( PROJECT_ROOT, 'app' );
-/*const STYLES_ROOT = path.join( APP_ROOT, 'styles' );*/
 const ASSETS_ROOT = path.join( PROJECT_ROOT, 'public/assets' );
+const TOOLBOX_ROOT = path.join( PROJECT_ROOT, 'node_modules/react-toolbox' );
 
 
 const extractStyles = new ExtractTextPlugin( 'styles.css', { allChunks: true } );
@@ -22,6 +22,9 @@ const config = {
 	entry: [
 		ENTRY_ROOT
 	],
+	node: {
+		fs: "empty"
+	},
 	resolve: {
 		extensions: [ '', '.js', '.jsx', '.scss' ],
 		alias: {
@@ -50,6 +53,7 @@ const config = {
 			},
 			{
 				test: /(\.scss|\.css)$/,
+				include: [ TOOLBOX_ROOT, APP_ROOT ],
 				loader: extractStyles.extract( 'style', 'css?sourceMap&modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss!sass?sourceMap!toolbox' )
 			},
 			{ 

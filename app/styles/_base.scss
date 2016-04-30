@@ -83,7 +83,7 @@ $heightFooter: 13vh;
 
 .pad{
 
-  padding: 0 $layout-gutter-width;
+  padding: 0 5vh;
   box-sizing: border-box;
 
 }
@@ -91,11 +91,17 @@ $heightFooter: 13vh;
 .padContent{
  
   min-height: 90vh;
-  padding-top: $layout-gutter-width;
+  padding-top: 5vh;
 
   h2{
 
-    @include typo-display-2(true, true);
+    @include typo-display-2(false, true);
+
+  }
+
+  h3{
+
+    @include typo-headline();
 
   }
 

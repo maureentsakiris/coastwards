@@ -7,6 +7,17 @@ import style from './_styleGuidelines';
 
 const messages = defineMessages( {
 
+	guidelines_header:{
+		id: "guidelines_header",
+		description: "1 - ",
+		defaultMessage: "No."
+	},
+	guidelines_tagline:{
+		id: "guidelines_tagline",
+		description: "1 - ",
+		defaultMessage: "This is science .. you want us to be picky."
+	}
+
 } );
 
 class Guidelines extends Component {
@@ -30,7 +41,8 @@ class Guidelines extends Component {
 		return (
 
 			<div className={ cls }>
-				<h2>Guidelines</h2>
+				<h2>{ formatMessage( messages.guidelines_header ) }</h2>
+				<h3>{ formatMessage( messages.guidelines_tagline ) }</h3>
 			</div>
 
 		)

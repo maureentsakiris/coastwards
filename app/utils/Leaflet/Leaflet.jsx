@@ -23,7 +23,7 @@ export default class Leaflet extends Component {
 
 		showDialog: PropTypes.func,
 		showLoader: PropTypes.func,
-		showSnackbar: PropTypes.func
+		showSnackbar: PropTypes.func  
 		
 	}
 
@@ -69,6 +69,16 @@ export default class Leaflet extends Component {
 
 		} );
 
+		// Add tiles from Mapbox Style API (https://www.mapbox.com/developers/api/styles/)
+		// Tiles are 512x512 pixels and are offset by 1 zoom level
+		L.tileLayer(
+			'https://api.mapbox.com/styles/v1/mapbox/emerald-v8/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWF1cmVlbnRzYWtpcmlzIiwiYSI6ImNpanB0NzgwMjAxZDB0b2tvamNpYXQyeTMifQ.HVQAxH-RQKZBss1u3zIoxA', {
+				tileSize: 512,
+				zoomOffset: -1,
+				attribution: '© <a href="https://www.mapbox.com/map-feedback/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+
+			} ).addTo( map );
+
 		/*//api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}*/
 
 		//L.tileLayer.provider( 'MapBox', { id: 'cims71jzw001e9wnjcr6uxd63', accessToken: 'pk.eyJ1IjoibWF1cmVlbnRzYWtpcmlzIiwiYSI6ImNpanB0NzgwMjAxZDB0b2tvamNpYXQyeTMifQ.HVQAxH-RQKZBss1u3zIoxA' } ).addTo( map );
@@ -89,9 +99,9 @@ export default class Leaflet extends Component {
 			attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 		} ).addTo( map );*/
 
-		L.tileLayer( 'http://{s}.tile.thunderforest.com/outdoors/{z}/{x}/{y}.png', {
+		/*L.tileLayer( 'http://{s}.tile.thunderforest.com/outdoors/{z}/{x}/{y}.png', {
 			attribution: '&copy; <a href="http://www.thunderforest.com/">Thunderforest</a>, &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-		} ).addTo( map );
+		} ).addTo( map );*/
 
 		/*L.tileLayer( 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
 			attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
