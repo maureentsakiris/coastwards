@@ -71,20 +71,20 @@ class Info extends Component {
 		return (
 
 			<div id="Info" className={ style.info }>
-				<Tabs arrows={ true } style={ { alignItems: 'stretch' } } activeCls={ style.active } accent={ false } inverse={ true } >
+				<Tabs arrows={ true } style={ { alignItems: 'stretch' } } activeCls={ style.active } accent={ true } inverse={ false } >
 					
-					<Button className={ style.tabButton } label={ formatMessage( messages.upload_pictures ) } flat inverse onClick={ onTabClick.bind( this, Upload ) } />
-					<Button className={ style.tabButton } label={ formatMessage( messages.how_does_a_picture_help ) } flat inverse onClick={ onTabClick.bind( this, How ) } />
-					<Button className={ style.tabButton } label={ formatMessage( messages.just_any_picture ) } flat inverse onClick={ onTabClick.bind( this, Guidelines ) } />
-					<Button className={ style.tabButton } label={ formatMessage( messages.who_are_you ) } flat inverse onClick={ onTabClick.bind( this, Team ) } />
-					<Button className={ style.tabButton } label={ formatMessage( messages.other_questions ) } flat inverse onClick={ onTabClick.bind( this, FAQs ) } />
+					<Button className={ style.tabButton } label={ formatMessage( messages.upload_pictures ) } flat primary onClick={ onTabClick.bind( this, Upload ) } />
+					<Button className={ style.tabButton } label={ formatMessage( messages.how_does_a_picture_help ) } flat primary onClick={ onTabClick.bind( this, How ) } />
+					<Button className={ style.tabButton } label={ formatMessage( messages.just_any_picture ) } flat primary onClick={ onTabClick.bind( this, Guidelines ) } />
+					<Button className={ style.tabButton } label={ formatMessage( messages.who_are_you ) } flat primary onClick={ onTabClick.bind( this, Team ) } />
+					<Button className={ style.tabButton } label={ formatMessage( messages.other_questions ) } flat primary onClick={ onTabClick.bind( this, FAQs ) } />
 					
 				</Tabs>
 			</div>
 
 		)
 
-	}
+	} 
 
 }
 

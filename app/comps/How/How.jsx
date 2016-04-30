@@ -32,7 +32,7 @@ class How extends Component {
 
 		const { formatMessage } = this.props.intl;
 
-		const cls = Classnames( style.how );
+		const cls = Classnames( style.corset, style.how );
 
 		return (
 

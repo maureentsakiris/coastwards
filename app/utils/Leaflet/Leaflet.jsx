@@ -92,6 +92,10 @@ export default class Leaflet extends Component {
 			attribution: '&copy; <a href="http://www.thunderforest.com/">Thunderforest</a>, &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 		} ).addTo( map );
 
+		/*L.tileLayer( 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+			attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+		} ).addTo( map );*/
+
 		/*L.tileLayer( 'https://api.mapbox.com/styles/v1/maureentsakiris/cims71jzw001e9wnjcr6uxd63.html?title=true&access_token=pk.eyJ1IjoibWF1cmVlbnRzYWtpcmlzIiwiYSI6ImNpanB0NzgwMjAxZDB0b2tvamNpYXQyeTMifQ.HVQAxH-RQKZBss1u3zIoxA#1.595864971897807/39.63699588910609/-22.295571680991515/0', {
 			maxZoom: 18,
 			attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'

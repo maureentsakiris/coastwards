@@ -58,7 +58,7 @@ class Intro extends Component {
 					<img src={ logo } />
 					<h1>{ formatMessage( messages.intro ) }</h1>
 					<p className={ style.tagline }>{ formatMessage( messages.tagline ) }</p>
-					<IconButton className={ style.down } icon="arrow_downward" accent onClick={ this.props.onArrowClick } />
+					<IconButton className={ style.down } icon="expand_more" accent onClick={ this.props.onArrowClick } />
 				</div>
 			</div>
 
