@@ -60,10 +60,20 @@ export default class MapboxGL extends Component {
 	_createMap = ( ) => {
  
 		mapboxgl.accessToken = 'pk.eyJ1IjoibWF1cmVlbnRzYWtpcmlzIiwiYSI6ImNpanB0NzgwMjAxZDB0b2tvamNpYXQyeTMifQ.HVQAxH-RQKZBss1u3zIoxA';
-		new mapboxgl.Map( {
+		var map = new mapboxgl.Map( {
 			container: 'MapboxGl',
 			style: 'mapbox://styles/maureentsakiris/cinnokj3e005ed6m4s3mpu48t'
 		} );
+		// map.addControl( new mapboxgl.Navigation() );
+		map.addControl( new mapboxgl.Navigation( { position: 'top-left' } ) );
+		// disable map rotation using right click + drag
+		map.dragRotate.disable(); 
+		// disable map rotation using touch rotation gesture
+		map.touchZoomRotate.disableRotation();
+		// map.addControl( new mapboxgl.Geocoder() );
+		// map.dragPan.disable();
+		map.scrollZoom.disable();
+		
 
 	}
 
