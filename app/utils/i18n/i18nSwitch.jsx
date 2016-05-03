@@ -2,8 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import Classnames from 'classnames';
 import _ from 'underscore';
-
 import Button from 'react-toolbox/lib/button';
+
 import Tabs from '../Tabs/Tabs';
 
 import style from './_stylei18nSwitch';
@@ -16,9 +16,10 @@ export default class I18nSwitch extends Component {
 
 	static propTypes = {
 
-		locales: PropTypes.object.isRequired,
 		onSwitch: PropTypes.func.isRequired,
-		locale: PropTypes.string.isRequired
+		locales: PropTypes.object.isRequired,
+		locale: PropTypes.string.isRequired,
+		className: PropTypes.string
 
 	}
 
@@ -43,8 +44,10 @@ export default class I18nSwitch extends Component {
 
 	render () {
 
+		const { className } = this.props;
+		const cls = Classnames( style.languages, className );
+
 		const links = this._createLanguageLinks( );
-		const cls = Classnames( style.languages );
 
 		return (
 

@@ -1,8 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { defineMessages, injectIntl, intlShape } from 'react-intl';
-import Classnames from 'classnames';
-import { Button, IconButton } from 'react-toolbox/lib/button';
+import { IconButton } from 'react-toolbox/lib/button';
 
 import style from './_styleIntro';
 
@@ -48,15 +47,12 @@ class Intro extends Component {
 
 		const { formatMessage } = this.props.intl;
 
-		const cls = Classnames( style.intro, style.flexcontainer );
-		const corset = Classnames( style.flexitem, style.corset, style.pad );
-
 		return (
 
-			<div id="Intro" className={ cls }>
-				<div className={ corset }>
-					<img src={ logo } />
-					<h1>{ formatMessage( messages.intro ) }</h1>
+			<div id="Intro" className={ style.intro }>
+				<div className={ style.inner }>
+					<img className={ style.logo } src={ logo } />
+					<h1 className={ style.headline }>{ formatMessage( messages.intro ) }</h1>
 					<p className={ style.tagline }>{ formatMessage( messages.tagline ) }</p>
 					<IconButton className={ style.down } icon="expand_more" accent onClick={ this.props.onArrowClick } />
 				</div>
@@ -71,12 +67,6 @@ class Intro extends Component {
 Intro.propTypes = {
 
 	intl: intlShape.isRequired
-
-};
-
-Intro.defaultProps = {
-
-	
 
 };
 

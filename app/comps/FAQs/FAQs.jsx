@@ -1,11 +1,17 @@
 import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import { defineMessages, injectIntl, intlShape, FormattedMessage } from 'react-intl';
+import { defineMessages, injectIntl, intlShape } from 'react-intl';
 import Classnames from 'classnames';
 
 import style from './_styleFAQs';
 
 const messages = defineMessages( {
+
+	faqs_headline:{
+		id: "faqs_headline",
+		description: "0 - ",
+		defaultMessage: "FAQs"
+	}
 
 } );
 
@@ -29,8 +35,8 @@ class FAQs extends Component {
 
 		return (
 
-			<div className={ cls }>
-				<h2>FAQs</h2>
+			<div className={ style.faqs }>
+				<h2>{ formatMessage( messages.faqs_headline ) }</h2>
 			</div>
 
 		)
@@ -42,12 +48,6 @@ class FAQs extends Component {
 FAQs.propTypes = {
 
 	intl: intlShape.isRequired
-
-};
-
-FAQs.defaultProps = {
-
-	
 
 };
 

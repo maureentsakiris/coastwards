@@ -1,7 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import _ from 'underscore';
-import http from 'http';
+/*import http from 'http';*/
+import Classnames from 'classnames';
 
 import style from './_styleFormTB';
 
@@ -16,13 +17,16 @@ export default class FormTB extends Component {
 
 		name: PropTypes.string.isRequired,
 		autocomplete: PropTypes.oneOf( [ 'on', 'off' ] ),
+		noValidate: PropTypes.bool,
+		className: PropTypes.string,
 		children: PropTypes.node
 
 	};
 
 	static defaultProps = {
 
-		autocomplete: 'off'
+		autocomplete: 'off',
+		noValidate: true
 
 	}
 
@@ -62,11 +66,13 @@ export default class FormTB extends Component {
 
 	render () {
 
+		const { name, autocomplete, className, noValidate } = this.props;
 		const children = this._cloneWithMethods( this.props.children ); 
+		const cls = Classnames( style.form, className );
 
 		return (
 
-			<form {...this.props} onSubmit={ this._submit.bind( this ) } id={ this.props.name } autoComplete={ this.props.autocomplete } className={ style.form } >
+			<form {...this.props} onSubmit={ this._submit.bind( this ) } id={ name } autoComplete={ autocomplete } className={ cls } noValidate={ noValidate }>
 				{ children }
 			</form>
 
@@ -163,10 +169,10 @@ export default class FormTB extends Component {
 		this._updateModel();
 
 
-		console.log( 'Form is valid:', this.state.formIsValid );
-		console.log( "model", this.model );
+		/*console.log( 'Form is valid:', this.state.formIsValid );
+		console.log( "model", this.model );*/
 
-		let options = {
+		/*let options = {
   
 			hostname: '134.245.149.30',
 			port: 8888,
@@ -199,9 +205,9 @@ export default class FormTB extends Component {
 
 			} )
 
-		} );
+		} );*/
 
-		req.on( 'error', ( e ) => {
+		/*req.on( 'error', ( e ) => {
 
 			console.log( `problem with request: ${e.message}` );
 
@@ -209,7 +215,7 @@ export default class FormTB extends Component {
 
 		// write data to request body
 		req.write( this.model );
-		req.end();
+		req.end();*/
 
 	}
 

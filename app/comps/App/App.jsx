@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { injectIntl, intlShape } from 'react-intl';
+import Classnames from 'classnames';
 import Sticky from 'react-stickynode';
 import Scroll from 'react-scroll';
 
@@ -13,6 +14,12 @@ import style from './_styleApp';
 const scroller = Scroll.scroller;
 
 class App extends Component {
+
+	static propTypes = {
+
+		className: PropTypes.string
+
+	}
 
 	componentWillMount (){
 
@@ -36,9 +43,12 @@ class App extends Component {
 
 	render () {
 
+		const { className } = this.props;
+		const cls = Classnames( style.app, className );
+
 		return (
 
-			<div id="App" className={ style.app }>
+			<div id="App" className={ cls }>
 				<Intro onArrowClick={ this._scrollToInfo } />
 				<Sticky enableTransforms={ true } className={ style.sticky }>
 					<Info onTabClick={ this._loadContent } />
@@ -71,12 +81,6 @@ class App extends Component {
 App.propTypes = {
 
 	intl: intlShape.isRequired
-
-};
-
-App.defaultProps = {
-
-	
 
 };
 

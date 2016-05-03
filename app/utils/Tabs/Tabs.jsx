@@ -198,7 +198,6 @@ export default class Tabs extends Component {
 
 	_scrollTo ( s ){
 
-		console.log( s );
 		this.content.scrollLeft += s;
 
 	}

@@ -1,3 +1,5 @@
+@import '~react-toolbox/lib/base';
+
 //############################################################################################ FLEX
 
 
@@ -9,12 +11,6 @@
 	display: -ms-flexbox;      /* TWEENER - IE 10 */
 	display: -webkit-flex;     /* NEW - Chrome */
 	display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
-
-}
-
-.flexcontainer{
-
-	@extend %flexcontainer;
 
 }
 
@@ -33,12 +29,6 @@
 
 }
 
-.flexitem{
-
-	@extend %flexitem;
-
-}
-
 //https://css-tricks.com/using-flexbox/
 @mixin flexorder( $order ) {
 
@@ -51,61 +41,8 @@
 }
 
 
-//############################################################################################ VARS
-
-
-$heightIntro: 100vh;
-$heightInfo: 10vh;
-$heightContent: 90vh;
-$heightFooter: 13vh;
-
-
 
 //############################################################################################ TYPOGRAPHY
-
-
-.headline{
-
-  font-weight: $font-weight-semi-bold;
-  font-size: 3vh;
-
-}
-
-
-//############################################################################################ LAYOUT
-
-.corset{
-
-  max-width: 960px;
-  margin: 0 auto;
-
-}
-
-.pad{
-
-  padding: 0 5vh;
-  box-sizing: border-box;
-
-}
-
-.padContent{
- 
-  min-height: 90vh;
-  padding-top: 5vh;
-
-  h2{
-
-    @include typo-display-2(false, true);
-
-  }
-
-  h3{
-
-    @include typo-headline();
-
-  }
-
-}
 
 
 @mixin IconButtonSize( $size ){
@@ -128,28 +65,45 @@ $heightFooter: 13vh;
 
 }
 
+
+//############################################################################################ LAYOUT
+
+%corset{
+
+  max-width: 960px;
+  margin: 0 auto;
+
+}
+
+%pad{
+
+  padding: 0 5vh;
+  box-sizing: border-box;
+
+}
+
+
 //############################################################################################ VIDEO
 
-.videoWrapper {
+%videoWrapper {
 
   position: relative;
   padding-bottom: 56.25%; /* 16:9 */
   padding-top: 25px;
   height: 0;
 
+  iframe {
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba( 0,0,0,0.1 );
+
+  }
+
 }
-
-.videoWrapper iframe {
-
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba( 0,0,0,0.1 );
-
-}
-
 
 //############################################################################################ MEDIAQUERIES
 

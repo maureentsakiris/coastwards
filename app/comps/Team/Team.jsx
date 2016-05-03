@@ -1,11 +1,16 @@
 import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import { defineMessages, injectIntl, intlShape, FormattedMessage } from 'react-intl';
-import Classnames from 'classnames';
+import { defineMessages, injectIntl, intlShape } from 'react-intl';
 
 import style from './_styleTeam';
 
 const messages = defineMessages( {
+
+	team_headline:{
+		id: "team_headline",
+		description: "0 - ",
+		defaultMessage: "Team"
+	}
 
 } );
 
@@ -25,12 +30,11 @@ class Team extends Component {
 	render () {
 
 		const { formatMessage } = this.props.intl;
-		const cls = Classnames( style.corset, style.pad, style.padContent );
 
 		return (
 
-			<div className={ cls }>
-				<h2>Team</h2>
+			<div className={ style.team }>
+				<h2>{ formatMessage( messages.team_headline ) }</h2>
 			</div>
 
 		)
@@ -42,12 +46,6 @@ class Team extends Component {
 Team.propTypes = {
 
 	intl: intlShape.isRequired
-
-};
-
-Team.defaultProps = {
-
-	
 
 };
 

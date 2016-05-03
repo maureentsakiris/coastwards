@@ -4,7 +4,6 @@ const ExtractTextPlugin = require( 'extract-text-webpack-plugin' );
 const autoprefixer = require( 'autoprefixer' );
 
 
-
 var SERVER = {};
 
 if( process.argv[ 3 ] == 'office' ){
@@ -126,7 +125,8 @@ const config = {
 	plugins: [
 		extractStyles,
 		new webpack.HotModuleReplacementPlugin(),
-		new webpack.NoErrorsPlugin()
+		new webpack.NoErrorsPlugin(),
+		new webpack.optimize.DedupePlugin()
 	]
 	
 };

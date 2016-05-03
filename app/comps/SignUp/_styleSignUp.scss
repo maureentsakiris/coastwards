@@ -1,9 +1,13 @@
-@import '~react-toolbox/lib/base';
-@import '../../../app/styles/_base'; 
+@import '../../../app/styles/_base';
+@import '../../../app/styles/_coastwards';
+
 
 $padding: 10vh;
 
 .signUp{
+
+	@extend %corset;
+	@extend %pad;
 
 	color: $palette-blue-grey-500;
 	padding-top: $padding;

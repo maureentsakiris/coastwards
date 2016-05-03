@@ -2,8 +2,6 @@ import React, { Component, PropTypes } from 'react';
 /*import PureRenderMixin from 'react-addons-pure-render-mixin';*/
 import Modernizr from 'modernizr';
 import _ from 'underscore';
-
-
 import ProgressBar from 'react-toolbox/lib/progress_bar';
 import Dialog from 'react-toolbox/lib/dialog';
 import Snackbar from 'react-toolbox/lib/snackbar';

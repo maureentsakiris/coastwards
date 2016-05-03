@@ -1,36 +1,47 @@
-@import '~react-toolbox/lib/base';
 @import '../../../app/styles/_base';
-
-
+@import '../../../app/styles/_coastwards';
 
 .intro{
 
+	@extend %flexcontainer;
 	height: $heightIntro;
 	box-sizing: border-box;
 	text-align: center;
 	color: $color-primary;
 
-	img{
+}
 
-		max-width: 30vw;
-    	width: 50vw;
+.inner{
 
-	}
+	@extend %flexitem;
+	@extend %corset;
+	@extend %pad;
+	align-self: center;
+	margin-top: 5vh;
 
-	h1{
+}
 
-		font-weight: $font-weight-thin;
-		font-size: 6vh;
-		margin-top: 3vh;
+.logo{
 
-	}
+	max-width: 30vw;
+    width: 50vw;
 
-	&>div{
+}
 
-		align-self: center;
-		margin-top: 5vh;
+.headline{
 
-	}
+	font-weight: $font-weight-thin;
+	font-size: 6vh;
+	margin-top: 3vh;
+
+}
+
+.tagline{
+
+	margin-top: 4vh;
+	@include typo-headline();
+	font-size: 2vh;
+	color: $palette-grey-500;
 
 }
 
@@ -38,14 +49,5 @@
 
 	margin-top: 6vh;
 	@include IconButtonSize( 4.8rem );
-
-}
-
-.tagline{
-
-	margin-top: 4vh;
-	@include typo-headline( );
-	font-size: 2vh;
-	color: $palette-grey-500;
 
 }

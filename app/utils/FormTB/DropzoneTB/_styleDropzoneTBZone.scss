@@ -1,0 +1,24 @@
+@import '../../../../app/styles/_base';
+
+.zone{
+
+	@extend %flexcontainer;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.1);
+
+	p{
+
+		@extend %flexitem;
+		align-self: center;
+		text-align: center;
+
+	}
+
+}
+
+.dragactive{
+
+	background-color: rgba(0,0,0,0.2);
+
+}

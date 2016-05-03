@@ -1,20 +1,20 @@
-@import '~react-toolbox/lib/base';
 @import '../../../app/styles/_base';
-
+@import '../../../app/styles/_coastwards';
 
 .app{
 
-	.sticky{
+	
+}
 
-		position: relative;
-		z-index: 1;
+.sticky{
 
-	}
+	position: relative;
+	z-index: $z-index-high;
 
-	.content{
+}
 
-		position: relative;
+.content{
 
-	}
+	position: relative;
 
 }

@@ -1,10 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { defineMessages, injectIntl, intlShape } from 'react-intl';
-
-import Tabs from '../../utils/Tabs/Tabs';
 import { Button } from 'react-toolbox/lib/button';
 
+import Tabs from '../../utils/Tabs/Tabs';
 import Upload from '../Upload/Upload';
 import How from '../How/How';
 import Guidelines from '../Guidelines/Guidelines';
@@ -71,7 +70,7 @@ class Info extends Component {
 		return (
 
 			<div id="Info" className={ style.info }>
-				<Tabs arrows={ true } style={ { alignItems: 'stretch' } } activeCls={ style.active } accent={ true } inverse={ false } >
+				<Tabs arrows={ true } activeCls={ style.active } accent={ true } inverse={ false } >
 					
 					<Button className={ style.tabButton } label={ formatMessage( messages.upload_pictures ) } flat primary onClick={ onTabClick.bind( this, Upload ) } />
 					<Button className={ style.tabButton } label={ formatMessage( messages.how_does_a_picture_help ) } flat primary onClick={ onTabClick.bind( this, How ) } />
@@ -91,12 +90,6 @@ class Info extends Component {
 Info.propTypes = {
 
 	intl: intlShape.isRequired
-
-};
-
-Info.defaultProps = {
-
-	
 
 };
 

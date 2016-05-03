@@ -2,13 +2,36 @@ import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { defineMessages, injectIntl, intlShape } from 'react-intl';
 import Classnames from 'classnames';
-import { Button } from 'react-toolbox/lib/button';
 
 import style from './_styleUpload';
 
+import FormTB from '../../utils/FormTB/FormTB/FormTB';
+import DropzoneTB from '../../utils/FormTB/DropzoneTB/DropzoneTB';
 import MapboxGL from '../../utils/MapboxGL/MapboxGL';
 
 const messages = defineMessages( {
+
+	dropzone_prompt:{
+		id: "dropzone_prompt",
+		description: "0 - ",
+		defaultMessage: "Drag & drop your images anywhere on the map (or click)"
+	},
+	prompt:{
+		id: "prompt",
+		description: "0 - ",
+		defaultMessage: "Click anywhere to upload your pictures"
+	},
+	warning_accept:{
+		id: "warning_accept",
+		description: "0 - ",
+		defaultMessage: "Some of the files you dropped are not the right filetype and will be ignored. Accepted filetypes are: %s"
+	},
+	warning_max:{
+		id: "warning_max",
+		description: "0 - ",
+		defaultMessage: "Slow down cowboy, you can only upload %s images at once. (But you can repeat the process as often as you like!)"
+	}
+	
 
 } );
 
@@ -30,11 +53,50 @@ class Upload extends Component {
 		const { formatMessage } = this.props.intl;
 
 		const cls = Classnames( style.upload );
+		const clsForm = Classnames( style.form );
+
+		const fileValidations = [
+			{
+				methodName: "imageHasLocation",
+				options: { required: true, passesWhen: true },
+				label: "Location",
+				description: "Checking image for information on the location it was taken",
+				success: "Yay! We know where that coast is",
+				error: "Err, looks like we can't extract the location from the metadata"
+			},
+			{
+				methodName: "imageWithFlash",
+				options: { required: true, passesWhen: false },
+				label: "No flash",
+				description: "Checking whether the image was taken with flash",
+				success: "Great! No flash, that means it was probably taken with enough ambient light",
+				error: "Err, flash was used to take this image"
+			},
+			{
+				methodName: "imageHasColor",
+				options: { color: "blue", required: true, passesWhen: true },
+				label: "Color blue",
+				description: "Checking whether the image has the color blue (water)",
+				success: "Great! There is blue in the image.",
+				error: "We couldn't find the color blue"
+			}
+		]
 		
 		return (
 
 			<div id="Upload" className={ cls }>
-				<Button icon="add" floating accent className={ style.uploadBtn } />
+				<FormTB name="upload" className={ clsForm } >
+					<DropzoneTB
+						name="dropzone" 
+						promptDnD={ formatMessage( messages.dropzone_prompt ) }
+						promptClick={ formatMessage( messages.prompt ) }
+						warning_accept={ formatMessage( messages.warning_accept ) }
+						multiple={ false }
+						warning_max={ formatMessage( messages.warning_max ) }
+						className={ style.dropzone }
+						fileValidations={ fileValidations }
+					/>
+				</FormTB>
 				<MapboxGL  className={ style.map } />  
 			</div>
 
@@ -42,17 +104,11 @@ class Upload extends Component {
 
 	} 
 
-}
+}  
 
 Upload.propTypes = {
 
 	intl: intlShape.isRequired
-
-};
-
-Upload.defaultProps = {
-
-	
 
 };
 

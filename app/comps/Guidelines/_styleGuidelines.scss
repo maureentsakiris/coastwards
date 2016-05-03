@@ -1,2 +1,8 @@
-@import '~react-toolbox/lib/base';
 @import '../../../app/styles/_base';
+@import '../../../app/styles/_coastwards';
+
+.guidelines{
+
+	@extend %coastwardsContent;
+	
+}

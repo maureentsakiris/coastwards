@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import { defineMessages, injectIntl, intlShape, FormattedMessage } from 'react-intl';
-import Classnames from 'classnames';
+import { defineMessages, injectIntl, intlShape } from 'react-intl';
 
 import style from './_styleGuidelines';
 
@@ -36,11 +35,10 @@ class Guidelines extends Component {
 	render () {
 
 		const { formatMessage } = this.props.intl;
-		const cls = Classnames( style.corset, style.pad, style.padContent, style.guidelines );
 
 		return (
 
-			<div className={ cls }>
+			<div className={ style.guidelines }>
 				<h2>{ formatMessage( messages.guidelines_header ) }</h2>
 				<h3>{ formatMessage( messages.guidelines_tagline ) }</h3>
 			</div>
@@ -54,12 +52,6 @@ class Guidelines extends Component {
 Guidelines.propTypes = {
 
 	intl: intlShape.isRequired
-
-};
-
-Guidelines.defaultProps = {
-
-	
 
 };
 

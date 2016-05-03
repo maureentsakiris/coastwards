@@ -1,11 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import { defineMessages, injectIntl, intlShape, FormattedMessage } from 'react-intl';
-import Classnames from 'classnames';
+import { /*defineMessages,*/ injectIntl, intlShape } from 'react-intl';
 
 import style from './_styleHow';
 
-const messages = defineMessages( {
+/*const messages = defineMessages( {
 
 	how_headline:{
 		id: "how_headline",
@@ -18,7 +17,7 @@ const messages = defineMessages( {
 		defaultMessage: "Show transcript"
 	}
 
-} );
+} );*/
 
 class How extends Component {
 
@@ -35,15 +34,12 @@ class How extends Component {
 
 	render () {
 
-		const { formatMessage } = this.props.intl;
-
-		const cls = Classnames( style.corset, style.pad, style.padContent );
-		const clsWrapper = Classnames( style.videoWrapper );
+		/*const { formatMessage } = this.props.intl;*/
 
 		return (
 
-			<div id="How" className={ cls }>
-				<div id="Video" className={ clsWrapper }>
+			<div id="How" className={ style.how }>
+				<div id="Video" className={ style.videoWrapper }>
 					<iframe></iframe>
 				</div>
 			</div>
@@ -57,12 +53,6 @@ class How extends Component {
 How.propTypes = {
 
 	intl: intlShape.isRequired
-
-};
-
-How.defaultProps = {
-
-	
 
 };
 

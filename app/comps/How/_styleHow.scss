@@ -1,2 +1,14 @@
-@import '~react-toolbox/lib/base';
 @import '../../../app/styles/_base';
+@import '../../../app/styles/_coastwards';
+
+.how{
+
+	@extend %coastwardsContent;
+
+}
+
+.videoWrapper{
+
+	@extend %videoWrapper;
+
+}

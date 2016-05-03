@@ -3,6 +3,7 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { IntlProvider } from 'react-intl';
 import _ from 'underscore';
 import util from 'util';
+
 import I18nSwitch from './I18nSwitch';
 import i18nLocales from './i18nLocales';
 
@@ -10,6 +11,8 @@ import i18nLocales from './i18nLocales';
 /*
  *	Takes negotiated locale, loads messages and polyfill (if necessary), handles language hot switch
  *  TODO: Dynamically add contextTypes to get access to global functions (is that possible?)
+ *	NOTE: ClassName is passed on to i18nSwitch cos if anything, the switch will be styled and not the wrapper
+ *  TODO: Allow for different switch styles, eg. instead of tabs a dropdown
 */
 
 
@@ -18,14 +21,17 @@ export default class I18n extends Component {
 
 	static propTypes = {
 
+		className: PropTypes.string,
 		children: PropTypes.element.isRequired,
-		defaultLocale: PropTypes.string.isRequired
+		defaultLocale: PropTypes.string.isRequired,
+		hotSwitch: PropTypes.bool
 
 	};
 
 	static defaultProps = {
 
-		messages: null
+		messages: null,
+		hotSwitch: false
 
 	};
 
@@ -70,21 +76,22 @@ export default class I18n extends Component {
 
 	render () {
 
+		const { className, hotSwitch } = this.props;
 
-		const propsSwitch = {
+		const propsI18nSwitch = {
 
 			onSwitch: this._handleSwitch,
 			locales: i18nLocales.locales,
 			locale: this.state.locale,
-			dir: this.state.dir
+			className: className
 
 		}
 
 		return (
 
-			<div id="i18n" dir={ this.state.dir } lang={ this.state.locale }>
+			<div id="i18n" dir={ this.state.dir } lang={ this.state.locale } >
 
-				<I18nSwitch { ...propsSwitch } />
+				{ hotSwitch && <I18nSwitch { ...propsI18nSwitch } /> }
 
 				{ this.state.messages &&
 					<IntlProvider { ...this.state } >
@@ -170,7 +177,7 @@ export default class I18n extends Component {
 
 	_goTranslate = () => {
 
-		console.log( "Sending user to translation page" );
+		/*console.log( "Sending user to translation page" );*/
 
 	}
 

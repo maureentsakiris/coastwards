@@ -1,13 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { defineMessages, injectIntl, intlShape } from 'react-intl';
-import Classnames from 'classnames';
-
-import style from './_styleSignUp';
 
 import Form from '../../utils/FormTB/FormTB/FormTB';
 import Input from '../../utils/FormTB/InputTB/InputTB';
 import Submit from '../../utils/FormTB/SubmitTB/SubmitTB';
+
+import style from './_styleSignUp';
 
 
 const messages = defineMessages( {
@@ -59,8 +58,6 @@ class SignUp extends Component {
 
 		const { formatMessage } = this.props.intl;
 
-		const cls = Classnames( style.signUp, style.pad, style.corset );
-
 		const emailValidation = [
 			{
 				method: 'isEmail',
@@ -72,10 +69,10 @@ class SignUp extends Component {
 
 		return (
 
-			<div id="SignUp" className={ cls }>
+			<div id="SignUp" className={ style.signup }>
 				<h2>{ formatMessage( messages.phase_2 ) }</h2>
 				<p>{ formatMessage( messages.phase_2_description ) }</p>
-				<Form name="signup" noValidate>
+				<Form name="signup">
 					<Input 
 						name="email" 
 						label={ formatMessage( messages.form_label_email ) }
@@ -101,12 +98,6 @@ class SignUp extends Component {
 SignUp.propTypes = {
 
 	intl: intlShape.isRequired
-
-};
-
-SignUp.defaultProps = {
-
-	
 
 };
 
