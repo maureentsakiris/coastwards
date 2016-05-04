@@ -1,23 +1,26 @@
 import React, { Component, PropTypes } from 'react';
+import ReactDOM from 'react-dom';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import Classnames from 'classnames';
-import Ripple from 'react-toolbox/lib/ripple';
 
 import style from './_styleDropzoneTBZone';
 
-class DropzoneTBZone extends Component {
+export default class DropzoneTBZone extends Component {
 
 	static propTypes = {
 
-		onDrop: PropTypes.func,
+		onDrop: PropTypes.func.isRequired,
+		onClick: PropTypes.func.isRequired,
 		prompt: PropTypes.string
 
 	};
 
-	static defaultProps = {
+	static contextTypes = {
 
-		onDrop: () => {}
-
+		showDialog: PropTypes.func,
+		showLoader: PropTypes.func,
+		showSnackbar: PropTypes.func
+		
 	}
 
 	componentDidMount ( ){
@@ -47,14 +50,6 @@ class DropzoneTBZone extends Component {
 
 	}
 
-	static contextTypes = {
-
-		showDialog: PropTypes.func,
-		showLoader: PropTypes.func,
-		showSnackbar: PropTypes.func
-		
-	}
-
 	constructor ( props ) {
 
 		super ( props );
@@ -62,7 +57,10 @@ class DropzoneTBZone extends Component {
 
 		this.state = {
 
-			isDragActive: false
+			isDragActive: false,
+			ripple: false,
+			dropX: 0,
+			dropY: 0
 
 		}
 
@@ -70,20 +68,28 @@ class DropzoneTBZone extends Component {
 
 	render () {
 
-		const { prompt } = this.props;
-		/*const { dropX, dropY } = this.state;*/
+		const { prompt, onClick } = this.props;
+		const { dropX, dropY } = this.state;
 
 		const dropzoneHandlers = {
 
 			onDragEnter: this._onDragEnter.bind( this ),
 			onDragLeave: this._onDragLeave.bind( this ),
-			onDrop: this._onDrop.bind( this )
+			onDrop: this._onDrop.bind( this ),
+			onClick: onClick
 
 		}
 
 		const cls = Classnames( style.zone, {
 
-			[ style.dragactive ]: this.state.isDragActive
+			[ style.dragactive ]: this.state.isDragActive,
+			[ style.hasDrop ]: this.state.ripple
+
+		} )
+
+		const clsRippler = Classnames( style.rippler, {
+
+			[ style.ripple ]: this.state.ripple
 
 		} )
 
@@ -91,6 +97,7 @@ class DropzoneTBZone extends Component {
 
 			<div className={ cls } { ...dropzoneHandlers }>
 				<p>{ prompt }</p>
+				<div className={ clsRippler } style={{ position: 'absolute', top: dropY, left: dropX } } ></div>
 			</div>
 
 		)
@@ -115,13 +122,17 @@ class DropzoneTBZone extends Component {
 
 		e.preventDefault();
 
-		/*let { clientX, clientY } = e;*/
-
-		/*console.log( e.currentTarget.offsetParent.offsetTop );*/
+		let { left, top } = ReactDOM.findDOMNode( this ).getBoundingClientRect();
+		let { pageX, pageY } = e;
+		let dropX = pageX - left - window.scrollX;
+		let dropY = pageY - top - window.scrollY;
 
 		this.setState( { 
 
-			isDragActive: false
+			isDragActive: false,
+			ripple: true,
+			dropX: dropX, 
+			dropY: dropY
 
 		} );
 
@@ -130,5 +141,3 @@ class DropzoneTBZone extends Component {
 	} 
 
 }
-
-export default Ripple( { centered: false } )( DropzoneTBZone );

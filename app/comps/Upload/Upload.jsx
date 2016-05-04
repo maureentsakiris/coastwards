@@ -24,12 +24,12 @@ const messages = defineMessages( {
 	warning_accept:{
 		id: "warning_accept",
 		description: "0 - ",
-		defaultMessage: "Some of the files you dropped are not the right filetype and will be ignored. Accepted filetypes are: %s"
+		defaultMessage: "The file you dropped has the wrong extension. Allowed filetypes are: JPG, JPEG or TIFF."
 	},
 	warning_max:{
 		id: "warning_max",
 		description: "0 - ",
-		defaultMessage: "Slow down cowboy, you can only upload %s images at once. (But you can repeat the process as often as you like!)"
+		defaultMessage: "Sorry, we can only process one image at a time! (We are working on it)" 
 	}
 	
 
@@ -95,6 +95,7 @@ class Upload extends Component {
 						warning_max={ formatMessage( messages.warning_max ) }
 						className={ style.dropzone }
 						fileValidations={ fileValidations }
+						max={ 100 }
 					/>
 				</FormTB>
 				<MapboxGL  className={ style.map } />  
