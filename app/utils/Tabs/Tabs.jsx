@@ -140,6 +140,7 @@ export default class Tabs extends Component {
 				key: key, 
 				className: cls,
 				ref: ref,
+				disabled: isActive,
 				onClick: this._onClick.bind( this, key, child.props.onClick )
 			} );
 
