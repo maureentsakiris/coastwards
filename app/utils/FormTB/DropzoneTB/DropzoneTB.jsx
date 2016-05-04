@@ -2,7 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import Classnames from 'classnames';
 import { ElementTB } from '../ElementTB/ElementTB';
 import _ from 'underscore';
-import util from 'util';
 import accepts from 'attr-accept';
 import { Button } from 'react-toolbox/lib/button';
 import DropzoneTBFile from './DropzoneTBFile';
@@ -34,11 +33,11 @@ class DropzoneTB extends Component {
 	static defaultProps = {
 
 		accept: 'image/*',
-		warning_accept: 'Some of the files you dropped are not the right filetype and will be ignored. Accepted filetypes are: %s',
+		warning_accept: 'Some of the files you dropped are not the right filetype and will be ignored.',
 		multiple: true,
 		disablePreview: false,
 		max: 10,
-		warning_max: 'Slow down cowboy, you can only upload %s images at once. (But you can repeat the process as many times as you like ;)',
+		warning_max: 'Slow down cowboy, you have reached the maximum number of uploads.',
 		promptDnD: 'Drag & drop your files anywhere on the page or click here',
 		promptClick: 'Click here to select your files'
 
@@ -80,6 +79,7 @@ class DropzoneTB extends Component {
 		const zoneProps = {
 
 			onDrop: this._onDrop.bind( this ),
+			onClick: this._openInput.bind( this ),
 			prompt: prompt
 
 		}
@@ -160,7 +160,7 @@ class DropzoneTB extends Component {
 		
 			if( !accepted ){
 
-				this.context.showSnackbar( this.props.warning_accept );
+				this.context.showSnackbar( { label: this.props.warning_accept } );
 
 			}else{
 
@@ -175,7 +175,7 @@ class DropzoneTB extends Component {
 		if( allFiles.length > this.props.max ) {
 
 			allFiles.splice( this.props.max );
-			this.context.showSnackbar( util.format( this.props.warning_max, this.props.max ) );
+			this.context.showSnackbar( { label: this.props.warning_max } );
 
 		}
 

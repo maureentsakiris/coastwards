@@ -5,7 +5,15 @@
 	@extend %flexcontainer;
 	width: 100%;
 	height: 100%;
-	background-color: rgba(96, 125, 139, 0.75);
+	background-color: rgba(140, 203, 247, 0.75);
+	opacity: 1;
+	transition-property: opacity;
+	transition-duration: 400ms;
+	transition-timing-function: ease-in-out;
+	cursor: pointer;
+	overflow: hidden;
+	position: absolute;
+	z-index: 0;
 
 	p{
 
@@ -14,6 +22,7 @@
 		align-self: center;
 		text-align: center;
 		color: #fff;
+		pointer-events: none;
 
 	}
 
@@ -21,6 +30,54 @@
 
 .dragactive{
 
-	background-color: rgba(96, 125, 139, 0.25);
+	opacity: 0;
+
+}
+
+.hasDrop{
+
+	background-color: transparent;
+
+	p{
+		display: none;
+	}
+
+}
+
+.rippler{
+
+	width: 140px;
+	height: 140px;
+	border-radius: 50%;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -70px 0 0 -70px;
+	z-index: 1999;
+	visibility: hidden;
+
+}
+
+.ripple{
+	
+	visibility: visible;
+	animation: rippler 1s 1;
+
+}
+
+
+
+@keyframes rippler {
+
+	0% {
+		transform: scale( 1 );
+		// background-color: rgba( 140, 203, 247, 1 );
+		background-color: rgba( 255,255,255, 0.6 );
+	}
+
+	100% {
+		transform: scale( 30 );
+		background-color: rgba( 255,255,255, 0 );
+	}
 
 }

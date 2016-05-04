@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { defineMessages, injectIntl, intlShape } from 'react-intl';
-import Classnames from 'classnames';
 
 import style from './_styleFAQs';
 
@@ -31,7 +30,6 @@ class FAQs extends Component {
 	render () {
 
 		const { formatMessage } = this.props.intl;
-		const cls = Classnames( style.corset, style.pad, style.padContent );
 
 		return (
 
