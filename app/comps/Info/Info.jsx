@@ -4,11 +4,6 @@ import { defineMessages, injectIntl, intlShape } from 'react-intl';
 import { Button } from 'react-toolbox/lib/button';
 
 import Tabs from '../../utils/Tabs/Tabs';
-import Upload from '../Upload/Upload';
-import How from '../How/How';
-import Guidelines from '../Guidelines/Guidelines';
-import Team from '../Team/Team';
-import FAQs from '../FAQs/FAQs';
 
 import style from './_styleInfo'; 
 
@@ -72,11 +67,11 @@ class Info extends Component {
 			<div id="Info" className={ style.info }>
 				<Tabs arrows={ true } activeCls={ style.active } accent={ true } inverse={ false } >
 					
-					<Button className={ style.tabButton } label={ formatMessage( messages.upload_pictures ) } flat primary onClick={ onTabClick.bind( this, Upload ) } />
-					<Button className={ style.tabButton } label={ formatMessage( messages.how_does_a_picture_help ) } flat primary onClick={ onTabClick.bind( this, How ) } />
-					<Button className={ style.tabButton } label={ formatMessage( messages.just_any_picture ) } flat primary onClick={ onTabClick.bind( this, Guidelines ) } />
-					<Button className={ style.tabButton } label={ formatMessage( messages.who_are_you ) } flat primary onClick={ onTabClick.bind( this, Team ) } />
-					<Button className={ style.tabButton } label={ formatMessage( messages.other_questions ) } flat primary onClick={ onTabClick.bind( this, FAQs ) } />
+					<Button className={ style.tabButton } label={ formatMessage( messages.upload_pictures ) } flat primary onClick={ onTabClick.bind( this, 'upload' ) } />
+					<Button className={ style.tabButton } label={ formatMessage( messages.how_does_a_picture_help ) } flat primary onClick={ onTabClick.bind( this, 'how' ) } />
+					<Button className={ style.tabButton } label={ formatMessage( messages.just_any_picture ) } flat primary onClick={ onTabClick.bind( this, 'guidelines' ) } />
+					<Button className={ style.tabButton } label={ formatMessage( messages.who_are_you ) } flat primary onClick={ onTabClick.bind( this, 'team' ) } />
+					<Button className={ style.tabButton } label={ formatMessage( messages.other_questions ) } flat primary onClick={ onTabClick.bind( this, 'faqs' ) } />
 					
 				</Tabs>
 			</div>

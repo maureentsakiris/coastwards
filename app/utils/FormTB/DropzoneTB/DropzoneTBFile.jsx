@@ -8,7 +8,8 @@ export default class DropzoneTBFile extends Component {
 
 		file: PropTypes.object.isRequired,
 		validations: PropTypes.array,
-		onValidationDone: PropTypes.func.isRequired
+		onValidationDone: PropTypes.func,
+		onValidationsDone: PropTypes.func.isRequired
 
 	};
 
@@ -16,13 +17,7 @@ export default class DropzoneTBFile extends Component {
 
 		validations: {}
 
-	};
-
-	static contextTypes = {
-
-		
-		
-	};
+	}
 
 	componentWillMount ( ){
 
@@ -62,7 +57,7 @@ export default class DropzoneTBFile extends Component {
 
 		const style = {
 
-			backgroundImage: util.format( 'url(%s)', file.preview )
+			//backgroundImage: util.format( 'url(%s)', file.preview )
 
 		}
 
@@ -153,7 +148,7 @@ export default class DropzoneTBFile extends Component {
 
 				let isValidDrop = countFailed.length == 0;
 
-				this.props.onValidationDone( this, isValidDrop );
+				this.props.onValidationsDone( this, isValidDrop );
 
 			}
 
@@ -176,6 +171,8 @@ export default class DropzoneTBFile extends Component {
 			let passed = util.isBoolean( options.passesWhen ) ? options.passesWhen === result : result;
 			let message = passed ? success : error;
 
+			//this.props.onValidationDone( message );
+
 			status[ methodName ] = { result, passed, message, label, description };
 			validations[ methodName ] = { result, passed }
 			this.setState( ( state ) => {
@@ -191,7 +188,7 @@ export default class DropzoneTBFile extends Component {
 
 		const delayMethod = ( method ) => {
 
-			setTimeout( method, 2000 );
+			setTimeout( method, 0 );
 
 		}
 

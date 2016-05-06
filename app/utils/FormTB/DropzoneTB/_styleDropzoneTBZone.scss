@@ -6,37 +6,51 @@
 	width: 100%;
 	height: 100%;
 	background-color: rgba(140, 203, 247, 0.7);
-	opacity: 1;
-	transition-property: background-color, opacity;
+	transition-property: background-color;
 	transition-duration: 400ms;
 	transition-timing-function: ease-in-out;
 	cursor: pointer;
 	overflow: hidden;
 	position: absolute;
-	z-index: 0;
+	left: 0;
+	top: 0;
 
-	p{
+}
 
-		@extend %flexitem;
-		font-size: 3vw;
-		align-self: center;
-		text-align: center;
-		color: #fff;
-		pointer-events: none;
+.isdrag{
 
+	background-color: rgba(85, 182, 251, 0.7);
+
+}
+
+.isblocked{
+
+	cursor: initial;
+
+}
+
+@keyframes pulsate {
+
+	0% {
+		background-color: rgba(85, 182, 251, 0.7);
+	}
+
+	50% {
+		background-color: rgba(140, 203, 247, 0.3);
+	}
+
+	100% {
+		background-color: rgba(140, 203, 247, 0.7);
 	}
 
 }
 
-.dragactive{
+.isdrop{
 
-	background-color: rgba(140, 203, 247, 0.9);
-
-}
-
-.hasDrop{
-
-	opacity: 0;
+	animation-name: pulsate;
+	animation-duration: 500ms;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-out;
 
 }
 
@@ -57,7 +71,10 @@
 .ripple{
 	
 	visibility: visible;
-	animation: rippler 1s 1;
+	animation-name: rippler;
+	animation-duration: 1s;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-out;
 
 }
 

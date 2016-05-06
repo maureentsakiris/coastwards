@@ -209,7 +209,7 @@
 
 }
 
-@mixin StXXS {
+@mixin LtXXS {
 
   @media (max-width: #{ $layout-breakpoint-xxs }) {
 
@@ -229,7 +229,7 @@
 
 }
 
-@mixin StXS {
+@mixin LtXS {
 
   @media (max-width: #{ $layout-breakpoint-xs }) {
 
@@ -249,7 +249,7 @@
 
 }
 
-@mixin StSM {
+@mixin LtSM {
 
   @media (max-width: #{ $layout-breakpoint-sm }) {
 
@@ -269,7 +269,7 @@
 
 }
 
-@mixin StMD {
+@mixin LtMD {
 
   @media (max-width: #{ $layout-breakpoint-md }) {
 
@@ -289,7 +289,7 @@
 
 }
 
-@mixin StLG {
+@mixin LtLG {
 
   @media (max-width: #{ $layout-breakpoint-lg }) {
 

@@ -23,7 +23,8 @@
 
 .logo{
 
-	max-width: 20vw;
+	max-width: 40%;
+	min-width: 200px;
     width: 50vw;
 
 }
@@ -31,7 +32,7 @@
 .headline{
 
 	font-weight: $font-weight-thin;
-	font-size: 6vh;
+	font-size: 5vh;
 	margin-top: 3vh;
 
 }

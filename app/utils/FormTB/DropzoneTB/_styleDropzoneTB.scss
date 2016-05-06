@@ -2,14 +2,58 @@
 
 .dropzone{
 
+	@extend %flexcontainer;
 	width: 100%;
 	height: 300px;
-	position: relative; 
+	position: relative;
 
 }
 
 .input{
 
 	display: none;
+
+}
+
+.hidden{
+
+	display: none;
+
+}
+
+.prompt{
+
+	@extend %flexitem;
+	font-size: 3vw;
+	align-self: center;
+	text-align: center;
+	color: #fff;
+	pointer-events: none;
+	z-index: 1;
+
+}
+
+.uploadBtn{
+
+	position: absolute;
+	z-index: $z-index-highest;
+	top: 30px;
+	right: 30px;
+
+}
+
+.files{
+
+	position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+
+}
+
+.processing{
+
+	//display: block;
 
 }

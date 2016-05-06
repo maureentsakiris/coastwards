@@ -7,7 +7,13 @@ import Scroll from 'react-scroll';
 
 import Intro from '../Intro/Intro';
 import Info from '../Info/Info';
+
 import Upload from '../Upload/Upload';
+import How from '../How/How';
+import Guidelines from '../Guidelines/Guidelines';
+import Team from '../Team/Team';
+import FAQs from '../FAQs/FAQs';
+
 
 import style from './_styleApp';
 
@@ -21,13 +27,6 @@ class App extends Component {
 
 	}
 
-	componentWillMount (){
-
-		let content = React.createElement( Upload );
-		this.setState( { content: content } );
-
-	}
-
 	constructor ( props ) {
 
 		super ( props );
@@ -35,7 +34,7 @@ class App extends Component {
 
 		this.state = {
 
-			content: ''
+			content: 'upload'
 
 		}
 
@@ -46,6 +45,36 @@ class App extends Component {
 		const { className } = this.props;
 		const cls = Classnames( style.app, className );
 
+		const clsUpload = Classnames( style.hide, {
+
+			[ style.show ]: this.state.content == 'upload'
+
+		} )
+
+		const clsHow = Classnames( style.hide, {
+
+			[ style.show ]: this.state.content == 'how'
+
+		} )
+
+		const clsGuidelines = Classnames( style.hide, {
+
+			[ style.show ]: this.state.content == 'guidelines'
+
+		} )
+
+		const clsTeam = Classnames( style.hide, {
+
+			[ style.show ]: this.state.content == 'team'
+
+		} )
+
+		const clsFAQs = Classnames( style.hide, {
+
+			[ style.show ]: this.state.content == 'faqs'
+
+		} )
+
 		return (
 
 			<div id="App" className={ cls }>
@@ -54,7 +83,11 @@ class App extends Component {
 					<Info onTabClick={ this._loadContent } />
 				</Sticky>
 				<div id="Content" className={ style.content }>
-					{ this.state.content }
+					<Upload className={ clsUpload } />
+					<How className={ clsHow } />
+					<Guidelines className={ clsGuidelines } />
+					<Team className={ clsTeam } />
+					<FAQs className={ clsFAQs } />
 				</div>
 			</div>
 
@@ -70,8 +103,7 @@ class App extends Component {
 
 	_loadContent = ( comp ) => {
 
-		let content = React.createElement( comp );
-		this.setState( { content: content } );
+		this.setState( { content: comp } );
 		scroller.scrollTo( "Info", { smooth: true } );
 
 	}

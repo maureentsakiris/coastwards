@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { defineMessages, injectIntl, intlShape } from 'react-intl';
+import Classnames from 'classnames';
 
 import style from './_styleFAQs';
 
@@ -30,10 +31,13 @@ class FAQs extends Component {
 	render () {
 
 		const { formatMessage } = this.props.intl;
+		const { className } = this.props;
+
+		const cls = Classnames( style.faqs, className );
 
 		return (
 
-			<div className={ style.faqs }>
+			<div className={ cls }>
 				<h2>{ formatMessage( messages.faqs_headline ) }</h2>
 			</div>
 
@@ -45,7 +49,8 @@ class FAQs extends Component {
 
 FAQs.propTypes = {
 
-	intl: intlShape.isRequired
+	intl: intlShape.isRequired,
+	className: PropTypes.string
 
 };
 

@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { /*defineMessages,*/ injectIntl, intlShape } from 'react-intl';
+import Classnames from 'classnames';
 
 import style from './_styleHow';
 
@@ -35,10 +36,13 @@ class How extends Component {
 	render () {
 
 		/*const { formatMessage } = this.props.intl;*/
+		const { className } = this.props;
+
+		const cls = Classnames( style.how, className );
 
 		return (
 
-			<div id="How" className={ style.how }>
+			<div id="How" className={ cls }>
 				<div id="Video" className={ style.videoWrapper }>
 					<iframe></iframe>
 				</div>
@@ -52,7 +56,8 @@ class How extends Component {
 
 How.propTypes = {
 
-	intl: intlShape.isRequired
+	intl: intlShape.isRequired,
+	className: PropTypes.string
 
 };
 

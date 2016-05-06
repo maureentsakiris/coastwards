@@ -110,7 +110,7 @@ export default class Context extends Component {
 
 			<div id="Context" className={ className } >
 				{ showLoader && <ProgressBar type="linear" mode="indeterminate" className={ style.contextLoader } /> }
-				<Dialog { ...dialogOptions }>{ dialogOptions.content }</Dialog>
+				<Dialog { ...dialogOptions }><p>{ dialogOptions.content }</p></Dialog>
 				{ children }
 				<Snackbar { ...snackbarOptions } ref="snackbar" className={ style.snackbar } />
 			</div>

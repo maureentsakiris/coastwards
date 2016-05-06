@@ -11,17 +11,22 @@ export default class DropzoneTBZone extends Component {
 
 		onDrop: PropTypes.func.isRequired,
 		onClick: PropTypes.func.isRequired,
-		prompt: PropTypes.string
+		onDragEnter: PropTypes.func,
+		onDragLeave: PropTypes.func,
+		rippler: PropTypes.bool,
+		blocked: PropTypes.bool
 
 	};
 
-	static contextTypes = {
+	static defaultProps = {
 
-		showDialog: PropTypes.func,
-		showLoader: PropTypes.func,
-		showSnackbar: PropTypes.func
-		
+		onDragEnter: () => {},	
+		onDragLeave: () => {},
+		rippler: true,
+		blocked: false
+
 	}
+
 
 	componentDidMount ( ){
 
@@ -36,8 +41,6 @@ export default class DropzoneTBZone extends Component {
 
 			e = e || event;
 			e.preventDefault();
-
-			this.setState( { isDragActive: true, ripple: false } );
 
 		}, false );
 
@@ -57,8 +60,8 @@ export default class DropzoneTBZone extends Component {
 
 		this.state = {
 
-			isDragActive: false,
-			ripple: false,
+			isDrag: false,
+			isDrop: false,
 			dropX: 0,
 			dropY: 0
 
@@ -68,36 +71,36 @@ export default class DropzoneTBZone extends Component {
 
 	render () {
 
-		const { prompt, onClick } = this.props;
-		const { dropX, dropY } = this.state;
+		const { onClick, rippler, blocked } = this.props;
+		const { isDrag, isDrop, dropX, dropY } = this.state;
 
 		const dropzoneHandlers = {
 
-			onDragEnter: this._onDragEnter.bind( this ),
-			onDragLeave: this._onDragLeave.bind( this ),
-			onDrop: this._onDrop.bind( this ),
-			onClick: onClick
+			onDragEnter: !blocked && this._onDragEnter.bind( this ),
+			onDragLeave: !blocked && this._onDragLeave.bind( this ),
+			onDrop: !blocked && this._onDrop.bind( this ),
+			onClick: !blocked && onClick
 
 		}
 
 		const cls = Classnames( style.zone, {
 
-			[ style.dragactive ]: this.state.isDragActive,
-			[ style.hasDrop ]: this.state.ripple
+			[ style.isdrag ]: isDrag,
+			[ style.isdrop ]: isDrop,
+			[ style.isblocked ]: blocked
 
 		} )
 
 		const clsRippler = Classnames( style.rippler, {
 
-			[ style.ripple ]: this.state.ripple
+			[ style.ripple ]: isDrop
 
 		} )
 
 		return (
 
 			<div className={ cls } { ...dropzoneHandlers }>
-				<p>{ prompt }</p>
-				<div className={ clsRippler } style={{ position: 'absolute', top: dropY, left: dropX } } ></div>
+				{ rippler && <div className={ clsRippler } style={ { position: 'absolute', top: dropY, left: dropX } } ></div> }
 			</div>
 
 		)
@@ -107,14 +110,16 @@ export default class DropzoneTBZone extends Component {
 	_onDragEnter ( e ){
 
 		e.preventDefault();
-		this.setState( { isDragActive: true } );
+		let { onDragEnter, blocked } = this.props;
+		this.setState( { isDrag: !blocked, isDrop: false }, onDragEnter( e ) );
 
 	}
 
 	_onDragLeave ( e ){
 
 		e.preventDefault();
-		this.setState( { isDragActive: false } );
+		let { onDragLeave } = this.props;
+		this.setState( { isDrag: false }, onDragLeave( e ) );
 
 	}
 
@@ -122,6 +127,7 @@ export default class DropzoneTBZone extends Component {
 
 		e.preventDefault();
 
+		let { onDrop, blocked } = this.props;
 		let { left, top } = ReactDOM.findDOMNode( this ).getBoundingClientRect();
 		let { pageX, pageY } = e;
 		let dropX = pageX - left - window.scrollX;
@@ -129,14 +135,13 @@ export default class DropzoneTBZone extends Component {
 
 		this.setState( { 
 
-			isDragActive: false,
-			ripple: true,
+			isDrag: false,
+			isDrop: !blocked,
 			dropX: dropX, 
 			dropY: dropY
 
-		} );
+		}, onDrop( e ) );
 
-		this.props.onDrop( e );
 
 	} 
 

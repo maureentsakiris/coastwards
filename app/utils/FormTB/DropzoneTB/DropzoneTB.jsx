@@ -25,8 +25,11 @@ class DropzoneTB extends Component {
 		max: PropTypes.number,
 		warning_max: PropTypes.string,
 		fileValidations: PropTypes.array,
-		promptDnD: PropTypes.string,
-		promptClick: PropTypes.string
+
+		promptDrag: PropTypes.string,
+		promptDrop: PropTypes.string,
+		promptClick: PropTypes.string,
+		promptBlocked: PropTypes.string
 
 	};
 
@@ -37,17 +40,23 @@ class DropzoneTB extends Component {
 		multiple: true,
 		disablePreview: false,
 		max: 10,
-		warning_max: 'Slow down cowboy, you have reached the maximum number of uploads.',
-		promptDnD: 'Drag & drop your files anywhere on the page or click here',
-		promptClick: 'Click here to select your files'
+		warning_max: 'Slow down cowboy, you have reached the maximum number of uploads.'
 
 	};
 
 	static contextTypes = {
 
 		showSnackbar: PropTypes.func,
-		onDragLeave: PropTypes.func,
 		draganddrop: PropTypes.bool
+
+	}
+
+	componentWillMount (){
+
+		let { promptDrag, promptClick } = this.props;
+		let prompt = this.context.draganddrop ? promptDrag : promptClick;
+
+		this.setState( { promptInit: prompt, prompt: prompt } );
 
 	}
 
@@ -58,8 +67,11 @@ class DropzoneTB extends Component {
 
 		this.state = {
 
+			promptInit: '',
+			prompt: '',
 			value: [],
-			filesDropped: []
+			filesDropped: [],
+			blockDropzone: false
 
 		}
 
@@ -68,60 +80,79 @@ class DropzoneTB extends Component {
 	render () {
 
 		const { elementProps, elementStates, ...ownProps } = this.props;
+		const { blockDropzone, prompt } = this.state;
 
 		const { className } = elementProps;
-		const { showError, errorMsg, submitting/*, elementIsValid*/ } = elementStates;		
-		const { promptDnD, promptClick, accept, multiple, ...dropzoneProps } = ownProps;
-
-		const draganddrop = this.context.draganddrop;
-		const prompt = draganddrop ? promptDnD : promptClick;
+		const { /*showError, errorMsg,*/ submitting/*, elementIsValid*/ } = elementStates;		
+		const { accept, multiple, ...dropzoneProps } = ownProps;
 
 		const zoneProps = {
 
 			onDrop: this._onDrop.bind( this ),
+			onDragEnter: this._onDragEnter.bind( this ),
+			onDragLeave: this._onDragLeave.bind( this ),
 			onClick: this._openInput.bind( this ),
-			prompt: prompt
+			blocked: blockDropzone
 
 		}
 
 		const cls = Classnames( style.dropzone, className );
-		const clsInput = Classnames( {
+		const clsButton = Classnames( style.uploadBtn, {
 
-			[ style.input ]: draganddrop
+			[ style.hidden ]: submitting || blockDropzone
 
 		} )
+		/*const clsFiles = Classnames( style.files, {
 
+			[ style.processing ]: blockDropzone
 
-		/*const files = this.state.filesDropped;
-		const dropzoneFiles = this._createDropzoneFiles( files );*/
+		} );*/
+	/*{ showError && ( <span className="mdl-textfield__error">{ errorMsg }</span> ) }
+				<div id="DropzoneFiles" className={ clsFiles }>
+					{ dropzoneFiles }
+				</div>*/
+
+				/*<Button icon="file_upload" type="button" floating accent onClick={ this._openInput.bind( this ) } className={ clsButton } />*/
+
+		const files = this.state.filesDropped;
+		this._createDropzoneFiles( files );
+
 
 		return (
 
 			<div className={ cls } { ...dropzoneProps } data-dropzone-tb="dropzone" >
-				{ draganddrop && ( <DropzoneTBZone { ...zoneProps } /> ) } 
-				<input { ...elementProps } accept={ accept } multiple={ multiple } className={ clsInput } type="file" onChange={ this._onDrop.bind( this ) } ref="dropzoneInput" />
-				
-				<Button icon="file_upload" type="button" floating accent onClick={ this._openInput.bind( this ) } disabled={ submitting } />
-				{ showError && ( <span className="mdl-textfield__error">{ errorMsg }</span> ) }
-				<div id="DropzoneFiles">
-			
-				</div>
+				<DropzoneTBZone { ...zoneProps } />
+				<Button icon="file_upload" type="button" floating accent mini onClick={ this._openInput.bind( this ) } className={ clsButton } />
+				<p className={ style.prompt }>{ prompt }</p>
+				<input { ...elementProps } accept={ accept } multiple={ multiple } className={ style.input } type="file" onChange={ this._onDrop.bind( this ) } ref="dropzoneInput" />
 			</div>
 
 		)
 
 	}
 
-	_onValidationDone ( comp, isValidDrop ){
+	_setPrompt = ( msg ) => {
+
+		this.setState( { prompt: msg } );
+
+	}
+
+	_onValidationsDone ( comp, isValidDrop ){
 
 		if( isValidDrop ){
 
 			let drop = _.extend( comp.props.file, comp.state.validations );
 			let validFiles = this.state.value.concat( [ drop ] );
 			
-			this.setState( { value: validFiles }, this.props.elementHandlers.onChange( validFiles ) )
+			this.setState( { value: validFiles, prompt: 'Yep' }, this.props.elementHandlers.onChange( validFiles ) )
+
+		}else{
+
+			this._setPrompt( 'Nope' );
 
 		}
+
+		//console.log( "unblock dropzone?" );
 
 	}
 
@@ -135,11 +166,24 @@ class DropzoneTB extends Component {
 				file: file,
 				accept: this.props.accept, 
 				validations: this.props.fileValidations,
-				onValidationDone: this._onValidationDone.bind( this )
+				onValidationDone: this._setPrompt,
+				onValidationsDone: this._onValidationsDone.bind( this )
 
 			} );
 
 		} );
+
+	}
+
+	_onDragEnter ( ){
+
+		this._setPrompt( this.props.promptDrop );
+
+	}
+
+	_onDragLeave ( ){
+
+		this._setPrompt( this.state.promptInit );
 
 	}
 
@@ -179,16 +223,25 @@ class DropzoneTB extends Component {
 
 		}
 
+		if( allFiles.length > 0 ){
 
-		this.setState( ( state ) => {
+			this.setState( ( state ) => {
 
-			return { 
+				return { 
 
-				filesDropped: _.extend( state.filesDropped, allFiles )
+					blockDropzone: true,
+					prompt: 'Processing...',
+					filesDropped: _.extend( state.filesDropped, allFiles )
 
-			} 
+				} 
 
-		} );
+			} );
+
+		}else{
+
+			this.setState( { prompt: this.state.promptInit, blockDropzone: false } );
+
+		}
 
 	}
 
