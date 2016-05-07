@@ -102,7 +102,7 @@ export default class MapboxGL extends Component {
 
 	componentWillReceiveProps ( p ) {
 
-		/*if( this.map.loaded() ){
+		if( this.map.loaded() ){
 
 			if( p.language != this.props.language ){
 
@@ -114,11 +114,15 @@ export default class MapboxGL extends Component {
 
 			this.map.on( 'load', function ( ){
 
-				this._changeLanguage( p.language );
+				if( p.language != this.props.language ){
+
+					this._changeLanguage( p.language );
+
+				}
 
 			} );
 
-		}*/
+		}
 
 	}
 
@@ -149,7 +153,12 @@ export default class MapboxGL extends Component {
 
 	_changeLanguage = ( language ) => {
 
-		this.map.setLayoutProperty( 'country-label-1', 'text-field', '{name_' + language + '}' );
+		this.map.setLayoutProperty( 'country_label_1', 'text-field', '{name_' + language + '}' );
+		this.map.setLayoutProperty( 'country_label_2', 'text-field', '{name_' + language + '}' );
+		this.map.setLayoutProperty( 'country_label_3', 'text-field', '{name_' + language + '}' );
+		this.map.setLayoutProperty( 'country_label_4', 'text-field', '{name_' + language + '}' );
+		this.map.setLayoutProperty( 'place_label_city', 'text-field', '{name_' + language + '}' );
+		this.map.setLayoutProperty( 'place_label_town', 'text-field', '{name_' + language + '}' );
 
 	}
 
@@ -167,9 +176,7 @@ export default class MapboxGL extends Component {
 			mapboxgl.accessToken = accessToken;
 			this.map = new mapboxgl.Map( options );
 
-			// One would think initializing with values would be enough, but ....
-
-			// SETTING INTERACTIONS
+			// SETTING INTERACTIONS One would think initializing with values would be enough, but ....
 			let interactions = [ 'scrollZoom', 'boxZoom', 'dragRotate', 'dragPan', 'keyboard', 'doubleClickZoom', 'touchZoomRotate' ];
 			_.each( interactions, ( i ) => {
 
@@ -182,18 +189,6 @@ export default class MapboxGL extends Component {
 
 			} );
 
-			// SETTING MAX BOUNDS
-			if( options.maxBounds ){
-
-				//this.map.fitBounds( options.maxBounds );
-
-			}
-
-			this.map.on( 'moveend', function (){
-
-				console.log( this.getCenter() );
-
-			} )
 
 		}
 

@@ -66,6 +66,8 @@ class Upload extends Component {
 
 		this.state = {
 
+			zoom: 0
+
 		} 
 
 	}
@@ -122,8 +124,12 @@ class Upload extends Component {
 						max={ 1 }
 					/>
 				</FormTB>*/
+
+
+		let { zoom } = this.state;
 		
 		return (
+
 
 			<div id="Upload" className={ cls }>
 				<MapboxGL
@@ -131,23 +137,50 @@ class Upload extends Component {
 					unsupportedTitle={ formatMessage( messages.mapbox_warning_unsupported_title ) }
 					unsupportedMessage={ formatMessage( messages.mapbox_warning_unsupported_message ) }
 					language={ locale }
-					scrollZoom={ true }
-					zoom={ 0 }
+					scrollZoom={ false }
+					zoom={ zoom }
 					center={ [ 150, 39 ] }
 					maxBounds={ [ [ 360, 84 ], [ -360, -68 ] ] }
 					attributionControl={ false }
 					style="mapbox://styles/maureentsakiris/cinxhoec70043b4nmx0rkoc02"
-					accessToken="pk.eyJ1IjoibWF1cmVlbnRzYWtpcmlzIiwiYSI6ImNpanB0NzgwMjAxZDB0b2tvamNpYXQyeTMifQ.HVQAxH-RQKZBss1u3zIoxA"
+					accessToken="pk.eyJ1IjoibWF1cmVlbnRzYWtpcmlzIiwiYSI6ImNpbXM1N2Z2MTAwNXF3ZW0ydXI3eXZyOTAifQ.ATjSaskEecYMiEG36I_viw"
 				/>
+				<FormTB name="upload" className={ clsForm } >
+					<DropzoneTB
+						name="dropzone" 
+						promptDrag={ formatMessage( messages.dropzone_prompt_drag ) }
+						promptDrop={ formatMessage( messages.dropzone_prompt_drop ) }
+						promptClick={ formatMessage( messages.dropzone_prompt_click ) }
+						promptBlocked={ formatMessage( messages.dropzone_prompt_blocked ) }
+						warning_accept={ formatMessage( messages.dropzone_warning_accept ) }
+						multiple={ false }
+						warning_max={ formatMessage( messages.dropzone_warning_max ) }
+						className={ style.dropzone }
+						fileValidations={ fileValidations }
+						max={ 1 }
+					/>
+				</FormTB>
 				<div id="Controls" className={ clsControls }>
-					<Button icon="zoom_in" floating accent mini />
-					<Button icon="zoom_out" floating accent mini />
+					<Button icon="add" onClick={ this._zoomIn } floating mini />
+					<Button icon="remove" onClick={ this._zoomOut } floating mini />
 				</div>
 			</div>
 
 		)
 
-	} 
+	}
+
+	_zoomIn = () => {
+
+		this.setState( { zoom: 3 } );
+
+	}
+
+	_zoomOut = () => {
+
+		this.setState( { zoom: 0 } );
+
+	}
 
 }  
 
