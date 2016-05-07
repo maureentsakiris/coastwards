@@ -79,7 +79,7 @@ class App extends Component {
 
 			<div id="App" className={ cls }>
 				<Intro onArrowClick={ this._scrollToInfo } />
-				<Sticky enableTransforms={ true } className={ style.sticky }>
+				<Sticky id="InfoStick" enableTransforms={ true } className={ style.sticky }>
 					<Info onTabClick={ this._loadContent } />
 				</Sticky>
 				<div id="Content" className={ style.content }>

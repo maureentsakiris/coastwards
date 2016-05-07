@@ -54,6 +54,12 @@ export default class Tabs extends Component {
 
 	}
 
+	componentWillReceiveProps ( p ){
+
+		this.setState( { active: p.active } );
+
+	}
+
 	componentWillUnmount ( ){
 
 		window.removeEventListener( 'resize', this._update );
@@ -82,13 +88,12 @@ export default class Tabs extends Component {
 
 	render () {
 
-		const { center, arrows, accent, inverse } = this.props;
+		const { center, arrows, accent, inverse, ...props } = this.props;
 		const { showLeft, showRight } = this.state;
 
 		const children = this._extendChildren();
 
 		const cls = Classnames( style.tabcontainer, this.props.className );
-
 		const clsLeft = Classnames( style.tabitem, style.control, {
 
 			[ style.hide ]: !this.state.overflow
@@ -107,7 +112,7 @@ export default class Tabs extends Component {
 
 		return (
 
-			<div id={ this.props.id } className={ cls } dir="ltr">
+			<div { ...props } id={ this.props.id } className={ cls } dir="ltr">
 				{ arrows && <div className={ clsLeft } ref="left">
 					<IconButton icon="chevron_left" accent={ accent } inverse={ inverse } disabled={ !showLeft } onClick={ this._scrollTo.bind( this, -this.scrollStep ) } />
 				</div> }
@@ -130,6 +135,7 @@ export default class Tabs extends Component {
 			let ref = util.format( 'tab-%s', key );
 			let active = util.format( 'tab-%s', this.state.active );
 			let isActive = ref == active ? true: false;
+
 			let cls = Classnames( style.tabitem, child.props.className, {
 
 				[ this.props.activeCls ]: isActive

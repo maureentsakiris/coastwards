@@ -23,6 +23,12 @@ export default class I18nSwitch extends Component {
 
 	}
 
+	/*componentWillMount (){
+
+		this.setState( { current: this.props.locale } );
+
+	}*/
+
 	componentWillReceiveProps ( nextProps ){
 
 		this.setState( { current: nextProps.locale } );
@@ -36,7 +42,8 @@ export default class I18nSwitch extends Component {
 
 		this.state = {
 
-			current: this.props.locale
+			current: this.props.locale,
+			tabActive: 0
 
 		}
 
@@ -44,14 +51,15 @@ export default class I18nSwitch extends Component {
 
 	render () {
 
-		const { className } = this.props;
+		const { locales, className } = this.props;
 		const cls = Classnames( style.languages, className );
 
 		const links = this._createLanguageLinks( );
+		const active = _.chain( locales ).keys().indexOf( this.state.current ).value();
 
 		return (
 
-			<Tabs id="Languages" className={ cls }>
+			<Tabs id="Languages" className={ cls } active={ active }>
 				{ links }
 			</Tabs>
 
@@ -64,14 +72,14 @@ export default class I18nSwitch extends Component {
 		return _.map( this.props.locales, ( locale ) => {
 
 			let lang = locale.locale;
-			let current = lang == this.state.current;
+			let flag = lang === this.state.current;
 
 			return React.createElement( Button, {
 
 				key: lang,
 				hrefLang: lang,
 				onClick: this._handleClick.bind( this, lang ),
-				disabled: current,
+				disabled: flag,
 				flat: true,
 				accent: true
 

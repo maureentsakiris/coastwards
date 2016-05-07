@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import Classnames from 'classnames';
+import _ from 'underscore';
 import mapboxgl from 'mapbox-gl';
 
 import style from './_styleMapboxGL';
@@ -12,7 +13,55 @@ export default class MapboxGL extends Component {
 		className: PropTypes.string,
 		unsupportedTitle: PropTypes.string,
 		unsupportedMessage: PropTypes.string,
-		language: PropTypes.string
+		language: PropTypes.string,
+		accessToken: PropTypes.string,
+
+		container: PropTypes.string,
+		style: PropTypes.oneOfType( [
+
+			PropTypes.string,
+			PropTypes.shape( {
+
+				version: PropTypes.number,
+				name: PropTypes.string,
+				metadata: PropTypes.object,
+				center: PropTypes.array,
+				zoom: PropTypes.number,
+				bearing: PropTypes.number,
+				pitch: PropTypes.number,
+				sprite: PropTypes.string,
+				glyphs: PropTypes.string,
+				transition: PropTypes.shape( {
+
+					duration: PropTypes.number,
+					delay: PropTypes.number
+
+				} ),
+				sources: PropTypes.object,
+				layers: PropTypes.array
+
+			} )
+		] ),
+		center: PropTypes.array,
+		zoom: PropTypes.number,
+		minZoom: PropTypes.number,
+		maxZoom: PropTypes.number,
+		hash: PropTypes.bool,
+		interactive: PropTypes.bool,
+		bearing: PropTypes.number,
+		attributionControl: PropTypes.bool,
+		maxBounds: PropTypes.array,
+
+		scrollZoom: PropTypes.bool,
+		boxZoom: PropTypes.bool,
+		dragRotate: PropTypes.bool,
+		dragPan: PropTypes.bool,
+		keyboard: PropTypes.bool,
+		doubleClickZoom: PropTypes.bool,
+		touchZoomRotate: PropTypes.bool,
+
+		failIfMajorPerformanceCaveat: PropTypes.bool,
+		preserveDrawingBuffer: PropTypes.bool
 
 	};
 
@@ -20,7 +69,20 @@ export default class MapboxGL extends Component {
 
 		unsupportedTitle: "Browser upgrade",
 		unsupportedMessage: "Sorry, we can't show the map because your browser does not support the necessary web technology. For this and many other reasons, we recommend you upgrade your browser.",
-		language: "en"
+		language: "en",
+		accessToken: "pk.eyJ1IjoibWF1cmVlbnRzYWtpcmlzIiwiYSI6ImNpanB0NzgwMjAxZDB0b2tvamNpYXQyeTMifQ.HVQAxH-RQKZBss1u3zIoxA",
+
+		container: "MapboxGl",
+		style: "mapbox://styles/mapbox/streets-v8",
+		interactive: true,
+
+		scrollZoom: true,
+		boxZoom: true,
+		dragRotate: true,
+		dragPan: true,
+		keyboard: true,
+		doubleClickZoom: true,
+		touchZoomRotate: true
 
 	};
 
@@ -38,9 +100,25 @@ export default class MapboxGL extends Component {
 
 	}
 
-	componentDidUpdate ( ) {
+	componentWillReceiveProps ( p ) {
 
-		this._createMap(); 
+		/*if( this.map.loaded() ){
+
+			if( p.language != this.props.language ){
+
+				this._changeLanguage( p.language );
+
+			}
+
+		}else{
+
+			this.map.on( 'load', function ( ){
+
+				this._changeLanguage( p.language );
+
+			} );
+
+		}*/
 
 	}
 
@@ -59,7 +137,7 @@ export default class MapboxGL extends Component {
 	render () {
 
 		const { className } = this.props;
-		const cls = Classnames( className, style.map );  
+		const cls = Classnames( style.map, className );  
 
 		return (
 
@@ -69,42 +147,55 @@ export default class MapboxGL extends Component {
 
 	}
 
+	_changeLanguage = ( language ) => {
+
+		this.map.setLayoutProperty( 'country-label-1', 'text-field', '{name_' + language + '}' );
+
+	}
+
 	_createMap = ( ) => {
 
-		let { language } = this.props;
+		let props = _.omit( this.props, 'className', 'language' );
+		let { accessToken, unsupportedTitle, unsupportedMessage, ...options  } = props;
 
 		if ( !mapboxgl.supported() ) {
 
-			this.context.showDialog( { title: this.props.unsupportedTitle, content: this.props.unsupportedMessage } );
+			this.context.showDialog( { title: unsupportedTitle, content: unsupportedMessage } );
 
 		} else {
- 
-			// mapboxgl.accessToken = 'pk.eyJ1IjoibWF1cmVlbnRzYWtpcmlzIiwiYSI6ImNpanB0NzgwMjAxZDB0b2tvamNpYXQyeTMifQ.HVQAxH-RQKZBss1u3zIoxA';
-			mapboxgl.accessToken = 'pk.eyJ1IjoibWF1cmVlbnRzYWtpcmlzIiwiYSI6ImNpanB0NzgwMjAxZDB0b2tvamNpYXQyeTMifQ.HVQAxH-RQKZBss1u3zIoxA';
-			this.map = new mapboxgl.Map( {
-				container: 'MapboxGl',
-				/*style: 'mapbox://styles/maureentsakiris/cinnokj3e005ed6m4s3mpu48t',*/
-				style: 'mapbox://styles/mapbox/streets-v8',
-				zoom: 0
-			} );
 
-			//this.map.setLayoutProperty( 'country-label-lg', 'text-field', '{name_' + language + '}' );
+			mapboxgl.accessToken = accessToken;
+			this.map = new mapboxgl.Map( options );
 
-			this.map.on( 'load', function ( ) {
+			// One would think initializing with values would be enough, but ....
 
-				this.setLayoutProperty( 'country-label-lg', 'text-field', '{name_' + language + '}' );
-				this.scrollZoom.disable();
-				//this.dragPan.disable();
-				//this.doubleClickZoom.disable();
-				this.touchZoomRotate.disable();
-				this.keyboard.disable();
-				this.dragRotate.disable(); 
-				this.boxZoom.disable();
+			// SETTING INTERACTIONS
+			let interactions = [ 'scrollZoom', 'boxZoom', 'dragRotate', 'dragPan', 'keyboard', 'doubleClickZoom', 'touchZoomRotate' ];
+			_.each( interactions, ( i ) => {
+
+				if( options.interactive ){
+
+					let flag = options[ i ] ? 'enable' : 'disable';
+					this.map[ i ][ flag ]();
+
+				}
 
 			} );
+
+			// SETTING MAX BOUNDS
+			if( options.maxBounds ){
+
+				//this.map.fitBounds( options.maxBounds );
+
+			}
+
+			this.map.on( 'moveend', function (){
+
+				console.log( this.getCenter() );
+
+			} )
 
 		}
-		
 
 	}
 

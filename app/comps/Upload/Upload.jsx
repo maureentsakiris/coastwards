@@ -131,6 +131,13 @@ class Upload extends Component {
 					unsupportedTitle={ formatMessage( messages.mapbox_warning_unsupported_title ) }
 					unsupportedMessage={ formatMessage( messages.mapbox_warning_unsupported_message ) }
 					language={ locale }
+					scrollZoom={ true }
+					zoom={ 0 }
+					center={ [ 150, 39 ] }
+					maxBounds={ [ [ 360, 84 ], [ -360, -68 ] ] }
+					attributionControl={ false }
+					style="mapbox://styles/maureentsakiris/cinxhoec70043b4nmx0rkoc02"
+					accessToken="pk.eyJ1IjoibWF1cmVlbnRzYWtpcmlzIiwiYSI6ImNpanB0NzgwMjAxZDB0b2tvamNpYXQyeTMifQ.HVQAxH-RQKZBss1u3zIoxA"
 				/>
 				<div id="Controls" className={ clsControls }>
 					<Button icon="zoom_in" floating accent mini />
