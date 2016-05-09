@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
 import Classnames from 'classnames';
 import _ from 'underscore';
 import mapboxgl from 'mapbox-gl';
@@ -17,31 +16,7 @@ export default class MapboxGL extends Component {
 		accessToken: PropTypes.string,
 
 		container: PropTypes.string,
-		style: PropTypes.oneOfType( [
-
-			PropTypes.string,
-			PropTypes.shape( {
-
-				version: PropTypes.number,
-				name: PropTypes.string,
-				metadata: PropTypes.object,
-				center: PropTypes.array,
-				zoom: PropTypes.number,
-				bearing: PropTypes.number,
-				pitch: PropTypes.number,
-				sprite: PropTypes.string,
-				glyphs: PropTypes.string,
-				transition: PropTypes.shape( {
-
-					duration: PropTypes.number,
-					delay: PropTypes.number
-
-				} ),
-				sources: PropTypes.object,
-				layers: PropTypes.array
-
-			} )
-		] ),
+		style: PropTypes.string,
 		center: PropTypes.array,
 		zoom: PropTypes.number,
 		minZoom: PropTypes.number,
@@ -61,7 +36,9 @@ export default class MapboxGL extends Component {
 		touchZoomRotate: PropTypes.bool,
 
 		failIfMajorPerformanceCaveat: PropTypes.bool,
-		preserveDrawingBuffer: PropTypes.bool
+		preserveDrawingBuffer: PropTypes.bool,
+
+		layers: PropTypes.array
 
 	};
 
@@ -100,9 +77,9 @@ export default class MapboxGL extends Component {
 
 	}
 
-	componentWillReceiveProps ( p ) {
+	/*componentWillReceiveProps ( p ) {
 
-		/*if( this.map.loaded() ){
+		if( this.map.loaded() ){
 
 			if( p.language != this.props.language ){
 
@@ -122,16 +99,37 @@ export default class MapboxGL extends Component {
 
 			} );
 
-		}*/
+		}
+
+	}*/
+
+	shouldComponentUpdate ( ){
+
+		return false;
+
+	}
+
+	componentWillReceiveProps ( nextProps ) {
+
+		let propsToCheck = [ 'zoom' ];
+
+		_.each( propsToCheck, ( prop ) => {
+
+			if( !_.isEqual( nextProps[ prop ], this.props[ prop ] ) ){
+
+				this[ '_' + prop ]( nextProps[ prop ] );
+
+			}
+
+		} )
 
 	}
 
 	constructor ( props ) {
 
 		super ( props );
-		this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind( this );
+
 		this.map;
-		/*this.languages = [ 'en', 'de', 'es', 'fr', 'ru' ];*/
 
 		this.state = {
 
@@ -140,6 +138,8 @@ export default class MapboxGL extends Component {
 	}
 
 	render () {
+
+		console.log( "MAP IS RENDERING" );
 
 		const { className } = this.props;
 		const cls = Classnames( style.map, className );  
@@ -190,8 +190,13 @@ export default class MapboxGL extends Component {
 
 			} );
 
-
 		}
+
+	}
+
+	_zoom = ( p ) => {
+
+		this.map.zoomTo( p );
 
 	}
 

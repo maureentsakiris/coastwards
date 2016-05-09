@@ -159,11 +159,11 @@ class DropzoneTB extends Component {
 
 	}
 
-	_onDragEnter ( e ){
+	_onDragEnter (  ){
 
 	}
 
-	_onDragLeave ( e ){
+	_onDragLeave (  ){
 
 	}
 

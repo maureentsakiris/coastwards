@@ -53,7 +53,7 @@ export default class DropzoneTBFile extends Component {
 	render () {
 
 		const status = this._getStatus( this.state.status );
-		const file = this.props.file;
+		/*const file = this.props.file;*/
 
 		const style = {
 
