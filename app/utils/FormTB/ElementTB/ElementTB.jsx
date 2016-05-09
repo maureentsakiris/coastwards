@@ -111,10 +111,7 @@ export var ElementTB = ( ComposedComponent ) => class extends Component {
 			showErrors: this.props.showErrors,
 			error: '',
 			submitting: this.props.submitting,
-			elementIsValid: true/*,
-			elementIsFocused: false,
-			elementIsDirty: !_.isEmpty( this.props.value ),
-			elementIsDisabled: this.props.disabled*/
+			elementIsValid: true
 
 		}
 
@@ -127,9 +124,7 @@ export var ElementTB = ( ComposedComponent ) => class extends Component {
 
 		const elementHandlers = {
 
-			onChange: this._setValue.bind( this )/*,
-			onFocus: this._setFocus.bind( this, true ),*/
-			/*onBlur: this._setFocus.bind( this, false )*/
+			onChange: this._setValue.bind( this )
 
 		}
 
@@ -152,12 +147,6 @@ export var ElementTB = ( ComposedComponent ) => class extends Component {
 		)
 
 	}
-
-	/*_setFocus ( bool ){
-
-		this.setState( { elementIsFocused: bool } );
-
-	}*/
 
 	_setValue ( e ){
 		

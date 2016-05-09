@@ -28,13 +28,13 @@ export default class FormTB extends Component {
 		autocomplete: 'off',
 		noValidate: true
 
-	}
+	};
 
 	static contextTypes = {
 
 		showLoader: PropTypes.func
 		
-	};
+	}
 
 	componentWillMount ( ){
 

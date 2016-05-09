@@ -38,16 +38,18 @@ class CheckboxTB extends Component {
 
 	render () {
 
-		const { elementHandlers, elementProps, elementStates, ...ownProps } = this.props;
-		const { value } = elementStates;
+		const { elementHandlers, elementProps, elementStates, ...ownProps } = this.props; // eslint-disable-line no-unused-vars
+		const { form, name, label, disabled, className } = elementProps; // eslint-disable-line no-unused-vars
+		const { value, showErrors, error, submitting, elementIsValid } = elementStates;	// eslint-disable-line no-unused-vars
+		const { ...restProps } = ownProps;
 
 		const flag = value ? true : false;
 
-		const cls = Classnames( style.checkbox, this.props.elementProps.className );
+		const cls = Classnames( style.checkbox, className );
 
 		return (
 
-			<Checkbox { ...ownProps } { ...elementProps } { ...elementHandlers } checked={ flag } className={ cls } />
+			<Checkbox { ...restProps } { ...elementProps } { ...elementHandlers } checked={ flag } className={ cls } />
 
 		)
 

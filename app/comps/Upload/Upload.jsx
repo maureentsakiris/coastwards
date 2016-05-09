@@ -12,21 +12,21 @@ import MapboxGL from '../../utils/MapboxGL/MapboxGL';
 
 const messages = defineMessages( {
 
-	dropzone_prompt_drag:{
+	/*dropzone_prompt_drag:{
 		id: "dropzone_prompt_drag",
 		description: "0 - ",
-		defaultMessage: "Drag your images anywhere onto the map (or click)"
-	},
+		defaultMessage: "Drag your images anywhere onto the map (or click the big red button)"
+	},*/
 	dropzone_prompt_drop:{
 		id: "dropzone_prompt_drop",
 		description: "0 - ",
 		defaultMessage: "And now drop!"
 	},
-	dropzone_prompt_click:{
+	/*dropzone_prompt_click:{
 		id: "dropzone_prompt_click",
 		description: "0 - ",
 		defaultMessage: "Click anywhere to upload your pictures"
-	},
+	},*/
 	dropzone_prompt_blocked:{
 		id: "dropzone_prompt_blocked",
 		description: "0 - ",
@@ -58,6 +58,27 @@ const messages = defineMessages( {
 
 class Upload extends Component {
 
+	componentDidMount (){
+
+		window.addEventListener( 'dragenter', ( e ) => {
+
+			e = e || event;
+			e.preventDefault();
+
+			this.setState( { noEvents: false } );
+
+		}, false );
+
+		window.addEventListener( 'dragleave', ( e ) => {
+
+			e = e || event;
+			e.preventDefault();
+
+			this.setState( { noEvents: true } );
+
+		}, false );
+
+	}
 
 	constructor ( props ) {
 
@@ -66,6 +87,7 @@ class Upload extends Component {
 
 		this.state = {
 
+			noEvents: true,
 			zoom: 0
 
 		} 
@@ -76,10 +98,15 @@ class Upload extends Component {
 
 		const { formatMessage, locale } = this.props.intl;
 		const { className } = this.props;
+		const { noEvents } = this.state;
 
 		const cls = Classnames( style.upload, className );
 		const clsControls = Classnames( style.controls );
-		const clsForm = Classnames( style.fill, style.form );
+		const clsForm = Classnames( style.fill, {
+
+			[ style.noEvents ]: noEvents 
+
+		} );
 		const clsMap = Classnames( style.fill, style.map );
 
 		const fileValidations = [
@@ -109,23 +136,6 @@ class Upload extends Component {
 			}
 		]
 
-		/*<FormTB name="upload" className={ clsForm } >
-					<DropzoneTB
-						name="dropzone" 
-						promptDrag={ formatMessage( messages.dropzone_prompt_drag ) }
-						promptDrop={ formatMessage( messages.dropzone_prompt_drop ) }
-						promptClick={ formatMessage( messages.dropzone_prompt_click ) }
-						promptBlocked={ formatMessage( messages.dropzone_prompt_blocked ) }
-						warning_accept={ formatMessage( messages.dropzone_warning_accept ) }
-						multiple={ false }
-						warning_max={ formatMessage( messages.dropzone_warning_max ) }
-						className={ style.dropzone }
-						fileValidations={ fileValidations }
-						max={ 1 }
-					/>
-				</FormTB>*/
-
-
 		let { zoom } = this.state;
 		
 		return (
@@ -148,16 +158,25 @@ class Upload extends Component {
 				<FormTB name="upload" className={ clsForm } >
 					<DropzoneTB
 						name="dropzone" 
-						promptDrag={ formatMessage( messages.dropzone_prompt_drag ) }
-						promptDrop={ formatMessage( messages.dropzone_prompt_drop ) }
-						promptClick={ formatMessage( messages.dropzone_prompt_click ) }
-						promptBlocked={ formatMessage( messages.dropzone_prompt_blocked ) }
-						warning_accept={ formatMessage( messages.dropzone_warning_accept ) }
-						multiple={ false }
-						warning_max={ formatMessage( messages.dropzone_warning_max ) }
 						className={ style.dropzone }
-						fileValidations={ fileValidations }
+
+						multiple={ false }
 						max={ 1 }
+						warning_max={ formatMessage( messages.dropzone_warning_max ) }
+						warning_accept={ formatMessage( messages.dropzone_warning_accept ) }			
+						fileValidations={ fileValidations }
+
+						zoneProps={ {
+
+							clsZone: style.zone,
+							clsZoneEnter: style.zoneEnter,
+							clsZoneBlocked: style.zoneBlocked,
+							promptDrag: "",
+							promptDrop: formatMessage( messages.dropzone_prompt_drop ),
+							promptClick: ""
+
+						} }
+						
 					/>
 				</FormTB>
 				<div id="Controls" className={ clsControls }>

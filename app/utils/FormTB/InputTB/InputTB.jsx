@@ -35,17 +35,18 @@ class InputTB extends Component {
 
 	render () {
 
-		const { elementHandlers, elementProps, elementStates, ...ownProps } = this.props;
-		const { value, showErrors, error } = elementStates;
+		const { elementHandlers, elementProps, elementStates, ...ownProps } = this.props; // eslint-disable-line no-unused-vars
+		const { form, name, label, disabled, className } = elementProps; // eslint-disable-line no-unused-vars
+		const { value, showErrors, error, submitting, elementIsValid } = elementStates;	// eslint-disable-line no-unused-vars
+		const { type, ...restProps } = ownProps;
+
 		const errorMsg = showErrors ? error : '';
 
-		const { type, ...props } = ownProps;
-
-		const cls = Classnames( style.input, this.props.elementProps.className );
+		const cls = Classnames( style.input, className );
 
 		return (
 
-			<Input { ...props } type={ type } value={ value } error={ errorMsg } { ...elementProps } { ...elementHandlers } className={ cls } />
+			<Input { ...restProps } type={ type } value={ value } error={ errorMsg } { ...elementProps } { ...elementHandlers } className={ cls } />
 
 		)
 

@@ -5,6 +5,9 @@ import Classnames from 'classnames';
 
 import style from './_styleTeam';
 
+import FormTB from '../../utils/FormTB/FormTB/FormTB';
+import DropzoneTB from '../../utils/FormTB/DropzoneTB/DropzoneTB';
+
 const messages = defineMessages( {
 
 	team_headline:{
@@ -39,6 +42,11 @@ class Team extends Component {
 
 			<div className={ cls }>
 				<h2>{ formatMessage( messages.team_headline ) }</h2>
+				<FormTB name="test">
+					<DropzoneTB
+						name="dropzoneTest"
+					/>
+				</FormTB>
 			</div>
 
 		)

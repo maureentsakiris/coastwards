@@ -23,12 +23,6 @@ export default class I18nSwitch extends Component {
 
 	}
 
-	/*componentWillMount (){
-
-		this.setState( { current: this.props.locale } );
-
-	}*/
-
 	componentWillReceiveProps ( nextProps ){
 
 		this.setState( { current: nextProps.locale } );

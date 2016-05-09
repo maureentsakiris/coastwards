@@ -49,12 +49,16 @@ class SelectTB extends Component {
 
 	render () {
 
-		const { elementHandlers, elementProps, elementStates, options, sortBy, allowBlank, ...props } = this.props;
+		const { elementHandlers, elementProps, elementStates, ...ownProps } = this.props; // eslint-disable-line no-unused-vars
+		const { form, name, label, disabled, className } = elementProps; // eslint-disable-line no-unused-vars
+		const { value, showErrors, error, submitting, elementIsValid } = elementStates;	// eslint-disable-line no-unused-vars
+		const { options, sortBy, allowBlank, ...restProps } = ownProps;
+
 		const sortedOptions = sortBy ? _.sortBy( options, sortBy ) : options;
 
 		return (
 
-			<Dropdown { ...props } { ...elementProps } { ...elementStates } { ...elementHandlers } source={ sortedOptions } allowBlank={ allowBlank } />
+			<Dropdown { ...restProps } { ...elementProps } { ...elementStates } { ...elementHandlers } source={ sortedOptions } allowBlank={ allowBlank } />
 
 		)
 

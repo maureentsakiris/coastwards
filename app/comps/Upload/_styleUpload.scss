@@ -16,8 +16,15 @@
 
 }
 
+.noEvents{
+
+	pointer-events: none;
+
+}
+
 .controls{
 
+	display: none;
 	position: absolute;
 	bottom: $layout-gutter-width;
     left: $layout-gutter-width;
@@ -30,12 +37,28 @@
 
 }
 
-.dropzone{
+.dropzone[data-selector="dropzone"]{
 
-	&[ data-dropzone-tb='dropzone' ]{
+	height: 100%;
 
-		height: 100%;
+}
 
-	}
+.zone[data-selector="zone"]{
+
+	opacity: 0;
+
+}
+
+.zoneEnter[data-selector="zone"]{
+
+	opacity: 0.8;
+	pointer-events: auto;
+
+}
+
+.zoneBlocked[data-selector="zone"]{
+
+	opacity: 0.6;
+	pointer-events: auto;
 
 }

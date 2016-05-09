@@ -21,18 +21,6 @@
 
 }
 
-.prompt{
-
-	@extend %flexitem;
-	font-size: 3vw;
-	align-self: center;
-	text-align: center;
-	color: #fff;
-	pointer-events: none;
-	z-index: 1;
-
-}
-
 .uploadBtn{
 
 	position: absolute;

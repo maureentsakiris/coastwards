@@ -32,7 +32,7 @@ class RadioTB extends Component {
 
 		}
 
-	};
+	}
 
 	componentWillMount ( ){
 
@@ -49,11 +49,14 @@ class RadioTB extends Component {
 
 	render () {
 
-		const { elementHandlers, elementProps, elementStates, ...props } = this.props;
+		const { elementHandlers, elementProps, elementStates, ...ownProps } = this.props; // eslint-disable-line no-unused-vars
+		const { form, name, label, disabled, className } = elementProps; // eslint-disable-line no-unused-vars
+		const { value, showErrors, error, submitting, elementIsValid } = elementStates;	// eslint-disable-line no-unused-vars
+		const { ...restProps } = ownProps;
 
 		return (
 
-			<RadioGroup { ...props } { ...elementProps } { ...elementStates } { ...elementHandlers } >
+			<RadioGroup { ...restProps } { ...elementProps } { ...elementStates } { ...elementHandlers } >
 				{ this.children }
 			</RadioGroup>
 

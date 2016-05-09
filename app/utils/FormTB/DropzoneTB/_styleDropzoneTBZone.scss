@@ -5,9 +5,10 @@
 	@extend %flexcontainer;
 	width: 100%;
 	height: 100%;
-	background-color: rgba(140, 203, 247, 0.7);
-	transition-property: background-color;
-	transition-duration: 400ms;
+	background-color: rgb(85, 182, 251);
+	opacity: 0.6;
+	transition-property: opacity;
+	transition-duration: 300ms;
 	transition-timing-function: ease-in-out;
 	cursor: pointer;
 	overflow: hidden;
@@ -17,9 +18,21 @@
 
 }
 
+.prompt{
+
+	@extend %flexitem;
+	font-size: 3vw;
+	align-self: center;
+	text-align: center;
+	color: #fff;
+	pointer-events: none;
+	z-index: 1;
+
+}
+
 .isdrag{
 
-	background-color: rgba(85, 182, 251, 0.7);
+	opacity: 0.8;
 
 }
 
@@ -32,15 +45,15 @@
 @keyframes pulsate {
 
 	0% {
-		background-color: rgba(85, 182, 251, 0.7);
+		opacity: 0.8;
 	}
 
 	50% {
-		background-color: rgba(140, 203, 247, 0.3);
+		opacity: 0.4;
 	}
 
 	100% {
-		background-color: rgba(140, 203, 247, 0.7);
+		opacity: 0.6;
 	}
 
 }
@@ -72,7 +85,7 @@
 	
 	visibility: visible;
 	animation-name: rippler;
-	animation-duration: 1s;
+	animation-duration: 500ms;
 	animation-iteration-count: 1;
 	animation-timing-function: ease-out;
 

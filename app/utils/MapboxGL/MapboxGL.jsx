@@ -102,7 +102,7 @@ export default class MapboxGL extends Component {
 
 	componentWillReceiveProps ( p ) {
 
-		if( this.map.loaded() ){
+		/*if( this.map.loaded() ){
 
 			if( p.language != this.props.language ){
 
@@ -122,7 +122,7 @@ export default class MapboxGL extends Component {
 
 			} );
 
-		}
+		}*/
 
 	}
 
@@ -131,6 +131,7 @@ export default class MapboxGL extends Component {
 		super ( props );
 		this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind( this );
 		this.map;
+		/*this.languages = [ 'en', 'de', 'es', 'fr', 'ru' ];*/
 
 		this.state = {
 
@@ -151,7 +152,7 @@ export default class MapboxGL extends Component {
 
 	}
 
-	_changeLanguage = ( language ) => {
+	/*_changeLanguage = ( language ) => {
 
 		this.map.setLayoutProperty( 'country_label_1', 'text-field', '{name_' + language + '}' );
 		this.map.setLayoutProperty( 'country_label_2', 'text-field', '{name_' + language + '}' );
@@ -160,7 +161,7 @@ export default class MapboxGL extends Component {
 		this.map.setLayoutProperty( 'place_label_city', 'text-field', '{name_' + language + '}' );
 		this.map.setLayoutProperty( 'place_label_town', 'text-field', '{name_' + language + '}' );
 
-	}
+	}*/
 
 	_createMap = ( ) => {
 
