@@ -1,6 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import Classnames from 'classnames';
 import _ from 'underscore';
+import underscoreDeepExtend from 'underscore-deep-extend';
+_.mixin( { deepExtend: underscoreDeepExtend( _ ) } );
 import mapboxgl from 'mapbox-gl';
 
 import style from './_styleMapboxGL';
@@ -9,6 +11,7 @@ export default class MapboxGL extends Component {
 
 	static propTypes = {
 
+		returnMap: PropTypes.func,
 		className: PropTypes.string,
 		unsupportedTitle: PropTypes.string,
 		unsupportedMessage: PropTypes.string,
@@ -53,13 +56,15 @@ export default class MapboxGL extends Component {
 		style: "mapbox://styles/mapbox/streets-v8",
 		interactive: true,
 
-		scrollZoom: true,
-		boxZoom: true,
-		dragRotate: true,
+		scrollZoom: false,
+		boxZoom: false,
+		dragRotate: false,
 		dragPan: true,
-		keyboard: true,
+		keyboard: false,
 		doubleClickZoom: true,
-		touchZoomRotate: true
+		touchZoomRotate: true,
+
+		layers: []
 
 	};
 
@@ -109,9 +114,9 @@ export default class MapboxGL extends Component {
 
 	}
 
-	componentWillReceiveProps ( nextProps ) {
+/*	componentWillReceiveProps ( nextProps ) {
 
-		let propsToCheck = [ 'zoom' ];
+		let propsToCheck = [ 'zoom', 'layers' ];
 
 		_.each( propsToCheck, ( prop ) => {
 
@@ -123,13 +128,30 @@ export default class MapboxGL extends Component {
 
 		} )
 
-	}
+	}*/
 
 	constructor ( props ) {
 
 		super ( props );
 
 		this.map;
+
+		this.sourceDefaults = {
+
+			type: 'geojson'
+
+		}
+
+		this.layerDefaults = {
+
+			type: 'symbol',
+			layout: {
+
+				'icon-image': "marker-15"
+
+			}
+
+		}
 
 		this.state = {
 
@@ -166,7 +188,7 @@ export default class MapboxGL extends Component {
 	_createMap = ( ) => {
 
 		let props = _.omit( this.props, 'className', 'language' );
-		let { accessToken, unsupportedTitle, unsupportedMessage, ...options  } = props;
+		let { accessToken, unsupportedTitle, unsupportedMessage, returnMap, layers, ...options  } = props;
 
 		if ( !mapboxgl.supported() ) {
 
@@ -176,6 +198,7 @@ export default class MapboxGL extends Component {
 
 			mapboxgl.accessToken = accessToken;
 			this.map = new mapboxgl.Map( options );
+			returnMap( this.map );
 
 			// SETTING INTERACTIONS One would think initializing with values would be enough, but ....
 			let interactions = [ 'scrollZoom', 'boxZoom', 'dragRotate', 'dragPan', 'keyboard', 'doubleClickZoom', 'touchZoomRotate' ];
@@ -190,14 +213,60 @@ export default class MapboxGL extends Component {
 
 			} );
 
+			// LOAD INITIAL LAYERS
+			this.map.on( 'load', ( ) => {
+
+				_.each( layers, this._addLayer )
+
+			} );
+
 		}
 
 	}
 
-	_zoom = ( p ) => {
+	_addLayer = ( o ) => {
 
-		this.map.zoomTo( p );
+		let { name, source, layer, position, onClick } = o;
+		
+		let sourceExtended = _.deepExtend( this.sourceDefaults, source );
+		let layerExtended = _.deepExtend( this.layerDefaults, layer, { id: name, source: name } );
+
+		this.map.addSource( name, sourceExtended );
+		this.map.addLayer( layerExtended, position );
+
+		if( onClick ){
+
+			this.map.on( 'mousemove', ( e ) => {
+				
+				var features = this.map.queryRenderedFeatures( e.point, { layers: [ name ] } );
+				this.map.getCanvas().style.cursor = ( features.length ) ? 'pointer' : '';
+			
+			} );
+
+			this.map.on( 'click', ( e ) => {
+
+				var features = this.map.queryRenderedFeatures( e.point, { layers: [ name ] } );
+
+				if ( !features.length ) {
+
+					return;
+
+				}
+
+				var feature = features[ 0 ];
+
+				onClick( feature );
+
+				/*new mapboxgl.Popup()
+					.setLngLat( feature.geometry.coordinates )
+					.setHTML( feature.properties.comment )
+					.addTo( this.map );*/
+
+			} );
+
+		}
 
 	}
+
 
 }

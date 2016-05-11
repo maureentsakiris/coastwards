@@ -9,6 +9,7 @@ import style from './_styleUpload';
 import FormTB from '../../utils/FormTB/FormTB/FormTB';
 import DropzoneTB from '../../utils/FormTB/DropzoneTB/DropzoneTB';
 import MapboxGL from '../../utils/MapboxGL/MapboxGL';
+import FeatureDialog from './FeatureDialog';
 
 const messages = defineMessages( {
 
@@ -51,6 +52,11 @@ const messages = defineMessages( {
 		id: "mapbox_warning_unsupported_message",
 		description: "1 - ",
 		defaultMessage: "Your browser does not support the web technology necessary to display the world map. We recommend you upgrade your browser to the latest version!"
+	},
+	mapbox_dialog_action_label:{
+		id: "mapbox_dialog_action_label",
+		description: "0 - ",
+		defaultMessage: "Close"
 	}
 	
 
@@ -85,13 +91,13 @@ class Upload extends Component {
 		super ( props );
 		this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind( this );
 
-		this.minZoom = 1;
-		this.maxZoom = 22;
+		this.map;
 
 		this.state = {
 
 			noEvents: true,
-			zoom: this.minZoom
+			showDialog: false,
+			feature: undefined
 
 		} 
 
@@ -101,7 +107,7 @@ class Upload extends Component {
 
 		const { formatMessage/*, locale*/ } = this.props.intl;
 		const { className } = this.props;
-		const { noEvents, zoom } = this.state;
+		const { noEvents, showDialog, feature } = this.state;
 
 		const cls = Classnames( style.upload, className );
 		const clsForm = Classnames( style.fill, {
@@ -148,8 +154,9 @@ class Upload extends Component {
 					"coordinates": [ -77.03238901390978, 38.913188059745586 ]
 				},
 				"properties": {
-					"title": "Mapbox DC",
-					"marker-symbol": "monument"
+					"marker-symbol": "marker",
+					"comment": "I used to go to this beach as a child. Since then it has changed so much.",
+					"image": "./uploads/01.jpg"
 				}
 			}, {
 				"type": "Feature",
@@ -158,48 +165,61 @@ class Upload extends Component {
 					"coordinates": [ -122.414, 37.776 ]
 				},
 				"properties": {
-					"title": "Mapbox SF",
-					"marker-symbol": "harbor"
+					"marker-symbol": "marker",
+					"comment": "I used to go to this beach as a child. Since then it has changed so much.",
+					"image": "./uploads/05.jpg"
 				}
 			} ]
 
 		}
+
+		const markerSource = { 
+
+			type: 'geojson',
+			data: geoJSON
+
+		}
+
+		const markerLayer = {
+
+			type: 'symbol',
+			layout: {
+
+				'icon-image': "{marker-symbol}-15"
+
+			}
+
+		}
+
 		
 		return (
 
-
 			<div id="Upload" className={ cls }>
 				<MapboxGL
+					returnMap={ this._setMap }
 					className={ clsMap }
 					unsupportedTitle={ formatMessage( messages.mapbox_warning_unsupported_title ) }
 					unsupportedMessage={ formatMessage( messages.mapbox_warning_unsupported_message ) }
 					/*language={ locale }*/
-					scrollZoom={ false }
-					zoom={ zoom }
-					minZoom={ this.minZoom }
-					maxZoom={ this.maxZoom }
+					zoom={ 0 }
+					minZoom={ 0 }
+					maxZoom={ 22 }
 					/*center={ [ 150, 39 ] }*/
 					maxBounds={ [ [ 360, 84 ], [ -360, -68 ] ] }
 					attributionControl={ false }
 					style="mapbox://styles/maureentsakiris/cinxhoec70043b4nmx0rkoc02"
 					accessToken="pk.eyJ1IjoibWF1cmVlbnRzYWtpcmlzIiwiYSI6ImNpbXM1N2Z2MTAwNXF3ZW0ydXI3eXZyOTAifQ.ATjSaskEecYMiEG36I_viw"
-
 					layers={ [
+
 						{
-							id: 'geojson',
-							type: "symbol",
-							source: {
-								type: "geojson",  
-								data: geoJSON
-							},  
-							layout: {
-								"icon-image": "{marker-symbol}-15",
-								"text-field": "{title}",
-								"text-font": [ "Open Sans Semibold", "Arial Unicode MS Bold" ],
-								"text-offset": [ 0, 0.6 ],
-								"text-anchor": "top"
-							}
-						} 
+							name: 'markers',
+							source: markerSource,
+							layer: markerLayer,
+							position: 'place_label_other',
+							onClick: this._showDialog
+
+						}
+
 					] }
 
 				/>
@@ -227,33 +247,59 @@ class Upload extends Component {
 						
 					/>
 				</FormTB>
-				<Button icon="add" floating accent mini onClick={ this._zoomIn } />
-				<Button icon="remove" floating accent mini onClick={ this._zoomOut } />
+				<div id="Controls">
+					<Button icon="add" floating accent mini onClick={ this._zoomIn } />
+					<Button icon="remove" floating accent mini onClick={ this._zoomOut } />
+					<Button icon="public" floating accent mini onClick={ this._showWorld } />
+				</div>
+				<FeatureDialog label={ formatMessage( messages.mapbox_dialog_action_label ) } onClick={ this._hideDialog } active={ showDialog } feature={ feature } />
 			</div>
 
 		)
 
 	}
 
+	_setMap = ( e ) => {
+
+		this.map = e;
+
+	}
+
 	_zoomIn = ( ) => {
 
-		this.setState( function ( previousState ) {
-
-			let zoom = previousState.zoom < this.maxZoom ? previousState.zoom + 1 : this.maxZoom;
-			return { zoom: zoom };
-
-		} );
+		let m = this.map;
+		let currentZoom = m.style.z;
+		let maxZoom = m.transform._maxZoom;
+		let zoom = currentZoom + 1 < maxZoom ? currentZoom + 1 : maxZoom;
+		this.map.zoomTo( zoom );
 
 	}
 
 	_zoomOut = ( ) => {
 
-		this.setState( function ( previousState ) {
+		let m = this.map;
+		let currentZoom = m.style.z;
+		let minZoom = m.transform._minZoom;
+		let zoom = currentZoom - 1 > minZoom ? currentZoom - 1 : minZoom;
+		this.map.zoomTo( zoom );
 
-			let zoom = previousState.zoom > this.minZoom ? previousState.zoom -1 : this.minZoom;
-			return { zoom: zoom };
+	}
 
-		} );
+	_showWorld = ( ) => {
+
+		this.map.zoomTo( 0 );
+
+	}
+
+	_showDialog = ( feature ) => {
+
+		this.setState( { feature: feature, showDialog: true } );
+
+	}
+
+	_hideDialog = ( ) => {
+
+		this.setState( { feature: undefined, showDialog: false } );
 
 	}
 

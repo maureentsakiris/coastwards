@@ -2,6 +2,8 @@ import React, { Component, PropTypes } from 'react';
 /*import PureRenderMixin from 'react-addons-pure-render-mixin';*/
 import Modernizr from 'modernizr';
 import _ from 'underscore';
+import underscoreDeepExtend from 'underscore-deep-extend';
+_.mixin( { deepExtend: underscoreDeepExtend( _ ) } );
 import ProgressBar from 'react-toolbox/lib/progress_bar';
 import Dialog from 'react-toolbox/lib/dialog';
 import Snackbar from 'react-toolbox/lib/snackbar';
@@ -62,7 +64,7 @@ export default class Context extends Component {
 		this.defaultDialogOptions = {
 
 			active: true,
-			type: 'small',
+			type: 'normal',
 			actions: [
 
 				{ label: "OK", onClick: this._hideDialog }
@@ -128,7 +130,7 @@ export default class Context extends Component {
 	_showDialog = ( o ) => {
 
 		let defaults = _.clone( this.defaultDialogOptions );
-		let options = _.extend( defaults, o );
+		let options = _.deepExtend( defaults, o );
 		this.setState( { dialogOptions: options } );
 
 	}
@@ -144,7 +146,7 @@ export default class Context extends Component {
 
 		let defaults = _.clone( this.defaultSnackbarOptions );
 		let max = _.max( [ o.timeout, o.label.length * 100, 3000 ] );
-		let options = _.extend( defaults, o, { timeout: max } );
+		let options = _.deepExtend( defaults, o, { timeout: max } );
 
 		this.setState( { snackbarOptions: options } );
 

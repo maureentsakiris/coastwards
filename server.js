@@ -25,6 +25,7 @@ default:
 const isProduction = process.env.NODE_ENV === 'production';
 const port = isProduction ? process.env.PORT : 8888;
 const publicPath = path.resolve( __dirname, 'public' );
+const uploadsPath = path.resolve( __dirname, 'uploads' );
 
 const proxy = httpProxy.createProxyServer();
 const app = express();
