@@ -198,7 +198,6 @@ export default class MapboxGL extends Component {
 
 			mapboxgl.accessToken = accessToken;
 			this.map = new mapboxgl.Map( options );
-			returnMap( this.map );
 
 			// SETTING INTERACTIONS One would think initializing with values would be enough, but ....
 			let interactions = [ 'scrollZoom', 'boxZoom', 'dragRotate', 'dragPan', 'keyboard', 'doubleClickZoom', 'touchZoomRotate' ];
@@ -216,6 +215,7 @@ export default class MapboxGL extends Component {
 			// LOAD INITIAL LAYERS
 			this.map.on( 'load', ( ) => {
 
+				returnMap( this.map );
 				_.each( layers, this._addLayer )
 
 			} );

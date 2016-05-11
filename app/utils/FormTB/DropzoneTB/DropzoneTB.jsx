@@ -54,6 +54,7 @@ class DropzoneTB extends Component {
 		warning_max: 'Slow down cowboy, you have reached the maximum number of uploads.',
 		warning_accept: 'Some of the files you dropped are not the right filetype and will be ignored.',
 		fileValidations: [],
+		openInput: false,
 		zoneProps: {}, 
 		listProps: {}
 
@@ -110,7 +111,6 @@ class DropzoneTB extends Component {
 
 		const files = this.state.filesDropped;
 		const droppedFiles = this._createDropzoneFiles( files );
-
 
 		return (
 

@@ -167,7 +167,7 @@ export default class DropzoneTBZone extends Component {
 
 		e.preventDefault();
 
-		let { onDrop, promptProcessing } = this.props;
+		let { onDrop, promptProcessing, isBlocked } = this.props;
 		let { left, top } = ReactDOM.findDOMNode( this ).getBoundingClientRect();
 		let { pageX, pageY } = e;
 		let dropX = pageX - left - window.scrollX;
@@ -177,7 +177,7 @@ export default class DropzoneTBZone extends Component {
 
 			prompt: promptProcessing,
 			isDrag: false,
-			isDrop: false,
+			isDrop: !isBlocked,
 			dropX: dropX, 
 			dropY: dropY
 

@@ -98,7 +98,6 @@ class Upload extends Component {
 			noEvents: true,
 			showDialog: false,
 			feature: undefined
-
 		} 
 
 	}
@@ -225,15 +224,14 @@ class Upload extends Component {
 				/>
 				<FormTB name="upload" className={ clsForm } >
 					<DropzoneTB
-						name="dropzone" 
+						name="dropzone"
+						ref="dropzone"
 						className={ style.dropzone }
-
 						multiple={ false }
 						max={ 1 }
 						warning_max={ formatMessage( messages.dropzone_warning_max ) }
 						warning_accept={ formatMessage( messages.dropzone_warning_accept ) }			
 						fileValidations={ fileValidations }
-
 						zoneProps={ {
 
 							clsZone: style.zone,
@@ -251,6 +249,7 @@ class Upload extends Component {
 					<Button icon="add" floating accent mini onClick={ this._zoomIn } />
 					<Button icon="remove" floating accent mini onClick={ this._zoomOut } />
 					<Button icon="public" floating accent mini onClick={ this._showWorld } />
+					<Button icon="file_upload" floating accent mini onClick={ this._openInput } />
 				</div>
 				<FeatureDialog label={ formatMessage( messages.mapbox_dialog_action_label ) } onClick={ this._hideDialog } active={ showDialog } feature={ feature } />
 			</div>
@@ -300,6 +299,12 @@ class Upload extends Component {
 	_hideDialog = ( ) => {
 
 		this.setState( { feature: undefined, showDialog: false } );
+
+	}
+
+	_openInput = ( ) => {
+
+		console.log( this.refs.dropzone );
 
 	}
 
