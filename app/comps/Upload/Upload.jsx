@@ -3,6 +3,8 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { defineMessages, injectIntl, intlShape } from 'react-intl';
 import Classnames from 'classnames';
 import { Button } from 'react-toolbox/lib/button';
+import Tooltip from 'react-toolbox/lib/tooltip';
+const TooltipButton = Tooltip( Button );
 
 import style from './_styleUpload';
 
@@ -57,6 +59,26 @@ const messages = defineMessages( {
 		id: "mapbox_dialog_action_label",
 		description: "0 - ",
 		defaultMessage: "Close"
+	},
+	button_zoom_in:{
+		id: "button_zoom_in",
+		description: "0 - ",
+		defaultMessage: "Zoom in"
+	},
+	button_zoom_out:{
+		id: "button_zoom_out",
+		description: "0 - ",
+		defaultMessage: "Zoom out"
+	},
+	button_fit_world:{
+		id: "button_fit_world",
+		description: "0 - ",
+		defaultMessage: "Fit world"
+	},
+	button_upload_image:{
+		id: "button_upload_image",
+		description: "0 - ",
+		defaultMessage: "Upload an image"
 	}
 	
 
@@ -184,7 +206,7 @@ class Upload extends Component {
 			type: 'symbol',
 			layout: {
 
-				'icon-image': "{marker-symbol}-15"
+				'icon-image': "{marker-symbol}-11"
 
 			}
 
@@ -203,7 +225,7 @@ class Upload extends Component {
 					zoom={ 0 }
 					minZoom={ 0 }
 					maxZoom={ 22 }
-					/*center={ [ 150, 39 ] }*/
+					center={ [ 150, 39 ] }
 					maxBounds={ [ [ 360, 84 ], [ -360, -68 ] ] }
 					attributionControl={ false }
 					style="mapbox://styles/maureentsakiris/cinxhoec70043b4nmx0rkoc02"
@@ -245,11 +267,11 @@ class Upload extends Component {
 						
 					/>
 				</FormTB>
-				<div id="Controls">
-					<Button icon="add" floating accent mini onClick={ this._zoomIn } />
-					<Button icon="remove" floating accent mini onClick={ this._zoomOut } />
-					<Button icon="public" floating accent mini onClick={ this._showWorld } />
-					<Button icon="file_upload" floating accent mini onClick={ this._openInput } />
+				<div id="Controls" className={ style.controls } >
+					<TooltipButton tooltip={ formatMessage( messages.button_upload_image ) } tooltipDelay={ 1000 } icon="file_upload" floating mini accent onClick={ this._openInput } />
+					<TooltipButton tooltip={ formatMessage( messages.button_zoom_in ) } tooltipDelay={ 1000 } icon="add" floating mini onClick={ this._zoomIn } />
+					<TooltipButton tooltip={ formatMessage( messages.button_zoom_out ) } tooltipDelay={ 1000 } icon="remove" floating mini onClick={ this._zoomOut } />
+					<TooltipButton tooltip={ formatMessage( messages.button_fit_world ) } tooltipDelay={ 1000 } icon="public" floating mini onClick={ this._showWorld } />
 				</div>
 				<FeatureDialog label={ formatMessage( messages.mapbox_dialog_action_label ) } onClick={ this._hideDialog } active={ showDialog } feature={ feature } />
 			</div>
@@ -298,13 +320,13 @@ class Upload extends Component {
 
 	_hideDialog = ( ) => {
 
-		this.setState( { feature: undefined, showDialog: false } );
+		this.setState( { showDialog: false } );
 
 	}
 
 	_openInput = ( ) => {
 
-		console.log( this.refs.dropzone );
+		console.log( this.refs.dropzone._openInput );
 
 	}
 

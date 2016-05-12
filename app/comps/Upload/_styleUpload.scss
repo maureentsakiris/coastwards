@@ -30,14 +30,17 @@
 
 .controls{
 
-	display: none;
 	position: absolute;
-	bottom: $layout-gutter-width;
-    left: $layout-gutter-width;
+	padding: $layout-gutter-width;
+	top: 20px;
+	right: 20px;
+    width: 100px;
+    text-align: center;
+    //background-color: rgba(0,0,0,0.1);
 
     button{
 
-    	margin-right: $layout-gutter-width;
+    	margin: 5px 0;
 
     }
 

@@ -28,6 +28,7 @@ export default class MapboxGL extends Component {
 		interactive: PropTypes.bool,
 		bearing: PropTypes.number,
 		attributionControl: PropTypes.bool,
+		navigationControl: PropTypes.bool,
 		maxBounds: PropTypes.array,
 
 		scrollZoom: PropTypes.bool,
@@ -55,6 +56,7 @@ export default class MapboxGL extends Component {
 		container: "MapboxGl",
 		style: "mapbox://styles/mapbox/streets-v8",
 		interactive: true,
+		navigationControl: false,
 
 		scrollZoom: false,
 		boxZoom: false,
@@ -188,7 +190,7 @@ export default class MapboxGL extends Component {
 	_createMap = ( ) => {
 
 		let props = _.omit( this.props, 'className', 'language' );
-		let { accessToken, unsupportedTitle, unsupportedMessage, returnMap, layers, ...options  } = props;
+		let { accessToken, unsupportedTitle, unsupportedMessage, navigationControl, returnMap, layers, ...options  } = props;
 
 		if ( !mapboxgl.supported() ) {
 
@@ -211,6 +213,14 @@ export default class MapboxGL extends Component {
 				}
 
 			} );
+
+			// ADD NAVIGATION CONTROLS
+
+			if( navigationControl ){
+
+				this.map.addControl( new mapboxgl.Navigation() );
+
+			}
 
 			// LOAD INITIAL LAYERS
 			this.map.on( 'load', ( ) => {
