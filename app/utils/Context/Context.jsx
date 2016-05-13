@@ -146,7 +146,7 @@ export default class Context extends Component {
 
 		let defaults = _.clone( this.defaultSnackbarOptions );
 		let max = _.max( [ o.timeout, o.label.length * 100, 3000 ] );
-		let options = _.deepExtend( defaults, o, { timeout: max } );
+		let options = _.extend( defaults, o, { timeout: max } );
 
 		this.setState( { snackbarOptions: options } );
 

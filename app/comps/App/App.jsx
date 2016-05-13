@@ -75,6 +75,10 @@ class App extends Component {
 
 		} )
 
+		/*<Sticky id="InfoStick" enableTransforms={ true } className={ style.sticky }>
+					<Info onTabClick={ this._loadContent } />
+				</Sticky>*/
+
 		return (
 
 			<div id="App" className={ cls }>
@@ -97,7 +101,7 @@ class App extends Component {
 
 	_scrollToInfo = ( ) => {
 
-		scroller.scrollTo( "Info", { smooth: true } );
+		scroller.scrollTo( "Content", { smooth: true } );
 
 	}
 

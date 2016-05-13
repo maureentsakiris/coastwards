@@ -58,7 +58,7 @@ export default class MapboxGL extends Component {
 		interactive: true,
 		navigationControl: false,
 
-		scrollZoom: false,
+		scrollZoom: true,
 		boxZoom: false,
 		dragRotate: false,
 		dragPan: true,

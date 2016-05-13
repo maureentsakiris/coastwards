@@ -2,6 +2,10 @@ import React, { Component, PropTypes } from 'react';
 import util from 'util';
 import _ from 'underscore';
 
+/*
+ * TODO: DEFAULT IMPLEMENTATION OF FILE LIST!!! (Didn't need it for coastwards - no need - no do )
+*/
+
 export default class DropzoneTBFile extends Component {
 
 	static propTypes = {
@@ -44,12 +48,6 @@ export default class DropzoneTBFile extends Component {
 
 	}
 
-	/*<p><img width="200" src={ this.props.file.preview } /></p>
-
-<p>STATUS:</p>
-					{ status }
-	*/
-
 	render () {
 
 		const status = this._getStatus( this.state.status );
@@ -57,7 +55,7 @@ export default class DropzoneTBFile extends Component {
 
 		const style = {
 
-			//backgroundImage: util.format( 'url(%s)', file.preview )
+			display: 'none'
 
 		}
 
@@ -168,7 +166,7 @@ export default class DropzoneTBFile extends Component {
 		const callMethod = ( ) => {
 
 			let result = method( this, options );
-			let passed = util.isBoolean( options.passesWhen ) ? options.passesWhen === result : result;
+			let passed = util.isBoolean( options.passesWhen ) ? options.passesWhen === result.flag : result.flag;
 			let message = passed ? success : error;
 
 			//this.props.onValidationDone( message );
@@ -215,28 +213,61 @@ const ImageValidators = {
 
 		let flag = !!file;
 
-		return flag;
+		let result = {
+
+			flag: flag,
+			specs: {}
+
+		}
+
+		return result;
 
 	},
 	imageHasLocation: function ( file ) {
 
 		let flag = !!file;
 
-		return flag;
+		let result = {
+
+			flag: flag,
+			specs: {
+
+				lat: 43.453294,
+				long: -3.962603
+
+			}
+
+		}
+
+		return result;
 
 	},
 	imageWithFlash: function (  ) {
 
-		//let flag = !!file;
+		let flag = false;
 
-		return false;
+		let result = {
+
+			flag: flag,
+			specs: {}
+
+		}
+
+		return result;
 
 	},
 	imageHasColor: function (  ) {
 
-		//let flag = !!file;
+		let flag = true;
 
-		return true;
+		let result = {
+
+			flag: flag,
+			specs: {}
+
+		}
+
+		return result;
 
 	}
 

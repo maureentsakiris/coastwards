@@ -142,7 +142,7 @@ export var ElementTB = ( ComposedComponent ) => class extends Component {
 
 		return (
 
-			<ComposedComponent {...props} elementHandlers={ elementHandlers } elementProps={ elementProps } elementStates={ elementStates } />
+			<ComposedComponent {...props} elementHandlers={ elementHandlers } elementProps={ elementProps } elementStates={ elementStates } ref="element" />
 
 		)
 

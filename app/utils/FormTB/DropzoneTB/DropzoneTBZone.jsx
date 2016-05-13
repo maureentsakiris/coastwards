@@ -23,8 +23,7 @@ export default class DropzoneTBZone extends Component {
 		clsZoneBlocked: PropTypes.string,
 		promptDrag: PropTypes.string,
 		promptDrop: PropTypes.string,
-		promptClick: PropTypes.string,
-		promptProcessing: PropTypes.string
+		promptClick: PropTypes.string
 
 	};
 
@@ -37,8 +36,7 @@ export default class DropzoneTBZone extends Component {
 		showPrompt: true, 
 		promptDrag: "Drag & drop your files here (or click)",
 		promptDrop: "Now drop!",
-		promptClick: "Click to add files",
-		promptProcessing: "Processing your files..."
+		promptClick: "Click to add files"
 
 	};
 
@@ -103,7 +101,7 @@ export default class DropzoneTBZone extends Component {
 
 	render () {
 
-		const { onDragEnter, onDragLeave, onDrop, onClick, isBlocked, showRippler, showPrompt, clsZone, clsZoneEnter, clsZoneDrop, clsZoneBlocked, promptDrag, promptDrop, promptClick, promptProcessing, ...restProps } = this.props; // eslint-disable-line no-unused-vars
+		const { onDragEnter, onDragLeave, onDrop, onClick, isBlocked, showRippler, showPrompt, clsZone, clsZoneEnter, clsZoneDrop, clsZoneBlocked, promptDrag, promptDrop, promptClick, ...restProps } = this.props; // eslint-disable-line no-unused-vars
 		const { prompt, isDrag, isDrop, dropX, dropY } = this.state;
 
 		const dropzoneHandlers = {
@@ -167,7 +165,7 @@ export default class DropzoneTBZone extends Component {
 
 		e.preventDefault();
 
-		let { onDrop, promptProcessing, isBlocked } = this.props;
+		let { onDrop, isBlocked } = this.props;
 		let { left, top } = ReactDOM.findDOMNode( this ).getBoundingClientRect();
 		let { pageX, pageY } = e;
 		let dropX = pageX - left - window.scrollX;
@@ -175,7 +173,7 @@ export default class DropzoneTBZone extends Component {
 
 		this.setState( { 
 
-			prompt: promptProcessing,
+			prompt: "",
 			isDrag: false,
 			isDrop: !isBlocked,
 			dropX: dropX, 

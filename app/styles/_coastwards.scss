@@ -15,7 +15,7 @@ $heightFooter: 13vh;
   @extend %corset;
   @extend %pad;
 
-  min-height: 90vh;
+  min-height: $heightContent;
   padding-top: 5vh;
 
   h2{

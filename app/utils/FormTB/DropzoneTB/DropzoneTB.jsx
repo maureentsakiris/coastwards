@@ -41,7 +41,9 @@ class DropzoneTB extends Component {
 
 		listProps: PropTypes.shape( {
 
-		} )
+		} ),
+
+		onValidDrop: PropTypes.func
 
 	};
 
@@ -85,7 +87,7 @@ class DropzoneTB extends Component {
 		const { elementHandlers, elementProps, elementStates, ...ownProps } = this.props; // eslint-disable-line no-unused-vars
 		const { form, name, label, disabled, className } = elementProps; // eslint-disable-line no-unused-vars
 		const { value, showErrors, error, submitting, elementIsValid } = elementStates;	// eslint-disable-line no-unused-vars	
-		const { accept, multiple, disablePreview, max, warning_max, warning_accept, fileValidations, zoneProps, listProps, ...restProps } = ownProps; // eslint-disable-line no-unused-vars
+		const { accept, multiple, disablePreview, max, warning_max, warning_accept, fileValidations, zoneProps, listProps, onValidDrop, ...restProps } = ownProps; // eslint-disable-line no-unused-vars
 
 		const { blockDropzone } = this.state;
 
@@ -134,9 +136,19 @@ class DropzoneTB extends Component {
 			let drop = _.extend( comp.props.file, comp.state.validations );
 			let validFiles = this.state.value.concat( [ drop ] );
 			
-			this.setState( { value: validFiles }, this.props.elementHandlers.onChange( validFiles ) )
+			this.setState( { value: validFiles }, this._onValidDrop( validFiles ) )
 
 		}
+
+	}
+
+	_onValidDrop = ( validFiles ) => {
+
+		let { elementHandlers, onValidDrop } = this.props;
+
+		elementHandlers.onChange( validFiles );
+		onValidDrop( validFiles );
+
 
 	}
 

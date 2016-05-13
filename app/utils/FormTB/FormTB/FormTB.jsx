@@ -163,14 +163,19 @@ export default class FormTB extends Component {
 
 	_submit ( e ){
 
-		e.preventDefault();
+		if( e ){
+
+			e.preventDefault();
+
+		}
+		
 		this.setState( { submitting: true, showErrors: true } );
 		this.context.showLoader( true );
 		this._updateModel();
 
 
-		/*console.log( 'Form is valid:', this.state.formIsValid );
-		console.log( "model", this.model );*/
+		console.log( 'Form is valid:', this.state.formIsValid );
+		console.log( "model", this.model );
 
 		/*let options = {
   

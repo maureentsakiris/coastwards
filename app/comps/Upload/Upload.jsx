@@ -10,6 +10,7 @@ import style from './_styleUpload';
 
 import FormTB from '../../utils/FormTB/FormTB/FormTB';
 import DropzoneTB from '../../utils/FormTB/DropzoneTB/DropzoneTB';
+/*import SubmitTB from '../../utils/FormTB/SubmitTB/SubmitTB';*/
 import MapboxGL from '../../utils/MapboxGL/MapboxGL';
 import FeatureDialog from './FeatureDialog';
 
@@ -18,7 +19,7 @@ const messages = defineMessages( {
 	/*dropzone_prompt_drag:{
 		id: "dropzone_prompt_drag",
 		description: "0 - ",
-		defaultMessage: "Drag your images anywhere onto the map (or click the big red button)"
+		defaultMessage: "Drag your images anywhere onto the map (or click)"
 	},*/
 	dropzone_prompt_drop:{
 		id: "dropzone_prompt_drop",
@@ -60,21 +61,6 @@ const messages = defineMessages( {
 		description: "0 - ",
 		defaultMessage: "Close"
 	},
-	button_zoom_in:{
-		id: "button_zoom_in",
-		description: "0 - ",
-		defaultMessage: "Zoom in"
-	},
-	button_zoom_out:{
-		id: "button_zoom_out",
-		description: "0 - ",
-		defaultMessage: "Zoom out"
-	},
-	button_fit_world:{
-		id: "button_fit_world",
-		description: "0 - ",
-		defaultMessage: "Fit world"
-	},
 	button_upload_image:{
 		id: "button_upload_image",
 		description: "0 - ",
@@ -114,12 +100,16 @@ class Upload extends Component {
 		this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind( this );
 
 		this.map;
+		this.initZoom = 0;
+		this.minZoom = 0;
+		this.maxZoom = 22;
 
 		this.state = {
 
 			noEvents: true,
 			showDialog: false,
 			feature: undefined
+
 		} 
 
 	}
@@ -137,6 +127,7 @@ class Upload extends Component {
 
 		} );
 		const clsMap = Classnames( style.fill, style.map );
+		const clsUploadButton = Classnames ( style.uploadButton );
 
 		const fileValidations = [
 			{
@@ -217,17 +208,18 @@ class Upload extends Component {
 
 			<div id="Upload" className={ cls }>
 				<MapboxGL
-					returnMap={ this._setMap }
+					returnMap={ this._initMap }
 					className={ clsMap }
 					unsupportedTitle={ formatMessage( messages.mapbox_warning_unsupported_title ) }
 					unsupportedMessage={ formatMessage( messages.mapbox_warning_unsupported_message ) }
 					/*language={ locale }*/
-					zoom={ 0 }
-					minZoom={ 0 }
-					maxZoom={ 22 }
+					zoom={ this.initZoom }
+					minZoom={ this.minZoom }
+					maxZoom={ this.maxZoom }
 					center={ [ 150, 39 ] }
 					maxBounds={ [ [ 360, 84 ], [ -360, -68 ] ] }
 					attributionControl={ false }
+					scrollZoom={ false}
 					style="mapbox://styles/maureentsakiris/cinxhoec70043b4nmx0rkoc02"
 					accessToken="pk.eyJ1IjoibWF1cmVlbnRzYWtpcmlzIiwiYSI6ImNpbXM1N2Z2MTAwNXF3ZW0ydXI3eXZyOTAifQ.ATjSaskEecYMiEG36I_viw"
 					layers={ [
@@ -242,9 +234,8 @@ class Upload extends Component {
 						}
 
 					] }
-
 				/>
-				<FormTB name="upload" className={ clsForm } >
+				<FormTB name="upload" className={ clsForm } ref="form">
 					<DropzoneTB
 						name="dropzone"
 						ref="dropzone"
@@ -252,7 +243,8 @@ class Upload extends Component {
 						multiple={ false }
 						max={ 1 }
 						warning_max={ formatMessage( messages.dropzone_warning_max ) }
-						warning_accept={ formatMessage( messages.dropzone_warning_accept ) }			
+						warning_accept={ formatMessage( messages.dropzone_warning_accept ) }
+						required={ true }		
 						fileValidations={ fileValidations }
 						zoneProps={ {
 
@@ -264,15 +256,10 @@ class Upload extends Component {
 							promptClick: ""
 
 						} }
-						
+						onValidDrop={ this._flyToDrop }
 					/>
 				</FormTB>
-				<div id="Controls" className={ style.controls } >
-					<TooltipButton tooltip={ formatMessage( messages.button_upload_image ) } tooltipDelay={ 1000 } icon="file_upload" floating mini accent onClick={ this._openInput } />
-					<TooltipButton tooltip={ formatMessage( messages.button_zoom_in ) } tooltipDelay={ 1000 } icon="add" floating mini onClick={ this._zoomIn } />
-					<TooltipButton tooltip={ formatMessage( messages.button_zoom_out ) } tooltipDelay={ 1000 } icon="remove" floating mini onClick={ this._zoomOut } />
-					<TooltipButton tooltip={ formatMessage( messages.button_fit_world ) } tooltipDelay={ 1000 } icon="public" floating mini onClick={ this._showWorld } />
-				</div>
+				<TooltipButton tooltip={ formatMessage( messages.button_upload_image ) } tooltipDelay={ 1000 } icon="file_upload" floating accent className={ clsUploadButton } onClick={ this._openInput } />
 				<FeatureDialog label={ formatMessage( messages.mapbox_dialog_action_label ) } onClick={ this._hideDialog } active={ showDialog } feature={ feature } />
 			</div>
 
@@ -280,35 +267,17 @@ class Upload extends Component {
 
 	}
 
-	_setMap = ( e ) => {
+	_flyToDrop = ( validFiles ) => {
+
+		let specs = validFiles[ 0 ].imageHasLocation.result.specs;
+		this.map.flyTo( { center: [ specs.long, specs.lat ], zoom: 9 } ); 
+		this.refs.form._submit();
+
+	}
+
+	_initMap = ( e ) => {
 
 		this.map = e;
-
-	}
-
-	_zoomIn = ( ) => {
-
-		let m = this.map;
-		let currentZoom = m.style.z;
-		let maxZoom = m.transform._maxZoom;
-		let zoom = currentZoom + 1 < maxZoom ? currentZoom + 1 : maxZoom;
-		this.map.zoomTo( zoom );
-
-	}
-
-	_zoomOut = ( ) => {
-
-		let m = this.map;
-		let currentZoom = m.style.z;
-		let minZoom = m.transform._minZoom;
-		let zoom = currentZoom - 1 > minZoom ? currentZoom - 1 : minZoom;
-		this.map.zoomTo( zoom );
-
-	}
-
-	_showWorld = ( ) => {
-
-		this.map.zoomTo( 0 );
 
 	}
 
@@ -326,7 +295,7 @@ class Upload extends Component {
 
 	_openInput = ( ) => {
 
-		console.log( this.refs.dropzone._openInput );
+		this.refs.dropzone.refs.element._openInput();
 
 	}
 
