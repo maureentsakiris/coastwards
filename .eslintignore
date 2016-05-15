@@ -1,3 +1,4 @@
 public/build/
 SCRAPS.jsx
 app/utils/Leaflet/_leaflet.js
+app/utils/FormTB/DropzoneTB/EXIF.js

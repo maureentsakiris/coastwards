@@ -5,15 +5,20 @@ import { IconButton } from 'react-toolbox/lib/button';
 
 import style from './_styleIntro';
 
-import logo from '../../../public/assets/coastwards.png'; 
+import logo from '../../../public/assets/coastwards-alpha.png'; 
 
 
 const messages = defineMessages( {
 
-	intro:{
-		id: "intro",
+	intro_1:{
+		id: "intro_1",
 		description: "0 - Intro (Super duper important)",
-		defaultMessage: "Help Science study the risks of sea-level rise by uploading pictures of coasts"
+		defaultMessage: "Help Science study the risks of sea-level rise"
+	},
+	intro_2:{
+		id: "intro_2",
+		description: "0 - ",
+		defaultMessage: "by uploading pictures of coasts"
 	},
 	tagline:{
 		id: "tagline",
@@ -52,7 +57,7 @@ class Intro extends Component {
 			<div id="Intro" className={ style.intro }>
 				<div className={ style.inner }>
 					<img className={ style.logo } src={ logo } />
-					<h1 className={ style.headline }>{ formatMessage( messages.intro ) }</h1>
+					<h1 className={ style.headline }>{ formatMessage( messages.intro_1 ) }<br/><span>{ formatMessage( messages.intro_2 ) }</span></h1>
 					<p className={ style.tagline }>{ formatMessage( messages.tagline ) }</p>
 					<IconButton className={ style.down } icon="expand_more" accent onClick={ this.props.onArrowClick } />
 				</div>

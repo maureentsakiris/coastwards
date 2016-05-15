@@ -42,7 +42,7 @@
 
 }
 
-@keyframes pulsate {
+/* @keyframes pulsate {
 
 	0% {
 		opacity: 0.8;
@@ -56,14 +56,14 @@
 		opacity: 0.6;
 	}
 
-}
+} */
 
 .isdrop{
 
-	animation-name: pulsate;
+	/* animation-name: pulsate;
 	animation-duration: 500ms;
 	animation-iteration-count: 1;
-	animation-timing-function: ease-out;
+	animation-timing-function: ease-out; */
 
 }
 
@@ -85,7 +85,7 @@
 	
 	visibility: visible;
 	animation-name: rippler;
-	animation-duration: 500ms;
+	animation-duration: 1s;
 	animation-iteration-count: 1;
 	animation-timing-function: ease-out;
 

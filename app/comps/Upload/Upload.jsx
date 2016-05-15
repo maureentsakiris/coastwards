@@ -108,7 +108,8 @@ class Upload extends Component {
 
 			noEvents: true,
 			showDialog: false,
-			feature: undefined
+			feature: undefined,
+			processing: false
 
 		} 
 
@@ -118,7 +119,7 @@ class Upload extends Component {
 
 		const { formatMessage/*, locale*/ } = this.props.intl;
 		const { className } = this.props;
-		const { noEvents, showDialog, feature } = this.state;
+		const { noEvents, showDialog, feature, processing } = this.state;
 
 		const cls = Classnames( style.upload, className );
 		const clsForm = Classnames( style.fill, {
@@ -132,23 +133,23 @@ class Upload extends Component {
 		const fileValidations = [
 			{
 				methodName: "imageHasLocation",
-				options: { required: true, passesWhen: true },
+				options: { required: true, passesWhen: true, abort: true },
 				label: "Location",
 				description: "Checking image for information on the location it was taken",
 				success: "Yay! We know where that coast is",
-				error: "Err, looks like we can't extract the location from the metadata"
+				error: "Too bad, looks like we can't extract the location from the metadata"
 			},
 			{
 				methodName: "imageWithFlash",
-				options: { required: true, passesWhen: false },
+				options: { required: true, passesWhen: false, abort: false },
 				label: "No flash",
 				description: "Checking whether the image was taken with flash",
 				success: "Great! No flash, that means it was probably taken with enough ambient light",
-				error: "Err, flash was used to take this image"
+				error: "Too bad, flash was used to take this image"
 			},
 			{
 				methodName: "imageHasColor",
-				options: { color: "blue", required: true, passesWhen: true },
+				options: { color: "blue", required: true, passesWhen: true, abort: false },
 				label: "Color blue",
 				description: "Checking whether the image has the color blue (water)",
 				success: "Great! There is blue in the image.",
@@ -217,7 +218,7 @@ class Upload extends Component {
 					minZoom={ this.minZoom }
 					maxZoom={ this.maxZoom }
 					center={ [ 150, 39 ] }
-					maxBounds={ [ [ 360, 84 ], [ -360, -68 ] ] }
+					maxBounds={ [ [ 360, 84 ], [ -360, -70 ] ] }
 					attributionControl={ false }
 					scrollZoom={ false}
 					style="mapbox://styles/maureentsakiris/cinxhoec70043b4nmx0rkoc02"
@@ -246,6 +247,7 @@ class Upload extends Component {
 						warning_accept={ formatMessage( messages.dropzone_warning_accept ) }
 						required={ true }		
 						fileValidations={ fileValidations }
+						disabled={ false }
 						zoneProps={ {
 
 							clsZone: style.zone,
@@ -256,10 +258,13 @@ class Upload extends Component {
 							promptClick: ""
 
 						} }
-						onValidDrop={ this._flyToDrop }
+						onAcceptedDrop={ this._onAcceptedDrop }
+						onTestDone={ this._onTestDone }
+						onValidDrop={ this._onValidDrop }
+						onDropsValidated={ this._onDropsValidated }
 					/>
 				</FormTB>
-				<TooltipButton tooltip={ formatMessage( messages.button_upload_image ) } tooltipDelay={ 1000 } icon="file_upload" floating accent className={ clsUploadButton } onClick={ this._openInput } />
+				<TooltipButton tooltip={ formatMessage( messages.button_upload_image ) } tooltipDelay={ 1000 } icon="file_upload" floating accent disabled={ processing } className={ clsUploadButton } onClick={ this._openInput } />
 				<FeatureDialog label={ formatMessage( messages.mapbox_dialog_action_label ) } onClick={ this._hideDialog } active={ showDialog } feature={ feature } />
 			</div>
 
@@ -267,11 +272,36 @@ class Upload extends Component {
 
 	}
 
-	_flyToDrop = ( validFiles ) => {
+	_onAcceptedDrop = ( ) => {
 
-		let specs = validFiles[ 0 ].imageHasLocation.result.specs;
-		this.map.flyTo( { center: [ specs.long, specs.lat ], zoom: 9 } ); 
-		this.refs.form._submit();
+		this.setState( { processing: true } );
+
+	}
+
+	_onTestDone = ( comp, message, passed, result, test ) => {
+
+		if( !passed ){
+
+			console.log( message );
+
+		}
+
+	}
+
+	_onDropsValidated = ( drops ) => {
+
+		let specs = drops[ 0 ].imageHasLocation.result.specs;
+		this.map.flyTo( { center: [ specs.long, specs.lat ], zoom: 8 } );
+
+		//this.setState( { processing: false } );
+
+	}
+
+	_onValidDrop = ( drop ) => {
+
+		/*let specs = drop.imageHasLocation.result.specs;
+		this.map.flyTo( { center: [ specs.long, specs.lat ], zoom: 9 } );*/ 
+		//this.refs.form._submit();
 
 	}
 

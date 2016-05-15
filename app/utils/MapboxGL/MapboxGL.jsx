@@ -163,8 +163,6 @@ export default class MapboxGL extends Component {
 
 	render () {
 
-		console.log( "MAP IS RENDERING" );
-
 		const { className } = this.props;
 		const cls = Classnames( style.map, className );  
 

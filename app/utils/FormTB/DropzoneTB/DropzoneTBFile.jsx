@@ -2,6 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import util from 'util';
 import _ from 'underscore';
 
+const EXIF = require( './EXIF.js' );
+
 /*
  * TODO: DEFAULT IMPLEMENTATION OF FILE LIST!!! (Didn't need it for coastwards - no need - no do )
 */
@@ -11,9 +13,9 @@ export default class DropzoneTBFile extends Component {
 	static propTypes = {
 
 		file: PropTypes.object.isRequired,
-		validations: PropTypes.array,
-		onValidationDone: PropTypes.func,
-		onValidationsDone: PropTypes.func.isRequired
+		validations: PropTypes.array.isRequired,
+		onTestDone: PropTypes.func.isRequired,
+		onValidationDone: PropTypes.func.isRequired
 
 	};
 
@@ -25,13 +27,28 @@ export default class DropzoneTBFile extends Component {
 
 	componentWillMount ( ){
 
-		/*require.ensure( [ './FormExif.js' ], ( require ) => {
+		const me = this;
+		setTimeout( ( ) => {
+			
+			EXIF.getData( this.props.file, function ( ) {
 
-			let exif =  require( './FormExif.js' );
-			this.setState( { exif } );
+				let tags = EXIF.getAllTags( this );
+				console.log( tags );
+				me.setState( { tags: tags } );
 
-		}, 'FormExif' );*/
-		this._runTests();
+			} );
+
+		}, 300 );
+
+	}
+
+	componentWillUpdate ( p, s ){
+
+		if( s.tags != this.state.tags ){
+
+			this._runTests();
+
+		}
 
 	}
 
@@ -39,10 +56,13 @@ export default class DropzoneTBFile extends Component {
 
 		super ( props );
 
+		this.EXIF;
+
 		this.state = {
 
 			status: {},
-			validations: {}
+			validations: {},
+			tags: {}
 
 		}
 
@@ -51,7 +71,6 @@ export default class DropzoneTBFile extends Component {
 	render () {
 
 		const status = this._getStatus( this.state.status );
-		/*const file = this.props.file;*/
 
 		const style = {
 
@@ -107,7 +126,16 @@ export default class DropzoneTBFile extends Component {
 
 	_runTests ( ){
 
-		const validatorStack = this.props.validations.slice();
+		const { validations, onValidationDone } = this.props;
+		const { status } = this.state;
+
+		const validatorStack = validations.slice();
+
+		const abortTests = ( ) => {
+
+			onValidationDone( this, false );
+
+		}
 
 		const runNextTest = ( ) => {
 
@@ -115,11 +143,11 @@ export default class DropzoneTBFile extends Component {
 			
 			if( test ){
 
-				this._runTest ( test, runNextTest );
+				this._runTest ( test, runNextTest, abortTests );
 
 			}else{
 
-				let countFailed = _.chain( this.props.validations )
+				let countFailed = _.chain( validations )
 
 				// filter required validations
 				.filter( ( validation ) => { 
@@ -131,7 +159,7 @@ export default class DropzoneTBFile extends Component {
 				// return results for required validations
 				.map( ( requiredValidation ) => {
 
-					return !!this.state.status[ requiredValidation.methodName ].passed;
+					return !!status[ requiredValidation.methodName ].passed;
 
 				} )
 
@@ -146,7 +174,7 @@ export default class DropzoneTBFile extends Component {
 
 				let isValidDrop = countFailed.length == 0;
 
-				this.props.onValidationsDone( this, isValidDrop );
+				onValidationDone( this, isValidDrop );
 
 			}
 
@@ -157,8 +185,9 @@ export default class DropzoneTBFile extends Component {
 
 	}
 
-	_runTest ( test, runNextTest ){
+	_runTest ( test, runNextTest, abortTests ){
 
+		let { onTestDone } = this.props;
 		let { methodName, label, description, success, error, options } = test;
 
 		const method = ImageValidators[ methodName ];
@@ -166,13 +195,15 @@ export default class DropzoneTBFile extends Component {
 		const callMethod = ( ) => {
 
 			let result = method( this, options );
+
 			let passed = util.isBoolean( options.passesWhen ) ? options.passesWhen === result.flag : result.flag;
 			let message = passed ? success : error;
 
-			//this.props.onValidationDone( message );
+			onTestDone( this, message, passed, result, test );
 
+			let callback = !passed && options.abort ? abortTests : runNextTest;
 			status[ methodName ] = { result, passed, message, label, description };
-			validations[ methodName ] = { result, passed }
+			validations[ methodName ] = { result, passed };
 			this.setState( ( state ) => {
 
 				return { 
@@ -180,13 +211,7 @@ export default class DropzoneTBFile extends Component {
 					validations: _.extend( state.validations, validations )
 				}
 
-			}, delayMethod( runNextTest ) );
-
-		}
-
-		const delayMethod = ( method ) => {
-
-			setTimeout( method, 0 );
+			}, callback );
 
 		}
 
@@ -199,13 +224,25 @@ export default class DropzoneTBFile extends Component {
 				status: _.extend( state.status, status )
 			}
 
-		}, delayMethod( callMethod ) );
+		}, callMethod );
+
+	}
+
+	_toDecimal ( number, ref, l ){
+
+		console.log( ref );
+
+		let decimal = number[ 0 ].numerator + number[ 1 ].numerator / ( 60 * number[ 1 ].denominator ) + number[ 2 ].numerator / ( 3600 * number[ 2 ].denominator );
+		let flip = l == 'lat' ? ref == 'N' ? 1 : -1 : ref == 'W' ? -1 : 1;
+
+		console.log( flip );
+
+		return decimal * flip;
 
 	}
 
 }
 
-//const hasExif = typeof ( exif ) !== 'undefined';
 
 const ImageValidators = {
 
@@ -223,17 +260,22 @@ const ImageValidators = {
 		return result;
 
 	},
-	imageHasLocation: function ( file ) {
+	imageHasLocation: function ( comp, options ) {
 
-		let flag = !!file;
+		let tags = comp.state.tags;
+
+		let lat = comp._toDecimal( tags.GPSLatitude, tags.GPSLatitudeRef, 'lat' );
+		let long = comp._toDecimal( tags.GPSLongitude, tags.GPSLongitudeRef, 'long' );
+
+		let flag = true;
 
 		let result = {
 
 			flag: flag,
 			specs: {
 
-				lat: 43.453294,
-				long: -3.962603
+				lat: lat,
+				long: long
 
 			}
 

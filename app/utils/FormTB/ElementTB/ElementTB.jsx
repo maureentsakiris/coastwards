@@ -187,7 +187,6 @@ export var ElementTB = ( ComposedComponent ) => class extends Component {
 
 	_validate ( ){
 
-
 		if( !this.props.validations ){
 
 			return;

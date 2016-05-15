@@ -23,7 +23,7 @@
 
 .logo{
 
-	max-width: 40%;
+	max-width: 340px;
 	min-width: 200px;
     width: 50vw;
 
@@ -31,9 +31,20 @@
 
 .headline{
 
-	font-weight: $font-weight-thin;
-	font-size: 5vh;
+	font-weight: $font-weight-bold;
+	font-size: 4vh;
 	margin-top: 3vh;
+	text-transform: capitalize;
+	color: $color-primary-dark;
+
+	span{
+
+    	font-weight: $font-weight-thin;
+    	font-size: 3vh;
+    	text-transform: lowercase;
+    	// color: $color-primary;
+
+    }
 
 }
 
@@ -42,7 +53,7 @@
 	margin-top: 4vh;
 	@include typo-headline();
 	font-size: 2vh;
-	color: $palette-grey-500;
+	color: $palette-grey-300;
 
 }
 

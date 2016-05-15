@@ -34,8 +34,7 @@ class DropzoneTB extends Component {
 			clsZoneBlocked: PropTypes.string,
 			promptDrag: PropTypes.string,
 			promptDrop: PropTypes.string,
-			promptClick: PropTypes.string,
-			promptProcessing: PropTypes.string
+			promptClick: PropTypes.string
 
 		} ),
 
@@ -43,7 +42,10 @@ class DropzoneTB extends Component {
 
 		} ),
 
-		onValidDrop: PropTypes.func
+		onAcceptedDrop: PropTypes.func,
+		onTestDone: PropTypes.func,
+		onValidDrop: PropTypes.func,
+		onDropsValidated: PropTypes.func
 
 	};
 
@@ -56,9 +58,15 @@ class DropzoneTB extends Component {
 		warning_max: 'Slow down cowboy, you have reached the maximum number of uploads.',
 		warning_accept: 'Some of the files you dropped are not the right filetype and will be ignored.',
 		fileValidations: [],
-		openInput: false,
+
 		zoneProps: {}, 
-		listProps: {}
+
+		listProps: {},
+
+		onAcceptedDrop: () => {},
+		onTestDone: () => {},
+		onValidDrop: () => {},
+		onDropsValidated: () => {}
 
 	};
 
@@ -68,13 +76,16 @@ class DropzoneTB extends Component {
 
 	}
 
+
 	constructor ( props ) {
 
 		super ( props );
 
+		this.dropsValidated = [];
+		this.validDrops = [];
+
 		this.state = {
 
-			value: [],
 			filesDropped: [],
 			blockDropzone: false
 
@@ -106,8 +117,6 @@ class DropzoneTB extends Component {
 
 		const listPropsExtended = _.extend( listProps, {
 
-
-
 		} );
 		
 
@@ -129,29 +138,6 @@ class DropzoneTB extends Component {
 	}
 
 
-	_onValidationsDone ( comp, isValidDrop ){
-
-		if( isValidDrop ){
-
-			let drop = _.extend( comp.props.file, comp.state.validations );
-			let validFiles = this.state.value.concat( [ drop ] );
-			
-			this.setState( { value: validFiles }, this._onValidDrop( validFiles ) )
-
-		}
-
-	}
-
-	_onValidDrop = ( validFiles ) => {
-
-		let { elementHandlers, onValidDrop } = this.props;
-
-		elementHandlers.onChange( validFiles );
-		onValidDrop( validFiles );
-
-
-	}
-
 	_createDropzoneFiles ( files ) {
 
 		return _.map( files, ( file, index ) => {
@@ -162,12 +148,45 @@ class DropzoneTB extends Component {
 				file: file,
 				accept: this.props.accept, 
 				validations: this.props.fileValidations,
-				onValidationDone: this._setPrompt,
-				onValidationsDone: this._onValidationsDone.bind( this )
+				onTestDone: this._onFileTestDone.bind( this ),
+				onValidationDone: this._onFileValidationDone.bind( this )
 
 			} );
 
 		} );
+
+	}
+
+	_onFileTestDone ( comp, message, passed, result, test ){
+
+		this.props.onTestDone( comp, message, passed, result, test );
+
+	}
+
+	_onFileValidationDone ( comp, isValidDrop ){
+
+		let { onValidDrop, onDropsValidated, elementHandlers } = this.props;
+
+		if( isValidDrop ){
+
+			let drop = _.extend( comp.props.file, comp.state.validations );
+			this.validDrops = this.validDrops.concat( [ drop ] );
+			onValidDrop( drop );
+
+		}
+
+		let { filesDropped } = this.state;
+		this.dropsValidated = this.dropsValidated.concat( [ comp.props.file ] );
+		let allDone = _.chain( filesDropped ).difference( this.dropsValidated ).size().value() === 0 ? true : false;
+
+		if( allDone ){
+
+			elementHandlers.onChange( this.validDrops );
+			onDropsValidated( this.validDrops );
+
+			//this.setState( { blockDropzone: false } );
+
+		}
 
 	}
 
@@ -226,7 +245,7 @@ class DropzoneTB extends Component {
 
 				} 
 
-			} );
+			}, this.props.onAcceptedDrop( allFiles ) );
 
 		}else{
 
