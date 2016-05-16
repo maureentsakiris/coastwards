@@ -42,9 +42,10 @@ class DropzoneTB extends Component {
 
 		} ),
 
-		onAcceptedDrop: PropTypes.func,
+		onDropsAccepted: PropTypes.func,
 		onTestDone: PropTypes.func,
 		onValidDrop: PropTypes.func,
+		onInValidDrop: PropTypes.func,
 		onDropsValidated: PropTypes.func
 
 	};
@@ -63,9 +64,10 @@ class DropzoneTB extends Component {
 
 		listProps: {},
 
-		onAcceptedDrop: () => {},
+		onDropsAccepted: () => {},
 		onTestDone: () => {},
 		onValidDrop: () => {},
+		onInValidDrop: () => {},
 		onDropsValidated: () => {}
 
 	};
@@ -166,30 +168,52 @@ class DropzoneTB extends Component {
 
 	}
 
-	_onFileValidationDone ( comp, isValidDrop ){
+	_onFileValidationDone ( isValidDrop, status, comp ){
 
-		let { onValidDrop, onDropsValidated, elementHandlers } = this.props;
+		let { onValidDrop, onInValidDrop, onDropsValidated, elementHandlers } = this.props;
 
 		if( isValidDrop ){
 
 			let drop = _.extend( comp.props.file, comp.state.validations );
 			this.validDrops = this.validDrops.concat( [ drop ] );
-			onValidDrop( drop );
+			onValidDrop( status, comp );
+
+		}else{
+
+			onInValidDrop( status, comp );
 
 		}
 
 		let { filesDropped } = this.state;
 		this.dropsValidated = this.dropsValidated.concat( [ comp.props.file ] );
-		let allDone = _.chain( filesDropped ).difference( this.dropsValidated ).size().value() === 0 ? true : false;
+		let allDropsValidated = _.chain( filesDropped ).difference( this.dropsValidated ).size().value() === 0 ? true : false;
 
-		if( allDone ){
+		if( allDropsValidated ){
 
 			elementHandlers.onChange( this.validDrops );
 			onDropsValidated( this.validDrops );
 
-			this.setState( { validating: false } );
+			if( !this.validDrops.length ){
+
+				this._resetDropzone();
+
+			}
 
 		}
+
+	}
+
+	_resetDropzone (){
+
+		this.dropsValidated = [];
+		this.validDrops = [];
+
+		this.setState( { 
+
+			validating: false,
+			filesDropped: []
+
+		} );
 
 	}
 
@@ -248,7 +272,7 @@ class DropzoneTB extends Component {
 
 				} 
 
-			}, this.props.onAcceptedDrop( allFiles ) );
+			}, this.props.onDropsAccepted( allFiles ) );
 
 		}/*else{
 

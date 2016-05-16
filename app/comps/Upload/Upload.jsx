@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { defineMessages, injectIntl, intlShape } from 'react-intl';
 import Classnames from 'classnames';
+import _ from 'underscore';
 import { Button } from 'react-toolbox/lib/button';
 import Tooltip from 'react-toolbox/lib/tooltip';
 const TooltipButton = Tooltip( Button );
@@ -37,14 +38,19 @@ const messages = defineMessages( {
 		defaultMessage: "Processing ... please wait until finished to drop more images"
 	},
 	dropzone_warning_accept:{
-		id: "warning_accept",
+		id: "dropzone_warning_accept",
 		description: "0 - ",
 		defaultMessage: "One or more files are not images and will be ignored!"
 	},
 	dropzone_warning_max:{
-		id: "warning_max",
+		id: "dropzone_warning_max",
 		description: "0 - ",
 		defaultMessage: "Sorry, we can only process one image at a time! (We are working on it)" 
+	},
+	dropzone_drop_invalid_title:{
+		id: "dropzone_drop_invalid_title",
+		description: "0 - ",
+		defaultMessage: "Too bad!" 
 	},
 	mapbox_warning_unsupported_title:{
 		id: "mapbox_warning_unsupported_title",
@@ -137,7 +143,7 @@ class Upload extends Component {
 				label: "Location",
 				description: "Checking image for information on the location it was taken",
 				success: "Yay! We know where that coast is",
-				error: "Too bad, looks like we can't extract the location from the metadata"
+				error: "We can't extract the location from the metadata. (The next version of coastwards will allow you to place the image manually, so stay tuned!)"
 			},
 			{
 				methodName: "imageWithFlash",
@@ -145,7 +151,7 @@ class Upload extends Component {
 				label: "No flash",
 				description: "Checking whether the image was taken with flash",
 				success: "Great! No flash, that means it was probably taken with enough ambient light",
-				error: "Too bad, flash was used to take this image"
+				error: "Flash was used to take this image"
 			},
 			{
 				methodName: "imageHasColor",
@@ -259,8 +265,10 @@ class Upload extends Component {
 							promptClick: ""
 
 						} }
-						onAcceptedDrop={ this._onAcceptedDrop }
-						onDropsValidated={ this._onDropsValidated }
+						onDropsAccepted={ this._onDropsAccepted }
+						onValidDrop={ this._onValidDrop }
+						onInValidDrop={ this._onInValidDrop }
+						onDropsValidated= { this._onDropsValidated }
 					/>
 				</FormTB>
 				<TooltipButton tooltip={ formatMessage( messages.button_upload_image ) } tooltipDelay={ 1000 } icon="file_upload" floating accent disabled={ processing } className={ clsUploadButton } onClick={ this._openInput } />
@@ -277,16 +285,52 @@ class Upload extends Component {
 
 	}
 
-	_onAcceptedDrop = ( ) => {
+	_onDropsAccepted = ( ) => {
 
 		this.setState( { processing: true } );
 
 	}
 
-	_onDropsValidated = ( drops ) => {
+	_onInValidDrop = ( status, inValidDrop ) => {
 
-		let specs = drops[ 0 ].imageHasLocation.result.specs;
-		this.map.flyTo( { center: [ specs.long, specs.lat ], zoom: 8 } );
+		const { formatMessage } = this.props.intl;
+
+		let prettyStatus = '';
+
+		_.each( status, ( stat, index ) => {
+
+			prettyStatus += stat.message;
+
+		} );
+
+
+		this.context.showDialog( { title: formatMessage( messages.dropzone_drop_invalid_title ), content: prettyStatus } );
+
+	}
+
+	_onValidDrop = ( status, validDrop ) => {
+
+		console.log( validDrop );
+		this._goFlying( validDrop.props.file );
+
+	}
+
+	_goFlying = ( validDrop ) => {
+
+		let specs = validDrop.imageHasLocation.result.specs;
+		this.map.flyTo( { 
+
+			center: [ specs.long, specs.lat ], 
+			zoom: 8,
+			speed: 0.8, // make the flying slow
+			curve: 1, // change the speed at which it zooms out
+			easing: function ( t ) {
+
+				return t<.5 ? 2*t*t : -1+( 4-2*t )*t;
+
+			}
+
+		} );
 
 		let id = Date.now();
 
@@ -302,7 +346,7 @@ class Upload extends Component {
 				"properties": {
 					"marker-symbol": "marker",
 					"comment": "",
-					"image": drops[ 0 ].preview
+					"image": validDrop.preview
 				}
 
 			} ]
@@ -338,6 +382,22 @@ class Upload extends Component {
 		}
 
 		this.refs.map._addLayer( layer );
+
+	}
+
+	_onDropsValidated = ( validDrops ) => {
+
+		if( !validDrops.length ){
+
+			this._resetUploadButton();
+
+		}
+
+	}
+
+	_resetUploadButton = ( ) => {
+
+		this.setState( { processing: false } );
 
 	}
 

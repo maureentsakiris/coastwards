@@ -133,7 +133,7 @@ export default class DropzoneTBFile extends Component {
 
 		const abortTests = ( ) => {
 
-			onValidationDone( this, false );
+			onValidationDone( false, status, this );
 
 		}
 
@@ -174,7 +174,7 @@ export default class DropzoneTBFile extends Component {
 
 				let isValidDrop = countFailed.length == 0;
 
-				onValidationDone( this, isValidDrop );
+				onValidationDone( isValidDrop, status, this );
 
 			}
 
@@ -202,6 +202,7 @@ export default class DropzoneTBFile extends Component {
 			onTestDone( this, message, passed, result, test );
 
 			let callback = !passed && options.abort ? abortTests : runNextTest;
+
 			status[ methodName ] = { result, passed, message, label, description };
 			validations[ methodName ] = { result, passed };
 			this.setState( ( state ) => {
@@ -258,12 +259,17 @@ const ImageValidators = {
 	},
 	imageHasLocation: function ( comp ) {
 
+		let flag = false;
+		let lat, long;
 		let tags = comp.state.tags;
 
-		let lat = comp._toDecimal( tags.GPSLatitude, tags.GPSLatitudeRef, 'lat' );
-		let long = comp._toDecimal( tags.GPSLongitude, tags.GPSLongitudeRef, 'long' );
+		if( tags.GPSLatitude && tags.GPSLongitude ){
 
-		let flag = true;
+			lat = comp._toDecimal( tags.GPSLatitude, tags.GPSLatitudeRef, 'lat' );
+			long = comp._toDecimal( tags.GPSLongitude, tags.GPSLongitudeRef, 'long' );
+			flag = true;
+
+		}
 
 		let result = {
 
