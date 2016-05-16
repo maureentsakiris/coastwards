@@ -209,6 +209,7 @@ class Upload extends Component {
 
 			<div id="Upload" className={ cls }>
 				<MapboxGL
+					ref="map"
 					returnMap={ this._initMap }
 					className={ clsMap }
 					unsupportedTitle={ formatMessage( messages.mapbox_warning_unsupported_title ) }
@@ -236,7 +237,7 @@ class Upload extends Component {
 
 					] }
 				/>
-				<FormTB name="upload" className={ clsForm } ref="form">
+				<FormTB name="upload" className={ clsForm } ref="form" autoSubmit={ false } onReset={ this._onFormReset }>
 					<DropzoneTB
 						name="dropzone"
 						ref="dropzone"
@@ -259,8 +260,6 @@ class Upload extends Component {
 
 						} }
 						onAcceptedDrop={ this._onAcceptedDrop }
-						onTestDone={ this._onTestDone }
-						onValidDrop={ this._onValidDrop }
 						onDropsValidated={ this._onDropsValidated }
 					/>
 				</FormTB>
@@ -272,19 +271,15 @@ class Upload extends Component {
 
 	}
 
-	_onAcceptedDrop = ( ) => {
+	_onFormReset = () => {
 
-		this.setState( { processing: true } );
+		this.setState( { processing: false } );
 
 	}
 
-	_onTestDone = ( comp, message, passed, result, test ) => {
+	_onAcceptedDrop = ( ) => {
 
-		if( !passed ){
-
-			console.log( message );
-
-		}
+		this.setState( { processing: true } );
 
 	}
 
@@ -293,15 +288,56 @@ class Upload extends Component {
 		let specs = drops[ 0 ].imageHasLocation.result.specs;
 		this.map.flyTo( { center: [ specs.long, specs.lat ], zoom: 8 } );
 
-		//this.setState( { processing: false } );
+		let id = Date.now();
 
-	}
+		const geoJSON = {
 
-	_onValidDrop = ( drop ) => {
+			"type": "FeatureCollection",
+			"features": [ {
+				"type": "Feature",
+				"geometry": {
+					"type": "Point",
+					"coordinates": [ specs.long, specs.lat ]
+				},
+				"properties": {
+					"marker-symbol": "marker",
+					"comment": "",
+					"image": drops[ 0 ].preview
+				}
 
-		/*let specs = drop.imageHasLocation.result.specs;
-		this.map.flyTo( { center: [ specs.long, specs.lat ], zoom: 9 } );*/ 
-		//this.refs.form._submit();
+			} ]
+
+		}
+
+		const markerSource = { 
+
+			type: 'geojson',
+			data: geoJSON
+
+		}
+
+		const markerLayer = {
+
+			type: 'symbol',
+			layout: {
+
+				'icon-image': "{marker-symbol}-11"
+
+			}
+
+		}
+
+		let layer = {
+			
+			name: id.toString(),
+			source: markerSource,
+			layer: markerLayer,
+			position: 'place_label_other',
+			onClick: this._showDialog
+
+		}
+
+		this.refs.map._addLayer( layer );
 
 	}
 

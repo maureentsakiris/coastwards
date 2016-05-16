@@ -87,7 +87,7 @@ class DropzoneTB extends Component {
 		this.state = {
 
 			filesDropped: [],
-			blockDropzone: false
+			validating: false
 
 		}
 
@@ -100,7 +100,10 @@ class DropzoneTB extends Component {
 		const { value, showErrors, error, submitting, elementIsValid } = elementStates;	// eslint-disable-line no-unused-vars	
 		const { accept, multiple, disablePreview, max, warning_max, warning_accept, fileValidations, zoneProps, listProps, onValidDrop, ...restProps } = ownProps; // eslint-disable-line no-unused-vars
 
-		const { blockDropzone } = this.state;
+		const { validating } = this.state;
+
+
+		const isBlocked = validating || submitting || disabled;
 
 		const cls = Classnames( style.dropzone, className );
 
@@ -110,7 +113,7 @@ class DropzoneTB extends Component {
 			onDragLeave: this._onDragLeave.bind( this ),
 			onDrop: this._onDrop.bind( this ),
 			onClick: this._openInput.bind( this ),
-			isBlocked: blockDropzone
+			isBlocked: isBlocked
 
 		} );
 
@@ -184,7 +187,7 @@ class DropzoneTB extends Component {
 			elementHandlers.onChange( this.validDrops );
 			onDropsValidated( this.validDrops );
 
-			//this.setState( { blockDropzone: false } );
+			this.setState( { validating: false } );
 
 		}
 
@@ -240,18 +243,18 @@ class DropzoneTB extends Component {
 
 				return { 
 
-					blockDropzone: true,
+					validating: true,
 					filesDropped: _.extend( state.filesDropped, allFiles )
 
 				} 
 
 			}, this.props.onAcceptedDrop( allFiles ) );
 
-		}else{
+		}/*else{
 
-			this.setState( { blockDropzone: false } );
+			this.setState( { validating: false } );
 
-		}
+		}*/
 
 	}
 

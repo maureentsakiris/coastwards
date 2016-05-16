@@ -19,6 +19,8 @@ export default class FormTB extends Component {
 		autocomplete: PropTypes.oneOf( [ 'on', 'off' ] ),
 		noValidate: PropTypes.bool,
 		className: PropTypes.string,
+		autoSubmit: PropTypes.bool,
+		onReset: PropTypes.func,
 		children: PropTypes.node
 
 	};
@@ -26,7 +28,8 @@ export default class FormTB extends Component {
 	static defaultProps = {
 
 		autocomplete: 'off',
-		noValidate: true
+		noValidate: true,
+		onReset: () => {}
 
 	};
 
@@ -82,6 +85,7 @@ export default class FormTB extends Component {
 
 	_validateForm ( ){
 
+		let { autoSubmit } = this.props;
 		let flag = true;
 		let elements = this.elements;
 
@@ -95,7 +99,15 @@ export default class FormTB extends Component {
 
 		} );
 
-		this.setState( { formIsValid: flag } );
+		if( autoSubmit && flag ){
+
+			this.setState( { formIsValid: flag }, this._submit );
+
+		}else{
+
+			this.setState( { formIsValid: flag } );
+
+		}
 
 	}
 
@@ -161,6 +173,24 @@ export default class FormTB extends Component {
 
 	}
 
+	_resetForm ( ){
+
+		this.model = {};
+
+		console.log( 'IMPLEMENT: reset all form elements' );
+
+		this.setState( { 
+
+			submitting: false,
+			formIsValid: true,
+			showErrors: false
+
+		}, this.props.onReset );
+
+		this.context.showLoader( false );
+
+	}
+
 	_submit ( e ){
 
 		if( e ){
@@ -174,8 +204,14 @@ export default class FormTB extends Component {
 		this._updateModel();
 
 
-		console.log( 'Form is valid:', this.state.formIsValid );
-		console.log( "model", this.model );
+		/*console.log( 'Form is valid:', this.state.formIsValid );
+		console.log( "model", this.model );*/
+
+		setTimeout( ( ) => {
+			
+			this._resetForm();
+
+		}, 4000 );
 
 		/*let options = {
   

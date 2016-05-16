@@ -33,7 +33,7 @@ export default class DropzoneTBFile extends Component {
 			EXIF.getData( this.props.file, function ( ) {
 
 				let tags = EXIF.getAllTags( this );
-				console.log( tags );
+				// console.log( tags );
 				me.setState( { tags: tags } );
 
 			} );
@@ -230,12 +230,8 @@ export default class DropzoneTBFile extends Component {
 
 	_toDecimal ( number, ref, l ){
 
-		console.log( ref );
-
 		let decimal = number[ 0 ].numerator + number[ 1 ].numerator / ( 60 * number[ 1 ].denominator ) + number[ 2 ].numerator / ( 3600 * number[ 2 ].denominator );
 		let flip = l == 'lat' ? ref == 'N' ? 1 : -1 : ref == 'W' ? -1 : 1;
-
-		console.log( flip );
 
 		return decimal * flip;
 
@@ -260,7 +256,7 @@ const ImageValidators = {
 		return result;
 
 	},
-	imageHasLocation: function ( comp, options ) {
+	imageHasLocation: function ( comp ) {
 
 		let tags = comp.state.tags;
 

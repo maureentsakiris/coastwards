@@ -111,7 +111,8 @@ export var ElementTB = ( ComposedComponent ) => class extends Component {
 			showErrors: this.props.showErrors,
 			error: '',
 			submitting: this.props.submitting,
-			elementIsValid: true
+			elementIsValid: true,
+			autoSubmit: false
 
 		}
 
@@ -178,8 +179,7 @@ export var ElementTB = ( ComposedComponent ) => class extends Component {
 		this.setState( {
 
 			value: val,
-			elementIsValid: true/*,
-			elementIsDirty: !_.isEmpty( val )*/
+			elementIsValid: true
 
 		}, this._validate );
 
@@ -213,6 +213,8 @@ export var ElementTB = ( ComposedComponent ) => class extends Component {
 			} )
 
 		}
+
+		/*console.log( 'Element is valid: ', flag );*/
 
 		this.setState( { elementIsValid: flag, error: error }, this.props.validateForm )
 

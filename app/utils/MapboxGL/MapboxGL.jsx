@@ -13,6 +13,7 @@ export default class MapboxGL extends Component {
 
 		returnMap: PropTypes.func,
 		className: PropTypes.string,
+		ref: PropTypes.string,
 		unsupportedTitle: PropTypes.string,
 		unsupportedMessage: PropTypes.string,
 		language: PropTypes.string,
@@ -48,6 +49,7 @@ export default class MapboxGL extends Component {
 
 	static defaultProps = {
 
+		ref: "map",
 		unsupportedTitle: "Browser upgrade",
 		unsupportedMessage: "Sorry, we can't show the map because your browser does not support the necessary web technology. For this and many other reasons, we recommend you upgrade your browser.",
 		language: "en",
@@ -163,12 +165,12 @@ export default class MapboxGL extends Component {
 
 	render () {
 
-		const { className } = this.props;
+		const { className, ref } = this.props;
 		const cls = Classnames( style.map, className );  
 
 		return (
 
-			<div id="MapboxGl" className={ cls } />
+			<div id="MapboxGl" className={ cls } ref={ ref } />
 
 		)
 
