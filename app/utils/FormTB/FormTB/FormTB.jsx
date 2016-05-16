@@ -61,7 +61,8 @@ export default class FormTB extends Component {
 
 			submitting: false,
 			formIsValid: true,
-			showErrors: false
+			showErrors: false,
+			reset: false
 
 		}
 
@@ -127,6 +128,7 @@ export default class FormTB extends Component {
 					props.form  = this.props.name;
 					props.showErrors = this.state.showErrors;
 					props.submitting = this.state.submitting;
+					props.reset = this.state.reset;
 
 				}
 
@@ -177,17 +179,23 @@ export default class FormTB extends Component {
 
 		this.model = {};
 
-		console.log( 'IMPLEMENT: reset all form elements' );
-
 		this.setState( { 
 
 			submitting: false,
 			formIsValid: true,
-			showErrors: false
+			showErrors: false,
+			reset: true
 
-		}, this.props.onReset );
+		}, this._onReset );
 
 		this.context.showLoader( false );
+
+	}
+
+	_onReset ( ){
+
+		this.setState( { reset: false } );
+		this.props.onReset();
 
 	}
 
@@ -211,7 +219,7 @@ export default class FormTB extends Component {
 			
 			this._resetForm();
 
-		}, 4000 );
+		}, 1000 );
 
 		/*let options = {
   

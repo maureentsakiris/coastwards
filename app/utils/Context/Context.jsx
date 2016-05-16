@@ -74,7 +74,7 @@ export default class Context extends Component {
 			onOverlayClick: this._hideDialog,
 			title: '',
 			content: '',
-			className: ''
+			className: style.dialog
 
 		};
 
@@ -88,7 +88,7 @@ export default class Context extends Component {
 			onClick: this._hideSnackbar,
 			onTimeout: this._hideSnackbar,
 			timeout: 3000,
-			className: 'snackbar'
+			className: style.snackbar
 
 
 		}
@@ -112,9 +112,9 @@ export default class Context extends Component {
 
 			<div id="Context" className={ className } >
 				{ showLoader && <ProgressBar type="linear" mode="indeterminate" className={ style.contextLoader } /> }
-				<Dialog { ...dialogOptions }><p>{ dialogOptions.content }</p></Dialog>
+				<Dialog { ...dialogOptions } ><p>{ dialogOptions.content }</p></Dialog>
 				{ children }
-				<Snackbar { ...snackbarOptions } ref="snackbar" className={ style.snackbar } />
+				<Snackbar { ...snackbarOptions } ref="snackbar" />
 			</div>
 
 		)

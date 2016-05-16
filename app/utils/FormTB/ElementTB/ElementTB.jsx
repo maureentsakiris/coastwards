@@ -28,6 +28,7 @@ export var ElementTB = ( ComposedComponent ) => class extends Component {
 		validateForm: PropTypes.func,
 		showErrors: PropTypes.bool,
 		submitting: PropTypes.bool,
+		reset: PropTypes.bool,
 
 		// Passed on from instance and is handled here in the ElementTBHOC
 		required: PropTypes.bool,
@@ -111,8 +112,7 @@ export var ElementTB = ( ComposedComponent ) => class extends Component {
 			showErrors: this.props.showErrors,
 			error: '',
 			submitting: this.props.submitting,
-			elementIsValid: true,
-			autoSubmit: false
+			elementIsValid: true
 
 		}
 
@@ -121,7 +121,7 @@ export var ElementTB = ( ComposedComponent ) => class extends Component {
 	render () {
 
 		const propsNeeded = _.omit( this.props, [ 'register', 'unregister', 'validateForm', 'showErrors', 'submitting', 'required', 'validations', 'value' ] );
-		const { form, name, label, disabled, className, ...props } = { ...propsNeeded };
+		const { form, name, label, disabled, className, reset, ...props } = { ...propsNeeded };
 
 		const elementHandlers = {
 
@@ -135,7 +135,8 @@ export var ElementTB = ( ComposedComponent ) => class extends Component {
 			name: name,
 			label: label,
 			disabled: disabled,
-			className: className
+			className: className,
+			reset: reset
 
 		}
 

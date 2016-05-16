@@ -47,7 +47,7 @@ export default class FeatureDialog extends Component {
 
 		const { className, feature, label, onClick, ...restProps } = this.props; // eslint-disable-line no-unused-vars
 		
-		const cls = Classnames( className, style );
+		const cls = Classnames( className, style.dialog );
 
 		const actions = [
 
@@ -59,7 +59,7 @@ export default class FeatureDialog extends Component {
 
 			<Dialog { ...restProps } className={ cls } actions={ actions } onEscKeyDown={ onClick } onOverlayClick={ onClick } >
 				{ feature && <img src={ feature.properties.image } className={ style.image } /> }
-				{ feature && <p>{ feature.properties.comment }</p> }
+				{ feature && <p className={ style.comment }>{ feature.properties.comment }</p> }
 			</Dialog>
 
 		)

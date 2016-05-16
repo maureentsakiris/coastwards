@@ -78,6 +78,15 @@ class DropzoneTB extends Component {
 
 	}
 
+	componentWillUpdate ( p, s ){
+
+		if( p.elementProps.reset != this.props.elementProps.reset ){
+
+			this._resetDropzone();
+
+		}
+
+	}
 
 	constructor ( props ) {
 
@@ -192,6 +201,7 @@ class DropzoneTB extends Component {
 
 			elementHandlers.onChange( this.validDrops );
 			onDropsValidated( this.validDrops );
+			this.setState( { validating: false } );
 
 			if( !this.validDrops.length ){
 
@@ -204,6 +214,8 @@ class DropzoneTB extends Component {
 	}
 
 	_resetDropzone (){
+
+		console.log( "resetting dropup" );
 
 		this.dropsValidated = [];
 		this.validDrops = [];

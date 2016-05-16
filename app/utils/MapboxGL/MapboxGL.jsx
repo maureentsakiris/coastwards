@@ -267,11 +267,6 @@ export default class MapboxGL extends Component {
 
 				onClick( feature );
 
-				/*new mapboxgl.Popup()
-					.setLngLat( feature.geometry.coordinates )
-					.setHTML( feature.properties.comment )
-					.addTo( this.map );*/
-
 			} );
 
 		}

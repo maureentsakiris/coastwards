@@ -1,7 +1,28 @@
 @import '../../../app/styles/_base';
 
+$border-radius: 0.2rem;
+
 .image{
 
 	max-width: 100%;
+	border-top-left-radius: $border-radius;
+	border-top-right-radius: $border-radius;
+
+}
+
+.comment{
+
+	padding: $layout-gutter-width-sm;
+	color: $palette-grey-700;
+
+}
+
+.dialog{
+
+	&>[role="body"]{
+
+		padding: 0;
+
+	}
 
 }

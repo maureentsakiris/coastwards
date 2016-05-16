@@ -142,8 +142,8 @@ class Upload extends Component {
 				options: { required: true, passesWhen: true, abort: true },
 				label: "Location",
 				description: "Checking image for information on the location it was taken",
-				success: "Yay! We know where that coast is",
-				error: "We can't extract the location from the metadata. (The next version of coastwards will allow you to place the image manually, so stay tuned!)"
+				success: "Awesome!! We found the location",
+				error: "We can't extract the location from the metadata. (The next version of Coastwards will allow you to place the image manually. Sign up to be notified!)"
 			},
 			{
 				methodName: "imageWithFlash",
@@ -174,7 +174,7 @@ class Upload extends Component {
 				},
 				"properties": {
 					"marker-symbol": "marker",
-					"comment": "I used to go to this beach as a child. Since then it has changed so much.",
+					"comment": "I used to go to this beach as a child. Since then it has changed so much!! Daniela, USA",
 					"image": "./uploads/01.jpg"
 				}
 			}, {
@@ -185,7 +185,7 @@ class Upload extends Component {
 				},
 				"properties": {
 					"marker-symbol": "marker",
-					"comment": "I used to go to this beach as a child. Since then it has changed so much.",
+					"comment": "My favorite place on the entire planet. Greeting from France, Esther <3",
 					"image": "./uploads/05.jpg"
 				}
 			} ]
@@ -243,7 +243,7 @@ class Upload extends Component {
 
 					] }
 				/>
-				<FormTB name="upload" className={ clsForm } ref="form" autoSubmit={ false } onReset={ this._onFormReset }>
+				<FormTB name="upload" className={ clsForm } ref="form" autoSubmit={ true } onReset={ this._onFormReset }>
 					<DropzoneTB
 						name="dropzone"
 						ref="dropzone"
@@ -291,17 +291,17 @@ class Upload extends Component {
 
 	}
 
-	_onInValidDrop = ( status, inValidDrop ) => {
+	_onInValidDrop = ( status/*, inValidDrop*/ ) => {
 
 		const { formatMessage } = this.props.intl;
 
-		let prettyStatus = '';
+		let prettyStatus = status.imageHasLocation.message;
 
-		_.each( status, ( stat, index ) => {
+		/*_.each( status, ( stat, index ) => {
 
 			prettyStatus += stat.message;
 
-		} );
+		} );*/
 
 
 		this.context.showDialog( { title: formatMessage( messages.dropzone_drop_invalid_title ), content: prettyStatus } );
@@ -310,7 +310,7 @@ class Upload extends Component {
 
 	_onValidDrop = ( status, validDrop ) => {
 
-		console.log( validDrop );
+		this.context.showSnackbar( { label: status.imageHasLocation.message } );
 		this._goFlying( validDrop.props.file );
 
 	}
