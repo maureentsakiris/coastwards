@@ -30,7 +30,13 @@
 
 }
 
-.noEvents{
+.blockUploadButton{
+
+	display: none;
+
+}
+
+.passEventsToMap{
 
 	pointer-events: none;
 

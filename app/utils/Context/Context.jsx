@@ -32,6 +32,7 @@ export default class Context extends Component {
 		draganddrop: PropTypes.bool,
 		showLoader: PropTypes.func,
 		showDialog: PropTypes.func,
+		getDialogOption: PropTypes.func,
 		showSnackbar: PropTypes.func
 
 	}
@@ -43,6 +44,7 @@ export default class Context extends Component {
 			draganddrop: Modernizr.draganddrop,
 			showLoader: this._showLoader,
 			showDialog: this._showDialog,
+			getDialogOption: this._getDialogOption,
 			showSnackbar: this._showSnackbar
 
 		};
@@ -127,18 +129,24 @@ export default class Context extends Component {
 
 	}
 
+	_getDialogOption = ( option ) => {
+
+		return this.state.dialogOptions[ option ];
+
+	}
+
 	_showDialog = ( o ) => {
 
 		let defaults = _.clone( this.defaultDialogOptions );
 		let options = _.deepExtend( defaults, o );
-		this.setState( { dialogOptions: options } );
+		this.setState( { dialogOptions: options, showingDialog: true } );
 
 	}
 
 	_hideDialog = () => {
 
 		let options = _.extend( this.state.dialogOptions, { active: false } );
-		this.setState( { dialogOptions: options } );
+		this.setState( { dialogOptions: options, showingDialog: false } );
 
 	}
 

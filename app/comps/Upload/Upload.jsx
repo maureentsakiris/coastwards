@@ -85,7 +85,7 @@ class Upload extends Component {
 			e = e || event;
 			e.preventDefault();
 
-			this.setState( { noEvents: false } );
+			this.setState( { isWindowDrag: true } );
 
 		}, false );
 
@@ -94,7 +94,7 @@ class Upload extends Component {
 			e = e || event;
 			e.preventDefault();
 
-			this.setState( { noEvents: true } );
+			this.setState( { isWindowDrag: false } );
 
 		}, false );
 
@@ -112,10 +112,10 @@ class Upload extends Component {
 
 		this.state = {
 
-			noEvents: true,
+			isWindowDrag: false,
 			showDialog: false,
 			feature: undefined,
-			processing: false
+			blockDropzone: false
 
 		} 
 
@@ -125,16 +125,23 @@ class Upload extends Component {
 
 		const { formatMessage/*, locale*/ } = this.props.intl;
 		const { className } = this.props;
-		const { noEvents, showDialog, feature, processing } = this.state;
+		const { isWindowDrag, showDialog, feature, blockDropzone } = this.state;
+		const { getDialogOption } = this.context;
+
+		const showContextDialog = getDialogOption( 'active' );
 
 		const cls = Classnames( style.upload, className );
 		const clsForm = Classnames( style.fill, {
 
-			[ style.noEvents ]: noEvents 
+			[ style.passEventsToMap ]: !isWindowDrag || ( isWindowDrag && showDialog ) || ( isWindowDrag && showContextDialog ) || ( isWindowDrag && blockDropzone )
 
 		} );
 		const clsMap = Classnames( style.fill, style.map );
-		const clsUploadButton = Classnames ( style.uploadButton );
+		const clsUploadButton = Classnames ( style.uploadButton, {
+
+			[ style.blockUploadButton ]: blockDropzone
+
+		} );
 
 		const fileValidations = [
 			{
@@ -173,7 +180,7 @@ class Upload extends Component {
 					"coordinates": [ -77.03238901390978, 38.913188059745586 ]
 				},
 				"properties": {
-					"marker-symbol": "marker",
+					"marker-symbol": "marker-primary-dark",
 					"comment": "I used to go to this beach as a child. Since then it has changed so much!! Daniela, USA",
 					"image": "./uploads/01.jpg"
 				}
@@ -184,7 +191,7 @@ class Upload extends Component {
 					"coordinates": [ -122.414, 37.776 ]
 				},
 				"properties": {
-					"marker-symbol": "marker",
+					"marker-symbol": "marker-primary-dark",
 					"comment": "My favorite place on the entire planet. Greeting from France, Esther <3",
 					"image": "./uploads/05.jpg"
 				}
@@ -204,7 +211,12 @@ class Upload extends Component {
 			type: 'symbol',
 			layout: {
 
-				'icon-image': "{marker-symbol}-11"
+				'icon-image': "{marker-symbol}"
+
+			},
+			paint:{
+
+				'icon-color' : '#F4433A'
 
 			}
 
@@ -236,7 +248,7 @@ class Upload extends Component {
 							name: 'markers',
 							source: markerSource,
 							layer: markerLayer,
-							position: 'place_label_other',
+							position: 'country_label_1',
 							onClick: this._showDialog
 
 						}
@@ -254,7 +266,7 @@ class Upload extends Component {
 						warning_accept={ formatMessage( messages.dropzone_warning_accept ) }
 						required={ true }		
 						fileValidations={ fileValidations }
-						disabled={ false }
+						disabled={ blockDropzone }
 						zoneProps={ {
 
 							clsZone: style.zone,
@@ -271,7 +283,7 @@ class Upload extends Component {
 						onDropsValidated= { this._onDropsValidated }
 					/>
 				</FormTB>
-				<TooltipButton tooltip={ formatMessage( messages.button_upload_image ) } tooltipDelay={ 1000 } icon="file_upload" floating accent disabled={ processing } className={ clsUploadButton } onClick={ this._openInput } />
+				<TooltipButton tooltip={ formatMessage( messages.button_upload_image ) } tooltipDelay={ 1000 } icon="file_upload" floating accent className={ clsUploadButton } onClick={ this._openInput } />
 				<FeatureDialog label={ formatMessage( messages.mapbox_dialog_action_label ) } onClick={ this._hideDialog } active={ showDialog } feature={ feature } />
 			</div>
 
@@ -281,13 +293,13 @@ class Upload extends Component {
 
 	_onFormReset = () => {
 
-		this.setState( { processing: false } );
+		this.setState( { blockDropzone: false } );
 
 	}
 
 	_onDropsAccepted = ( ) => {
 
-		this.setState( { processing: true } );
+		this.setState( { blockDropzone: true } );
 
 	}
 
@@ -344,7 +356,7 @@ class Upload extends Component {
 					"coordinates": [ specs.long, specs.lat ]
 				},
 				"properties": {
-					"marker-symbol": "marker",
+					"marker-symbol": "marker-accent",
 					"comment": "",
 					"image": validDrop.preview
 				}
@@ -365,7 +377,7 @@ class Upload extends Component {
 			type: 'symbol',
 			layout: {
 
-				'icon-image': "{marker-symbol}-11"
+				'icon-image': "{marker-symbol}"
 
 			}
 
@@ -376,7 +388,7 @@ class Upload extends Component {
 			name: id.toString(),
 			source: markerSource,
 			layer: markerLayer,
-			position: 'place_label_other',
+			position: 'country_label_1',
 			onClick: this._showDialog
 
 		}
@@ -397,7 +409,7 @@ class Upload extends Component {
 
 	_resetUploadButton = ( ) => {
 
-		this.setState( { processing: false } );
+		this.setState( { blockDropzone: false } );
 
 	}
 
@@ -409,13 +421,13 @@ class Upload extends Component {
 
 	_showDialog = ( feature ) => {
 
-		this.setState( { feature: feature, showDialog: true } );
+		this.setState( { feature: feature, showDialog: true, blockDropzone: true } );
 
 	}
 
 	_hideDialog = ( ) => {
 
-		this.setState( { showDialog: false } );
+		this.setState( { showDialog: false, blockDropzone: false } );
 
 	}
 
@@ -438,7 +450,8 @@ Upload.contextTypes = {
 
 	showDialog: PropTypes.func,
 	showLoader: PropTypes.func,
-	showSnackbar: PropTypes.func
+	showSnackbar: PropTypes.func,
+	getDialogOption: PropTypes.func
 
 };
 
