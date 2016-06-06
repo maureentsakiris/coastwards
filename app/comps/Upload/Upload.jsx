@@ -98,6 +98,7 @@ class Upload extends Component {
 
 		}, false );
 
+
 	}
 
 	constructor ( props ) {

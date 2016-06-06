@@ -182,7 +182,7 @@ class DropzoneTB extends Component {
 		let { onValidDrop, onInValidDrop, onDropsValidated, elementHandlers } = this.props;
 
 		if( isValidDrop ){
-
+			
 			let drop = _.extend( comp.props.file, comp.state.validations );
 			this.validDrops = this.validDrops.concat( [ drop ] );
 			onValidDrop( status, comp );

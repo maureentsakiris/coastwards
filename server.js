@@ -5,6 +5,7 @@ const path = require( 'path' );
 const httpProxy = require( 'http-proxy' );
 const helmet = require( 'helmet' );
 
+const contributions = require( './server/contributions' );
 
 var SERVER = { PORT: 3000 };
 
@@ -25,7 +26,7 @@ default:
 const isProduction = process.env.NODE_ENV === 'production';
 const port = isProduction ? process.env.PORT : 8888;
 const publicPath = path.resolve( __dirname, 'public' );
-const uploadsPath = path.resolve( __dirname, 'uploads' );
+//const uploadsPath = path.resolve( __dirname, 'uploads' );
 
 const proxy = httpProxy.createProxyServer();
 const app = express();
@@ -41,12 +42,7 @@ app.get( '/', function ( req, res ) {
 
 } );
 
-app.post( '/', function ( req, res ) {
-
-	res.send( 'Got a POST request' );
-
-} );
-
+app.use( '/contributions', contributions );
 
 
 if ( !isProduction ) {

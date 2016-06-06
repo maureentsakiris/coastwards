@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import _ from 'underscore';
-/*import http from 'http';*/
+import http from 'http';
 import Classnames from 'classnames';
 
 import style from './_styleFormTB';
@@ -212,24 +212,19 @@ export default class FormTB extends Component {
 		this._updateModel();
 
 
-		/*console.log( 'Form is valid:', this.state.formIsValid );
-		console.log( "model", this.model );*/
+		console.log( 'Form is valid:', this.state.formIsValid );
+		console.log( "model", this.model );
 
-		setTimeout( ( ) => {
-			
-			this._resetForm();
 
-		}, 1000 );
-
-		/*let options = {
+		let options = {
   
 			hostname: '134.245.149.30',
 			port: 8888,
-			path: '/',
+			path: '/contributions/upload',
 			method: 'POST',
 			headers: {
 				
-				'Content-Type': 'application/x-www-form-urlencoded',
+				'Content-Type': 'application/json',
 				'Content-Length': this.model.length
 
 			}
@@ -250,21 +245,24 @@ export default class FormTB extends Component {
 
 			res.on( 'end', () => {
 
-				console.log( 'No more data in response.' )
+				console.log( 'No more data in response. Resetting form.' );
+				this._resetForm();
 
 			} )
 
-		} );*/
+		} );
 
-		/*req.on( 'error', ( e ) => {
+		req.on( 'error', ( e ) => {
 
 			console.log( `problem with request: ${e.message}` );
 
 		} );
 
+		//console.log( JSON.stringify( this.model ) ); 
+
 		// write data to request body
-		req.write( this.model );
-		req.end();*/
+		req.write( JSON.stringify( this.model ), 'utf8' );
+		req.end();
 
 	}
 
