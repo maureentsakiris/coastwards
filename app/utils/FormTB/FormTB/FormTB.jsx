@@ -236,33 +236,45 @@ export default class FormTB extends Component {
 	_sendRequest ( ){
 
 
-		const formData = new FormData();
+		let formData = new FormData();
 
-		for ( var key in this.model ) {
+		/*for ( var key in this.model ) {
 
 
 			if( _.isArray( this.model[ key ] ) ){
 
-				console.log( ' we have a value that is an array ' );
+				_.each( this.model[ key ], ( entry ) => {
+
+					formData.append( key + '[ ]', this.model[ key ] );
+
+				} );
 
 			}
 
+			console.log( this.model[ key ] );
+
 			formData.append( key, this.model[ key ] );
 
-		}
+
+		}*/
+
+		console.log( this.model.dropzone[ 0 ] );
+
+		formData.append( 'figo', 'is a dog' );
+		formData.append( 'img', this.model.dropzone[ 0 ], 'YES.JPG' );
 
 		let options = {
   
 			hostname: '127.0.0.1',
 			port: 8888,
 			path: '/contributions/upload',
-			method: 'POST',
+			method: 'POST'/*,
 			headers: {
 				
-				'Content-Type': 'application/json',
-				'Content-Length': this.model.length
+				'Content-Type': 'application/json'
 
-			}
+			}*/
+
 		};
 
 		
@@ -273,7 +285,7 @@ export default class FormTB extends Component {
 
 				if( res.statusCode < 200 || res.statusCode > 299 ){
 
-					reject( res.statusMessage );
+					reject( 'FormTB/_sendRequest/res.statusCode/' + res.statusCode );
 
 				}
 
@@ -293,12 +305,12 @@ export default class FormTB extends Component {
 
 			} );
 
-			req.write( formData, 'utf8' );
+			req.write( formData );
 			req.end();
 
 			req.on( 'error', ( e ) => {
 
-				reject( e.message );
+				reject( 'FormTB/_sendRequest/req.on(error)/' + e.message );
 
 			} );
 

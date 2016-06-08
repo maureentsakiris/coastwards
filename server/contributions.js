@@ -1,8 +1,8 @@
 const express = require( 'express' );
 const router = express.Router();
 const mysql = require( 'mysql' );
-const bodyParser = require( 'body-parser' );
-const fs = require( 'fs' );
+//var bodyParser = require( 'body-parser' );
+var formidable = require( 'formidable' );
 
 
 const pool  = mysql.createPool( {
@@ -14,11 +14,37 @@ const pool  = mysql.createPool( {
 
 } );
 
-const jsonParser = bodyParser.json();
+//var jsonParser = bodyParser.json();
 
-router.post( '/upload', jsonParser, function ( req, res ) {
+router.post( '/upload', function ( req, res ) {
 
-	var contribution = req.body.dropzone[ 0 ];
+	var form = new formidable.IncomingForm();
+
+	form.parse( req, function ( err, fields, files ) {
+		
+		console.log( fields );
+
+	} );
+
+	console.log
+
+	form.on( 'fileBegin', function ( name, file ){
+
+		console.log( 'name: ', name );
+		console.log( file );
+		//file.path = __dirname + '/uploads/' + file.name;
+
+	} );
+
+	form.on( 'file', function ( name, file ){
+
+		console.log( 'Uploaded ' + file.name );
+
+	} );
+
+	res.send( req.body );
+
+	/*var contribution = req.body.dropzone[ 0 ];
 	var ip = req.headers[ 'x-forwarded-for' ] || req.connection.remoteAddress;
 	var coords = contribution.imageHasLocation.result.specs;
 
@@ -62,7 +88,7 @@ router.post( '/upload', jsonParser, function ( req, res ) {
 
 		} );
 
-	} );
+	} );*/
 
 
 } );
