@@ -324,7 +324,7 @@ class Upload extends Component {
 	_onValidDrop = ( status, validDrop ) => {
 
 		this.context.showSnackbar( { label: status.imageHasLocation.message } );
-		this._goFlying( validDrop.props.file );
+		this._goFlying( validDrop );
 
 	}
 

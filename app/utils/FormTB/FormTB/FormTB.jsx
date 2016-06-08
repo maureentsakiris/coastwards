@@ -211,14 +211,29 @@ export default class FormTB extends Component {
 		this.context.showLoader( true );
 		this._updateModel();
 
-
 		console.log( 'Form is valid:', this.state.formIsValid );
 		console.log( "model", this.model );
 
+		this._sendRequest()
+			.then( ( body ) => {
+
+				console.log( body );
+				this._resetForm();
+				return body;
+
+			} )
+			.catch( ( err ) => console.log( err ) );
+
+	}
+
+
+	// https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Promise
+	// http://www.tomas-dvorak.cz/posts/nodejs-request-without-dependencies/
+	_sendRequest ( ){
 
 		let options = {
   
-			hostname: '134.245.149.30',
+			hostname: '127.0.0.1',
 			port: 8888,
 			path: '/contributions/upload',
 			method: 'POST',
@@ -230,39 +245,44 @@ export default class FormTB extends Component {
 			}
 		};
 
-		let req = http.request( options, ( res ) => {
+		
+		return new Promise( ( resolve, reject ) => {
 
-			console.log( `STATUS: ${res.statusCode}` );
-			//console.log( `HEADERS: ${JSON.stringify( res.headers )}` );
+			let req = http.request( options, ( res ) => {
 
-			//res.setEncoding( 'utf8' );
 
-			res.on( 'data', ( chunk ) => { 
+				if( res.statusCode < 200 || res.statusCode > 299 ){
 
-				console.log( `BODY: ${ chunk }` );
+					reject( res.statusMessage );
+
+				}
+
+				const body = [ ];
+
+				res.on( 'data', ( chunk ) => { 
+
+					body.push( chunk );
+
+				} );
+
+				res.on( 'end', ( ) => {
+
+					resolve( body.join( '' ) );
+
+				} );
 
 			} );
 
-			res.on( 'end', () => {
+			req.write( JSON.stringify( this.model ), 'utf8' );
+			req.end();
 
-				console.log( 'No more data in response. Resetting form.' );
-				this._resetForm();
+			req.on( 'error', ( e ) => {
 
-			} )
+				reject( e.message );
 
-		} );
-
-		req.on( 'error', ( e ) => {
-
-			console.log( `problem with request: ${e.message}` );
+			} );
 
 		} );
-
-		//console.log( JSON.stringify( this.model ) ); 
-
-		// write data to request body
-		req.write( JSON.stringify( this.model ), 'utf8' );
-		req.end();
 
 	}
 

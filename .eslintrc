@@ -40,5 +40,8 @@
         "promise/always-return": 2,
         "promise/always-catch": 2, // deprecated
         "promise/catch-or-return": 2
+	},
+	"globals": {
+		"Promise": true
 	}
 }

@@ -28,17 +28,12 @@ export default class DropzoneTBFile extends Component {
 	componentWillMount ( ){
 
 		const me = this;
-		setTimeout( ( ) => {
-			
-			EXIF.getData( this.props.file, function ( ) {
+		EXIF.getData( this.props.file, function ( ) {
 
-				let tags = EXIF.getAllTags( this );
-				// console.log( tags );
-				me.setState( { tags: tags } );
+			let tags = EXIF.getAllTags( this );
+			me.setState( { tags: tags } );
 
-			} );
-
-		}, 300 );
+		} );
 
 	}
 
@@ -55,8 +50,6 @@ export default class DropzoneTBFile extends Component {
 	constructor ( props ) {
 
 		super ( props );
-
-		this.EXIF;
 
 		this.state = {
 

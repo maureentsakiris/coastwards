@@ -10,7 +10,7 @@ const pool  = mysql.createPool( {
 	host: 'localhost',
 	user: 'root',	
 	password: 'c0a37ward3!',
-	database : 'coastwards_schema'
+	database : 'coastwards'
 
 } );
 
@@ -22,12 +22,10 @@ router.post( '/upload', jsonParser, function ( req, res ) {
 	var ip = req.headers[ 'x-forwarded-for' ] || req.connection.remoteAddress;
 	var coords = contribution.imageHasLocation.result.specs;
 
-	console.log( req.body.dropzone );
-
 	//INSERT INTO `coastwards_schema`.`contributions` (`contribution_filename`, `contribution_ip`, `contribution_long`, `contribution_lat`, `contribution_location_manual`) VALUES ('03.jpg', 'office', 'asdf', 'sadf', '0');
 	var sql = 'INSERT INTO ??.?? ( ??, ??, ??, ??, ??) VALUES ( ?, ?, ?, ?, ?)';
 	var inserts = [ 
-		'coastwards_schema', 
+		'coastwards', 
 		'contributions', 
 		'contribution_filename', 
 		'contribution_ip', 
@@ -49,9 +47,16 @@ router.post( '/upload', jsonParser, function ( req, res ) {
 		// Use the connection 
 		connection.query( query, function ( err, rows ) {
 
-			console.log( err );
-			console.log( rows );
-			res.json( rows );
+			if( err ){
+
+				res.send( err );
+
+			}else{
+
+				console.log( rows )
+				res.json( rows );
+
+			}
 
 			connection.release();
 
@@ -65,7 +70,7 @@ router.post( '/upload', jsonParser, function ( req, res ) {
 
 router.get( '/geojson', function ( req, res ) {
 
-	pool.getConnection( function ( err, connection ) {
+	/*pool.getConnection( function ( err, connection ) {
 
 		connection.query( 'SELECT * FROM contributions_schema', function ( err, rows ) {
 
@@ -74,7 +79,7 @@ router.get( '/geojson', function ( req, res ) {
 
 		} );
 
-	} );
+	} );*/
 
 } );
 
