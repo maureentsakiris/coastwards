@@ -35,6 +35,8 @@ export default class DropzoneTBFile extends Component {
 
 		} );
 
+
+
 	}
 
 	componentWillUpdate ( p, s ){

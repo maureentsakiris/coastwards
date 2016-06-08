@@ -8,6 +8,10 @@ import DropzoneTBZone from './DropzoneTBZone';
 
 import style from './_styleDropzoneTB';
 
+/*
+ * TODO: Files added should not validate twice (Not needed for coastwards) See: _createDropZoneFiles
+*/ 
+
 class DropzoneTB extends Component {
 
 	static propTypes = {
@@ -74,7 +78,8 @@ class DropzoneTB extends Component {
 
 	static contextTypes = {
 
-		showSnackbar: PropTypes.func
+		showSnackbar: PropTypes.func,
+		logError: PropTypes.func
 
 	}
 
@@ -184,7 +189,7 @@ class DropzoneTB extends Component {
 
 		// WEIRD JSON.stringify bug (?). If exifdata is not ommited and readded stringify removes part of the object
 		let file = _.omit( comp.props.file, [ 'exifdata', 'iptcdata' ] );
-		let drop = _.extend( file, comp.state.validations, comp.props.file.exifdata, comp.props.file.iptcdata );
+		let drop = _.extend( file, comp.state.validations, { exif: comp.props.file.exifdata }, { iptcdata: comp.props.file.iptcdata } );
 
 		if( isValidDrop ){
 
@@ -202,6 +207,8 @@ class DropzoneTB extends Component {
 		let allDropsValidated = _.chain( filesDropped ).difference( this.dropsValidated ).size().value() === 0 ? true : false;
 
 		if( allDropsValidated ){
+
+			console.log( this.validDrops );
 
 			elementHandlers.onChange( this.validDrops );
 			onDropsValidated( this.validDrops );
@@ -241,9 +248,48 @@ class DropzoneTB extends Component {
 
 	}
 
+	_openInput ( ){
+
+		this.refs.dropzoneInput.click();
+
+	}
+
 	_onDrop ( e ) {
 
-		const droppedFiles = e.dataTransfer ? e.dataTransfer.files : e.currentTarget.files;
+		this._promiseDroppedFiles( e )
+		.then( this._promiseAccepted )
+		.then( this._promiseMax )
+		.then( this._promiseValidation )
+		.catch( ( err ) => {
+
+			this.context.logError( err );
+
+		} );	
+
+	}
+
+	_promiseDroppedFiles ( e ){
+
+		return new Promise( ( resolve, reject ) => {
+
+			const droppedFiles = e.dataTransfer ? e.dataTransfer.files : e.currentTarget.files;
+
+			if( droppedFiles.length > 0 ){
+
+				resolve( droppedFiles );
+
+			}else{
+
+				reject( 'Method _getDroppedFiles in DropzoneTB returned no results' );
+
+			}
+
+		} );
+
+	}
+
+	_promiseAccepted = ( droppedFiles ) => {
+
 		let files = [];
 
 		_.each( droppedFiles, ( file ) => {
@@ -268,6 +314,12 @@ class DropzoneTB extends Component {
 
 		} )
 
+		return files;
+
+	}
+
+	_promiseMax = ( files ) => {
+
 		let allFiles = _.union( this.state.filesDropped, files );
 
 		if( allFiles.length > this.props.max ) {
@@ -277,30 +329,29 @@ class DropzoneTB extends Component {
 
 		}
 
+		return allFiles;
+
+	}
+
+	_promiseValidation = ( allFiles ) => {
+
+
 		if( allFiles.length > 0 ){
 
-			this.setState( ( state ) => {
+			this.setState( {
 
-				return { 
-
-					validating: true,
-					filesDropped: _.extend( state.filesDropped, allFiles )
-
-				} 
+				validating: true,
+				filesDropped: allFiles
 
 			}, this.props.onDropsAccepted( allFiles ) );
+
+			// --> triggeres render + _createDropZoneFiles/validation
 
 		}/*else{
 
 			this.setState( { validating: false } );
 
 		}*/
-
-	}
-
-	_openInput ( ){
-
-		this.refs.dropzoneInput.click();
 
 	}
 

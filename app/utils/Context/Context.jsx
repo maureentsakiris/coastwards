@@ -15,6 +15,12 @@ Modernizr.addTest( 'draganddrop', function () {
 
 	return true;
 
+} );
+
+Modernizr.addTest( 'formdata', function () {
+
+	return window.FormData;
+
 } )
 
 
@@ -33,7 +39,8 @@ export default class Context extends Component {
 		showLoader: PropTypes.func,
 		showDialog: PropTypes.func,
 		getDialogOption: PropTypes.func,
-		showSnackbar: PropTypes.func
+		showSnackbar: PropTypes.func,
+		logError: PropTypes.func
 
 	}
 
@@ -45,7 +52,8 @@ export default class Context extends Component {
 			showLoader: this._showLoader,
 			showDialog: this._showDialog,
 			getDialogOption: this._getDialogOption,
-			showSnackbar: this._showSnackbar
+			showSnackbar: this._showSnackbar,
+			logError: this._logError
 
 		};
 
@@ -164,6 +172,12 @@ export default class Context extends Component {
 
 		let options = _.extend( this.state.snackbarOptions, { active: false } );
 		this.setState( { snackbarOptions: options } );
+
+	}
+
+	_logError = ( error ) => {
+
+		console.error( error );
 
 	}
 

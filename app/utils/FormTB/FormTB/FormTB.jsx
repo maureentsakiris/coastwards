@@ -35,7 +35,8 @@ export default class FormTB extends Component {
 
 	static contextTypes = {
 
-		showLoader: PropTypes.func
+		showLoader: PropTypes.func,
+		logError: PropTypes.func
 		
 	}
 
@@ -217,12 +218,15 @@ export default class FormTB extends Component {
 		this._sendRequest()
 			.then( ( body ) => {
 
-				console.log( body );
 				this._resetForm();
 				return body;
 
 			} )
-			.catch( ( err ) => console.log( err ) );
+			.catch( ( err ) => {
+
+				this.context.logError( err );
+
+			} );
 
 	}
 
@@ -230,6 +234,22 @@ export default class FormTB extends Component {
 	// https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Promise
 	// http://www.tomas-dvorak.cz/posts/nodejs-request-without-dependencies/
 	_sendRequest ( ){
+
+
+		const formData = new FormData();
+
+		for ( var key in this.model ) {
+
+
+			if( _.isArray( this.model[ key ] ) ){
+
+				console.log( ' we have a value that is an array ' );
+
+			}
+
+			formData.append( key, this.model[ key ] );
+
+		}
 
 		let options = {
   
@@ -273,7 +293,7 @@ export default class FormTB extends Component {
 
 			} );
 
-			req.write( JSON.stringify( this.model ), 'utf8' );
+			req.write( formData, 'utf8' );
 			req.end();
 
 			req.on( 'error', ( e ) => {
