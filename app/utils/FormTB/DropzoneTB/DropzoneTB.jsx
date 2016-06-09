@@ -279,7 +279,7 @@ class DropzoneTB extends Component {
 
 			}else{
 
-				reject( 'Method _getDroppedFiles in DropzoneTB returned no results' );
+				reject( Error( 'DropzoneTB/_promiseDroppedFiles/droppedFiles.length = 0' ) );
 
 			}
 

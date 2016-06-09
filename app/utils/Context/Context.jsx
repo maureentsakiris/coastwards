@@ -177,7 +177,8 @@ export default class Context extends Component {
 
 	_logError = ( error ) => {
 
-		this._showSnackbar( { label: error, type: 'warning' } );
+		console.log( error );
+		//this._showSnackbar( { label: error, type: 'warning' } );
 
 	}
 

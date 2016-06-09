@@ -28,14 +28,18 @@ export default class DropzoneTBFile extends Component {
 	componentWillMount ( ){
 
 		const me = this;
-		EXIF.getData( this.props.file, function ( ) {
 
-			let tags = EXIF.getAllTags( this );
-			me.setState( { tags: tags } );
+		// So the ripple effect can run through
+		setTimeout( () => {
 
-		} );
+			EXIF.getData( this.props.file, function ( ) {
 
+				let tags = EXIF.getAllTags( this );
+				me.setState( { tags: tags } );
 
+			} );
+
+		}, 300 );
 
 	}
 

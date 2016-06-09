@@ -323,7 +323,7 @@ class Upload extends Component {
 
 	_onValidDrop = ( status, validDrop ) => {
 
-		this.context.showSnackbar( { label: status.imageHasLocation.message } );
+		//this.context.showSnackbar( { label: status.imageHasLocation.message } );
 		this._goFlying( validDrop );
 
 	}
@@ -334,8 +334,8 @@ class Upload extends Component {
 		this.map.flyTo( { 
 
 			center: [ specs.long, specs.lat ], 
-			zoom: 8,
-			speed: 0.8, // make the flying slow
+			zoom: 3,
+			speed: 0.5, // make the flying slow
 			curve: 1, // change the speed at which it zooms out
 			easing: function ( t ) {
 

@@ -233,13 +233,49 @@ export default class FormTB extends Component {
 
 
 	// https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Promise
+	// http://www.tomas-dvorak.cz/posts/nodejs-request-without-dependencies/
 	_sendRequest ( ){
 
 
 		let formData = new FormData();
 
+		/*for ( var key in this.model ) {
+
+
+			if( _.isArray( this.model[ key ] ) ){
+
+				_.each( this.model[ key ], ( entry ) => {
+
+					formData.append( key + '[ ]', this.model[ key ] );
+
+				} );
+
+			}
+
+			console.log( this.model[ key ] );
+
+			formData.append( key, this.model[ key ] );
+
+
+		}*/
+
 		formData.append( 'figo', 'is a dog' );
 		formData.append( 'img', this.model.dropzone[ 0 ], 'YES.JPG' );
+
+		/*let options = {
+  
+			hostname: '127.0.0.1',
+			port: 8888,
+			path: '/contributions/upload',
+			method: 'POST',
+			headers: {
+				
+				'Content-Type': 'application/json'
+
+			}
+		};*/
+
+
 		
 		return new Promise( ( resolve, reject ) => {
 
@@ -249,7 +285,7 @@ export default class FormTB extends Component {
 
 			xhr.addEventListener( 'error', ( e ) => {
 
-				reject( Error( 'FormTB/_sendRequest/xhr.on(error)/' + e.statusText ) );
+				reject( 'FormTB/_sendRequest/xhr.on(error)/' + e.statusText );
 
 			}, false );
 
@@ -266,6 +302,40 @@ export default class FormTB extends Component {
 			}, false );
 
 			xhr.send( formData );
+
+/*			let req = http.request( options, ( res ) => {
+
+
+				if( res.statusCode < 200 || res.statusCode > 299 ){
+
+					reject( 'FormTB/_sendRequest/res.statusCode/' + res.statusCode );
+
+				}
+
+				const body = [ ];
+
+				res.on( 'data', ( chunk ) => { 
+
+					body.push( chunk );
+
+				} );
+
+				res.on( 'end', ( ) => {
+
+					resolve( body.join( '' ) );
+
+				} );
+
+			} );
+
+			req.write( formData );
+			req.end();
+
+			req.on( 'error', ( e ) => {
+
+				reject( 'FormTB/_sendRequest/req.on(error)/' + e.message );
+
+			} );*/
 
 		} );
 

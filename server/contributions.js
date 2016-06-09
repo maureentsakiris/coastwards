@@ -3,6 +3,7 @@ const router = express.Router();
 const mysql = require( 'mysql' );
 var formidable = require( 'formidable' );
 var path = require( 'path' );
+var jimp = require( 'jimp' );
 
 
 const pool  = mysql.createPool( {
@@ -14,30 +15,77 @@ const pool  = mysql.createPool( {
 
 } );
 
+var form = new formidable.IncomingForm();
+form.uploadDir = path.join( __dirname, '../public/uploads' );
+form.keepExtensions = true;
+form.type = 'multipart';
+
+var _promiseFormidable = ( req ) => {
+
+	return new Promise( ( resolve, reject ) => {
+
+		form.parse( req, function ( err ) {
+
+			if( err ){
+
+				reject( Error( 'contribution/_formidable/parse(error)/' + err ) );
+
+			}
+
+		} );
+
+		form.on( 'error', function ( err ){
+
+			reject( Error( 'contribution/_formidable/on(error)/' + err ) );
+
+		} );
+
+		form.on( 'aborted', function ( err ){
+
+			reject( Error( 'contribution/_formidable/on(aborted)/' + err ) );
+
+		} );
+
+		form.on( 'end', function ( err ){
+
+			resolve( this.openedFiles );
+
+		} );
+
+	} );
+
+}
+
+
 router.post( '/upload', function ( req, res ) {
 
-	var form = new formidable.IncomingForm();
-	form.uploadDir = path.join( __dirname, '../public/uploads' );
-	form.keepExtensions = true;
-	form.type = 'multipart';
+	_promiseFormidable( req )
+	.then( ( openedFiles ) => {
 
-	form.parse( req );
+		var flag = jimp.read( openedFiles[ 0 ] )
+		.then( function ( file ) {
 
-	form.on( 'error', function ( err ){
+			var flag = file.resize( 500, 500 );
 
-		//file.path = __dirname + '/uploads/' + file.name;
+			console.log( 'return value of resize: ', flag );
 
-	} );
+			return file.resize( 500, 500 );
 
-	form.on( 'fileBegin', function ( name, file ){
+		} )
+		.catch( ( err ) => { 
 
-		//file.path = __dirname + '/uploads/' + file.name;
+			throw err;
 
-	} );
+		} );
 
-	form.on( 'end', function ( ){
+		console.log( 'return value of jimp: ', flag );
 
-		res.send( 'Well done!' );
+		return openedFiles;
+
+	} )
+	.catch( ( err ) => {
+
+		console.log( err );
 
 	} );
 
