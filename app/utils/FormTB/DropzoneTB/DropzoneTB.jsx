@@ -83,7 +83,7 @@ class DropzoneTB extends Component {
 
 	}
 
-	componentWillUpdate ( p, s ){
+	componentWillUpdate ( p ){
 
 		if( p.elementProps.reset != this.props.elementProps.reset ){
 
@@ -188,17 +188,18 @@ class DropzoneTB extends Component {
 
 
 		// WEIRD JSON.stringify bug (?). If exifdata is not ommited and readded stringify removes part of the object
-		let file = _.omit( comp.props.file, [ 'exifdata', 'iptcdata' ] );
-		let drop = _.extend( file, comp.state.validations, { exif: comp.props.file.exifdata }, { iptcdata: comp.props.file.iptcdata } );
+		/*let file = _.omit( comp.props.file, [ 'exifdata', 'iptcdata' ] );
+		let drop = _.extend( file, comp.state.validations, { exif: comp.props.file.exifdata }, { iptcdata: comp.props.file.iptcdata } );*/
+
 
 		if( isValidDrop ){
 
-			this.validDrops = this.validDrops.concat( [ drop ] );
-			onValidDrop( status, drop );
+			this.validDrops = this.validDrops.concat( [ comp.props.file ] );
+			onValidDrop( status, comp );
 
 		}else{
 
-			onInValidDrop( status, drop );
+			onInValidDrop( status, comp );
 
 		}
 
@@ -207,8 +208,6 @@ class DropzoneTB extends Component {
 		let allDropsValidated = _.chain( filesDropped ).difference( this.dropsValidated ).size().value() === 0 ? true : false;
 
 		if( allDropsValidated ){
-
-			console.log( this.validDrops );
 
 			elementHandlers.onChange( this.validDrops );
 			onDropsValidated( this.validDrops );
@@ -226,7 +225,7 @@ class DropzoneTB extends Component {
 
 	_resetDropzone (){
 
-		console.log( "resetting dropup" );
+		//console.log( "resetting dropup" );
 
 		this.dropsValidated = [];
 		this.validDrops = [];

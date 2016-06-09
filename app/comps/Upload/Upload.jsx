@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { defineMessages, injectIntl, intlShape } from 'react-intl';
 import Classnames from 'classnames';
-import _ from 'underscore';
+/*import _ from 'underscore';*/
 import { Button } from 'react-toolbox/lib/button';
 import Tooltip from 'react-toolbox/lib/tooltip';
 const TooltipButton = Tooltip( Button );
@@ -330,7 +330,7 @@ class Upload extends Component {
 
 	_goFlying = ( validDrop ) => {
 
-		let specs = validDrop.imageHasLocation.result.specs;
+		let specs = validDrop.state.validations.imageHasLocation.result.specs;
 		this.map.flyTo( { 
 
 			center: [ specs.long, specs.lat ], 

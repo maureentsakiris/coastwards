@@ -212,13 +212,14 @@ export default class FormTB extends Component {
 		this.context.showLoader( true );
 		this._updateModel();
 
-		console.log( 'Form is valid:', this.state.formIsValid );
-		console.log( "model", this.model );
+		/*console.log( 'Form is valid:', this.state.formIsValid );
+		console.log( "model", this.model );*/
 
 		this._sendRequest()
 			.then( ( body ) => {
 
 				this._resetForm();
+				console.log( body );
 				return body;
 
 			} )
@@ -258,29 +259,51 @@ export default class FormTB extends Component {
 
 		}*/
 
-		console.log( this.model.dropzone[ 0 ] );
-
 		formData.append( 'figo', 'is a dog' );
 		formData.append( 'img', this.model.dropzone[ 0 ], 'YES.JPG' );
 
-		let options = {
+		/*let options = {
   
 			hostname: '127.0.0.1',
 			port: 8888,
 			path: '/contributions/upload',
-			method: 'POST'/*,
+			method: 'POST',
 			headers: {
 				
 				'Content-Type': 'application/json'
 
-			}*/
+			}
+		};*/
 
-		};
 
 		
 		return new Promise( ( resolve, reject ) => {
 
-			let req = http.request( options, ( res ) => {
+			var xhr = new XMLHttpRequest();
+
+			xhr.open( 'POST', '/contributions/upload', true );
+
+			xhr.addEventListener( 'error', ( e ) => {
+
+				reject( 'FormTB/_sendRequest/xhr.on(error)/' + e.statusText );
+
+			}, false );
+
+			xhr.addEventListener( 'load', ( e ) => {
+
+				resolve( 'FormTB/_sendRequest/xhr.on(load)/' + e.currentTarget.statusText );
+
+			}, false );
+
+			xhr.upload.addEventListener( 'progress', ( e ) => {
+
+				console.log( e.loaded );
+
+			}, false );
+
+			xhr.send( formData );
+
+/*			let req = http.request( options, ( res ) => {
 
 
 				if( res.statusCode < 200 || res.statusCode > 299 ){
@@ -312,7 +335,7 @@ export default class FormTB extends Component {
 
 				reject( 'FormTB/_sendRequest/req.on(error)/' + e.message );
 
-			} );
+			} );*/
 
 		} );
 

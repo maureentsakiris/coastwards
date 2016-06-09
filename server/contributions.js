@@ -1,8 +1,8 @@
 const express = require( 'express' );
 const router = express.Router();
 const mysql = require( 'mysql' );
-//var bodyParser = require( 'body-parser' );
 var formidable = require( 'formidable' );
+var path = require( 'path' );
 
 
 const pool  = mysql.createPool( {
@@ -14,35 +14,33 @@ const pool  = mysql.createPool( {
 
 } );
 
-//var jsonParser = bodyParser.json();
-
 router.post( '/upload', function ( req, res ) {
 
 	var form = new formidable.IncomingForm();
+	form.uploadDir = path.join( __dirname, '../public/uploads' );
+	form.keepExtensions = true;
+	form.type = 'multipart';
 
-	form.parse( req, function ( err, fields, files ) {
-		
-		console.log( fields );
+	form.parse( req );
 
-	} );
+	form.on( 'error', function ( err ){
 
-	console.log
-
-	form.on( 'fileBegin', function ( name, file ){
-
-		console.log( 'name: ', name );
-		console.log( file );
 		//file.path = __dirname + '/uploads/' + file.name;
 
 	} );
 
-	form.on( 'file', function ( name, file ){
+	form.on( 'fileBegin', function ( name, file ){
 
-		console.log( 'Uploaded ' + file.name );
+		//file.path = __dirname + '/uploads/' + file.name;
 
 	} );
 
-	res.send( req.body );
+	form.on( 'end', function ( ){
+
+		res.send( 'Well done!' );
+
+	} );
+
 
 	/*var contribution = req.body.dropzone[ 0 ];
 	var ip = req.headers[ 'x-forwarded-for' ] || req.connection.remoteAddress;
