@@ -216,11 +216,11 @@ export default class FormTB extends Component {
 		console.log( "model", this.model );*/
 
 		this._sendRequest()
-			.then( ( body ) => {
+			.then( ( response ) => {
 
 				this._resetForm();
-				console.log( body );
-				return body;
+				console.log( response );
+				return response;
 
 			} )
 			.catch( ( err ) => {
@@ -255,7 +255,7 @@ export default class FormTB extends Component {
 
 			xhr.addEventListener( 'load', ( e ) => {
 
-				resolve( 'FormTB/_sendRequest/xhr.on(load)/' + e.currentTarget.statusText );
+				resolve( e.currentTarget.response );
 
 			}, false );
 
