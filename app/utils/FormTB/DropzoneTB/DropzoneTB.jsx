@@ -191,10 +191,17 @@ class DropzoneTB extends Component {
 		/*let file = _.omit( comp.props.file, [ 'exifdata', 'iptcdata' ] );
 		let drop = _.extend( file, comp.state.validations, { exif: comp.props.file.exifdata }, { iptcdata: comp.props.file.iptcdata } );*/
 
+		let drop = {
+
+			file: comp.props.file,
+			exifdata: comp.props.file.exifdata,
+			validations: comp.state.validations
+
+		}
 
 		if( isValidDrop ){
 
-			this.validDrops = this.validDrops.concat( [ comp.props.file ] );
+			this.validDrops = this.validDrops.concat( [ drop ] );
 			onValidDrop( status, comp );
 
 		}else{

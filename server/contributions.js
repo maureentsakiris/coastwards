@@ -1,8 +1,10 @@
 const express = require( 'express' );
 const router = express.Router();
 const mysql = require( 'mysql' );
-var formidable = require( 'formidable' );
-var path = require( 'path' );
+const formidable = require( 'formidable' );
+const path = require( 'path' );
+const jimp = require( 'jimp' );
+const _ = require( 'underscore' );
 
 const pool  = mysql.createPool( {
 
@@ -13,22 +15,29 @@ const pool  = mysql.createPool( {
 
 } );
 
-function saveFile ( req ) {
+function fetchForm ( req ) {
 
 	var form = new formidable.IncomingForm();
 	form.uploadDir = path.join( __dirname, '../public/uploads' );
 	form.keepExtensions = true;
-	form.type = 'multipart';
 
 	return new Promise( ( resolve, reject ) => {
 
-		form.parse( req, function ( err ) {
+		form.parse( req, function ( err, fields, files ) {
 
 			if( err ){
 
 				reject( Error( 'contribution/_formidable/parse(error)/' + err ) );
 
 			}
+
+			if ( _.isEmpty( fields ) ){
+
+				reject( Error( 'Form is empty' ) );
+
+			}
+
+			form.fields = fields;
 
 		} );
 
@@ -46,7 +55,7 @@ function saveFile ( req ) {
 
 		form.on( 'end', function ( ){
 
-			resolve( this.openedFiles );
+			resolve( this );
 
 		} );
 
@@ -54,18 +63,71 @@ function saveFile ( req ) {
 
 }
 
-function insertFile ( req ) {
+function resizeFile ( form ){
+
+	return new Promise( function ( resolve, reject ) {
 
 
+		console.log( form );
+		var file = form.openedFiles[ 0 ];
+
+		jimp.read( file.path, function ( error, jimpFile ){
+
+			if( error ){
+
+				reject( Error( 'contributions/resizeFile/readError/' + error ) );
+
+			}
+
+			var dirname = path.dirname( file.path );
+			var extension = path.extname( file.path );
+			var basename = path.basename( file.path, extension );
+			var fileSmall = path.join( dirname, basename + '-small.jpg' );
+
+			jimpFile.scaleToFit( 800, 800 ).quality( 80 ).write( fileSmall, function ( ){
+
+				resolve( fileSmall ); // <-- WHAT IF THIS FAILS TO BE CALLED????
+
+			} );
+
+		} );
+
+	} );
+
+}
+
+function insertFile ( form, ip ) {
+
+	return Promise.resolve( form.fields );
 
 }
 
 
 router.post( '/upload', function ( req, res ) {
 
-	var handleFile = saveFile( req );
+	var ip = req.headers[ 'x-forwarded-for' ] || req.connection.remoteAddress;
 
-	var insertDB = insertFile( req );
+	fetchForm( req ).then( function ( form ){
+
+		return Promise.all( [ resizeFile( form ), insertFile( form, ip ) ] ).then( function ( values ){
+
+			res.json( { status: 'OK', values: values } );
+			return values;
+
+		} ).catch( function ( error ) {
+
+			throw error;
+
+		} );
+
+	} ).catch( function ( error ) {
+
+		console.log( error );
+		res.json( { status: 'KO', error: error.toString() } );
+
+	} );
+
+	/*var insertDB = insertFile( req );
 
 	Promise.all( [ handleFile, insertDB ] ).then( function ( values ){
 
@@ -74,9 +136,9 @@ router.post( '/upload', function ( req, res ) {
 
 	} ).catch( function ( error ) {
 
-		res.json( error );
+		res.send( error );
 
-	} );
+	} );*/
 
 
 

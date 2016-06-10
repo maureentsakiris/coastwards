@@ -36,7 +36,8 @@ export default class FormTB extends Component {
 	static contextTypes = {
 
 		showLoader: PropTypes.func,
-		logError: PropTypes.func
+		logError: PropTypes.func,
+		showSnackbar: PropTypes.func
 		
 	}
 
@@ -219,13 +220,23 @@ export default class FormTB extends Component {
 			.then( ( response ) => {
 
 				this._resetForm();
-				console.log( response );
-				return response;
+
+				let res = JSON.parse( response );
+
+				if( res.status == 'KO' ){
+
+					throw Error( res.error );
+
+				}
+
+				return res;
+				
 
 			} )
 			.catch( ( err ) => {
 
 				this.context.logError( err );
+				this.context.showSnackbar( { label: err.toString() } );
 
 			} );
 
@@ -238,7 +249,8 @@ export default class FormTB extends Component {
 
 		let formData = new FormData();
 
-		formData.append( 'figo', 'is a dog' );
+		//formData.append( 'figo', 'is a dog' );
+		console.log( this.model );
 		formData.append( 'img', this.model.dropzone[ 0 ], 'YES.JPG' );
 		
 		return new Promise( ( resolve, reject ) => {

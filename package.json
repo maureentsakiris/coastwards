@@ -45,6 +45,7 @@
     "formidable": "^1.0.17",
     "http-proxy": "^1.13.2",
     "img-loader": "^1.2.2",
+    "jimp": "^0.2.24",
     "json-loader": "^0.5.4",
     "mapbox-gl": "^0.18.0",
     "modernizr": "^3.3.1",
