@@ -186,20 +186,22 @@ class DropzoneTB extends Component {
 
 		let { onValidDrop, onInValidDrop, onDropsValidated, elementHandlers } = this.props;
 
-
-		// WEIRD JSON.stringify bug (?). If exifdata is not ommited and readded stringify removes part of the object
-		/*let file = _.omit( comp.props.file, [ 'exifdata', 'iptcdata' ] );
-		let drop = _.extend( file, comp.state.validations, { exif: comp.props.file.exifdata }, { iptcdata: comp.props.file.iptcdata } );*/
-
-		let drop = {
-
-			file: comp.props.file,
-			exifdata: comp.props.file.exifdata,
-			validations: comp.state.validations
-
-		}
-
 		if( isValidDrop ){
+
+			let exifdata = comp.props.file.exifdata;
+			let validations = comp.state.validations;
+
+			let file = comp.props.file;
+			let drop = {
+
+				file: file,
+				exifJSON: JSON.stringify( exifdata ),
+				validationsJSON: JSON.stringify( validations ),
+				validations: validations,
+				manual: 0,
+				exifDateTime: exifdata.DateTimeOriginal || exifdata.DateTimeDigitized || exifdata.DateTime
+
+			}
 
 			this.validDrops = this.validDrops.concat( [ drop ] );
 			onValidDrop( status, comp );

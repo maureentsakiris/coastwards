@@ -85,7 +85,7 @@ class Upload extends Component {
 			e = e || event;
 			e.preventDefault();
 
-			this.setState( { isWindowDrag: true } );
+			this.setState( { isWindowDrag: !this.state.blockDropzone } );
 
 		}, false );
 
@@ -114,9 +114,9 @@ class Upload extends Component {
 		this.state = {
 
 			isWindowDrag: false,
-			showDialog: false,
+			showFeatureDialog: false,
 			feature: undefined,
-			blockDropzone: false
+			blockDropzone: true
 
 		} 
 
@@ -126,15 +126,12 @@ class Upload extends Component {
 
 		const { formatMessage/*, locale*/ } = this.props.intl;
 		const { className } = this.props;
-		const { isWindowDrag, showDialog, feature, blockDropzone } = this.state;
-		const { getDialogOption } = this.context;
-
-		const showContextDialog = getDialogOption( 'active' );
+		const { isWindowDrag, showFeatureDialog, feature, blockDropzone } = this.state;
 
 		const cls = Classnames( style.upload, className );
 		const clsForm = Classnames( style.fill, {
 
-			[ style.passEventsToMap ]: !isWindowDrag || ( isWindowDrag && showDialog ) || ( isWindowDrag && showContextDialog ) || ( isWindowDrag && blockDropzone )
+			[ style.passEventsToMap ]: !isWindowDrag
 
 		} );
 		const clsMap = Classnames( style.fill, style.map );
@@ -152,7 +149,7 @@ class Upload extends Component {
 				description: "Checking image for information on the location it was taken",
 				success: "Awesome!! We found the location",
 				error: "We can't extract the location from the metadata. (The next version of Coastwards will allow you to place the image manually. Sign up to be notified!)"
-			},
+			}/*,
 			{
 				methodName: "imageWithFlash",
 				options: { required: true, passesWhen: false, abort: false },
@@ -168,7 +165,7 @@ class Upload extends Component {
 				description: "Checking whether the image has the color blue (water)",
 				success: "Great! There is blue in the image.",
 				error: "We couldn't find the color blue"
-			}
+			}*/
 		]
 
 		const geoJSON = {
@@ -250,7 +247,7 @@ class Upload extends Component {
 							source: markerSource,
 							layer: markerLayer,
 							position: 'country_label_1',
-							onClick: this._showDialog
+							onClick: this._showFeatureDialog
 
 						}
 
@@ -285,7 +282,7 @@ class Upload extends Component {
 					/>
 				</FormTB>
 				<TooltipButton tooltip={ formatMessage( messages.button_upload_image ) } tooltipDelay={ 1000 } icon="file_upload" floating accent className={ clsUploadButton } onClick={ this._openInput } />
-				<FeatureDialog label={ formatMessage( messages.mapbox_dialog_action_label ) } onClick={ this._hideDialog } active={ showDialog } feature={ feature } />
+				<FeatureDialog label={ formatMessage( messages.mapbox_dialog_action_label ) } onClick={ this._hideFeatureDialog } active={ showFeatureDialog } feature={ feature } />
 			</div>
 
 		)
@@ -306,24 +303,40 @@ class Upload extends Component {
 
 	_onInValidDrop = ( status/*, inValidDrop*/ ) => {
 
+		let message = status.imageHasLocation.message;
+		this.setState( { blockDropzone: true }, this._showInvalidDialog( message ) );
+
+	}
+
+	_showInvalidDialog = ( message ) => {
+
 		const { formatMessage } = this.props.intl;
+		this.context.showDialog( { 
 
-		let prettyStatus = status.imageHasLocation.message;
+			title: formatMessage( messages.dropzone_drop_invalid_title ), 
+			content: message,
+			onOverlayClick: this._hideInvalidDialog,
+			onEscKeyDown: this._hideInvalidDialog,
+			actions: [ {
 
-		/*_.each( status, ( stat, index ) => {
+				label: 'OK',
+				onClick: this._hideInvalidDialog
 
-			prettyStatus += stat.message;
+			} ] 
 
-		} );*/
+		} );
 
+	}
 
-		this.context.showDialog( { title: formatMessage( messages.dropzone_drop_invalid_title ), content: prettyStatus } );
+	_hideInvalidDialog = ( ) => {
+
+		this.setState( { blockDropzone: false }, this.context.hideDialog );
 
 	}
 
 	_onValidDrop = ( status, validDrop ) => {
 
-		//this.context.showSnackbar( { label: status.imageHasLocation.message } );
+		this.context.showSnackbar( { label: status.imageHasLocation.message } );
 		this._goFlying( validDrop );
 
 	}
@@ -390,7 +403,7 @@ class Upload extends Component {
 			source: markerSource,
 			layer: markerLayer,
 			position: 'country_label_1',
-			onClick: this._showDialog
+			onClick: this._showFeatureDialog
 
 		}
 
@@ -402,7 +415,7 @@ class Upload extends Component {
 
 		if( !validDrops.length ){
 
-			this._resetUploadButton();
+			//this._resetUploadButton();
 
 		}
 
@@ -417,18 +430,19 @@ class Upload extends Component {
 	_initMap = ( e ) => {
 
 		this.map = e;
+		this.setState( { blockDropzone: false } );
 
 	}
 
-	_showDialog = ( feature ) => {
+	_showFeatureDialog = ( feature ) => {
 
-		this.setState( { feature: feature, showDialog: true, blockDropzone: true } );
+		this.setState( { feature: feature, showFeatureDialog: true, blockDropzone: true } );
 
 	}
 
-	_hideDialog = ( ) => {
+	_hideFeatureDialog = ( ) => {
 
-		this.setState( { showDialog: false, blockDropzone: false } );
+		this.setState( { showFeatureDialog: false, blockDropzone: false } );
 
 	}
 
@@ -450,9 +464,9 @@ Upload.propTypes = {
 Upload.contextTypes = {
 
 	showDialog: PropTypes.func,
+	hideDialog: PropTypes.func,
 	showLoader: PropTypes.func,
-	showSnackbar: PropTypes.func,
-	getDialogOption: PropTypes.func
+	showSnackbar: PropTypes.func
 
 };
 

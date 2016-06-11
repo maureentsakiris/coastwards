@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import _ from 'underscore';
-import http from 'http';
 import Classnames from 'classnames';
+import formData from './FormData.js';
 
 import style from './_styleFormTB';
 
@@ -225,7 +225,11 @@ export default class FormTB extends Component {
 
 				if( res.status == 'KO' ){
 
-					throw Error( res.error );
+					throw Error( res.message );
+
+				}else{
+
+					console.log( res.message );
 
 				}
 
@@ -246,12 +250,8 @@ export default class FormTB extends Component {
 	// https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Promise
 	_sendRequest ( ){
 
-
-		let formData = new FormData();
-
-		//formData.append( 'figo', 'is a dog' );
-		console.log( this.model );
-		formData.append( 'img', this.model.dropzone[ 0 ], 'YES.JPG' );
+		//console.log( this.model );
+		let form = formData.fromObj( this.model );
 		
 		return new Promise( ( resolve, reject ) => {
 
@@ -271,13 +271,13 @@ export default class FormTB extends Component {
 
 			}, false );
 
-			xhr.upload.addEventListener( 'progress', ( e ) => {
+			xhr.upload.addEventListener( 'progress', ( ) => {
 
-				console.log( e.loaded );
+				//console.log( e.loaded );
 
 			}, false );
 
-			xhr.send( formData );
+			xhr.send( form );
 
 		} );
 

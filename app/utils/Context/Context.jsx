@@ -2,8 +2,6 @@ import React, { Component, PropTypes } from 'react';
 /*import PureRenderMixin from 'react-addons-pure-render-mixin';*/
 import Modernizr from 'modernizr';
 import _ from 'underscore';
-import underscoreDeepExtend from 'underscore-deep-extend';
-_.mixin( { deepExtend: underscoreDeepExtend( _ ) } );
 import ProgressBar from 'react-toolbox/lib/progress_bar';
 import Dialog from 'react-toolbox/lib/dialog';
 import Snackbar from 'react-toolbox/lib/snackbar';
@@ -38,8 +36,9 @@ export default class Context extends Component {
 		draganddrop: PropTypes.bool,
 		showLoader: PropTypes.func,
 		showDialog: PropTypes.func,
-		getDialogOption: PropTypes.func,
+		hideDialog: PropTypes.func,
 		showSnackbar: PropTypes.func,
+		hideSnackbar: PropTypes.func,
 		logError: PropTypes.func
 
 	}
@@ -51,8 +50,9 @@ export default class Context extends Component {
 			draganddrop: Modernizr.draganddrop,
 			showLoader: this._showLoader,
 			showDialog: this._showDialog,
-			getDialogOption: this._getDialogOption,
+			hideDialog: this._hideDialog,
 			showSnackbar: this._showSnackbar,
+			hideSnackbar: this._hideSnackbar,
 			logError: this._logError
 
 		};
@@ -137,16 +137,10 @@ export default class Context extends Component {
 
 	}
 
-	_getDialogOption = ( option ) => {
-
-		return this.state.dialogOptions[ option ];
-
-	}
-
 	_showDialog = ( o ) => {
 
 		let defaults = _.clone( this.defaultDialogOptions );
-		let options = _.deepExtend( defaults, o );
+		let options = _.extend( defaults, o );
 		this.setState( { dialogOptions: options, showingDialog: true } );
 
 	}

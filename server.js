@@ -31,6 +31,7 @@ const publicPath = path.resolve( __dirname, 'public' );
 const proxy = httpProxy.createProxyServer();
 const app = express();
 
+app.enable( 'trust proxy' );
 app.use( helmet() );
 app.use( express.static( publicPath ) );
 app.set( 'view engine', 'pug' );

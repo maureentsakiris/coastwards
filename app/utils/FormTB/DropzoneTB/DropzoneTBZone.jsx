@@ -36,7 +36,11 @@ export default class DropzoneTBZone extends Component {
 		showPrompt: true, 
 		promptDrag: "Drag & drop your files here (or click)",
 		promptDrop: "Now drop!",
-		promptClick: "Click to add files"
+		promptClick: "Click to add files",
+		clsZone: '',
+		clsZoneEnter: '',
+		clsZoneDrop: '',
+		clsZoneBlocked: ''
 
 	};
 
