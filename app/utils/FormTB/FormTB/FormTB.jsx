@@ -229,7 +229,7 @@ export default class FormTB extends Component {
 
 				}else{
 
-					console.log( res.json );
+					console.log( "Show users what was uploaded" );
 
 				}
 

@@ -13,7 +13,8 @@ const pool  = mysql.createPool( {
 	host: 'localhost',
 	user: 'root',	
 	password: 'c0a37ward3!',
-	database : 'coastwards'
+	database : 'coastwards',
+	multipleStatements: true
 
 } );
 
@@ -235,10 +236,11 @@ function fetchGeojson ( ){
 			}
 
 			// GETS TRUNCATED. WOULD HAVE TO SET: set group_concat_max_len = 100000000; (MAX VALUES: 32-bit: 4294967295, 64-bit: 18446744073709551615)
-			//var query = 'SELECT CONCAT( \'{ "type": "FeatureCollection", "features": [\', GROUP_CONCAT(\' { "type": "Feature", "geometry": \', ST_AsGeoJSON(contribution_point), \', "properties": { "marker-symbol": "marker-primary-dark", "comment": "This is a comment", "image": "./uploads/\',contribution_filename,\'" } } \'), \'] }\' ) as geojson FROM contributions';
-			var query = 'SELECT contribution_point FROM contributions';
+			// SELECT CONCAT('{ "type": "FeatureCollection", "features": [', GROUP_CONCAT(' { "type": "Feature", "geometry": ', ST_AsGeoJSON(contribution_point), ', "properties": { "marker-symbol": "marker-primary-dark", "comment": "This is a comment", "image": "./uploads/',contribution_filename,'" } } '), '] }' ) as geojson FROM contributions
+			var query = 'SET group_concat_max_len = 100000000; SELECT CONCAT( \'{ "type": "FeatureCollection", "features": [\', GROUP_CONCAT(\' { "type": "Feature", "geometry": \', ST_AsGeoJSON(contribution_point), \', "properties": { "marker-symbol": "marker-primary-dark", "comment": "This is a comment", "image": "./uploads/\',contribution_filename,\'" } } \'), \'] }\' ) as geojson FROM contributions';
+			//var query = 'SELECT contribution_point FROM contributions';
 
-			connection.query( query, function ( err, rows ) {
+			connection.query( query, function ( err, results ) {
 
 				if( error ){
 
@@ -246,19 +248,18 @@ function fetchGeojson ( ){
 
 				}else{
 
-					console.log( rows );
+					var row = results[ 1 ][ 0 ];
 
-					resolve( rows );
+					if ( row.geojson ){
 
-					/*if ( geojson ){
-
-						resolve( rows[ 0 ] );
+						var geojson = JSON.parse( row.geojson );
+						resolve( geojson );
 
 					}else{
 
 						reject( Error( 'contributions/fetchGeojson/Result did not return geojson' ) );
 
-					}*/
+					}
 
 				}
 				

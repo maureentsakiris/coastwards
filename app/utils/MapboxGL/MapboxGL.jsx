@@ -126,23 +126,6 @@ export default class MapboxGL extends Component {
 
 		this.map;
 
-		/*this.sourceDefaults = {
-
-			type: 'geojson'
-
-		}
-
-		this.layerDefaults = {
-
-			type: 'symbol',
-			layout: {
-
-				'icon-image': "marker-15"
-
-			}
-
-		}*/
-
 		this.state = {
 
 		}
@@ -229,6 +212,57 @@ export default class MapboxGL extends Component {
 
 		this.map.addSource( name, source );
 		this.map.addLayer( layerExtended, position );
+
+		var layers = [
+
+			[ 150, '#f28cb1' ],
+			[ 20, '#f1f075' ],
+			[ 0, '#3a6b8e' ]
+
+		];
+
+		layers.forEach( ( layer, i ) => {
+
+			this.map.addLayer( {
+				
+				"id": "cluster-" + i,
+				"type": "circle",
+				"source": name,
+				"paint": {
+					"circle-color": layer[ 1 ],
+					"circle-radius": 14
+				},
+				"filter": i == 0 ?
+					[ ">=", "point_count", layer[ 0 ] ] :
+					[ "all",
+						[ ">=", "point_count", layer[ 0 ] ],
+						[ "<", "point_count", layers[ i - 1 ][ 0 ] ] ]
+			} );
+
+		} );
+
+		this.map.addLayer( {
+
+			"id": "cluster-count",
+			"type": "symbol",
+			"source": name,
+			"layout": {
+
+				"text-field": "{point_count}",
+				"text-font": [
+					"DIN Offc Pro Medium",
+					"Arial Unicode MS Bold"
+				],
+				"text-size": 8
+
+			},
+			"paint": {
+
+				"text-color": "#ffffff"
+
+			}
+
+		} );
 
 		if( onClick ){
 

@@ -423,6 +423,7 @@ class Upload extends Component {
 
 			let result = JSON.parse( res );
 			let geojson = result.json;
+
 			return geojson;
 
 		} ).then( ( geojson ) => {
@@ -432,8 +433,8 @@ class Upload extends Component {
 				type: 'geojson',
 				data: geojson,
 				cluster: true,
-				lusterMaxZoom: 14,
-				clusterRadius: 50
+				clusterMaxZoom: 3,
+				clusterRadius: 10
 
 			}
 
@@ -448,18 +449,15 @@ class Upload extends Component {
 
 			}
 
-			let geojsonLayer = [
+			let geojsonLayer = {
 
-				{
-					name: 'markers',
-					source: markerSource,
-					layer: markerLayer,
-					position: 'country_label_1',
-					onClick: this._showFeatureDialog
+				name: 'markers',
+				source: markerSource,
+				layer: markerLayer,
+				position: 'country_label_1',
+				onClick: this._showFeatureDialog
 
-				}
-
-			]
+			}
 
 			this.refs.map._addLayer( geojsonLayer );
 			return true;
