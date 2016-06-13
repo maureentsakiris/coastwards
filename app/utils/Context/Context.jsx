@@ -21,6 +21,12 @@ Modernizr.addTest( 'formdata', function () {
 
 } )
 
+Modernizr.addTest( 'xhr', function () {
+
+	return true;
+
+} )
+
 
 export default class Context extends Component {
 
@@ -171,8 +177,7 @@ export default class Context extends Component {
 
 	_logError = ( error ) => {
 
-		console.error( error );
-		//this._showSnackbar( { label: error, type: 'warning' } );
+		this._showSnackbar( { label: error.toString(), type: 'warning' } );
 
 	}
 

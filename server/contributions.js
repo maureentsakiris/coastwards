@@ -6,6 +6,7 @@ const path = require( 'path' );
 const uuid = require( 'node-uuid' );
 const jimp = require( 'jimp' );
 const _ = require( 'underscore' );
+const util = require( 'util' );
 
 const pool  = mysql.createPool( {
 
@@ -63,15 +64,16 @@ function fetchForm ( req ) {
 
 		form.on( 'fileBegin', function ( name, file ){
 
-			//var filename = path.basename( file.path );
+			var id = uuid.v1();
 			var dirname = path.dirname( file.path );
 			var extension = path.extname( file.path );
-			var id = uuid.v1();
 			var filename = id + extension;
-			file.filename = filename;
-			file.dirname = dirname;
-			file.path = path.join( dirname, filename );
+			
 			file.uuid = id;
+			file.dirname = dirname;
+			file.extension = extension;
+			file.filename = filename;
+			file.path = path.join( dirname, filename );
 
 		} );
 
@@ -87,6 +89,7 @@ function fetchForm ( req ) {
 
 function insertFile ( formData ) {
 
+	// Maybe later we can iterate through multiple drops
 	var drop = 'dropzone[0]';
 
 	var ip = formData.ip;
@@ -98,34 +101,32 @@ function insertFile ( formData ) {
 	var exifDateTime = formData.fields[ drop + '.exifDateTime' ];
 
 	var filename = formData.files[ drop + '.file' ].filename;
-	var dirname = formData.files[ drop + '.file' ].dirname;
+
+	var point = util.format( 'POINT(%s %s)', long, lat )
 
 	return new Promise( function ( resolve, reject ) {
 
 		// Truncate table coastwards.contributions
-		//INSERT INTO `coastwards_schema`.`contributions` (`contribution_filename`, `contribution_ip`, `contribution_long`, `contribution_lat`, `contribution_location_manual`) VALUES ('03.jpg', 'office', 'asdf', 'sadf', '0');
-		var sql = 'INSERT INTO ??.?? ( ??, ??, ??, ??, ??, ??, ??, ??, ??) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+		var sql = 'INSERT INTO ??.?? ( ??, ??, ??, ??, ??, ??, ?? ) VALUES ( (ST_PointFromText(?)), ?, ?, ?, ?, ?, ? )';
 		var inserts = [ 
 			'coastwards', 
 			'contributions',
-			'contribution_ip',
+
+			'contribution_point',
+			'contribution_point_manual',
 			'contribution_filename',
-			'contribution_dirname',
-			'contribution_long', 
-			'contribution_lat', 
-			'contribution_location_manual',
-			'contribution_exif_time_date',
-			'contribution_validations_json',
-			'contribution_exif_json',
-			ip,
-			filename,
-			dirname,
-			long,
-			lat,
+			'contribution_exif_datetime',
+			'contribution_validations',
+			'contribution_exif',
+			'contribution_ip',
+
+			point,
 			manual,
+			filename,
 			exifDateTime,
 			validationsJSON,
-			exifJSON
+			exifJSON,
+			ip
 
 		]
 
@@ -209,86 +210,80 @@ router.post( '/upload', function ( req, res ) {
 
 	} ).then( function ( formData ){
 
-		res.json( { status: 'OK', message: JSON.stringify( formData ) } );
+		res.json( { status: 'OK', json: JSON.stringify( formData ) } );
 		return formData;
 
 	} ).catch( function ( error ) {
 
-		console.log( error );
 		res.json( { status: 'KO', message: error.toString() } );
 
 	} );
 
+} );
 
-	/*function insertDB ( ) {
 
+function fetchGeojson ( ){
 
-		Promise.reject( 'Contribution inserted ' );
+	return new Promise( function ( resolve, reject ) {
 
-		var contribution = req.body.dropzone[ 0 ];
-		var ip = req.headers[ 'x-forwarded-for' ] || req.connection.remoteAddress;
-		var coords = contribution.imageHasLocation.result.specs;
+		pool.getConnection( function ( error, connection ) {
 
-		//INSERT INTO `coastwards_schema`.`contributions` (`contribution_filename`, `contribution_ip`, `contribution_long`, `contribution_lat`, `contribution_location_manual`) VALUES ('03.jpg', 'office', 'asdf', 'sadf', '0');
-		var sql = 'INSERT INTO ??.?? ( ??, ??, ??, ??, ??) VALUES ( ?, ?, ?, ?, ?)';
-		var inserts = [ 
-			'coastwards', 
-			'contributions', 
-			'contribution_filename', 
-			'contribution_ip', 
-			'contribution_long', 
-			'contribution_lat', 
-			'contribution_location_manual',
-			contribution.name,
-			ip,
-			coords.long,
-			coords.lat,
-			0
+			if( error ){
 
-		]
+				reject( error );
 
-		var query = mysql.format( sql, inserts );
+			}
 
-		pool.getConnection( function ( err, connection ) {
+			// GETS TRUNCATED. WOULD HAVE TO SET: set group_concat_max_len = 100000000; (MAX VALUES: 32-bit: 4294967295, 64-bit: 18446744073709551615)
+			//var query = 'SELECT CONCAT( \'{ "type": "FeatureCollection", "features": [\', GROUP_CONCAT(\' { "type": "Feature", "geometry": \', ST_AsGeoJSON(contribution_point), \', "properties": { "marker-symbol": "marker-primary-dark", "comment": "This is a comment", "image": "./uploads/\',contribution_filename,\'" } } \'), \'] }\' ) as geojson FROM contributions';
+			var query = 'SELECT contribution_point FROM contributions';
 
-			// Use the connection 
 			connection.query( query, function ( err, rows ) {
 
-				if( err ){
+				if( error ){
 
-					res.send( err );
+					reject( error );
 
 				}else{
 
-					console.log( rows )
-					res.json( rows );
+					console.log( rows );
+
+					resolve( rows );
+
+					/*if ( geojson ){
+
+						resolve( rows[ 0 ] );
+
+					}else{
+
+						reject( Error( 'contributions/fetchGeojson/Result did not return geojson' ) );
+
+					}*/
 
 				}
-
+				
 				connection.release();
 
 			} );
 
 		} );
 
+	} );
 
-	}*/
-
-} );
-
+}
 
 router.get( '/geojson', function ( req, res ) {
 
-	/*pool.getConnection( function ( err, connection ) {
+	fetchGeojson().then( function ( geojson ){
 
-		connection.query( 'SELECT * FROM contributions_schema', function ( err, rows ) {
+		res.json( { status: 'OK', json: geojson } );
+		return geojson;
 
-			res.json( rows );
-			connection.release();
+	} ).catch( function ( error ){
 
-		} );
+		res.json( { status: 'KO', message: error.toString() } );
 
-	} );*/
+	} );
 
 } );
 

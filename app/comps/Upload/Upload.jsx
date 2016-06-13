@@ -2,7 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { defineMessages, injectIntl, intlShape } from 'react-intl';
 import Classnames from 'classnames';
-/*import _ from 'underscore';*/
+import _ from 'underscore';
+import http from 'http';
 import { Button } from 'react-toolbox/lib/button';
 import Tooltip from 'react-toolbox/lib/tooltip';
 const TooltipButton = Tooltip( Button );
@@ -98,6 +99,11 @@ class Upload extends Component {
 
 		}, false );
 
+	}
+
+	componentWillUnmount (){
+
+		// Cancel geoJsonRequest ?? 
 
 	}
 
@@ -106,6 +112,7 @@ class Upload extends Component {
 		super ( props );
 		this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind( this );
 
+		this.geoJsonRequest;
 		this.map;
 		this.initZoom = 0;
 		this.minZoom = 0;
@@ -167,59 +174,6 @@ class Upload extends Component {
 				error: "We couldn't find the color blue"
 			}*/
 		]
-
-		const geoJSON = {
-
-			"type": "FeatureCollection",
-			"features": [ {
-				"type": "Feature",
-				"geometry": {
-					"type": "Point",
-					"coordinates": [ -77.03238901390978, 38.913188059745586 ]
-				},
-				"properties": {
-					"marker-symbol": "marker-primary-dark",
-					"comment": "I used to go to this beach as a child. Since then it has changed so much!! Daniela, USA",
-					"image": "./uploads/01.jpg"
-				}
-			}, {
-				"type": "Feature",
-				"geometry": {
-					"type": "Point",
-					"coordinates": [ -122.414, 37.776 ]
-				},
-				"properties": {
-					"marker-symbol": "marker-primary-dark",
-					"comment": "My favorite place on the entire planet. Greeting from France, Esther <3",
-					"image": "./uploads/05.jpg"
-				}
-			} ]
-
-		}
-
-		const markerSource = { 
-
-			type: 'geojson',
-			data: geoJSON
-
-		}
-
-		const markerLayer = {
-
-			type: 'symbol',
-			layout: {
-
-				'icon-image': "{marker-symbol}"
-
-			},
-			paint:{
-
-				'icon-color' : '#F4433A'
-
-			}
-
-		}
-
 		
 		return (
 
@@ -238,20 +192,10 @@ class Upload extends Component {
 					maxBounds={ [ [ 360, 84 ], [ -360, -70 ] ] }
 					attributionControl={ false }
 					scrollZoom={ false}
+					navigationControl={ true }
+					navigationControlPosition="top-left"
 					style="mapbox://styles/maureentsakiris/cinxhoec70043b4nmx0rkoc02"
 					accessToken="pk.eyJ1IjoibWF1cmVlbnRzYWtpcmlzIiwiYSI6ImNpbXM1N2Z2MTAwNXF3ZW0ydXI3eXZyOTAifQ.ATjSaskEecYMiEG36I_viw"
-					layers={ [
-
-						{
-							name: 'markers',
-							source: markerSource,
-							layer: markerLayer,
-							position: 'country_label_1',
-							onClick: this._showFeatureDialog
-
-						}
-
-					] }
 				/>
 				<FormTB name="upload" className={ clsForm } ref="form" autoSubmit={ true } onReset={ this._onFormReset }>
 					<DropzoneTB
@@ -286,6 +230,43 @@ class Upload extends Component {
 			</div>
 
 		)
+
+	}
+
+	_fetchGeojson = () => {
+
+		let options = {
+
+			path: '/contributions/geojson',
+			json: true
+
+		}
+
+		return new Promise( ( resolve, reject ) => {
+
+			this.geoJsonRequest = http.get( options, ( res ) => {
+
+				const body = [ ];
+
+				res.on( 'data', ( chunk ) => { 
+
+					body.push( chunk );
+
+				} );
+
+				res.on( 'end', ( ) => {
+
+					resolve( body.join( '' ) );
+
+				} );
+
+			} ).on( 'error', ( e ) => {
+
+				reject( e );
+
+			} );
+
+		} );
 
 	}
 
@@ -344,10 +325,11 @@ class Upload extends Component {
 	_goFlying = ( validDrop ) => {
 
 		let specs = validDrop.state.validations.imageHasLocation.result.specs;
+		let zoom = _.max( [ this.map.getZoom(), 3 ] );
 		this.map.flyTo( { 
 
 			center: [ specs.long, specs.lat ], 
-			zoom: 3,
+			zoom: zoom,
 			speed: 0.5, // make the flying slow
 			curve: 1, // change the speed at which it zooms out
 			easing: function ( t ) {
@@ -372,7 +354,7 @@ class Upload extends Component {
 				"properties": {
 					"marker-symbol": "marker-accent",
 					"comment": "",
-					"image": validDrop.preview
+					"image": validDrop.props.file.preview
 				}
 
 			} ]
@@ -430,6 +412,66 @@ class Upload extends Component {
 	_initMap = ( e ) => {
 
 		this.map = e;
+
+		this._fetchGeojson().then( function ( res ){
+
+			if( res.status == 'KO' ){
+
+				throw Error( res.message );
+
+			}
+
+			let result = JSON.parse( res );
+			let geojson = result.json;
+			return geojson;
+
+		} ).then( ( geojson ) => {
+
+			let markerSource = { 
+
+				type: 'geojson',
+				data: geojson,
+				cluster: true,
+				lusterMaxZoom: 14,
+				clusterRadius: 50
+
+			}
+
+			let markerLayer = {
+
+				type: 'symbol',
+				layout: {
+
+					'icon-image': "{marker-symbol}"
+
+				}
+
+			}
+
+			let geojsonLayer = [
+
+				{
+					name: 'markers',
+					source: markerSource,
+					layer: markerLayer,
+					position: 'country_label_1',
+					onClick: this._showFeatureDialog
+
+				}
+
+			]
+
+			this.refs.map._addLayer( geojsonLayer );
+			return true;
+			
+
+		} ).catch( ( error ) => {
+
+			console.log( error );
+			this.context.logError( error );
+
+		} );
+
 		this.setState( { blockDropzone: false } );
 
 	}
@@ -466,7 +508,8 @@ Upload.contextTypes = {
 	showDialog: PropTypes.func,
 	hideDialog: PropTypes.func,
 	showLoader: PropTypes.func,
-	showSnackbar: PropTypes.func
+	showSnackbar: PropTypes.func,
+	logError: PropTypes.func
 
 };
 

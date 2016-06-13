@@ -30,6 +30,7 @@ export default class MapboxGL extends Component {
 		bearing: PropTypes.number,
 		attributionControl: PropTypes.bool,
 		navigationControl: PropTypes.bool,
+		navigationControlPosition: PropTypes.string,
 		maxBounds: PropTypes.array,
 
 		scrollZoom: PropTypes.bool,
@@ -59,6 +60,7 @@ export default class MapboxGL extends Component {
 		style: "mapbox://styles/mapbox/streets-v8",
 		interactive: true,
 		navigationControl: false,
+		navigationControlPosition: 'top-right',
 
 		scrollZoom: true,
 		boxZoom: false,
@@ -118,29 +120,13 @@ export default class MapboxGL extends Component {
 
 	}
 
-/*	componentWillReceiveProps ( nextProps ) {
-
-		let propsToCheck = [ 'zoom', 'layers' ];
-
-		_.each( propsToCheck, ( prop ) => {
-
-			if( !_.isEqual( nextProps[ prop ], this.props[ prop ] ) ){
-
-				this[ '_' + prop ]( nextProps[ prop ] );
-
-			}
-
-		} )
-
-	}*/
-
 	constructor ( props ) {
 
 		super ( props );
 
 		this.map;
 
-		this.sourceDefaults = {
+		/*this.sourceDefaults = {
 
 			type: 'geojson'
 
@@ -155,7 +141,7 @@ export default class MapboxGL extends Component {
 
 			}
 
-		}
+		}*/
 
 		this.state = {
 
@@ -218,7 +204,7 @@ export default class MapboxGL extends Component {
 
 			if( navigationControl ){
 
-				this.map.addControl( new mapboxgl.Navigation() );
+				this.map.addControl( new mapboxgl.Navigation( { position: this.props.navigationControlPosition } ) );
 
 			}
 
@@ -238,10 +224,10 @@ export default class MapboxGL extends Component {
 
 		let { name, source, layer, position, onClick } = o;
 		
-		let sourceExtended = _.deepExtend( this.sourceDefaults, source );
-		let layerExtended = _.deepExtend( this.layerDefaults, layer, { id: name, source: name } );
+		/*let sourceExtended = _.deepExtend( this.sourceDefaults, source );*/
+		let layerExtended = _.deepExtend( layer, { id: name, source: name } );
 
-		this.map.addSource( name, sourceExtended );
+		this.map.addSource( name, source );
 		this.map.addLayer( layerExtended, position );
 
 		if( onClick ){

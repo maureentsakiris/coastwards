@@ -229,7 +229,7 @@ export default class FormTB extends Component {
 
 				}else{
 
-					console.log( res.message );
+					console.log( res.json );
 
 				}
 
@@ -240,7 +240,6 @@ export default class FormTB extends Component {
 			.catch( ( err ) => {
 
 				this.context.logError( err );
-				this.context.showSnackbar( { label: err.toString() } );
 
 			} );
 
