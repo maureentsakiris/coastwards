@@ -197,7 +197,7 @@ class Upload extends Component {
 					style="mapbox://styles/maureentsakiris/cinxhoec70043b4nmx0rkoc02"
 					accessToken="pk.eyJ1IjoibWF1cmVlbnRzYWtpcmlzIiwiYSI6ImNpbXM1N2Z2MTAwNXF3ZW0ydXI3eXZyOTAifQ.ATjSaskEecYMiEG36I_viw"
 				/>
-				<FormTB name="upload" className={ clsForm } ref="form" autoSubmit={ true } onReset={ this._onFormReset }>
+				<FormTB name="upload" className={ clsForm } ref="form" autoSubmit={ false } onReset={ this._onFormReset }>
 					<DropzoneTB
 						name="dropzone"
 						ref="dropzone"
@@ -340,6 +340,12 @@ class Upload extends Component {
 
 		} );
 
+		this.map.once( 'moveend', function ( e ) {
+
+			console.log( 'finished flying', e );
+
+		} );
+
 		let id = Date.now();
 
 		const geoJSON = {
@@ -433,8 +439,8 @@ class Upload extends Component {
 				type: 'geojson',
 				data: geojson,
 				cluster: true,
-				clusterMaxZoom: 3,
-				clusterRadius: 10
+				clusterMaxZoom: 14,
+				clusterRadius: 20
 
 			}
 
@@ -460,6 +466,7 @@ class Upload extends Component {
 			}
 
 			this.refs.map._addLayer( geojsonLayer );
+			this.refs.map._clusterLayer( 'markers', 'country_label_1' );
 			return true;
 			
 
