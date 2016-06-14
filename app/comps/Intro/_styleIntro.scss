@@ -11,6 +11,16 @@
 
 }
 
+@include LtSM( ){
+
+	.intro{
+
+		height: auto;
+
+	}
+
+}
+
 .inner{
 
 	@extend %flexitem;
@@ -18,6 +28,8 @@
 	@extend %pad;
 	align-self: center;
 	margin-top: 5vh;
+	margin-bottom: 5vh;
+	max-width: 1200px;
 
 }
 
@@ -29,22 +41,56 @@
 
 }
 
+@include LtSM( ){
+
+	.logo{
+
+		width: 200px;
+
+	}
+
+}
+
+/* @include MD( ){
+
+	.logo{
+
+		width: 250px;
+
+	}
+
+} */
+
 .headline{
 
 	font-weight: $font-weight-bold;
 	font-size: 3.3vw;
 	margin-top: 3vh;
-	text-transform: capitalize;
 	color: $color-primary-dark;
 
-	span{
+	/* span{
 
     	font-weight: $font-weight-thin;
     	font-size: 3vw;
-    	text-transform: lowercase;
     	// color: $color-primary;
 
-    }
+    } */
+
+}
+
+@include LtSM( ){
+
+	.headline{
+
+		font-size: 24px;
+
+		/* span{
+
+			font-size: 18px;
+
+		} */
+
+	}
 
 }
 
@@ -53,7 +99,19 @@
 	margin-top: 4vh;
 	@include typo-headline();
 	font-size: 2vh;
-	color: $palette-grey-300;
+	color: $palette-grey-500;
+	line-height: 2rem;
+
+}
+
+@include LtSM( ){
+
+	.tagline{
+
+		font-size: 12px;
+		margin-top: 2vh;
+
+	}
 
 }
 

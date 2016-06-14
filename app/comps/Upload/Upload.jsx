@@ -197,7 +197,7 @@ class Upload extends Component {
 					style="mapbox://styles/maureentsakiris/cinxhoec70043b4nmx0rkoc02"
 					accessToken="pk.eyJ1IjoibWF1cmVlbnRzYWtpcmlzIiwiYSI6ImNpbXM1N2Z2MTAwNXF3ZW0ydXI3eXZyOTAifQ.ATjSaskEecYMiEG36I_viw"
 				/>
-				<FormTB name="upload" className={ clsForm } ref="form" autoSubmit={ false } onReset={ this._onFormReset }>
+				<FormTB name="upload" className={ clsForm } ref="form" autoSubmit={ true } onReset={ this._onFormReset }>
 					<DropzoneTB
 						name="dropzone"
 						ref="dropzone"
@@ -439,7 +439,7 @@ class Upload extends Component {
 				type: 'geojson',
 				data: geojson,
 				cluster: true,
-				clusterMaxZoom: 14,
+				clusterMaxZoom: this.maxZoom,
 				clusterRadius: 20
 
 			}

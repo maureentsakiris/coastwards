@@ -269,7 +269,7 @@ export default class MapboxGL extends Component {
 					"DIN Offc Pro Medium",
 					"Arial Unicode MS Bold"
 				],
-				"text-size": 8
+				"text-size": 12
 
 			},
 			"paint": {

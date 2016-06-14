@@ -53,7 +53,7 @@ export default class I18nSwitch extends Component {
 
 		return (
 
-			<Tabs id="Languages" className={ cls } active={ active }>
+			<Tabs arrows={ true } id="Languages" className={ cls } active={ active }>
 				{ links }
 			</Tabs>
 

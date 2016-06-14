@@ -1,8 +1,9 @@
 module.exports = {
 	locale: 'ar',
-	direction: 'rtl',
+	direction: 'ltr',
 	english: 'Arabic',
 	messages: {
-		'hello': 'كيف حالك'
+		'intro_1': 'سوفاحملمجموعهمنالصورلمساعدهالباحثينواعلامهمعنمخاطرارتفاعمستوىسطحالبحر اسحب صوركفقطوحملهابسهولة',
+		'intro_2': ' '
 	}
 };

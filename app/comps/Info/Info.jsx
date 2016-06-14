@@ -65,7 +65,7 @@ class Info extends Component {
 		return (
 
 			<div id="Info" className={ style.info }>
-				<Tabs arrows={ true } activeCls={ style.active } accent={ true } inverse={ false } >
+				<Tabs arrows={ false } activeCls={ style.active } accent={ true } inverse={ false } >
 					
 					<Button className={ style.tabButton } label={ formatMessage( messages.upload_pictures ) } flat primary onClick={ onTabClick.bind( this, 'upload' ) } />
 					<Button className={ style.tabButton } label={ formatMessage( messages.how_does_a_picture_help ) } flat primary onClick={ onTabClick.bind( this, 'how' ) } />

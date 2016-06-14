@@ -3,6 +3,8 @@ module.exports = {
 	direction: 'ltr',
 	english: 'Spanish',
 	messages: {
-		'intro': 'Hola. Somos un grupo de scientificos en Alemania estudiando los riesgos de la subida del mar. Ayúdanos con subir tus fotos de costas.'
+		'intro_1': 'Ayúda a la ciencia investigar los riesgos de la subida del mar con subir tus fotos de costas',
+		'intro_2': ' ',
+		'tagline': 'No hace falta crear una cuenta. Súbelas per Drag & Drop nada más'
 	}
 };

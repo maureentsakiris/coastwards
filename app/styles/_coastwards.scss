@@ -17,16 +17,33 @@ $heightFooter: 13vh;
 
   min-height: $heightContent;
   padding-top: 5vh;
+  padding-bottom: 10vh;
+
+  p{
+
+    font-size: $font-size-small;
+
+  }
 
   h2{
 
-    @include typo-display-2(false, true);
+    @include typo-display-1(false, true);
+    font-weight: 600;
 
   }
 
   h3{
 
     @include typo-headline();
+    font-weight: 600;
+
+  }
+
+  h4{
+
+    @include typo-headline();
+    margin-top: 5vh;
+    font-weight: 600;
 
   }
 

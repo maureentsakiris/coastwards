@@ -21,22 +21,22 @@ const Locales = {
 		locale: 'es',
 		name: 'Español'
 	},
-	it: {
+	/*it: {
 		locale: 'it',
 		name: 'Italiano'
 	},
 	ru: {
 		locale: 'ru',
 		name: 'русский'
-	},
+	},*/
 	hi: {
 		locale: 'hi',
 		name: 'हिन्दी, हिंदी'
 	},
-	bn: {
+	/*bn: {
 		locale: 'bn',
 		name: 'বাংলা'
-	},
+	},*/
 	ar: {
 		locale: 'ar',
 		name: 'العربية'
