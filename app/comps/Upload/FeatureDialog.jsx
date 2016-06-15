@@ -3,7 +3,7 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import Classnames from 'classnames';
 import Dialog from 'react-toolbox/lib/dialog';
 
-import style from './_styleFeatureDialog';
+import style from './_styleDialog';
 
 export default class FeatureDialog extends Component {
 

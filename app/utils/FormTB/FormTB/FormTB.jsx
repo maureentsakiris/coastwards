@@ -78,7 +78,7 @@ export default class FormTB extends Component {
 
 		return (
 
-			<form {...this.props} onSubmit={ this._submit.bind( this ) } id={ name } autoComplete={ autocomplete } className={ cls } noValidate={ noValidate }>
+			<form {...this.props} onSubmit={ this._submit.bind( this ) } id={ name } autoComplete={ autocomplete } className={ cls } noValidate={ noValidate } ref="form" >
 				{ children }
 			</form>
 
@@ -181,6 +181,8 @@ export default class FormTB extends Component {
 
 		this.model = {};
 
+		this.refs.form.reset();
+
 		this.setState( { 
 
 			submitting: false,
@@ -219,8 +221,6 @@ export default class FormTB extends Component {
 		this._sendRequest()
 			.then( ( response ) => {
 
-				this._resetForm();
-
 				let res = JSON.parse( response );
 
 				if( res.status == 'KO' ){
@@ -233,6 +233,7 @@ export default class FormTB extends Component {
 
 				}
 
+				this._resetForm();
 				return res;
 				
 

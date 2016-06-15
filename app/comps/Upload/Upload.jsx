@@ -15,6 +15,7 @@ import DropzoneTB from '../../utils/FormTB/DropzoneTB/DropzoneTB';
 /*import SubmitTB from '../../utils/FormTB/SubmitTB/SubmitTB';*/
 import MapboxGL from '../../utils/MapboxGL/MapboxGL';
 import FeatureDialog from './FeatureDialog';
+import UploadDropDialog from './UploadDropDialog';
 
 const messages = defineMessages( {
 
@@ -63,15 +64,25 @@ const messages = defineMessages( {
 		description: "1 - ",
 		defaultMessage: "Your browser does not support the web technology necessary to display the world map. We recommend you upgrade your browser to the latest version!"
 	},
-	mapbox_dialog_action_label:{
-		id: "mapbox_dialog_action_label",
+	feature_dialog_ok_label:{
+		id: "feature_dialog_ok_label",
 		description: "0 - ",
 		defaultMessage: "Close"
 	},
-	button_upload_image:{
-		id: "button_upload_image",
+	button_tooltip_upload_image:{
+		id: "button_tooltip_upload_image",
 		description: "0 - ",
 		defaultMessage: "Upload an image"
+	},
+	upload_feature_dialog_cancel_label:{
+		id: "upload_feature_dialog_cancel_label",
+		description: "0 - ",
+		defaultMessage: "Cancel"
+	},
+	upload_feature_dialog_upload_label:{
+		id: "upload_feature_dialog_upload_label",
+		description: "0 - ",
+		defaultMessage: "Upload"
 	}
 	
 
@@ -122,7 +133,10 @@ class Upload extends Component {
 
 			isWindowDrag: false,
 			showFeatureDialog: false,
-			feature: undefined,
+			showUploadDropDialog: false,
+			featureToShow: undefined,
+			dropImage: undefined,
+			dropLayerId: undefined,
 			blockDropzone: true
 
 		} 
@@ -133,7 +147,7 @@ class Upload extends Component {
 
 		const { formatMessage/*, locale*/ } = this.props.intl;
 		const { className } = this.props;
-		const { isWindowDrag, showFeatureDialog, feature, blockDropzone } = this.state;
+		const { isWindowDrag, showFeatureDialog, showUploadDropDialog, featureToShow, dropImage, blockDropzone } = this.state;
 
 		const cls = Classnames( style.upload, className );
 		const clsForm = Classnames( style.fill, {
@@ -197,7 +211,7 @@ class Upload extends Component {
 					style="mapbox://styles/maureentsakiris/cinxhoec70043b4nmx0rkoc02"
 					accessToken="pk.eyJ1IjoibWF1cmVlbnRzYWtpcmlzIiwiYSI6ImNpbXM1N2Z2MTAwNXF3ZW0ydXI3eXZyOTAifQ.ATjSaskEecYMiEG36I_viw"
 				/>
-				<FormTB name="upload" className={ clsForm } ref="form" autoSubmit={ true } onReset={ this._onFormReset }>
+				<FormTB name="upload" className={ clsForm } ref="form" autoSubmit={ false } >
 					<DropzoneTB
 						name="dropzone"
 						ref="dropzone"
@@ -224,12 +238,42 @@ class Upload extends Component {
 						onInValidDrop={ this._onInValidDrop }
 						onDropsValidated= { this._onDropsValidated }
 					/>
+					<UploadDropDialog
+						name="userinput"
+						active={ showUploadDropDialog } 
+						dropImage={ dropImage }
+						cancelLabel={ formatMessage( messages.upload_feature_dialog_cancel_label ) }
+						uploadLabel={ formatMessage( messages.upload_feature_dialog_upload_label ) }
+						onCancelClick={ this._cancelUpload }
+						onUploadClick={ this._uploadForm }
+					/>
 				</FormTB>
-				<TooltipButton tooltip={ formatMessage( messages.button_upload_image ) } tooltipDelay={ 1000 } icon="file_upload" floating accent className={ clsUploadButton } onClick={ this._openInput } />
-				<FeatureDialog label={ formatMessage( messages.mapbox_dialog_action_label ) } onClick={ this._hideFeatureDialog } active={ showFeatureDialog } feature={ feature } />
+				<TooltipButton tooltip={ formatMessage( messages.button_tooltip_upload_image ) } tooltipDelay={ 1000 } icon="file_upload" floating accent className={ clsUploadButton } onClick={ this._openInput } />
+				<FeatureDialog label={ formatMessage( messages.feature_dialog_ok_label ) } onClick={ this._hideFeatureDialog } active={ showFeatureDialog } feature={ featureToShow } />
 			</div>
 
 		)
+
+	}
+
+	_uploadForm = () => {
+
+		console.log( "Uploading form" );
+
+	}
+
+	_cancelUpload = () => {
+
+		this.refs.map._hideLayer( this.state.dropLayerId );
+		this.refs.map._flyToInit();
+
+		this.setState( {
+
+			showUploadDropDialog: false,
+			dropLayerId: undefined,
+			blockDropzone: false
+
+		}, this.refs.form._resetForm() );
 
 	}
 
@@ -270,11 +314,11 @@ class Upload extends Component {
 
 	}
 
-	_onFormReset = () => {
+	/*_onFormReset = () => {
 
 		this.setState( { blockDropzone: false } );
 
-	}
+	}*/
 
 	_onDropsAccepted = ( ) => {
 
@@ -325,28 +369,9 @@ class Upload extends Component {
 	_goFlying = ( validDrop ) => {
 
 		let specs = validDrop.state.validations.imageHasLocation.result.specs;
-		let zoom = _.max( [ this.map.getZoom(), 3 ] );
-		this.map.flyTo( { 
-
-			center: [ specs.long, specs.lat ], 
-			zoom: zoom,
-			speed: 0.5, // make the flying slow
-			curve: 1, // change the speed at which it zooms out
-			easing: function ( t ) {
-
-				return t<.5 ? 2*t*t : -1+( 4-2*t )*t;
-
-			}
-
-		} );
-
-		this.map.once( 'moveend', function ( e ) {
-
-			console.log( 'finished flying', e );
-
-		} );
-
-		let id = Date.now();
+		let zoom = _.max( [ this.map.getZoom(), 15 ] );
+		let dropImage = validDrop.props.file.preview;
+		let id = Date.now().toString();
 
 		const geoJSON = {
 
@@ -387,7 +412,7 @@ class Upload extends Component {
 
 		let layer = {
 			
-			name: id.toString(),
+			name: id,
 			source: markerSource,
 			layer: markerLayer,
 			position: 'country_label_1',
@@ -397,9 +422,41 @@ class Upload extends Component {
 
 		this.refs.map._addLayer( layer );
 
+		this.map.flyTo( { 
+
+			center: [ specs.long, specs.lat ], 
+			zoom: zoom,
+			speed: 1, // make the flying slow
+			curve: 1, // change the speed at which it zooms out
+			easing: function ( t ) {
+
+				return t<.5 ? 2*t*t : -1+( 4-2*t )*t;
+
+			}
+
+		} );
+
+		this.map.once( 'moveend', ( ) => {
+
+			this._showUploadDropDialog( dropImage, id );
+
+		} );
+
 	}
 
-	_onDropsValidated = ( validDrops ) => {
+	_showUploadDropDialog = ( dropImage, id ) => {
+
+		this.setState( {
+
+			dropImage: dropImage,
+			showUploadDropDialog: true,
+			dropLayerId: id
+
+		} );
+
+	}
+
+	/*_onDropsValidated = ( validDrops ) => {
 
 		if( !validDrops.length ){
 
@@ -413,7 +470,7 @@ class Upload extends Component {
 
 		this.setState( { blockDropzone: false } );
 
-	}
+	}*/
 
 	_initMap = ( e ) => {
 
@@ -472,7 +529,6 @@ class Upload extends Component {
 
 		} ).catch( ( error ) => {
 
-			console.log( error );
 			this.context.logError( error );
 
 		} );
@@ -481,15 +537,15 @@ class Upload extends Component {
 
 	}
 
-	_showFeatureDialog = ( feature ) => {
+	_showFeatureDialog = ( featureToShow ) => {
 
-		this.setState( { feature: feature, showFeatureDialog: true, blockDropzone: true } );
+		this.setState( { featureToShow: featureToShow, showFeatureDialog: true, blockDropzone: true } );
 
 	}
 
 	_hideFeatureDialog = ( ) => {
 
-		this.setState( { showFeatureDialog: false, blockDropzone: false } );
+		this.setState( { showFeatureDialog: false, featureToShow: undefined, blockDropzone: false } );
 
 	}
 

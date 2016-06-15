@@ -282,5 +282,34 @@ export default class MapboxGL extends Component {
 
 	}
 
+	_hideLayer = ( id ) => {
+
+		this.map.setLayoutProperty( id, 'visibility', 'none' );
+
+	}
+
+	_flyToInit = ( speed, curve, easing ) => {
+
+		let s = speed || 4;
+		let c = curve || 1;
+		let e = easing || function ( t ) { 
+
+			return t<.5 ? 2*t*t : -1+( 4-2*t )*t; 
+
+		} 
+
+		let { center, zoom } = this.props;
+
+		this.map.flyTo( { 
+
+			center: [ center[ 0 ], center[ 1 ] ], 
+			zoom: zoom,
+			speed: s,
+			curve: c,
+			easing: e
+
+		} );
+
+	}
 
 }

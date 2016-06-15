@@ -234,8 +234,6 @@ class DropzoneTB extends Component {
 
 	_resetDropzone (){
 
-		//console.log( "resetting dropup" );
-
 		this.dropsValidated = [];
 		this.validDrops = [];
 
