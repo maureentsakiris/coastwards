@@ -18,7 +18,7 @@ const pool  = mysql.createPool( {
 
 } );
 
-function fetchForm ( req ) {
+function promiseFetchForm ( req ) {
 
 	var form = new formidable.IncomingForm();
 	form.uploadDir = path.join( __dirname, '../public/uploads' );
@@ -32,7 +32,7 @@ function fetchForm ( req ) {
 
 			if( error ){
 
-				reject( Error( 'contribution/_formidable/parse(error)/' + error ) );
+				reject( Error( 'contributions/promiseFetchForm/parse(error)/' + error ) );
 
 			}
 
@@ -53,13 +53,13 @@ function fetchForm ( req ) {
 
 		form.on( 'error', function ( error ){
 
-			reject( Error( 'contribution/_formidable/on(error)/' + error ) );
+			reject( Error( 'contributions/promiseFetchForm/on(error)/' + error ) );
 
 		} );
 
 		form.on( 'aborted', function ( error ){
 
-			reject( Error( 'contribution/_formidable/on(aborted)/' + error ) );
+			reject( Error( 'contributions/promiseFetchForm/on(aborted)/' + error ) );
 
 		} );
 
@@ -88,7 +88,7 @@ function fetchForm ( req ) {
 
 }
 
-function insertFile ( formData ) {
+function promiseInsertFile ( formData ) {
 
 	// Maybe later we can iterate through multiple drops
 	var drop = 'dropzone[0]';
@@ -164,7 +164,7 @@ function insertFile ( formData ) {
 
 }
 
-function resizeFile ( formData ){
+function promiseResizeFile ( formData ){
 
 	var drop = 'dropzone[0]';
 
@@ -176,7 +176,7 @@ function resizeFile ( formData ){
 
 			if( error ){
 
-				reject( Error( 'contributions/resizeFile/readError/' + error ) );
+				reject( Error( 'contributions/promiseResizeFile/readError/' + error ) );
 
 			}
 
@@ -201,15 +201,10 @@ function resizeFile ( formData ){
 
 router.post( '/upload', function ( req, res ) {
 
-	fetchForm( req ).then( function ( formData ){
-
-		return insertFile( formData );
-
-	} ).then( function ( formData ) {
-
-		return resizeFile( formData );
-
-	} ).then( function ( formData ){
+	promiseFetchForm( req )
+	.then( promiseInsertFile )
+	.then( promiseResizeFile )
+	.then( function ( formData ){
 
 		res.json( { status: 'OK', json: JSON.stringify( formData ) } );
 		return formData;
@@ -223,7 +218,7 @@ router.post( '/upload', function ( req, res ) {
 } );
 
 
-function fetchGeojson ( ){
+function promiseFetchGeojson ( ){
 
 	return new Promise( function ( resolve, reject ) {
 
@@ -257,7 +252,7 @@ function fetchGeojson ( ){
 
 					}else{
 
-						reject( Error( 'contributions/fetchGeojson/Result did not return geojson' ) );
+						reject( Error( 'contributions/promiseFetchGeojson/Result did not return geojson' ) );
 
 					}
 
@@ -275,7 +270,7 @@ function fetchGeojson ( ){
 
 router.get( '/geojson', function ( req, res ) {
 
-	fetchGeojson().then( function ( geojson ){
+	promiseFetchGeojson().then( function ( geojson ){
 
 		res.json( { status: 'OK', json: geojson } );
 		return geojson;

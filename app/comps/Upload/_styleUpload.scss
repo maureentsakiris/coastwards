@@ -25,8 +25,8 @@
 .uploadButton{
 
 	position: absolute;
-	top: 30px;
-	right: 30px;
+	top: 10px;
+	right: 10px;
 
 }
 
@@ -66,4 +66,17 @@
 	//opacity: 0.6;
 	pointer-events: auto;
 
+}
+
+.mapLoader{
+
+	position: absolute;
+	z-index: $z-index-high;
+
+}
+
+.hidden{
+
+	display: none;
+	
 }

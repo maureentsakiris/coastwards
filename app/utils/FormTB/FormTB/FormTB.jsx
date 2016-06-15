@@ -171,6 +171,8 @@ export default class FormTB extends Component {
 
 		_.each( this.elements, ( element, name ) => {
 
+			/*console.log( name );
+			console.log( this.elements[ name ].state.value );*/
 			this.model[ name ] = this.elements[ name ].state.value;
 
 		} );
@@ -215,8 +217,8 @@ export default class FormTB extends Component {
 		this.context.showLoader( true );
 		this._updateModel();
 
-		/*console.log( 'Form is valid:', this.state.formIsValid );
-		console.log( "model", this.model );*/
+		console.log( 'Form is valid:', this.state.formIsValid );
+		console.log( "model", this.model );
 
 		this._sendRequest()
 			.then( ( response ) => {

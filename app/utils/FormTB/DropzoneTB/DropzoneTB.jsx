@@ -97,8 +97,8 @@ class DropzoneTB extends Component {
 
 		super ( props );
 
-		this.dropsValidated = [];
 		this.validDrops = [];
+		this.invalidDrops = [];
 
 		this.state = {
 
@@ -125,8 +125,8 @@ class DropzoneTB extends Component {
 
 		const zonePropsExtended = _.extend( zoneProps, {
 
-			onDragEnter: this._onDragEnter.bind( this ),
-			onDragLeave: this._onDragLeave.bind( this ),
+			/*onDragEnter: this._onDragEnter.bind( this ),
+			onDragLeave: this._onDragLeave.bind( this ),*/
 			onDrop: this._onDrop.bind( this ),
 			onClick: this._openInput.bind( this ),
 			isBlocked: isBlocked
@@ -157,6 +157,8 @@ class DropzoneTB extends Component {
 	}
 
 
+	// RENDER FUNCTIONS
+
 	_createDropzoneFiles ( files ) {
 
 		return _.map( files, ( file, index ) => {
@@ -186,40 +188,41 @@ class DropzoneTB extends Component {
 
 		let { onValidDrop, onInValidDrop, onDropsValidated, elementHandlers } = this.props;
 
+		let exifdata = comp.props.file.exifdata;
+		let validations = comp.state.validations;
+
+		let file = comp.props.file;
+		let drop = {
+
+			file: file,
+			exifJSON: JSON.stringify( exifdata ),
+			validationsJSON: JSON.stringify( validations ),
+			validations: validations,
+			manual: 0,
+			exifDateTime: exifdata.DateTimeOriginal || exifdata.DateTimeDigitized || exifdata.DateTime
+
+		}
+
 		if( isValidDrop ){
-
-			let exifdata = comp.props.file.exifdata;
-			let validations = comp.state.validations;
-
-			let file = comp.props.file;
-			let drop = {
-
-				file: file,
-				exifJSON: JSON.stringify( exifdata ),
-				validationsJSON: JSON.stringify( validations ),
-				validations: validations,
-				manual: 0,
-				exifDateTime: exifdata.DateTimeOriginal || exifdata.DateTimeDigitized || exifdata.DateTime
-
-			}
 
 			this.validDrops = this.validDrops.concat( [ drop ] );
 			onValidDrop( status, comp );
 
 		}else{
 
+			this.invalidDrops = this.invalidDrops.concat( [ drop ] );
 			onInValidDrop( status, comp );
 
 		}
 
 		let { filesDropped } = this.state;
-		this.dropsValidated = this.dropsValidated.concat( [ comp.props.file ] );
-		let allDropsValidated = _.chain( filesDropped ).difference( this.dropsValidated ).size().value() === 0 ? true : false;
+		let dropsValidated = this.validDrops.length + this.invalidDrops.length;
 
-		if( allDropsValidated ){
+		if( filesDropped.length === dropsValidated ){
 
 			elementHandlers.onChange( this.validDrops );
-			onDropsValidated( this.validDrops );
+			onDropsValidated( this.validDrops, this.invalidDrops );
+
 			this.setState( { validating: false } );
 
 			if( !this.validDrops.length ){
@@ -232,47 +235,8 @@ class DropzoneTB extends Component {
 
 	}
 
-	_resetDropzone (){
 
-		this.dropsValidated = [];
-		this.validDrops = [];
-
-		this.setState( { 
-
-			validating: false,
-			filesDropped: []
-
-		} );
-
-	}
-
-	_onDragEnter (  ){
-
-	}
-
-	_onDragLeave (  ){
-
-	}
-
-	_openInput ( ){
-
-		this.refs.dropzoneInput.click();
-
-	}
-
-	_onDrop ( e ) {
-
-		this._promiseDroppedFiles( e )
-		.then( this._promiseAccepted )
-		.then( this._promiseMax )
-		.then( this._promiseValidation )
-		.catch( ( err ) => {
-
-			this.context.logError( err );
-
-		} );	
-
-	}
+	// INTERACTION
 
 	_promiseDroppedFiles ( e ){
 
@@ -296,68 +260,117 @@ class DropzoneTB extends Component {
 
 	_promiseAccepted = ( droppedFiles ) => {
 
-		let files = [];
+		return new Promise( ( resolve, reject ) => {
 
-		_.each( droppedFiles, ( file ) => {
+			let acceptedFiles = [];
+			let unacceptedFiles = [];
 
-			if( !this.props.disablePreview ) {
+			_.each( droppedFiles, ( file ) => {
 
-				file.preview = window.URL.createObjectURL( file );
+				if( !this.props.disablePreview ) {
 
-			}
+					file.preview = window.URL.createObjectURL( file );
 
-			let accepted = accepts( file, this.props.accept  ) ? true : false;
-		
-			if( !accepted ){
+				}
+
+				let accepted = accepts( file, this.props.accept  ) ? true : false;
+
+				if( !accepted ){
+
+					unacceptedFiles.push( file );
+
+				}else{
+
+					acceptedFiles.push( file );
+
+				}
+
+			} )
+
+			if( unacceptedFiles.length > 0 ){
 
 				this.context.showSnackbar( { label: this.props.warning_accept } );
 
-			}else{
+			}
 
-				files.push( file );
+			if( !acceptedFiles.length ){
+
+				reject( Error( 'DropzoneTB/_promiseAccepted/None of the dropped files were accepted' ) );
 
 			}
 
-		} )
+			resolve( acceptedFiles );
 
-		return files;
+		} );
 
 	}
 
-	_promiseMax = ( files ) => {
+	_promiseMax = ( acceptedFiles ) => {
 
-		let allFiles = _.union( this.state.filesDropped, files );
+		let maxFiles = _.union( this.state.filesDropped, acceptedFiles );
 
-		if( allFiles.length > this.props.max ) {
+		if( maxFiles.length > this.props.max ) {
 
-			allFiles.splice( this.props.max );
+			maxFiles.splice( this.props.max );
 			this.context.showSnackbar( { label: this.props.warning_max } );
 
 		}
 
-		return allFiles;
+		return Promise.resolve( maxFiles );
 
 	}
 
 	_promiseValidation = ( allFiles ) => {
 
+		this.setState( {
 
-		if( allFiles.length > 0 ){
+			validating: true,
+			filesDropped: allFiles
 
-			this.setState( {
+		}, this.props.onDropsAccepted( allFiles ) );
 
-				validating: true,
-				filesDropped: allFiles
+		return Promise.resolve( allFiles );
 
-			}, this.props.onDropsAccepted( allFiles ) );
+		// --> triggeres render + _createDropZoneFiles/validation
 
-			// --> triggeres render + _createDropZoneFiles/validation
+	}
 
-		}/*else{
+	_onDrop ( e ) {
 
-			this.setState( { validating: false } );
+		this._promiseDroppedFiles( e )
+		.then( this._promiseAccepted )
+		.then( this._promiseMax )
+		.then( this._promiseValidation )
+		.catch( ( err ) => {
 
-		}*/
+			this.context.logError( err );
+
+		} );	
+
+	}
+
+
+	// OTHER
+
+	_resetDropzone (){
+
+		console.log( "Resetting dropzone" );
+
+		this.validDrops = [];
+		this.invalidDrops = [];
+
+		this.setState( { 
+
+			validating: false,
+			filesDropped: []
+
+		} );
+
+	}
+
+	_openInput ( ){
+
+		this.refs.dropzoneInput.click();
 
 	}
 

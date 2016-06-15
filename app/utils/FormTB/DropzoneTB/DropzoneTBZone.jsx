@@ -9,8 +9,8 @@ export default class DropzoneTBZone extends Component {
 
 	static propTypes = {
 
-		onDragEnter: PropTypes.func,
-		onDragLeave: PropTypes.func,
+		/*onDragEnter: PropTypes.func,
+		onDragLeave: PropTypes.func,*/
 		onDrop: PropTypes.func.isRequired,
 		onClick: PropTypes.func.isRequired,
 		isBlocked: PropTypes.bool,
@@ -29,8 +29,8 @@ export default class DropzoneTBZone extends Component {
 
 	static defaultProps = {
 
-		onDragEnter: () => {},	
-		onDragLeave: () => {},
+		/*onDragEnter: () => {},	
+		onDragLeave: () => {},*/
 		isBlocked: false,
 		showRippler: true,
 		showPrompt: true, 
@@ -105,7 +105,7 @@ export default class DropzoneTBZone extends Component {
 
 	render () {
 
-		const { onDragEnter, onDragLeave, onDrop, onClick, isBlocked, showRippler, showPrompt, clsZone, clsZoneEnter, clsZoneDrop, clsZoneBlocked, promptDrag, promptDrop, promptClick, ...restProps } = this.props; // eslint-disable-line no-unused-vars
+		const { /*onDragEnter, onDragLeave,*/ onDrop, onClick, isBlocked, showRippler, showPrompt, clsZone, clsZoneEnter, clsZoneDrop, clsZoneBlocked, promptDrag, promptDrop, promptClick, ...restProps } = this.props; // eslint-disable-line no-unused-vars
 		const { prompt, isDrag, isDrop, dropX, dropY } = this.state;
 
 		const dropzoneHandlers = {
@@ -152,16 +152,16 @@ export default class DropzoneTBZone extends Component {
 	_onDragEnter ( e ){
 
 		e.preventDefault();
-		let { onDragEnter, isBlocked, promptDrop } = this.props;
-		this.setState( { isDrag: !isBlocked, isDrop: false, prompt: promptDrop }, onDragEnter( e ) );
+		let { /*onDragEnter,*/ isBlocked, promptDrop } = this.props;
+		this.setState( { isDrag: !isBlocked, isDrop: false, prompt: promptDrop }/*, onDragEnter( e )*/ );
 
 	}
 
 	_onDragLeave ( e ){
 
 		e.preventDefault();
-		let { onDragLeave } = this.props;
-		this.setState( { isDrag: false, prompt: this.promptInit }, onDragLeave( e ) );
+		/*let { onDragLeave } = this.props;*/
+		this.setState( { isDrag: false, prompt: this.promptInit }/*, onDragLeave( e )*/ );
 
 	}
 

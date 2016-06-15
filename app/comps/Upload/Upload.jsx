@@ -6,13 +6,14 @@ import _ from 'underscore';
 import http from 'http';
 import { Button } from 'react-toolbox/lib/button';
 import Tooltip from 'react-toolbox/lib/tooltip';
+import ProgressBar from 'react-toolbox/lib/progress_bar';
 const TooltipButton = Tooltip( Button );
 
 import style from './_styleUpload';
 
 import FormTB from '../../utils/FormTB/FormTB/FormTB';
 import DropzoneTB from '../../utils/FormTB/DropzoneTB/DropzoneTB';
-/*import SubmitTB from '../../utils/FormTB/SubmitTB/SubmitTB';*/
+import InputTB from '../../utils/FormTB/InputTB/InputTB';
 import MapboxGL from '../../utils/MapboxGL/MapboxGL';
 import FeatureDialog from './FeatureDialog';
 import UploadDropDialog from './UploadDropDialog';
@@ -34,11 +35,6 @@ const messages = defineMessages( {
 		description: "0 - ",
 		defaultMessage: "Click anywhere to upload your pictures"
 	},*/
-	dropzone_prompt_blocked:{
-		id: "dropzone_prompt_blocked",
-		description: "0 - ",
-		defaultMessage: "Processing ... please wait until finished to drop more images"
-	},
 	dropzone_warning_accept:{
 		id: "dropzone_warning_accept",
 		description: "0 - ",
@@ -64,6 +60,11 @@ const messages = defineMessages( {
 		description: "1 - ",
 		defaultMessage: "Your browser does not support the web technology necessary to display the world map. We recommend you upgrade your browser to the latest version!"
 	},
+	dropzone_valid_drops:{
+		id: "dropzone_valid_drops",
+		description: "1 - ",
+		defaultMessage: "Awesome! We found the location of your coast."
+	},
 	feature_dialog_ok_label:{
 		id: "feature_dialog_ok_label",
 		description: "0 - ",
@@ -73,16 +74,6 @@ const messages = defineMessages( {
 		id: "button_tooltip_upload_image",
 		description: "0 - ",
 		defaultMessage: "Upload an image"
-	},
-	upload_feature_dialog_cancel_label:{
-		id: "upload_feature_dialog_cancel_label",
-		description: "0 - ",
-		defaultMessage: "Cancel"
-	},
-	upload_feature_dialog_upload_label:{
-		id: "upload_feature_dialog_upload_label",
-		description: "0 - ",
-		defaultMessage: "Upload"
 	}
 	
 
@@ -110,6 +101,8 @@ class Upload extends Component {
 
 		}, false );
 
+		this._init();
+
 	}
 
 	componentWillUnmount (){
@@ -128,6 +121,12 @@ class Upload extends Component {
 		this.initZoom = 0;
 		this.minZoom = 0;
 		this.maxZoom = 22;
+		this.initCenter = [ 150, 39 ];
+		this.easing = function ( t ) { 
+
+			return t<.5 ? 2*t*t : -1+( 4-2*t )*t; 
+
+		}
 
 		this.state = {
 
@@ -137,7 +136,9 @@ class Upload extends Component {
 			featureToShow: undefined,
 			dropImage: undefined,
 			dropLayerId: undefined,
-			blockDropzone: true
+			blockDropzone: true,
+			showMapLoader: false,
+			autoSubmit: false
 
 		} 
 
@@ -147,7 +148,7 @@ class Upload extends Component {
 
 		const { formatMessage/*, locale*/ } = this.props.intl;
 		const { className } = this.props;
-		const { isWindowDrag, showFeatureDialog, showUploadDropDialog, featureToShow, dropImage, blockDropzone } = this.state;
+		const { isWindowDrag, showFeatureDialog, showUploadDropDialog, featureToShow, dropImage, blockDropzone, showMapLoader, autoSubmit } = this.state;
 
 		const cls = Classnames( style.upload, className );
 		const clsForm = Classnames( style.fill, {
@@ -192,9 +193,9 @@ class Upload extends Component {
 		return (
 
 			<div id="Upload" className={ cls }>
+				{ showMapLoader && <ProgressBar type="linear" mode="indeterminate" className={ style.mapLoader } /> }
 				<MapboxGL
 					ref="map"
-					returnMap={ this._initMap }
 					className={ clsMap }
 					unsupportedTitle={ formatMessage( messages.mapbox_warning_unsupported_title ) }
 					unsupportedMessage={ formatMessage( messages.mapbox_warning_unsupported_message ) }
@@ -202,7 +203,7 @@ class Upload extends Component {
 					zoom={ this.initZoom }
 					minZoom={ this.minZoom }
 					maxZoom={ this.maxZoom }
-					center={ [ 150, 39 ] }
+					center={ this.initCenter }
 					maxBounds={ [ [ 360, 84 ], [ -360, -70 ] ] }
 					attributionControl={ false }
 					scrollZoom={ false}
@@ -211,7 +212,7 @@ class Upload extends Component {
 					style="mapbox://styles/maureentsakiris/cinxhoec70043b4nmx0rkoc02"
 					accessToken="pk.eyJ1IjoibWF1cmVlbnRzYWtpcmlzIiwiYSI6ImNpbXM1N2Z2MTAwNXF3ZW0ydXI3eXZyOTAifQ.ATjSaskEecYMiEG36I_viw"
 				/>
-				<FormTB name="upload" className={ clsForm } ref="form" autoSubmit={ false } >
+				<FormTB name="upload" className={ clsForm } ref="form" autoSubmit={ autoSubmit } >
 					<DropzoneTB
 						name="dropzone"
 						ref="dropzone"
@@ -234,50 +235,40 @@ class Upload extends Component {
 
 						} }
 						onDropsAccepted={ this._onDropsAccepted }
-						onValidDrop={ this._onValidDrop }
 						onInValidDrop={ this._onInValidDrop }
 						onDropsValidated= { this._onDropsValidated }
 					/>
-					<UploadDropDialog
-						name="userinput"
-						active={ showUploadDropDialog } 
-						dropImage={ dropImage }
-						cancelLabel={ formatMessage( messages.upload_feature_dialog_cancel_label ) }
-						uploadLabel={ formatMessage( messages.upload_feature_dialog_upload_label ) }
-						onCancelClick={ this._cancelUpload }
-						onUploadClick={ this._uploadForm }
+					<InputTB
+						name="comment"
+						ref="comment"
+						className={ style.hidden }
 					/>
 				</FormTB>
 				<TooltipButton tooltip={ formatMessage( messages.button_tooltip_upload_image ) } tooltipDelay={ 1000 } icon="file_upload" floating accent className={ clsUploadButton } onClick={ this._openInput } />
 				<FeatureDialog label={ formatMessage( messages.feature_dialog_ok_label ) } onClick={ this._hideFeatureDialog } active={ showFeatureDialog } feature={ featureToShow } />
+				<UploadDropDialog
+					name="userinput"
+					active={ showUploadDropDialog } 
+					dropImage={ dropImage }
+					onCancelClick={ this._cancelUpload }
+					onUploadClick={ this._uploadForm }
+				/>
 			</div>
 
 		)
 
 	}
 
-	_uploadForm = () => {
 
-		console.log( "Uploading form" );
+	// INIT
 
-	}
+	_showMapLoader = ( bool ) => {
 
-	_cancelUpload = () => {
-
-		this.refs.map._hideLayer( this.state.dropLayerId );
-		this.refs.map._flyToInit();
-
-		this.setState( {
-
-			showUploadDropDialog: false,
-			dropLayerId: undefined,
-			blockDropzone: false
-
-		}, this.refs.form._resetForm() );
+		this.setState( { showMapLoader: bool } );
 
 	}
 
-	_fetchGeojson = () => {
+	_promiseFetchGeojson = () => {
 
 		let options = {
 
@@ -286,39 +277,146 @@ class Upload extends Component {
 
 		}
 
+		this._showMapLoader( true );
+
 		return new Promise( ( resolve, reject ) => {
 
-			this.geoJsonRequest = http.get( options, ( res ) => {
+			console.log( "remove timeout" );
 
-				const body = [ ];
+			setTimeout( function () {
 
-				res.on( 'data', ( chunk ) => { 
+				this.geoJsonRequest = http.get( options, ( res ) => {
 
-					body.push( chunk );
+					const body = [ ];
+
+					res.on( 'data', ( chunk ) => { 
+
+						body.push( chunk );
+
+					} );
+
+					res.on( 'end', ( ) => {
+
+						resolve( body.join( '' ) );
+
+					} );
+
+				} ).on( 'error', ( e ) => {
+
+					reject( e );
 
 				} );
 
-				res.on( 'end', ( ) => {
 
-					resolve( body.join( '' ) );
+			}, 1000 );
 
-				} );
-
-			} ).on( 'error', ( e ) => {
-
-				reject( e );
-
-			} );
+			
 
 		} );
 
 	}
 
-	/*_onFormReset = () => {
+	_promiseParseGeojson = ( res ) => {
 
-		this.setState( { blockDropzone: false } );
+		return new Promise( ( resolve, reject ) => {
 
-	}*/
+			if( res.status == 'KO' ){
+
+				reject( res.message );
+
+			}
+
+			let result = JSON.parse( res );
+			let geojson = result.json;
+
+			resolve( geojson );
+
+		} );
+
+	}
+
+	_promiseDisplayGeojson = ( geojson ) => {
+
+		let markerSource = { 
+
+			type: 'geojson',
+			data: geojson,
+			cluster: true,
+			clusterMaxZoom: this.maxZoom,
+			clusterRadius: 20
+
+		}
+
+		let markerLayer = {
+
+			type: 'symbol',
+			layout: {
+
+				'icon-image': "{marker-symbol}"
+
+			}
+
+		}
+
+		let geojsonLayer = {
+
+			name: 'markers',
+			source: markerSource,
+			layer: markerLayer,
+			position: 'country_label_1',
+			onClick: this._showFeatureDialog
+
+		}
+
+		let clusterLayer = {
+
+			sourcename: 'markers',
+			position: 'country_label_1'/*,
+			onClick: this._showFeatureDialog*/
+
+		}
+
+		return new Promise( ( resolve, reject ) => {
+
+			this.refs.map._addLayer( geojsonLayer );
+			this.refs.map._clusterLayer( clusterLayer );
+
+			this._showMapLoader( false );
+
+			if( !this.refs.map._getLayer( 'markers-circle' ) || !this.refs.map._getLayer( 'markers-count' ) ){
+
+				reject( Error( 'Upload/_promiseDisplayGeojson/Failed to display geojson markers' ) );
+
+			}
+
+			resolve();
+
+		} );
+
+	}
+
+	_init = ( ) => {
+
+		this.refs.map._promiseCreateMap().then( ( map ) => {
+
+			this.map = map;
+			// enableling upload does not depend on whether or not geojson is fetched and displayed ... only on whether the map has loaded
+			this.setState( { blockDropzone: false } );
+			return this._promiseFetchGeojson();
+
+		} )
+		.then( this._promiseParseGeojson )
+		.then( this._promiseDisplayGeojson )
+		.catch( ( error ) => {
+
+			this.context.logError( error );
+
+		} );
+
+	}
+
+
+	// ON DROP
 
 	_onDropsAccepted = ( ) => {
 
@@ -326,53 +424,71 @@ class Upload extends Component {
 
 	}
 
+	// As long as we only allow one image at a time we can show a dialog on invalid drop .. later on it should be a snackbar in the _onDropsValidated callback
 	_onInValidDrop = ( status/*, inValidDrop*/ ) => {
 
 		let message = status.imageHasLocation.message;
-		this.setState( { blockDropzone: true }, this._showInvalidDialog( message ) );
+
+		const showInvalidDialog = ( message ) => {
+
+			const { formatMessage } = this.props.intl;
+			this.context.showDialog( { 
+
+				title: formatMessage( messages.dropzone_drop_invalid_title ), 
+				content: message,
+				onOverlayClick: hideInvalidDialog,
+				onEscKeyDown: hideInvalidDialog,
+				actions: [ {
+
+					label: 'OK',
+					onClick: hideInvalidDialog
+
+				} ] 
+
+			} );
+
+		}
+
+		const hideInvalidDialog = ( ) => {
+
+			this.setState( { blockDropzone: false }, this.context.hideDialog );
+
+		}
+
+		this.setState( { blockDropzone: true }, showInvalidDialog( message ) );
 
 	}
 
-	_showInvalidDialog = ( message ) => {
+	_onDropsValidated = ( validDrops/*, invalidDrops*/ ) => {
 
-		const { formatMessage } = this.props.intl;
-		this.context.showDialog( { 
+		const { formatMessage/*, locale*/ } = this.props.intl;
 
-			title: formatMessage( messages.dropzone_drop_invalid_title ), 
-			content: message,
-			onOverlayClick: this._hideInvalidDialog,
-			onEscKeyDown: this._hideInvalidDialog,
-			actions: [ {
+		if( validDrops.length ){
 
-				label: 'OK',
-				onClick: this._hideInvalidDialog
+			this.context.showSnackbar( { label: formatMessage( messages.dropzone_valid_drops ) } );
 
-			} ] 
+			var validDrop = validDrops[ 0 ];
+			this._goFlying( validDrop );
 
-		} );
+		}
 
-	}
+		/*if( invalidDrops.length ){
 
-	_hideInvalidDialog = ( ) => {
+			console.log( 'Invalid Drops count: ', invalidDrops.length );
 
-		this.setState( { blockDropzone: false }, this.context.hideDialog );
-
-	}
-
-	_onValidDrop = ( status, validDrop ) => {
-
-		this.context.showSnackbar( { label: status.imageHasLocation.message } );
-		this._goFlying( validDrop );
+		}*/
 
 	}
 
 	_goFlying = ( validDrop ) => {
 
-		let specs = validDrop.state.validations.imageHasLocation.result.specs;
+		let specs = validDrop.validations.imageHasLocation.result.specs;
 		let zoom = _.max( [ this.map.getZoom(), 15 ] );
-		let dropImage = validDrop.props.file.preview;
+		let dropImage = validDrop.file.preview;
 		let id = Date.now().toString();
 
+
+		// Add data to existing layer instead of creating a new one
 		const geoJSON = {
 
 			"type": "FeatureCollection",
@@ -385,7 +501,7 @@ class Upload extends Component {
 				"properties": {
 					"marker-symbol": "marker-accent",
 					"comment": "",
-					"image": validDrop.props.file.preview
+					"image": validDrop.file.preview
 				}
 
 			} ]
@@ -426,7 +542,7 @@ class Upload extends Component {
 
 			center: [ specs.long, specs.lat ], 
 			zoom: zoom,
-			speed: 1, // make the flying slow
+			speed: 5, // make the flying slow
 			curve: 1, // change the speed at which it zooms out
 			easing: function ( t ) {
 
@@ -453,89 +569,44 @@ class Upload extends Component {
 			dropLayerId: id
 
 		} );
+ 
+	}
+
+	_uploadForm = ( comment ) => {
+
+		this.refs.comment._setValue( comment );
+
+		this.setState( {
+
+			autoSubmit: true
+
+		} )
 
 	}
 
-	/*_onDropsValidated = ( validDrops ) => {
+	_cancelUpload = () => {
 
-		if( !validDrops.length ){
+		this.refs.map._hideLayer( this.state.dropLayerId );
+		this.refs.map._zoomTo( 2, { duration: 2000 } );
 
-			//this._resetUploadButton();
+		this.setState( {
 
-		}
+			showUploadDropDialog: false,
+			dropLayerId: undefined,
+			blockDropzone: false
+
+		}, this.refs.form._resetForm() );
 
 	}
 
-	_resetUploadButton = ( ) => {
+	/*_onFormReset = () => {
 
 		this.setState( { blockDropzone: false } );
 
 	}*/
 
-	_initMap = ( e ) => {
 
-		this.map = e;
-
-		this._fetchGeojson().then( function ( res ){
-
-			if( res.status == 'KO' ){
-
-				throw Error( res.message );
-
-			}
-
-			let result = JSON.parse( res );
-			let geojson = result.json;
-
-			return geojson;
-
-		} ).then( ( geojson ) => {
-
-			let markerSource = { 
-
-				type: 'geojson',
-				data: geojson,
-				cluster: true,
-				clusterMaxZoom: this.maxZoom,
-				clusterRadius: 20
-
-			}
-
-			let markerLayer = {
-
-				type: 'symbol',
-				layout: {
-
-					'icon-image': "{marker-symbol}"
-
-				}
-
-			}
-
-			let geojsonLayer = {
-
-				name: 'markers',
-				source: markerSource,
-				layer: markerLayer,
-				position: 'country_label_1',
-				onClick: this._showFeatureDialog
-
-			}
-
-			this.refs.map._addLayer( geojsonLayer );
-			this.refs.map._clusterLayer( 'markers', 'country_label_1' );
-			return true;
-			
-
-		} ).catch( ( error ) => {
-
-			this.context.logError( error );
-
-		} );
-
-		this.setState( { blockDropzone: false } );
-
-	}
+	// OTHER
 
 	_showFeatureDialog = ( featureToShow ) => {
 

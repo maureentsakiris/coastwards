@@ -11,7 +11,6 @@ export default class MapboxGL extends Component {
 
 	static propTypes = {
 
-		returnMap: PropTypes.func,
 		className: PropTypes.string,
 		ref: PropTypes.string,
 		unsupportedTitle: PropTypes.string,
@@ -82,38 +81,6 @@ export default class MapboxGL extends Component {
 		
 	}
 
-	componentDidMount ( ) {
-
-		this._createMap();
-
-	}
-
-	/*componentWillReceiveProps ( p ) {
-
-		if( this.map.loaded() ){
-
-			if( p.language != this.props.language ){
-
-				this._changeLanguage( p.language );
-
-			}
-
-		}else{
-
-			this.map.on( 'load', function ( ){
-
-				if( p.language != this.props.language ){
-
-					this._changeLanguage( p.language );
-
-				}
-
-			} );
-
-		}
-
-	}*/
-
 	shouldComponentUpdate ( ){
 
 		return false;
@@ -156,50 +123,88 @@ export default class MapboxGL extends Component {
 
 	}*/
 
-	_createMap = ( ) => {
+	_promiseCreateMap = ( ) => {
 
 		let props = _.omit( this.props, 'className', 'language' );
-		let { accessToken, unsupportedTitle, unsupportedMessage, navigationControl, returnMap, layers, ...options  } = props;
+		let { accessToken, unsupportedTitle, unsupportedMessage, navigationControl, layers, ...options  } = props;
 
-		if ( !mapboxgl.supported() ) {
+		return new Promise( ( resolve, reject ) => {
 
-			this.context.showDialog( { title: unsupportedTitle, content: unsupportedMessage } );
+			if ( !mapboxgl.supported() ) {
 
-		} else {
+				this.context.showDialog( { title: unsupportedTitle, content: unsupportedMessage } );
+				reject( Error( 'MapboxGl/_createMap/Mapbox is not supported' ) );
 
-			mapboxgl.accessToken = accessToken;
-			this.map = new mapboxgl.Map( options );
+			} else {
 
-			// SETTING INTERACTIONS One would think initializing with values would be enough, but ....
-			let interactions = [ 'scrollZoom', 'boxZoom', 'dragRotate', 'dragPan', 'keyboard', 'doubleClickZoom', 'touchZoomRotate' ];
-			_.each( interactions, ( i ) => {
+				mapboxgl.accessToken = accessToken;
+				this.map = new mapboxgl.Map( options );
 
-				if( options.interactive ){
+				if( !( this.map instanceof mapboxgl.Map ) ){
 
-					let flag = options[ i ] ? 'enable' : 'disable';
-					this.map[ i ][ flag ]();
+					reject( Error( 'MapboxGl/_createMap/Failed to create instance of mapboxGl.Map' ) );
 
 				}
 
-			} );
+				// LOAD INITIAL LAYERS
+				this.map.on( 'load', ( ) => {
 
-			// ADD NAVIGATION CONTROLS
+					// SETTING INTERACTIONS One would think initializing with values would be enough, but ....
+					let interactions = [ 'scrollZoom', 'boxZoom', 'dragRotate', 'dragPan', 'keyboard', 'doubleClickZoom', 'touchZoomRotate' ];
+					_.each( interactions, ( i ) => {
 
-			if( navigationControl ){
+						if( options.interactive ){
 
-				this.map.addControl( new mapboxgl.Navigation( { position: this.props.navigationControlPosition } ) );
+							let flag = options[ i ] ? 'enable' : 'disable';
+							this.map[ i ][ flag ]();
+
+						}
+
+					} );
+
+					// ADD NAVIGATION CONTROLS
+					if( navigationControl ){
+
+						this.map.addControl( new mapboxgl.Navigation( { position: this.props.navigationControlPosition } ) );
+
+					}
+
+					// ADD LAYERS
+					_.each( layers, this._addLayer );
+
+					resolve( this.map );
+
+				} );
+
+				this.map.on( 'error', ( e ) => {
+
+					reject( Error( 'MapboxGl/_createMap/Error creating map/' + e ) ) 
+
+				} );
+				/*this.map.on( 'style.error', ( e ) => {
+
+					reject( Error( 'MapboxGl/_createMap/Error loading style/' + e ) ) 
+
+				} );
+				this.map.on( 'source.error', ( e ) => {
+
+					reject( Error( 'MapboxGl/_createMap/Error loading source/' + e ) ) 
+
+				} );
+				this.map.on( 'tile.error', ( e ) => {
+
+					reject( Error( 'MapboxGl/_createMap/Error loading tiles/' + e ) ) 
+
+				} );
+				this.map.on( 'layer.error', ( e ) => {
+
+					reject( Error( 'MapboxGl/_createMap/Error loading layer/' + e ) ) 
+
+				} );*/
 
 			}
 
-			// LOAD INITIAL LAYERS
-			this.map.on( 'load', ( ) => {
-
-				returnMap( this.map );
-				_.each( layers, this._addLayer )
-
-			} );
-
-		}
+		} );
 
 	}
 
@@ -242,26 +247,30 @@ export default class MapboxGL extends Component {
 
 	}
 
-	_clusterLayer = ( source, position ) => {
+	_clusterLayer = ( o ) => {
 
+		let { sourcename, position/*, onClick*/ } = o;
+		let circleLayerName = sourcename + "-circle";
+		let countLayerName = sourcename + "-count";
 
 		this.map.addLayer( {
 			
-			"id": "cluster-circles",
+			"id": circleLayerName,
 			"type": "circle",
-			"source": source,
+			"source": sourcename,
 			"paint": {
 				"circle-color": '#3a6b8e',
 				"circle-radius": 14
 			},
 			"filter": [ ">", "point_count", 1 ]
+
 		}, position );
 
 		this.map.addLayer( {
 
-			"id": "cluster-count",
+			"id": countLayerName,
 			"type": "symbol",
-			"source": source,
+			"source": sourcename,
 			"layout": {
 
 				"text-field": "{point_count}",
@@ -280,6 +289,35 @@ export default class MapboxGL extends Component {
 
 		}, position );
 
+		/*if( onClick ){
+
+			this.map.on( 'mousemove', ( e ) => {
+				
+				var features = this.map.queryRenderedFeatures( e.point, { layers: [ circleLayerName ] } );
+				this.map.getCanvas().style.cursor = ( features.length ) ? 'pointer' : '';
+			
+			} );
+
+			this.map.on( 'click', ( e ) => {
+
+				var features = this.map.queryRenderedFeatures( e.point, { layers: [ circleLayerName ] } );
+
+				console.log( features );
+
+				if ( !features.length ) {
+
+					return;
+
+				}
+
+				var feature = features[ 0 ];
+
+				onClick( feature );
+
+			} );
+
+		}*/
+
 	}
 
 	_hideLayer = ( id ) => {
@@ -288,10 +326,22 @@ export default class MapboxGL extends Component {
 
 	}
 
+	_getLayer = ( id ) => {
+
+		return this.map.getLayer( id );
+
+	}
+
+	_zoomTo = ( zoom, options ) => {
+
+		this.map.zoomTo( zoom, options );
+
+	}
+
 	_flyToInit = ( speed, curve, easing ) => {
 
-		let s = speed || 4;
-		let c = curve || 1;
+		let s = speed || 1;
+		let c = curve || 0.4;
 		let e = easing || function ( t ) { 
 
 			return t<.5 ? 2*t*t : -1+( 4-2*t )*t; 

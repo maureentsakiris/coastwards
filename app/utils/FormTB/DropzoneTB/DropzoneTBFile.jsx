@@ -23,33 +23,17 @@ export default class DropzoneTBFile extends Component {
 
 		validations: {}
 
+	};
+
+	static contextTypes = {
+
+		logError: PropTypes.func
+
 	}
 
 	componentWillMount ( ){
 
-		const me = this;
-
-		// So the ripple effect can run through
-		setTimeout( () => {
-
-			EXIF.getData( this.props.file, function ( ) {
-
-				let tags = EXIF.getAllTags( this );
-				me.setState( { tags: tags } );
-
-			} );
-
-		}, 300 );
-
-	}
-
-	componentWillUpdate ( p, s ){
-
-		if( s.tags != this.state.tags ){
-
-			this._runTests();
-
-		}
+		this._init();
 
 	}
 
@@ -88,6 +72,58 @@ export default class DropzoneTBFile extends Component {
 		)
 
 	}
+
+	_promiseExif = () => {
+
+		return new Promise( ( resolve, reject ) => {
+
+			// So the drop ripple effect can run through
+			setTimeout( () => {
+
+				var exif = EXIF.getData( this.props.file, function ( ) {
+
+					let tags = EXIF.getAllTags( this );
+
+					if( !tags ){
+
+						reject( Error( 'DropzoneTBFile/_promiseExif/Could not load tags from EXIF' ) );
+
+					}
+
+					resolve( tags )
+
+				} );
+
+				if( !exif ){
+
+					reject( Error( 'DropzoneTBFile/_promiseExif/Could not load EXIF' ) );
+
+				}
+
+			}, 300 );
+
+		} );
+
+	}
+
+	_promiseSetTags = ( tags ) => {
+
+		this.setState( { tags: tags }, this._runTests );
+
+	}
+
+	_init = () => {
+
+		this._promiseExif()
+		.then( this._promiseSetTags )
+		.catch( ( error ) => {
+
+			this.context.logError( error );
+
+		} );
+
+	}
+
 
 	_getStatus ( status ){
 
@@ -139,7 +175,7 @@ export default class DropzoneTBFile extends Component {
 		const runNextTest = ( ) => {
 
 			let test = validatorStack.shift();
-			
+
 			if( test ){
 
 				this._runTest ( test, runNextTest, abortTests );
@@ -204,11 +240,14 @@ export default class DropzoneTBFile extends Component {
 
 			status[ methodName ] = { result, passed, message, label, description };
 			validations[ methodName ] = { result, passed };
+
 			this.setState( ( state ) => {
 
 				return { 
+
 					status: _.extend( state.status, status ), 
 					validations: _.extend( state.validations, validations )
+
 				}
 
 			}, callback );
@@ -218,22 +257,16 @@ export default class DropzoneTBFile extends Component {
 		let status = this.state.status;
 		let validations = this.state.validations;
 		status[ methodName ] = { label, description };
+
 		this.setState( ( state ) => {
 
-			return { 
+			return {
+
 				status: _.extend( state.status, status )
+
 			}
 
 		}, callMethod );
-
-	}
-
-	_toDecimal ( number, ref, l ){
-
-		let decimal = number[ 0 ].numerator + number[ 1 ].numerator / ( 60 * number[ 1 ].denominator ) + number[ 2 ].numerator / ( 3600 * number[ 2 ].denominator );
-		let flip = l == 'lat' ? ref == 'N' ? 1 : -1 : ref == 'W' ? -1 : 1;
-
-		return decimal * flip;
 
 	}
 
@@ -242,31 +275,30 @@ export default class DropzoneTBFile extends Component {
 
 const ImageValidators = {
 
-	isImage: function ( file ) {
-
-		let flag = !!file;
-
-		let result = {
-
-			flag: flag,
-			specs: {}
-
-		}
-
-		return result;
-
-	},
 	imageHasLocation: function ( comp ) {
 
 		let flag = false;
 		let lat, long;
 		let tags = comp.state.tags;
 
-		if( tags.GPSLatitude && tags.GPSLongitude ){
+		const _toDecimal = ( number, ref, l ) => {
 
-			lat = comp._toDecimal( tags.GPSLatitude, tags.GPSLatitudeRef, 'lat' );
-			long = comp._toDecimal( tags.GPSLongitude, tags.GPSLongitudeRef, 'long' );
+			let decimal = number[ 0 ].numerator + number[ 1 ].numerator / ( 60 * number[ 1 ].denominator ) + number[ 2 ].numerator / ( 3600 * number[ 2 ].denominator );
+			let flip = l == 'lat' ? ref == 'N' ? 1 : -1 : ref == 'W' ? -1 : 1;
+
+			return decimal * flip;
+
+		}
+
+		if( _.isArray( tags.GPSLatitude ) && _.isArray( tags.GPSLongitude ) ){
+
+			lat = _toDecimal( tags.GPSLatitude, tags.GPSLatitudeRef, 'lat' );
+			long = _toDecimal( tags.GPSLongitude, tags.GPSLongitudeRef, 'long' );
 			flag = true;
+
+		}else{
+
+			flag = false;
 
 		}
 

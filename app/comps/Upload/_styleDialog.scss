@@ -17,12 +17,79 @@ $border-radius: 0.2rem;
 
 }
 
-.dialog{
+.dialog[data-react-toolbox="dialog"]{
 
 	&>[role="body"]{
 
 		padding: 0;
 
 	}
+
+}
+
+/* @include SM( ){
+
+	.dialog[data-react-toolbox="dialog"]{
+
+		width: 70vw;
+		height: 70vh;
+
+	}
+
+} */
+
+
+@include LtSM( ){
+
+	.dialog[data-react-toolbox="dialog"]{
+
+		width: 100vw;
+		height: 100vh;
+
+	}
+
+}
+
+@include MD( ){
+
+	.dialog[data-react-toolbox="dialog"]{
+
+		width: 60vw;
+		height: 70vh;
+
+	}
+
+}
+
+@include GtMD( ){
+
+	.dialog[data-react-toolbox="dialog"]{
+
+		width: 50vw;
+		height: 70vh;
+
+	}
+
+}
+
+.btns{
+
+	position: absolute;
+	right: $layout-gutter-width-sm;
+
+}
+
+.btn{
+
+	float: right;
+	margin-left: $layout-gutter-width-sm;
+
+}
+
+.inner{
+
+	padding: $layout-gutter-width-sm;
+	padding-bottom: 50px;
+	position: relative;
 
 }
