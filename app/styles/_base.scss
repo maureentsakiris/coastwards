@@ -301,3 +301,38 @@ $corsetPadding: 5vh;
 
 }
 
+//############################################################################################ REACT TOOLBOX DIALOG
+
+%dialog{
+
+  @include LtSM( ){
+
+    &[data-react-toolbox="dialog"]{
+
+      width: 100vw;
+
+    }
+
+  }
+
+  @include MD( ){
+
+    &[data-react-toolbox="dialog"]{
+
+      width: 60vw;
+
+    }
+
+  }
+
+  @include GtMD( ){
+
+    &[data-react-toolbox="dialog"]{
+
+      width: 50vw;
+
+    }
+
+  }
+
+}

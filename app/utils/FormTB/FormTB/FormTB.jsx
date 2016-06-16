@@ -20,7 +20,9 @@ export default class FormTB extends Component {
 		noValidate: PropTypes.bool,
 		className: PropTypes.string,
 		autoSubmit: PropTypes.bool,
+		submitForm: PropTypes.bool,
 		onReset: PropTypes.func,
+		onProgress: PropTypes.func,
 		children: PropTypes.node
 
 	};
@@ -29,6 +31,8 @@ export default class FormTB extends Component {
 
 		autocomplete: 'off',
 		noValidate: true,
+		autoSubmit: false,
+		submitForm: false,
 		onReset: () => {}
 
 	};
@@ -88,7 +92,7 @@ export default class FormTB extends Component {
 
 	_validateForm ( ){
 
-		let { autoSubmit } = this.props;
+		let { autoSubmit, submitForm } = this.props;
 		let flag = true;
 		let elements = this.elements;
 
@@ -102,9 +106,12 @@ export default class FormTB extends Component {
 
 		} );
 
-		if( autoSubmit && flag ){
+		if( ( autoSubmit && flag ) || ( submitForm && flag ) ){
 
-			this.setState( { formIsValid: flag }, this._submit );
+			console.log( "autoSumbit: ", autoSubmit );
+			console.log( "submitForm: ", submitForm );
+
+			this.setState( { formIsValid: flag, submitForm: false }, this._submit );
 
 		}else{
 
@@ -273,9 +280,9 @@ export default class FormTB extends Component {
 
 			}, false );
 
-			xhr.upload.addEventListener( 'progress', ( ) => {
+			xhr.upload.addEventListener( 'progress', ( e ) => {
 
-				//console.log( e.loaded );
+				this.props.onProgress( e );
 
 			}, false );
 

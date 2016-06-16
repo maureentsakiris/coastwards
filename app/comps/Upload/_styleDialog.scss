@@ -2,6 +2,12 @@
 
 $border-radius: 0.2rem;
 
+.dialog{
+
+	@extend %dialog;
+
+}
+
 .image{
 
 	max-width: 100%;
@@ -12,8 +18,8 @@ $border-radius: 0.2rem;
 
 .comment{
 
-	padding: $layout-gutter-width-sm;
-	color: $palette-grey-700;
+	//padding: $layout-gutter-width-sm;
+	//color: $palette-grey-700;
 
 }
 
@@ -22,51 +28,6 @@ $border-radius: 0.2rem;
 	&>[role="body"]{
 
 		padding: 0;
-
-	}
-
-}
-
-/* @include SM( ){
-
-	.dialog[data-react-toolbox="dialog"]{
-
-		width: 70vw;
-		height: 70vh;
-
-	}
-
-} */
-
-
-@include LtSM( ){
-
-	.dialog[data-react-toolbox="dialog"]{
-
-		width: 100vw;
-		height: 100vh;
-
-	}
-
-}
-
-@include MD( ){
-
-	.dialog[data-react-toolbox="dialog"]{
-
-		width: 60vw;
-		height: 70vh;
-
-	}
-
-}
-
-@include GtMD( ){
-
-	.dialog[data-react-toolbox="dialog"]{
-
-		width: 50vw;
-		height: 70vh;
 
 	}
 
@@ -91,5 +52,11 @@ $border-radius: 0.2rem;
 	padding: $layout-gutter-width-sm;
 	padding-bottom: 50px;
 	position: relative;
+
+	p{
+
+		margin: $layout-gutter-width-sm 0;
+
+	}
 
 }

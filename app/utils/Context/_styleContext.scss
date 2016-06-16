@@ -24,12 +24,8 @@
 
 .dialog{
 
-	&>[role="body"]{
-
-		color: $palette-grey-700;
-
-	}
-
+	@extend %dialog;
+	
 }
 
 

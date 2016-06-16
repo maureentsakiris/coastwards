@@ -134,11 +134,10 @@ class Upload extends Component {
 			showFeatureDialog: false,
 			showUploadDropDialog: false,
 			featureToShow: undefined,
-			dropImage: undefined,
+			dialogDrop: undefined,
 			dropLayerId: undefined,
 			blockDropzone: true,
-			showMapLoader: false,
-			autoSubmit: false
+			showMapLoader: false
 
 		} 
 
@@ -148,7 +147,7 @@ class Upload extends Component {
 
 		const { formatMessage/*, locale*/ } = this.props.intl;
 		const { className } = this.props;
-		const { isWindowDrag, showFeatureDialog, showUploadDropDialog, featureToShow, dropImage, blockDropzone, showMapLoader, autoSubmit } = this.state;
+		const { isWindowDrag, showFeatureDialog, showUploadDropDialog, featureToShow, dialogDrop, blockDropzone, showMapLoader } = this.state;
 
 		const cls = Classnames( style.upload, className );
 		const clsForm = Classnames( style.fill, {
@@ -212,7 +211,7 @@ class Upload extends Component {
 					style="mapbox://styles/maureentsakiris/cinxhoec70043b4nmx0rkoc02"
 					accessToken="pk.eyJ1IjoibWF1cmVlbnRzYWtpcmlzIiwiYSI6ImNpbXM1N2Z2MTAwNXF3ZW0ydXI3eXZyOTAifQ.ATjSaskEecYMiEG36I_viw"
 				/>
-				<FormTB name="upload" className={ clsForm } ref="form" autoSubmit={ autoSubmit } >
+				<FormTB name="upload" className={ clsForm } ref="form" >
 					<DropzoneTB
 						name="dropzone"
 						ref="dropzone"
@@ -238,18 +237,13 @@ class Upload extends Component {
 						onInValidDrop={ this._onInValidDrop }
 						onDropsValidated= { this._onDropsValidated }
 					/>
-					<InputTB
-						name="comment"
-						ref="comment"
-						className={ style.hidden }
-					/>
 				</FormTB>
 				<TooltipButton tooltip={ formatMessage( messages.button_tooltip_upload_image ) } tooltipDelay={ 1000 } icon="file_upload" floating accent className={ clsUploadButton } onClick={ this._openInput } />
 				<FeatureDialog label={ formatMessage( messages.feature_dialog_ok_label ) } onClick={ this._hideFeatureDialog } active={ showFeatureDialog } feature={ featureToShow } />
 				<UploadDropDialog
 					name="userinput"
 					active={ showUploadDropDialog } 
-					dropImage={ dropImage }
+					dialogDrop={ dialogDrop }
 					onCancelClick={ this._cancelUpload }
 					onUploadClick={ this._uploadForm }
 				/>
@@ -261,12 +255,6 @@ class Upload extends Component {
 
 
 	// INIT
-
-	_showMapLoader = ( bool ) => {
-
-		this.setState( { showMapLoader: bool } );
-
-	}
 
 	_promiseFetchGeojson = () => {
 
@@ -416,7 +404,7 @@ class Upload extends Component {
 	}
 
 
-	// ON DROP
+	// PRE DIALOG DROP EVENTS 
 
 	_onDropsAccepted = ( ) => {
 
@@ -459,32 +447,160 @@ class Upload extends Component {
 
 	}
 
-	_onDropsValidated = ( validDrops/*, invalidDrops*/ ) => {
 
-		const { formatMessage/*, locale*/ } = this.props.intl;
+	// ON DROPS VALIDATED
 
-		if( validDrops.length ){
+	_promiseValidDrop = ( validDrops ) => {
 
-			this.context.showSnackbar( { label: formatMessage( messages.dropzone_valid_drops ) } );
+		return new Promise( ( resolve, reject ) => {
+		
+			const { formatMessage/*, locale*/ } = this.props.intl;
 
-			var validDrop = validDrops[ 0 ];
-			this._goFlying( validDrop );
+			if( validDrops.length ){
 
-		}
+				this.context.showSnackbar( { label: formatMessage( messages.dropzone_valid_drops ) } );
+				var validDrop = validDrops[ 0 ];
 
-		/*if( invalidDrops.length ){
+				resolve( validDrop );
 
-			console.log( 'Invalid Drops count: ', invalidDrops.length );
+			}else{
 
-		}*/
+				reject( Error( 'Upload/_promiseValidDrop/Did not receive a valid drop' ) );
+
+			}
+			
+		
+		} );
 
 	}
 
-	_goFlying = ( validDrop ) => {
+	_promiseDropMarker = ( validDrop ) => {
+
+		return new Promise( ( resolve, reject ) => {
+		
+			let specs = validDrop.validations.imageHasLocation.result.specs;
+			let id = Date.now().toString();
+
+
+			// Add data to existing layer instead of creating a new one
+			const geoJSON = {
+
+				"type": "FeatureCollection",
+				"features": [ {
+					"type": "Feature",
+					"geometry": {
+						"type": "Point",
+						"coordinates": [ specs.long, specs.lat ]
+					},
+					"properties": {
+						"marker-symbol": "marker-accent",
+						"comment": "",
+						"image": validDrop.file.preview
+					}
+
+				} ]
+
+			}
+
+			const markerSource = { 
+
+				type: 'geojson',
+				data: geoJSON
+
+			}
+
+			const markerLayer = {
+
+				type: 'symbol',
+				layout: {
+
+					'icon-image': "{marker-symbol}"
+
+				}
+
+			}
+
+			let layer = {
+				
+				name: id,
+				source: markerSource,
+				layer: markerLayer,
+				position: 'country_label_1',
+				onClick: this._showFeatureDialog
+
+			}
+
+			this.refs.map._addLayer( layer );
+
+			if( _.isObject( this.refs.map._getLayer( id ) ) ){
+
+				validDrop.layerId = id;
+				validDrop.specs = specs;
+				resolve( validDrop );
+
+			}else{
+
+				reject( Error( 'Upload/_promiseDropMarker/Failed to drop marker' ) );
+
+			}
+		
+		} );
+
+	}
+
+	_promiseGoFlying = ( validDrop ) => {
+
+		return new Promise( ( resolve, reject ) => {
+
+			let zoom = _.max( [ this.map.getZoom(), 15 ] );
+		
+			this.map.flyTo( { 
+
+				center: [ validDrop.specs.long, validDrop.specs.lat ], 
+				zoom: zoom,
+				speed: 5, // make the flying slow
+				curve: 1, // change the speed at which it zooms out
+				easing: this.easing
+
+			} );
+
+			this.map.once( 'moveend', ( ) => {
+
+				this._showUploadDropDialog( validDrop, validDrop.layerId );
+
+			} );
+		
+		} );
+
+	}
+
+	_onDropsValidated = ( validDrops/*, invalidDrops*/ ) => {
+
+
+		this._promiseValidDrop( validDrops )
+		.then( this._promiseDropMarker )
+		.then( this._promiseGoFlying )
+		.catch( ( error ) => {
+
+			this.context.logError( error );
+
+		} );
+
+	}
+
+
+
+
+
+
+
+
+	
+
+	/*_goFlying = ( validDrop ) => {
 
 		let specs = validDrop.validations.imageHasLocation.result.specs;
 		let zoom = _.max( [ this.map.getZoom(), 15 ] );
-		let dropImage = validDrop.file.preview;
 		let id = Date.now().toString();
 
 
@@ -554,34 +670,22 @@ class Upload extends Component {
 
 		this.map.once( 'moveend', ( ) => {
 
-			this._showUploadDropDialog( dropImage, id );
+			this._showUploadDropDialog( validDrop, id );
 
 		} );
 
-	}
+	}*/
 
-	_showUploadDropDialog = ( dropImage, id ) => {
+	_showUploadDropDialog = ( validDrop, id ) => {
 
 		this.setState( {
 
-			dropImage: dropImage,
+			dialogDrop: validDrop,
 			showUploadDropDialog: true,
 			dropLayerId: id
 
 		} );
  
-	}
-
-	_uploadForm = ( comment ) => {
-
-		this.refs.comment._setValue( comment );
-
-		this.setState( {
-
-			autoSubmit: true
-
-		} )
-
 	}
 
 	_cancelUpload = () => {
@@ -596,6 +700,12 @@ class Upload extends Component {
 			blockDropzone: false
 
 		}, this.refs.form._resetForm() );
+
+	}
+
+	_uploadForm = ( ) => {
+
+		this.refs.form._submit();
 
 	}
 
@@ -623,6 +733,12 @@ class Upload extends Component {
 	_openInput = ( ) => {
 
 		this.refs.dropzone.refs.element._openInput();
+
+	}
+
+	_showMapLoader = ( bool ) => {
+
+		this.setState( { showMapLoader: bool } );
 
 	}
 

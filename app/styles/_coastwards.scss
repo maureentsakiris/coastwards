@@ -55,3 +55,10 @@ $heightFooter: 13vh;
   font-size: 3vh;
 
 }
+
+p {
+
+  @include typo-body-1;
+  font-size: 1.7rem;
+
+}
