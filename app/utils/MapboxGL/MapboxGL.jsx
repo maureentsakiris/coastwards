@@ -332,6 +332,12 @@ export default class MapboxGL extends Component {
 
 	}
 
+	_removeLayer = ( id ) => {
+
+		return this.map.removeLayer( id );
+
+	}
+
 	_zoomTo = ( zoom, options ) => {
 
 		this.map.zoomTo( zoom, options );

@@ -122,11 +122,30 @@ class Upload extends Component {
 		this.minZoom = 0;
 		this.maxZoom = 22;
 		this.initCenter = [ 150, 39 ];
-		this.easing = function ( t ) { 
 
-			return t<.5 ? 2*t*t : -1+( 4-2*t )*t; 
+		//https://gist.github.com/gre/1650294
+		this.easeInOutQuad = function ( t ) {
 
-		}
+			return t<.5 ? 2*t*t : -1+( 4-2*t )*t 
+
+		};
+		this.easeInOutQuint = function ( t ) {
+
+			return t<.5 ? 16*t*t*t*t*t : 1+16*( --t ) *t*t*t*t;
+
+		};
+
+		this.easeOutQuint= function ( t ) { 
+
+			return 1+( --t )*t*t*t*t;
+
+		};
+
+		this.easeInQuint= function ( t ) {
+
+			return t*t*t*t*t;
+
+		};
 
 		this.state = {
 
@@ -137,7 +156,8 @@ class Upload extends Component {
 			dialogDrop: undefined,
 			dropLayerId: undefined,
 			blockDropzone: true,
-			showMapLoader: false
+			showMapLoader: false,
+			uploadProgress: 0
 
 		} 
 
@@ -147,7 +167,7 @@ class Upload extends Component {
 
 		const { formatMessage/*, locale*/ } = this.props.intl;
 		const { className } = this.props;
-		const { isWindowDrag, showFeatureDialog, showUploadDropDialog, featureToShow, dialogDrop, blockDropzone, showMapLoader } = this.state;
+		const { isWindowDrag, showFeatureDialog, showUploadDropDialog, featureToShow, dialogDrop, blockDropzone, showMapLoader, uploadProgress } = this.state;
 
 		const cls = Classnames( style.upload, className );
 		const clsForm = Classnames( style.fill, {
@@ -211,7 +231,7 @@ class Upload extends Component {
 					style="mapbox://styles/maureentsakiris/cinxhoec70043b4nmx0rkoc02"
 					accessToken="pk.eyJ1IjoibWF1cmVlbnRzYWtpcmlzIiwiYSI6ImNpbXM1N2Z2MTAwNXF3ZW0ydXI3eXZyOTAifQ.ATjSaskEecYMiEG36I_viw"
 				/>
-				<FormTB name="upload" className={ clsForm } ref="form" >
+				<FormTB name="upload" className={ clsForm } ref="form" onProgress={ this._onUploadProgress } >
 					<DropzoneTB
 						name="dropzone"
 						ref="dropzone"
@@ -246,6 +266,7 @@ class Upload extends Component {
 					dialogDrop={ dialogDrop }
 					onCancelClick={ this._cancelUpload }
 					onUploadClick={ this._uploadForm }
+					progress={ uploadProgress }
 				/>
 			</div>
 
@@ -549,11 +570,17 @@ class Upload extends Component {
 
 	_promiseGoFlying = ( validDrop ) => {
 
+		// Flying to the spot is not absolutely necessary. Ensure that after 3 seconds the dialog appears no matter what
+
 		return Promise.race( [
 
-			new Promise( (  resolve ) => {
+			new Promise( ( resolve ) => {
 
-				setTimeout( resolve( validDrop ), 5000 ); // timeout after 10 secs
+				setTimeout( ( ) => {
+
+					resolve( validDrop );
+
+				}, 5000 );
 
 			} ),
 
@@ -565,9 +592,10 @@ class Upload extends Component {
 
 					center: [ validDrop.specs.long, validDrop.specs.lat ], 
 					zoom: zoom,
+					duration: 5000,
 					speed: 5, // make the flying slow
 					curve: 1, // change the speed at which it zooms out
-					easing: this.easing
+					easing: this.easeInOutQuint
 
 				} );
 
@@ -593,6 +621,8 @@ class Upload extends Component {
 
 		} );
 
+		return true;
+
 	}
 
 	_onDropsValidated = ( validDrops/*, invalidDrops*/ ) => {
@@ -611,109 +641,16 @@ class Upload extends Component {
 	}
 
 
-
-
-
-
-
-
-	
-
-	/*_goFlying = ( validDrop ) => {
-
-		let specs = validDrop.validations.imageHasLocation.result.specs;
-		let zoom = _.max( [ this.map.getZoom(), 15 ] );
-		let id = Date.now().toString();
-
-
-		// Add data to existing layer instead of creating a new one
-		const geoJSON = {
-
-			"type": "FeatureCollection",
-			"features": [ {
-				"type": "Feature",
-				"geometry": {
-					"type": "Point",
-					"coordinates": [ specs.long, specs.lat ]
-				},
-				"properties": {
-					"marker-symbol": "marker-accent",
-					"comment": "",
-					"image": validDrop.file.preview
-				}
-
-			} ]
-
-		}
-
-		const markerSource = { 
-
-			type: 'geojson',
-			data: geoJSON
-
-		}
-
-		const markerLayer = {
-
-			type: 'symbol',
-			layout: {
-
-				'icon-image': "{marker-symbol}"
-
-			}
-
-		}
-
-		let layer = {
-			
-			name: id,
-			source: markerSource,
-			layer: markerLayer,
-			position: 'country_label_1',
-			onClick: this._showFeatureDialog
-
-		}
-
-		this.refs.map._addLayer( layer );
-
-		this.map.flyTo( { 
-
-			center: [ specs.long, specs.lat ], 
-			zoom: zoom,
-			speed: 5, // make the flying slow
-			curve: 1, // change the speed at which it zooms out
-			easing: function ( t ) {
-
-				return t<.5 ? 2*t*t : -1+( 4-2*t )*t;
-
-			}
-
-		} );
-
-		this.map.once( 'moveend', ( ) => {
-
-			this._showUploadDropDialog( validDrop, id );
-
-		} );
-
-	}*/
-
-	/*_showUploadDropDialog = ( validDrop, id ) => {
-
-		this.setState( {
-
-			dialogDrop: validDrop,
-			showUploadDropDialog: true,
-			dropLayerId: id
-
-		} );
- 
-	}*/
+	// USER ACTION: CANCEL OR UPLOAD
 
 	_cancelUpload = () => {
 
-		this.refs.map._hideLayer( this.state.dropLayerId );
-		this.refs.map._zoomTo( 2, { duration: 2000 } );
+		this.refs.map._removeLayer( this.state.dropLayerId );
+
+		this.refs.map._zoomTo( 1, { 
+			duration: 3000, 
+			easing: this.easeInQuint 
+		} );
 
 		this.setState( {
 
@@ -731,11 +668,17 @@ class Upload extends Component {
 
 	}
 
-	/*_onFormReset = () => {
+	_onUploadProgress = ( e ) => {
 
-		this.setState( { blockDropzone: false } );
+		let progress = ( e.loaded / e.total ) * 100;
 
-	}*/
+		this.setState( { 
+
+			uploadProgress: progress
+
+		} );
+
+	}
 
 
 	// OTHER

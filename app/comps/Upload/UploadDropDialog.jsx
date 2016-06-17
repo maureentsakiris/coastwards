@@ -5,8 +5,8 @@ import Classnames from 'classnames';
 import _ from 'underscore';
 
 import Dialog from 'react-toolbox/lib/dialog';
-/*import Dropdown from 'react-toolbox/lib/dropdown';*/
-import { RadioGroup, RadioButton } from 'react-toolbox/lib/radio';
+import Dropdown from 'react-toolbox/lib/dropdown';
+/*import { RadioGroup, RadioButton } from 'react-toolbox/lib/radio';*/
 import Input from 'react-toolbox/lib/input';
 import { Button } from 'react-toolbox/lib/button';
 import ProgressBar from 'react-toolbox/lib/progress_bar';
@@ -21,12 +21,12 @@ const messages = defineMessages( {
 	upload_drop_dialog_comment_label:{
 		id: "upload_drop_dialog_comment_label",
 		description: "1 - ",
-		defaultMessage: "Tell us a little more about your coast ..."
+		defaultMessage: "Tell us a little more about this coast ..."
 	},
 	upload_drop_dialog_category:{
 		id: "upload_drop_dialog_category",
 		description: "1 - ",
-		defaultMessage: "Help us categorize this coast"
+		defaultMessage: "How would you describe the coast material?"
 	},
 	upload_drop_dialog_upload_label:{
 		id: "upload_feature_dialog_upload_label",
@@ -41,7 +41,12 @@ const messages = defineMessages( {
 	upload_drop_dialog_intro:{
 		id: "upload_drop_dialog_intro",
 		description: "1 - ",
-		defaultMessage: "Almost there! If you like, you can help us determine its category and leave a comment for others to read. When you are ready, scroll down and hit the upload button."
+		defaultMessage: "Help us categorize this coast by answering a few questions. Also, leave us (and the rest of the world) a note. Tell us the story of this coast, or just say hello ..."
+	},
+	upload_drop_dialog_extent:{
+		id: "upload_drop_dialog_extent",
+		description: "1 - ",
+		defaultMessage: "How long would it take you to go from one end to the other?"
 	}/*,
 	upload_drop_dialog_dropdown_prompt:{
 		id: "upload_drop_dialog_dropdown_prompt",
@@ -61,7 +66,8 @@ class UploadDropDialog extends Component {
 		this.state = {
 
 			comment: '',
-			category: 'empty'
+			category: '',
+			extent: ''
 
 		}
 
@@ -72,54 +78,66 @@ class UploadDropDialog extends Component {
 		const { formatMessage/*, locale*/ } = this.props.intl;
 
 		const { className, dialogDrop, onUploadClick, onCancelClick, progress, ...restProps } = this.props; // eslint-disable-line no-unused-vars
-		const { comment, category } = this.state;
+		const { comment, category, extent } = this.state;
 
 		const cls = Classnames( className, style.dialog );
 
-		const actions = [
+		const categories = [
 
-			/*{ label: cancelLabel, onClick: onCancelClick },
-			{ label: uploadLabel, onClick: onUploadClick }*/
-
-		];
-
-		/*const categories = [
-
-			{ value: 'sandy', label: 'Sandy', description: "Does the coast material run through your fingers when it's dry?" },
-			{ value: 'pebbles', label: 'Pebbles', description: "Is the coast material small stones not bigger than your fist?" },
-			{ value: 'rocky', label: 'Rocky', description: "Is the coast material solid rock or rocks so big not even Hercules could move them?"  },
-			{ value: 'muddy', label: 'Muddy', description: "Is the coast material constantly wet, usually because there is a delta nearby?"  },
-			{ value: 'fortified', label: 'Fortified', description: "Is the original coast material by human made walls of rock?"  },
-			{ value: 'noneofabove', label: 'None of the above', "img": "Choose this option if you are unsure but would like to describe the coast in the text field below."  }
+			{ value: 'sand', label: 'Sand', description: "Sand can be many colors, ranging from almost white to dark brown. If it runs through your fingers when it's dry, it's sand." },
+			{ value: 'pebble', label: 'Pebble', description: "Pebbles don't run through your fingers but are not bigger than a fist." },
+			{ value: 'rock', label: 'Rock', description: "This can be solid rock as seen at cliffs or a collection of rocky stones (bigger than a fist)"  },
+			{ value: 'mud', label: 'Mud', description: "Muddy coasts are constantly wet because they usually have a delta nearby."  },
+			{ value: 'ice', label: 'Ice', description: "Coast material is not visible because it is covered in ice"  },
+			{ value: 'notsure', label: 'Not sure', "description": "No worries! If you like you can describe the coast material in your own words in the text field below"  }
 
 		];
 
-		<Dropdown
-			label={ formatMessage( messages.upload_drop_dialog_category ) }
-			onChange={ this._handleChange.bind( this, 'category' ) }
-			value={ category }
-			source={ categories }
-		
-		/>	*/
+		const extents = [
 
-		const submitting = progress > 0;
+			{ value: '15', label: 'About 15 minutes' },
+			{ value: '30', label: 'About 30 minutes' },
+			{ value: '60', label: 'About an hour' },
+			{ value: '120', label: 'About two hours' },
+			{ value: 'notsure', label: 'No idea' }
 
+		]
 
-		return (
-
-			<Dialog { ...restProps } className={ cls } actions={ actions } onEscKeyDown={ this._onCancelClick } onOverlayClick={ () => {} } >
-				{ dialogDrop && <img src={ dialogDrop.file.preview } className={ style.image } /> }
-				<div className={ style.inner } >
-					<h3>Your image is ready for upload</h3>
-					<p>{ formatMessage( messages.upload_drop_dialog_intro ) }</p>
-					<div>
-						<RadioGroup name="category" value={ category } onChange={ this._handleChange.bind( this, 'category' ) } >
+		/*<RadioGroup name="category" value={ category } onChange={ this._handleChange.bind( this, 'category' ) } >
 							<RadioButton label="Sandy" value="sandy"/>
 							<RadioButton label="Pebbles" value="pebbles"/>
 							<RadioButton label="Rocky" value="rocky"/>
 							<RadioButton label="Muddy" value="muddy"/>
 							<RadioButton label="Ice" value="ice"/>
-						</RadioGroup>
+						</RadioGroup>*/
+
+		/*<Dropdown
+							label={ formatMessage( messages.upload_drop_dialog_extent ) }
+							onChange={ this._handleChange.bind( this, 'extent' ) }
+							value={ extent }
+							source={ extents }
+							template={ this._template }
+						/>*/
+
+		const submitting = progress > 0;
+
+		console.log( progress );
+
+		return (
+
+			<Dialog { ...restProps } className={ cls } actions={ [] } onEscKeyDown={ this._onCancelClick } onOverlayClick={ () => {} } >
+				{ dialogDrop && <img src={ dialogDrop.file.preview } className={ style.image } /> }
+				<div className={ style.inner } >
+					<h3>Your image is ready for upload</h3>
+					<p>{ formatMessage( messages.upload_drop_dialog_intro ) }</p>
+					<div className={ style.form }>
+						<Dropdown
+							label={ formatMessage( messages.upload_drop_dialog_category ) }
+							onChange={ this._handleChange.bind( this, 'category' ) }
+							value={ category }
+							source={ categories }
+							template={ this._template }
+						/>
 						<Input 
 							type="text" 
 							label={ formatMessage( messages.upload_drop_dialog_comment_label ) } 
@@ -140,17 +158,25 @@ class UploadDropDialog extends Component {
 
 	}
 
-	/*_dropdownTemplate = ( item ) => {
+	_template = ( item ) => {
+
+		const p = {
+
+			margin: '0px',
+			fontSize: '1.4rem',
+			lineHeight: '1.4'
+
+		}
 
 		return (
 			<div>
-				<h6>{ item.label }</h6>
-				<p>{ item.description }</p>
+				<h4>{ item.label }</h4>
+				<p style={ p }>{ item.description }</p>
 			</div>
     
 		);
 
-	}*/
+	}
 
 	_onCancelClick = () => {
 
@@ -161,7 +187,7 @@ class UploadDropDialog extends Component {
 
 	_onUploadClick = () => {
 
-		this.props.onUploadClick( this.state.comment, this.state.category );
+		this.props.onUploadClick();
 
 	}
 
@@ -170,7 +196,8 @@ class UploadDropDialog extends Component {
 		this.setState( {
 
 			comment: '',
-			category: ''
+			category: '',
+			extent: ''
 
 		} );
 
