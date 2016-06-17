@@ -13,7 +13,7 @@ import style from './_styleUpload';
 
 import FormTB from '../../utils/FormTB/FormTB/FormTB';
 import DropzoneTB from '../../utils/FormTB/DropzoneTB/DropzoneTB';
-import InputTB from '../../utils/FormTB/InputTB/InputTB';
+/*import InputTB from '../../utils/FormTB/InputTB/InputTB';*/
 import MapboxGL from '../../utils/MapboxGL/MapboxGL';
 import FeatureDialog from './FeatureDialog';
 import UploadDropDialog from './UploadDropDialog';
@@ -460,7 +460,6 @@ class Upload extends Component {
 
 				this.context.showSnackbar( { label: formatMessage( messages.dropzone_valid_drops ) } );
 				var validDrop = validDrops[ 0 ];
-
 				resolve( validDrop );
 
 			}else{
@@ -550,26 +549,48 @@ class Upload extends Component {
 
 	_promiseGoFlying = ( validDrop ) => {
 
-		return new Promise( ( resolve, reject ) => {
+		return Promise.race( [
 
-			let zoom = _.max( [ this.map.getZoom(), 15 ] );
-		
-			this.map.flyTo( { 
+			new Promise( (  resolve ) => {
 
-				center: [ validDrop.specs.long, validDrop.specs.lat ], 
-				zoom: zoom,
-				speed: 5, // make the flying slow
-				curve: 1, // change the speed at which it zooms out
-				easing: this.easing
+				setTimeout( resolve( validDrop ), 5000 ); // timeout after 10 secs
 
-			} );
+			} ),
 
-			this.map.once( 'moveend', ( ) => {
+			new Promise( ( resolve ) => {
 
-				this._showUploadDropDialog( validDrop, validDrop.layerId );
+				let zoom = _.max( [ this.map.getZoom(), 15 ] );
+			
+				this.map.flyTo( { 
 
-			} );
-		
+					center: [ validDrop.specs.long, validDrop.specs.lat ], 
+					zoom: zoom,
+					speed: 5, // make the flying slow
+					curve: 1, // change the speed at which it zooms out
+					easing: this.easing
+
+				} );
+
+				this.map.once( 'moveend', ( ) => {
+
+					resolve( validDrop );
+
+				} );
+			
+			} )
+
+		] );
+
+	}
+
+	_promiseShowUploadDialog = ( validDrop ) => {
+
+		this.setState( {
+
+			dialogDrop: validDrop,
+			showUploadDropDialog: true,
+			dropLayerId: validDrop.layerId
+
 		} );
 
 	}
@@ -580,6 +601,7 @@ class Upload extends Component {
 		this._promiseValidDrop( validDrops )
 		.then( this._promiseDropMarker )
 		.then( this._promiseGoFlying )
+		.then( this._promiseShowUploadDialog )
 		.catch( ( error ) => {
 
 			this.context.logError( error );
@@ -676,7 +698,7 @@ class Upload extends Component {
 
 	}*/
 
-	_showUploadDropDialog = ( validDrop, id ) => {
+	/*_showUploadDropDialog = ( validDrop, id ) => {
 
 		this.setState( {
 
@@ -686,7 +708,7 @@ class Upload extends Component {
 
 		} );
  
-	}
+	}*/
 
 	_cancelUpload = () => {
 
