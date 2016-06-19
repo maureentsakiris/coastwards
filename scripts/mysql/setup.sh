@@ -70,4 +70,4 @@ esac
 
 
 # import
-cat "${__root}/coastwards_contributions0.sql" | _mysql_db
+cat "${__root}/coastwards_contributions.sql" | _mysql_db
