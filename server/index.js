@@ -19,6 +19,7 @@ const port = server.port;
 const PROJECT_ROOT = path.resolve( './' );
 const PUBLIC_ROOT = path.join( PROJECT_ROOT, 'public' );
 const HTDOCS	= path.join ( PROJECT_ROOT , 'build' , globalConfigs.env ) ;
+const UPLOADS_DIR	= path.join ( PUBLIC_ROOT , 'uploads' ) ;
 
 const proxy = httpProxy.createProxyServer();
 const app = express();
@@ -31,6 +32,7 @@ console.log ( 'serving static "%s"' , HTDOCS ) ;
 app.use( '/contributions', contributions );
 
 app.use( '/' , express.static( HTDOCS ) );
+app.use( '/uploads' , express.static( UPLOADS_DIR ) );
 /*
 app.get ( '/' , function  ( req , res ) {
 	res.redirect ( '/index.html' ) ;
