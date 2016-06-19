@@ -65,7 +65,7 @@ const config = {
 			{
 				test: /\.json$/,
 				exclude: /node_modules/,
-				include: APP_ROOT,
+				include: PROJECT_ROOT,
 				loader: 'json-loader'
 			},
 			{
