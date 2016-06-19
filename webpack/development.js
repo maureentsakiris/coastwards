@@ -25,9 +25,9 @@ const webpackHtmlPlugin = require ( './plugins/webpackHtml' ) ( BUILD_TARGET ) ;
 const config = {
 
 	//devtool: 'cheap-module-source-map',
-	entry: [
-		ENTRY_ROOT
-	],
+	entry: {
+		app: [ ENTRY_ROOT ]
+	},
 	node: {
 		fs: "empty"
 	},
@@ -39,7 +39,7 @@ const config = {
 		}
 	},
 	output: {
-		filename: 'js/bundle.js',
+		filename: 'js/[name].js',
 		path: BUILD_ROOT,
 		publicPath: '/',
 		chunkFilename: 'js/[name].js'
@@ -103,9 +103,9 @@ const config = {
 			}
 		]
 	},
-	toolbox: { 
+	/*toolbox: { 
 		theme: './app/_theme.scss' 
-	},
+	},*/
 	postcss: [ autoprefixer ],
 	plugins: [
 		extractStyles,

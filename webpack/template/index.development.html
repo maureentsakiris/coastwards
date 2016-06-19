@@ -35,9 +35,6 @@
 				overflow-y: auto !important;
 			}
 	    </style>
-	    <% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
-		<script src="<%=htmlWebpackPlugin.files.chunks[chunk].entry %>"></script>
-		<% } %>
 </head>
 <body>
 		<!--[if lt IE 9]>
@@ -52,6 +49,6 @@
 			<h4>You have javascript disabled in your browser. To view this site, please enable javascript.</h4>
 		</div>
 		</noscript>
-		<div id="body"/>
+		<div id="Body"/>
 </body>
 </html>

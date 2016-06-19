@@ -8,8 +8,8 @@ const BUILD_ROOT = path.join( PROJECT_ROOT, 'public/build' );
 
 
 const extendEntry = function ( entry ) {
-	entry.push ( 'webpack-dev-server/client?http://127.0.01:8888' );
-	entry.push ( 'webpack/hot/only-dev-server' );
+	entry.app.push ( 'webpack-dev-server/client?http://127.0.01:8888' );
+	entry.app.push ( 'webpack/hot/only-dev-server' );
 };
 
 
@@ -20,7 +20,10 @@ const extendConfig = function ( config ) {
 	config.ip = '127.0.0.1';
 	config.port = 8888;
 
-	!config.plugins &&  config.plugins = [];
+	if ( !config.plugins )
+	{
+		config.plugins = [];
+	}
 
 	extendPlugins ( config.plugins ) ;
 };
