@@ -75,6 +75,6 @@ function _rsync () {
 }
 
 install_remote_key
-
 _rsync
+ssh_remote "${APP_ROOT}/scripts/remote/setup.sh"
 
