@@ -8,15 +8,9 @@ const jimp = require( 'jimp' );
 const _ = require( 'underscore' );
 const util = require( 'util' );
 
-const pool  = mysql.createPool( {
+const globalConfig = require ( '../config/development.json' )
 
-	host: 'localhost',
-	user: 'root',	
-	password: 'c0a37ward3!',
-	database : 'coastwards',
-	multipleStatements: true
-
-} );
+const pool  = mysql.createPool( globalConfig.mysql );
 
 function promiseFetchForm ( req ) {
 
@@ -226,7 +220,7 @@ function promiseFetchGeojson ( ){
 
 			if( error ){
 
-				reject( error );
+				return reject( error );
 
 			}
 

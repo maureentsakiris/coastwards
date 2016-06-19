@@ -28,7 +28,8 @@ const config = {
 	resolve: {
 		extensions: [ '', '.js', '.jsx', '.scss' ],
 		alias: {
-			modernizr$: path.join( PROJECT_ROOT, './.modernizrrc' )
+			modernizr$: path.join( PROJECT_ROOT, './.modernizrrc' ),
+			globalConfig: path.join ( PROJECT_ROOT , 'config/production.json' )
 		}
 	},
 	output: {

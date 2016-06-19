@@ -51,7 +51,8 @@ const config = {
 		alias: {
 			modernizr$:  path.join( PROJECT_ROOT, './.modernizrrc' ),
 			// for mapbox-gl see: https://github.com/mapbox/mapbox-gl-js/issues/1649
-			webworkify: 'webworkify-webpack'
+			webworkify: 'webworkify-webpack',
+			globalConfig: path.join ( PROJECT_ROOT , 'config/development.json' )
 		}
 	},
 	output: {
