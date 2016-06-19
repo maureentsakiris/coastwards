@@ -5,7 +5,9 @@ const autoprefixer = require( 'autoprefixer' );
 
 
 const PROJECT_ROOT = path.resolve( './' );
-const BUILD_ROOT = path.join( PROJECT_ROOT, 'public/build' );
+
+const BUILD_TARGET = 'development' ;
+const BUILD_ROOT = path.join( PROJECT_ROOT, 'build' , BUILD_TARGET );
 const ENTRY_ROOT = path.join( PROJECT_ROOT, 'app/index.jsx' );
 
 const APP_ROOT = path.join( PROJECT_ROOT, 'app' );
@@ -18,6 +20,8 @@ const MAPBOX_ROOT = path.join( PROJECT_ROOT, 'node_modules/mapbox-gl' );
 const extractStyles = new ExtractTextPlugin( 'styles.css', { allChunks: true } );
 
 
+const webpackHtmlPlugin = require ( './plugins/webpackHtml' ) ( BUILD_TARGET ) ;
+
 const config = {
 
 	//devtool: 'cheap-module-source-map',
@@ -29,15 +33,16 @@ const config = {
 	},
 	resolve: {
 		extensions: [ '', '.js', '.jsx', '.scss' ],
+		root: './app',
 		alias: {
 			modernizr$: path.join( PROJECT_ROOT, './.modernizrrc' )
 		}
 	},
 	output: {
-		filename: 'bundle.js',
+		filename: 'js/bundle.js',
 		path: BUILD_ROOT,
-		publicPath: '/build/',
-		chunkFilename: '[name].js'
+		publicPath: '/',
+		chunkFilename: 'js/[name].js'
 	},
 	/*addVendor: function ( name, path ) {
 
@@ -48,8 +53,19 @@ const config = {
 	module: {
 		noParse: [],
 		loaders: [ 
+			// for mapbox-gl see: https://github.com/mapbox/mapbox-gl-js/issues/1649
 			{
-				test: /\.jsx?$/,
+				test: /\.json$/,
+				include: MAPBOX_ROOT,
+				loader: 'json-loader'
+			},
+			{
+				test: /\.json$/,
+				exclude: /node_modules/,
+				loader: 'json-loader'
+			},
+			{
+				test: /\.js[x]?$/,
 				include: APP_ROOT,
 				loaders: [ 'react-hot', 'babel?cacheDirectory', 'eslint-loader' ]
 			},
@@ -77,12 +93,6 @@ const config = {
 			{
 				test: /\.modernizrrc$/,
 				loader: 'modernizr'
-			},
-			// for mapbox-gl see: https://github.com/mapbox/mapbox-gl-js/issues/1649
-			{
-				test: /\.json$/,
-				include: MAPBOX_ROOT,
-				loader: 'json-loader'
 			}
 		],
 		postLoaders: [
@@ -100,15 +110,10 @@ const config = {
 	plugins: [
 		extractStyles,
 		new webpack.optimize.DedupePlugin(),
-		new webpack.optimize.UglifyJsPlugin( {
-			minimize: true,
-			compress: {
-				warnings: true
-			}
-		} ),
+		webpackHtmlPlugin, 
 		new webpack.DefinePlugin( {
 			'process.env': {
-				'NODE_ENV': JSON.stringify( 'production' )
+				'NODE_ENV': JSON.stringify( BUILD_TARGET )
 			}
 		} )
 	]

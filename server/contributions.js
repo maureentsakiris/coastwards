@@ -8,7 +8,7 @@ const jimp = require( 'jimp' );
 const _ = require( 'underscore' );
 const util = require( 'util' );
 
-const globalConfig = require ( '../config/development.json' )
+const globalConfig = require ( '../config' ) ;
 console.log ( 'connect db with globalConfig ' , globalConfig ) ;
 const pool  = mysql.createPool( globalConfig.mysql );
 

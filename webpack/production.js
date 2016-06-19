@@ -5,7 +5,7 @@ const autoprefixer = require( 'autoprefixer' );
 
 
 const PROJECT_ROOT = path.resolve( './' );
-const BUILD_ROOT = path.join( PROJECT_ROOT, 'public/build' );
+const BUILD_ROOT = path.join( PROJECT_ROOT, 'build/production' );
 const ENTRY_ROOT = path.join( PROJECT_ROOT, 'app/index.jsx' );
 
 const APP_ROOT = path.join( PROJECT_ROOT, 'app' );
@@ -17,6 +17,8 @@ const MAPBOX_ROOT = path.join( PROJECT_ROOT, 'node_modules/mapbox-gl' );
 
 const extractStyles = new ExtractTextPlugin( 'styles.css', { allChunks: true } );
 
+
+const webpackHtmlPlugin = require ( './plugins/webpackHtml' ) ( 'production' ) ;
 
 const config = {
 
@@ -34,10 +36,10 @@ const config = {
 		}
 	},
 	output: {
-		filename: 'bundle.js',
+		filename: 'js/bundle.js',
 		path: BUILD_ROOT,
-		publicPath: '/build/',
-		chunkFilename: '[name].js'
+		publicPath: '/',
+		chunkFilename: 'js/[name].js'
 	},
 	/*addVendor: function ( name, path ) {
 
@@ -56,7 +58,7 @@ const config = {
 			{
 				test: /(\.scss|\.css)$/,
 				include: [ TOOLBOX_ROOT, APP_ROOT ],
-				loader: extractStyles.extract( 'style', 'css?sourceMap&modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss!sass?sourceMap!toolbox' )
+				loader: extractStyles.extract( 'style', 'css?sourceMap&modules&importLoaders=1&localIdentName=css/[name]__[local]___[hash:base64:5]!postcss!sass?sourceMap!toolbox' )
 			},
 			{ 
 				test: /\.woff(2)?$/,
@@ -100,6 +102,7 @@ const config = {
 	plugins: [
 		extractStyles,
 		new webpack.optimize.DedupePlugin(),
+		webpackHtmlPlugin, 
 		new webpack.optimize.UglifyJsPlugin( {
 			minimize: true,
 			compress: {

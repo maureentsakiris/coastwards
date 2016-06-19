@@ -8,7 +8,10 @@
   },
   "main": "index.js",
   "scripts": {
-    "start": "node server"
+    "build:development": "./node_modules/.bin/webpack --config ./webpack/development.js",
+    "build:production": "./node_modules/.bin/webpack --config ./webpack/production.js",
+    "start": "NODE_ENV=production node server",
+    "start:dev": "NODE_ENV=development node server/index.js"
   },
   "author": "Maureen Tsakiris <info@maureentsakiris.com>, Matthias Buchholz <mb@averagejoe.de>",
   "license": "ISC",
@@ -43,6 +46,7 @@
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.8.5",
     "formidable": "^1.0.17",
+    "html-webpack-plugin": "^2.21.0",
     "http-proxy": "^1.13.2",
     "img-loader": "^1.2.2",
     "jimp": "^0.2.24",

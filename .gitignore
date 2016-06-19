@@ -5,3 +5,4 @@ src/.DS_Store
 npm-debug.log
 public/uploads/
 scripts/credentials.inc
+build
