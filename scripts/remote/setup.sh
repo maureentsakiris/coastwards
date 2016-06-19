@@ -23,3 +23,5 @@ source "env.inc"
 
 sudo scp -r "${APP_SRC}/" "${WWW_ROOT}"
 sudo chown "${WWW_USER}:${WWW_USER}" "${WWW_ROOT}"
+
+forever-service install coastwards --script "${__root}/server/index.js"
