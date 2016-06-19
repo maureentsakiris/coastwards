@@ -40,7 +40,7 @@ const config = {
 	output: {
 		filename: 'js/[name].js',
 		path: BUILD_ROOT,
-		publicPath: '/app',
+		publicPath: '/',
 		chunkFilename: 'js/[name].js'
 	},
 	/*addVendor: function ( name, path ) {
