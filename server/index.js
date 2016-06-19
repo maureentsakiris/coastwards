@@ -31,11 +31,11 @@ console.log ( 'serving static "%s"' , HTDOCS ) ;
 app.use( '/contributions', contributions );
 
 app.use( '/' , express.static( HTDOCS ) );
-
+/*
 app.get ( '/' , function  ( req , res ) {
 	res.redirect ( '/index.html' ) ;
 } )
-
+*/
 
 // And run the server
 app.listen( port, function () {

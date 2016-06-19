@@ -33,7 +33,7 @@ const config = {
 	},
 	resolve: {
 		extensions: [ '', '.js', '.jsx', '.scss' ],
-		root: './app',
+		root: PROJECT_ROOT,
 		alias: {
 			modernizr$: path.join( PROJECT_ROOT, './.modernizrrc' )
 		}

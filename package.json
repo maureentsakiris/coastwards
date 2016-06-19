@@ -12,7 +12,9 @@
     "build:development:watch": "./node_modules/.bin/webpack --config ./webpack/development.js -w",
     "build:production": "./node_modules/.bin/webpack --config ./webpack/production.js",
     "start": "NODE_ENV=production node server",
-    "start:dev": "NODE_ENV=development node server/index.js"
+    "start:dev": "NODE_ENV=development node server/index.js",
+    "start:production": "NODE_ENV=production node server/index.js",
+    "serve": "./node_modules/.bin/webpack-dev-server ./webpack/dev-server.js"
   },
   "author": "Maureen Tsakiris <info@maureentsakiris.com>, Matthias Buchholz <mb@averagejoe.de>",
   "license": "ISC",
