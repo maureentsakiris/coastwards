@@ -34,12 +34,15 @@ mysql_password=`mysql_config password`
 mysql_database=`mysql_config database`
 
 
+printf 'Please provide root password: '
+read mysql_root_password
+
 function _mysql () {
 	mysql -u "${mysql_user}" -p"${mysql_password}" ${@}
 }
 
 function _mysql_root () {
-	mysql -u root ${@}
+	mysql -u root "-p${mysql_root_password}" ${@}
 }
 
 function _mysql_db () {
@@ -50,12 +53,24 @@ function sql_create_schema () {
 	printf 'CREATE SCHEMA IF NOT EXISTS %s;\n' "${mysql_database}"
 }
 
+function sql_user () {
+	printf '`%s`@`%s`' "${mysql_user}" "${mysql_host}"
+	if [[ -n "${mysql_password}" ]]; then
+		printf 'IDENTIFIED BY "%s"' "${mysql_password}"
+	fi
+}
+
 function sql_create_user () {
-	printf 'GRANT ALL ON %s TO `%s`@`%s`;\n' "${mysql_database}" "${mysql_user}" "${mysql_host}"
+	printf ' GRANT ALL ON %s.* TO %s;' "${mysql_database}" "$(sql_user)"
+}
+
+function sql_list_users () {
+	printf 'SELECT User FROM mysql.user WHERE User = "%s";' "${mysql_user}"
 }
 
 
-sql_create_schema | _mysql_root
+#printf '\x1b[1m%s\x1b[0m\n' "Creating database"
+#sql_create_schema | mysql -u root -p"${mysql_root_password}" 
 
 case "${mysql_user}" in
 	root )
@@ -63,10 +78,13 @@ case "${mysql_user}" in
 		;;
 
 	* )
-		sql_create_user | _mysql_root 
+		printf '\x1b[1m%s\x1b[0m\n' "Creating user"
+		_users_=$(sql_list_users | _mysql_root)
+		if [[ -z "${_users_}" ]]; then
+			sql_create_user | _mysql_root "${mysql_database}"
+		fi		
 		;;
 esac
-
 
 
 # import

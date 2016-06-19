@@ -1,8 +1,8 @@
 {
 	"mysql": {
 		"host": "localhost",
-		"user": "root",	
-		"password": "c0a37ward3!",
+		"user": "heinz",	
+		"password": "heinzpass",
 		"database" : "coastwards",
 		"multipleStatements": true
 	}

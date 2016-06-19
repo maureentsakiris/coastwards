@@ -9,7 +9,7 @@ const _ = require( 'underscore' );
 const util = require( 'util' );
 
 const globalConfig = require ( '../config/development.json' )
-
+console.log ( 'connect db with globalConfig ' , globalConfig ) ;
 const pool  = mysql.createPool( globalConfig.mysql );
 
 function promiseFetchForm ( req ) {
