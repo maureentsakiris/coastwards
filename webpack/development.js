@@ -24,7 +24,7 @@ const webpackHtmlPlugin = require ( './plugins/webpackHtml' ) ( BUILD_TARGET ) ;
 
 const config = {
 
-	//devtool: 'cheap-module-source-map',
+	devtool: 'sourcemap',
 	entry: {
 		app: [ ENTRY_ROOT ]
 	},
@@ -35,7 +35,10 @@ const config = {
 		extensions: [ '', '.js', '.jsx', '.scss' ],
 		root: PROJECT_ROOT,
 		alias: {
-			modernizr$: path.join( PROJECT_ROOT, './.modernizrrc' )
+			modernizr$: path.join( PROJECT_ROOT, './.modernizrrc' ),
+	          webworkify: 'webworkify-webpack',
+  			'mapbox-gl': path.resolve('./node_modules/mapbox-gl/dist/mapbox-gl.js')
+
 		}
 	},
 	output: {
@@ -62,6 +65,7 @@ const config = {
 			{
 				test: /\.json$/,
 				exclude: /node_modules/,
+				include: APP_ROOT,
 				loader: 'json-loader'
 			},
 			{

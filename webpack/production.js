@@ -32,7 +32,9 @@ const config = {
 	resolve: {
 		extensions: [ '', '.js', '.jsx', '.scss' ],
 		alias: {
-			modernizr$: path.join( PROJECT_ROOT, './.modernizrrc' )
+			modernizr$: path.join( PROJECT_ROOT, './.modernizrrc' ),
+	         webworkify: 'webworkify-webpack',
+  			'mapbox-gl': path.resolve('./node_modules/mapbox-gl/dist/mapbox-gl.js')
 		}
 	},
 	output: {
@@ -104,7 +106,7 @@ const config = {
 		new webpack.optimize.DedupePlugin(),
 		webpackHtmlPlugin, 
 		new webpack.optimize.UglifyJsPlugin( {
-			minimize: true,
+			minimize: false,
 			compress: {
 				warnings: true
 			}
