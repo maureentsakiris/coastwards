@@ -9,8 +9,9 @@ const BUILD_ROOT = path.join( PROJECT_ROOT, 'public/build' );
 const ENTRY_ROOT = path.join( PROJECT_ROOT, 'app/index.jsx' );
 
 const APP_ROOT = path.join( PROJECT_ROOT, 'app' );
-const ASSETS_ROOT = path.join( PROJECT_ROOT, 'public/assets' );
+const PUBLIC_ROOT = path.join( PROJECT_ROOT, 'public/assets' );
 const TOOLBOX_ROOT = path.join( PROJECT_ROOT, 'node_modules/react-toolbox' );
+const MAPBOX_ROOT = path.join( PROJECT_ROOT, 'node_modules/mapbox-gl' );
 
 
 const extractStyles = new ExtractTextPlugin( 'styles.css', { allChunks: true } );
@@ -29,7 +30,7 @@ const config = {
 		extensions: [ '', '.js', '.jsx', '.scss' ],
 		alias: {
 			modernizr$: path.join( PROJECT_ROOT, './.modernizrrc' ),
-			globalConfig: path.join ( PROJECT_ROOT , 'config/production.json' )
+			globalConfig: path.join ( PROJECT_ROOT, 'config/production.json' )
 		}
 	},
 	output: {
@@ -58,11 +59,6 @@ const config = {
 				loader: extractStyles.extract( 'style', 'css?sourceMap&modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss!sass?sourceMap!toolbox' )
 			},
 			{ 
-				test: /\.(jpe?g|png|gif|svg)$/i,
-				include: APP_ROOT,
-				loader: 'url?limit=10000!img?progressive=true' 
-			},
-			{ 
 				test: /\.woff(2)?$/,
 				include: APP_ROOT,
 				loader: 'url?limit=10000!img?progressive=true' 
@@ -74,12 +70,25 @@ const config = {
 			},
 			{ 
 				test: /\.(jpe?g|png|gif|svg)$/i,
-				include: ASSETS_ROOT,
+				include: PUBLIC_ROOT,
 				loader: 'url?limit=10000!img?progressive=true' 
 			},
 			{
 				test: /\.modernizrrc$/,
 				loader: 'modernizr'
+			},
+			// for mapbox-gl see: https://github.com/mapbox/mapbox-gl-js/issues/1649
+			{
+				test: /\.json$/,
+				include: MAPBOX_ROOT,
+				loader: 'json-loader'
+			}
+		],
+		postLoaders: [
+			{
+				include: MAPBOX_ROOT,
+				loader: 'transform',
+				query: 'brfs'
 			}
 		]
 	},
