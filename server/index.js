@@ -27,13 +27,15 @@ app.enable( 'trust proxy' );
 app.use( helmet() );
 
 console.log ( 'serving static "%s"' , HTDOCS ) ;
+
+app.use( '/contributions', contributions );
+
 app.use( '/' , express.static( HTDOCS ) );
 
-app.all ( '/' , function  ( req , res ) {
+app.get ( '/' , function  ( req , res ) {
 	res.redirect ( '/index.html' ) ;
 } )
 
-app.use( '/contributions', contributions );
 
 // And run the server
 app.listen( port, function () {

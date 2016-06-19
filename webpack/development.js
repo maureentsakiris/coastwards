@@ -103,9 +103,9 @@ const config = {
 			}
 		]
 	},
-	/*toolbox: { 
+	toolbox: { 
 		theme: './app/_theme.scss' 
-	},*/
+	},
 	postcss: [ autoprefixer ],
 	plugins: [
 		extractStyles,
