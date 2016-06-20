@@ -19,7 +19,7 @@ fi
 FOREVER_BIN=$(which forever) 2>/dev/null
 FOREVER_SERVICE_BIN=$(which forever) 2>/dev/null
 
-source "env.inc"
+source "${__dir}/env.inc"
 
 sudo scp -r "${APP_SRC}/" "${WWW_ROOT}"
 sudo chown "${WWW_USER}:${WWW_USER}" "${WWW_ROOT}"
