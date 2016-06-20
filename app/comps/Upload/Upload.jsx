@@ -333,12 +333,14 @@ class Upload extends Component {
 
 				reject( res.message );
 
+			}else{
+
+				let result = JSON.parse( res );
+				let geojson = result.json;
+
+				resolve( geojson );
+
 			}
-
-			let result = JSON.parse( res );
-			let geojson = result.json;
-
-			resolve( geojson );
 
 		} );
 
@@ -396,9 +398,11 @@ class Upload extends Component {
 
 				reject( Error( 'Upload/_promiseDisplayGeojson/Failed to display geojson markers' ) );
 
-			}
+			}else{
 
-			resolve();
+				resolve();
+
+			}
 
 		} );
 

@@ -142,7 +142,7 @@ export default class MapboxGL extends Component {
 
 				if( !( this.map instanceof mapboxgl.Map ) ){
 
-					reject( Error( 'MapboxGl/_createMap/Failed to create instance of mapboxGl.Map' ) );
+					return reject( Error( 'MapboxGl/_createMap/Failed to create instance of mapboxGl.Map' ) );
 
 				}
 

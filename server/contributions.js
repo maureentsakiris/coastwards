@@ -34,20 +34,20 @@ function promiseFetchForm ( req ) {
 
 				reject( Error( 'contributions/promiseFetchForm/parse(error)/' + error ) );
 
-			}
-
-			if ( _.isEmpty( fields ) ){
+			}else if ( _.isEmpty( fields ) ){
 
 				reject( Error( 'Form is empty' ) );
 
+			}else{
+
+				// http://stackoverflow.com/questions/10849687/express-js-how-to-get-remote-client-address
+				var ip = req.ip;
+				formData.ip = ip;
+
+				formData.fields = fields;
+				formData.files = files;
+
 			}
-
-			// http://stackoverflow.com/questions/10849687/express-js-how-to-get-remote-client-address
-			var ip = req.ip;
-			formData.ip = ip;
-
-			formData.fields = fields;
-			formData.files = files;
 
 		} );
 
@@ -139,24 +139,26 @@ function promiseInsertFile ( formData ) {
 
 				reject( error );
 
+			}else{
+
+				connection.query( query, function ( error, rows ) {
+
+					if( error ){
+
+						reject( error );
+
+					}else{
+
+						formData.insertId = rows.insertId;
+						resolve( formData );
+
+					}
+
+					connection.release();
+
+				} );
+
 			}
-
-			connection.query( query, function ( error, rows ) {
-
-				if( error ){
-
-					reject( error );
-
-				}else{
-
-					formData.insertId = rows.insertId;
-					resolve( formData );
-
-				}
-
-				connection.release();
-
-			} );
 
 		} );
 
@@ -178,19 +180,21 @@ function promiseResizeFile ( formData ){
 
 				reject( Error( 'contributions/promiseResizeFile/readError/' + error ) );
 
+			}else{
+
+				var dirname = path.dirname( file.path );
+				var extension = path.extname( file.path );
+				var basename = path.basename( file.path, extension );
+				var fileSmall = path.join( dirname, basename + '-small.jpg' );
+
+				jimpFile.scaleToFit( 800, 800 ).quality( 80 ).write( fileSmall, function ( ){
+
+					file.fileSmall = fileSmall;
+					resolve( formData ); // <-- WHAT IF THIS FAILS TO BE CALLED????
+
+				} );
+
 			}
-
-			var dirname = path.dirname( file.path );
-			var extension = path.extname( file.path );
-			var basename = path.basename( file.path, extension );
-			var fileSmall = path.join( dirname, basename + '-small.jpg' );
-
-			jimpFile.scaleToFit( 800, 800 ).quality( 80 ).write( fileSmall, function ( ){
-
-				file.fileSmall = fileSmall;
-				resolve( formData ); // <-- WHAT IF THIS FAILS TO BE CALLED????
-
-			} );
 
 		} );
 
@@ -228,39 +232,41 @@ function promiseFetchGeojson ( ){
 
 				reject( error );
 
-			}
+			}else{
 
-			// GETS TRUNCATED. WOULD HAVE TO SET: set group_concat_max_len = 100000000; (MAX VALUES: 32-bit: 4294967295, 64-bit: 18446744073709551615)
-			// SELECT CONCAT('{ "type": "FeatureCollection", "features": [', GROUP_CONCAT(' { "type": "Feature", "geometry": ', ST_AsGeoJSON(contribution_point), ', "properties": { "marker-symbol": "marker-primary-dark", "comment": "This is a comment", "image": "./uploads/',contribution_filename,'" } } '), '] }' ) as geojson FROM contributions
-			var query = 'SET group_concat_max_len = 100000000; SELECT CONCAT( \'{ "type": "FeatureCollection", "features": [\', GROUP_CONCAT(\' { "type": "Feature", "geometry": \', ST_AsGeoJSON(contribution_point), \', "properties": { "marker-symbol": "marker-primary-dark", "comment": "This is a comment", "image": "./uploads/\',contribution_filename,\'" } } \'), \'] }\' ) as geojson FROM contributions';
-			//var query = 'SELECT contribution_point FROM contributions';
+				// GETS TRUNCATED. WOULD HAVE TO SET: set group_concat_max_len = 100000000; (MAX VALUES: 32-bit: 4294967295, 64-bit: 18446744073709551615)
+				// SELECT CONCAT('{ "type": "FeatureCollection", "features": [', GROUP_CONCAT(' { "type": "Feature", "geometry": ', ST_AsGeoJSON(contribution_point), ', "properties": { "marker-symbol": "marker-primary-dark", "comment": "This is a comment", "image": "./uploads/',contribution_filename,'" } } '), '] }' ) as geojson FROM contributions
+				var query = 'SET group_concat_max_len = 100000000; SELECT CONCAT( \'{ "type": "FeatureCollection", "features": [\', GROUP_CONCAT(\' { "type": "Feature", "geometry": \', ST_AsGeoJSON(contribution_point), \', "properties": { "marker-symbol": "marker-primary-dark", "comment": "This is a comment", "image": "./uploads/\',contribution_filename,\'" } } \'), \'] }\' ) as geojson FROM contributions';
+				//var query = 'SELECT contribution_point FROM contributions';
 
-			connection.query( query, function ( err, results ) {
+				connection.query( query, function ( err, results ) {
 
-				if( error ){
+					if( error ){
 
-					reject( error );
-
-				}else{
-
-					var row = results[ 1 ][ 0 ];
-
-					if ( row.geojson ){
-
-						var geojson = JSON.parse( row.geojson );
-						resolve( geojson );
+						reject( error );
 
 					}else{
 
-						reject( Error( 'contributions/promiseFetchGeojson/Result did not return geojson' ) );
+						var row = results[ 1 ][ 0 ];
+
+						if ( row.geojson ){
+
+							var geojson = JSON.parse( row.geojson );
+							resolve( geojson );
+
+						}else{
+
+							reject( Error( 'contributions/promiseFetchGeojson/Result did not return geojson' ) );
+
+						}
 
 					}
+					
+					connection.release();
 
-				}
-				
-				connection.release();
+				} );
 
-			} );
+			}
 
 		} );
 
