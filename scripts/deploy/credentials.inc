@@ -1,4 +1,4 @@
-SSH_USER="coastwards"
-SSH_HOST="coastwards.net"
+SSH_USER="tsakiris"
+SSH_HOST="csfctc.geographie.uni-kiel.de"
 SSH_PUBLIC_KEY="$HOME/.ssh/id_rsa.pub"
-APP_ROOT="~/coastwards.net"
+APP_ROOT="~/coastwards.org"
