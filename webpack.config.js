@@ -28,9 +28,8 @@ const BUILD_ROOT = path.join( PROJECT_ROOT, 'public/build' );
 const ENTRY_ROOT = path.join( PROJECT_ROOT, 'app/index.jsx' );
 
 const APP_ROOT = path.join( PROJECT_ROOT, 'app' );
-const ASSETS_ROOT = path.join( PROJECT_ROOT, 'public/assets' );
+const PUBLIC_ROOT = path.join( PROJECT_ROOT, 'public' );
 const TOOLBOX_ROOT = path.join( PROJECT_ROOT, 'node_modules/react-toolbox' );
-const MAPBOX_ROOT = path.join( PROJECT_ROOT, 'node_modules/mapbox-gl' );
 
 const extractStyles = new ExtractTextPlugin( 'styles.css', { allChunks: true } );
 
@@ -50,8 +49,9 @@ const config = {
 		extensions: [ '', '.js', '.jsx', '.scss' ],
 		alias: {
 			modernizr$:  path.join( PROJECT_ROOT, './.modernizrrc' ),
-			// for mapbox-gl see: https://github.com/mapbox/mapbox-gl-js/issues/1649
-			webworkify: 'webworkify-webpack'
+			// https://github.com/sleepycat/mapboxgl-webpack-example
+			webworkify: 'webworkify-webpack',
+			'mapbox-gl': path.resolve( './node_modules/mapbox-gl/dist/mapbox-gl.js' )
 		}
 	},
 	output: {
@@ -60,12 +60,6 @@ const config = {
 		publicPath: '/build/',
 		chunkFilename: '[name].js'
 	},
-	/*addVendor: function ( name, path ) {
-
-		this.resolve.alias[ name ] = path;
-		this.module.noParse.push( new RegExp( path ) );
-
-	},*/
 	module: {
 		noParse: [],
 		loaders: [ 
@@ -81,40 +75,22 @@ const config = {
 			},
 			{ 
 				test: /\.(jpe?g|png|gif|svg)$/i,
-				include: APP_ROOT,
-				loader: 'url?limit=10000!img?progressive=true' 
-			},
-			{ 
-				test: /\.woff(2)?$/,
-				include: APP_ROOT,
-				loader: 'url?limit=10000!img?progressive=true' 
-			},
-			{ 
-				test: /\.(ttf|otf|eot)$/,
-				include: APP_ROOT, 
-				loader: 'file'
-			},
-			{ 
-				test: /\.(jpe?g|png|gif|svg)$/i,
-				include: ASSETS_ROOT,
+				include: PUBLIC_ROOT,
 				loader: 'url?limit=10000!img?progressive=true' 
 			},
 			{
 				test: /\.modernizrrc$/,
 				loader: 'modernizr'
 			},
-			// for mapbox-gl see: https://github.com/mapbox/mapbox-gl-js/issues/1649
+			// https://github.com/sleepycat/mapboxgl-webpack-example
 			{
-				test: /\.json$/,
-				include: MAPBOX_ROOT,
-				loader: 'json-loader'
-			}
-		],
-		postLoaders: [
+				test: /\.js$/,
+				include: path.resolve( __dirname, 'node_modules/webworkify/index.js' ),
+				loader: 'worker'
+			},
 			{
-				include: MAPBOX_ROOT,
-				loader: 'transform',
-				query: 'brfs'
+				test: /mapbox-gl.+\.js$/,
+				loader: 'transform/cacheable?brfs'
 			}
 		]
 	},
@@ -130,8 +106,5 @@ const config = {
 	]
 	
 };
-
-//config.addVendor( 'leaflet', path.join( PROJECT_ROOT, './app/utils/Leaflet/leaflet.js' ) );
-//config.addVendor( 'mdl', path.join( PROJECT_ROOT, './app/utils/MDL/material.min.js' ) );
 
 module.exports = config;
