@@ -30,3 +30,9 @@ automated deployment process. credentials require configuration according to dep
 installs public key on remote machine and executes rsync for updating remote sources
 
 !Needs additional scripts to (re)launch server!
+
+### NVM
+
+if node was installed through nvm run:
+
+	n=$(which node);n=${n%/bin/node}; chmod -R 755 $n/bin/*; sudo cp -r $n/{bin,lib,share}

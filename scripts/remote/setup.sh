@@ -21,7 +21,15 @@ FOREVER_SERVICE_BIN=$(which forever) 2>/dev/null
 
 source "${__dir}/env.inc"
 
-sudo scp -r "${APP_SRC}/" "${WWW_ROOT}"
+# $HOME/coastwards.org/ /var/www/coastwards.org
+sudo cp -r "${APP_SRC}/" "${WWW_ROOT}"
+
+# www-data:www-data /var/www/coastwards.org
 sudo chown "${WWW_USER}:${WWW_USER}" "${WWW_ROOT}"
 
 forever-service install coastwards --script "${__root}/server/index.js"
+
+sudo forever list
+
+
+# n=$(which node);n=${n%/bin/node}; chmod -R 755 $n/bin/*; sudo cp -r $n/{bin,lib,share} /usr/local
