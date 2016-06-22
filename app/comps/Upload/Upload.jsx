@@ -73,7 +73,7 @@ const messages = defineMessages( {
 	button_tooltip_upload_image:{
 		id: "button_tooltip_upload_image",
 		description: "0 - ",
-		defaultMessage: "Upload an image"
+		defaultMessage: "Upload"
 	}
 	
 

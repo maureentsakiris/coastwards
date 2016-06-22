@@ -1,0 +1,46 @@
+{
+  /**
+   * Application configuration section
+   * http://pm2.keymetrics.io/docs/usage/application-declaration/
+   */
+  apps : [
+
+    // First application
+    {
+      name      : "COASTWARDS",
+      script    : "server.js",
+      env: {
+        COMMON_VARIABLE: "true"
+      },
+      env_production : {
+        NODE_ENV: "production"
+      }
+    }
+  ],
+
+  /**
+   * Deployment section
+   * http://pm2.keymetrics.io/docs/usage/deployment/
+   */
+  deploy : {
+    production : {
+      user : "tsakiris",
+      host : "csfctc.geographie.uni-kiel.de",
+      ref  : "origin/master",
+      repo : "git@github.com:maureentsakiris/coastwards.git",
+      path : "/var/www/production",
+      "post-deploy" : "npm install && pm2 startOrRestart ecosystem.json --env production"
+    },
+    dev : {
+      user : "tsakiris",
+      host : "csfctc.geographie.uni-kiel.de",
+      ref  : "origin/master",
+      repo : "git@github.com:maureentsakiris/coastwards.git",
+      path : "/var/www/development",
+      "post-deploy" : "npm install && pm2 startOrRestart ecosystem.json --env dev",
+      env  : {
+        NODE_ENV: "dev"
+      }
+    }
+  }
+}

@@ -5,7 +5,7 @@ const path = require( 'path' );
 const httpProxy = require( 'http-proxy' );
 const helmet = require( 'helmet' );
 
-const globalConfigs = require ( './server/config/' );
+const globalConfigs = require ( './setup/config/' );
 const isProduction = globalConfigs.env === 'production';
 const server = globalConfigs.server;
 const portToListen = isProduction ? server.port : 8888;
