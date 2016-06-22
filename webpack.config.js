@@ -3,25 +3,7 @@ const path = require( 'path' );
 const ExtractTextPlugin = require( 'extract-text-webpack-plugin' );
 const autoprefixer = require( 'autoprefixer' );
 
-
-var SERVER = {};
-
-if( process.argv[ 3 ] == 'office' ){
-
-	SERVER = {
-		IP: '134.245.149.30',
-		PORT: 3000
-	};
-
-}else{
-
-	SERVER = {
-		IP: '127.0.0.1',
-		PORT: 3000
-	};
-
-}
-
+console.log( "WEBPACK PRODUCTION" );
 
 const PROJECT_ROOT = path.resolve( './' );
 const BUILD_ROOT = path.join( PROJECT_ROOT, 'public/build' );
@@ -31,15 +13,14 @@ const APP_ROOT = path.join( PROJECT_ROOT, 'app' );
 const PUBLIC_ROOT = path.join( PROJECT_ROOT, 'public' );
 const TOOLBOX_ROOT = path.join( PROJECT_ROOT, 'node_modules/react-toolbox' );
 
+
 const extractStyles = new ExtractTextPlugin( 'styles.css', { allChunks: true } );
+
 
 const config = {
 
-	server: SERVER,
-	devtool: 'eval',
+	devtool: 'cheap-module-source-map',
 	entry: [
-		'webpack-dev-server/client?http://' + SERVER.IP + ':' + SERVER.PORT,
-		'webpack/hot/only-dev-server',
 		ENTRY_ROOT
 	],
 	node: {
@@ -100,9 +81,18 @@ const config = {
 	postcss: [ autoprefixer ],
 	plugins: [
 		extractStyles,
-		new webpack.HotModuleReplacementPlugin(),
-		new webpack.NoErrorsPlugin(),
-		new webpack.optimize.DedupePlugin()
+		new webpack.optimize.DedupePlugin(),
+		new webpack.optimize.UglifyJsPlugin( {
+			minimize: true,
+			compress: {
+				warnings: true
+			}
+		} ),
+		new webpack.DefinePlugin( {
+			'process.env': {
+				'NODE_ENV': JSON.stringify( 'production' )
+			}
+		} )
 	]
 	
 };

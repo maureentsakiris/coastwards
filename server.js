@@ -5,26 +5,14 @@ const path = require( 'path' );
 const httpProxy = require( 'http-proxy' );
 const helmet = require( 'helmet' );
 
+const globalConfigs = require ( './server/config/' );
+const isProduction = globalConfigs.env === 'production';
+const server = globalConfigs.server;
+const portToListen = isProduction ? server.port : 8888;
+
 const contributions = require( './server/contributions' );
 
-var SERVER = { PORT: 3000 };
 
-switch ( process.argv[ 3 ] ){
-
-case 'office':
-	SERVER.IP = '134.245.149.30'
-	break;
-case 'gerhard':
-	SERVER.IP= '192.168.0.12'
-	break;
-default:
-	SERVER.IP= '127.0.0.1'
-
-}
-
-
-const isProduction = process.env.NODE_ENV === 'production';
-const port = isProduction ? process.env.PORT : 8888;
 const publicPath = path.resolve( __dirname, 'public' );
 //const uploadsPath = path.resolve( __dirname, 'uploads' );
 
@@ -45,7 +33,6 @@ app.get( '/', function ( req, res ) {
 
 app.use( '/contributions', contributions );
 
-
 if ( !isProduction ) {
 
 	var bundle = require( './server/bundle.js' );
@@ -55,7 +42,7 @@ if ( !isProduction ) {
 
 		proxy.web( req, res, {
 
-			target: 'http://' + SERVER.IP + ':' + SERVER.PORT
+			target: 'http://' + server.ip + ':' + server.port
 
 		} );
 
@@ -70,8 +57,8 @@ if ( !isProduction ) {
 }
 
 // And run the server
-app.listen( port, function () {
+app.listen( portToListen, function () {
 
-	console.log( 'Server running on port ' + port );
+	console.log( 'Server running on port: ' + portToListen );
 
 } ); 

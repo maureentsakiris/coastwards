@@ -1,0 +1,13 @@
+{
+	"mysql": {
+		"host": "localhost",
+		"user": "coastwards",	
+		"password": "<.6fxM)8Bv]Exuj2",
+		"database" : "coastwards",
+		"multipleStatements": true
+	}, 
+	"server": {
+		"port": 8080, 
+		"ip": "127.0.0.1"
+	}
+}

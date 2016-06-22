@@ -3,6 +3,10 @@ const path = require( 'path' );
 const ExtractTextPlugin = require( 'extract-text-webpack-plugin' );
 const autoprefixer = require( 'autoprefixer' );
 
+console.log( "WEBPACK DEVELOPMENT" );
+
+const globalConfigs = require ( './server/config/' );
+const server = globalConfigs.server;
 
 const PROJECT_ROOT = path.resolve( './' );
 const BUILD_ROOT = path.join( PROJECT_ROOT, 'public/build' );
@@ -12,14 +16,15 @@ const APP_ROOT = path.join( PROJECT_ROOT, 'app' );
 const PUBLIC_ROOT = path.join( PROJECT_ROOT, 'public' );
 const TOOLBOX_ROOT = path.join( PROJECT_ROOT, 'node_modules/react-toolbox' );
 
-
 const extractStyles = new ExtractTextPlugin( 'styles.css', { allChunks: true } );
-
 
 const config = {
 
-	devtool: 'cheap-module-source-map',
+	server: server,
+	devtool: 'eval',
 	entry: [
+		'webpack-dev-server/client?http://' + server.ip + ':' + server.port,
+		'webpack/hot/only-dev-server',
 		ENTRY_ROOT
 	],
 	node: {
@@ -80,18 +85,9 @@ const config = {
 	postcss: [ autoprefixer ],
 	plugins: [
 		extractStyles,
-		new webpack.optimize.DedupePlugin(),
-		new webpack.optimize.UglifyJsPlugin( {
-			minimize: true,
-			compress: {
-				warnings: true
-			}
-		} ),
-		new webpack.DefinePlugin( {
-			'process.env': {
-				'NODE_ENV': JSON.stringify( 'production' )
-			}
-		} )
+		new webpack.HotModuleReplacementPlugin(),
+		new webpack.NoErrorsPlugin(),
+		new webpack.optimize.DedupePlugin()
 	]
 	
 };

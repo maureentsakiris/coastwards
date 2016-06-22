@@ -8,7 +8,9 @@
   },
   "main": "index.js",
   "scripts": {
-    "start": "node server"
+    "build": "webpack",
+    "start": "node server",
+    "dev": "NODE_ENV=development node server"
   },
   "author": "Maureen Tsakiris <info@maureentsakiris.com>, Matthias Buchholz <mb@averagejoe.de>",
   "license": "ISC",
@@ -22,7 +24,6 @@
     "http-proxy": "^1.14.0",
     "node-uuid": "^1.4.7",
     "underscore": "^1.8.3"
-    
   },
   "devDependencies": {
     "react": "^15.1.0",

@@ -1,6 +1,6 @@
 const Webpack = require( 'webpack' );
 const WebpackDevServer = require( 'webpack-dev-server' );
-const webpackConfig = require( './../webpack.config.js' );
+const webpackConfig = require( './../webpack.dev.config.js' );
 
 
 module.exports = function () {
@@ -29,7 +29,7 @@ module.exports = function () {
 		historyApiFallback: true,
 		quiet: false,
 		noInfo: true,
-		progress: true,
+		progress: false,
 		colors: true,
 		stats: {
 
@@ -39,7 +39,7 @@ module.exports = function () {
 
 	} );
 
-	bundler.listen( webpackConfig.server.PORT, webpackConfig.server.IP, function () {
+	bundler.listen( webpackConfig.server.port, webpackConfig.server.ip, function () {
 
 		console.log( 'Bundling project, please wait...' );
 
