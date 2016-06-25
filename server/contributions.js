@@ -3,6 +3,7 @@ const router = express.Router();
 const mysql = require( 'mysql' );
 const formidable = require( 'formidable' );
 const path = require( 'path' );
+const fs = require( 'fs' );
 const uuid = require( 'node-uuid' );
 const jimp = require( 'jimp' );
 const _ = require( 'underscore' );
@@ -21,7 +22,15 @@ const pool  = mysql.createPool( {
 function promiseFetchForm ( req ) {
 
 	var form = new formidable.IncomingForm();
-	form.uploadDir = path.join( __dirname, '../public/uploads' );
+	var uploadDir = path.join( __dirname, '../public/uploads' );
+
+	if ( !fs.existsSync( uploadDir ) ){
+
+		fs.mkdirSync( uploadDir );
+
+	}
+
+	form.uploadDir = uploadDir;
 	form.keepExtensions = true;
 
 	return new Promise( ( resolve, reject ) => {
@@ -65,12 +74,12 @@ function promiseFetchForm ( req ) {
 
 		form.on( 'fileBegin', function ( name, file ){
 
-			var id = uuid.v1();
+			var uid = uuid.v1();
 			var dirname = path.dirname( file.path );
 			var extension = path.extname( file.path );
-			var filename = id + extension;
+			var filename = uid + extension;
 			
-			file.uuid = id;
+			file.uid = uid;
 			file.dirname = dirname;
 			file.extension = extension;
 			file.filename = filename;
@@ -100,15 +109,17 @@ function promiseInsertFile ( formData ) {
 	var exifJSON = formData.fields[ drop + '.exifJSON' ];
 	var manual = formData.fields[ drop + '.manual' ];
 	var exifDateTime = formData.fields[ drop + '.exifDateTime' ];
-
 	var filename = formData.files[ drop + '.file' ].filename;
+	var uid = formData.files[ drop + '.file' ].uid;
+	var comment = formData.fields[ drop + '.comment' ];
+	var category = formData.fields[ drop + '.category' ];
 
 	var point = util.format( 'POINT(%s %s)', long, lat )
 
 	return new Promise( function ( resolve, reject ) {
 
 		// Truncate table coastwards.contributions
-		var sql = 'INSERT INTO ??.?? ( ??, ??, ??, ??, ??, ??, ?? ) VALUES ( (ST_PointFromText(?)), ?, ?, ?, ?, ?, ? )';
+		var sql = 'INSERT INTO ??.?? ( ??, ??, ??, ??, ??, ??, ??, ??, ??, ?? ) VALUES ( (ST_PointFromText(?)), ?, ?, ?, ?, ?, ?, ?, ?, ? )';
 		var inserts = [ 
 			'coastwards', 
 			'contributions',
@@ -116,18 +127,24 @@ function promiseInsertFile ( formData ) {
 			'contribution_point',
 			'contribution_point_manual',
 			'contribution_filename',
+			'contribution_uid',
 			'contribution_exif_datetime',
 			'contribution_validations',
 			'contribution_exif',
 			'contribution_ip',
+			'contribution_comment',
+			'contribution_category',
 
 			point,
 			manual,
 			filename,
+			uid,
 			exifDateTime,
 			validationsJSON,
 			exifJSON,
-			ip
+			ip,
+			comment,
+			category
 
 		]
 
@@ -236,7 +253,7 @@ function promiseFetchGeojson ( ){
 
 				// GETS TRUNCATED. WOULD HAVE TO SET: set group_concat_max_len = 100000000; (MAX VALUES: 32-bit: 4294967295, 64-bit: 18446744073709551615)
 				// SELECT CONCAT('{ "type": "FeatureCollection", "features": [', GROUP_CONCAT(' { "type": "Feature", "geometry": ', ST_AsGeoJSON(contribution_point), ', "properties": { "marker-symbol": "marker-primary-dark", "comment": "This is a comment", "image": "./uploads/',contribution_filename,'" } } '), '] }' ) as geojson FROM contributions
-				var query = 'SET group_concat_max_len = 100000000; SELECT CONCAT( \'{ "type": "FeatureCollection", "features": [\', GROUP_CONCAT(\' { "type": "Feature", "geometry": \', ST_AsGeoJSON(contribution_point), \', "properties": { "marker-symbol": "marker-primary-dark", "comment": "This is a comment", "image": "./uploads/\',contribution_filename,\'" } } \'), \'] }\' ) as geojson FROM contributions';
+				var query = 'SET group_concat_max_len = 100000000; SELECT CONCAT( \'{ "type": "FeatureCollection", "features": [\', GROUP_CONCAT(\' { "type": "Feature", "geometry": \', ST_AsGeoJSON(contribution_point), \', "properties": { "marker-symbol": "marker-primary-dark", "comment": "\',IFNULL(contribution_comment, "" ),\'", "category": "\',IFNULL(contribution_category, "" ),\'", "image": "./uploads/\',contribution_uid,\'-small.jpg" } } \'), \'] }\' ) as geojson FROM contributions';
 				//var query = 'SELECT contribution_point FROM contributions';
 
 				connection.query( query, function ( err, results ) {

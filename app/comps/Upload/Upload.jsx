@@ -231,7 +231,7 @@ class Upload extends Component {
 					style="mapbox://styles/maureentsakiris/cinxhoec70043b4nmx0rkoc02"
 					accessToken="pk.eyJ1IjoibWF1cmVlbnRzYWtpcmlzIiwiYSI6ImNpbXM1N2Z2MTAwNXF3ZW0ydXI3eXZyOTAifQ.ATjSaskEecYMiEG36I_viw"
 				/>
-				<FormTB name="upload" className={ clsForm } ref="form" onProgress={ this._onUploadProgress } >
+				<FormTB name="upload" className={ clsForm } ref="form" onSubmitProgress={ this._onUploadProgress } onSubmitDone={ this._onUploadDone } onSubmitError={ this._onUploadError } >
 					<DropzoneTB
 						name="dropzone"
 						ref="dropzone"
@@ -290,36 +290,27 @@ class Upload extends Component {
 
 		return new Promise( ( resolve, reject ) => {
 
-			console.log( "remove timeout" );
+			this.geoJsonRequest = http.get( options, ( res ) => {
 
-			setTimeout( function () {
+				const body = [ ];
 
-				this.geoJsonRequest = http.get( options, ( res ) => {
+				res.on( 'data', ( chunk ) => { 
 
-					const body = [ ];
-
-					res.on( 'data', ( chunk ) => { 
-
-						body.push( chunk );
-
-					} );
-
-					res.on( 'end', ( ) => {
-
-						resolve( body.join( '' ) );
-
-					} );
-
-				} ).on( 'error', ( e ) => {
-
-					reject( e );
+					body.push( chunk );
 
 				} );
 
+				res.on( 'end', ( ) => {
 
-			}, 1000 );
+					resolve( body.join( '' ) );
 
-			
+				} );
+
+			} ).on( 'error', ( e ) => {
+
+				reject( e );
+
+			} );
 
 		} );
 
@@ -518,7 +509,7 @@ class Upload extends Component {
 					},
 					"properties": {
 						"marker-symbol": "marker-accent",
-						"comment": "",
+						"comment": "Reload to see your comment",
 						"image": validDrop.file.preview
 					}
 
@@ -650,19 +641,7 @@ class Upload extends Component {
 	_cancelUpload = () => {
 
 		this.refs.map._removeLayer( this.state.dropLayerId );
-
-		this.refs.map._zoomTo( 1, { 
-			duration: 3000, 
-			easing: this.easeInQuint 
-		} );
-
-		this.setState( {
-
-			showUploadDropDialog: false,
-			dropLayerId: undefined,
-			blockDropzone: false
-
-		}, this.refs.form._resetForm() );
+		this._resetUpload();
 
 	}
 
@@ -681,6 +660,29 @@ class Upload extends Component {
 			uploadProgress: progress
 
 		} );
+
+	}
+
+	_onUploadError = ( e ) => {
+
+		console.log( "UPLOAD ERROR", e );
+
+	}
+
+	_onUploadDone = ( response ) => {
+
+		let res = JSON.parse( response );
+		if( res.status == 'KO' ){
+
+			console.log( "RESPONSE ERROR" );
+
+		}else{
+
+			console.log( "Show users what was uploaded" );
+
+		}
+
+		this._resetUpload();
 
 	}
 
@@ -708,6 +710,24 @@ class Upload extends Component {
 	_showMapLoader = ( bool ) => {
 
 		this.setState( { showMapLoader: bool } );
+
+	}
+
+	_resetUpload = ( ) => {
+
+		this.refs.map._zoomTo( 1, { 
+			duration: 3000, 
+			easing: this.easeInQuint 
+		} );
+
+		this.setState( {
+
+			showUploadDropDialog: false,
+			dropLayerId: undefined,
+			blockDropzone: false,
+			uploadProgress: 0
+
+		}, this.refs.form._resetForm() );
 
 	}
 
