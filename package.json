@@ -10,6 +10,7 @@
   "scripts": {
     "build": "webpack",
     "start": "node server",
+    "reset": "node reset.js && NODE_ENV=development node server",
     "dev": "NODE_ENV=development node server"
   },
   "author": "Maureen Tsakiris <info@maureentsakiris.com>, Matthias Buchholz <mb@averagejoe.de>",

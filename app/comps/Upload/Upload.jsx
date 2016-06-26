@@ -337,8 +337,15 @@ class Upload extends Component {
 
 				let result = JSON.parse( res );
 				let geojson = result.json;
+				if( _.isEmpty( geojson ) ){
 
-				resolve( geojson );
+					reject( 'Geojson is empty. Nothing to display...' );
+
+				}else{
+
+					resolve( geojson );
+
+				}
 
 			}
 
@@ -422,6 +429,7 @@ class Upload extends Component {
 		.then( this._promiseDisplayGeojson )
 		.catch( ( error ) => {
 
+			this._showMapLoader( false );
 			this.context.logError( error );
 
 		} );
