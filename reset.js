@@ -1,7 +1,6 @@
 const mysql = require( 'mysql' );
 const fs = require( 'fs' );
 const path = require( 'path' );
-const util = require( 'util' );
 
 var connection = mysql.createConnection( {
 
@@ -52,7 +51,7 @@ function _promiseTruncate (){
 			}else{
 
 				connection.destroy();	
-				resolve( util.format( 'Removed %s rows', rows.affectedRows ) );
+				resolve( 'Truncated database' );
 
 			}
 
