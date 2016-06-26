@@ -264,16 +264,24 @@ function promiseFetchGeojson ( ){
 
 					}else{
 
-						var row = results[ 1 ][ 0 ];
+						if( results[ 1 ][ 0 ] ){
 
-						if ( row.geojson ){
+							var row = results[ 1 ][ 0 ];
 
-							var geojson = JSON.parse( row.geojson );
-							resolve( geojson );
+							if ( row.geojson ){
+
+								var geojson = JSON.parse( row.geojson );
+								resolve( geojson );
+
+							}else{
+
+								reject( Error( 'contributions/promiseFetchGeojson/Result did not return geojson' ) );
+
+							}
 
 						}else{
 
-							reject( Error( 'contributions/promiseFetchGeojson/Result did not return geojson' ) );
+							reject( Error( 'contributions/promiseFetchGeojson/Could not read result from query (Update schema?)' ) );
 
 						}
 
