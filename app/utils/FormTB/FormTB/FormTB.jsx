@@ -20,9 +20,10 @@ export default class FormTB extends Component {
 		noValidate: PropTypes.bool,
 		className: PropTypes.string,
 		autoSubmit: PropTypes.bool,
-		submitForm: PropTypes.bool,
 		onReset: PropTypes.func,
-		onProgress: PropTypes.func,
+		onSubmitProgress: PropTypes.func,
+		onSubmitError: PropTypes.func,
+		onSubmitDone: PropTypes.func,
 		children: PropTypes.node
 
 	};
@@ -32,7 +33,6 @@ export default class FormTB extends Component {
 		autocomplete: 'off',
 		noValidate: true,
 		autoSubmit: false,
-		submitForm: false,
 		onReset: () => {}
 
 	};
@@ -92,7 +92,7 @@ export default class FormTB extends Component {
 
 	_validateForm ( ){
 
-		let { autoSubmit, submitForm } = this.props;
+		let { autoSubmit } = this.props;
 		let flag = true;
 		let elements = this.elements;
 
@@ -106,12 +106,9 @@ export default class FormTB extends Component {
 
 		} );
 
-		if( ( autoSubmit && flag ) || ( submitForm && flag ) ){
+		if( autoSubmit && flag ){
 
-			console.log( "autoSumbit: ", autoSubmit );
-			console.log( "submitForm: ", submitForm );
-
-			this.setState( { formIsValid: flag, submitForm: false }, this._submit );
+			this.setState( { formIsValid: flag }, this._submit );
 
 		}else{
 
@@ -224,31 +221,21 @@ export default class FormTB extends Component {
 		this.context.showLoader( true );
 		this._updateModel();
 
-		console.log( 'Form is valid:', this.state.formIsValid );
-		console.log( "model", this.model );
+		//console.log( 'Form is valid:', this.state.formIsValid );
+		//console.log( "model", this.model );
 
 		this._sendRequest()
 			.then( ( response ) => {
 
-				let res = JSON.parse( response );
-
-				if( res.status == 'KO' ){
-
-					throw Error( res.message );
-
-				}else{
-
-					console.log( "Show users what was uploaded" );
-
-				}
-
+				this.props.onSubmitDone( response );
 				this._resetForm();
-				return res;
+				return response;
 				
 
 			} )
 			.catch( ( err ) => {
 
+				this.props.onSubmitError( err );
 				this.context.logError( err );
 
 			} );
@@ -282,7 +269,7 @@ export default class FormTB extends Component {
 
 			xhr.upload.addEventListener( 'progress', ( e ) => {
 
-				this.props.onProgress( e );
+				this.props.onSubmitProgress( e );
 
 			}, false );
 

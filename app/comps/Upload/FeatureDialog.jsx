@@ -58,8 +58,12 @@ export default class FeatureDialog extends Component {
 		return (
 
 			<Dialog { ...restProps } className={ cls } actions={ actions } onEscKeyDown={ onClick } onOverlayClick={ onClick } >
-				{ feature && <img src={ feature.properties.image } className={ style.image } /> }
-				{ feature && <p className={ style.comment }>{ feature.properties.comment }</p> }
+				<div className={ style.screen }>
+					{ feature && <img src={ feature.properties.image } className={ style.image } /> }
+					<div className={ style.inner }>
+						{ feature && <p className={ style.comment }>{ feature.properties.comment }</p> }
+					</div>
+				</div>
 			</Dialog>
 
 		)

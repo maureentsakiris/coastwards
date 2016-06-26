@@ -307,7 +307,7 @@ $corsetPadding: 5vh;
 
 %dialog{
 
-  transition: height 2s, width 2s;
+  transition: height 300ms, width 300ms;
 
   @include LtSM( ){
 

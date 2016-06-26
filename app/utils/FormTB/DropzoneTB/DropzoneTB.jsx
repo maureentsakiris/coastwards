@@ -354,8 +354,6 @@ class DropzoneTB extends Component {
 
 	_resetDropzone (){
 
-		console.log( "Resetting dropzone" );
-
 		this.validDrops = [];
 		this.invalidDrops = [];
 

@@ -2,7 +2,7 @@ CREATE DATABASE  IF NOT EXISTS `coastwards` /*!40100 DEFAULT CHARACTER SET utf8 
 USE `coastwards`;
 -- MySQL dump 10.13  Distrib 5.7.9, for osx10.9 (x86_64)
 --
--- Host: localhost    Database: coastwards
+-- Host: 127.0.0.1    Database: coastwards
 -- ------------------------------------------------------
 -- Server version	5.7.13
 
@@ -29,14 +29,18 @@ CREATE TABLE `contributions` (
   `contribution_point` point NOT NULL,
   `contribution_point_manual` tinyint(4) NOT NULL,
   `contribution_filename` varchar(255) NOT NULL,
+  `contribution_uid` varchar(255) NOT NULL,
   `contribution_exif_datetime` datetime DEFAULT NULL,
   `contribution_validations` json NOT NULL,
   `contribution_exif` json DEFAULT NULL,
   `contribution_ip` varchar(45) NOT NULL,
   `contribution_timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `contribution_comment` mediumtext,
+  `contribution_category` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`contribution_id`,`contribution_point`(25)),
-  UNIQUE KEY `contributions_id_UNIQUE` (`contribution_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+  UNIQUE KEY `contributions_id_UNIQUE` (`contribution_id`),
+  UNIQUE KEY `contribution_id_UNIQUE` (`contribution_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -48,4 +52,4 @@ CREATE TABLE `contributions` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-06-13 18:50:39
+-- Dump completed on 2016-06-25 20:19:46

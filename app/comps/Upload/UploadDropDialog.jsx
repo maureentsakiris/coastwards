@@ -21,12 +21,12 @@ const messages = defineMessages( {
 	upload_drop_dialog_comment_label:{
 		id: "upload_drop_dialog_comment_label",
 		description: "1 - ",
-		defaultMessage: "Tell us a little more about this coast ..."
+		defaultMessage: "Write a comment ..."
 	},
 	upload_drop_dialog_category:{
 		id: "upload_drop_dialog_category",
 		description: "1 - ",
-		defaultMessage: "How would you describe the coast material?"
+		defaultMessage: "Describe the coast material"
 	},
 	upload_drop_dialog_upload_label:{
 		id: "upload_feature_dialog_upload_label",
@@ -41,7 +41,7 @@ const messages = defineMessages( {
 	upload_drop_dialog_intro:{
 		id: "upload_drop_dialog_intro",
 		description: "1 - ",
-		defaultMessage: "Help us categorize this coast by answering a few questions. Also, leave us (and the rest of the world) a note. Tell us the story of this coast, or just say hello ..."
+		defaultMessage: "Help us even more by answering a few questions, or scroll down to click the upload button."
 	},
 	upload_drop_dialog_extent:{
 		id: "upload_drop_dialog_extent",
@@ -58,6 +58,16 @@ const messages = defineMessages( {
 
 class UploadDropDialog extends Component {
 
+	componentWillUpdate ( p ){
+
+		if( p.active != this.props.active ){
+
+			this._resetDialog();
+
+		}
+
+	}
+
 	constructor ( props ) {
 
 		super ( props );
@@ -65,9 +75,9 @@ class UploadDropDialog extends Component {
 
 		this.state = {
 
+			submitting: false,
 			comment: '',
-			category: '',
-			extent: ''
+			category: ''
 
 		}
 
@@ -78,7 +88,7 @@ class UploadDropDialog extends Component {
 		const { formatMessage/*, locale*/ } = this.props.intl;
 
 		const { className, dialogDrop, onUploadClick, onCancelClick, progress, ...restProps } = this.props; // eslint-disable-line no-unused-vars
-		const { comment, category, extent } = this.state;
+		const { submitting, comment, category } = this.state;
 
 		const cls = Classnames( className, style.dialog );
 
@@ -93,16 +103,6 @@ class UploadDropDialog extends Component {
 
 		];
 
-		const extents = [
-
-			{ value: '15', label: 'About 15 minutes' },
-			{ value: '30', label: 'About 30 minutes' },
-			{ value: '60', label: 'About an hour' },
-			{ value: '120', label: 'About two hours' },
-			{ value: 'notsure', label: 'No idea' }
-
-		]
-
 		/*<RadioGroup name="category" value={ category } onChange={ this._handleChange.bind( this, 'category' ) } >
 							<RadioButton label="Sandy" value="sandy"/>
 							<RadioButton label="Pebbles" value="pebbles"/>
@@ -111,45 +111,37 @@ class UploadDropDialog extends Component {
 							<RadioButton label="Ice" value="ice"/>
 						</RadioGroup>*/
 
-		/*<Dropdown
-							label={ formatMessage( messages.upload_drop_dialog_extent ) }
-							onChange={ this._handleChange.bind( this, 'extent' ) }
-							value={ extent }
-							source={ extents }
-							template={ this._template }
-						/>*/
-
-		const submitting = progress > 0;
-
-		console.log( progress );
-
 		return (
 
 			<Dialog { ...restProps } className={ cls } actions={ [] } onEscKeyDown={ this._onCancelClick } onOverlayClick={ () => {} } >
-				{ dialogDrop && <img src={ dialogDrop.file.preview } className={ style.image } /> }
-				<div className={ style.inner } >
-					<h3>Your image is ready for upload</h3>
-					<p>{ formatMessage( messages.upload_drop_dialog_intro ) }</p>
-					<div className={ style.form }>
-						<Dropdown
-							label={ formatMessage( messages.upload_drop_dialog_category ) }
-							onChange={ this._handleChange.bind( this, 'category' ) }
-							value={ category }
-							source={ categories }
-							template={ this._template }
-						/>
-						<Input 
-							type="text" 
-							label={ formatMessage( messages.upload_drop_dialog_comment_label ) } 
-							value={ comment } 
-							multiline={ true } 
-							onChange={ this._handleChange.bind( this, 'comment' ) } 
-						/>
-					</div>
-					{ submitting && <ProgressBar type="linear" mode="determinate" value={ progress } /> }
-					<div className={ style.btns } >
-						{ !submitting && <Button className={ style.btn } label={ formatMessage( messages.upload_drop_dialog_upload_label ) } onClick={ this._onUploadClick }  raised accent /> }
-						{ !submitting && <Button className={ style.btn } label={ formatMessage( messages.upload_drop_dialog_cancel_label ) } onClick={ this._onCancelClick }  /> }
+				<div className={ style.screen }>
+					{ dialogDrop && <img src={ dialogDrop.file.preview } className={ style.image } /> }
+					<div className={ style.inner } >
+						<h3>Your image is ready for upload</h3>
+						<p>{ formatMessage( messages.upload_drop_dialog_intro ) }</p>
+						<div className={ style.form }>
+							<Dropdown
+								label={ formatMessage( messages.upload_drop_dialog_category ) }
+								onChange={ this._handleChange.bind( this, 'category' ) }
+								value={ category }
+								source={ categories }
+								template={ this._template }
+								disabled={ submitting }
+							/>
+							<Input 
+								type="text" 
+								label={ formatMessage( messages.upload_drop_dialog_comment_label ) } 
+								value={ comment } 
+								multiline={ true } 
+								onChange={ this._handleChange.bind( this, 'comment' ) }
+								disabled={ submitting }
+							/>
+						</div>
+						<div className={ style.btns } >
+							{ !submitting && <Button className={ style.btn } label={ formatMessage( messages.upload_drop_dialog_cancel_label ) } onClick={ this._onCancelClick }  /> }
+							{ !submitting && <Button className={ style.btn } label={ formatMessage( messages.upload_drop_dialog_upload_label ) } onClick={ this._onUploadClick }  raised accent disabled={ submitting } /> }
+							{ submitting && <ProgressBar type="circular" mode="indeterminate" multicolor /> }
+						</div>
 					</div>
 				</div>
 			</Dialog>
@@ -160,17 +152,32 @@ class UploadDropDialog extends Component {
 
 	_template = ( item ) => {
 
+		const div = {
+
+			paddingRight: '30px'
+
+		}
+
+		const h4 = {
+
+			fontSize: '1.92rem',
+			color: '#212121',
+			fontWeight: '500'
+
+		}
+
 		const p = {
 
 			margin: '0px',
 			fontSize: '1.4rem',
-			lineHeight: '1.4'
+			lineHeight: '1.4',
+			color: '#757575'
 
 		}
 
 		return (
-			<div>
-				<h4>{ item.label }</h4>
+			<div style={ div }>
+				<h4 style={ h4 }>{ item.label }</h4>
 				<p style={ p }>{ item.description }</p>
 			</div>
     
@@ -188,6 +195,7 @@ class UploadDropDialog extends Component {
 	_onUploadClick = () => {
 
 		this.props.onUploadClick();
+		this.setState( { submitting: true } );
 
 	}
 
@@ -195,9 +203,9 @@ class UploadDropDialog extends Component {
 
 		this.setState( {
 
+			submitting: false,
 			comment: '',
-			category: '',
-			extent: ''
+			category: ''
 
 		} );
 
@@ -221,7 +229,8 @@ UploadDropDialog.propTypes = {
 	dialogDrop: PropTypes.object,
 	onUploadClick: PropTypes.func.isRequired,
 	onCancelClick: PropTypes.func.isRequired,
-	progress: PropTypes.number
+	progress: PropTypes.number,
+	reset: PropTypes.bool
 
 };
 

@@ -2,29 +2,16 @@
 
 $border-radius: 0.2rem;
 
-.dialog{
+%corners{
 
-	@extend %dialog;
-
-}
-
-.image{
-
-	max-width: 100%;
 	border-top-left-radius: $border-radius;
 	border-top-right-radius: $border-radius;
 
 }
 
-.comment{
+.dialog{
 
-	//padding: $layout-gutter-width-sm;
-	//color: $palette-grey-700;
-
-}
-
-.dialog[data-react-toolbox="dialog"]{
-
+	@extend %dialog;
 	&>[role="body"]{
 
 		padding: 0;
@@ -33,31 +20,38 @@ $border-radius: 0.2rem;
 
 }
 
-.btns{
+.image{
 
-	position: absolute;
-	right: $layout-gutter-width-sm;
-
-}
-
-.btn{
-
-	float: right;
-	margin-left: $layout-gutter-width-sm;
+	max-width: 100%;
+	@extend %corners;
 
 }
 
 .inner{
 
 	padding: $layout-gutter-width-sm;
-	padding-bottom: 50px;
-	position: relative;
-	color: #4c4c4c;
 
+	h3{
 
-	p{
+		color: #212121;
 
-		margin: $layout-gutter-width-sm 0;
+	}
+
+	.form{
+
+		padding: $layout-gutter-width 0;
+
+	}
+
+	.btns{
+
+		text-align: right;
+
+		.btn{
+
+			margin-left: $layout-gutter-width-sm;
+
+		}
 
 	}
 
