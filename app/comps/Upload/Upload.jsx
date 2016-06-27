@@ -683,6 +683,7 @@ class Upload extends Component {
 		if( res.status == 'KO' ){
 
 			console.log( "RESPONSE ERROR" );
+			console.log( res );
 
 		}else{
 
