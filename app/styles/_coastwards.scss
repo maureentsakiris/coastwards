@@ -3,7 +3,7 @@
 
 
 $heightIntro: 100vh;
-$heightInfo: 80px;
+$heightInfo: 65px; // Also change the scrollTo offset in App.jsx
 $heightContent: calc(100% - #{$heightInfo});
 $heightFooter: 13vh;
 
@@ -16,7 +16,7 @@ $heightFooter: 13vh;
   @extend %pad;
 
   min-height: $heightContent;
-  padding-top: $heightInfo;
+  padding-top: 5vh;
   padding-bottom: $heightInfo;
 
   p{

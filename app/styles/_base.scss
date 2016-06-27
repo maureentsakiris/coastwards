@@ -308,7 +308,19 @@ $corsetPadding: 5vh;
 %dialog{
 
   transition: height 300ms, width 300ms;
-  margin: 64px 0;
+  margin: 34px;
+  max-width: 96vmin;
+
+  &[data-react-toolbox="dialog"]{
+
+    nav[role="navigation"]{
+
+      flex-shrink: 0;
+      flex-basis: auto;
+
+    }
+
+  }
 
   @include LtSM( ){
 
@@ -324,7 +336,7 @@ $corsetPadding: 5vh;
 
     &[data-react-toolbox="dialog"]{
 
-      width: 60vw;
+      width: auto;
       max-width: 800px;
 
     }
@@ -335,7 +347,7 @@ $corsetPadding: 5vh;
 
     &[data-react-toolbox="dialog"]{
 
-      width: 50vw;
+      width: auto;
       max-width: 800px;
 
     }

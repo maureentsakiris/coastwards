@@ -15,10 +15,40 @@ $border-radius: 0.2rem;
 	&>[role="body"]{
 
 		padding: 0;
+		border-top-left-radius: $border-radius;
+		border-top-right-radius: $border-radius;
+		/* @extend %flexcontainer;
+		flex-direction: column; */
 
 	}
 
 }
+
+/* .content{
+
+	@extend %flexitem;
+	flex-grow: 2;
+	flex-shrink: 1;
+	overflow-y: auto;
+	width: 100%;
+
+}*/
+
+.actions{
+
+	/* @extend %flexitem;
+	flex-grow: 0; */
+
+	text-align: right;
+	padding: $layout-gutter-width-sm;
+
+	.btn{
+
+		margin-left: $layout-gutter-width-sm;
+
+	}
+
+} 
 
 .image{
 
@@ -40,18 +70,6 @@ $border-radius: 0.2rem;
 	.form{
 
 		padding: $layout-gutter-width 0;
-
-	}
-
-	.btns{
-
-		text-align: right;
-
-		.btn{
-
-			margin-left: $layout-gutter-width-sm;
-
-		}
 
 	}
 

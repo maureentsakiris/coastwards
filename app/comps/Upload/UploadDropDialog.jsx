@@ -103,18 +103,10 @@ class UploadDropDialog extends Component {
 
 		];
 
-		/*<RadioGroup name="category" value={ category } onChange={ this._handleChange.bind( this, 'category' ) } >
-							<RadioButton label="Sandy" value="sandy"/>
-							<RadioButton label="Pebbles" value="pebbles"/>
-							<RadioButton label="Rocky" value="rocky"/>
-							<RadioButton label="Muddy" value="muddy"/>
-							<RadioButton label="Ice" value="ice"/>
-						</RadioGroup>*/
-
 		return (
 
 			<Dialog { ...restProps } className={ cls } actions={ [] } onEscKeyDown={ this._onCancelClick } onOverlayClick={ () => {} } >
-				<div className={ style.screen }>
+				<div className={ style.content }>
 					{ dialogDrop && <img src={ dialogDrop.file.preview } className={ style.image } /> }
 					<div className={ style.inner } >
 						<h3>Your image is ready for upload</h3>
@@ -137,12 +129,12 @@ class UploadDropDialog extends Component {
 								disabled={ submitting }
 							/>
 						</div>
-						<div className={ style.btns } >
-							{ !submitting && <Button className={ style.btn } label={ formatMessage( messages.upload_drop_dialog_cancel_label ) } onClick={ this._onCancelClick }  /> }
-							{ !submitting && <Button className={ style.btn } label={ formatMessage( messages.upload_drop_dialog_upload_label ) } onClick={ this._onUploadClick }  raised accent disabled={ submitting } /> }
-							{ submitting && <ProgressBar type="circular" mode="indeterminate" multicolor /> }
-						</div>
 					</div>
+				</div>
+				<div className={ style.actions } >
+					{ !submitting && <Button className={ style.btn } label={ formatMessage( messages.upload_drop_dialog_cancel_label ) } onClick={ this._onCancelClick }  /> }
+					{ !submitting && <Button className={ style.btn } label={ formatMessage( messages.upload_drop_dialog_upload_label ) } onClick={ this._onUploadClick }  raised accent disabled={ submitting } /> }
+					{ submitting && <ProgressBar type="linear" mode="determinate" value={ progress } /> }
 				</div>
 			</Dialog>
 
