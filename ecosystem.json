@@ -26,6 +26,7 @@
     production : {
       user : "tsakiris",
       host : "csfctc.geographie.uni-kiel.de",
+      /*key  : "/home/tsakiris/.ssh/id_rsa.pub",*/
       ref  : "origin/master",
       repo : "git@github.com:maureentsakiris/coastwards.git",
       path : "/var/www/production",
@@ -34,6 +35,7 @@
     dev : {
       user : "tsakiris",
       host : "csfctc.geographie.uni-kiel.de",
+      /*key  : "/home/tsakiris/.ssh/id_rsa.pub",*/
       ref  : "origin/master",
       repo : "git@github.com:maureentsakiris/coastwards.git",
       path : "/var/www/development",
