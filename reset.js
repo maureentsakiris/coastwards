@@ -87,10 +87,36 @@ function _promiseRemoveUploads (){
 
 }
 
-return Promise.all( [ _promiseTruncate(), _promiseRemoveUploads() ] ).then( ( values ) => {
+function _promiseRemoveBuild (){
+
+	var buildDir = path.join( __dirname, '/public/build' );
+
+	return new Promise( ( resolve, reject ) => {
+
+		fs.access( buildDir, fs.F_OK, function ( err ) {
+
+			if ( err ) {
+				
+				resolve( "Did not remove build directory because it doesn't exist" );
+
+			} else {
+
+				deleteFolderRecursive( buildDir );
+				resolve( 'Removed build directory' );
+
+			}
+
+		} );
+
+	} );
+
+}
+
+return Promise.all( [ _promiseTruncate(), _promiseRemoveUploads(), _promiseRemoveBuild() ] ).then( ( values ) => {
 
 	console.log( values[ 0 ] );
 	console.log( values[ 1 ] );
+	console.log( values[ 2 ] );
 	return values;
 
 } ).catch( ( error ) => {

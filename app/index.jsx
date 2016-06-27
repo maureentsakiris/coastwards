@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import Context from './utils/Context/Context';
-import I18n from './utils/i18n/I18n';
+import I18n from './utils/i18n/i18n';
 import App from './comps/App/App';
 
 import style from './_styleIndex';
