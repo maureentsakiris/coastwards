@@ -4,7 +4,7 @@ import { IntlProvider } from 'react-intl';
 import _ from 'underscore';
 import util from 'util';
 
-import I18nSwitch from './I18nSwitch';
+import I18nSwitch from './i18nSwitch';
 import i18nLocales from './i18nLocales';
 
 
