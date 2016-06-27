@@ -43,6 +43,8 @@ class App extends Component {
 	render () {
 
 		const { className } = this.props;
+		const { content } = this.state;
+
 		const cls = Classnames( style.app, className );
 
 		const clsUpload = Classnames( style.hide, {
@@ -79,11 +81,13 @@ class App extends Component {
 					<Info onTabClick={ this._loadContent } />
 				</Sticky>*/
 
+		const stick = content == 'upload' ? false : true;
+
 		return (
 
 			<div id="App" className={ cls }>
-				<Intro onArrowClick={ this._scrollToInfo } />
-				<Sticky id="InfoStick" enableTransforms={ true } className={ style.sticky }>
+				<Intro onArrowClick={ this._scrollToContent } />
+				<Sticky enabled={ stick } id="InfoStick" enableTransforms={ true } className={ style.sticky }>
 					<Info onTabClick={ this._loadContent } />
 				</Sticky>
 				<div id="Content" className={ style.content }>
@@ -99,16 +103,21 @@ class App extends Component {
 
 	}
 
-	_scrollToInfo = ( ) => {
+	_scrollToContent = ( ) => {
 
 		scroller.scrollTo( "Content", { smooth: true } );
 
 	}
 
+	_jumpToContent = ( ) => {
+
+		scroller.scrollTo( "Content", { smooth: false, offset: -50 } );
+
+	}
+
 	_loadContent = ( comp ) => {
 
-		this.setState( { content: comp } );
-		scroller.scrollTo( "Info", { smooth: true } );
+		this.setState( { content: comp }, this._jumpToContent );
 
 	}
 

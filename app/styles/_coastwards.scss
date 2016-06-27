@@ -3,8 +3,8 @@
 
 
 $heightIntro: 100vh;
-$heightInfo: 10vh;
-$heightContent: 90vh;
+$heightInfo: 80px;
+$heightContent: calc(100% - #{$heightInfo});
 $heightFooter: 13vh;
 
 
@@ -16,8 +16,8 @@ $heightFooter: 13vh;
   @extend %pad;
 
   min-height: $heightContent;
-  padding-top: 5vh;
-  padding-bottom: 10vh;
+  padding-top: $heightInfo;
+  padding-bottom: $heightInfo;
 
   p{
 

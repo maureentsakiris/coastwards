@@ -89,7 +89,7 @@ class Guidelines extends Component {
 
 		return (
 
-			<div className={ cls }>
+			<div id="Guidelines" className={ cls }>
 				<h2>{ formatMessage( messages.guidelines_header ) }</h2>
 				<h3>{ formatMessage( messages.guidelines_tagline ) }</h3>
 				<p>{ formatMessage( messages.guidelines_intro ) }</p>

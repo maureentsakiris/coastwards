@@ -308,6 +308,7 @@ $corsetPadding: 5vh;
 %dialog{
 
   transition: height 300ms, width 300ms;
+  margin: 64px 0;
 
   @include LtSM( ){
 
@@ -324,6 +325,7 @@ $corsetPadding: 5vh;
     &[data-react-toolbox="dialog"]{
 
       width: 60vw;
+      max-width: 800px;
 
     }
 
@@ -334,6 +336,7 @@ $corsetPadding: 5vh;
     &[data-react-toolbox="dialog"]{
 
       width: 50vw;
+      max-width: 800px;
 
     }
 

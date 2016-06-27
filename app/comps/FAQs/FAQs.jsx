@@ -37,7 +37,7 @@ class FAQs extends Component {
 
 		return (
 
-			<div className={ cls }>
+			<div id="FAQs" className={ cls }>
 				<h2>{ formatMessage( messages.faqs_headline ) }</h2>
 			</div>
 

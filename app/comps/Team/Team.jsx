@@ -46,7 +46,7 @@ class Team extends Component {
 
 		return (
 
-			<div className={ cls }>
+			<div id="Team" className={ cls }>
 				<h2>{ formatMessage( messages.team_headline ) }</h2>
 			</div>
 

@@ -330,7 +330,7 @@ class Upload extends Component {
 				let geojson = result.json;
 				if( _.isEmpty( geojson ) ){
 
-					reject( 'Geojson is empty. Nothing to display...' );
+					reject( 'Be the first to upload a picture!!' );
 
 				}else{
 
