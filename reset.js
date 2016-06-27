@@ -2,12 +2,15 @@ const mysql = require( 'mysql' );
 const fs = require( 'fs' );
 const path = require( 'path' );
 
-var connection = mysql.createConnection( {
+const globalConfigs = require ( './config/' );
+const config = globalConfigs.mysql;
 
-	host: 'localhost',
-	user: 'root',	
-	password: 'c0a37ward3!',
-	database : 'coastwards',
+var connection = mysql.createPool( {
+
+	host: config.host,
+	user: config.user,	
+	password: config.password,
+	database : config.database,
 	multipleStatements: true
 
 } );
@@ -50,7 +53,7 @@ function _promiseTruncate (){
 
 			}else{
 
-				connection.destroy();	
+				connection.end();	
 				resolve( 'Truncated database' );
 
 			}

@@ -5,7 +5,7 @@ const autoprefixer = require( 'autoprefixer' );
 
 console.log( "WEBPACK DEVELOPMENT" );
 
-const globalConfigs = require ( './setup/config/' );
+const globalConfigs = require ( './config/' );
 const server = globalConfigs.server;
 
 const PROJECT_ROOT = path.resolve( './' );

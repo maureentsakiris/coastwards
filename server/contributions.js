@@ -9,12 +9,15 @@ const jimp = require( 'jimp' );
 const _ = require( 'underscore' );
 const util = require( 'util' );
 
+const globalConfigs = require ( '../config/' );
+const config = globalConfigs.mysql;
+
 const pool  = mysql.createPool( {
 
-	host: 'localhost',
-	user: 'root',	
-	password: 'c0a37ward3!',
-	database : 'coastwards',
+	host: config.host,
+	user: config.user,	
+	password: config.password,
+	database : config.database,
 	multipleStatements: true
 
 } );
