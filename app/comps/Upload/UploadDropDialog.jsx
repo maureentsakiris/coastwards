@@ -21,12 +21,17 @@ const messages = defineMessages( {
 	upload_drop_dialog_comment_label:{
 		id: "upload_drop_dialog_comment_label",
 		description: "1 - ",
-		defaultMessage: "Write a comment ..."
+		defaultMessage: "Tell us your story ..."
+	},
+	upload_drop_dialog_comment_placeholder:{
+		id: "upload_drop_dialog_comment_placeholder",
+		description: "1 - ",
+		defaultMessage: "Hello world!"
 	},
 	upload_drop_dialog_category_label:{
 		id: "upload_drop_dialog_category_label",
 		description: "1 - ",
-		defaultMessage: "Describe the coast material"
+		defaultMessage: "How would you describe the coast material?"
 	},
 	upload_drop_dialog_upload_label:{
 		id: "upload_feature_dialog_upload_label",
@@ -88,6 +93,8 @@ class UploadDropDialog extends Component {
 
 		const cls = Classnames( className, style.dialog );
 
+		const clsActive = Classnames( style.option, style.active );
+
 		/*const categories = [
 
 			{ value: 'sand', label: 'Sand', description: "Sand can be many colors, ranging from almost white to dark brown. If it runs through your fingers when it's dry, it's sand." },
@@ -116,19 +123,91 @@ class UploadDropDialog extends Component {
 						<h3>{ formatMessage( messages.upload_drop_dialog_header ) }</h3>
 						<p>{ formatMessage( messages.upload_drop_dialog_intro ) }</p>
 						<div className={ style.form }>
-							<h4>{ formatMessage( messages.upload_drop_dialog_category_label ) }</h4>
-							<RadioGroup name="category" value={ category } onChange={ this._handleChange.bind( this, 'category' ) }>
-								<RadioButton label="Sandy" value="sand"/>
-								<RadioButton label="Mud" value="mud"/> 
-								<RadioButton label="Pebbles" value="pebbles"/>		        
-								<RadioButton label="Rock" value="rock"/> 
-								<RadioButton label="Ice" value="ice"/>
-								<RadioButton label="Man-made" value="manmade"/>
-								<RadioButton label="Not sure ..." value="unsure"/>      
-							</RadioGroup>
+							<h5>{ formatMessage( messages.upload_drop_dialog_category_label ) }</h5>
+							<div className={ style.options }>
+								<div className={ style.option }>
+									<div className={ style.iconRadio }>
+										<i className="material-icons">radio_button_unchecked</i>
+									</div>
+									<div className={ style.label }>
+										<p>Sand</p>
+									</div>
+									<div className={ style.iconMore }>
+										<i className="material-icons">help_outline</i>
+									</div>
+								</div>
+								<div className={ clsActive }>
+									<div className={ style.iconRadio }>
+										<i className="material-icons">radio_button_checked</i>
+									</div>
+									<div className={ style.label }>
+										<p>Pebble</p>
+									</div>
+									<div className={ style.iconMore }>
+										<i className="material-icons">help_outline</i>
+									</div>
+								</div>
+								<div className={ style.option }>
+									<div className={ style.iconRadio }>
+										<i className="material-icons">radio_button_unchecked</i>
+									</div>
+									<div className={ style.label }>
+										<p>Mud</p>
+									</div>
+									<div className={ style.iconMore }>
+										<i className="material-icons">help_outline</i>
+									</div>
+								</div>
+								<div className={ style.option }>
+									<div className={ style.iconRadio }>
+										<i className="material-icons">radio_button_unchecked</i>
+									</div>
+									<div className={ style.label }>
+										<p>Rock</p>
+									</div>
+									<div className={ style.iconMore }>
+										<i className="material-icons">help_outline</i>
+									</div>
+								</div>
+								<div className={ style.option }>
+									<div className={ style.iconRadio }>
+										<i className="material-icons">radio_button_unchecked</i>
+									</div>
+									<div className={ style.label }>
+										<p>Ice</p>
+									</div>
+									<div className={ style.iconMore }>
+										<i className="material-icons">help_outline</i>
+									</div>
+								</div>
+								<div className={ style.option }>
+									<div className={ style.iconRadio }>
+										<i className="material-icons">radio_button_unchecked</i>
+									</div>
+									<div className={ style.label }>
+										<p>Man-made</p>
+									</div>
+									<div className={ style.iconMore }>
+										<i className="material-icons">help_outline</i>
+									</div>
+								</div>
+								<div className={ style.option }>
+									<div className={ style.iconRadio }>
+										<i className="material-icons">radio_button_unchecked</i>
+									</div>
+									<div className={ style.label }>
+										<p>Not sure</p>
+									</div>
+									<div className={ style.iconMore }>
+										<i className="material-icons">help_outline</i>
+									</div>
+								</div>
+							</div>
+							<h5>{ formatMessage( messages.upload_drop_dialog_comment_label ) }</h5>
 							<Input 
 								type="text" 
-								label={ formatMessage( messages.upload_drop_dialog_comment_label ) } 
+								floating={ false }
+								hint={ formatMessage( messages.upload_drop_dialog_comment_placeholder ) } 
 								value={ comment } 
 								multiline={ true } 
 								onChange={ this._handleChange.bind( this, 'comment' ) }

@@ -1,5 +1,6 @@
 @import '../../../app/styles/_base';
 
+
 $border-radius: 0.2rem;
 
 %corners{
@@ -61,9 +62,15 @@ $border-radius: 0.2rem;
 
 	padding: $layout-gutter-width-sm;
 
-	h3{
+	h3, h5{
 
 		color: #212121;
+
+	}
+
+	h5{
+
+		margin: $layout-gutter-width-sm 0;
 
 	}
 
@@ -71,6 +78,86 @@ $border-radius: 0.2rem;
 
 		padding: $layout-gutter-width 0;
 
+		div[data-react-toolbox="input"]{
+
+			padding: 0;
+
+			textarea{
+
+				color: $color-primary;
+				font-weight: 200;
+				padding: 0;
+
+			}
+
+			span:last-child{
+
+				top: 0;
+
+			}
+
+		}
+
 	}
+
+}
+
+%icon{
+
+	@extend %flexitem;
+	flex-grow: 0;
+	width: auto;
+	cursor: pointer;
+
+}
+
+.options{
+
+	margin-bottom: $layout-gutter-width;
+
+}
+
+.option{
+
+	border-bottom: 1px solid $palette-grey-200;
+	padding: 1.1rem 0;
+	cursor: pointer;
+	transition: color 300ms;
+
+	@extend %flexcontainer;
+
+	.iconRadio{
+
+		@extend %icon;
+		padding-right: $layout-gutter-width-sm;
+
+	}
+
+	.label{
+
+		@extend %flexitem;
+		flex-grow: 1;
+
+	}
+
+	.iconMore{
+
+		@extend %icon;
+		padding-left: $layout-gutter-width-sm;
+		color: $palette-grey-600 !important;
+
+	}
+
+}
+
+.option:last-child{
+
+	border-bottom: none;
+
+}
+
+.option:hover, .active{
+
+	color: $color-primary;
 
 }
