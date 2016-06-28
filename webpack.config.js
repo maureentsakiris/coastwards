@@ -8,6 +8,8 @@ console.log( "WEBPACK PRODUCTION" );
 const PROJECT_ROOT = path.resolve( './' );
 const BUILD_ROOT = path.join( PROJECT_ROOT, 'public/build' );
 const ENTRY_ROOT = path.join( PROJECT_ROOT, 'app/index.jsx' );
+const TRANSLATE_ROOT = path.join( PROJECT_ROOT, 'appTranslate/index.jsx' );
+
 
 const APP_ROOT = path.join( PROJECT_ROOT, 'app' );
 const PUBLIC_ROOT = path.join( PROJECT_ROOT, 'public' );
@@ -20,9 +22,10 @@ const extractStyles = new ExtractTextPlugin( 'styles.css', { allChunks: true } )
 const config = {
 
 	devtool: 'cheap-module-source-map',
-	entry: [
-		ENTRY_ROOT
-	],
+	entry: {
+		index: ENTRY_ROOT,
+		translate: TRANSLATE_ROOT
+	},
 	node: {
 		fs: "empty"
 	},
@@ -36,7 +39,7 @@ const config = {
 		}
 	},
 	output: {
-		filename: 'bundle.js',
+		filename: '[name].bundle.js',
 		path: BUILD_ROOT,
 		publicPath: '/build/',
 		chunkFilename: '[name].js'

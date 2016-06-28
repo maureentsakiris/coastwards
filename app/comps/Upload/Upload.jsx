@@ -3,7 +3,7 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { defineMessages, injectIntl, intlShape } from 'react-intl';
 import Classnames from 'classnames';
 import _ from 'underscore';
-import http from 'http';
+
 import { Button } from 'react-toolbox/lib/button';
 import Tooltip from 'react-toolbox/lib/tooltip';
 import ProgressBar from 'react-toolbox/lib/progress_bar';
@@ -15,6 +15,8 @@ import FormTB from '../../utils/FormTB/FormTB/FormTB';
 import DropzoneTB from '../../utils/FormTB/DropzoneTB/DropzoneTB';
 /*import InputTB from '../../utils/FormTB/InputTB/InputTB';*/
 import MapboxGL from '../../utils/MapboxGL/MapboxGL';
+import request from '../../utils/Request';
+
 import FeatureDialog from './FeatureDialog';
 import UploadDropDialog from './UploadDropDialog';
 
@@ -105,18 +107,11 @@ class Upload extends Component {
 
 	}
 
-	componentWillUnmount (){
-
-		// Cancel geoJsonRequest ?? 
-
-	}
-
 	constructor ( props ) {
 
 		super ( props );
 		this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind( this );
 
-		this.geoJsonRequest;
 		this.map;
 		this.initZoom = 0;
 		this.minZoom = 0;
@@ -288,31 +283,7 @@ class Upload extends Component {
 
 		this._showMapLoader( true );
 
-		return new Promise( ( resolve, reject ) => {
-
-			this.geoJsonRequest = http.get( options, ( res ) => {
-
-				const body = [ ];
-
-				res.on( 'data', ( chunk ) => { 
-
-					body.push( chunk );
-
-				} );
-
-				res.on( 'end', ( ) => {
-
-					resolve( body.join( '' ) );
-
-				} );
-
-			} ).on( 'error', ( e ) => {
-
-				reject( e );
-
-			} );
-
-		} );
+		return request.promiseHTTPget( options );
 
 	}
 

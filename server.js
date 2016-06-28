@@ -11,6 +11,7 @@ const server = globalConfigs.server;
 const portToListen = isProduction ? server.port : 8888;
 
 const contributions = require( './server/contributions' );
+const translate = require( './server/translate' );
 
 
 const publicPath = path.resolve( __dirname, 'public' );
@@ -32,6 +33,7 @@ app.get( '/', function ( req, res ) {
 } );
 
 app.use( '/contributions', contributions );
+app.use( '/translate', translate );
 
 if ( !isProduction ) {
 

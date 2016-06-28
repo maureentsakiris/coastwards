@@ -10,7 +10,7 @@ import style from './_styleIndex';
 ReactDOM.render( 
 
 	<Context className={ style.context }>
-		<I18n defaultLocale="en" hotSwitch={ true }>
+		<I18n defaultLocale="en" hotSwitch={ true } helpTranslateURL="/translate">
 			<App />
 		</I18n>
 	</Context>, 

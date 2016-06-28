@@ -9,7 +9,7 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack",
-    "start": "node server",
+    "start": "webpack && node server",
     "reset": "NODE_ENV=development node reset.js && NODE_ENV=development node server",
     "dev": "NODE_ENV=development node server"
   },

@@ -11,6 +11,7 @@ const server = globalConfigs.server;
 const PROJECT_ROOT = path.resolve( './' );
 const BUILD_ROOT = path.join( PROJECT_ROOT, 'public/build' );
 const ENTRY_ROOT = path.join( PROJECT_ROOT, 'app/index.jsx' );
+const TRANSLATE_ROOT = path.join( PROJECT_ROOT, 'appTranslate/index.jsx' );
 
 const APP_ROOT = path.join( PROJECT_ROOT, 'app' );
 const PUBLIC_ROOT = path.join( PROJECT_ROOT, 'public' );
@@ -22,11 +23,15 @@ const config = {
 
 	server: server,
 	devtool: 'eval',
-	entry: [
-		'webpack-dev-server/client?http://' + server.ip + ':' + server.port,
-		'webpack/hot/only-dev-server',
-		ENTRY_ROOT
-	],
+	entry: { 
+
+		index: [
+			'webpack-dev-server/client?http://' + server.ip + ':' + server.port,
+			'webpack/hot/only-dev-server',
+			ENTRY_ROOT
+		],
+		translate: TRANSLATE_ROOT
+	},
 	node: {
 		fs: "empty"
 	},
@@ -40,7 +45,7 @@ const config = {
 		}
 	},
 	output: {
-		filename: 'bundle.js',
+		filename: '[name].bundle.js',
 		path: BUILD_ROOT,
 		publicPath: '/build/',
 		chunkFilename: '[name].js'

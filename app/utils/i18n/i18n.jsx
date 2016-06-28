@@ -24,7 +24,8 @@ export default class I18n extends Component {
 		className: PropTypes.string,
 		children: PropTypes.element.isRequired,
 		defaultLocale: PropTypes.string.isRequired,
-		hotSwitch: PropTypes.bool
+		hotSwitch: PropTypes.bool,
+		helpTranslateURL: PropTypes.string
 
 	};
 
@@ -39,7 +40,8 @@ export default class I18n extends Component {
 
 		showLoader: PropTypes.func,
 		showSnackbar: PropTypes.func,
-		showDialog: PropTypes.func
+		showDialog: PropTypes.func,
+		logError: PropTypes.func
 		
 	}
 
@@ -177,8 +179,9 @@ export default class I18n extends Component {
 
 	_goTranslate = () => {
 
-		/*console.log( "Sending user to translation page" );*/
+		window.location = "/translate?lang=" + this.state.locale;
 
 	}
+
 
 }

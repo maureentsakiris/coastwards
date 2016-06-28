@@ -3,6 +3,7 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import _ from 'underscore';
 import Classnames from 'classnames';
 import formData from './FormData.js';
+import request from '../../Request';
 
 import style from './_styleFormTB';
 
@@ -40,7 +41,7 @@ export default class FormTB extends Component {
 	static contextTypes = {
 
 		showLoader: PropTypes.func,
-		logError: PropTypes.func,
+		logError: PropTypes.func, 
 		showSnackbar: PropTypes.func
 		
 	}
@@ -224,7 +225,18 @@ export default class FormTB extends Component {
 		//console.log( 'Form is valid:', this.state.formIsValid );
 		//console.log( "model", this.model );
 
-		this._sendRequest()
+		//console.log( this.model );
+		let form = formData.fromObj( this.model );
+
+		let requestOptions = {
+
+			toSend: form,
+			path: '/contributions/upload',
+			onProgress: this.props.onSubmitProgress
+
+		}
+
+		request.promiseXHR( requestOptions )
 			.then( ( response ) => {
 
 				this.props.onSubmitDone( response );
@@ -244,7 +256,7 @@ export default class FormTB extends Component {
 
 
 	// https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Promise
-	_sendRequest ( ){
+	/*_sendRequest ( ){
 
 		//console.log( this.model );
 		let form = formData.fromObj( this.model );
@@ -277,7 +289,7 @@ export default class FormTB extends Component {
 
 		} );
 
-	}
+	}*/
 
 }
 

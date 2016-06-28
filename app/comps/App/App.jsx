@@ -111,7 +111,7 @@ class App extends Component {
 
 	_jumpToContent = ( ) => {
 
-		scroller.scrollTo( "Content", { smooth: false, offset: -65 } );
+		scroller.scrollTo( "Content", { smooth: true, offset: -65 } );
 
 	}
 
