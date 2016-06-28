@@ -118,7 +118,7 @@ class UploadDropDialog extends Component {
 						<div className={ style.form }>
 							<h4>{ formatMessage( messages.upload_drop_dialog_category_label ) }</h4>
 							<RadioGroup name="category" value={ category } onChange={ this._handleChange.bind( this, 'category' ) }>
-								<RadioButton label="Sand" value="sand"/>
+								<RadioButton label="Sandy" value="sand"/>
 								<RadioButton label="Mud" value="mud"/> 
 								<RadioButton label="Pebbles" value="pebbles"/>		        
 								<RadioButton label="Rock" value="rock"/> 
