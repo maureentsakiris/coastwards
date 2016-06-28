@@ -5,8 +5,8 @@ import Classnames from 'classnames';
 import _ from 'underscore';
 
 import Dialog from 'react-toolbox/lib/dialog';
-import Dropdown from 'react-toolbox/lib/dropdown';
-/*import { RadioGroup, RadioButton } from 'react-toolbox/lib/radio';*/
+/*import Dropdown from 'react-toolbox/lib/dropdown';*/
+import { RadioGroup, RadioButton } from 'react-toolbox/lib/radio';
 import Input from 'react-toolbox/lib/input';
 import { Button } from 'react-toolbox/lib/button';
 import ProgressBar from 'react-toolbox/lib/progress_bar';
@@ -23,8 +23,8 @@ const messages = defineMessages( {
 		description: "1 - ",
 		defaultMessage: "Write a comment ..."
 	},
-	upload_drop_dialog_category:{
-		id: "upload_drop_dialog_category",
+	upload_drop_dialog_category_label:{
+		id: "upload_drop_dialog_category_label",
 		description: "1 - ",
 		defaultMessage: "Describe the coast material"
 	},
@@ -43,16 +43,12 @@ const messages = defineMessages( {
 		description: "1 - ",
 		defaultMessage: "Help us even more by answering a few questions, or scroll down to click the upload button."
 	},
-	upload_drop_dialog_extent:{
-		id: "upload_drop_dialog_extent",
-		description: "1 - ",
-		defaultMessage: "How long would it take you to go from one end to the other?"
-	}/*,
-	upload_drop_dialog_dropdown_prompt:{
-		id: "upload_drop_dialog_dropdown_prompt",
-		description: " - ",
-		defaultMessage: "Please select ..."
-	}*/
+	upload_drop_dialog_header:{
+		id: "upload_drop_dialog_header",
+		description: "0 - ",
+		defaultMessage: "Your image is ready for upload!"
+	}
+	
 
 } );
 
@@ -92,7 +88,7 @@ class UploadDropDialog extends Component {
 
 		const cls = Classnames( className, style.dialog );
 
-		const categories = [
+		/*const categories = [
 
 			{ value: 'sand', label: 'Sand', description: "Sand can be many colors, ranging from almost white to dark brown. If it runs through your fingers when it's dry, it's sand." },
 			{ value: 'pebble', label: 'Pebble', description: "Pebbles don't run through your fingers but are not bigger than a fist." },
@@ -102,6 +98,14 @@ class UploadDropDialog extends Component {
 			{ value: 'notsure', label: 'Not sure', "description": "No worries! If you like you can describe the coast material in your own words in the text field below"  }
 
 		];
+		<Dropdown
+			label={ formatMessage( messages.upload_drop_dialog_category ) }
+			onChange={ this._handleChange.bind( this, 'category' ) }
+			value={ category }
+			source={ categories }
+			template={ this._template }
+			disabled={ submitting }
+		/>*/
 
 		return (
 
@@ -109,17 +113,19 @@ class UploadDropDialog extends Component {
 				<div className={ style.content }>
 					{ dialogDrop && <img src={ dialogDrop.file.preview } className={ style.image } /> }
 					<div className={ style.inner } >
-						<h3>Your image is ready for upload</h3>
+						<h3>{ formatMessage( messages.upload_drop_dialog_header ) }</h3>
 						<p>{ formatMessage( messages.upload_drop_dialog_intro ) }</p>
 						<div className={ style.form }>
-							<Dropdown
-								label={ formatMessage( messages.upload_drop_dialog_category ) }
-								onChange={ this._handleChange.bind( this, 'category' ) }
-								value={ category }
-								source={ categories }
-								template={ this._template }
-								disabled={ submitting }
-							/>
+							<h4>{ formatMessage( messages.upload_drop_dialog_category_label ) }</h4>
+							<RadioGroup name="category" value={ category } onChange={ this._handleChange.bind( this, 'category' ) }>
+								<RadioButton label="Sand" value="sand"/>
+								<RadioButton label="Mud" value="mud"/> 
+								<RadioButton label="Pebbles" value="pebbles"/>		        
+								<RadioButton label="Rock" value="rock"/> 
+								<RadioButton label="Ice" value="ice"/>
+								<RadioButton label="Man-made" value="manmade"/>
+								<RadioButton label="Not sure ..." value="unsure"/>      
+							</RadioGroup>
 							<Input 
 								type="text" 
 								label={ formatMessage( messages.upload_drop_dialog_comment_label ) } 
