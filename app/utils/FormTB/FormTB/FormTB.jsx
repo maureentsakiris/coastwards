@@ -223,9 +223,9 @@ export default class FormTB extends Component {
 		this._updateModel();
 
 		//console.log( 'Form is valid:', this.state.formIsValid );
-		//console.log( "model", this.model );
 
-		//console.log( this.model );
+		console.log( this.model );
+
 		let form = formData.fromObj( this.model );
 
 		let requestOptions = {

@@ -71,6 +71,7 @@ $border-radius: 0.2rem;
 	h5{
 
 		margin: $layout-gutter-width-sm 0;
+		line-height: 1.1;
 
 	}
 
@@ -99,62 +100,5 @@ $border-radius: 0.2rem;
 		}
 
 	}
-
-}
-
-%icon{
-
-	@extend %flexitem;
-	flex-grow: 0;
-	width: auto;
-	cursor: pointer;
-
-}
-
-.options{
-
-	margin-bottom: $layout-gutter-width;
-	@extend %flexcontainer;
-	flex-wrap: wrap;
-
-}
-
-.option{
-
-	@extend %flexitem;
-	border: 1px solid #fff;
-	padding: 1rem;
-	cursor: pointer;
-	transition: background-color 300ms;
-	width: 50%;
-	flex-grow: 0;
-	background-color: $color-primary;
-	color: #fff;
-	border-radius: 2px;
-
-	@extend %flexcontainer;
-
-	.iconRadio{
-
-		@extend %icon;
-		padding-right: 1rem;
-
-	}
-
-	.label{
-
-		@extend %flexitem;
-		flex-grow: 1;
-
-	}
-
-
-}
-
-
-.option:hover, .active{
-
-	color: rgba( 255, 255, 255, 1 );
-	background-color: $color-primary-dark;
 
 }

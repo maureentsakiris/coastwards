@@ -115,14 +115,15 @@ function promiseInsertFile ( formData ) {
 	var filename = formData.files[ drop + '.file' ].filename;
 	var uid = formData.files[ drop + '.file' ].uid;
 	var comment = formData.fields[ drop + '.comment' ];
-	var category = formData.fields[ drop + '.category' ];
+	var material = formData.fields[ drop + '.material' ];
+	var adaptation = formData.fields[ drop + '.adaptation' ];
 
 	var point = util.format( 'POINT(%s %s)', long, lat )
 
 	return new Promise( function ( resolve, reject ) {
 
 		// Truncate table coastwards.contributions
-		var sql = 'INSERT INTO ??.?? ( ??, ??, ??, ??, ??, ??, ??, ??, ??, ?? ) VALUES ( (ST_PointFromText(?)), ?, ?, ?, ?, ?, ?, ?, ?, ? )';
+		var sql = 'INSERT INTO ??.?? ( ??, ??, ??, ??, ??, ??, ??, ??, ??, ??, ?? ) VALUES ( (ST_PointFromText(?)), ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )';
 		var inserts = [ 
 			'coastwards', 
 			'contributions',
@@ -136,7 +137,8 @@ function promiseInsertFile ( formData ) {
 			'contribution_exif',
 			'contribution_ip',
 			'contribution_comment',
-			'contribution_category',
+			'contribution_material',
+			'contribution_adaptation',
 
 			point,
 			manual,
@@ -147,7 +149,8 @@ function promiseInsertFile ( formData ) {
 			exifJSON,
 			ip,
 			comment,
-			category
+			material,
+			adaptation
 
 		]
 
@@ -256,7 +259,7 @@ function promiseFetchGeojson ( ){
 
 				// GETS TRUNCATED. WOULD HAVE TO SET: set group_concat_max_len = 100000000; (MAX VALUES: 32-bit: 4294967295, 64-bit: 18446744073709551615)
 				// SELECT CONCAT('{ "type": "FeatureCollection", "features": [', GROUP_CONCAT(' { "type": "Feature", "geometry": ', ST_AsGeoJSON(contribution_point), ', "properties": { "marker-symbol": "marker-primary-dark", "comment": "This is a comment", "image": "./uploads/',contribution_filename,'" } } '), '] }' ) as geojson FROM contributions
-				var query = 'SET group_concat_max_len = 100000000; SELECT CONCAT( \'{ "type": "FeatureCollection", "features": [\', GROUP_CONCAT(\' { "type": "Feature", "geometry": \', ST_AsGeoJSON(contribution_point), \', "properties": { "marker-symbol": "marker-primary-dark", "comment": "\',IFNULL(contribution_comment, "" ),\'", "category": "\',IFNULL(contribution_category, "" ),\'", "image": "./uploads/\',contribution_uid,\'-small.jpg" } } \'), \'] }\' ) as geojson FROM contributions';
+				var query = 'SET group_concat_max_len = 100000000; SELECT CONCAT( \'{ "type": "FeatureCollection", "features": [\', GROUP_CONCAT(\' { "type": "Feature", "geometry": \', ST_AsGeoJSON(contribution_point), \', "properties": { "marker-symbol": "marker-primary-dark", "comment": "\',IFNULL(contribution_comment, "" ),\'", "material": "\',IFNULL(contribution_material, "" ),\'","adaptation": "\',IFNULL(contribution_adaptation, "" ),\'", "image": "./uploads/\',contribution_uid,\'-small.jpg" } } \'), \'] }\' ) as geojson FROM contributions';
 				//var query = 'SELECT contribution_point FROM contributions';
 
 				connection.query( query, function ( err, results ) {

@@ -1,0 +1,42 @@
+@import '../../../app/styles/_base';
+
+
+.option{
+
+	@extend %flexitem;
+	border: 1px solid #fff;
+	padding: 1rem;
+	cursor: pointer;
+	transition: color 300ms;
+	width: 150px;
+	flex-grow: 0;
+	background-color: #fff;
+	border-radius: 2px;
+
+	@extend %flexcontainer;
+
+
+}
+
+.option:hover, .selected{
+
+	color: $color-primary-dark;
+
+}
+
+.iconRadio{
+
+	@extend %flexitem;
+	flex-grow: 0;
+	width: auto;
+	cursor: pointer;
+	padding-right: 1rem;
+
+}
+
+.label{
+
+	@extend %flexitem;
+	flex-grow: 1;
+
+}

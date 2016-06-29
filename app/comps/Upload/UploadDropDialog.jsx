@@ -6,10 +6,12 @@ import _ from 'underscore';
 
 import Dialog from 'react-toolbox/lib/dialog';
 /*import Dropdown from 'react-toolbox/lib/dropdown';*/
-import { RadioGroup, RadioButton } from 'react-toolbox/lib/radio';
+/*import { RadioGroup, RadioButton } from 'react-toolbox/lib/radio';*/
 import Input from 'react-toolbox/lib/input';
 import { Button } from 'react-toolbox/lib/button';
 import ProgressBar from 'react-toolbox/lib/progress_bar';
+
+import Options from './Options';
 
 import style from './_styleDialog';
 
@@ -21,15 +23,15 @@ const messages = defineMessages( {
 	upload_drop_dialog_comment_label:{
 		id: "upload_drop_dialog_comment_label",
 		description: "1 - ",
-		defaultMessage: "Tell us your story ..."
+		defaultMessage: "Say hello, leave a note, tell us a story ..."
 	},
 	upload_drop_dialog_comment_placeholder:{
 		id: "upload_drop_dialog_comment_placeholder",
 		description: "1 - ",
 		defaultMessage: "Hello world!"
 	},
-	upload_drop_dialog_category_label:{
-		id: "upload_drop_dialog_category_label",
+	upload_drop_dialog_material_label:{
+		id: "upload_drop_dialog_material_label",
 		description: "1 - ",
 		defaultMessage: "How would you describe the coast material?"
 	},
@@ -52,6 +54,96 @@ const messages = defineMessages( {
 		id: "upload_drop_dialog_header",
 		description: "0 - ",
 		defaultMessage: "Your image is ready for upload!"
+	},
+	sand:{
+		id: "sand",
+		description: "0 - ",
+		defaultMessage: "Sand"
+	},
+	sand_description:{
+		id: "sand_description",
+		description: "0 - ",
+		defaultMessage: "Sand can be many colors ranging from almost white to dark brown. If it runs through your fingers when dry .. it's sand."
+	},
+	pebbles:{
+		id: "pebbles",
+		description: "0 - ",
+		defaultMessage: "Pebbles"
+	},
+	pebbles_description:{
+		id: "pebbles_description",
+		description: "0 - ",
+		defaultMessage: "pebbles_description"
+	},
+	mud:{
+		id: "mud",
+		description: "0 - ",
+		defaultMessage: "Mud"
+	},
+	mud_description:{
+		id: "mud_description",
+		description: "0 - ",
+		defaultMessage: "mud_description"
+	},
+	rock:{
+		id: "rock",
+		description: "0 - ",
+		defaultMessage: "Rock"
+	},
+	rock_description:{
+		id: "rock_description",
+		description: "0 - ",
+		defaultMessage: "rock_description"
+	},
+	ice:{
+		id: "ice",
+		description: "0 - ",
+		defaultMessage: "Ice"
+	},
+	ice_description:{
+		id: "ice_description",
+		description: "0 - ",
+		defaultMessage: "ice_description"
+	},
+	man_made:{
+		id: "man_made",
+		description: "0 - ",
+		defaultMessage: "Man-made"
+	},
+	man_made_description:{
+		id: "man_made_description",
+		description: "0 - ",
+		defaultMessage: "man_made_description"
+	},
+	not_sure:{
+		id: "not_sure",
+		description: "0 - ",
+		defaultMessage: "Not sure"
+	},
+	not_sure_description:{
+		id: "not_sure_description",
+		description: "0 - ",
+		defaultMessage: "not_sure_description"
+	},
+	upload_drop_dialog_adaptation_label:{
+		id: "upload_drop_dialog_adaptation_label",
+		description: "0 - ",
+		defaultMessage: "Can you see any of the following adaptation measures?"
+	},
+	dike:{
+		id: "dike",
+		description: "0 - ",
+		defaultMessage: "Dike"
+	},
+	nourishment:{
+		id: "nourishment",
+		description: "0 - ",
+		defaultMessage: "Nourishment"
+	},
+	fortification:{
+		id: "fortification",
+		description: "0 - ",
+		defaultMessage: "Fortification"
 	}
 	
 
@@ -78,7 +170,7 @@ class UploadDropDialog extends Component {
 
 			submitting: false,
 			comment: '',
-			category: ''
+			material: ''
 
 		}
 
@@ -89,29 +181,33 @@ class UploadDropDialog extends Component {
 		const { formatMessage/*, locale*/ } = this.props.intl;
 
 		const { className, dialogDrop, onUploadClick, onCancelClick, progress, ...restProps } = this.props; // eslint-disable-line no-unused-vars
-		const { submitting, comment, category } = this.state;
+		const { submitting, comment } = this.state;
 
 		const cls = Classnames( className, style.dialog );
 
-		const clsActive = Classnames( style.option, style.active );
+		const materials = [
 
-		/*const categories = [
-
-			{ value: 'sand', label: 'Sand', description: "Sand can be many colors, ranging from almost white to dark brown. If it runs through your fingers when it's dry, it's sand." },
-			{ value: 'pebble', label: 'Pebble', description: "Pebbles don't run through your fingers but are not bigger than a fist." },
-			{ value: 'rock', label: 'Rock', description: "This can be solid rock as seen at cliffs or a collection of rocky stones (bigger than a fist)"  },
-			{ value: 'mud', label: 'Mud', description: "Muddy coasts are constantly wet because they usually have a delta nearby."  },
-			{ value: 'ice', label: 'Ice', description: "Coast material is not visible because it is covered in ice"  },
-			{ value: 'notsure', label: 'Not sure', "description": "No worries! If you like you can describe the coast material in your own words in the text field below"  }
+			{ value: 'sand', label: formatMessage( messages.sand ), description: formatMessage( messages.sand_description ) },
+			{ value: 'pebble', label: formatMessage( messages.pebbles ), description: formatMessage( messages.pebbles_description ) },
+			{ value: 'rock', label: formatMessage( messages.rock ), description: formatMessage( messages.rock_description )  },
+			{ value: 'mud', label: formatMessage( messages.mud ), description: formatMessage( messages.mud_description ) },
+			{ value: 'ice', label: formatMessage( messages.ice ), description: formatMessage( messages.ice_description ) },
+			{ value: 'mandmade', label: formatMessage( messages.man_made ), description: formatMessage( messages.man_made_description ) },
+			{ value: 'notsure', label: formatMessage( messages.not_sure ), "description": formatMessage( messages.not_sure_description )  }
 
 		];
-		<Dropdown
-			label={ formatMessage( messages.upload_drop_dialog_category ) }
-			onChange={ this._handleChange.bind( this, 'category' ) }
-			value={ category }
-			source={ categories }
-			template={ this._template }
-			disabled={ submitting }
+
+		/*const adaptations = [
+
+			{ value:'dike', label: formatMessage( messages.dike ) },
+			{ value:'nourishment', label: formatMessage( messages.nourishment ) }
+
+		]
+
+		<h5>{ formatMessage( messages.upload_drop_dialog_adaptation_label ) } </h5>
+		<Options 
+			options={ adaptations } 
+			onChange={ this._handleChange.bind( this, 'adaptation' ) } 
 		/>*/
 
 		return (
@@ -123,66 +219,11 @@ class UploadDropDialog extends Component {
 						<h3>{ formatMessage( messages.upload_drop_dialog_header ) }</h3>
 						<p>{ formatMessage( messages.upload_drop_dialog_intro ) }</p>
 						<div className={ style.form }>
-							<h5>{ formatMessage( messages.upload_drop_dialog_category_label ) } </h5>
-							<p><i className="material-icons">help_outline</i></p>
-							<div className={ style.options }>
-								<div className={ style.option }>
-									<div className={ style.iconRadio }>
-										<i className="material-icons">radio_button_unchecked</i>
-									</div>
-									<div className={ style.label }>
-										<p>Sand</p>
-									</div>
-								</div>
-								<div className={ style.option }>
-									<div className={ style.iconRadio }>
-										<i className="material-icons">radio_button_unchecked</i>
-									</div>
-									<div className={ style.label }>
-										<p>Pebble</p>
-									</div>
-								</div>
-								<div className={ style.option }>
-									<div className={ style.iconRadio }>
-										<i className="material-icons">radio_button_unchecked</i>
-									</div>
-									<div className={ style.label }>
-										<p>Mud</p>
-									</div>
-								</div>
-								<div className={ style.option }>
-									<div className={ style.iconRadio }>
-										<i className="material-icons">radio_button_unchecked</i>
-									</div>
-									<div className={ style.label }>
-										<p>Rock</p>
-									</div>
-								</div>
-								<div className={ style.option }>
-									<div className={ style.iconRadio }>
-										<i className="material-icons">radio_button_unchecked</i>
-									</div>
-									<div className={ style.label }>
-										<p>Ice</p>
-									</div>
-								</div>
-								<div className={ style.option }>
-									<div className={ style.iconRadio }>
-										<i className="material-icons">radio_button_unchecked</i>
-									</div>
-									<div className={ style.label }>
-										<p>Man-made</p>
-									</div>
-								</div>
-								<div className={ style.option }>
-									<div className={ style.iconRadio }>
-										<i className="material-icons">radio_button_unchecked</i>
-									</div>
-									<div className={ style.label }>
-										<p>Not sure</p>
-									</div>
-								</div>
-							</div>
+							<h5>{ formatMessage( messages.upload_drop_dialog_material_label ) } </h5>
+							<Options 
+								options={ materials } 
+								onChange={ this._handleChange.bind( this, 'material' ) } 
+							/>
 							<h5>{ formatMessage( messages.upload_drop_dialog_comment_label ) }</h5>
 							<Input 
 								type="text" 
@@ -207,41 +248,6 @@ class UploadDropDialog extends Component {
 
 	}
 
-	_template = ( item ) => {
-
-		const div = {
-
-			paddingRight: '30px'
-
-		}
-
-		const h4 = {
-
-			fontSize: '1.92rem',
-			color: '#212121',
-			fontWeight: '500'
-
-		}
-
-		const p = {
-
-			margin: '0px',
-			fontSize: '1.4rem',
-			lineHeight: '1.4',
-			color: '#757575'
-
-		}
-
-		return (
-			<div style={ div }>
-				<h4 style={ h4 }>{ item.label }</h4>
-				<p style={ p }>{ item.description }</p>
-			</div>
-    
-		);
-
-	}
-
 	_onCancelClick = () => {
 
 		this._resetDialog();
@@ -262,7 +268,7 @@ class UploadDropDialog extends Component {
 
 			submitting: false,
 			comment: '',
-			category: ''
+			material: ''
 
 		} );
 

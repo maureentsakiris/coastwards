@@ -1,0 +1,9 @@
+@import '../../../app/styles/_base';
+
+.options{
+
+	margin-bottom: $layout-gutter-width;
+	@extend %flexcontainer;
+	flex-wrap: wrap;
+
+}
