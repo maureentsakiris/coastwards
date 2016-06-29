@@ -50,7 +50,7 @@ const messages = defineMessages( {
 	dropzone_drop_invalid_title:{
 		id: "dropzone_drop_invalid_title",
 		description: "0 - ",
-		defaultMessage: "Too bad!" 
+		defaultMessage: "Too bad! Your image didn't pass the tests :/" 
 	},
 	mapbox_warning_unsupported_title:{
 		id: "mapbox_warning_unsupported_title",
@@ -76,6 +76,46 @@ const messages = defineMessages( {
 		id: "button_tooltip_upload_image",
 		description: "0 - ",
 		defaultMessage: "Upload"
+	},
+	file_validation_imageHasLocation_label:{
+		id: "file_validation_imageHasLocation_label",
+		description: "0 - ",
+		defaultMessage: "Location"
+	},
+	file_validation_imageHasLocation_description:{
+		id: "file_validation_imageHasLocation_description",
+		description: "0 - ",
+		defaultMessage: "Checking if the location of the coast is embedded in the picture"
+	},
+	file_validation_imageHasLocation_success:{
+		id: "file_validation_imageHasLocation_success",
+		description: "0 - ",
+		defaultMessage: "Awesome!! We found the location"
+	},
+	file_validation_imageHasLocation_error:{
+		id: "file_validation_imageHasLocation_error",
+		description: "0 - ",
+		defaultMessage: "We couldn't find the location in the metadata. If you are on-site, please active location services on your mobile or digital camera and re-take the picture."
+	},
+	file_validation_imageMinimumDimensions_label:{
+		id: "file_validation_imageMinimumDimensions_label",
+		description: "0 - ",
+		defaultMessage: "Image size"
+	},
+	file_validation_imageMinimumDimensions_description:{
+		id: "file_validation_imageMinimumDimensions_description",
+		description: "0 - ",
+		defaultMessage: "Checking if image is big enough"
+	},
+	file_validation_imageMinimumDimensions_success:{
+		id: "file_validation_imageMinimumDimensions_success",
+		description: "0 - ",
+		defaultMessage: "Image is big enough"
+	},
+	file_validation_imageMinimumDimensions_error:{
+		id: "file_validation_imageMinimumDimensions_error",
+		description: "0 - ",
+		defaultMessage: "Image should be bigger than 800 x 800 pixels at 72dpi"
 	}
 	
 
@@ -180,11 +220,19 @@ class Upload extends Component {
 		const fileValidations = [
 			{
 				methodName: "imageHasLocation",
-				options: { required: true, passesWhen: true, abort: true },
-				label: "Location",
-				description: "Checking image for information on the location it was taken",
-				success: "Awesome!! We found the location",
-				error: "We can't extract the location from the metadata. (The next version of Coastwards will allow you to place the image manually. Sign up to be notified!)"
+				options: { required: true, passesWhen: true, abort: false },
+				label: formatMessage( messages.file_validation_imageHasLocation_label ),
+				description: formatMessage( messages.file_validation_imageHasLocation_description ),
+				success: formatMessage( messages.file_validation_imageHasLocation_success ),
+				error: formatMessage( messages.file_validation_imageHasLocation_error )
+			},
+			{
+				methodName: "imageMinimumDimensions",
+				options: { minimumDimensions: [ 800, 800 ], required: true, passenWhen: true, abort: false },
+				label: formatMessage( messages.file_validation_imageMinimumDimensions_label ),
+				description: formatMessage( messages.file_validation_imageMinimumDimensions_description ),
+				success: formatMessage( messages.file_validation_imageMinimumDimensions_success ),
+				error: formatMessage( messages.file_validation_imageMinimumDimensions_error )
 			}/*,
 			{
 				methodName: "imageWithFlash",
@@ -410,7 +458,7 @@ class Upload extends Component {
 	// As long as we only allow one image at a time we can show a dialog on invalid drop .. later on it should be a snackbar in the _onDropsValidated callback
 	_onInValidDrop = ( status/*, inValidDrop*/ ) => {
 
-		let message = status.imageHasLocation.message;
+		let message = this._composeInValidDropStatus( status );
 
 		const showInvalidDialog = ( message ) => {
 
@@ -439,6 +487,33 @@ class Upload extends Component {
 		}
 
 		this.setState( { blockDropzone: true }, showInvalidDialog( message ) );
+
+	}
+
+	_composeInValidDropStatus = ( status ) => {
+
+		return _.map( status, ( status, index ) => {
+
+			let clsIcon = Classnames( "material-icons", {
+
+				[ style.passed ]: status.passed,
+				[ style.error ]: !status.passed
+
+			} );
+
+			let result = status.passed ? <i className={ clsIcon }>check</i> : <i className={ clsIcon }>close</i>;
+
+			return (
+
+				<span key={ index } className={ style.status }>
+					<span className={ style.row }><span className={ style.label }>{ status.label }:</span> { result }</span>
+					<span className={ style.row }>{ status.message }</span>
+					<br/>
+				</span>
+
+			)
+
+		} );
 
 	}
 

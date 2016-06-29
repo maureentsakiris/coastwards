@@ -80,3 +80,39 @@
 	display: none;
 	
 }
+
+.status{
+
+	display: block;
+
+	.row{
+
+		display: block;
+
+		.label{
+
+			font-weight: 600;
+
+		}
+
+		i{
+
+			vertical-align: bottom;
+
+		}
+
+	}
+
+	.passed{
+
+		color: green;
+
+	}
+
+	.error{
+
+		color: red;
+
+	}
+
+}

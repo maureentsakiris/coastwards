@@ -144,7 +144,7 @@ export default class I18n extends Component {
 
 				if( missingTranslations && missingTranslations.length > 0 ){
 
-					let snackbarOptions = {
+					/*let snackbarOptions = {
 
 						label: util.format( 'Help us translate this page into %s', i18nLocales.english ),
 						action: 'GO',
@@ -152,7 +152,7 @@ export default class I18n extends Component {
 
 					}
 
-					this.context.showSnackbar( snackbarOptions );
+					this.context.showSnackbar( snackbarOptions );*/
 
 				}
 

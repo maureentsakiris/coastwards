@@ -232,7 +232,7 @@ export default class FormTB extends Component {
 
 			toSend: form,
 			path: '/contributions/upload',
-			onProgress: this.props.onSubmitProgress
+			onRequestProgress: this.props.onSubmitProgress
 
 		}
 
@@ -253,43 +253,6 @@ export default class FormTB extends Component {
 			} );
 
 	}
-
-
-	// https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Promise
-	/*_sendRequest ( ){
-
-		//console.log( this.model );
-		let form = formData.fromObj( this.model );
-		
-		return new Promise( ( resolve, reject ) => {
-
-			var xhr = new XMLHttpRequest();
-
-			xhr.open( 'POST', '/contributions/upload', true );
-
-			xhr.addEventListener( 'error', ( e ) => {
-
-				reject( Error( 'FormTB/_sendRequest/xhr.on(error)/' + e.statusText ) );
-
-			}, false );
-
-			xhr.addEventListener( 'load', ( e ) => {
-
-				resolve( e.currentTarget.response );
-
-			}, false );
-
-			xhr.upload.addEventListener( 'progress', ( e ) => {
-
-				this.props.onSubmitProgress( e );
-
-			}, false );
-
-			xhr.send( form );
-
-		} );
-
-	}*/
 
 }
 

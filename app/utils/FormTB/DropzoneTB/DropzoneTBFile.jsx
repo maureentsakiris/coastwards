@@ -317,6 +317,33 @@ const ImageValidators = {
 		return result;
 
 	},
+	imageMinimumDimensions: function ( comp, options ) {
+
+		let flag = false;
+		let tags = comp.state.tags;
+		let dim = options.minimumDimensions;
+
+		if( tags.PixelXDimension >= dim[ 0 ] && tags.PixelXDimension >= dim[ 1 ] ){
+
+			flag = true;
+
+		}
+
+		let result = {
+
+			flag: flag,
+			specs: {
+
+				width: tags.PixelXDimension,
+				height: tags.PixelYDimension
+
+			}
+
+		}
+
+		return result;
+
+	},
 	imageWithFlash: function (  ) {
 
 		let flag = false;

@@ -38,7 +38,7 @@ module.exports.promiseXHR = ( options ) => {
 
 		xhr.upload.addEventListener( 'progress', ( e ) => {
 
-			opts.onProgress( e );
+			opts.onRequestProgress( e );
 
 		}, false );
 

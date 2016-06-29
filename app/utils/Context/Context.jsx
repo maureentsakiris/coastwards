@@ -67,7 +67,7 @@ export default class Context extends Component {
 
 	componentDidMount (){
 
-		// this._showDialog( { title: "HEYHO", content: "GOOOOOOOD MORNING KIEEEEEEEL!!" } );
+		this._showDialog( { title: "HEYHO!", content: "Unless you stumbled upon this website somehow, you are a friend or colleague ... or family. I just want to warn you that this is a testing site and I might be updating it just this second (No matter if it's three in the morning). I will NOT SAVE the images you upload so keep them close. But please do give me feedback on how this website worked for you. THANK YOU!!! Maureen" } );
 		// this._showSnackbar( { label: 'this is a snackthis is a snackthis is a snackthis is a snackthis is a snack' } );
 
 	}

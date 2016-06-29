@@ -5,8 +5,6 @@ import Classnames from 'classnames';
 import _ from 'underscore';
 
 import Dialog from 'react-toolbox/lib/dialog';
-/*import Dropdown from 'react-toolbox/lib/dropdown';*/
-/*import { RadioGroup, RadioButton } from 'react-toolbox/lib/radio';*/
 import Input from 'react-toolbox/lib/input';
 import { Button } from 'react-toolbox/lib/button';
 import ProgressBar from 'react-toolbox/lib/progress_bar';
@@ -14,9 +12,6 @@ import ProgressBar from 'react-toolbox/lib/progress_bar';
 import Options from './Options';
 
 import style from './_styleDialog';
-
-/*import sand from '../../../public/assets/sand.jpg'; 
-import pebbles from '../../../public/assets/pebbles.jpg';*/
 
 const messages = defineMessages( {
 
