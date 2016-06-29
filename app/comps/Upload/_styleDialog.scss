@@ -114,22 +114,30 @@ $border-radius: 0.2rem;
 .options{
 
 	margin-bottom: $layout-gutter-width;
+	@extend %flexcontainer;
+	flex-wrap: wrap;
 
 }
 
 .option{
 
-	border-bottom: 1px solid $palette-grey-200;
-	padding: 1.1rem 0;
+	@extend %flexitem;
+	border: 1px solid #fff;
+	padding: 1rem;
 	cursor: pointer;
-	transition: color 300ms;
+	transition: background-color 300ms;
+	width: 50%;
+	flex-grow: 0;
+	background-color: $color-primary;
+	color: #fff;
+	border-radius: 2px;
 
 	@extend %flexcontainer;
 
 	.iconRadio{
 
 		@extend %icon;
-		padding-right: $layout-gutter-width-sm;
+		padding-right: 1rem;
 
 	}
 
@@ -140,24 +148,13 @@ $border-radius: 0.2rem;
 
 	}
 
-	.iconMore{
-
-		@extend %icon;
-		padding-left: $layout-gutter-width-sm;
-		color: $palette-grey-600 !important;
-
-	}
 
 }
 
-.option:last-child{
-
-	border-bottom: none;
-
-}
 
 .option:hover, .active{
 
-	color: $color-primary;
+	color: rgba( 255, 255, 255, 1 );
+	background-color: $color-primary-dark;
 
 }

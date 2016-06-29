@@ -123,7 +123,8 @@ class UploadDropDialog extends Component {
 						<h3>{ formatMessage( messages.upload_drop_dialog_header ) }</h3>
 						<p>{ formatMessage( messages.upload_drop_dialog_intro ) }</p>
 						<div className={ style.form }>
-							<h5>{ formatMessage( messages.upload_drop_dialog_category_label ) }</h5>
+							<h5>{ formatMessage( messages.upload_drop_dialog_category_label ) } </h5>
+							<p><i className="material-icons">help_outline</i></p>
 							<div className={ style.options }>
 								<div className={ style.option }>
 									<div className={ style.iconRadio }>
@@ -132,19 +133,13 @@ class UploadDropDialog extends Component {
 									<div className={ style.label }>
 										<p>Sand</p>
 									</div>
-									<div className={ style.iconMore }>
-										<i className="material-icons">help_outline</i>
-									</div>
 								</div>
-								<div className={ clsActive }>
+								<div className={ style.option }>
 									<div className={ style.iconRadio }>
-										<i className="material-icons">radio_button_checked</i>
+										<i className="material-icons">radio_button_unchecked</i>
 									</div>
 									<div className={ style.label }>
 										<p>Pebble</p>
-									</div>
-									<div className={ style.iconMore }>
-										<i className="material-icons">help_outline</i>
 									</div>
 								</div>
 								<div className={ style.option }>
@@ -154,9 +149,6 @@ class UploadDropDialog extends Component {
 									<div className={ style.label }>
 										<p>Mud</p>
 									</div>
-									<div className={ style.iconMore }>
-										<i className="material-icons">help_outline</i>
-									</div>
 								</div>
 								<div className={ style.option }>
 									<div className={ style.iconRadio }>
@@ -164,9 +156,6 @@ class UploadDropDialog extends Component {
 									</div>
 									<div className={ style.label }>
 										<p>Rock</p>
-									</div>
-									<div className={ style.iconMore }>
-										<i className="material-icons">help_outline</i>
 									</div>
 								</div>
 								<div className={ style.option }>
@@ -176,9 +165,6 @@ class UploadDropDialog extends Component {
 									<div className={ style.label }>
 										<p>Ice</p>
 									</div>
-									<div className={ style.iconMore }>
-										<i className="material-icons">help_outline</i>
-									</div>
 								</div>
 								<div className={ style.option }>
 									<div className={ style.iconRadio }>
@@ -187,9 +173,6 @@ class UploadDropDialog extends Component {
 									<div className={ style.label }>
 										<p>Man-made</p>
 									</div>
-									<div className={ style.iconMore }>
-										<i className="material-icons">help_outline</i>
-									</div>
 								</div>
 								<div className={ style.option }>
 									<div className={ style.iconRadio }>
@@ -197,9 +180,6 @@ class UploadDropDialog extends Component {
 									</div>
 									<div className={ style.label }>
 										<p>Not sure</p>
-									</div>
-									<div className={ style.iconMore }>
-										<i className="material-icons">help_outline</i>
 									</div>
 								</div>
 							</div>
