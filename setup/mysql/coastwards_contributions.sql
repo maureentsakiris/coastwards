@@ -36,11 +36,12 @@ CREATE TABLE `contributions` (
   `contribution_ip` varchar(45) NOT NULL,
   `contribution_timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `contribution_comment` mediumtext,
-  `contribution_category` varchar(45) DEFAULT NULL,
+  `contribution_material` varchar(45) DEFAULT NULL,
+  `contribution_adaptation` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`contribution_id`,`contribution_point`(25)),
   UNIQUE KEY `contributions_id_UNIQUE` (`contribution_id`),
   UNIQUE KEY `contribution_id_UNIQUE` (`contribution_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -52,4 +53,4 @@ CREATE TABLE `contributions` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-06-25 20:19:46
+-- Dump completed on 2016-06-29 20:12:41
