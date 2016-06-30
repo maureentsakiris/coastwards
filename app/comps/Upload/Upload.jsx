@@ -752,6 +752,7 @@ class Upload extends Component {
 	_cancelUpload = () => {
 
 		this.refs.map._removeLayer( this.state.dropLayerId );
+		this.setState( { showUploadDropDialog: false } );
 		this._resetUpload();
 
 	}
@@ -768,6 +769,7 @@ class Upload extends Component {
 		const { formatMessage } = this.props.intl;
 
 		let progress = ( e.loaded / e.total ) * 100;
+
 		let message = progress < 100 ? formatMessage( messages.screen_uploading ) + " " + progress + "%" : formatMessage( messages.screen_updating_database );
 
 		let options = {
