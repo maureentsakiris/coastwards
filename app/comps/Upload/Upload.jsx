@@ -319,7 +319,7 @@ class Upload extends Component {
 					center={ this.initCenter }
 					maxBounds={ [ [ 360, 84 ], [ -360, -70 ] ] }
 					attributionControl={ false }
-					scrollZoom={ false}
+					scrollZoom={ true }
 					navigationControl={ true }
 					navigationControlPosition="top-left"
 					style="mapbox://styles/maureentsakiris/cinxhoec70043b4nmx0rkoc02"
