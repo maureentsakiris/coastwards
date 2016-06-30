@@ -7,12 +7,13 @@
     "prefixed"
   ],
   "feature-detects": [ 
-  	"canvas",
   	"css/pointerevents",
   	"css/transitions",
   	"css/transforms",
     "css/flexbox",
     "css/flexwrap",
-    "css/transforms3d"
+    "css/transforms3d",
+    "network/xhr2",
+    "network/xhr-responsetype-json"
   ]
 }

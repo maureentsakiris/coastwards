@@ -7,8 +7,6 @@ import _ from 'underscore';
 import Dialog from 'react-toolbox/lib/dialog';
 import Input from 'react-toolbox/lib/input';
 import { Button } from 'react-toolbox/lib/button';
-import ProgressBar from 'react-toolbox/lib/progress_bar';
-
 import Options from './Options';
 
 import style from './_styleDialog';
@@ -139,6 +137,16 @@ const messages = defineMessages( {
 		id: "fortification",
 		description: "0 - ",
 		defaultMessage: "Fortification"
+	},
+	uploading_image:{
+		id: "uploading_image",
+		description: "0 - ",
+		defaultMessage: "Uploading image"
+	},
+	updating_database:{
+		id: "updating_database",
+		description: "0 - ",
+		defaultMessage: "Updating database"
 	}
 	
 
@@ -163,7 +171,6 @@ class UploadDropDialog extends Component {
 
 		this.state = {
 
-			submitting: false,
 			comment: '',
 			material: ''
 
@@ -175,7 +182,7 @@ class UploadDropDialog extends Component {
 
 		const { formatMessage/*, locale*/ } = this.props.intl;
 
-		const { className, dialogDrop, onUploadClick, onCancelClick, progress, ...restProps } = this.props; // eslint-disable-line no-unused-vars
+		const { className, dialogDrop, onUploadClick, onCancelClick, ...restProps } = this.props; // eslint-disable-line no-unused-vars
 		const { submitting, comment } = this.state;
 
 		const cls = Classnames( className, style.dialog );
@@ -191,6 +198,7 @@ class UploadDropDialog extends Component {
 			{ value: 'notsure', label: formatMessage( messages.not_sure ), "description": formatMessage( messages.not_sure_description )  }
 
 		];
+
 
 		/*const adaptations = [
 
@@ -217,7 +225,8 @@ class UploadDropDialog extends Component {
 							<h5>{ formatMessage( messages.upload_drop_dialog_material_label ) } </h5>
 							<Options 
 								options={ materials } 
-								onChange={ this._handleChange.bind( this, 'material' ) } 
+								onChange={ this._handleChange.bind( this, 'material' ) }
+								disabled={ submitting }
 							/>
 							<h5>{ formatMessage( messages.upload_drop_dialog_comment_label ) }</h5>
 							<Input 
@@ -233,9 +242,8 @@ class UploadDropDialog extends Component {
 					</div>
 				</div>
 				<div className={ style.actions } >
-					{ !submitting && <Button className={ style.btn } label={ formatMessage( messages.upload_drop_dialog_cancel_label ) } onClick={ this._onCancelClick }  /> }
-					{ !submitting && <Button className={ style.btn } label={ formatMessage( messages.upload_drop_dialog_upload_label ) } onClick={ this._onUploadClick }  raised accent disabled={ submitting } /> }
-					{ submitting && <ProgressBar type="linear" mode="determinate" value={ progress } /> }
+					<Button className={ style.btn } label={ formatMessage( messages.upload_drop_dialog_cancel_label ) } onClick={ this._onCancelClick }  /> 
+					<Button className={ style.btn } label={ formatMessage( messages.upload_drop_dialog_upload_label ) } onClick={ this._onUploadClick }  raised accent disabled={ submitting } />
 				</div>
 			</Dialog>
 
@@ -253,7 +261,6 @@ class UploadDropDialog extends Component {
 	_onUploadClick = () => {
 
 		this.props.onUploadClick();
-		this.setState( { submitting: true } );
 
 	}
 
@@ -261,7 +268,6 @@ class UploadDropDialog extends Component {
 
 		this.setState( {
 
-			submitting: false,
 			comment: '',
 			material: ''
 
@@ -287,7 +293,6 @@ UploadDropDialog.propTypes = {
 	dialogDrop: PropTypes.object,
 	onUploadClick: PropTypes.func.isRequired,
 	onCancelClick: PropTypes.func.isRequired,
-	progress: PropTypes.number,
 	reset: PropTypes.bool
 
 };

@@ -1,0 +1,44 @@
+@import '../../../app/styles/_base';
+
+.screen{
+
+	@extend %flexcontainer;
+	text-align: center;
+	background-color: rgba(0, 149, 255, 0.8);
+	color: #fff;
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 2s;
+
+	p{
+
+		font-size: 3.4rem;
+		line-height: 1.2;
+		padding: $layout-gutter-width;
+
+	}
+
+	[data-react-toolbox="button"]{
+
+		font-size: 2rem;
+		line-height: 1.2;
+		color: #fff !important;
+		background: rgba(33, 33, 33, 0.1);
+
+	}
+
+	div{
+
+		@extend %flexitem;
+		align-self: center;
+
+	}
+
+}
+
+.active{
+
+	opacity: 1;
+	pointer-events: initial;
+
+}

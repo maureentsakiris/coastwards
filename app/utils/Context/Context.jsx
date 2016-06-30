@@ -11,19 +11,13 @@ import style from './_styleContext';
 
 Modernizr.addTest( 'draganddrop', function () {
 
-	return true;
+	return 'draggable' in document.createElement( 'span' );
 
 } );
 
 Modernizr.addTest( 'formdata', function () {
 
 	return window.FormData;
-
-} )
-
-Modernizr.addTest( 'xhr', function () {
-
-	return true;
 
 } )
 
@@ -67,7 +61,15 @@ export default class Context extends Component {
 
 	componentDidMount (){
 
-		this._showDialog( { title: "HEYHO!", content: "Unless you stumbled upon this website somehow, you are a friend or colleague ... or family. I just want to warn you that this is a testing site and I might be updating it just this second (No matter if it's three in the morning). I will NOT SAVE the images you upload so keep them close. But please do give me feedback on how this website worked for you. THANK YOU!!! Maureen" } );
+		this._showDialog( { title: "Readme", content: "Unless you stumbled upon this website somehow, you are a friend or colleague ... or family. I just want to warn you that this is a testing site and I might be updating it just this second (No matter if it's three in the morning). I will NOT SAVE the images you upload so keep them close. But please do give me feedback on how this website worked for you. THANK YOU!!! Maureen" } );
+		
+
+		if( Modernizr.pointerevents || !Modernizr.flexbox || !Modernizr.flexwrap || !Modernizr.xhr2 || !Modernizr.xhrresponsetypejson ){
+
+			this._showDialog( { title: "Browser Support", content: "Unfortunately, your browser does not support all the features needed for this website to work correctly. Please update your browser to the latest version. Thank you!" } );
+
+		}
+
 		// this._showSnackbar( { label: 'this is a snackthis is a snackthis is a snackthis is a snackthis is a snack' } );
 
 	}

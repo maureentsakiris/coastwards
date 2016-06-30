@@ -13,7 +13,8 @@ export default class Options extends Component {
 
 		className: PropTypes.string,
 		options: PropTypes.array,
-		onChange: PropTypes.func
+		onChange: PropTypes.func,
+		disabled: PropTypes.bool
 
 	};
 
@@ -46,9 +47,13 @@ export default class Options extends Component {
 
 	render () {
 
-		const { className, options, ...restProps } = this.props; // eslint-disable-line no-unused-vars
+		const { className, options, disabled, ...restProps } = this.props; // eslint-disable-line no-unused-vars
 		
-		const cls = Classnames( className, style.options );
+		const cls = Classnames( className, style.options, {
+
+			[ style.disabled ]: disabled
+
+		} );
 
 		const optionFields = this._renderOptions( options );
 

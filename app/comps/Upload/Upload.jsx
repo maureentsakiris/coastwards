@@ -3,6 +3,7 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { defineMessages, injectIntl, intlShape } from 'react-intl';
 import Classnames from 'classnames';
 import _ from 'underscore';
+import Modernizr from 'modernizr';
 
 import { Button } from 'react-toolbox/lib/button';
 import Tooltip from 'react-toolbox/lib/tooltip';
@@ -19,24 +20,30 @@ import request from '../../utils/Request';
 
 import FeatureDialog from './FeatureDialog';
 import UploadDropDialog from './UploadDropDialog';
+import Screen from './Screen';
 
 const messages = defineMessages( {
 
-	/*dropzone_prompt_drag:{
-		id: "dropzone_prompt_drag",
+	teaser_drag:{
+		id: "teaser_drag",
 		description: "0 - ",
-		defaultMessage: "Drag your images anywhere onto the map (or click)"
-	},*/
+		defaultMessage: "Drag & drop your image onto the map (or click the big red button)"
+	},
+	teaser_click:{
+		id: "teaser_click",
+		description: "0 - ",
+		defaultMessage: "Click the big red button to upload an image"
+	},
+	teaser_gotit:{
+		id: "teaser_gotit",
+		description: "0 - ",
+		defaultMessage: "Got it!"
+	},
 	dropzone_prompt_drop:{
 		id: "dropzone_prompt_drop",
 		description: "0 - ",
 		defaultMessage: "And now drop!"
 	},
-	/*dropzone_prompt_click:{
-		id: "dropzone_prompt_click",
-		description: "0 - ",
-		defaultMessage: "Click anywhere to upload your pictures"
-	},*/
 	dropzone_warning_accept:{
 		id: "dropzone_warning_accept",
 		description: "0 - ",
@@ -65,7 +72,7 @@ const messages = defineMessages( {
 	dropzone_valid_drops:{
 		id: "dropzone_valid_drops",
 		description: "1 - ",
-		defaultMessage: "Awesome! We found the location of your coast."
+		defaultMessage: "Awesome! Here we go!"
 	},
 	feature_dialog_ok_label:{
 		id: "feature_dialog_ok_label",
@@ -116,12 +123,55 @@ const messages = defineMessages( {
 		id: "file_validation_imageMinimumDimensions_error",
 		description: "0 - ",
 		defaultMessage: "Image should be bigger than 800 x 800 pixels at 72dpi"
+	},
+	screen_uploading:{
+		id: "screen_uploading",
+		description: "0 - ",
+		defaultMessage: "Uploading"
+	},
+	screen_updating_database:{
+		id: "screen_updating_database",
+		description: "0 - ",
+		defaultMessage: "Updating database"
+	},
+	screen_upload_success:{
+		id: "screen_upload_success",
+		description: "0 - ",
+		defaultMessage: "THANK YOU!!!"
+	},
+	screen_upload_error:{
+		id: "screen_upload_error",
+		description: " - ",
+		defaultMessage: "Oh crap .. something went wrong. Please try again."
+	},
+	screen_upload_error_action_label:{
+		id: "screen_upload_error_action_label",
+		description: "0 - ",
+		defaultMessage: "Ok"
 	}
 	
 
 } );
 
 class Upload extends Component {
+
+	componentWillMount (){
+
+		const { formatMessage } = this.props.intl;
+		let message = Modernizr.draganddrop ? formatMessage( messages.teaser_drag ) : formatMessage( messages.teaser_click );
+
+		let options = {
+
+			message: message,
+			label: formatMessage( messages.teaser_gotit ),
+			onClick: this._resetScreen,
+			active: true
+
+		}
+
+		this.setState( { screenOptions: options } );
+
+	}
 
 	componentDidMount (){
 
@@ -192,7 +242,7 @@ class Upload extends Component {
 			dropLayerId: undefined,
 			blockDropzone: true,
 			showMapLoader: false,
-			uploadProgress: 0
+			screenOptions: {}
 
 		} 
 
@@ -202,8 +252,9 @@ class Upload extends Component {
 
 		const { formatMessage/*, locale*/ } = this.props.intl;
 		const { className } = this.props;
-		const { isWindowDrag, showFeatureDialog, showUploadDropDialog, featureToShow, dialogDrop, blockDropzone, showMapLoader, uploadProgress } = this.state;
+		const { isWindowDrag, showFeatureDialog, showUploadDropDialog, featureToShow, dialogDrop, blockDropzone, showMapLoader, uploadProgress, screenOptions } = this.state;
 
+		
 		const cls = Classnames( style.upload, className );
 		const clsForm = Classnames( style.fill, {
 
@@ -301,6 +352,13 @@ class Upload extends Component {
 						onDropsValidated= { this._onDropsValidated }
 					/>
 				</FormTB>
+				<Screen 
+					className={ style.fill }
+					message={ screenOptions.message }
+					label={ screenOptions.label }
+					onClick={ screenOptions.onClick }
+					active={ screenOptions.active }
+				/>
 				<TooltipButton tooltip={ formatMessage( messages.button_tooltip_upload_image ) } tooltipDelay={ 1000 } icon="file_upload" floating accent className={ clsUploadButton } onClick={ this._openInput } />
 				<FeatureDialog label={ formatMessage( messages.feature_dialog_ok_label ) } onClick={ this._hideFeatureDialog } active={ showFeatureDialog } feature={ featureToShow } />
 				<UploadDropDialog
@@ -309,7 +367,6 @@ class Upload extends Component {
 					dialogDrop={ dialogDrop }
 					onCancelClick={ this._cancelUpload }
 					onUploadClick={ this._uploadForm }
-					progress={ uploadProgress }
 				/>
 			</div>
 
@@ -702,18 +759,26 @@ class Upload extends Component {
 	_uploadForm = ( ) => {
 
 		this.refs.form._submit();
+		this.setState( { showUploadDropDialog: false } );
 
 	}
 
 	_onUploadProgress = ( e ) => {
 
+		const { formatMessage } = this.props.intl;
+
 		let progress = ( e.loaded / e.total ) * 100;
+		let message = progress < 100 ? formatMessage( messages.screen_uploading ) + " " + progress + "%" : formatMessage( messages.screen_updating_database );
 
-		this.setState( { 
+		let options = {
 
-			uploadProgress: progress
+			message: message,
+			label: '',
+			active: true
 
-		} );
+		}
+
+		this.setState( { screenOptions: options } );
 
 	}
 
@@ -721,9 +786,23 @@ class Upload extends Component {
 
 		console.log( "UPLOAD ERROR", e );
 
+		const { formatMessage } = this.props.intl;
+		let options = {
+
+			message: formatMessage( messages.screen_upload_error ),
+			active: true,
+			label: formatMessage( messages.screen_upload_error_action_label ),
+			onClick: this._resetScreen
+
+		}
+
+		this.setState( { screenOptions: options } );
+
 	}
 
 	_onUploadDone = ( response ) => {
+
+		const { formatMessage } = this.props.intl;
 
 		let res = JSON.parse( response );
 		if( res.status == 'KO' ){
@@ -731,13 +810,30 @@ class Upload extends Component {
 			console.log( "RESPONSE ERROR" );
 			console.log( res );
 
+			let options = {
+
+				message: formatMessage( messages.screen_upload_error ),
+				active: true,
+				label: formatMessage( messages.screen_upload_error_action_label ),
+				onClick: this._resetScreen
+
+			}
+
+			this.setState( { screenOptions: options } );
+
 		}else{
 
-			console.log( "Show users what was uploaded" );
+			let options = {
+
+				message: formatMessage( messages.screen_upload_success ),
+				label: '',
+				active: true
+
+			}
+
+			this.setState( { screenOptions: options }, this._resetUpload );
 
 		}
-
-		this._resetUpload();
 
 	}
 
@@ -758,6 +854,7 @@ class Upload extends Component {
 
 	_openInput = ( ) => {
 
+		this._resetScreen();
 		this.refs.dropzone.refs.element._openInput();
 
 	}
@@ -775,14 +872,31 @@ class Upload extends Component {
 			easing: this.easeInQuint 
 		} );
 
+		setTimeout( this._resetScreen, 1000 );
+
 		this.setState( {
 
-			showUploadDropDialog: false,
 			dropLayerId: undefined,
-			blockDropzone: false,
-			uploadProgress: 0
+			blockDropzone: false
 
 		}, this.refs.form._resetForm() );
+
+	}
+
+	_resetScreen = ( ) => {
+
+		this.setState( { 
+
+			screenOptions: {
+
+				message: '',
+				label: '',
+				onClick: () => {},
+				active: false
+
+			} 
+
+		} );
 
 	}
 
