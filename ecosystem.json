@@ -14,11 +14,6 @@
       },
       "env_production" : {
         "NODE_ENV": "production"
-      },
-      "env_webhook": {
-        "port": 23928,
-        "path": "/webhook",
-        "secret": "coastwards"
       }
     }
   ],
