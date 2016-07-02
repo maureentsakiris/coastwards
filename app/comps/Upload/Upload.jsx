@@ -27,7 +27,7 @@ const messages = defineMessages( {
 	teaser_drag:{
 		id: "teaser_drag",
 		description: "0 - ",
-		defaultMessage: "Drag & drop your image onto the map (or click the big red button)"
+		defaultMessage: "Drag & drop your image onto the map (or click the BIG red button)"
 	},
 	teaser_click:{
 		id: "teaser_click",
