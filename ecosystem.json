@@ -18,8 +18,8 @@
       "env_webhook": {
         "port": 23928,
         "path": "/webhook",
-        "secret": "<.6fxM)8Bv]Exuj2"
-      },
+        "secret": "coastwards"
+      }
     }
   ],
 
