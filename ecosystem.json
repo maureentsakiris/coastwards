@@ -14,7 +14,12 @@
       },
       env_production : {
         NODE_ENV: "production"
-      }
+      },
+      env_webhook: {
+        port: 9001,
+        path: "/webhook",
+        secret: "<.6fxM)8Bv]Exuj2"
+      },
     }
   ],
 
