@@ -1,28 +1,53 @@
-<Dialog { ...restProps } className={ cls } actions={ [] } onEscKeyDown={ this._onCancelClick } onOverlayClick={ () => {} } >
-				{ dialogDrop && <img src={ dialogDrop.file.preview } className={ style.image } /> }
-				<div className={ style.inner } >
-					<h3>Your image is ready for upload</h3>
-					<p>{ formatMessage( messages.upload_drop_dialog_intro ) }</p>
-					<div className={ style.form }>
-						<Dropdown
-							label={ formatMessage( messages.upload_drop_dialog_category ) }
-							onChange={ this._handleChange.bind( this, 'category' ) }
-							value={ category }
-							source={ categories }
-							template={ this._template }
-						/>
-						<Input 
-							type="text" 
-							label={ formatMessage( messages.upload_drop_dialog_comment_label ) } 
-							value={ comment } 
-							multiline={ true } 
-							onChange={ this._handleChange.bind( this, 'comment' ) } 
-						/>
-					</div>
-					<ProgressBar type="linear" mode="determinate" value={ progress } />
-					<div className={ style.btns } >
-						<Button className={ style.btn } label={ formatMessage( messages.upload_drop_dialog_upload_label ) } onClick={ this._onUploadClick }  raised accent />
-						<Button className={ style.btn } label={ formatMessage( messages.upload_drop_dialog_cancel_label ) } onClick={ this._onCancelClick }  />
-					</div>
-				</div>
-			</Dialog>
+# coastwards.org
+--
+### Localhost
+npm run start --> 127.0.0.1:8888
+
+### Office
+npm run start office --> 134.245.149.30:8888
+
+----
+## Scripts
+
+### Setup
+	$ ./scripts/mysql/setup.sh <environment>
+
+initial setup for mysql implementation. 
+uses credentials set in ./config/\<environment\>.json and creates the mysql user if necessary
+creates database schema accordingly
+
+executes ./coastwards_contributions.sql with credentials
+
+##### environment
+one of <b>development</b>, <b>stage</b> or <b>production (default)</b>
+
+
+### Deployment
+	$ ./scripts/mysql/deploy.sh
+
+automated deployment process. credentials require configuration according to deployment target in <i>./scripts/deploy/credentials.inc</i>
+
+installs public key on remote machine and executes rsync for updating remote sources
+
+!Needs additional scripts to (re)launch server!
+
+### NVM
+
+if node was installed through nvm run:
+
+	n=$(which node);n=${n%/bin/node}; chmod -R 755 $n/bin/*; sudo cp -r $n/{bin,lib,share}
+
+
+https://www.digitalocean.com/community/tutorials/how-to-install-node-js-with-nvm-node-version-manager-on-a-vps
+
+### PM2 STARTUP
+
+run the following to generate a startup script
+
+	pm2 startup systemd
+	sudo su -c "env PATH=$PATH:/usr/local/bin pm2 startup systemd -u tsakiris --hp /home/tsakiris"
+
+
+### SIMLINK
+
+	sudo ln -s ../sites-available/coastwards.org.conf
