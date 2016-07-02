@@ -3,22 +3,22 @@
    * Application configuration section
    * http://pm2.keymetrics.io/docs/usage/application-declaration/
    */
-  apps : [
+  "apps" : [
 
     // First application
     {
-      name      : "COASTWARDS",
-      script    : "server.js",
-      env: {
-        COMMON_VARIABLE: "true"
+      "name"      : "COASTWARDS",
+      "script"    : "server.js",
+      "env": {
+        "COMMON_VARIABLE": "true"
       },
-      env_production : {
-        NODE_ENV: "production"
+      "env_production" : {
+        "NODE_ENV": "production"
       },
-      env_webhook: {
-        port: 8080,
-        path: "/webhook",
-        secret: "<.6fxM)8Bv]Exuj2"
+      "env_webhook": {
+        "port": 23928,
+        "path": "/webhook",
+        "secret": "<.6fxM)8Bv]Exuj2"
       },
     }
   ],
@@ -27,24 +27,24 @@
    * Deployment section
    * http://pm2.keymetrics.io/docs/usage/deployment/
    */
-  deploy : {
-    production : {
-      user : "tsakiris",
-      host : "csfctc.geographie.uni-kiel.de",
-      ref  : "origin/master",
-      repo : "git@github.com:maureentsakiris/coastwards.git",
-      path : "/var/www/production",
+  "deploy" : {
+    "production" : {
+      "user" : "tsakiris",
+      "host" : "csfctc.geographie.uni-kiel.de",
+      "ref"  : "origin/master",
+      "repo" : "git@github.com:maureentsakiris/coastwards.git",
+      "path" : "/var/www/production",
       "post-deploy" : "npm install && npm run build && pm2 startOrRestart ecosystem.json --env production"
     },
-    dev : {
-      user : "tsakiris",
-      host : "csfctc.geographie.uni-kiel.de",
-      ref  : "origin/master",
-      repo : "git@github.com:maureentsakiris/coastwards.git",
-      path : "/var/www/development",
+    "dev" : {
+      "user" : "tsakiris",
+      "host" : "csfctc.geographie.uni-kiel.de",
+      "ref"  : "origin/coastwards-dev",
+      "repo" : "git@github.com:maureentsakiris/coastwards.git",
+      "path" : "/var/www/development",
       "post-deploy" : "npm install && npm run build && pm2 startOrRestart ecosystem.json --env dev",
-      env  : {
-        NODE_ENV: "dev"
+      "env"  : {
+        "NODE_ENV": "dev"
       }
     }
   }
