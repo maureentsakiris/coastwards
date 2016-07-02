@@ -165,7 +165,8 @@ class Upload extends Component {
 			message: message,
 			label: formatMessage( messages.teaser_gotit ),
 			onClick: this._resetScreen,
-			active: true
+			active: true,
+			showLoader: false
 
 		}
 
@@ -358,6 +359,8 @@ class Upload extends Component {
 					label={ screenOptions.label }
 					onClick={ screenOptions.onClick }
 					active={ screenOptions.active }
+					showLoader={ screenOptions.showLoader }
+					progress={ screenOptions.progress }
 				/>
 				<TooltipButton tooltip={ formatMessage( messages.button_tooltip_upload_image ) } tooltipDelay={ 1000 } icon="file_upload" floating accent className={ clsUploadButton } onClick={ this._openInput } />
 				<FeatureDialog label={ formatMessage( messages.feature_dialog_ok_label ) } onClick={ this._hideFeatureDialog } active={ showFeatureDialog } feature={ featureToShow } />
@@ -770,13 +773,15 @@ class Upload extends Component {
 
 		let progress = ( e.loaded / e.total ) * 100;
 
-		let message = progress < 100 ? formatMessage( messages.screen_uploading ) + " " + progress + "%" : formatMessage( messages.screen_updating_database );
+		//let message = progress < 100 ? formatMessage( messages.screen_uploading ) + " " + progress + "%" : formatMessage( messages.screen_updating_database );
 
 		let options = {
 
-			message: message,
+			message: '',
 			label: '',
-			active: true
+			active: true,
+			showLoader: true,
+			progress: progress
 
 		}
 
@@ -817,7 +822,8 @@ class Upload extends Component {
 				message: formatMessage( messages.screen_upload_error ),
 				active: true,
 				label: formatMessage( messages.screen_upload_error_action_label ),
-				onClick: this._resetScreen
+				onClick: this._resetScreen,
+				showLoader: false
 
 			}
 
@@ -829,7 +835,8 @@ class Upload extends Component {
 
 				message: formatMessage( messages.screen_upload_success ),
 				label: '',
-				active: true
+				active: true,
+				showLoader: false
 
 			}
 
@@ -894,7 +901,8 @@ class Upload extends Component {
 				message: '',
 				label: '',
 				onClick: () => {},
-				active: false
+				active: false,
+				showLoader: false
 
 			} 
 

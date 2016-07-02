@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import Classnames from 'classnames';
 import { Button } from 'react-toolbox/lib/button';
+import ProgressBar from 'react-toolbox/lib/progress_bar';
 
 import style from './_styleScreen';
 
@@ -13,13 +14,15 @@ export default class Screen extends Component {
 		message: PropTypes.string,
 		label: PropTypes.string,
 		onClick: PropTypes.func,
-		active: PropTypes.bool
+		active: PropTypes.bool,
+		showLoader: PropTypes.bool,
+		progress: PropTypes.number
 
 	};
 
 	static defaultProps = {
 
-
+		showLoader: false
 
 	};
 
@@ -44,7 +47,7 @@ export default class Screen extends Component {
 
 	render () {
 
-		const { className, message, label, onClick, active, ...restProps } = this.props; // eslint-disable-line no-unused-vars
+		const { className, message, label, onClick, active, showLoader, progress, ...restProps } = this.props; // eslint-disable-line no-unused-vars
 
 		const cls = Classnames( className, style.screen, {
 
@@ -53,13 +56,15 @@ export default class Screen extends Component {
 		} );
 
 		const showButton = label != '' ? true : false;
+		const mode = progress > 0 && progress < 100 ? 'determinate' : 'indeterminate';
 
 		return (
 
 			<div { ...restProps } className={ cls } >
 				<div>
-					<p>{ message }</p>
+					{ message && <p>{ message }</p> }
 					{ showButton && <Button label={ label } flat onClick={ onClick } /> }
+					{ showLoader && <ProgressBar type="circular" mode={ mode } value={ progress }  multicolor={ true } /> }
 				</div>
 			</div>
 

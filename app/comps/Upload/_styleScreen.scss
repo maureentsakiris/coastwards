@@ -28,6 +28,12 @@
 
 	}
 
+	[data-react-toolbox="progress-bar"]{
+
+		width: 60px;
+
+	}
+
 	div{
 
 		@extend %flexitem;
