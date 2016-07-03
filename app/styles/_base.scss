@@ -303,7 +303,24 @@ $corsetPadding: 5vh;
 
 }
 
+//############################################################################################ REACT TOOLBOX / MATERIAL DESIGN ICONS
+
+%icon{
+
+  vertical-align: bottom;
+
+}
+
 //############################################################################################ REACT TOOLBOX DIALOG
+
+$border-radius: 0.2rem;
+
+%corners{
+
+  border-top-left-radius: $border-radius;
+  border-top-right-radius: $border-radius;
+
+}
 
 %dialog{
 
@@ -313,10 +330,14 @@ $corsetPadding: 5vh;
 
   &[data-react-toolbox="dialog"]{
 
+    @extend %corners;
+    overflow: hidden;
+
     nav[role="navigation"]{
 
       flex-shrink: 0;
       flex-basis: auto;
+      border-top: 1px solid $palette-grey-200;
 
     }
 

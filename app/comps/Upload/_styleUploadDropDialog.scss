@@ -1,0 +1,74 @@
+@import '../../../app/styles/_base';
+@import './_styleBaseDialog';
+
+.progress{
+
+	padding: $layout-gutter-width;
+	text-align: center;
+
+	h4{
+
+		margin-bottom: 1rem;
+
+	}
+
+}
+
+.content{
+
+
+
+}
+
+.actions{
+
+	text-align: right;
+	padding: $layout-gutter-width-sm;
+
+}
+
+h3, h5{
+
+	color: #212121;
+
+}
+
+.form{
+
+	padding: $layout-gutter-width 0;
+
+
+	h5{
+
+		margin: $layout-gutter-width-sm 0;
+		line-height: 1.1;
+
+	}
+
+	div[data-react-toolbox="input"]{
+
+		padding: 0;
+
+		textarea{
+
+			color: $color-primary;
+			font-weight: 200;
+			padding: 0;
+
+		}
+
+		span:last-child{
+
+			top: 0;
+
+		}
+
+	}
+
+}
+
+.btn{
+
+	margin-left: $layout-gutter-width-sm;
+
+}

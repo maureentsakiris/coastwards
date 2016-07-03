@@ -3,8 +3,6 @@ const path = require( 'path' );
 const ExtractTextPlugin = require( 'extract-text-webpack-plugin' );
 const autoprefixer = require( 'autoprefixer' );
 
-console.log( "WEBPACK PRODUCTION" );
-
 const PROJECT_ROOT = path.resolve( './' );
 const BUILD_ROOT = path.join( PROJECT_ROOT, 'public/build' );
 const ENTRY_ROOT = path.join( PROJECT_ROOT, 'app/index.jsx' );
@@ -59,7 +57,7 @@ const config = {
 			},
 			{ 
 				test: /\.(jpe?g|png|gif|svg)$/i,
-				include: PUBLIC_ROOT,
+				include: [ PUBLIC_ROOT, APP_ROOT ],
 				loader: 'url?limit=10000!img?progressive=true' 
 			},
 			{

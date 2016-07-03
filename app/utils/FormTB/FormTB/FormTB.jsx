@@ -224,7 +224,7 @@ export default class FormTB extends Component {
 
 		//console.log( 'Form is valid:', this.state.formIsValid );
 
-		console.log( this.model );
+		//console.log( this.model );
 
 		let form = formData.fromObj( this.model );
 
@@ -239,7 +239,7 @@ export default class FormTB extends Component {
 		request.promiseXHR( requestOptions )
 			.then( ( response ) => {
 
-				this.props.onSubmitDone( response );
+				this.props.onSubmitDone( response, this.model );
 				this._resetForm();
 				return response;
 				
@@ -249,6 +249,7 @@ export default class FormTB extends Component {
 
 				this.props.onSubmitError( err );
 				this.context.logError( err );
+				this.context.showLoader( false );
 
 			} );
 

@@ -321,6 +321,7 @@ class Upload extends Component {
 					maxBounds={ [ [ 360, 84 ], [ -360, -70 ] ] }
 					attributionControl={ false }
 					scrollZoom={ true }
+					dragRotate={ false }
 					navigationControl={ true }
 					navigationControlPosition="top-left"
 					style="mapbox://styles/maureentsakiris/cinxhoec70043b4nmx0rkoc02"
@@ -754,26 +755,33 @@ class Upload extends Component {
 
 	_cancelUpload = () => {
 
-		this.refs.map._removeLayer( this.state.dropLayerId );
-		this.setState( { showUploadDropDialog: false } );
+		this._hideUploadDropDialog();
+
+		this._removeLayer( this.state.dropLayerId );
 		this._resetUpload();
+		this._flyOut();
 
 	}
 
 	_uploadForm = ( ) => {
 
 		this.refs.form._submit();
-		this.setState( { showUploadDropDialog: false } );
+		this._hideUploadDropDialog();
+
+	}
+
+
+	// FORM UPLOAD EVENTS
+
+	_onUploadError = ( ) => {
+
+		this._showUploadError();
 
 	}
 
 	_onUploadProgress = ( e ) => {
 
-		const { formatMessage } = this.props.intl;
-
 		let progress = ( e.loaded / e.total ) * 100;
-
-		//let message = progress < 100 ? formatMessage( messages.screen_uploading ) + " " + progress + "%" : formatMessage( messages.screen_updating_database );
 
 		let options = {
 
@@ -789,33 +797,160 @@ class Upload extends Component {
 
 	}
 
-	_onUploadError = ( e ) => {
 
-		console.log( "UPLOAD ERROR", e );
+	// FORM UPLOAD DONE
+
+	_promiseResponseOK = ( response, model ) => {
+
+		return new Promise( ( resolve, reject ) => {
+
+			let res = JSON.parse( response );
+
+			if( res.status == 'KO' ){
+
+				reject( Error( 'Upload/_promiseResponseOK/Response status: KO' ) );
+
+			}else{
+
+				resolve( model );
+
+			}
+
+		} );
+
+	}
+
+
+	_promiseUploadedMarker = ( model ) => {
+
+		let uploaded = model.dropzone[ 0 ];
+
+		return new Promise( ( resolve, reject ) => {
+		
+			this._removeLayer( this.state.dropLayerId );
+
+			let specs = uploaded.validations.imageHasLocation.result.specs;
+			let id = Date.now().toString();
+
+
+			let datetimeArr = uploaded.exifDateTime.split( ' ' );
+			let date = datetimeArr[ 0 ].replace( /:/g, '-' );
+			let datetime = date + ' ' + datetimeArr[ 1 ];
+
+			// Add data to existing layer instead of creating a new one
+			const geoJSON = {
+
+				"type": "FeatureCollection",
+				"features": [ {
+					"type": "Feature",
+					"geometry": {
+						"type": "Point",
+						"coordinates": [ specs.long, specs.lat ]
+					},
+					"properties": {
+						"marker-symbol": "marker-accent",
+						"comment": uploaded.comment || "",
+						"material": uploaded.material || "",
+						"datetime": datetime || "",
+						"verified": "0",
+						"image": uploaded.file.preview
+					}
+
+				} ]
+
+			}
+
+			const markerSource = { 
+
+				type: 'geojson',
+				data: geoJSON
+
+			}
+
+			const markerLayer = {
+
+				type: 'symbol',
+				layout: {
+
+					'icon-image': "{marker-symbol}"
+
+				}
+
+			}
+
+			let layer = {
+				
+				name: id,
+				source: markerSource,
+				layer: markerLayer,
+				position: 'country_label_1',
+				onClick: this._showFeatureDialog
+
+			}
+
+			this.refs.map._addLayer( layer );
+
+			if( _.isObject( this.refs.map._getLayer( id ) ) ){
+
+				uploaded.layerId = id;
+				uploaded.specs = specs;
+				resolve( uploaded );
+
+			}else{
+
+				reject( Error( 'Upload/_promiseDropMarker/Failed to drop marker' ) );
+
+			}
+		
+		} );
+
+	}
+
+	_promiseThankYou = ( uploaded ) => {
 
 		const { formatMessage } = this.props.intl;
 		let options = {
 
-			message: formatMessage( messages.screen_upload_error ),
+			message: formatMessage( messages.screen_upload_success ),
+			label: '',
 			active: true,
-			label: formatMessage( messages.screen_upload_error_action_label ),
-			onClick: this._resetScreen
+			showLoader: false
 
 		}
-
 		this.setState( { screenOptions: options } );
+
+		this._resetUpload();
+		this._flyOut();
+		setTimeout( this._resetScreen, 2000 );
+
+		return uploaded;
 
 	}
 
-	_onUploadDone = ( response ) => {
 
-		const { formatMessage } = this.props.intl;
+	_onUploadDone = ( response, model ) => {
+
+		this._promiseResponseOK( response, model )
+		.then( this._promiseUploadedMarker )
+		.then( this._promiseThankYou )
+		.catch( ( error ) => {
+
+			this.context.logError( error );
+
+			this._showUploadError();
+
+			this._removeLayer( this.state.dropLayerId );
+			this._resetUpload();
+			this._flyOut();
+
+
+		} );
+
+		/*const { formatMessage } = this.props.intl;
 
 		let res = JSON.parse( response );
-		if( res.status == 'KO' ){
 
-			console.log( "RESPONSE ERROR" );
-			console.log( res );
+		if( res.status == 'KO' ){
 
 			let options = {
 
@@ -826,8 +961,11 @@ class Upload extends Component {
 				showLoader: false
 
 			}
-
 			this.setState( { screenOptions: options } );
+
+			this._removeLayer( this.state.dropLayerId );
+			this._resetUpload();
+			this._flyOut();
 
 		}else{
 
@@ -840,9 +978,9 @@ class Upload extends Component {
 
 			}
 
-			this.setState( { screenOptions: options }, this._resetUpload );
+			this.setState( { screenOptions: options }, this._showThankYou );
 
-		}
+		}*/
 
 	}
 
@@ -851,7 +989,13 @@ class Upload extends Component {
 
 	_showFeatureDialog = ( featureToShow ) => {
 
-		this.setState( { featureToShow: featureToShow, showFeatureDialog: true, blockDropzone: true } );
+		this.setState( { 
+
+			featureToShow: featureToShow, 
+			showFeatureDialog: true, 
+			blockDropzone: true 
+
+		} );
 
 	}
 
@@ -876,19 +1020,33 @@ class Upload extends Component {
 
 	_resetUpload = ( ) => {
 
-		this.refs.map._zoomTo( 1, { 
-			duration: 3000, 
-			easing: this.easeInQuint 
-		} );
-
-		setTimeout( this._resetScreen, 1000 );
-
 		this.setState( {
 
 			dropLayerId: undefined,
 			blockDropzone: false
 
 		}, this.refs.form._resetForm() );
+
+	}
+
+	_hideUploadDropDialog = ( ) => {
+
+		this.setState( { showUploadDropDialog: false } );
+
+	}
+
+	_removeLayer = ( id ) => {
+
+		this.refs.map._removeLayer( id );
+
+	}
+
+	_flyOut = ( ) => {
+
+		this.refs.map._zoomTo( 1, { 
+			duration: 3000, 
+			easing: this.easeInQuint 
+		} );
 
 	}
 
@@ -907,6 +1065,22 @@ class Upload extends Component {
 			} 
 
 		} );
+
+	}
+
+	_showUploadError = ( ) => {
+
+		const { formatMessage } = this.props.intl;
+		let options = {
+
+			message: formatMessage( messages.screen_upload_error ),
+			active: true,
+			label: formatMessage( messages.screen_upload_error_action_label ),
+			onClick: this._resetScreen,
+			showLoader: false
+
+		}
+		this.setState( { screenOptions: options } );
 
 	}
 

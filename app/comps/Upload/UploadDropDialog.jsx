@@ -9,7 +9,7 @@ import Input from 'react-toolbox/lib/input';
 import { Button } from 'react-toolbox/lib/button';
 import Options from './Options';
 
-import style from './_styleDialog';
+import style from './_styleUploadDropDialog';
 
 const messages = defineMessages( {
 
@@ -190,28 +190,14 @@ class UploadDropDialog extends Component {
 		const materials = [
 
 			{ value: 'sand', label: formatMessage( messages.sand ), description: formatMessage( messages.sand_description ) },
-			{ value: 'pebble', label: formatMessage( messages.pebbles ), description: formatMessage( messages.pebbles_description ) },
+			{ value: 'pebbles', label: formatMessage( messages.pebbles ), description: formatMessage( messages.pebbles_description ) },
 			{ value: 'rock', label: formatMessage( messages.rock ), description: formatMessage( messages.rock_description )  },
 			{ value: 'mud', label: formatMessage( messages.mud ), description: formatMessage( messages.mud_description ) },
 			{ value: 'ice', label: formatMessage( messages.ice ), description: formatMessage( messages.ice_description ) },
-			{ value: 'mandmade', label: formatMessage( messages.man_made ), description: formatMessage( messages.man_made_description ) },
-			{ value: 'notsure', label: formatMessage( messages.not_sure ), "description": formatMessage( messages.not_sure_description )  }
+			{ value: 'man_made', label: formatMessage( messages.man_made ), description: formatMessage( messages.man_made_description ) },
+			{ value: 'not_sure', label: formatMessage( messages.not_sure ), "description": formatMessage( messages.not_sure_description )  }
 
 		];
-
-
-		/*const adaptations = [
-
-			{ value:'dike', label: formatMessage( messages.dike ) },
-			{ value:'nourishment', label: formatMessage( messages.nourishment ) }
-
-		]
-
-		<h5>{ formatMessage( messages.upload_drop_dialog_adaptation_label ) } </h5>
-		<Options 
-			options={ adaptations } 
-			onChange={ this._handleChange.bind( this, 'adaptation' ) } 
-		/>*/
 
 		return (
 

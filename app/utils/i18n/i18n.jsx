@@ -2,7 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { IntlProvider } from 'react-intl';
 import _ from 'underscore';
-import util from 'util';
 
 import I18nSwitch from './i18nSwitch';
 import i18nLocales from './i18nLocales';

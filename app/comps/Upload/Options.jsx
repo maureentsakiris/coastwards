@@ -91,7 +91,7 @@ export default class Options extends Component {
 
 	}
 
-	_handleOptionClick = ( value, e ) => {
+	_handleOptionClick = ( value ) => {
 
 		this.setState( { selected: value }, this.props.onChange( value ) );
 

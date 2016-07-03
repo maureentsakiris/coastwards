@@ -3,8 +3,6 @@ const path = require( 'path' );
 const ExtractTextPlugin = require( 'extract-text-webpack-plugin' );
 const autoprefixer = require( 'autoprefixer' );
 
-console.log( "WEBPACK DEVELOPMENT" );
-
 const globalConfigs = require ( './config/' );
 const server = globalConfigs.server;
 
@@ -65,7 +63,7 @@ const config = {
 			},
 			{ 
 				test: /\.(jpe?g|png|gif|svg)$/i,
-				include: PUBLIC_ROOT,
+				include: [ PUBLIC_ROOT, APP_ROOT ],
 				loader: 'url?limit=10000!img?progressive=true' 
 			},
 			{
