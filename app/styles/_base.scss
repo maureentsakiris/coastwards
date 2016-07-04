@@ -341,6 +341,12 @@ $border-radius: 0.2rem;
 
     }
 
+    section[role="body"]{
+
+      //position: relative; // To place more icon
+
+    }
+
   }
 
   @include LtSM( ){

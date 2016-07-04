@@ -17,6 +17,12 @@
 		padding: $layout-gutter-width;
 		font-weight: 500;
 
+		.nowrap{
+
+			display: block;
+
+		}
+
 	}
 
 	[data-react-toolbox="button"]{

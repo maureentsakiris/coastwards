@@ -24,10 +24,15 @@ import Screen from './Screen';
 
 const messages = defineMessages( {
 
-	teaser_drag:{
-		id: "teaser_drag",
+	teaser_drag_l1:{
+		id: "teaser_drag_2",
 		description: "0 - ",
-		defaultMessage: "Drag & drop your image onto the map (or click the BIG red button)"
+		defaultMessage: "Drag & drop your image onto the map"
+	},
+	teaser_drag_l2:{
+		id: "teaser_drag_l2",
+		description: "0 - ",
+		defaultMessage: "(or click the big red button)"
 	},
 	teaser_click:{
 		id: "teaser_click",
@@ -158,11 +163,12 @@ class Upload extends Component {
 	componentWillMount (){
 
 		const { formatMessage } = this.props.intl;
-		let message = Modernizr.draganddrop ? formatMessage( messages.teaser_drag ) : formatMessage( messages.teaser_click );
+		let l1 = Modernizr.draganddrop ? formatMessage( messages.teaser_drag_l1 ) : formatMessage( messages.teaser_click );
+		let l2 = Modernizr.draganddrop ? formatMessage( messages.teaser_drag_l2 ) : '';
 
 		let options = {
 
-			message: message,
+			message: [ l1, l2 ],
 			label: formatMessage( messages.teaser_gotit ),
 			onClick: this._resetScreen,
 			active: true,

@@ -199,11 +199,11 @@ class FeatureDialog extends Component {
 
 		return (
 
-			<div>
+			<div id="Box">
 				<img src={ props.image } className={ style.image } />
-				<div className={ style.inner }>
+				<div id="Inner" className={ style.inner }>
 					{ props.comment && <p className={ style.comment }>{ props.comment }</p> }
-					<div className={ style.grid }>
+					<div id="Grid" className={ style.grid }>
 						{ props.material && <p className={ style.g0 }><i className={ clsIcon }>texture</i>{ material }</p> }
 						{ point && <p className={ style.g0 }><i className={ clsIcon }>place</i>{ point }</p> }
 						{ props.datetime && <p className={ style.g0 }><i className={ clsIcon }>date_range</i>{ date }</p> }

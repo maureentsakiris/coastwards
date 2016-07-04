@@ -226,10 +226,13 @@ class UploadDropDialog extends Component {
 							/>
 						</div>
 					</div>
+					<div className={ style.actions } >
+						<Button className={ style.btn } label={ formatMessage( messages.upload_drop_dialog_cancel_label ) } onClick={ this._onCancelClick }  /> 
+						<Button className={ style.btn } label={ formatMessage( messages.upload_drop_dialog_upload_label ) } onClick={ this._onUploadClick }  raised accent disabled={ submitting } />
+					</div>
 				</div>
-				<div className={ style.actions } >
-					<Button className={ style.btn } label={ formatMessage( messages.upload_drop_dialog_cancel_label ) } onClick={ this._onCancelClick }  /> 
-					<Button className={ style.btn } label={ formatMessage( messages.upload_drop_dialog_upload_label ) } onClick={ this._onUploadClick }  raised accent disabled={ submitting } />
+				<div className={ style.more }>
+					<i className="material-icons">arrow_drop_down</i>
 				</div>
 			</Dialog>
 
