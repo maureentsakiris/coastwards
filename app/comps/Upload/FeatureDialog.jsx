@@ -139,12 +139,6 @@ class FeatureDialog extends Component {
 		
 	}
 
-	componentDidUpdate ( ) {
-
-		this._handleScroll();
-
-	}
-
 	constructor ( props ) {
 
 		super ( props );
