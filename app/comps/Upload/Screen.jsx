@@ -62,7 +62,7 @@ export default class Screen extends Component {
 		const showButton = label != '' ? true : false;
 		const mode = progress > 0 && progress < 100 ? 'determinate' : 'indeterminate';
 
-		const msg = _.isArray( message ) ? this._formatMessage( message ) : msg;
+		const msg = _.isArray( message ) ? this._formatMessage( message ) : message;
 
 		return (
 

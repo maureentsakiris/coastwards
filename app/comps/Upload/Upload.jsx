@@ -187,6 +187,7 @@ class Upload extends Component {
 			e = e || event;
 			e.preventDefault();
 
+			this._resetScreen();
 			this.setState( { isWindowDrag: !this.state.blockDropzone } );
 
 		}, false );
@@ -259,7 +260,7 @@ class Upload extends Component {
 
 		const { formatMessage/*, locale*/ } = this.props.intl;
 		const { className } = this.props;
-		const { isWindowDrag, showFeatureDialog, showUploadDropDialog, featureToShow, dialogDrop, blockDropzone, showMapLoader, uploadProgress, screenOptions } = this.state;
+		const { isWindowDrag, showFeatureDialog, showUploadDropDialog, featureToShow, dialogDrop, blockDropzone, showMapLoader, screenOptions } = this.state;
 
 		
 		const cls = Classnames( style.upload, className );

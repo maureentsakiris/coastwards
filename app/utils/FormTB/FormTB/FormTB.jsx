@@ -16,10 +16,11 @@ export default class FormTB extends Component {
 
 	static propTypes = {
 
+		className: PropTypes.string,
+
 		name: PropTypes.string.isRequired,
 		autocomplete: PropTypes.oneOf( [ 'on', 'off' ] ),
 		noValidate: PropTypes.bool,
-		className: PropTypes.string,
 		autoSubmit: PropTypes.bool,
 		onReset: PropTypes.func,
 		onSubmitProgress: PropTypes.func,
@@ -77,14 +78,14 @@ export default class FormTB extends Component {
 
 	render () {
 
-		const { name, autocomplete, className, noValidate } = this.props;
-		const children = this._cloneWithMethods( this.props.children ); 
+		const { className, name, autocomplete, noValidate, autoSubmit, onReset, onSubmitProgress, onSubmitError, onSubmitDone, children, ...props } = this.props; // eslint-disable-line no-unused-vars
+		const elements = this._cloneWithMethods( children ); 
 		const cls = Classnames( style.form, className );
 
 		return (
 
-			<form {...this.props} onSubmit={ this._submit.bind( this ) } id={ name } autoComplete={ autocomplete } className={ cls } noValidate={ noValidate } ref="form" >
-				{ children }
+			<form onSubmit={ this._submit.bind( this ) } id={ name } autoComplete={ autocomplete } className={ cls } noValidate={ noValidate } ref="form" >
+				{ elements }
 			</form>
 
 		)

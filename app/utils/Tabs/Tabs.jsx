@@ -88,7 +88,7 @@ export default class Tabs extends Component {
 
 	render () {
 
-		const { center, arrows, accent, inverse, ...props } = this.props;
+		const { center, arrows, scrollStep, activeCls, active, accent, inverse, ...props } = this.props; // eslint-disable-line no-unused-vars
 		const { showLeft, showRight } = this.state;
 
 		const children = this._extendChildren();

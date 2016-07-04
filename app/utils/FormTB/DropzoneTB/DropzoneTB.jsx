@@ -114,7 +114,7 @@ class DropzoneTB extends Component {
 		const { elementHandlers, elementProps, elementStates, ...ownProps } = this.props; // eslint-disable-line no-unused-vars
 		const { form, name, label, disabled, className } = elementProps; // eslint-disable-line no-unused-vars
 		const { value, showErrors, error, submitting, elementIsValid } = elementStates;	// eslint-disable-line no-unused-vars	
-		const { accept, multiple, disablePreview, max, warning_max, warning_accept, fileValidations, zoneProps, listProps, onValidDrop, ...restProps } = ownProps; // eslint-disable-line no-unused-vars
+		const { accept, multiple, disablePreview, max, warning_max, warning_accept, fileValidations, zoneProps, listProps, onDropsAccepted, onTestDone, onValidDrop, onInValidDrop, onDropsValidated, ...restProps } = ownProps; // eslint-disable-line no-unused-vars
 
 		const { validating } = this.state;
 

@@ -139,12 +139,20 @@ class FeatureDialog extends Component {
 		
 	}
 
+	componentDidUpdate ( ) {
+
+		this._handleScroll();
+
+	}
+
 	constructor ( props ) {
 
 		super ( props );
 		this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind( this );
 
 		this.state = {
+
+			hideMore: false
 
 		}
 
@@ -155,6 +163,7 @@ class FeatureDialog extends Component {
 		const { className, feature, label, onClick, ...restProps } = this.props; // eslint-disable-line no-unused-vars
 		
 		const cls = Classnames( className, style.dialog );
+
 
 		const actions = [
 
@@ -197,9 +206,10 @@ class FeatureDialog extends Component {
 
 		const clsIcon = Classnames( 'material-icons', style.icon );
 
+
 		return (
 
-			<div id="Box">
+			<div ref="content" className={ style.content } onScroll={ this._handleScroll }>
 				<img src={ props.image } className={ style.image } />
 				<div id="Inner" className={ style.inner }>
 					{ props.comment && <p className={ style.comment }>{ props.comment }</p> }

@@ -9,9 +9,10 @@ export default class Option extends Component {
 	static propTypes = {
 
 		className: PropTypes.string,
-		selected: PropTypes.bool.isRequired,
 		value: PropTypes.string.isRequired,
 		label: PropTypes.string.isRequired,
+		description: PropTypes.string,
+		selected: PropTypes.bool.isRequired,
 		onClick: PropTypes.func.isRequired
 
 	};
@@ -43,7 +44,7 @@ export default class Option extends Component {
 
 	render () {
 
-		const { className, selected, value, label, onClick, ...restProps } = this.props; // eslint-disable-line no-unused-vars
+		const { className, value, label, description, selected, onClick, ...restProps } = this.props; // eslint-disable-line no-unused-vars
 		
 		const cls = Classnames( className, style.option, {
 

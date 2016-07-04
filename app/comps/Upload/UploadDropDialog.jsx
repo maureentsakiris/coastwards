@@ -11,6 +11,7 @@ import Options from './Options';
 
 import style from './_styleUploadDropDialog';
 
+
 const messages = defineMessages( {
 
 	upload_drop_dialog_comment_label:{
@@ -154,6 +155,7 @@ const messages = defineMessages( {
 
 class UploadDropDialog extends Component {
 
+
 	componentWillUpdate ( p ){
 
 		if( p.active != this.props.active ){
@@ -172,7 +174,8 @@ class UploadDropDialog extends Component {
 		this.state = {
 
 			comment: '',
-			material: ''
+			material: '',
+			hideMore: false
 
 		}
 
@@ -183,9 +186,14 @@ class UploadDropDialog extends Component {
 		const { formatMessage/*, locale*/ } = this.props.intl;
 
 		const { className, dialogDrop, onUploadClick, onCancelClick, ...restProps } = this.props; // eslint-disable-line no-unused-vars
-		const { submitting, comment } = this.state;
+		const { submitting, comment, hideMore } = this.state;
 
 		const cls = Classnames( className, style.dialog );
+		const clsMore = Classnames( style.more, {
+
+			[ style.hideMore ]: hideMore
+
+		} );
 
 		const materials = [
 
@@ -202,19 +210,19 @@ class UploadDropDialog extends Component {
 		return (
 
 			<Dialog { ...restProps } className={ cls } actions={ [] } onEscKeyDown={ this._onCancelClick } onOverlayClick={ () => {} } >
-				<div className={ style.content }>
+				<div ref="content" className={ style.content } onScroll={ this._handleScroll }>
 					{ dialogDrop && <img src={ dialogDrop.file.preview } className={ style.image } /> }
 					<div className={ style.inner } >
 						<h3>{ formatMessage( messages.upload_drop_dialog_header ) }</h3>
 						<p>{ formatMessage( messages.upload_drop_dialog_intro ) }</p>
 						<div className={ style.form }>
-							<h5>{ formatMessage( messages.upload_drop_dialog_material_label ) } </h5>
+							<h5 ref="material">{ formatMessage( messages.upload_drop_dialog_material_label ) } </h5>
 							<Options 
 								options={ materials } 
 								onChange={ this._handleChange.bind( this, 'material' ) }
 								disabled={ submitting }
 							/>
-							<h5>{ formatMessage( messages.upload_drop_dialog_comment_label ) }</h5>
+							<h5 ref="comment">{ formatMessage( messages.upload_drop_dialog_comment_label ) }</h5>
 							<Input 
 								type="text" 
 								floating={ false }
@@ -230,13 +238,33 @@ class UploadDropDialog extends Component {
 						<Button className={ style.btn } label={ formatMessage( messages.upload_drop_dialog_cancel_label ) } onClick={ this._onCancelClick }  /> 
 						<Button className={ style.btn } label={ formatMessage( messages.upload_drop_dialog_upload_label ) } onClick={ this._onUploadClick }  raised accent disabled={ submitting } />
 					</div>
-				</div>
-				<div className={ style.more }>
-					<i className="material-icons">arrow_drop_down</i>
+					<div className={ clsMore } >
+						<Button className={ style.icon } icon="expand_more" floating mini onClick={ this._scrollMore } />
+					</div>
 				</div>
 			</Dialog>
 
 		)
+
+	}
+
+
+	_handleScroll = ( e ) => {
+
+		let content = e.target;
+
+		let hideMore = content.scrollTop + 60 >= ( content.scrollHeight - content.offsetHeight ) ? true : false;
+		this.setState( { hideMore: hideMore } );
+
+	}
+
+	_scrollMore = ( ) => {
+
+		let content = this.refs.content;
+		let step = content.offsetHeight / 2;
+		let scrollTop = content.scrollTop + step >= content.scrollHeight ? content.scrollHeight : content.scrollTop + step;
+
+		this.refs.content.scrollTop += scrollTop;
 
 	}
 
@@ -258,7 +286,8 @@ class UploadDropDialog extends Component {
 		this.setState( {
 
 			comment: '',
-			material: ''
+			material: '',
+			hideMore: false
 
 		} );
 
