@@ -313,7 +313,14 @@ $corsetPadding: 5vh;
 
 //############################################################################################ REACT TOOLBOX DIALOG
 
-$border-radius: 0.2rem;
+%dialog{
+
+  transition: height 300ms, width 300ms;
+  
+}
+
+
+/* $border-radius: 0.2rem;
 
 %corners{
 
@@ -382,4 +389,4 @@ $border-radius: 0.2rem;
 
   }
 
-}
+} */

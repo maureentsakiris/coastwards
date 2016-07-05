@@ -3,7 +3,7 @@
 
 .dialog{
 
-	@extend %dialog;
+	//@extend %dialog;
 	&>[role="body"]{
 
 		padding: 0;

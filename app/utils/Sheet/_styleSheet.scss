@@ -1,0 +1,54 @@
+@import '../../../app/styles/_base';
+
+$duration: 300ms;
+
+.sheet{
+
+	@extend %flexcontainer;
+	flex-direction: column-reverse;
+
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	transition: background-color $duration;
+	background-color: rgba( 255, 255, 255, 0);
+	visibility: hidden;
+	pointer-events: none;
+	overflow: hidden;
+
+}
+
+.active{
+
+	visibility: visible;
+	background-color: rgba( 255, 255, 255, 0);
+	pointer-events: all;
+
+}
+
+.paper{
+
+	@extend %flexitem;
+	align-self: center;
+	max-height: 70%;
+	flex-grow: 0;
+	width: 80vh;
+	max-width: 96vw;
+	background-color: #fff;
+	position: relative;
+	bottom: -70%;
+	transition: bottom $duration;
+	transition-timing-function: ease-out;
+
+	@include shadow-16dp();
+	border-radius: 3px 3px 0 0;
+
+}
+
+.show{
+
+	bottom: 0;
+
+}

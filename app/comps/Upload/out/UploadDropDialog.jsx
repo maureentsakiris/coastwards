@@ -6,7 +6,7 @@ import _ from 'underscore';
 
 import Dialog from 'react-toolbox/lib/dialog';
 import Input from 'react-toolbox/lib/input';
-import { Button } from 'react-toolbox/lib/button';
+import { Button, IconButton } from 'react-toolbox/lib/button';
 import Options from './Options';
 
 import style from './_styleUploadDropDialog';
@@ -239,7 +239,7 @@ class UploadDropDialog extends Component {
 						<Button className={ style.btn } label={ formatMessage( messages.upload_drop_dialog_upload_label ) } onClick={ this._onUploadClick }  raised accent disabled={ submitting } />
 					</div>
 					<div className={ clsMore } >
-						<Button className={ style.icon } icon="expand_more" floating mini onClick={ this._scrollMore } />
+						<IconButton className={ style.icon } icon="expand_more" floating mini accent onClick={ this._scrollMore } />
 					</div>
 				</div>
 			</Dialog>

@@ -14,13 +14,13 @@ import style from './_styleUpload';
 
 import FormTB from '../../utils/FormTB/FormTB/FormTB';
 import DropzoneTB from '../../utils/FormTB/DropzoneTB/DropzoneTB';
-/*import InputTB from '../../utils/FormTB/InputTB/InputTB';*/
 import MapboxGL from '../../utils/MapboxGL/MapboxGL';
 import request from '../../utils/Request';
 
-import FeatureDialog from './FeatureDialog';
-import UploadDropDialog from './UploadDropDialog';
-import Screen from './Screen';
+import FeatureSheet from './FeatureSheet';
+import DropSheet from './DropSheet';
+import Screen from './Screen'; 
+
 
 const messages = defineMessages( {
 
@@ -78,11 +78,6 @@ const messages = defineMessages( {
 		id: "dropzone_valid_drops",
 		description: "1 - ",
 		defaultMessage: "Awesome! Here we go!"
-	},
-	feature_dialog_ok_label:{
-		id: "feature_dialog_ok_label",
-		description: "0 - ",
-		defaultMessage: "Close"
 	},
 	button_tooltip_upload_image:{
 		id: "button_tooltip_upload_image",
@@ -243,10 +238,10 @@ class Upload extends Component {
 		this.state = {
 
 			isWindowDrag: false,
-			showFeatureDialog: false,
-			showUploadDropDialog: false,
+			showFeatureSheet: false,
+			showDropSheet: false,
 			featureToShow: undefined,
-			dialogDrop: undefined,
+			dropToUpload: undefined,
 			dropLayerId: undefined,
 			blockDropzone: true,
 			showMapLoader: false,
@@ -260,7 +255,7 @@ class Upload extends Component {
 
 		const { formatMessage/*, locale*/ } = this.props.intl;
 		const { className } = this.props;
-		const { isWindowDrag, showFeatureDialog, showUploadDropDialog, featureToShow, dialogDrop, blockDropzone, showMapLoader, screenOptions } = this.state;
+		const { isWindowDrag, showFeatureSheet, showDropSheet, featureToShow, dropToUpload, blockDropzone, showMapLoader, screenOptions } = this.state;
 
 		
 		const cls = Classnames( style.upload, className );
@@ -334,7 +329,14 @@ class Upload extends Component {
 					style="mapbox://styles/maureentsakiris/cinxhoec70043b4nmx0rkoc02"
 					accessToken="pk.eyJ1IjoibWF1cmVlbnRzYWtpcmlzIiwiYSI6ImNpbXM1N2Z2MTAwNXF3ZW0ydXI3eXZyOTAifQ.ATjSaskEecYMiEG36I_viw"
 				/>
-				<FormTB name="upload" className={ clsForm } ref="form" onSubmitProgress={ this._onUploadProgress } onSubmitDone={ this._onUploadDone } onSubmitError={ this._onUploadError } >
+				<FormTB 
+					name="upload" 
+					className={ clsForm } 
+					ref="form" 
+					onSubmitProgress={ this._onUploadProgress } 
+					onSubmitDone={ this._onUploadDone } 
+					onSubmitError={ this._onUploadError } 
+				>
 					<DropzoneTB
 						name="dropzone"
 						ref="dropzone"
@@ -370,12 +372,27 @@ class Upload extends Component {
 					showLoader={ screenOptions.showLoader }
 					progress={ screenOptions.progress }
 				/>
-				<TooltipButton tooltip={ formatMessage( messages.button_tooltip_upload_image ) } tooltipDelay={ 1000 } icon="file_upload" floating accent className={ clsUploadButton } onClick={ this._openInput } />
-				<FeatureDialog label={ formatMessage( messages.feature_dialog_ok_label ) } onClick={ this._hideFeatureDialog } active={ showFeatureDialog } feature={ featureToShow } />
-				<UploadDropDialog
-					name="userinput"
-					active={ showUploadDropDialog } 
-					dialogDrop={ dialogDrop }
+				<TooltipButton 
+					tooltip={ formatMessage( messages.button_tooltip_upload_image ) } 
+					tooltipDelay={ 1000 } 
+					icon="file_upload" 
+					floating 
+					accent 
+					className={ clsUploadButton } 
+					onClick={ this._openInput } 
+				/>
+				<FeatureSheet 
+					id="Featuresheet"
+					active={ showFeatureSheet }
+					onOverlayClick={ this._hideFeatureSheet } 
+					onEscKeyDown={ this._hideFeatureSheet }  
+					feature={ featureToShow } 
+				/>
+				<DropSheet
+					id="Dropsheet"
+					active={ showDropSheet } 
+					drop={ dropToUpload }
+					onEscKeyDown={ this._cancelUpload }
 					onCancelClick={ this._cancelUpload }
 					onUploadClick={ this._uploadForm }
 				/>
@@ -460,7 +477,7 @@ class Upload extends Component {
 			source: markerSource,
 			layer: markerLayer,
 			position: 'country_label_1',
-			onClick: this._showFeatureDialog
+			onClick: this._showFeatureSheet
 
 		}
 
@@ -468,7 +485,7 @@ class Upload extends Component {
 
 			sourcename: 'markers',
 			position: 'country_label_1'/*,
-			onClick: this._showFeatureDialog*/
+			onClick: this._showFeatureSheet*/
 
 		}
 
@@ -663,7 +680,7 @@ class Upload extends Component {
 				source: markerSource,
 				layer: markerLayer,
 				position: 'country_label_1',
-				onClick: this._showFeatureDialog
+				onClick: this._showFeatureSheet
 
 			}
 
@@ -732,8 +749,8 @@ class Upload extends Component {
 
 		this.setState( {
 
-			dialogDrop: validDrop,
-			showUploadDropDialog: true,
+			dropToUpload: validDrop,
+			showDropSheet: true,
 			dropLayerId: validDrop.layerId
 
 		} );
@@ -762,7 +779,7 @@ class Upload extends Component {
 
 	_cancelUpload = () => {
 
-		this._hideUploadDropDialog();
+		this._hideDropSheet();
 
 		this._removeLayer( this.state.dropLayerId );
 		this._resetUpload();
@@ -773,7 +790,7 @@ class Upload extends Component {
 	_uploadForm = ( ) => {
 
 		this.refs.form._submit();
-		this._hideUploadDropDialog();
+		this._hideDropSheet();
 
 	}
 
@@ -891,7 +908,7 @@ class Upload extends Component {
 				source: markerSource,
 				layer: markerLayer,
 				position: 'country_label_1',
-				onClick: this._showFeatureDialog
+				onClick: this._showFeatureSheet
 
 			}
 
@@ -994,21 +1011,21 @@ class Upload extends Component {
 
 	// OTHER
 
-	_showFeatureDialog = ( featureToShow ) => {
+	_showFeatureSheet = ( featureToShow ) => {
 
 		this.setState( { 
 
 			featureToShow: featureToShow, 
-			showFeatureDialog: true, 
+			showFeatureSheet: true, 
 			blockDropzone: true 
 
 		} );
 
 	}
 
-	_hideFeatureDialog = ( ) => {
+	_hideFeatureSheet = ( ) => {
 
-		this.setState( { showFeatureDialog: false, featureToShow: undefined, blockDropzone: false } );
+		this.setState( { showFeatureSheet: false, featureToShow: undefined, blockDropzone: false } );
 
 	}
 
@@ -1036,9 +1053,9 @@ class Upload extends Component {
 
 	}
 
-	_hideUploadDropDialog = ( ) => {
+	_hideDropSheet = ( ) => {
 
-		this.setState( { showUploadDropDialog: false } );
+		this.setState( { showDropSheet: false } );
 
 	}
 
