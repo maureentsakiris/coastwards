@@ -24,6 +24,20 @@ export default class Sheet extends Component {
 
 	};
 
+	componentWillUpdate ( props ){
+
+		if( props.active ){
+
+			document.body.setAttribute( 'style', 'overflow: hidden' );
+
+		}else{
+
+			document.body.removeAttribute( 'style' );
+
+		}
+
+	}
+
 	componentDidMount (){
 
 		window.addEventListener( 'keydown', ( e ) => {
@@ -50,6 +64,7 @@ export default class Sheet extends Component {
 
 		this.state = {
 
+
 		}
 
 	}
@@ -57,7 +72,7 @@ export default class Sheet extends Component {
 	render () {
 
 		const { className, active, onEscKeyDown, onOverlayClick, children, ...restProps } = this.props; // eslint-disable-line no-unused-vars
-		
+
 		const cls = Classnames( className, style.sheet, {
 
 			[ style.active ]: active
@@ -79,6 +94,12 @@ export default class Sheet extends Component {
 			</div>
 
 		)
+
+	}
+
+	_onOverlayClick = ( ) => {
+
+		this.setState( { show: false } );
 
 	}
 

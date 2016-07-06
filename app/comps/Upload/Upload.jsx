@@ -393,6 +393,7 @@ class Upload extends Component {
 					active={ showDropSheet } 
 					drop={ dropToUpload }
 					onEscKeyDown={ this._cancelUpload }
+					onOverlayClick={ this._cancelUpload }
 					onCancelClick={ this._cancelUpload }
 					onUploadClick={ this._uploadForm }
 				/>
@@ -970,42 +971,6 @@ class Upload extends Component {
 
 		} );
 
-		/*const { formatMessage } = this.props.intl;
-
-		let res = JSON.parse( response );
-
-		if( res.status == 'KO' ){
-
-			let options = {
-
-				message: formatMessage( messages.screen_upload_error ),
-				active: true,
-				label: formatMessage( messages.screen_upload_error_action_label ),
-				onClick: this._resetScreen,
-				showLoader: false
-
-			}
-			this.setState( { screenOptions: options } );
-
-			this._removeLayer( this.state.dropLayerId );
-			this._resetUpload();
-			this._flyOut();
-
-		}else{
-
-			let options = {
-
-				message: formatMessage( messages.screen_upload_success ),
-				label: '',
-				active: true,
-				showLoader: false
-
-			}
-
-			this.setState( { screenOptions: options }, this._showThankYou );
-
-		}*/
-
 	}
 
 
@@ -1025,7 +990,7 @@ class Upload extends Component {
 
 	_hideFeatureSheet = ( ) => {
 
-		this.setState( { showFeatureSheet: false, featureToShow: undefined, blockDropzone: false } );
+		this.setState( { showFeatureSheet: false, blockDropzone: false } );
 
 	}
 

@@ -1,4 +1,5 @@
 @import '../../../app/styles/_base';
+@import '../../../app/styles/_coastwards';
 
 .screen{
 
@@ -8,7 +9,7 @@
 	color: #fff;
 	opacity: 0;
 	pointer-events: none;
-	transition: opacity 2s;
+	transition: opacity $bg-fade-duration;
 
 	p{
 

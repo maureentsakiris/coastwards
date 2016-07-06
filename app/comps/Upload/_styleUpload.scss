@@ -4,7 +4,8 @@
 .upload{
 
 	width: 100%;
-	min-height: 80vh; //FUCKING FIREFOX (AND PROBABLY ALSO IE) wouldn't be necessary otherwise
+	height: $heightContent-moz;
+	height: $heightContent-webkit;
 	height: $heightContent;
 
 }

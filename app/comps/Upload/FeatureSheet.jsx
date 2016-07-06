@@ -175,7 +175,7 @@ class FeatureSheet extends Component {
 
 			<div ref="content" className={ style.content } onScroll={ this._handleScroll }>
 				<img src={ props.image } className={ style.image } />
-				<div id="Inner" className={ style.inner }>
+				<div className={ style.inner }>
 					{ props.comment && <p className={ style.comment }>{ props.comment }</p> }
 					<div id="Grid" className={ style.grid }>
 						{ props.material && <p className={ style.g0 }><i className={ clsIcon }>texture</i>{ material }</p> }
