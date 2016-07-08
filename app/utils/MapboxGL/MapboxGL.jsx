@@ -81,7 +81,7 @@ export default class MapboxGL extends Component {
 		
 	}
 
-	shouldComponentUpdate ( ){
+	shouldComponentUpdate ( nextProps ){
 
 		return false;
 

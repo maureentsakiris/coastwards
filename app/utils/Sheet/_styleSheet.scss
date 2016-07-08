@@ -6,7 +6,6 @@ $fade: $bg-fade-duration / 2;
 .sheet{
 
 	@extend %flexcontainer;
-	flex-direction: column-reverse;
 
 	position: absolute;
 	top: 0;
@@ -14,7 +13,7 @@ $fade: $bg-fade-duration / 2;
 	width: 100%;
 	height: 100%;
 	transition: background-color $fade;
-	background-color: rgba(0, 149, 255, 0);
+	background-color: rgba(0, 0, 0, 0);
 	pointer-events: none;
 	overflow: hidden;
 
@@ -24,38 +23,69 @@ $fade: $bg-fade-duration / 2;
 
 .active{
 
-	background-color: rgba(0, 149, 255, 0.3);
-	pointer-events: all; 
+	background-color: rgba(0, 0, 0, 0.6);
+	pointer-events: all;
 
 }
 
 .paper{
 
 	@extend %flexitem;
-	/* align-self: center;
-	flex-grow: 1; */
-	max-height: 80%;
 	flex-grow: 0;
-	width: 90vh;
-	max-width: 96vw;
-	background-color: #fff;
 	position: relative;
-	bottom: -80%;
-	transition: bottom 400ms;
+
+	background-color: #fff;
+	margin: 0 auto;
+
+	transition: bottom 300ms, right 300ms;
 	transition-timing-function: ease-out;
 
 	@include shadow-16dp();
-	border-radius: 3px 3px 0 0;
 	overflow: hidden;
 	overflow-y: scroll;
+	pointer-events: all;
 
-	margin: 0 auto;
+}
+
+.sheet{
+
+	flex-direction: column-reverse;
+
+}
+
+.paper{
+
+	bottom: -100vh;
 
 }
 
 .show{
 
 	bottom: 0;
+
+}
+
+@media all and (orientation:landscape) {
+
+	.paper{
+
+		width: 90vh;
+		max-width: 800px;
+		max-height: 90%;
+
+	}
+
+}
+
+@media all and (orientation:portrait) {
+
+	.paper{
+
+		width: 800px;
+		max-width: 96vw;
+		max-height: 90%;
+
+	}
 
 }
 

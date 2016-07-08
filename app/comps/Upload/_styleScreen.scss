@@ -13,22 +13,16 @@
 
 	p{
 
-		font-size: 3.4rem;
+		font-size: 2.5rem;
 		line-height: 1.2;
 		padding: $layout-gutter-width;
 		font-weight: 500;
-
-		.nowrap{
-
-			display: block;
-
-		}
 
 	}
 
 	[data-react-toolbox="button"]{
 
-		font-size: 2rem;
+		//font-size: 2rem;
 		line-height: 1.2;
 		color: #fff !important;
 		background: rgba(33, 33, 33, 0.1);
@@ -54,5 +48,21 @@
 
 	opacity: 1;
 	pointer-events: initial;
+
+}
+
+@media all and (orientation:landscape) {
+
+	.nowrap{
+
+		display: block;
+
+	}
+
+}
+
+@media all and (orientation:portrait) {
+
+	
 
 }

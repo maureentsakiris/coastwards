@@ -129,7 +129,8 @@ class FeatureSheet extends Component {
 
 	render () {
 
-		const { className, active, onEscKeyDown, onOverlayClick, feature, ...restProps } = this.props; // eslint-disable-line no-unused-vars
+		const { formatMessage/*, locale*/ } = this.props.intl;
+		const { intl, className, active, onEscKeyDown, onOverlayClick, feature, ...restProps } = this.props; // eslint-disable-line no-unused-vars
 		
 		const cls = Classnames( className );
 

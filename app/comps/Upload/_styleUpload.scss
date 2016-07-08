@@ -15,12 +15,38 @@
 	position: absolute;
     width: 100%;
     height: 100%;
+    left: 0;
 
 }
 
 .map{
 
 	// font-family: $preferred-font;
+	transition: width 300ms, height 300ms;
+	top: 0;
+	left: 0;
+
+}
+
+@media all and (orientation:landscape) {
+
+	.moveOver{
+
+		width: 50vw;
+		height: 100%;
+
+	}
+
+}
+
+@media all and (orientation:portrait) {
+
+	.moveOver{
+
+		height: 50vh;
+		width: 100%;
+
+	}
 
 }
 

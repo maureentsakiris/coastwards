@@ -2,14 +2,53 @@ import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { defineMessages, injectIntl, intlShape } from 'react-intl';
 import Classnames from 'classnames';
-/*import util from 'util';*/
+import _ from 'underscore';
 
 import Sheet from '../../utils/Sheet/Sheet';
+
+import Options from './Options';
+import Input from 'react-toolbox/lib/input';
+import Dialog from 'react-toolbox/lib/dialog';
 
 import style from './_styleDropSheet';
 
 const messages = defineMessages( {
 
+	upload_drop_dialog_comment_label:{
+		id: "upload_drop_dialog_comment_label",
+		description: "1 - ",
+		defaultMessage: "Say hello, leave a note, tell us a story ..."
+	},
+	upload_drop_dialog_comment_placeholder:{
+		id: "upload_drop_dialog_comment_placeholder",
+		description: "1 - ",
+		defaultMessage: "Hello world!"
+	},
+	upload_drop_dialog_material_label:{
+		id: "upload_drop_dialog_material_label",
+		description: "1 - ",
+		defaultMessage: "How would you describe the coast material?"
+	},
+	upload_drop_dialog_upload_label:{
+		id: "upload_feature_dialog_upload_label",
+		description: "0 - ",
+		defaultMessage: "Upload"
+	},
+	upload_drop_dialog_cancel_label:{
+		id: "upload_drop_dialog_cancel_label",
+		description: "0 - ",
+		defaultMessage: "Cancel"
+	},
+	upload_drop_dialog_intro:{
+		id: "upload_drop_dialog_intro",
+		description: "1 - ",
+		defaultMessage: "Help us even more by answering a few questions, or scroll down to click the upload button."
+	},
+	upload_drop_dialog_header:{
+		id: "upload_drop_dialog_header",
+		description: "0 - ",
+		defaultMessage: "Your image is ready for upload!"
+	},
 	sand:{
 		id: "sand",
 		description: "0 - ",
@@ -100,20 +139,21 @@ const messages = defineMessages( {
 		description: "0 - ",
 		defaultMessage: "Fortification"
 	},
-	verified_yes:{
-		id: "verified_yes",
+	uploading_image:{
+		id: "uploading_image",
 		description: "0 - ",
-		defaultMessage: "Verified"
+		defaultMessage: "Uploading image"
 	},
-	verified_no:{
-		id: "verified_no",
+	updating_database:{
+		id: "updating_database",
 		description: "0 - ",
-		defaultMessage: "Not verified"
+		defaultMessage: "Updating database"
 	}
+	
 
 } );
 
-class FeatureSheet extends Component {
+class DropSheet extends Component {
 
 
 	constructor ( props ) {
@@ -123,17 +163,20 @@ class FeatureSheet extends Component {
 
 		this.state = {
 
+			comment: '',
+			material: ''
+
 		}
 
 	}
 
 	render () {
 
-		const { className, active, onEscKeyDown, onOverlayClick, drop, ...restProps } = this.props; // eslint-disable-line no-unused-vars
+		const { intl, className, active, onEscKeyDown, onOverlayClick, drop, onCancelClick, onUploadClick, ...restProps } = this.props; // eslint-disable-line no-unused-vars
 		
 		const cls = Classnames( className );
 
-		const content = "upload content";
+		const content = this._renderDrop();
 
 		return (
 
@@ -145,9 +188,66 @@ class FeatureSheet extends Component {
 
 	}
 
+	_renderDrop = ( ) => {
+
+		const { formatMessage/*, locale*/ } = this.props.intl;
+		let { drop } = this.props;
+		let { comment } = this.state;
+
+		const materials = [
+
+			{ value: 'sand', label: formatMessage( messages.sand ), description: formatMessage( messages.sand_description ) },
+			{ value: 'pebbles', label: formatMessage( messages.pebbles ), description: formatMessage( messages.pebbles_description ) },
+			{ value: 'rock', label: formatMessage( messages.rock ), description: formatMessage( messages.rock_description )  },
+			{ value: 'mud', label: formatMessage( messages.mud ), description: formatMessage( messages.mud_description ) },
+			{ value: 'ice', label: formatMessage( messages.ice ), description: formatMessage( messages.ice_description ) },
+			{ value: 'man_made', label: formatMessage( messages.man_made ), description: formatMessage( messages.man_made_description ) },
+			{ value: 'not_sure', label: formatMessage( messages.not_sure ), "description": formatMessage( messages.not_sure_description )  }
+
+		];
+
+		return (
+
+			<div>
+				{ drop && <img src={ drop.file.preview } className={ style.image } /> }
+				<div className={ style.inner } >
+					<h3>{ formatMessage( messages.upload_drop_dialog_header ) }</h3>
+					<p>{ formatMessage( messages.upload_drop_dialog_intro ) }</p>
+					<div className={ style.form }>
+						<h5 ref="material">{ formatMessage( messages.upload_drop_dialog_material_label ) } </h5>
+						<Options 
+							options={ materials } 
+							onChange={ this._handleChange.bind( this, 'material' ) }
+						/>
+						<h5 ref="comment">{ formatMessage( messages.upload_drop_dialog_comment_label ) }</h5>
+						<Input 
+							type="text" 
+							floating={ false }
+							hint={ formatMessage( messages.upload_drop_dialog_comment_placeholder ) } 
+							value={ comment } 
+							multiline={ true } 
+							onChange={ this._handleChange.bind( this, 'comment' ) }
+						/>
+					</div>
+				</div>
+			</div>
+
+		)
+
+
+	}
+
+	_handleChange = ( name, value ) => {
+
+		// SKIPPING ANY KIND OF VALIDATION HERE ....
+		_.extend( this.props.drop, { [ name ]: value } );
+		this.setState( { [ name ]: value } );
+
+	};
+
 }
 
-FeatureSheet.propTypes = {
+DropSheet.propTypes = {
 
 	intl: intlShape.isRequired,
 	className: PropTypes.string,
@@ -155,17 +255,19 @@ FeatureSheet.propTypes = {
 	onEscKeyDown: PropTypes.func,
 	onOverlayClick: PropTypes.func,
 
-	drop: PropTypes.object
+	drop: PropTypes.object,
+	onCancelClick: PropTypes.func,
+	onUploadClick: PropTypes.func
 
 };
 
-FeatureSheet.defaultProps = {
+DropSheet.defaultProps = {
 
 	active: false
 
 }
 
-FeatureSheet.contextTypes = {
+DropSheet.contextTypes = {
 
 	showDialog: PropTypes.func,
 	hideDialog: PropTypes.func,
@@ -175,4 +277,4 @@ FeatureSheet.contextTypes = {
 
 };
 
-export default injectIntl( FeatureSheet );
+export default injectIntl( DropSheet );

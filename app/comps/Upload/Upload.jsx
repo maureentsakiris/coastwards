@@ -265,6 +265,7 @@ class Upload extends Component {
 
 		} );
 		const clsMap = Classnames( style.fill, style.map );
+
 		const clsUploadButton = Classnames ( style.uploadButton, {
 
 			[ style.blockUploadButton ]: blockDropzone
@@ -748,17 +749,37 @@ class Upload extends Component {
 
 	_promiseShowUploadDialog = ( validDrop ) => {
 
-		this.setState( {
+		return new Promise( ( resolve ) => {
 
-			dropToUpload: validDrop,
-			showDropSheet: true,
-			dropLayerId: validDrop.layerId
+			this.setState( {
+
+				dropToUpload: validDrop,
+				showDropSheet: true,
+				dropLayerId: validDrop.layerId
+
+			}, resolve( validDrop ) );
 
 		} );
 
-		return true;
-
 	}
+
+	/*_promiseCenterMap = ( validDrop ) => {
+
+		return new Promise( ( resolve ) => {
+
+			const recenter = () => {
+
+				this.map.resize();
+				//this.map.panTo( [ validDrop.specs.long, validDrop.specs.lat ] );
+				resolve( validDrop );
+
+			}
+
+			setTimeout( recenter, 300 );
+
+		} );
+
+	}*/
 
 	_onDropsValidated = ( validDrops/*, invalidDrops*/ ) => {
 
@@ -767,6 +788,7 @@ class Upload extends Component {
 		.then( this._promiseDropMarker )
 		.then( this._promiseGoFlying )
 		.then( this._promiseShowUploadDialog )
+		//.then( this._promiseCenterMap )
 		.catch( ( error ) => {
 
 			this.context.logError( error );
