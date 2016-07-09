@@ -67,12 +67,32 @@
 
 }
 
+@media all and (orientation:landscape) {
+
+  .nowrap{
+
+    display: block;
+
+  }
+
+}
+
+@media all and (orientation:portrait) {
+
+  .nowrap{
+
+    margin-right: 0.2em;
+
+  }
+
+}
+
 
 //############################################################################################ LAYOUT
 
 %corset{
 
-  max-width: 960px;
+  max-width: 800px;
   margin: 0 auto;
 
 }
@@ -316,7 +336,7 @@ $corsetPadding: 5vh;
 %dialog{
 
   transition: height 300ms, width 300ms;
-  
+
 }
 
 

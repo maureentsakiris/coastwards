@@ -57,7 +57,7 @@ class Intro extends Component {
 			<div id="Intro" className={ style.intro }>
 				<div className={ style.inner }>
 					<img className={ style.logo } src={ logo } />
-					<h1 className={ style.headline }>{ formatMessage( messages.intro_1 ) }<br/><span>{ formatMessage( messages.intro_2 ) }</span></h1>
+					<h1 className={ style.headline }><span className={ style.nowrap }>{ formatMessage( messages.intro_1 ) }</span><span className={ style.nowrap }>{ formatMessage( messages.intro_2 ) }</span></h1>
 					<p className={ style.tagline }>{ formatMessage( messages.tagline ) }</p>
 					<IconButton className={ style.down } icon="expand_more" accent onClick={ this.props.onArrowClick } />
 				</div>

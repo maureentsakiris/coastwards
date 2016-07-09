@@ -7,15 +7,16 @@
 	height: $heightIntro;
 	box-sizing: border-box;
 	text-align: center;
-	color: $color-primary;
+	color: $color-primary-dark;
 
 }
 
-@include LtSM( ){
+@include GtSM( ){
 
 	.intro{
 
-		height: auto;
+		position: relative;
+		top: -36px;
 
 	}
 
@@ -35,60 +36,27 @@
 
 .logo{
 
-	max-width: 340px;
+	max-width: 250px;
 	min-width: 200px;
-    width: 50vw;
+    width: 30vw;
+    margin-top: 20px;
 
 }
 
-@include LtSM( ){
-
-	.logo{
-
-		width: 200px;
-
-	}
-
-}
-
-/* @include MD( ){
-
-	.logo{
-
-		width: 250px;
-
-	}
-
-} */
 
 .headline{
 
-	font-weight: $font-weight-bold;
-	font-size: 3.3vw;
+	font-size: 28px;
 	margin-top: 3vh;
 	color: $color-primary-dark;
 
-	/* span{
-
-    	font-weight: $font-weight-thin;
-    	font-size: 3vw;
-    	// color: $color-primary;
-
-    } */
-
 }
 
-@include LtSM( ){
+@include GtMD( ){
 
 	.headline{
 
-		font-size: 24px;
-
-		/* span{
-
-			font-size: 18px;
-
-		} */
+		font-size: 38px;
 
 	}
 
@@ -98,8 +66,8 @@
 
 	margin-top: 4vh;
 	@include typo-headline();
-	font-size: 2vh;
-	color: $palette-grey-500;
+	font-size: 2.5vh;
+	color: $palette-grey-700;
 	line-height: 2rem;
 
 }

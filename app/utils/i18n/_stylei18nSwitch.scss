@@ -10,3 +10,13 @@
     z-index: 1; 
 
 }
+
+@include LtSM( ){
+
+	.languages{
+
+		display: none;
+
+	}
+
+}

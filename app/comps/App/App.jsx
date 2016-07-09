@@ -105,19 +105,13 @@ class App extends Component {
 
 	_scrollToContent = ( ) => {
 
-		scroller.scrollTo( "Content", { smooth: true } );
-
-	}
-
-	_jumpToContent = ( ) => {
-
 		scroller.scrollTo( "Content", { smooth: true, offset: -65 } );
 
 	}
 
 	_loadContent = ( comp ) => {
 
-		this.setState( { content: comp }, this._jumpToContent );
+		this.setState( { content: comp }, this._scrollToContent );
 
 	}
 
