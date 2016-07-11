@@ -991,6 +991,11 @@ class Upload extends Component {
 
 			popup.setDOMContent( this.refs.feature );
 
+			var cz = this.map.getZoom();
+			var z = cz < 2 ? 2 : cz;
+
+			this.map.flyTo( { speed: 0.4, center: featureToShow.geometry.coordinates, offset: [ 0, 100 ], zoom: z } );
+
 		}
 
 		this.setState( { 

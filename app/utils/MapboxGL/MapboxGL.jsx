@@ -264,13 +264,6 @@ export default class MapboxGL extends Component {
 				}
 
 				var feature = features[ 0 ];
-
-				var cz = this.map.getZoom();
-				
-				var z = cz < 2 ? 2 : cz;
-
-				this.map.flyTo( { center: feature.geometry.coordinates, offset: [ 0, 100 ], zoom: z } );
-
 				
 				this.popup.setLngLat( feature.geometry.coordinates )
 					.addTo( this.map );
