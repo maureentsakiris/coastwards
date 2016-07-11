@@ -6,6 +6,8 @@ $fade: $bg-fade-duration / 2;
 .sheet{
 
 	@extend %flexcontainer;
+	flex-direction: column-reverse;
+	align-items: center;
 
 	position: absolute;
 	top: 0;
@@ -23,8 +25,8 @@ $fade: $bg-fade-duration / 2;
 
 .active{
 
-	background-color: rgba(0, 0, 0, 0.6);
-	pointer-events: all;
+	/* background-color: rgba(0, 0, 0, 0.6);
+	pointer-events: all; */
 
 }
 
@@ -35,9 +37,8 @@ $fade: $bg-fade-duration / 2;
 	position: relative;
 
 	background-color: #fff;
-	margin: 0 auto;
 
-	transition: bottom 300ms, right 300ms;
+	transition: bottom 300ms;
 	transition-timing-function: ease-out;
 
 	@include shadow-16dp();
@@ -45,17 +46,9 @@ $fade: $bg-fade-duration / 2;
 	overflow-y: scroll;
 	pointer-events: all;
 
-}
-
-.sheet{
-
-	flex-direction: column-reverse;
-
-}
-
-.paper{
-
-	bottom: -100vh;
+	width: 40vh;
+	height: 40vh;
+	bottom: -45vh;
 
 }
 
@@ -65,13 +58,20 @@ $fade: $bg-fade-duration / 2;
 
 }
 
-@media all and (orientation:landscape) {
+/* @media all and (orientation:landscape) {
 
 	.paper{
 
-		width: 90vh;
-		max-width: 800px;
-		max-height: 90%;
+		width: 40vw;
+		height: 100%;
+		right: -45vw;
+		top: 0;
+
+	}
+
+	.show{
+
+		right: 0;
 
 	}
 
@@ -81,11 +81,18 @@ $fade: $bg-fade-duration / 2;
 
 	.paper{
 
-		width: 800px;
-		max-width: 96vw;
-		max-height: 90%;
+		width: 100%;
+		height: 70%;
+		right: 0;
+		bottom: -75%;
 
 	}
 
-}
+	.show{
+
+		bottom: 0;
+
+	}
+
+} */
 

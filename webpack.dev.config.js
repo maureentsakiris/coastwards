@@ -70,15 +70,21 @@ const config = {
 				test: /\.modernizrrc$/,
 				loader: 'modernizr'
 			},
-			// https://github.com/sleepycat/mapboxgl-webpack-example
 			{
-				test: /\.js$/,
-				include: path.resolve( __dirname, 'node_modules/webworkify/index.js' ),
-				loader: 'worker'
+				test: /\.json$/,
+				loader: 'json-loader'
 			},
 			{
-				test: /mapbox-gl.+\.js$/,
+				test: /\.js$/,
+				include: path.resolve( 'node_modules/mapbox-gl-shaders/index.js' ),
 				loader: 'transform/cacheable?brfs'
+			}
+		],
+		postLoaders: [ 
+			{
+				include: /node_modules\/mapbox-gl-shaders/,
+				loader: 'transform',
+				query: 'brfs'
 			}
 		]
 	},

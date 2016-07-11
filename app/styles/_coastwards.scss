@@ -1,9 +1,3 @@
-html, body{
-
-  height: 100%;
-
-}
-
 
 //############################################################################################ VARS
 
@@ -13,9 +7,10 @@ $heightInfo: 65px; // Also change the scrollTo offset in App.jsx
 $heightContent: calc(100vh - #{$heightInfo});
 $heightContent-moz: -moz-calc(100vh - #{$heightInfo});
 $heightContent-webkit: -webkit-calc(100vh - #{$heightInfo});
-$heightFooter: 13vh;
 
 $bg-fade-duration: 2s;
+
+$text-color: $palette-grey-800;
 
 
 //############################################################################################ PLACEHOLDERS
@@ -68,9 +63,9 @@ $bg-fade-duration: 2s;
 
 }
 
-p {
+/* p {
 
   @include typo-body-1;
   font-size: 1.7rem;
 
-}
+} */

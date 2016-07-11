@@ -46,7 +46,6 @@
 
 //############################################################################################ TYPOGRAPHY
 
-
 @mixin IconButtonSize( $size ){
 
   width: $size;
@@ -77,11 +76,21 @@
 
 }
 
-@media all and (orientation:portrait) {
+@media (max-width: #{ $layout-breakpoint-xs } ) and (orientation:portrait) {
 
   .nowrap{
 
     margin-right: 0.2em;
+
+  }
+
+}
+
+@media (min-width: #{ $layout-breakpoint-xs + 1 } ) and (orientation:portrait) {
+
+  .nowrap{
+
+    display: block;
 
   }
 

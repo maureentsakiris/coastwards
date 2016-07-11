@@ -5,7 +5,7 @@ import Classnames from 'classnames';
 import _ from 'underscore';
 import Modernizr from 'modernizr';
 
-import { Button, IconButton } from 'react-toolbox/lib/button';
+import { Button } from 'react-toolbox/lib/button';
 import Tooltip from 'react-toolbox/lib/tooltip';
 import ProgressBar from 'react-toolbox/lib/progress_bar';
 const TooltipButton = Tooltip( Button );
@@ -17,6 +17,7 @@ import DropzoneTB from '../../utils/FormTB/DropzoneTB/DropzoneTB';
 import MapboxGL from '../../utils/MapboxGL/MapboxGL';
 import request from '../../utils/Request';
 
+import FeatureSheet from './FeatureSheet';
 import DropSheet from './DropSheet';
 import Screen from './Screen'; 
 
@@ -208,7 +209,7 @@ class Upload extends Component {
 		this.initZoom = 0;
 		this.minZoom = 0;
 		this.maxZoom = 22;
-		this.initCenter = [ 0, 39 ];
+		this.initCenter = [ 150, 39 ];
 
 		//https://gist.github.com/gre/1650294
 		this.easeInOutQuad = function ( t ) {
@@ -237,14 +238,15 @@ class Upload extends Component {
 		this.state = {
 
 			isWindowDrag: false,
+			showFeatureSheet: false,
 			showDropSheet: false,
 			featureToShow: undefined,
-			popup: undefined,
 			dropToUpload: undefined,
 			dropLayerId: undefined,
 			blockDropzone: true,
 			showMapLoader: false,
-			screenOptions: {}
+			screenOptions: {}/*,
+			moveMapOver: false*/
 
 		} 
 
@@ -254,16 +256,20 @@ class Upload extends Component {
 
 		const { formatMessage/*, locale*/ } = this.props.intl;
 		const { className } = this.props;
-		const { isWindowDrag, showDropSheet, featureToShow, dropToUpload, blockDropzone, showMapLoader, screenOptions } = this.state;
+		const { isWindowDrag, showFeatureSheet, showDropSheet, featureToShow, dropToUpload, blockDropzone, showMapLoader, screenOptions/*, moveMapOver*/ } = this.state;
 
 		const cls = Classnames( style.upload, className );
 		const clsForm = Classnames( style.fill, {
 
-			[ style.passEventsToMap ]: !isWindowDrag,
-			[ style.hide ]: blockDropzone
+			[ style.passEventsToMap ]: !isWindowDrag/*,
+			[ style.blockForm ]: showFeatureSheet*/
 
 		} );
-		const clsMap = Classnames( style.fill, style.map );
+		const clsMap = Classnames( style.fill, style.map, {
+
+			/*[ style.moveMapOver ]: moveMapOver*/ 
+
+		} );
 
 		const clsUploadButton = Classnames ( style.uploadButton, {
 
@@ -310,8 +316,8 @@ class Upload extends Component {
 
 			<div id="Upload" className={ cls }>
 				{ showMapLoader && <ProgressBar type="linear" mode="indeterminate" className={ style.mapLoader } /> }
-				<MapboxGL
-					className={ clsMap }
+				<div id="WrapMap" className={ clsMap }>
+					<MapboxGL
 					ref="map"
 					unsupportedTitle={ formatMessage( messages.mapbox_warning_unsupported_title ) }
 					unsupportedMessage={ formatMessage( messages.mapbox_warning_unsupported_message ) }
@@ -328,7 +334,8 @@ class Upload extends Component {
 					navigationControlPosition="top-left"
 					style="mapbox://styles/maureentsakiris/cinxhoec70043b4nmx0rkoc02"
 					accessToken="pk.eyJ1IjoibWF1cmVlbnRzYWtpcmlzIiwiYSI6ImNpbXM1N2Z2MTAwNXF3ZW0ydXI3eXZyOTAifQ.ATjSaskEecYMiEG36I_viw"
-				/>
+					/>
+				</div>
 				<FormTB 
 					name="upload" 
 					className={ clsForm } 
@@ -381,20 +388,13 @@ class Upload extends Component {
 					className={ clsUploadButton } 
 					onClick={ this._openInput } 
 				/>
-				{ featureToShow && 
-				<div ref="feature" className={ style.feature }>
-					<img src={ featureToShow.properties.image } />
-					<div className={ style.inner }>	
-						<div>
-							<IconButton icon="mode_comment" />
-							<IconButton icon="send" />
-							<IconButton icon="favorite" accent />
-							<IconButton className={ style.clear } icon="clear" onClick={ this._hideFeaturePopup } />
-						</div>
-						<p className={ style.comment }>This is awesome! GO WORLD!</p>
-					</div>
-				</div>
-				}
+				<FeatureSheet 
+					id="Featuresheet"
+					active={ showFeatureSheet }
+					onOverlayClick={ this._hideFeatureSheet } 
+					onEscKeyDown={ this._hideFeatureSheet }  
+					feature={ featureToShow } 
+				/>
 				<DropSheet
 					id="Dropsheet"
 					active={ showDropSheet } 
@@ -485,7 +485,7 @@ class Upload extends Component {
 			source: markerSource,
 			layer: markerLayer,
 			position: 'country_label_1',
-			onPopup: this._showFeaturePopup
+			onClick: this._showFeatureSheet
 
 		}
 
@@ -499,14 +499,12 @@ class Upload extends Component {
 
 		return new Promise( ( resolve, reject ) => {
 
-
-
 			this.refs.map._addLayer( geojsonLayer );
 			this.refs.map._clusterLayer( clusterLayer );
 
 			this._showMapLoader( false );
 
-			if( !this.map.getLayer( 'markers-circle' ) || !this.map.getLayer( 'markers-count' ) ){
+			if( !this.refs.map._getLayer( 'markers-circle' ) || !this.refs.map._getLayer( 'markers-count' ) ){
 
 				reject( Error( 'Upload/_promiseDisplayGeojson/Failed to display geojson markers' ) );
 
@@ -690,13 +688,13 @@ class Upload extends Component {
 				source: markerSource,
 				layer: markerLayer,
 				position: 'country_label_1',
-				onPopup: this._showFeaturePopup
+				onClick: this._showFeatureSheet
 
 			}
 
 			this.refs.map._addLayer( layer );
 
-			if( _.isObject( this.map.getLayer( id ) ) ){
+			if( _.isObject( this.refs.map._getLayer( id ) ) ){
 
 				validDrop.layerId = id;
 				validDrop.specs = specs;
@@ -939,13 +937,13 @@ class Upload extends Component {
 				source: markerSource,
 				layer: markerLayer,
 				position: 'country_label_1',
-				onPopup: this._showFeaturePopup
+				onClick: this._showFeatureSheet
 
 			}
 
 			this.refs.map._addLayer( layer );
 
-			if( _.isObject( this.map.getLayer( id ) ) ){
+			if( _.isObject( this.refs.map._getLayer( id ) ) ){
 
 				uploaded.layerId = id;
 				uploaded.specs = specs;
@@ -1006,44 +1004,50 @@ class Upload extends Component {
 
 	// OTHER
 
-	_showFeaturePopup = ( popup, featureToShow ) => {
+	_showFeatureSheet = ( featureToShow ) => {
 
-		const _setPopupDOM = ( ) => {
-
-			popup.setDOMContent( this.refs.feature );
-
-		}
+		//let { featureToShow } = this.state;
+		//this.map.panTo( featureToShow.geometry.coordinates );
 
 		this.setState( { 
 
-			featureToShow: featureToShow,
-			blockDropzone: true,
-			popup: popup
+			featureToShow: featureToShow, 
+			showFeatureSheet: true, 
+			blockDropzone: true/*,
+			moveMapOver: true*/
 
-		}, _setPopupDOM );
+		} );
+
+		//setTimeout( this._moveMapOver, 300 );
 
 	}
 
-	_hideFeaturePopup = ( ) => {
+	/*_moveMapOver = ( ) => {
 
-		console.log( "hiding p" );
+		this.setState( { moveMapOver: true } );
+		this.map.resize();
 
-		let p = this.state.popup;
+		let { featureToShow } = this.state;
+		//this.map.panTo( featureToShow.geometry.coordinates );
 
-		if( p ){
+	}*/
 
-			p.remove();
+	/*_moveMapBack = ( ) => {
 
-			this.setState( { 
+		this.map.resize();
 
-				//featureToShow: undefined,
-				popup: undefined, 
-				blockDropzone: false
-
-			} );
+	}*/
 
 
-		}
+	_hideFeatureSheet = ( ) => {
+
+		this.setState( { 
+
+			showFeatureSheet: false, 
+			blockDropzone: false/*,
+			moveMapOver: false */
+
+		} );
 
 	}
 
@@ -1079,13 +1083,13 @@ class Upload extends Component {
 
 	_removeLayer = ( id ) => {
 
-		this.map.removeLayer( id );
+		this.refs.map._removeLayer( id );
 
 	}
 
 	_flyOut = ( ) => {
 
-		this.map.zoomTo( 1, { 
+		this.refs.map._zoomTo( 1, { 
 			duration: 3000, 
 			easing: this.easeInQuint 
 		} );

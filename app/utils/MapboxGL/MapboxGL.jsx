@@ -5,7 +5,7 @@ import underscoreDeepExtend from 'underscore-deep-extend';
 _.mixin( { deepExtend: underscoreDeepExtend( _ ) } );
 import mapboxgl from 'mapbox-gl';
 
-import style from './_styleMapboxGL';
+import styleCSS from './_styleMapboxGL';
 
 export default class MapboxGL extends Component {
 
@@ -92,6 +92,7 @@ export default class MapboxGL extends Component {
 		super ( props );
 
 		this.map;
+		this.popup;
 
 		this.state = {
 
@@ -101,12 +102,12 @@ export default class MapboxGL extends Component {
 
 	render () {
 
-		const { className, ref } = this.props;
-		const cls = Classnames( style.map, className );  
+		const { className, ref, unsupportedTitle, unsupportedMessage, language, accessToken, container, style, center, zoom, minZoom, maxZoom, hash, interactive, bearing, attributionControl, navigationControl, navigationControlPosition, maxBounds, scrollZoom, boxZoom, dragRotate, dragPan, keyboard, doubleClickZoom, touchZoomRotate, failIfMajorPerformanceCaveat, preserveDrawingBuffer, layers, ...restProps } = this.props; // eslint-disable-line no-unused-vars
+		const cls = Classnames( styleCSS.map, className );  
 
 		return (
 
-			<div id="MapboxGl" className={ cls } ref={ ref } />
+			<div {...restProps} id="MapboxGl" className={ cls } ref={ ref } />
 
 		)
 
@@ -139,6 +140,7 @@ export default class MapboxGL extends Component {
 
 				mapboxgl.accessToken = accessToken;
 				this.map = new mapboxgl.Map( options );
+				this.popup = new mapboxgl.Popup( { closeButton: false, closeOnClick: false, anchor: 'bottom' } );
 
 				if( !( this.map instanceof mapboxgl.Map ) ){
 
@@ -210,7 +212,7 @@ export default class MapboxGL extends Component {
 
 	_addLayer = ( o ) => {
 
-		let { name, source, layer, position, onClick } = o;
+		let { name, source, layer, position, onPopup } = o;
 		
 		/*let sourceExtended = _.deepExtend( this.sourceDefaults, source );*/
 		let layerExtended = _.deepExtend( layer, { id: name, source: name } );
@@ -218,7 +220,7 @@ export default class MapboxGL extends Component {
 		this.map.addSource( name, source );
 		this.map.addLayer( layerExtended, position );
 
-		if( onClick ){
+		if( _.isFunction( onPopup ) ){
 
 			this.map.on( 'mousemove', ( e ) => {
 				
@@ -239,7 +241,16 @@ export default class MapboxGL extends Component {
 
 				var feature = features[ 0 ];
 
-				onClick( feature );
+				var cz = this.map.getZoom();
+				var z = cz < 1 ? 1.2 : cz;
+
+				this.map.flyTo( { center: feature.geometry.coordinates, offset: [ 0, 100 ], zoom: z } );
+
+				
+				this.popup.setLngLat( feature.geometry.coordinates )
+					.addTo( this.map );
+
+				onPopup( this.popup, feature );
 
 			} );
 
@@ -317,54 +328,6 @@ export default class MapboxGL extends Component {
 			} );
 
 		}*/
-
-	}
-
-	_hideLayer = ( id ) => {
-
-		this.map.setLayoutProperty( id, 'visibility', 'none' );
-
-	}
-
-	_getLayer = ( id ) => {
-
-		return this.map.getLayer( id );
-
-	}
-
-	_removeLayer = ( id ) => {
-
-		return this.map.removeLayer( id );
-
-	}
-
-	_zoomTo = ( zoom, options ) => {
-
-		this.map.zoomTo( zoom, options );
-
-	}
-
-	_flyToInit = ( speed, curve, easing ) => {
-
-		let s = speed || 1;
-		let c = curve || 0.4;
-		let e = easing || function ( t ) { 
-
-			return t<.5 ? 2*t*t : -1+( 4-2*t )*t; 
-
-		} 
-
-		let { center, zoom } = this.props;
-
-		this.map.flyTo( { 
-
-			center: [ center[ 0 ], center[ 1 ] ], 
-			zoom: zoom,
-			speed: s,
-			curve: c,
-			easing: e
-
-		} );
 
 	}
 

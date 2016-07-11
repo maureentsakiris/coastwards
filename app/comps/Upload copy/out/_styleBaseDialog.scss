@@ -1,0 +1,25 @@
+@import '../../../app/styles/_base';
+
+
+.dialog{
+
+	//@extend %dialog;
+	&>[role="body"]{
+
+		padding: 0;
+
+	}
+
+}
+
+.image{
+
+	max-width: 100%;
+
+}
+
+.inner{
+
+	padding: $layout-gutter-width-sm;
+
+}
