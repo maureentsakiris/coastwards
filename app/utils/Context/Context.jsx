@@ -61,7 +61,7 @@ export default class Context extends Component {
 
 	componentDidMount (){
 
-		//this._showDialog( { title: "Readme", content: "Unless you stumbled upon this website somehow, you are a friend or colleague ... or family. I just want to warn you that this is a testing site and I might be updating it just this second (No matter if it's three in the morning). I will NOT SAVE the images you upload so keep them close. But please do give me feedback on how this website worked for you. THANK YOU!!! Maureen" } );
+		this._showDialog( { title: "Readme", content: "Unless you stumbled upon this website somehow, you are a friend or colleague ... or family. I just want to warn you that this is a testing site and I might be updating it just this second (No matter if it's three in the morning). I will NOT SAVE the images you upload so keep them close. But please do give me feedback on how this website worked for you. THANK YOU!!! Maureen" } );
 		
 
 		if( Modernizr.pointerevents || !Modernizr.flexbox || !Modernizr.flexwrap || !Modernizr.xhr2 || !Modernizr.xhrresponsetypejson ){

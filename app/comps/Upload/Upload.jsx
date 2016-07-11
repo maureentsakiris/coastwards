@@ -371,7 +371,7 @@ class Upload extends Component {
 							<IconButton icon="favorite" accent />
 							<IconButton className={ style.clear } icon="clear" onClick={ this._hideFeaturePopup } />
 						</div>
-						<p className={ style.comment }>This is awesome! GO WORLD!</p>
+						<p className={ style.comment }>(some user comment) GO WORLD!</p>
 					</div>
 				</div>
 				}
