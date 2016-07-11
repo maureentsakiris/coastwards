@@ -17,7 +17,8 @@ import DropzoneTB from '../../utils/FormTB/DropzoneTB/DropzoneTB';
 import MapboxGL from '../../utils/MapboxGL/MapboxGL';
 import request from '../../utils/Request';
 
-import DropSheet from './DropSheet';
+/*import Feature from './Feature';*/
+import DropForm from './DropForm';
 import Screen from './Screen'; 
 
 
@@ -210,36 +211,12 @@ class Upload extends Component {
 		this.maxZoom = 22;
 		this.initCenter = [ 0, 39 ];
 
-		//https://gist.github.com/gre/1650294
-		this.easeInOutQuad = function ( t ) {
-
-			return t<.5 ? 2*t*t : -1+( 4-2*t )*t 
-
-		};
-		this.easeInOutQuint = function ( t ) {
-
-			return t<.5 ? 16*t*t*t*t*t : 1+16*( --t ) *t*t*t*t;
-
-		};
-
-		this.easeOutQuint= function ( t ) { 
-
-			return 1+( --t )*t*t*t*t;
-
-		};
-
-		this.easeInQuint= function ( t ) {
-
-			return t*t*t*t*t;
-
-		};
-
-		this.state = {
+		this.state = { 
 
 			isWindowDrag: false,
-			showDropSheet: false,
 			featureToShow: undefined,
-			popup: undefined,
+			popupInstance: undefined,
+			showDropForm: false,
 			dropToUpload: undefined,
 			dropLayerId: undefined,
 			blockDropzone: true,
@@ -254,7 +231,7 @@ class Upload extends Component {
 
 		const { formatMessage/*, locale*/ } = this.props.intl;
 		const { className } = this.props;
-		const { isWindowDrag, showDropSheet, featureToShow, dropToUpload, blockDropzone, showMapLoader, screenOptions } = this.state;
+		const { isWindowDrag, featureToShow, showDropForm, dropToUpload, blockDropzone, showMapLoader, screenOptions } = this.state;
 
 		const cls = Classnames( style.upload, className );
 		const clsForm = Classnames( style.fill, {
@@ -330,7 +307,8 @@ class Upload extends Component {
 					accessToken="pk.eyJ1IjoibWF1cmVlbnRzYWtpcmlzIiwiYSI6ImNpbXM1N2Z2MTAwNXF3ZW0ydXI3eXZyOTAifQ.ATjSaskEecYMiEG36I_viw"
 				/>
 				<FormTB 
-					name="upload" 
+					id="Form"
+					name="form" 
 					className={ clsForm } 
 					ref="form" 
 					onSubmitProgress={ this._onUploadProgress } 
@@ -364,6 +342,7 @@ class Upload extends Component {
 					/>
 				</FormTB>
 				<Screen 
+					id="Screen"
 					className={ style.fill }
 					message={ screenOptions.message }
 					label={ screenOptions.label }
@@ -373,6 +352,7 @@ class Upload extends Component {
 					progress={ screenOptions.progress }
 				/>
 				<TooltipButton 
+					id="UploadButton"
 					tooltip={ formatMessage( messages.button_tooltip_upload_image ) } 
 					tooltipDelay={ 1000 } 
 					icon="file_upload" 
@@ -395,12 +375,11 @@ class Upload extends Component {
 					</div>
 				</div>
 				}
-				<DropSheet
-					id="Dropsheet"
-					active={ showDropSheet } 
+				<DropForm
+					id="DropForm"
+					active={ showDropForm } 
 					drop={ dropToUpload }
 					onEscKeyDown={ this._cancelUpload }
-					onOverlayClick={ this._cancelUpload }
 					onCancelClick={ this._cancelUpload }
 					onUploadClick={ this._uploadForm }
 				/>
@@ -739,7 +718,7 @@ class Upload extends Component {
 					duration: 5000,
 					speed: 5, // make the flying slow
 					curve: 1, // change the speed at which it zooms out
-					easing: this.easeInOutQuint
+					easing: this.map.easeInOutQuint
 
 				} );
 
@@ -755,14 +734,14 @@ class Upload extends Component {
 
 	}
 
-	_promiseShowUploadDialog = ( validDrop ) => {
+	_promiseShowDropForm = ( validDrop ) => {
 
 		return new Promise( ( resolve ) => {
 
 			this.setState( {
 
 				dropToUpload: validDrop,
-				showDropSheet: true,
+				showDropForm: true,
 				dropLayerId: validDrop.layerId
 
 			}, resolve( validDrop ) );
@@ -795,7 +774,7 @@ class Upload extends Component {
 		this._promiseValidDrop( validDrops )
 		.then( this._promiseDropMarker )
 		.then( this._promiseGoFlying )
-		.then( this._promiseShowUploadDialog )
+		.then( this._promiseShowDropForm )
 		//.then( this._promiseCenterMap )
 		.catch( ( error ) => {
 
@@ -810,7 +789,7 @@ class Upload extends Component {
 
 	_cancelUpload = () => {
 
-		this._hideDropSheet();
+		this._hideDropForm();
 
 		this._removeLayer( this.state.dropLayerId );
 		this._resetUpload();
@@ -821,7 +800,7 @@ class Upload extends Component {
 	_uploadForm = ( ) => {
 
 		this.refs.form._submit();
-		this._hideDropSheet();
+		this._hideDropForm();
 
 	}
 
@@ -1018,7 +997,7 @@ class Upload extends Component {
 
 			featureToShow: featureToShow,
 			blockDropzone: true,
-			popup: popup
+			popupInstance: popup
 
 		}, _setPopupDOM );
 
@@ -1028,7 +1007,7 @@ class Upload extends Component {
 
 		console.log( "hiding p" );
 
-		let p = this.state.popup;
+		let p = this.state.popupInstance;
 
 		if( p ){
 
@@ -1037,7 +1016,7 @@ class Upload extends Component {
 			this.setState( { 
 
 				//featureToShow: undefined,
-				popup: undefined, 
+				popupInstance: undefined, 
 				blockDropzone: false
 
 			} );
@@ -1071,9 +1050,9 @@ class Upload extends Component {
 
 	}
 
-	_hideDropSheet = ( ) => {
+	_hideDropForm = ( ) => {
 
-		this.setState( { showDropSheet: false } );
+		this.setState( { showDropForm: false } );
 
 	}
 
@@ -1087,7 +1066,7 @@ class Upload extends Component {
 
 		this.map.zoomTo( 1, { 
 			duration: 3000, 
-			easing: this.easeInQuint 
+			easing: this.map.easeInQuint 
 		} );
 
 	}

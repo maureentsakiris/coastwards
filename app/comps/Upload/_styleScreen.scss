@@ -22,7 +22,13 @@
 	[data-react-toolbox="button"]{
 
 		color: #fff !important;
-		background: rgba(33, 33, 33, 0.1);
+		background: rgba(33, 33, 33, 0.2);
+
+	}
+
+	[data-react-toolbox="button"]:hover{
+
+		background: rgba(33, 33, 33, 0.4) !important;
 
 	}
 

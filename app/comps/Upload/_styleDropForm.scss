@@ -1,0 +1,65 @@
+@import '../../../app/styles/_base';
+
+[data-react-toolbox="dialog"]{
+
+	height: 90vh;
+	position: relative;
+	top: 5vh;
+	transform: translateY(4.8rem);
+	overflow: hidden;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+
+	section[role="body"]{
+
+		padding: 0 0 64px 0;
+
+		.image{
+
+			height: 50%;
+			width: 100%;
+			overflow: hidden;
+			background-size: cover;
+			background-position: center;
+
+		}
+
+		.inner{
+
+			padding: $layout-gutter-width-sm;
+			color: $color-text;
+
+			p{
+
+				font-size: $font-size-normal;
+
+			}
+
+		}
+
+	}
+
+}
+
+
+@media all and (orientation:landscape) {
+
+	.dialog[data-react-toolbox="dialog"]{
+
+		width: 60vw;
+    	max-width: 800px;
+
+	}
+
+}
+
+@media all and (orientation:portrait) {
+
+	.dialog[data-react-toolbox="dialog"]{
+
+		width: 800px;
+	    max-width: 96vw;
+
+	}
+
+}

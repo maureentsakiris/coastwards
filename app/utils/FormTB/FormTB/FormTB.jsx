@@ -78,13 +78,13 @@ export default class FormTB extends Component {
 
 	render () {
 
-		const { className, name, autocomplete, noValidate, autoSubmit, onReset, onSubmitProgress, onSubmitError, onSubmitDone, children, ...props } = this.props; // eslint-disable-line no-unused-vars
+		const { className, name, autocomplete, noValidate, autoSubmit, onReset, onSubmitProgress, onSubmitError, onSubmitDone, children, ...restProps } = this.props; // eslint-disable-line no-unused-vars
 		const elements = this._cloneWithMethods( children ); 
 		const cls = Classnames( style.form, className );
 
 		return (
 
-			<form onSubmit={ this._submit.bind( this ) } id={ name } autoComplete={ autocomplete } className={ cls } noValidate={ noValidate } ref="form" >
+			<form { ...restProps } onSubmit={ this._submit.bind( this ) } autoComplete={ autocomplete } className={ cls } noValidate={ noValidate } ref="form" >
 				{ elements }
 			</form>
 

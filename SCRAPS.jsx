@@ -51,3 +51,10 @@ run the following to generate a startup script
 ### SIMLINK
 
 	sudo ln -s ../sites-available/coastwards.org.conf
+
+
+
+	onEscKeyDown={ this._cancelUpload }
+					onOverlayClick={ this._cancelUpload }
+					onCancelClick={ this._cancelUpload }
+					onUploadClick={ this._uploadForm }

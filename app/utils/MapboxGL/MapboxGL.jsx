@@ -148,6 +148,30 @@ export default class MapboxGL extends Component {
 
 				}
 
+				//https://gist.github.com/gre/1650294
+				this.map.easeInOutQuad = function ( t ) {
+
+					return t<.5 ? 2*t*t : -1+( 4-2*t )*t 
+
+				};
+				this.map.easeInOutQuint = function ( t ) {
+
+					return t<.5 ? 16*t*t*t*t*t : 1+16*( --t ) *t*t*t*t;
+
+				};
+
+				this.map.easeOutQuint= function ( t ) { 
+
+					return 1+( --t )*t*t*t*t;
+
+				};
+
+				this.map.easeInQuint= function ( t ) {
+
+					return t*t*t*t*t;
+
+				};
+
 				// LOAD INITIAL LAYERS
 				this.map.on( 'load', ( ) => {
 
