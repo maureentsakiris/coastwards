@@ -28,7 +28,7 @@ const messages = defineMessages( {
 	drop_form_intro:{
 		id: "drop_form_intro",
 		description: "1 - ",
-		defaultMessage: "Help us even more by answering a few questions, or scroll down to click the upload button."
+		defaultMessage: "(I'm currently working on this section ... but you can go ahead and press the upload button!)"
 	}
 
 } );

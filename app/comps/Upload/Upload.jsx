@@ -363,7 +363,7 @@ class Upload extends Component {
 				/>
 				{ featureToShow && 
 				<div ref="feature" className={ style.feature }>
-					<img src={ featureToShow.properties.image } />
+					<div className={ style.image } style={ { backgroundImage: 'url(' + featureToShow.properties.image +')' } } />
 					<div className={ style.inner }>	
 						<div>
 							<IconButton icon="mode_comment" />
@@ -1004,8 +1004,6 @@ class Upload extends Component {
 	}
 
 	_hideFeaturePopup = ( ) => {
-
-		console.log( "hiding p" );
 
 		let p = this.state.popupInstance;
 

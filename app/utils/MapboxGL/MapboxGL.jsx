@@ -266,7 +266,8 @@ export default class MapboxGL extends Component {
 				var feature = features[ 0 ];
 
 				var cz = this.map.getZoom();
-				var z = cz < 1 ? 1.2 : cz;
+				
+				var z = cz < 2 ? 2 : cz;
 
 				this.map.flyTo( { center: feature.geometry.coordinates, offset: [ 0, 100 ], zoom: z } );
 

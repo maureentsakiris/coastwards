@@ -29,6 +29,12 @@
 		width: 60vh;
 		max-height: calc(60vh - #{$layout-gutter-width-sm});
 
+		.image{
+
+			height: 40vh;
+
+		}
+
 	}
 
 }
@@ -39,6 +45,12 @@
 
 		width: 60vw;
 		max-height: calc(60vw - #{$layout-gutter-width-sm});
+
+		.image{
+
+			height: 40vw;
+
+		}
 
 	}
 
@@ -56,9 +68,12 @@
 
 	}
 
-	img{
+	.image{
 
-		max-width: 100%;
+		width: 100%;
+		overflow: hidden;
+		background-size: cover;
+		background-position: center;
 
 	}
 
