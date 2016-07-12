@@ -371,7 +371,7 @@ class Upload extends Component {
 							<IconButton icon="favorite" accent />
 							<IconButton className={ style.clear } icon="clear" onClick={ this._hideFeaturePopup } />
 						</div>
-						<p className={ style.comment }>(some user comment) GO WORLD!</p>
+						<p className={ style.comment }>{ featureToShow.properties.comment }</p>
 					</div>
 				</div>
 				}
@@ -379,7 +379,6 @@ class Upload extends Component {
 					id="DropForm"
 					active={ showDropForm } 
 					drop={ dropToUpload }
-					onEscKeyDown={ this._cancelUpload }
 					onCancelClick={ this._cancelUpload }
 					onUploadClick={ this._uploadForm }
 				/>

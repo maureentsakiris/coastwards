@@ -70,7 +70,7 @@ export default class Screen extends Component {
 				<div>
 					{ msg && <p>{ msg }</p> }
 					{ showButton && <Button label={ label } flat onClick={ onClick } /> }
-					{ showLoader && <ProgressBar type="circular" mode={ mode } value={ progress }  multicolor={ true } /> }
+					{ showLoader && <ProgressBar type="circular" mode={ mode } value={ progress }  multicolor={ false } /> }
 				</div>
 			</div>
 

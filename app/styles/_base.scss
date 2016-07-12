@@ -46,6 +46,9 @@
 
 //############################################################################################ TYPOGRAPHY
 
+$text-color: $palette-grey-800;
+$blueish: #465661;
+
 @mixin IconButtonSize( $size ){
 
   width: $size;

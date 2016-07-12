@@ -54,6 +54,43 @@
 				p{
 
 					font-size: $font-size-normal;
+					//color: $blueish;
+
+				}
+
+				.form{
+
+					margin: 2rem 0;
+
+					h3{
+
+						font-size: 2rem;
+						line-height: 2.4rem;
+					    font-weight: 500;
+					    margin: 4rem 0 2rem 0;
+
+					}
+
+					div[data-react-toolbox="input"]{
+
+						padding: 0;
+
+						textarea{
+
+							color: $color-primary;
+							font-weight: 200;
+							padding: 0;
+
+						}
+
+						span:last-child{
+
+							top: 0;
+
+						}
+
+
+					}
 
 				}
 
@@ -66,7 +103,6 @@
 			@extend %flexitem;
 			flex-grow: 0;
 			width: 100%;
-			padding: $layout-gutter-width-sm;
 			text-align: right;
 			box-shadow: 0 -2px 2px 0 rgba(0, 0, 0, $shadow-key-penumbra-opacity);
 
@@ -100,6 +136,26 @@
 
 		width: 800px;
 	    max-width: 96vw;
+
+	}
+
+}
+
+@include LtXS(){
+
+	.actions{
+
+		padding: 0.5rem;
+
+	}
+
+}
+
+@include GtXS(){
+
+	.actions{
+
+		padding: $layout-gutter-width-sm;
 
 	}
 
