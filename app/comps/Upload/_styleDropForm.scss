@@ -1,37 +1,78 @@
 @import '../../../app/styles/_base';
 
+[data-react-toolbox="dialog"]{
+
+	transform: translateY(-30vh);
+
+}
+
 .dialog[data-react-toolbox="dialog"]{
 
 	height: 90vh;
 	position: relative;
-	top: 5vh;
-	/* transform: translateY(4.8rem); */
+	bottom: 5vh;
 	overflow: hidden;
-	border-bottom-left-radius: 0;
-	border-bottom-right-radius: 0;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
 
 	section[role="body"]{
 
-		padding: 0 0 64px 0;
+		@extend %flexcontainer;
+		flex-direction: column;
+		padding: 0;
 
-		.image{
+		.content{
 
-			height: 50%;
+			@extend %flexitem;
 			width: 100%;
-			overflow: hidden;
-			background-size: cover;
-			background-position: center;
+			flex-shrink: 1;
+			overflow-y: scroll;
+
+			.image{
+
+				height: 35vh;
+				width: 100%;
+				overflow: hidden;
+				background-size: cover;
+				background-position: center;
+
+			}
+
+			.inner{
+
+				padding: $layout-gutter-width-sm;
+				color: $color-text;
+
+				h2{
+
+					margin-bottom: 1rem;
+					font-size: 4rem;
+					line-height: 4.3rem;
+
+				}
+
+				p{
+
+					font-size: $font-size-normal;
+
+				}
+
+			}
 
 		}
 
-		.inner{
+		.actions{
 
+			@extend %flexitem;
+			flex-grow: 0;
+			width: 100%;
 			padding: $layout-gutter-width-sm;
-			color: $color-text;
+			text-align: right;
+			box-shadow: 0 -2px 2px 0 rgba(0, 0, 0, $shadow-key-penumbra-opacity);
 
-			p{
+			.btn{
 
-				font-size: $font-size-normal;
+				margin-left: 1rem;
 
 			}
 
