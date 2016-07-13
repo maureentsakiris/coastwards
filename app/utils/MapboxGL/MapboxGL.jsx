@@ -93,6 +93,7 @@ export default class MapboxGL extends Component {
 
 		this.map;
 		this.popup;
+		this.popupLayers = [];
 
 		this.state = {
 
@@ -228,6 +229,32 @@ export default class MapboxGL extends Component {
 
 				} );*/
 
+				this.map.on( 'mousemove', ( e ) => {
+					
+					var features = this.map.queryRenderedFeatures( e.point, { layers: this.popupLayers } );
+					this.map.getCanvas().style.cursor = ( features.length ) ? 'pointer' : '';
+				
+				} );
+
+				this.map.on( 'click', ( e ) => {
+
+					var features = this.map.queryRenderedFeatures( e.point, { layers: this.popupLayers } );
+
+					if ( !features.length ) {
+
+						return;
+
+					}
+
+					var feature = features[ 0 ];
+					
+					this.popup.setLngLat( feature.geometry.coordinates )
+						.addTo( this.map );
+
+					//onPopup( this.popup, feature );
+
+				} );
+
 			}
 
 		} );
@@ -246,31 +273,8 @@ export default class MapboxGL extends Component {
 
 		if( _.isFunction( onPopup ) ){
 
-			this.map.on( 'mousemove', ( e ) => {
-				
-				var features = this.map.queryRenderedFeatures( e.point, { layers: [ name ] } );
-				this.map.getCanvas().style.cursor = ( features.length ) ? 'pointer' : '';
-			
-			} );
-
-			this.map.on( 'click', ( e ) => {
-
-				var features = this.map.queryRenderedFeatures( e.point, { layers: [ name ] } );
-
-				if ( !features.length ) {
-
-					return;
-
-				}
-
-				var feature = features[ 0 ];
-				
-				this.popup.setLngLat( feature.geometry.coordinates )
-					.addTo( this.map );
-
-				onPopup( this.popup, feature );
-
-			} );
+			this.popupLayers.push( name );
+			console.log( this.popupLayers );
 
 		}
 

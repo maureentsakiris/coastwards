@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 
 ReactDOM.render( 
 
-	<p>Sorry, I am working on it!</p>, 
+	<p>Sorry, I'm working on it</p>, 
 	document.getElementById( 'Body' ) 
 
 );
