@@ -362,16 +362,16 @@ class Upload extends Component {
 					onClick={ this._openInput } 
 				/>
 				{ featureToShow && 
-				<div ref="feature" className={ style.feature }>
+				<div id="Feature" ref="feature" className={ style.feature }>
 					<div className={ style.image } style={ { backgroundImage: 'url(' + featureToShow.properties.image +')' } } />
 					<div className={ style.inner }>	
 						<div>
-							<IconButton icon="mode_comment" />
-							<IconButton icon="send" />
-							<IconButton icon="favorite" accent />
+							<IconButton icon="mode_comment" onClick={ this._ooops } />
+							<IconButton icon="send" onClick={ this._ooops } />
+							<IconButton icon="favorite" accent onClick={ this._ooops } />
 							<IconButton className={ style.clear } icon="clear" onClick={ this._hideFeaturePopup } />
 						</div>
-						<p className={ style.comment }>{ featureToShow.properties.comment }</p>
+						{ featureToShow.properties.comment && <p className={ style.comment }>{ featureToShow.properties.comment }</p> }
 					</div>
 				</div>
 				}
@@ -385,6 +385,12 @@ class Upload extends Component {
 			</div>
 
 		)
+
+	}
+
+	_ooops = ( ) => {
+
+		this.context.showSnackbar( { label: "This will work at some point ..." } );
 
 	}
 
@@ -998,6 +1004,8 @@ class Upload extends Component {
 
 	_showFeaturePopup = ( features ) => {
 
+		document.body.setAttribute( 'style', 'overflow: hidden' );
+
 		let feature = features[ 0 ];
 
 		const _setPopupDOM = ( ) => {
@@ -1007,7 +1015,8 @@ class Upload extends Component {
 			var cz = this.map.getZoom();
 			var z = cz < 2 ? 2 : cz;
 
-			this.map.flyTo( { speed: 0.4, center: feature.geometry.coordinates, offset: [ 0, 100 ], zoom: z } );
+			let offsetY = document.getElementById( 'Feature' ).clientHeight / 2;
+			this.map.flyTo( { speed: 0.4, center: feature.geometry.coordinates, offset: [ 0, offsetY ], zoom: z } );
 
 		}
 
@@ -1021,6 +1030,8 @@ class Upload extends Component {
 	}
 
 	_hideFeaturePopup = ( ) => {
+
+		document.body.removeAttribute( 'style' );
 
 		let p = this.state.popupInstance;
 

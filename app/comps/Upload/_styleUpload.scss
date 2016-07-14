@@ -27,11 +27,11 @@
 	.feature{
 
 		width: 60vh;
-		max-height: calc(60vh - #{$layout-gutter-width-sm});
+		height: 60vh;
 
 		.image{
 
-			height: 40vh;
+			min-height: 20vh;
 
 		}
 
@@ -44,11 +44,11 @@
 	.feature{
 
 		width: 60vw;
-		max-height: calc(60vw - #{$layout-gutter-width-sm});
+		height: 60vw;
 
 		.image{
 
-			height: 40vw;
+			min-height: 20vw;
 
 		}
 
@@ -58,6 +58,8 @@
 
 .feature{
 
+	@extend %flexcontainer;
+	flex-direction: column;
 	overflow-y: scroll;
 	color: $text-color;
 	//margin-bottom: $layout-gutter-width-sm;
@@ -70,6 +72,8 @@
 
 	.image{
 
+		@extend %flexitem;
+		flex-grow: 1;
 		width: 100%;
 		overflow: hidden;
 		background-size: cover;
@@ -79,12 +83,23 @@
 
 	.inner{
 
+		@extend %flexitem;
+		flex-grow: 0;
+		width: 100%;
 		padding: 5px;
 
 		.comment{
 
+			display: none;
 			font-size: $font-size-small;
+			border-top: 1px solid #f1f1f1;
 			padding: 10px;
+
+			&.show{
+
+				display: block;
+
+			}
 
 		}
 
