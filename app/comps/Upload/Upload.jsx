@@ -406,27 +406,37 @@ class Upload extends Component {
 
 	}
 
-	_promiseParseGeojson = ( res ) => {
+	_promiseOKGeojson = ( parsed ) => {
 
 		return new Promise( ( resolve, reject ) => {
 
-			if( res.status == 'KO' ){
+			if( parsed.status == 'KO' ){
 
-				reject( res.message );
+				reject( parsed.message );
 
 			}else{
 
-				let result = JSON.parse( res );
-				let geojson = result.json;
-				if( _.isEmpty( geojson ) ){
+				resolve( parsed );
 
-					reject( 'Be the first to upload a picture!!' );
+			}
 
-				}else{
+		} );
 
-					resolve( geojson );
+	}
 
-				}
+	_promiseNotEmptyGeojson = ( parsed ) => {
+
+		return new Promise( ( resolve, reject ) => {
+
+			let geojson = parsed.json;
+
+			if( _.isEmpty( geojson ) ){
+
+				reject( 'Be the first to upload a picture!!' );
+
+			}else{
+
+				resolve( geojson );
 
 			}
 
@@ -462,31 +472,30 @@ class Upload extends Component {
 			name: 'markers',
 			source: markerSource,
 			layer: markerLayer,
-			position: 'country_label_1',
-			onPopup: this._showFeaturePopup
+			position: 'country_label_1'
 
 		}
 
 		let clusterLayer = {
 
-			sourcename: 'markers',
-			position: 'country_label_1'/*,
-			onClick: this._showFeatureSheet*/
+			name: 'clusters',
+			source: 'markers',
+			position: 'country_label_1'
 
 		}
 
 		return new Promise( ( resolve, reject ) => {
 
-
-
 			this.refs.map._addLayer( geojsonLayer );
 			this.refs.map._clusterLayer( clusterLayer );
+			this.refs.map._makeClickLayer( geojsonLayer.name, this._showFeaturePopup );
+			this.refs.map._makeClickLayer( clusterLayer.name, this._zoomToCluster );
 
 			this._showMapLoader( false );
 
-			if( !this.map.getLayer( 'markers-circle' ) || !this.map.getLayer( 'markers-count' ) ){
+			if( !this.map.getLayer( 'markers' ) || !this.map.getLayer( 'clusters' ) || !this.map.getLayer( 'clusters-count' ) ){
 
-				reject( Error( 'Upload/_promiseDisplayGeojson/Failed to display geojson markers' ) );
+				reject( Error( 'Upload/_promiseDisplayGeojson/Failed to display geojson markers and clusters' ) );
 
 			}else{
 
@@ -503,12 +512,16 @@ class Upload extends Component {
 		this.refs.map._promiseCreateMap().then( ( map ) => {
 
 			this.map = map;
+			let popup = this.refs.map._addPopup( { closeButton: false, closeOnClick: false, anchor: 'bottom' } );
+
 			// enableling upload does not depend on whether or not geojson is fetched and displayed ... only on whether the map has loaded
-			this.setState( { blockDropzone: false } );
+			this.setState( { blockDropzone: false, popupInstance: popup } );
 			return this._promiseFetchGeojson();
 
 		} )
-		.then( this._promiseParseGeojson )
+		.then( JSON.parse )
+		.then( this._promiseOKGeojson )
+		.then( this._promiseNotEmptyGeojson )
 		.then( this._promiseDisplayGeojson )
 		.catch( ( error ) => {
 
@@ -667,8 +680,7 @@ class Upload extends Component {
 				name: id,
 				source: markerSource,
 				layer: markerLayer,
-				position: 'country_label_1',
-				onPopup: this._showFeaturePopup
+				position: 'country_label_1'
 
 			}
 
@@ -916,12 +928,12 @@ class Upload extends Component {
 				name: id,
 				source: markerSource,
 				layer: markerLayer,
-				position: 'country_label_1',
-				onPopup: this._showFeaturePopup
+				position: 'country_label_1'
 
 			}
 
 			this.refs.map._addLayer( layer );
+			this.refs.map._makeClickLayer( layer.name, this._showFeaturePopup );
 
 			if( _.isObject( this.map.getLayer( id ) ) ){
 
@@ -984,24 +996,25 @@ class Upload extends Component {
 
 	// OTHER
 
-	_showFeaturePopup = ( popup, featureToShow ) => {
+	_showFeaturePopup = ( features ) => {
+
+		let feature = features[ 0 ];
 
 		const _setPopupDOM = ( ) => {
 
-			popup.setDOMContent( this.refs.feature );
+			this.state.popupInstance.setDOMContent( this.refs.feature ).setLngLat( feature.geometry.coordinates ).addTo( this.map );
 
 			var cz = this.map.getZoom();
 			var z = cz < 2 ? 2 : cz;
 
-			this.map.flyTo( { speed: 0.4, center: featureToShow.geometry.coordinates, offset: [ 0, 100 ], zoom: z } );
+			this.map.flyTo( { speed: 0.4, center: feature.geometry.coordinates, offset: [ 0, 100 ], zoom: z } );
 
 		}
 
 		this.setState( { 
 
-			featureToShow: featureToShow,
-			blockDropzone: true,
-			popupInstance: popup
+			featureToShow: feature,
+			blockDropzone: true
 
 		}, _setPopupDOM );
 
@@ -1015,14 +1028,7 @@ class Upload extends Component {
 
 			p.remove();
 
-			this.setState( { 
-
-				//featureToShow: undefined,
-				popupInstance: undefined, 
-				blockDropzone: false
-
-			} );
-
+			this.setState( { blockDropzone: false } );
 
 		}
 
@@ -1104,6 +1110,26 @@ class Upload extends Component {
 
 		}
 		this.setState( { screenOptions: options } );
+
+	}
+
+	_zoomToCluster = ( features ) => {
+
+		let point = features[ 0 ].geometry.coordinates;
+		let z = this.map.getZoom();
+
+		this.map.flyTo( { center: point, zoom: z + 4 } );
+
+		/*console.log( point );
+
+		let tl = point[ 0 ] - 2;
+		let tr = point[ 1 ] - 2;
+		let bl = point[ 0 ] + 2;
+		let br = point[ 1 ] + 2;
+
+		let bounds = [ [ tl, tr ], [ bl, br ] ];
+
+		this.map.fitBounds( bounds );*/ 
 
 	}
 

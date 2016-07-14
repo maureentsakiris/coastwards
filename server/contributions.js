@@ -270,24 +270,13 @@ function promiseFetchGeojson ( ){
 
 					}else{
 
-						if( results[ 1 ][ 0 ] ){
+						if( results[ 1 ][ 0 ].geojson === undefined ){
 
-							var row = results[ 1 ][ 0 ];
-
-							if ( row.geojson ){
-
-								var geojson = JSON.parse( row.geojson );
-								resolve( geojson );
-
-							}else{
-
-								reject( Error( 'contributions/promiseFetchGeojson/Result did not return geojson' ) );
-
-							}
+							reject( Error( 'contributions/promiseFetchGeojson/Could not read result from query (Update schema?)' ) );
 
 						}else{
 
-							reject( Error( 'contributions/promiseFetchGeojson/Could not read result from query (Update schema?)' ) );
+							resolve( results[ 1 ][ 0 ].geojson );
 
 						}
 
@@ -307,7 +296,9 @@ function promiseFetchGeojson ( ){
 
 router.get( '/geojson', function ( req, res ) {
 
-	promiseFetchGeojson().then( function ( geojson ){
+	promiseFetchGeojson()
+	.then( JSON.parse )
+	.then( function ( geojson ){
 
 		res.json( { status: 'OK', json: geojson } );
 		return geojson;

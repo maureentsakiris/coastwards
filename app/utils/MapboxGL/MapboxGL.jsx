@@ -81,7 +81,7 @@ export default class MapboxGL extends Component {
 		
 	}
 
-	shouldComponentUpdate ( nextProps ){
+	shouldComponentUpdate ( ){
 
 		return false;
 
@@ -92,8 +92,7 @@ export default class MapboxGL extends Component {
 		super ( props );
 
 		this.map;
-		this.popup;
-		this.popupLayers = [];
+		this.clickLayers = [];
 
 		this.state = {
 
@@ -141,7 +140,6 @@ export default class MapboxGL extends Component {
 
 				mapboxgl.accessToken = accessToken;
 				this.map = new mapboxgl.Map( options );
-				this.popup = new mapboxgl.Popup( { closeButton: false, closeOnClick: false, anchor: 'bottom' } );
 
 				if( !( this.map instanceof mapboxgl.Map ) ){
 
@@ -229,16 +227,19 @@ export default class MapboxGL extends Component {
 
 				} );*/
 
+
+
+
 				this.map.on( 'mousemove', ( e ) => {
 					
-					var features = this.map.queryRenderedFeatures( e.point, { layers: this.popupLayers } );
+					var features = this.map.queryRenderedFeatures( e.point, { layers: _.pluck( this.clickLayers, 'layer' ) } );
 					this.map.getCanvas().style.cursor = ( features.length ) ? 'pointer' : '';
 				
 				} );
 
 				this.map.on( 'click', ( e ) => {
 
-					var features = this.map.queryRenderedFeatures( e.point, { layers: this.popupLayers } );
+					var features = this.map.queryRenderedFeatures( e.point, { layers: _.pluck( this.clickLayers, 'layer' ) } );
 
 					if ( !features.length ) {
 
@@ -247,11 +248,11 @@ export default class MapboxGL extends Component {
 					}
 
 					var feature = features[ 0 ];
-					
-					this.popup.setLngLat( feature.geometry.coordinates )
-						.addTo( this.map );
 
-					//onPopup( this.popup, feature );
+					let layer = _.findWhere( this.clickLayers, { layer: feature.layer.id } );
+					let callback = layer.onClick;
+
+					callback( features );
 
 				} );
 
@@ -263,34 +264,25 @@ export default class MapboxGL extends Component {
 
 	_addLayer = ( o ) => {
 
-		let { name, source, layer, position, onPopup } = o;
-		
-		/*let sourceExtended = _.deepExtend( this.sourceDefaults, source );*/
+		let { name, source, layer, position } = o;
 		let layerExtended = _.deepExtend( layer, { id: name, source: name } );
 
 		this.map.addSource( name, source );
 		this.map.addLayer( layerExtended, position );
 
-		if( _.isFunction( onPopup ) ){
-
-			this.popupLayers.push( name );
-			console.log( this.popupLayers );
-
-		}
-
 	}
 
 	_clusterLayer = ( o ) => {
 
-		let { sourcename, position/*, onClick*/ } = o;
-		let circleLayerName = sourcename + "-circle";
-		let countLayerName = sourcename + "-count";
+		let { name, source, position/*, onClick*/ } = o;
+		let circleLayerName = name;
+		let countLayerName = name + "-count";
 
 		this.map.addLayer( {
 			
 			"id": circleLayerName,
 			"type": "circle",
-			"source": sourcename,
+			"source": source,
 			"paint": {
 				"circle-color": '#3a6b8e',
 				"circle-radius": 14
@@ -303,7 +295,7 @@ export default class MapboxGL extends Component {
 
 			"id": countLayerName,
 			"type": "symbol",
-			"source": sourcename,
+			"source": source,
 			"layout": {
 
 				"text-field": "{point_count}",
@@ -322,34 +314,17 @@ export default class MapboxGL extends Component {
 
 		}, position );
 
-		/*if( onClick ){
+	}
 
-			this.map.on( 'mousemove', ( e ) => {
-				
-				var features = this.map.queryRenderedFeatures( e.point, { layers: [ circleLayerName ] } );
-				this.map.getCanvas().style.cursor = ( features.length ) ? 'pointer' : '';
-			
-			} );
+	_makeClickLayer = ( layer, onClick ) => {
 
-			this.map.on( 'click', ( e ) => {
+		this.clickLayers.push( { layer: layer, onClick: onClick } );
 
-				var features = this.map.queryRenderedFeatures( e.point, { layers: [ circleLayerName ] } );
+	}
 
-				console.log( features );
+	_addPopup = ( options ) => {
 
-				if ( !features.length ) {
-
-					return;
-
-				}
-
-				var feature = features[ 0 ];
-
-				onClick( feature );
-
-			} );
-
-		}*/
+		return new mapboxgl.Popup( options );
 
 	}
 
