@@ -80,17 +80,7 @@ class Guidelines extends Component {
 
 	}
 
-	render () {
-
-		const { formatMessage } = this.props.intl;
-		const { className } = this.props;
-
-		const cls = Classnames( style.guidelines, className );
-
-		return (
-
-			<div id="Guidelines" className={ cls }>
-				<h2>{ formatMessage( messages.guidelines_header ) }</h2>
+	/*<h2>{ formatMessage( messages.guidelines_header ) }</h2>
 				<h3>{ formatMessage( messages.guidelines_tagline ) }</h3>
 				<p>{ formatMessage( messages.guidelines_intro ) }</p>
 
@@ -104,7 +94,20 @@ class Guidelines extends Component {
 				<p>{ formatMessage( messages.gl_03 ) }</p>
 
 				<h4>{ formatMessage( messages.gl_04_title ) }</h4>
-				<p>{ formatMessage( messages.gl_04 ) }</p>
+				<p>{ formatMessage( messages.gl_04 ) }</p>*/
+
+	render () {
+
+		const { formatMessage } = this.props.intl;
+		const { className } = this.props;
+
+		const cls = Classnames( style.guidelines, className );
+
+		return (
+
+			<div id="Guidelines" className={ cls }>
+				<h2>Guidelines</h2>
+				
 			</div>
 
 		)

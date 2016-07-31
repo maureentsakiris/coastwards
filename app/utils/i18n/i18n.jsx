@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { IntlProvider } from 'react-intl';
 import _ from 'underscore';
-
+import util from 'util';
 import I18nSwitch from './i18nSwitch';
 import i18nLocales from './i18nLocales';
 
@@ -143,7 +143,7 @@ export default class I18n extends Component {
 
 				if( missingTranslations && missingTranslations.length > 0 ){
 
-					/*let snackbarOptions = {
+					let snackbarOptions = {
 
 						label: util.format( 'Help us translate this page into %s', i18nLocales.english ),
 						action: 'GO',
@@ -151,7 +151,7 @@ export default class I18n extends Component {
 
 					}
 
-					this.context.showSnackbar( snackbarOptions );*/
+					this.context.showSnackbar( snackbarOptions );
 
 				}
 
@@ -178,7 +178,10 @@ export default class I18n extends Component {
 
 	_goTranslate = () => {
 
-		window.location = "/translate?lang=" + this.state.locale;
+		window.open(
+			"/translate?lang=" + this.state.locale,
+			"_blank"
+		)
 
 	}
 

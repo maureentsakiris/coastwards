@@ -9,7 +9,7 @@ const server = globalConfigs.server;
 const PROJECT_ROOT = path.resolve( './' );
 const BUILD_ROOT = path.join( PROJECT_ROOT, 'public/build' );
 const ENTRY_ROOT = path.join( PROJECT_ROOT, 'app/index.jsx' );
-const TRANSLATE_ROOT = path.join( PROJECT_ROOT, 'appTranslate/index.jsx' );
+const ENTRY_TRANSLATE = path.join( PROJECT_ROOT, 'appTranslate/index.jsx' );
 
 const APP_ROOT = path.join( PROJECT_ROOT, 'app' );
 const PUBLIC_ROOT = path.join( PROJECT_ROOT, 'public' );
@@ -28,7 +28,7 @@ const config = {
 			'webpack/hot/only-dev-server',
 			ENTRY_ROOT
 		],
-		translate: TRANSLATE_ROOT
+		translate: ENTRY_TRANSLATE
 	},
 	node: {
 		fs: "empty"

@@ -543,7 +543,7 @@ class Upload extends Component {
 
 	_onDropsAccepted = ( ) => {
 
-		this.setState( { blockDropzone: true } );
+		//this.setState( { blockDropzone: true } );
 
 	}
 
@@ -622,6 +622,7 @@ class Upload extends Component {
 
 				this.context.showSnackbar( { label: formatMessage( messages.dropzone_valid_drops ) } );
 				var validDrop = validDrops[ 0 ];
+				this.setState( { blockDropzone: true } );
 				resolve( validDrop );
 
 			}else{

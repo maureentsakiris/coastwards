@@ -61,7 +61,7 @@ export default class Context extends Component {
 
 	componentDidMount (){
 
-		this._showDialog( { title: "Readme", content: "Unless you stumbled upon this website somehow, you are a friend or colleague ... or family. I just want to warn you that this is a testing site and I might be updating it just this second (No matter if it's three in the morning). I will NOT SAVE the images you upload so keep them close. But please do give me feedback on how this website worked for you. THANK YOU!!! Maureen" } );
+		this._showDialog( { title: "READ ME", content: "This is a TESTING SITE currently under development. At the moment it is best viewed on CHROME (With Firefox, Safari you might experience problems. Explorer definitely still is quirky). The pictures you upload here WILL NOT BE SAVED, so go ahead and try it out (at the moment we do not test the image's proximity to a coast, so it can be any picture as long as it has its location embedded in the metadata). I am happy to get feedback so don't be shy :) Thank you, Maureen" } );
 		
 
 		if( Modernizr.pointerevents || !Modernizr.flexbox || !Modernizr.flexwrap || !Modernizr.xhr2 || !Modernizr.xhrresponsetypejson ){
