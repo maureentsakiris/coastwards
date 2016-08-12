@@ -24,6 +24,7 @@ app.enable( 'trust proxy' );
 app.use( helmet() );
 app.use( express.static( publicPath ) );
 app.set( 'view engine', 'pug' );
+app.set( 'views', path.resolve( __dirname, './app/views' ) );
 
 app.get( '/', function ( req, res ) {
 
