@@ -28,7 +28,7 @@ app.set( 'views', path.resolve( __dirname, './app/views' ) );
 
 app.get( '/', function ( req, res ) {
 
-	var lang = req.acceptsLanguages( 'es', 'en', 'de' );
+	var lang = req.acceptsLanguages( 'es', 'en', 'de', 'ar' );
 	res.render( 'index', { lang: lang } );
 
 } );

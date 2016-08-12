@@ -1,0 +1,2 @@
+export const LOAD_LANGUAGE = 'LOAD_LANGUAGE'
+export const SHOW_DIALOG = 'SHOW_DIALOG'

@@ -1,5 +1,4 @@
 import { connect } from 'react-redux'
-
 import { loadLanguage } from 'actions'
 import A from 'components/tags/a'
 
@@ -21,7 +20,7 @@ const mapDispatchToProps = ( dispatch, ownProps ) => {
 
 		onClick: () => {
 
-			loadLanguage( ownProps.locale )
+			dispatch( loadLanguage( ownProps.locale ) )
 
 		}
 
