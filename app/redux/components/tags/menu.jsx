@@ -1,22 +1,30 @@
 import React, { PropTypes } from 'react'
+import _ from 'underscore'
+import tag from './tag'
+import { globalAttr, menuAttr } from './attributes'
 
-const menu = ( { children, id, className } ) => {
+const menu = ( { hocProps } ) => {
+
+	const { children, ...restProps } = hocProps
+	const allowedProps = _.pick( restProps, _.union( globalAttr, menuAttr ) )
 
 	return(
 
-		<menu id={ id } className={ className } >{ children }</menu>
+		<menu { ...allowedProps } >{ children }</menu>
 
 	)
 
 }
 
-
 menu.propTypes = {
 
-	children: PropTypes.node.isRequired,
-	id: PropTypes.string.isRequired,
-	className: PropTypes.string
+	hocProps: PropTypes.shape( { 
+
+		label: PropTypes.string,
+		type: PropTypes.oneOf( [ 'list', 'toolbar', 'context' ] )
+		
+	} )
 
 }
 
-export default menu
+export default tag( menu )

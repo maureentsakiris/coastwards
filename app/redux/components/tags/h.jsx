@@ -1,25 +1,32 @@
 import React, { PropTypes } from 'react'
+import _ from 'underscore'
+import tag from './tag'
+import { globalAttr, hAttr } from './attributes'
 
-const H = ( { priority, children, id, className } ) => {
+const h = ( { hocProps } ) => {
+
+	const { children, priority, ...restProps } = hocProps
+	const allowedProps = _.pick( restProps, _.union( globalAttr, hAttr ) )
 
 	const Tag = `h${ priority }`
 
 	return(
 
-		<Tag id={ id } className={ className } >{ children }</Tag>
+		<Tag { ...allowedProps } >{ children }</Tag>
 
 	)
 
 }
 
 
-H.propTypes = {
+h.propTypes = {
 
-	priority: PropTypes.number.isRequired,
-	children: PropTypes.node.isRequired,
-	id: PropTypes.string,
-	className: PropTypes.string
+	hocProps: PropTypes.shape( {
+
+		priority: PropTypes.number.isRequired
+
+	} )
 
 }
 
-export default H
+export default tag( h )

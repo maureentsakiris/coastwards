@@ -33,3 +33,21 @@ export function loadLanguage ( locale ) {
 	}
 
 }
+
+export function startTests ( e ) {
+
+	const selectedFiles = e.dataTransfer ? e.dataTransfer.files : e.currentTarget.files;
+
+	return function ( dispatch ) {
+
+		dispatch( {
+
+			type: types.START_TESTS,
+			selectedFiles: selectedFiles,
+			status: 'running_tests'
+
+		} )
+
+	}
+
+}

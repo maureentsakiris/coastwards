@@ -1,22 +1,30 @@
 import React, { PropTypes } from 'react'
+import _ from 'underscore'
+import tag from './tag'
+import { globalAttr, liAttr } from './attributes'
 
-const li = ( { children, id, className } ) => {
+const li = ( { hocProps } ) => {
+
+	const { children, ...restProps } = hocProps
+	const allowedProps = _.pick( restProps, _.union( globalAttr, liAttr ) )
+
 
 	return(
 
-		<li id={ id } className={ className } >{ children }</li>
+		<li { ...allowedProps } >{ children }</li>
 
 	)
 
 }
 
-
 li.propTypes = {
 
-	children: PropTypes.node.isRequired,
-	id: PropTypes.string,
-	className: PropTypes.string
+	hocProps: PropTypes.shape( {
+
+		value: PropTypes.number
+
+	} )
 
 }
 
-export default li
+export default tag( li )

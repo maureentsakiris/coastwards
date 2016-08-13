@@ -1,24 +1,25 @@
 import React, { PropTypes } from 'react'
+import _ from 'underscore'
+import tag from './tag'
+import { globalAttr, divAttr } from './attributes'
 
-const div = ( { children, id, className, lang, dir } ) => {
+const div = ( { hocProps } ) => {
+
+	const { children, ...restProps } = hocProps
+	const allowedProps = _.pick( restProps, _.union( globalAttr, divAttr ) )
 
 	return(
 
-		<div id={ id } className={ className } lang={ lang } dir={ dir } >{ children }</div>
+		<div { ...allowedProps } >{ children }</div>
 
 	)
 
 }
 
-
 div.propTypes = {
 
-	children: PropTypes.node.isRequired,
-	id: PropTypes.string,
-	className: PropTypes.string,
-	lang: PropTypes.string,
-	dir: PropTypes.string
+	hocProps: PropTypes.shape( { } )
 
 }
 
-export default div
+export default tag( div )

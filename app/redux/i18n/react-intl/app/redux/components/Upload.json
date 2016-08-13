@@ -1,0 +1,12 @@
+[
+  {
+    "id": "select_images",
+    "description": "Status: Select your images",
+    "defaultMessage": "Select your images"
+  },
+  {
+    "id": "running_tests",
+    "description": "Status: Running tests",
+    "defaultMessage": "Running tests"
+  }
+]

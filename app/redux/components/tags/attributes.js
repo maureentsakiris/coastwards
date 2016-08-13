@@ -1,0 +1,43 @@
+export const globalAttr = [
+
+	'accesskey',
+	'className',
+	'contenteditable',
+	'contextmenu',
+	'dir',
+	'draggable',
+	'dropzone',
+	'hidden',
+	'id',
+	'lang',
+	'spellcheck',
+	'style',
+	'tabindex',
+	'title',
+	'translate',
+
+	'onBlur',
+	'onChange',
+	'onContextmenu',
+	'onFocus',
+	'onInput',
+	'onInvalid',
+	'onReset',
+	'onSearch',
+	'onSelect',
+	'onSubmit'
+
+]
+
+export const aAttr = [ 'download', 'href', 'hrefLang', 'media', 'rel', 'target' ]
+export const divAttr = []
+export const hAttr = []
+export const liAttr = [ 'value' ]
+export const menuAttr = [ 'label', 'type' ]
+export const navAttr = []
+export const sectionAttr = []
+export const ulAttr = []
+export const iAttr = []
+export const formAttr = [ 'acceptCharset', 'action', 'autoComplete', 'enctype', 'method', 'name', 'noValidate', 'target' ]
+export const labelAttr = [ 'htmlFor', 'form' ]
+export const inputAttr = [ 'accept', 'alt', 'autoComplete', 'autoFocus', 'checked', 'dirname', 'disabled', 'form', 'formaction', 'formenctype', 'formmethod', 'formnovalidate', 'formtarget', 'height', 'list', 'max', 'maxlength', 'min', 'multiple', 'name', 'pattern', 'placeholder', 'readonly', 'required', 'size', 'src', 'step', 'type', 'value', 'width' ]

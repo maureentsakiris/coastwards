@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 import * as types from 'types'
 
-const language = ( state = { locale: 'en', dir: 'ltr', messages: {} }, action ) => {
+const language = ( state = { locale: 'en', dir: 'ltr', messages: undefined }, action ) => {
 
 	switch ( action.type ){
 
@@ -27,10 +27,24 @@ const context = ( state = { title: 'Dialog title', message: 'This is a message' 
 
 }
 
+const upload = ( state = { selectedFiles: {}, status: 'select_images' }, action ) => {
+
+	switch ( action.type ){
+
+	case types.START_TESTS:
+		return { ...state, selectedFiles: action.selectedFiles, status: action.status }
+	default:
+		return state;
+
+	}
+
+}
+
 const coastwards = combineReducers( {
 
 	language,
-	context
+	context,
+	upload
 
 } )
 

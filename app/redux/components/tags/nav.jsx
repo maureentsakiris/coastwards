@@ -1,22 +1,25 @@
 import React, { PropTypes } from 'react'
+import _ from 'underscore'
+import tag from './tag'
+import { globalAttr, navAttr } from './attributes'
 
-const nav = ( { children, id, className } ) => {
+const nav = ( { hocProps } ) => {
+
+	const { children, ...restProps } = hocProps
+	const allowedProps = _.pick( restProps, _.union( globalAttr, navAttr ) )
 
 	return(
 
-		<nav id={ id } className={ className } >{ children }</nav>
+		<nav { ...allowedProps } >{ children }</nav>
 
 	)
 
 }
 
-
 nav.propTypes = {
 
-	children: PropTypes.node.isRequired,
-	id: PropTypes.string.isRequired,
-	className: PropTypes.string
+	hocProps: PropTypes.shape( { } )
 
 }
 
-export default nav
+export default tag( nav )

@@ -1,6 +1,12 @@
 import React, { PropTypes } from 'react'
+import _ from 'underscore'
+import tag from './tag'
+import { globalAttr, aAttr } from './attributes'
 
-const a = ( { children, onClick, active, alt, hreflang } ) => {
+const a = ( { hocProps } ) => {
+
+	const { children, onClick, active, ...restProps } = hocProps
+	const allowedProps = _.pick( restProps, _.union( globalAttr, aAttr ) )
 
 	const _onClick = ( e ) => {
 
@@ -8,34 +14,32 @@ const a = ( { children, onClick, active, alt, hreflang } ) => {
 		onClick()
 
 	}
-	const _active = active ? { 
-
-		className: 'active'
-	
-	} : {
-
-		onClick: _onClick, 
-		href: '#'
-
-	}
+	const _active = active ? { className: 'active' } : { onClick: _onClick, href: '#' }
 
 	return(
 
-		<a { ..._active }  alt={ alt } hrefLang={ hreflang } >{ children }</a>
+		<a { ...allowedProps } { ..._active } >{ children }</a>
 
 	)
 
 }
 
-
 a.propTypes = {
 
-	children: PropTypes.node.isRequired,
-	onClick: PropTypes.func.isRequired,
-	active: PropTypes.bool.isRequired,
-	alt: PropTypes.string.isRequired,
-	hreflang: PropTypes.string
+	hocProps: PropTypes.shape( {
+
+		active: PropTypes.bool,
+		onClick: PropTypes.func.isRequired,
+
+		download: PropTypes.bool,
+		href: PropTypes.string,
+		hrefLang: PropTypes.string,
+		media: PropTypes.string,
+		rel: PropTypes.oneOf( [ 'alternate', 'author', 'bookmark', 'help', 'license', 'next', 'nofollow', 'noreferrer', 'prefetch', 'prev', 'search', 'tag' ] ),
+		target: PropTypes.string //Can also be a framename
+
+	} )
 
 }
 
-export default a
+export default tag( a )

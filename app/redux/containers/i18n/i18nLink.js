@@ -5,10 +5,12 @@ import A from 'components/tags/a'
 
 const mapStateToProps = ( state, ownProps ) => {
 
+	const { locale } = ownProps
+
 	return {
 
-		active: ownProps.locale === state.language.locale,
-		hreflang: ownProps.locale
+		active: locale === state.language.locale,
+		hrefLang: locale
 
 	}
 

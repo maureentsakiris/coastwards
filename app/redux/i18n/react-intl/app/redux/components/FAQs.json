@@ -1,0 +1,17 @@
+[
+  {
+    "id": "other_questions",
+    "description": "Section Header. Other questions...",
+    "defaultMessage": "Other questions..."
+  },
+  {
+    "id": "q1",
+    "description": "Aren't satellite images enough?",
+    "defaultMessage": "Aren't satellite images enough?"
+  },
+  {
+    "id": "a1",
+    "description": "No",
+    "defaultMessage": "No, they give us a general idea but not enough to be certain"
+  }
+]

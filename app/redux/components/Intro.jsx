@@ -2,7 +2,7 @@ import React from 'react'
 import { defineMessages, injectIntl, intlShape } from 'react-intl'
 
 import DIV from 'components/tags/div'
-import H from 'components/tags/H'
+import H from 'components/tags/h'
 
 const messages = defineMessages( {
 
@@ -19,7 +19,7 @@ const messages = defineMessages( {
 
 } )
 
-const Intro = ( { intl } ) => {
+const intro = ( { intl } ) => {
 
 	const { formatMessage } = intl
 
@@ -34,10 +34,10 @@ const Intro = ( { intl } ) => {
 
 }
 
-Intro.propTypes = {
+intro.propTypes = {
 
 	intl: intlShape.isRequired
 
 }
 
-export default injectIntl( Intro )
+export default injectIntl( intro )
