@@ -13,6 +13,16 @@ const messages = defineMessages( {
 		description: "Status: Select your images",
 		defaultMessage: "Select your images"
 	},
+	files_received: {
+		id: "files_received",
+		description: "Status: Informs user that we have received his files",
+		defaultMessage: "We have received your files"
+	},
+	files_accepted: {
+		id: "files_accepted",
+		description: "Status: Informs user that we have accepted his files",
+		defaultMessage: "We have accepted your files"
+	},
 	running_tests:{
 		id: "running_tests",
 		description: "Status: Running tests",
@@ -29,9 +39,9 @@ const upload = ( { intl, status, onChange } ) => {
 
 		<FORM action="/contributions" method="post" id="upload" >
 			<p>STATUS: { formatMessage( messages[ status ] ) }</p>
-			<LABEL htmlFor="images" form="upload" >Images</LABEL>
+			<LABEL htmlFor="images" form="upload" >!Images</LABEL>
 			<INPUT onChange={ onChange } form="upload" type="file" multiple={ true } accept="image/*" />
-			<INPUT form="upload" type="submit" />
+			{ status === 'ready_to_submit' && <INPUT form="upload" type="submit" /> }
 		</FORM>
 
 	)

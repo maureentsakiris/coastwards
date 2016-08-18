@@ -5,6 +5,16 @@
     "defaultMessage": "Select your images"
   },
   {
+    "id": "files_received",
+    "description": "Status: Informs user that we have received his files",
+    "defaultMessage": "We have received your files"
+  },
+  {
+    "id": "files_accepted",
+    "description": "Status: Informs user that we have accepted his files",
+    "defaultMessage": "We have accepted your files"
+  },
+  {
     "id": "running_tests",
     "description": "Status: Running tests",
     "defaultMessage": "Running tests"

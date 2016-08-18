@@ -1,5 +1,7 @@
-import i18nLocales from 'i18n/i18nLocales'
 import * as types from 'types'
+
+import i18nLocales from 'i18n/i18nLocales'
+
 
 
 export function loadLanguage ( locale ) {
@@ -34,20 +36,87 @@ export function loadLanguage ( locale ) {
 
 }
 
-export function startTests ( e ) {
+function _promiseSelectedFiles ( e ){
 
-	const selectedFiles = e.dataTransfer ? e.dataTransfer.files : e.currentTarget.files;
+	return new Promise( ( resolve, reject ) => {
+
+		const selectedFiles = e.dataTransfer ? e.dataTransfer.files : e.currentTarget.files;
+
+		if( selectedFiles.length > 0 ){
+
+			resolve( selectedFiles );
+
+		}else{
+
+			reject( Error( 'DropzoneTB/_promiseSelectedFiles/selectedFiles.length = 0' ) );
+
+		}
+
+	} );
+
+}
+
+function _promiseAcceptedFiles ( selectedFiles ){
+
+	//for images that have been dropped not selected
+
+	return new Promise( ( resolve, reject ) => {
+
+		resolve( selectedFiles )
+
+	} )
+
+}
+
+export function startTests ( e ) {
 
 	return function ( dispatch ) {
 
-		dispatch( {
+		_promiseSelectedFiles( e )
+		.then( ( selectedFiles ) => {
 
-			type: types.START_TESTS,
-			selectedFiles: selectedFiles,
-			status: 'running_tests'
+			dispatch( {
+
+				type: types.SET_STATUS,
+				status: 'files_received'
+
+			} )
+
+			dispatch( {
+
+				type: types.SET_SELECTED_FILES,
+				selectedFiles: selectedFiles
+
+			} )
+
+			return selectedFiles
+
+		} )
+		.then( _promiseAcceptedFiles )
+		.then( ( acceptedFiles ) => {
+
+			dispatch( {
+
+				type: types.SET_STATUS,
+				status: 'files_accepted'
+
+			} )
+
+			return acceptedFiles
+
+		} ) 
+		.catch( ( error ) => {
+
+			dispatch( {
+
+				type: types.SET_STATUS,
+				status: 'Error:' + error
+
+			} )
 
 		} )
 
 	}
 
 }
+

@@ -31,8 +31,10 @@ const upload = ( state = { selectedFiles: {}, status: 'select_images' }, action 
 
 	switch ( action.type ){
 
-	case types.START_TESTS:
-		return { ...state, selectedFiles: action.selectedFiles, status: action.status }
+	case types.SET_STATUS:
+		return { ...state, status: action.status }
+	case types.SET_SELECTED_FILES:
+		return { ...state, selectedFiles: action.selectedFiles }
 	default:
 		return state;
 
