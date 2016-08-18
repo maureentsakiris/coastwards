@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { loadLanguage } from 'actions'
+import { loadLanguage } from 'actions/language'
 import A from 'components/tags/a'
 
 

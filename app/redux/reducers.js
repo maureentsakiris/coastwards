@@ -14,7 +14,7 @@ const language = ( state = { locale: 'en', dir: 'ltr', messages: undefined }, ac
 
 }
 
-const context = ( state = { title: 'Dialog title', message: 'This is a message' }, action ) => {
+const dialog = ( state = { title: 'Dialog title', message: 'This is a message' }, action ) => {
 
 	switch ( action.type ){
 
@@ -27,14 +27,29 @@ const context = ( state = { title: 'Dialog title', message: 'This is a message' 
 
 }
 
-const upload = ( state = { selectedFiles: {}, status: 'select_images' }, action ) => {
+const snackbar = ( state = { message: 'This is a message' }, action ) => {
+
+	switch ( action.type ){
+
+	case types.SHOW_SNACKBAR:
+		return { ...state, message: action.message }
+	default:
+		return state;
+
+	}
+
+}
+
+const upload = ( state = { filesAccepted: [], filesRejected: [], imagesValid: [], imagesInvalid: [], status: 'select_images' }, action ) => {
 
 	switch ( action.type ){
 
 	case types.SET_STATUS:
 		return { ...state, status: action.status }
-	case types.SET_SELECTED_FILES:
-		return { ...state, selectedFiles: action.selectedFiles }
+	case types.SET_FILES:
+		return { ...state, filesAccepted: action.filesAccepted, filesRejected: action.filesRejected }
+	case types.SET_IMAGES:
+		return { ...state, imagesValid: action.imagesValid, imagesInvalid: action.imagesInvalid }
 	default:
 		return state;
 
@@ -45,7 +60,8 @@ const upload = ( state = { selectedFiles: {}, status: 'select_images' }, action 
 const coastwards = combineReducers( {
 
 	language,
-	context,
+	dialog,
+	snackbar,
 	upload
 
 } )

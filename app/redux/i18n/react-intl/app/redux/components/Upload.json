@@ -1,22 +1,22 @@
 [
   {
+    "id": "unsupported",
+    "description": "Warning - Warns the user that his browser does not support the image upload",
+    "defaultMessage": "Your browser does not support the technologies used to upload images"
+  },
+  {
     "id": "select_images",
-    "description": "Status: Select your images",
+    "description": "Status - Select your images",
     "defaultMessage": "Select your images"
   },
   {
-    "id": "files_received",
-    "description": "Status: Informs user that we have received his files",
-    "defaultMessage": "We have received your files"
+    "id": "error_no_files_accepted",
+    "description": "Status - Informs user that none of the selected images were accepted",
+    "defaultMessage": "None of the selected files have the right file type. Please select images."
   },
   {
-    "id": "files_accepted",
-    "description": "Status: Informs user that we have accepted his files",
-    "defaultMessage": "We have accepted your files"
-  },
-  {
-    "id": "running_tests",
-    "description": "Status: Running tests",
-    "defaultMessage": "Running tests"
+    "id": "error_no_images_valid",
+    "description": "Status - Informs user that none of the selected images is valid",
+    "defaultMessage": "None of the selected images have passed the tests."
   }
 ]

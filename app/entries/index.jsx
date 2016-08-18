@@ -1,12 +1,11 @@
 import React from 'react'
 import ReactDom from 'react-dom'
-import { createStore, applyMiddleware } from 'redux'
+import { createStore, applyMiddleware, compose } from 'redux'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
-import createLogger from 'redux-logger'
 
 import coastwards from 'reducers'
-import { loadLanguage } from 'actions'
+import { loadLanguage } from 'actions/language'
 
 import I18nProvider from 'containers/i18n/i18nProvider'
 import Context from 'containers/context/context'
@@ -23,13 +22,12 @@ import FAQs from 'components/FAQs'
 import i18nLocales from 'i18n/i18nLocales'
 
 
-const logger = createLogger()
-let store = createStore( 
+let store = createStore( coastwards, compose(
 
-	coastwards,
-	applyMiddleware( thunk, logger )
+	applyMiddleware( thunk ),
+	window.devToolsExtension ? window.devToolsExtension() : ( f ) => f
 
-)
+) )
 
 
 //load negotiated language
