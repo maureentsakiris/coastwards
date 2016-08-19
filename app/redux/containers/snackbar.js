@@ -1,13 +1,13 @@
 import { connect } from 'react-redux'
 
-import Snackbar from 'components/ui/snackbar'
+import SNACKBAR from 'components/ui/snackbar'
 
 
 const mapStateToProps = ( state ) => {
 
 	return {
 
-		messages: state.snackbar.messages
+		messages: state.snackbar 
 
 	}
 
@@ -18,6 +18,6 @@ const snackbar = connect(
 
 	mapStateToProps
 
-)( Snackbar )
+)( SNACKBAR )
 
 export default snackbar

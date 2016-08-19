@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux'
 import * as types from 'types'
+import _ from 'underscore'
 
 const language = ( state = { locale: 'en', dir: 'ltr', messages: undefined }, action ) => {
 
@@ -14,7 +15,7 @@ const language = ( state = { locale: 'en', dir: 'ltr', messages: undefined }, ac
 
 }
 
-const dialog = ( state = { title: 'Dialog title', message: 'This is a message' }, action ) => {
+const dialog = ( state = { title: '', message: '' }, action ) => {
 
 	switch ( action.type ){
 
@@ -27,12 +28,14 @@ const dialog = ( state = { title: 'Dialog title', message: 'This is a message' }
 
 }
 
-const snackbar = ( state = { messages: [] }, action ) => {
+const snackbar = ( state = [ ], action ) => {
 
 	switch ( action.type ){
 
-	case types.SET_SNACKBAR_MESSAGES:
-		return { ...state, messages: action.messages }
+	case types.ADD_SNACKBAR_MESSAGE:
+		return [ ...state, action.message ]
+	case types.REMOVE_SNACKBAR_MESSAGE:
+		return _.without( state, action.message )
 	default:
 		return state;
 

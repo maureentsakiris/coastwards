@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 
-import { acceptFiles } from 'actions/upload'
+import { validateFiles } from 'actions/upload'
 import UPLOAD from 'components/upload'
 
 
@@ -10,7 +10,9 @@ const mapStateToProps = ( state ) => {
 
 		status: state.upload.status,
 		filesAccepted: state.upload.filesAccepted,
-		filesRejected: state.upload.filesRejected
+		filesRejected: state.upload.filesRejected,
+		imagesValid: state.upload.imagesValid,
+		imagesInvalid: state.upload.imagesInvalid
 
 	}
 
@@ -20,9 +22,9 @@ const mapDispatchToProps = ( dispatch ) => {
 
 	return {
 
-		acceptFiles: ( e ) => {
+		validateFiles: ( e ) => {
 
-			dispatch( acceptFiles( e ) )
+			dispatch( validateFiles( e ) )
 
 		}
 

@@ -1,34 +1,24 @@
 import * as types from 'types'
-import _ from 'underscore'
-
-function setSnackbarMessages ( messages ) {
-
-	return {
-
-		type: types.SET_SNACKBAR_MESSAGES,
-		messages: messages
-
-	}
-
-}
 
 export function addSnackbarMessage ( message ){
 
-	return function ( dispatch, getState ){
+	return function ( dispatch ){
 
-		const state = getState()
-		const messages = state.snackbar.messages
-		messages.push( message )
+		dispatch( {
 
-		dispatch( setSnackbarMessages( messages ) )
+			type: types.ADD_SNACKBAR_MESSAGE,
+			message: message
+
+		} )
 
 		setTimeout ( () => {
 
-			const state = getState()
-			const messages = state.snackbar.messages
-			messages.shift()
+			dispatch( {
 
-			dispatch( setSnackbarMessages( messages ) )
+				type: types.REMOVE_SNACKBAR_MESSAGE,
+				message: message
+				
+			} )
 
 		}, 5000 )
 

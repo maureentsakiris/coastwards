@@ -8,7 +8,7 @@ import DIV from 'components/tags/div'
 import P from 'components/tags/p'
 import INPUT from 'components/tags/input'
 
-import FILE from 'components/file'
+import FILE from 'containers/file'
 
 const messages = defineMessages( {
 
@@ -21,32 +21,18 @@ const messages = defineMessages( {
 		id: "select_images",
 		description: "Status - Select your images",
 		defaultMessage: "Select your images"
-	},
-	error_no_files_accepted:{
-		id: "error_no_files_accepted",
-		description: "Status - Informs user that none of the selected images were accepted",
-		defaultMessage: "None of the selected files have the right file type. Please select images."
-	},
-	validating_images: {
-		id: "validating_images",
-		description: "Status - Informs user that his images are being validated",
-		defaultMessage: "Validating your images"
-	},
-	error_no_images_valid:{
-		id: "error_no_images_valid",
-		description: "Status - Informs user that none of the selected images is valid",
-		defaultMessage: "None of the selected images have passed the tests."
 	}
 
 } )
 
-const upload = ( { intl, status, filesAccepted, acceptFiles } ) => {
+const upload = ( { intl, status, imagesValid, validateFiles } ) => {
 
 	const { formatMessage } = intl
-	const supported = Modernizr.xhr2 || Modernizr.xhrresponsetypejson
-	const accepted = filesAccepted.length > 0
 
-	const filesAcceptedList = _createFilesAcceptedList( filesAccepted )
+	const supported = Modernizr.xhr2 || Modernizr.xhrresponsetypejson
+
+	const accepted = imagesValid.length > 0
+	const validImages = accepted ? _createValidImagesList( imagesValid ) : ''
 
 	if( !supported ){
 
@@ -60,11 +46,13 @@ const upload = ( { intl, status, filesAccepted, acceptFiles } ) => {
 
 		return(
 
-			<FORM action="#" id="upload" >
-				<P>STATUS: { formatMessage( messages[ status ] ) }</P>
-				{ !accepted && <INPUT onChange={ acceptFiles } form="upload" type="file" multiple={ true } /> }
-				{ accepted && <DIV>{ filesAcceptedList }</DIV> }
-			</FORM>
+			<DIV id="Upload" >
+				<P>!STATUS: { formatMessage( messages[ status ] ) }</P>
+				<FORM action="#" id="upload">
+					{ !accepted && <INPUT onChange={ validateFiles } form="upload" type="file" multiple={ true } /> }
+					{ validImages }
+				</FORM>
+			</DIV>
 
 		)
 
@@ -72,9 +60,9 @@ const upload = ( { intl, status, filesAccepted, acceptFiles } ) => {
 
 }
 
-const _createFilesAcceptedList = ( filesAccepted ) => {
+const _createValidImagesList = ( imagesValid ) => {
 
-	return _.map( filesAccepted, ( file, index ) => {
+	return _.map( imagesValid, ( file, index ) => {
 
 		return React.createElement( FILE, {
 
@@ -87,27 +75,15 @@ const _createFilesAcceptedList = ( filesAccepted ) => {
 
 }
 
-/*const _createFilesRejectedList = ( filesRejected ) => {
-
-	return _.map( filesRejected, ( file, index ) => {
-
-		return (
-
-			<p key={ index } >{ file.name }</p>
-
-		)
-
-	} )
-
-}*/
-
 upload.propTypes = {
 
 	intl: intlShape.isRequired,
 	status: PropTypes.string,
 	filesAccepted: PropTypes.array,
 	filesRejected: PropTypes.array,
-	acceptFiles: PropTypes.func.isRequired
+	imagesValid: PropTypes.array,
+	imagesInvalid: PropTypes.array,
+	validateFiles: PropTypes.func.isRequired
 
 }
 
