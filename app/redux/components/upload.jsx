@@ -3,6 +3,7 @@ import { defineMessages, injectIntl, intlShape } from 'react-intl'
 import Modernizr from 'modernizr'
 import _ from 'underscore'
 
+import FORM from 'components/tags/form'
 import DIV from 'components/tags/div'
 import P from 'components/tags/p'
 import INPUT from 'components/tags/input'
@@ -25,6 +26,11 @@ const messages = defineMessages( {
 		id: "error_no_files_accepted",
 		description: "Status - Informs user that none of the selected images were accepted",
 		defaultMessage: "None of the selected files have the right file type. Please select images."
+	},
+	validating_images: {
+		id: "validating_images",
+		description: "Status - Informs user that his images are being validated",
+		defaultMessage: "Validating your images"
 	},
 	error_no_images_valid:{
 		id: "error_no_images_valid",
@@ -54,11 +60,11 @@ const upload = ( { intl, status, filesAccepted, acceptFiles } ) => {
 
 		return(
 
-			<DIV id="upload" >
+			<FORM action="#" id="upload" >
 				<P>STATUS: { formatMessage( messages[ status ] ) }</P>
 				{ !accepted && <INPUT onChange={ acceptFiles } form="upload" type="file" multiple={ true } /> }
 				{ accepted && <DIV>{ filesAcceptedList }</DIV> }
-			</DIV>
+			</FORM>
 
 		)
 

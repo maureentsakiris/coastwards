@@ -27,12 +27,12 @@ const dialog = ( state = { title: 'Dialog title', message: 'This is a message' }
 
 }
 
-const snackbar = ( state = { message: 'This is a message' }, action ) => {
+const snackbar = ( state = { messages: [] }, action ) => {
 
 	switch ( action.type ){
 
-	case types.SHOW_SNACKBAR:
-		return { ...state, message: action.message }
+	case types.SET_SNACKBAR_MESSAGES:
+		return { ...state, messages: action.messages }
 	default:
 		return state;
 

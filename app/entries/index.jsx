@@ -10,6 +10,7 @@ import { loadLanguage } from 'actions/language'
 import I18nProvider from 'containers/i18n/i18nProvider'
 import Context from 'containers/context/context'
 import Upload from 'containers/upload'
+import Snackbar from 'containers/snackbar'
 
 import I18nLinks from 'components/i18n/i18nLinks'
 import Intro from 'components/Intro'
@@ -47,6 +48,7 @@ ReactDom.render(
 				<Team />
 				<FAQs />
 				<Upload />
+				<Snackbar />
 			</Context>
 		</I18nProvider>
 	</Provider>, 

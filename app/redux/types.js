@@ -5,7 +5,7 @@ export const LOAD_LANGUAGE = 'LOAD_LANGUAGE'
 export const SHOW_DIALOG = 'SHOW_DIALOG'
 
 //snackbar
-export const SHOW_SNACKBAR = 'SHOW_SNACKBAR'
+export const SET_SNACKBAR_MESSAGES = 'SET_SNACKBAR_MESSAGES'
 
 //upload
 export const SET_STATUS = 'SET_STATUS'

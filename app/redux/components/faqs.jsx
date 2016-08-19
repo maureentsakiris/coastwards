@@ -30,7 +30,7 @@ const faqs = ( { intl } ) => {
 
 	return(
 
-		<TOGGLE id="faqs" priority={ 3 } text={ formatMessage( messages.other_questions ) } >
+		<TOGGLE id="Faqs" priority={ 3 } text={ formatMessage( messages.other_questions ) } >
 			<TOGGLE priority={ 4 } text={ formatMessage( messages.q1 ) } >
 				<DIV>{ formatMessage( messages.a1 ) }</DIV>
 			</TOGGLE>

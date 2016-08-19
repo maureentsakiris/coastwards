@@ -15,6 +15,11 @@
     "defaultMessage": "None of the selected files have the right file type. Please select images."
   },
   {
+    "id": "validating_images",
+    "description": "Status - Informs user that his images are being validated",
+    "defaultMessage": "Validating your images"
+  },
+  {
     "id": "error_no_images_valid",
     "description": "Status - Informs user that none of the selected images is valid",
     "defaultMessage": "None of the selected images have passed the tests."

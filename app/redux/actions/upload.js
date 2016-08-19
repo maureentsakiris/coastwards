@@ -1,4 +1,5 @@
 import * as types from 'types'
+import { addSnackbarMessage } from 'actions/snackbar'
 import _ from 'underscore'
 import accepts from 'attr-accept'
 
@@ -102,6 +103,25 @@ export function acceptFiles ( e ) {
 				type: types.SET_FILES,
 				filesAccepted: files.filesAccepted,
 				filesRejected: files.filesRejected
+
+			} )
+
+			if( files.filesRejected.length > 0 ){
+
+				dispatch( addSnackbarMessage( '!someof the files are ignored because wrong filetype' ) )
+
+				setTimeout ( () => {
+
+					dispatch( addSnackbarMessage( '!someof other message' ) )
+
+				}, 2000 )
+
+			}
+
+			dispatch( {
+
+				type: types.SET_STATUS,
+				status: 'validating_images' // --> upload.jsx
 
 			} )
 
