@@ -12,7 +12,8 @@ const mapStateToProps = ( state ) => {
 		filesAccepted: state.upload.filesAccepted,
 		filesRejected: state.upload.filesRejected,
 		imagesValid: state.upload.imagesValid,
-		imagesInvalid: state.upload.imagesInvalid
+		imagesInvalid: state.upload.imagesInvalid,
+		mapboxSupported: state.upload.mapboxSupported
 
 	}
 

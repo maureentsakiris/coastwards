@@ -8,8 +8,13 @@ const messages = defineMessages( {
 
 	who_are_you:{
 		id: "who_are_you",
-		description: "Section Header. Who are you?",
+		description: "Section header - Who are you?",
 		defaultMessage: "Who are you?"
+	},
+	who_are_you_title:{
+		id: "who_are_you_title",
+		description: "Section header - Meet us!",
+		defaultMessage: "Meet us!"
 	}
 
 } )
@@ -20,7 +25,7 @@ const team = ( { intl } ) => {
 
 	return(
 
-		<TOGGLE id="Team" priority={ 3 } text={ formatMessage( messages.who_are_you ) } >
+		<TOGGLE id="Team" title={ formatMessage( messages.who_are_you_title ) } priority={ 3 } text={ formatMessage( messages.who_are_you ) } >
 			<DIV>Team portrait</DIV>
 		</TOGGLE>
 

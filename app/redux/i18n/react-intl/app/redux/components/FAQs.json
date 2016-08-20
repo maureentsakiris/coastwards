@@ -1,8 +1,13 @@
 [
   {
     "id": "other_questions",
-    "description": "Section Header. Other questions...",
+    "description": "Section header - Other questions...",
     "defaultMessage": "Other questions..."
+  },
+  {
+    "id": "other_questions_title",
+    "description": "Section header title - Read the FAQs",
+    "defaultMessage": "Read the FAQs"
   },
   {
     "id": "q1",

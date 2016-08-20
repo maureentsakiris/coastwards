@@ -8,8 +8,13 @@ const messages = defineMessages( {
 
 	any_picture:{
 		id: "any_picture",
-		description: "Section Header. Just any picture?",
+		description: "Section header - Just any picture?",
 		defaultMessage: "Just any picture?"
+	},
+	any_picture_title:{
+		id: "any_picture_title",
+		description: "Section header title - Some quick guidelines",
+		defaultMessage: "Some quick guidelines"
 	}
 
 } )
@@ -20,7 +25,7 @@ const guidelines = ( { intl } ) => {
 
 	return(
 
-		<TOGGLE id="Guidelines" priority={ 3 } text={ formatMessage( messages.any_picture ) } >
+		<TOGGLE id="Guidelines" title={ formatMessage( messages.any_picture_title ) } priority={ 3 } text={ formatMessage( messages.any_picture ) } >
 			<DIV>Illustrations with guidelines</DIV>
 		</TOGGLE>
 

@@ -8,8 +8,13 @@ const messages = defineMessages( {
 
 	how:{
 		id: "how",
-		description: "Section Header. How does a picture help",
+		description: "Section header - How does a picture help",
 		defaultMessage: "How does a picture help?"
+	},
+	how_title:{
+		id:"how_title",
+		description: "Section header title - Watch a video (2min)",
+		defaultMessage: "Watch a video (2min)"
 	}
 
 } )
@@ -20,7 +25,7 @@ const how = ( { intl } ) => {
 
 	return(
 
-		<TOGGLE id="How" priority={ 3 } text={ formatMessage( messages.how ) } >
+		<TOGGLE id="How" title={ formatMessage( messages.how_title ) } priority={ 3 } text={ formatMessage( messages.how ) } >
 			<DIV>Explanatory video & transcript</DIV>
 		</TOGGLE>
 

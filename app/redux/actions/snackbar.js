@@ -20,7 +20,7 @@ export function addSnackbarMessage ( message ){
 				
 			} )
 
-		}, 5000 )
+		}, 6000 )
 
 	}
 

@@ -1,7 +1,12 @@
 [
   {
     "id": "how",
-    "description": "Section Header. How does a picture help",
+    "description": "Section header - How does a picture help",
     "defaultMessage": "How does a picture help?"
+  },
+  {
+    "id": "how_title",
+    "description": "Section header title - Watch a video (2min)",
+    "defaultMessage": "Watch a video (2min)"
   }
 ]

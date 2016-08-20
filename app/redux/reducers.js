@@ -43,7 +43,7 @@ const snackbar = ( state = [ ], action ) => {
 
 }
 
-const upload = ( state = { filesAccepted: [], filesRejected: [], imagesValid: [], imagesInvalid: [], status: 'select_images' }, action ) => {
+const upload = ( state = { filesAccepted: [], filesRejected: [], imagesValid: [], imagesInvalid: [], status: 'any_more_questions', mapboxSupported: true }, action ) => {
 
 	switch ( action.type ){
 

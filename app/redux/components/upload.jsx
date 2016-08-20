@@ -17,22 +17,33 @@ const messages = defineMessages( {
 		description: "Warning - Warns the user that his browser does not support the image upload",
 		defaultMessage: "Your browser does not support the technologies used to upload images"
 	},
+	any_more_questions: {
+		id: "any_more_questions",
+		description: "Status - Asks users if any questions are open",
+		defaultMessage: "Any more questions?"
+	},
 	select_images:{
 		id: "select_images",
 		description: "Status - Select your images",
-		defaultMessage: "Select your images"
+		defaultMessage: "Select your images below"
+	},
+	select_images_mapbox:{
+		id: "select_images_mapbox",
+		description: "Status - Select your images",
+		defaultMessage: "Drag & drop your images onto the world map to upload (or click the big red button)"
+	},
+	select_images_mapbox_touch:{
+		id: "select_images_mapbox_touch",
+		description: "Status - Select your images",
+		defaultMessage: "Click the big red button to upload pictures"
 	}
 
 } )
 
-const upload = ( { intl, status, imagesValid, validateFiles } ) => {
+const upload = ( { intl, status, imagesValid, validateFiles, mapboxSupported } ) => {
 
 	const { formatMessage } = intl
-
 	const supported = Modernizr.xhr2 || Modernizr.xhrresponsetypejson
-
-	const accepted = imagesValid.length > 0
-	const validImages = accepted ? _createValidImagesList( imagesValid ) : ''
 
 	if( !supported ){
 
@@ -44,10 +55,15 @@ const upload = ( { intl, status, imagesValid, validateFiles } ) => {
 
 	}else{
 
+		const accepted = imagesValid.length > 0
+		const validImages = accepted ? _createValidImagesList( imagesValid ) : ''
+		const prompt = mapboxSupported && Modernizr.touchevents ? 'select_images_mapbox_touch' : 'select_images_mapbox'
+		const stat = status ? status : prompt
+
 		return(
 
 			<DIV id="Upload" >
-				<P>!STATUS: { formatMessage( messages[ status ] ) }</P>
+				<P>!STATUS: { formatMessage( messages[ stat ] ) }</P>
 				<FORM action="#" id="upload">
 					{ !accepted && <INPUT onChange={ validateFiles } form="upload" type="file" multiple={ true } /> }
 					{ validImages }
@@ -83,7 +99,8 @@ upload.propTypes = {
 	filesRejected: PropTypes.array,
 	imagesValid: PropTypes.array,
 	imagesInvalid: PropTypes.array,
-	validateFiles: PropTypes.func.isRequired
+	validateFiles: PropTypes.func.isRequired,
+	mapboxSupported: PropTypes.bool
 
 }
 

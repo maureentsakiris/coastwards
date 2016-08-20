@@ -1,7 +1,12 @@
 [
   {
     "id": "any_picture",
-    "description": "Section Header. Just any picture?",
+    "description": "Section header - Just any picture?",
     "defaultMessage": "Just any picture?"
+  },
+  {
+    "id": "any_picture_title",
+    "description": "Section header title - Some quick guidelines",
+    "defaultMessage": "Some quick guidelines"
   }
 ]

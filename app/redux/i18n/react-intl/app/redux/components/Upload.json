@@ -5,8 +5,23 @@
     "defaultMessage": "Your browser does not support the technologies used to upload images"
   },
   {
+    "id": "any_more_questions",
+    "description": "Status - Asks users if any questions are open",
+    "defaultMessage": "Any more questions?"
+  },
+  {
     "id": "select_images",
     "description": "Status - Select your images",
-    "defaultMessage": "Select your images"
+    "defaultMessage": "Select your images below"
+  },
+  {
+    "id": "select_images_mapbox",
+    "description": "Status - Select your images",
+    "defaultMessage": "Drag & drop your images onto the world map to upload (or click the big red button)"
+  },
+  {
+    "id": "select_images_mapbox_touch",
+    "description": "Status - Select your images",
+    "defaultMessage": "Click the big red button to upload pictures"
   }
 ]
