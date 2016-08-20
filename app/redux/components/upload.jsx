@@ -5,7 +5,6 @@ import _ from 'underscore'
 
 import FORM from 'components/tags/form'
 import DIV from 'components/tags/div'
-import P from 'components/tags/p'
 import INPUT from 'components/tags/input'
 
 import FILE from 'containers/file'
@@ -40,12 +39,12 @@ const messages = defineMessages( {
 
 } )
 
-const upload = ( { intl, status, imagesValid, validateFiles, mapboxSupported } ) => {
+const upload = ( { intl, filesAccepted, acceptFiles } ) => {
 
 	const { formatMessage } = intl
-	const supported = Modernizr.xhr2 || Modernizr.xhrresponsetypejson
+	const formData = Modernizr.xhr2 || Modernizr.xhrresponsetypejson
  
-	if( !supported ){
+	if( !formData ){
 
 		return( 
 
@@ -55,17 +54,14 @@ const upload = ( { intl, status, imagesValid, validateFiles, mapboxSupported } )
 
 	}else{
 
-		const accepted = imagesValid.length > 0
-		const validImages = accepted ? _createValidImagesList( imagesValid ) : ''
-		const prompt = mapboxSupported && Modernizr.touchevents ? 'select_images_mapbox_touch' : 'select_images_mapbox'
-		const stat = status ? status : prompt
+		const accepted = filesAccepted.length > 0
+		const validImages = accepted ? _createValidImagesList( filesAccepted ) : ''
 
 		return(
 
 			<DIV id="Upload" >
-				<P>!STATUS: { formatMessage( messages[ stat ] ) }</P>
 				<FORM action="#" id="upload">
-					{ !accepted && <INPUT onChange={ validateFiles } form="upload" type="file" multiple={ true } /> }
+					{ !accepted && <INPUT name="images" onChange={ acceptFiles } form="upload" type="file" multiple={ true } /> }
 					{ validImages }
 				</FORM>
 			</DIV>
@@ -76,9 +72,9 @@ const upload = ( { intl, status, imagesValid, validateFiles, mapboxSupported } )
 
 }
 
-const _createValidImagesList = ( imagesValid ) => {
+const _createValidImagesList = ( filesAccepted ) => {
 
-	return _.map( imagesValid, ( file, index ) => {
+	return _.map( filesAccepted, ( file, index ) => {
 
 		return React.createElement( FILE, {
 
@@ -94,13 +90,9 @@ const _createValidImagesList = ( imagesValid ) => {
 upload.propTypes = {
 
 	intl: intlShape.isRequired,
-	status: PropTypes.string,
 	filesAccepted: PropTypes.array,
 	filesRejected: PropTypes.array,
-	imagesValid: PropTypes.array,
-	imagesInvalid: PropTypes.array,
-	validateFiles: PropTypes.func.isRequired,
-	mapboxSupported: PropTypes.bool
+	acceptFiles: PropTypes.func
 
 }
 

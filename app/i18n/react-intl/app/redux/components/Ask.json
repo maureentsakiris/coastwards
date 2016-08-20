@@ -1,0 +1,32 @@
+[
+  {
+    "id": "ask_a_question",
+    "description": "Section header - Ask us",
+    "defaultMessage": "Still have a question? Ask us! ( in english )"
+  },
+  {
+    "id": "label_email",
+    "description": "Lable - Email",
+    "defaultMessage": "Email"
+  },
+  {
+    "id": "placeholder_email",
+    "description": "Placeholder - Email",
+    "defaultMessage": "Your email"
+  },
+  {
+    "id": "label_question",
+    "description": "Label - Your Question",
+    "defaultMessage": "Your question"
+  },
+  {
+    "id": "placeholder_question",
+    "description": "Placeholder - Tell us your question",
+    "defaultMessage": "Tell us your question ..."
+  },
+  {
+    "id": "label_submit",
+    "description": "Label - Submit",
+    "defaultMessage": "Submit"
+  }
+]

@@ -1,12 +1,12 @@
 import React, { PropTypes } from 'react'
 import _ from 'underscore'
 import tag from './tag'
-import { globalAttr, iAttr } from './attributes'
+import { globalAttr, spanAttr } from './attributes'
 
 const span = ( { hocProps } ) => {
 
 	const { children, ...restProps } = hocProps
-	const allowedProps = _.pick( restProps, _.union( globalAttr, iAttr ) )
+	const allowedProps = _.pick( restProps, _.union( globalAttr, spanAttr ) )
 
 
 	return(

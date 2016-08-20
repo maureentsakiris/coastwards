@@ -39,7 +39,7 @@ input.propTypes = {
 		maxlength: PropTypes.number,
 		min: PropTypes.string,
 		multiple: PropTypes.bool,
-		name: PropTypes.string,
+		name: PropTypes.string.isRequired,
 		pattern: PropTypes.string,
 		placeholder: PropTypes.string,
 		readonly: PropTypes.bool,

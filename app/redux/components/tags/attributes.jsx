@@ -44,3 +44,5 @@ export const inputAttr = [ 'accept', 'alt', 'autoComplete', 'autoFocus', 'checke
 export const buttonAttr = [ 'autoFocus', 'disabled', 'form', 'formaction', 'formenctype', 'formmethod', 'formnovalidate', 'formtarget', 'name', 'type', 'value' ]
 export const pAttr = []
 export const spanAttr = []
+export const textareaAttr = [ 'autoFocus', 'cols', 'dirname', 'disabled', 'form', 'maxlength', 'name', 'placeholder', 'readonly', 'required', 'rows', 'wrap' ]
+export const hrAttr = []

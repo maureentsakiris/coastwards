@@ -49,7 +49,7 @@ function _promiseFilesAccepted ( filesSelected ){ //for images that have been dr
 
 		if( !filesAccepted.length ){
 
-			reject( 'warning_all_files_rejected' ) // --> snackbar.jsx
+			reject( 'warning_all_files_rejected' ) // --> error.js
 
 		}else{
 
@@ -62,7 +62,7 @@ function _promiseFilesAccepted ( filesSelected ){ //for images that have been dr
 }
 
 
-function _promiseFilesValidated ( filesAccepted ){
+/*function _promiseFilesValidated ( filesAccepted ){
 
 	return new Promise( ( resolve, reject ) => {
 
@@ -71,7 +71,7 @@ function _promiseFilesValidated ( filesAccepted ){
 
 		if( !imagesValid.length ){
 
-			reject( 'warning_all_files_invalid' ) // --> snackbar.jsx
+			reject( 'warning_all_files_invalid' ) // --> error.js
 
 		}else{
 			
@@ -81,11 +81,11 @@ function _promiseFilesValidated ( filesAccepted ){
 	
 	} )
 
-}
+}*/
 
 
 
-export function validateFiles ( e ) {
+export function acceptFiles ( e ) {
 
 	return function ( dispatch ) {
 
@@ -103,14 +103,14 @@ export function validateFiles ( e ) {
 
 			if( files.filesRejected.length > 0 ){
 
-				dispatch( addSnackbarMessage( 'warning_some_files_rejected' ) ) // --> snackbar.jsx
+				dispatch( addSnackbarMessage( 'warning_some_files_rejected' ) ) // --> error.js
 
 			}
 
 			return files.filesAccepted
 
 		} )
-		.then( _promiseFilesValidated )
+		/*.then( _promiseFilesValidated )
 		.then( ( images ) => {
 
 			dispatch( {
@@ -123,18 +123,10 @@ export function validateFiles ( e ) {
 
 			return images.imagesValid
 
-		} )
+		} )*/
 		.catch( ( error ) => {
 
-			if( typeof error === 'string' ){
-
-				dispatch( addSnackbarMessage( error ) )
-
-			}else{
-
-				console.error( "Untranslated error: ", error )
-
-			}
+			dispatch( addSnackbarMessage( error ) )
 
 		} )
 

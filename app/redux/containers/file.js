@@ -1,4 +1,5 @@
 import { connect } from 'react-redux'
+import { validateImage } from 'actions/file'
 
 import FILE from 'components/file'
 
@@ -16,6 +17,11 @@ const mapDispatchToProps = ( dispatch ) => {
 
 	return {
 
+		validateImage: ( image ) => {
+
+			dispatch( validateImage ( image ) )
+
+		}
 
 	}
 

@@ -45,16 +45,25 @@ const snackbar = ( state = [ ], action ) => {
 
 }
 
-const upload = ( state = { filesAccepted: [], filesRejected: [], imagesValid: [], imagesInvalid: [], status: 'any_more_questions', mapboxSupported: true }, action ) => {
+const upload = ( state = { filesAccepted: [], filesRejected: [] }, action ) => {
 
 	switch ( action.type ){
 
-	case types.SET_STATUS:
-		return { ...state, status: action.status }
 	case types.SET_FILES:
 		return { ...state, filesAccepted: action.filesAccepted, filesRejected: action.filesRejected }
-	case types.SET_IMAGES:
-		return { ...state, imagesValid: action.imagesValid, imagesInvalid: action.imagesInvalid }
+	default:
+		return state;
+
+	}
+
+}
+
+const images = ( state= [], action ) => {
+
+	switch ( action.type ){
+
+	case types.ADD_VALID_IMAGE:
+		return [ ...state, action.image ]
 	default:
 		return state;
 
@@ -67,7 +76,8 @@ const coastwards = combineReducers( {
 	i18n,
 	dialog,
 	snackbar,
-	upload
+	upload,
+	images
 
 } )
 
