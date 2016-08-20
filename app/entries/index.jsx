@@ -5,12 +5,13 @@ import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 
 import coastwards from 'reducers'
-import { loadLanguage } from 'actions/language'
+import { loadLanguage } from 'actions/i18n/i18n'
 
 import I18nProvider from 'containers/i18n/i18nProvider'
 import Context from 'containers/context/context'
 import Upload from 'containers/upload'
-import Snackbar from 'containers/snackbar'
+import Snackbar from 'containers/ui/snackbar'
+import Dialog from 'containers/ui/dialog'
 
 import I18nLinks from 'components/i18n/i18nLinks'
 import Intro from 'components/Intro'
@@ -20,7 +21,7 @@ import Team from 'components/Team'
 import FAQs from 'components/FAQs'
 
 //TODO: i18nLinks should handle that itself?
-import i18nLocales from 'i18n/i18nLocales'
+import i18nLocales from 'actions/i18n/i18nLocales'
 
 
 let store = createStore( coastwards, compose(
@@ -49,6 +50,7 @@ ReactDom.render(
 				<FAQs />
 				<Upload />
 				<Snackbar />
+				<Dialog />
 			</Context>
 		</I18nProvider>
 	</Provider>, 

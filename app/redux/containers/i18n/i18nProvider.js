@@ -4,12 +4,14 @@ import { IntlProvider } from 'react-intl'
 
 const mapStateToProps = ( state ) => {
 
+	const { locale, dir, messages } = state.i18n
+
 	return {
 
-		key: state.language.locale,
-		dir: state.language.dir,
-		locale: state.language.locale,
-		messages: state.language.messages
+		key: locale,
+		dir: dir,
+		locale: locale,
+		messages: messages
 		
 	}
 

@@ -5,12 +5,13 @@ import DIV from 'components/tags/div'
 
 const mapStateToProps = ( state ) => {
 
-	const mount = state.language.messages ? true : false
+	const { locale, dir, messages } = state.i18n
+	const mount = messages ? true : false
 
 	return {
 
-		lang: state.language.locale,
-		dir: state.language.dir,
+		lang: locale,
+		dir: dir,
 		mount: mount
 
 	}

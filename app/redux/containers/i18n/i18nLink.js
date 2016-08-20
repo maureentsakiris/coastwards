@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { loadLanguage } from 'actions/language'
+import { loadLanguage } from 'actions/i18n/i18n'
 import A from 'components/tags/a'
 
 
@@ -9,7 +9,7 @@ const mapStateToProps = ( state, ownProps ) => {
 
 	return {
 
-		active: locale === state.language.locale,
+		active: locale === state.i18n.locale,
 		hrefLang: locale
 
 	}
@@ -18,11 +18,13 @@ const mapStateToProps = ( state, ownProps ) => {
 
 const mapDispatchToProps = ( dispatch, ownProps ) => {
 
+	const { locale } = ownProps
+
 	return {
 
 		onClick: () => {
 
-			dispatch( loadLanguage( ownProps.locale ) )
+			dispatch( loadLanguage( locale ) )
 
 		}
 

@@ -64,7 +64,7 @@
       [
         "react-intl",
         {
-          "messagesDir": "./app/redux/i18n/react-intl/",
+          "messagesDir": "./app/i18n/react-intl/",
           "enforceDescriptions": true
         }
       ]

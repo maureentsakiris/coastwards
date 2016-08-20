@@ -24,7 +24,7 @@ const config = {
 		translate: ENTRY_TRANSLATE
 	},
 	resolve: {
-		root: path.join( PROJECT_ROOT, 'app/redux/' ),
+		root: [ path.join( PROJECT_ROOT, 'app/redux/' ), path.join( PROJECT_ROOT, 'app/i18n/' ) ],
 		alias: {
 			modernizr$:  path.join( PROJECT_ROOT, '.modernizrrc' )
 		},

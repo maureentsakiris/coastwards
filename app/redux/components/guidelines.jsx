@@ -39,4 +39,4 @@ guidelines.propTypes = {
 
 }
 
-export default injectIntl( guidelines )
+export default injectIntl( guidelines ) 

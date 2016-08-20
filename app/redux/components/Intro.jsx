@@ -40,4 +40,4 @@ intro.propTypes = {
 
 }
 
-export default injectIntl( intro )
+export default injectIntl( intro ) 

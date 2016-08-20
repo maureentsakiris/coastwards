@@ -29,4 +29,4 @@ file.propTypes = {
 
 }
 
-export default injectIntl( file )
+export default injectIntl( file ) 

@@ -1,4 +1,4 @@
-import React from 'react'
+ import React from 'react'
 import { defineMessages, injectIntl, intlShape } from 'react-intl'
 
 import TOGGLE from 'components/ui/toggle'
@@ -39,4 +39,4 @@ team.propTypes = {
 
 }
 
-export default injectIntl( team )
+export default injectIntl( team ) 

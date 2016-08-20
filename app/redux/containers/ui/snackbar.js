@@ -5,9 +5,11 @@ import SNACKBAR from 'components/ui/snackbar'
 
 const mapStateToProps = ( state ) => {
 
+	const { snackbar } = state
+
 	return {
 
-		messages: state.snackbar 
+		messages: snackbar 
 
 	}
 

@@ -1,5 +1,5 @@
 import * as types from 'types'
-import i18nLocales from 'i18n/i18nLocales'
+import i18nLocales from './i18nLocales'
 
 
 export function loadLanguage ( locale ) {
@@ -11,6 +11,7 @@ export function loadLanguage ( locale ) {
 			if( error ){
 
 				dispatch( {
+					
 					type: types.SHOW_DIALOG,
 					message: error
 
@@ -18,11 +19,14 @@ export function loadLanguage ( locale ) {
 
 			}else{
 
+				const { locale, dir, messages } = i18nLocales
+
 				dispatch( {
+
 					type: types.LOAD_LANGUAGE,
-					locale: i18nLocales.locale,
-					dir: i18nLocales.dir,
-					messages: i18nLocales.messages
+					locale: locale,
+					dir: dir,
+					messages: messages
 
 				} )
 

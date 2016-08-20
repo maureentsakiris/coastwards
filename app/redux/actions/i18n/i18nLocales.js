@@ -3,7 +3,6 @@
  * 1. Add in Locales (i18nLocales.js)
  * 2. Add loaders method (i18nLocales.js)
  * 3. Add in acceptsLanguages (server.js)
- * 4. Adjust mediaqueries to show/hide arrows and justify-content left/center
 */
 
 import { addLocaleData } from 'react-intl';
@@ -56,13 +55,13 @@ loaders.en = ( done ) => {
 
 		require.ensure(
 
-			[ 'intl/locale-data/jsonp/en.js', 'react-intl/locale-data/en', './en' ],
+			[ 'intl/locale-data/jsonp/en.js', 'react-intl/locale-data/en', '../../../i18n/locales/en' ],
 			( require ) => {
 
 				require( 'intl/locale-data/jsonp/en.js' ); 
 				var localeData = require( 'react-intl/locale-data/en' );
 				addLocaleData( localeData );
-				var i18n = require( './en' );
+				var i18n = require( '../../../i18n/locales/en' );
 				done ( null, i18n );
 
 			},
@@ -74,12 +73,12 @@ loaders.en = ( done ) => {
 
 		require.ensure(
 
-			[ 'react-intl/locale-data/en', './en' ],
+			[ 'react-intl/locale-data/en', '../../../i18n/locales/en' ],
 			( require ) => {
 
 				var localeData = require( 'react-intl/locale-data/en' );
 				addLocaleData( localeData );
-				var i18n = require( './en' );
+				var i18n = require( '../../../i18n/locales/en' );
 				done ( null, i18n );
 
 			},
@@ -97,13 +96,13 @@ loaders.de = ( done ) => {
 
 		require.ensure(
 
-			[ 'intl/locale-data/jsonp/de.js', 'react-intl/locale-data/de', './de' ],
+			[ 'intl/locale-data/jsonp/de.js', 'react-intl/locale-data/de', '../../../i18n/locales/de' ],
 			( require ) => {
 
 				require( 'intl/locale-data/jsonp/de.js' ); 
 				var localeData = require( 'react-intl/locale-data/de' );
 				addLocaleData( localeData );
-				var i18n = require( './de' );
+				var i18n = require( '../../../i18n/locales/de' );
 				done ( null, i18n );
 
 			},
@@ -115,12 +114,12 @@ loaders.de = ( done ) => {
 
 		require.ensure(
 
-			[ 'react-intl/locale-data/de', './de' ],
+			[ 'react-intl/locale-data/de', '../../../i18n/locales/de' ],
 			( require ) => {
 
 				var localeData = require( 'react-intl/locale-data/de' );
 				addLocaleData( localeData );
-				var i18n = require( './de' );
+				var i18n = require( '../../../i18n/locales/de' );
 				done ( null, i18n );
 
 			},
@@ -138,13 +137,13 @@ loaders.es = ( done ) => {
 
 		require.ensure(
 
-			[ 'intl/locale-data/jsonp/es.js', 'react-intl/locale-data/es', './es' ],
+			[ 'intl/locale-data/jsonp/es.js', 'react-intl/locale-data/es', '../../../i18n/locales/es' ],
 			( require ) => {
 
 				require( 'intl/locale-data/jsonp/es.js' ); 
 				var localeData = require( 'react-intl/locale-data/es' );
 				addLocaleData( localeData );
-				var i18n = require( './es' );
+				var i18n = require( '../../../i18n/locales/es' );
 				done ( null, i18n );
 
 			},
@@ -156,12 +155,12 @@ loaders.es = ( done ) => {
 
 		require.ensure(
 
-			[ 'react-intl/locale-data/es', './es' ],
+			[ 'react-intl/locale-data/es', '../../../i18n/locales/es' ],
 			( require ) => {
 
 				var localeData = require( 'react-intl/locale-data/es' );
 				addLocaleData( localeData );
-				var i18n = require( './es' );
+				var i18n = require( '../../../i18n/locales/es' );
 				done ( null, i18n );
 
 			},
@@ -179,13 +178,13 @@ loaders.it = ( done ) => {
 
 		require.ensure(
 
-			[ 'intl/locale-data/jsonp/it.js', 'react-intl/locale-data/it', './it' ],
+			[ 'intl/locale-data/jsonp/it.js', 'react-intl/locale-data/it', '../../../i18n/locales/it' ],
 			( require ) => {
 
 				require( 'intl/locale-data/jsonp/it.js' ); 
 				var localeData = require( 'react-intl/locale-data/it' );
 				addLocaleData( localeData );
-				var i18n = require( './it' );
+				var i18n = require( '../../../i18n/locales/it' );
 				done ( null, i18n );
 
 			},
@@ -197,12 +196,12 @@ loaders.it = ( done ) => {
 
 		require.ensure(
 
-			[ 'react-intl/locale-data/it', './it' ],
+			[ 'react-intl/locale-data/it', '../../../i18n/locales/it' ],
 			( require ) => {
 
 				var localeData = require( 'react-intl/locale-data/it' );
 				addLocaleData( localeData );
-				var i18n = require( './it' );
+				var i18n = require( '../../../i18n/locales/it' );
 				done ( null, i18n );
 
 			},
@@ -220,13 +219,13 @@ loaders.ru = ( done ) => {
 
 		require.ensure(
 
-			[ 'intl/locale-data/jsonp/ru.js', 'react-intl/locale-data/ru', './ru' ],
+			[ 'intl/locale-data/jsonp/ru.js', 'react-intl/locale-data/ru', '../../../i18n/locales/ru' ],
 			( require ) => {
 
 				require( 'intl/locale-data/jsonp/ru.js' ); 
 				var localeData = require( 'react-intl/locale-data/ru' );
 				addLocaleData( localeData );
-				var i18n = require( './ru' );
+				var i18n = require( '../../../i18n/locales/ru' );
 				done ( null, i18n );
 
 			},
@@ -238,12 +237,12 @@ loaders.ru = ( done ) => {
 
 		require.ensure(
 
-			[ 'react-intl/locale-data/ru', './ru' ],
+			[ 'react-intl/locale-data/ru', '../../../i18n/locales/ru' ],
 			( require ) => {
 
 				var localeData = require( 'react-intl/locale-data/ru' );
 				addLocaleData( localeData );
-				var i18n = require( './ru' );
+				var i18n = require( '../../../i18n/locales/ru' );
 				done ( null, i18n );
 
 			},
@@ -261,13 +260,13 @@ loaders.hi = ( done ) => {
 
 		require.ensure(
 
-			[ 'intl/locale-data/jsonp/hi.js', 'react-intl/locale-data/hi', './hi' ],
+			[ 'intl/locale-data/jsonp/hi.js', 'react-intl/locale-data/hi', '../../../i18n/locales/hi' ],
 			( require ) => {
 
 				require( 'intl/locale-data/jsonp/hi.js' ); 
 				var localeData = require( 'react-intl/locale-data/hi' );
 				addLocaleData( localeData );
-				var i18n = require( './hi' );
+				var i18n = require( '../../../i18n/locales/hi' );
 				done ( null, i18n );
 
 			},
@@ -279,12 +278,12 @@ loaders.hi = ( done ) => {
 
 		require.ensure(
 
-			[ 'react-intl/locale-data/hi', './hi' ],
+			[ 'react-intl/locale-data/hi', '../../../i18n/locales/hi' ],
 			( require ) => {
 
 				var localeData = require( 'react-intl/locale-data/hi' );
 				addLocaleData( localeData );
-				var i18n = require( './hi' );
+				var i18n = require( '../../../i18n/locales/hi' );
 				done ( null, i18n );
 
 			},
@@ -302,13 +301,13 @@ loaders.bn = ( done ) => {
 
 		require.ensure(
 
-			[ 'intl/locale-data/jsonp/bn.js', 'react-intl/locale-data/bn', './bn' ],
+			[ 'intl/locale-data/jsonp/bn.js', 'react-intl/locale-data/bn', '../../../i18n/locales/bn' ],
 			( require ) => {
 
 				require( 'intl/locale-data/jsonp/bn.js' ); 
 				var localeData = require( 'react-intl/locale-data/bn' );
 				addLocaleData( localeData );
-				var i18n = require( './bn' );
+				var i18n = require( '../../../i18n/locales/bn' );
 				done ( null, i18n );
 
 			},
@@ -320,12 +319,12 @@ loaders.bn = ( done ) => {
 
 		require.ensure(
 
-			[ 'react-intl/locale-data/bn', './bn' ],
+			[ 'react-intl/locale-data/bn', '../../../i18n/locales/bn' ],
 			( require ) => {
 
 				var localeData = require( 'react-intl/locale-data/bn' );
 				addLocaleData( localeData );
-				var i18n = require( './bn' );
+				var i18n = require( '../../../i18n/locales/bn' );
 				done ( null, i18n );
 
 			},
@@ -343,13 +342,13 @@ loaders.ar = ( done ) => {
 
 		require.ensure(
 
-			[ 'intl/locale-data/jsonp/ar.js', 'react-intl/locale-data/ar', './ar' ],
+			[ 'intl/locale-data/jsonp/ar.js', 'react-intl/locale-data/ar', '../../../i18n/locales/ar' ],
 			( require ) => {
 
 				require( 'intl/locale-data/jsonp/ar.js' ); 
 				var localeData = require( 'react-intl/locale-data/ar' );
 				addLocaleData( localeData );
-				var i18n = require( './ar' );
+				var i18n = require( '../../../i18n/locales/ar' );
 				done ( null, i18n );
 
 			},
@@ -361,12 +360,12 @@ loaders.ar = ( done ) => {
 
 		require.ensure(
 
-			[ 'react-intl/locale-data/ar', './ar' ],
+			[ 'react-intl/locale-data/ar', '../../../i18n/locales/ar' ],
 			( require ) => {
 
 				var localeData = require( 'react-intl/locale-data/ar' );
 				addLocaleData( localeData );
-				var i18n = require( './ar' );
+				var i18n = require( '../../../i18n/locales/ar' );
 				done ( null, i18n );
 
 			},
@@ -384,13 +383,13 @@ loaders.zh = ( done ) => {
 
 		require.ensure(
 
-			[ 'intl/locale-data/jsonp/zh.js', 'react-intl/locale-data/zh', './zh' ],
+			[ 'intl/locale-data/jsonp/zh.js', 'react-intl/locale-data/zh', '../../../i18n/locales/zh' ],
 			( require ) => {
 
 				require( 'intl/locale-data/jsonp/zh.js' ); 
 				var localeData = require( 'react-intl/locale-data/zh' );
 				addLocaleData( localeData );
-				var i18n = require( './zh' );
+				var i18n = require( '../../../i18n/locales/zh' );
 				done ( null, i18n );
 
 			},
@@ -402,12 +401,12 @@ loaders.zh = ( done ) => {
 
 		require.ensure(
 
-			[ 'react-intl/locale-data/zh', './zh' ],
+			[ 'react-intl/locale-data/zh', '../../../i18n/locales/zh' ],
 			( require ) => {
 
 				var localeData = require( 'react-intl/locale-data/zh' );
 				addLocaleData( localeData );
-				var i18n = require( './zh' );
+				var i18n = require( '../../../i18n/locales/zh' );
 				done ( null, i18n );
 
 			},

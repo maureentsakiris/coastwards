@@ -50,4 +50,4 @@ faqs.propTypes = {
 
 }
 
-export default injectIntl( faqs )
+export default injectIntl( faqs ) 

@@ -3,6 +3,7 @@ export const LOAD_LANGUAGE = 'LOAD_LANGUAGE'
 
 //dialog
 export const SHOW_DIALOG = 'SHOW_DIALOG'
+export const HIDE_DIALOG = 'HIDE_DIALOG'
 
 //snackbar
 export const ADD_SNACKBAR_MESSAGE = 'ADD_SNACKBAR_MESSAGE'

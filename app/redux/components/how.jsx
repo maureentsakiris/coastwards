@@ -39,4 +39,4 @@ how.propTypes = {
 
 }
 
-export default injectIntl( how )
+export default injectIntl( how ) 

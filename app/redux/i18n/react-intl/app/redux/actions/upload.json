@@ -1,7 +1,0 @@
-[
-  {
-    "id": "warning_files_rejected",
-    "description": "Warning - Warns the user that some of the selected files have been rejected due to its file type",
-    "defaultMessage": "Some of the selected files are not the right file type and will be ignored"
-  }
-]

@@ -44,7 +44,7 @@ const upload = ( { intl, status, imagesValid, validateFiles, mapboxSupported } )
 
 	const { formatMessage } = intl
 	const supported = Modernizr.xhr2 || Modernizr.xhrresponsetypejson
-
+ 
 	if( !supported ){
 
 		return( 

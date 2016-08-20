@@ -2,7 +2,7 @@ import { combineReducers } from 'redux'
 import * as types from 'types'
 import _ from 'underscore'
 
-const language = ( state = { locale: 'en', dir: 'ltr', messages: undefined }, action ) => {
+const i18n = ( state = { locale: 'en', dir: 'ltr', messages: undefined }, action ) => {
 
 	switch ( action.type ){
 
@@ -15,12 +15,14 @@ const language = ( state = { locale: 'en', dir: 'ltr', messages: undefined }, ac
 
 }
 
-const dialog = ( state = { title: '', message: '' }, action ) => {
+const dialog = ( state = { title: '', message: '', active: false }, action ) => {
 
 	switch ( action.type ){
 
 	case types.SHOW_DIALOG:
-		return { ...state, title: action.title, message: action.message }
+		return { ...state, title: action.title, message: action.message, active: true }
+	case types.HIDE_DIALOG:
+		return { ...state, title: '', message: '', active: false }
 	default:
 		return state;
 
@@ -62,7 +64,7 @@ const upload = ( state = { filesAccepted: [], filesRejected: [], imagesValid: []
 
 const coastwards = combineReducers( {
 
-	language,
+	i18n,
 	dialog,
 	snackbar,
 	upload
