@@ -12,7 +12,8 @@ class file extends Component {
 
 	componentWillMount ( ){
 
-		this.props.validateImage( this.props.f )
+		const { validateImage, f } = this.props
+		validateImage( f )
 
 	}
 

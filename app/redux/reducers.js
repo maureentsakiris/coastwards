@@ -45,7 +45,75 @@ const snackbar = ( state = [ ], action ) => {
 
 }
 
-const layers = ( state = { ready: true, form: false, screen: false, map: true }, action ) => {
+const rejected = ( state = [ ], action ) => {
+
+	switch ( action.type ){
+
+	case types.SET_REJECTED:
+		return action.images
+	case types.ADD_REJECTED:
+		return [ ...state, action.images ]
+	case types.REMOVE_REJECTED:
+		return _.without( state, action.images )
+	default:
+		return state;
+
+	}
+
+}
+
+const valid = ( state = [ ], action ) => {
+
+	switch ( action.type ){
+
+	case types.SET_VALID:
+		return action.images
+	case types.ADD_VALID:
+		return [ ...state, action.images ]
+	case types.REMOVE_VALID:
+		return _.without( state, action.images )
+	default:
+		return state;
+
+	}
+
+}
+
+const action = ( state = [ ], action ) => {
+
+	switch ( action.type ){
+
+	case types.SET_ACTION:
+		return action.images
+	case types.ADD_ACTION:
+		return [ ...state, action.images ]
+	case types.REMOVE_ACTION:
+		return _.without( state, action.images )
+	default:
+		return state;
+
+	}
+
+}
+
+const invalid = ( state = [ ], action ) => {
+
+	switch ( action.type ){
+
+	case types.SET_INVALID:
+		return action.images
+	case types.ADD_INVALID:
+		return [ ...state, action.images ]
+	case types.REMOVE_INVALID:
+		return _.without( state, action.images )
+	default:
+		return state;
+
+	}
+
+}
+
+/*const layers = ( state = { ready: true, form: false, screen: false, map: true }, action ) => {
 
 	switch ( action.type ){
 
@@ -56,42 +124,18 @@ const layers = ( state = { ready: true, form: false, screen: false, map: true },
 
 	}
 
-}
+}*/
 
-const upload = ( state = { filesAccepted: [], filesRejected: [] }, action ) => {
-
-	switch ( action.type ){
-
-	case types.SET_FILES:
-		return { ...state, filesAccepted: action.filesAccepted, filesRejected: action.filesRejected }
-	default:
-		return state;
-
-	}
-
-}
-
-const images = ( state= [], action ) => {
-
-	switch ( action.type ){
-
-	case types.ADD_VALID_IMAGE:
-		return [ ...state, action.image ]
-	default:
-		return state;
-
-	}
-
-}
 
 const coastwards = combineReducers( {
 
 	i18n,
 	dialog,
 	snackbar,
-	layers,
-	upload,
-	images
+	rejected,
+	valid,
+	action, 
+	invalid
 
 } )
 

@@ -41,7 +41,8 @@ const _composeMessages = ( intl, messages ) => {
 
 	return _.map( messages, ( message, index ) => {
 
-		const m = translations[ message ] ? formatMessage( translations[ message ] ) : message
+		const mess = typeof message === 'object' ? message.message : message //if error object
+		const m = translations[ mess ] ? formatMessage( translations[ mess ] ) : mess //if translation 
 
 		return React.createElement( 'p', {
 

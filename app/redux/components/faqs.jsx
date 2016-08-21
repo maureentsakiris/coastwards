@@ -62,6 +62,11 @@ const messages = defineMessages( {
 
 } )
 
+/*<FORM id="searchFAQs" action="#">
+				<INPUT type="search" placeholder="!search the faqs" form="searchFAQs" name="search" />
+				<INPUT type="button" form="searchFAQs" name="submitSearch" value="!GO" />
+			</FORM>*/
+
 const faqs = ( { intl } ) => {
 
 	const { formatMessage } = intl
@@ -69,10 +74,6 @@ const faqs = ( { intl } ) => {
 	return(
 
 		<TOGGLE id="Faqs" title={ formatMessage( messages.other_questions_title ) } priority={ 3 } text={ formatMessage( messages.other_questions ) } >
-			<FORM id="searchFAQs" action="#">
-				<INPUT type="search" placeholder="!search the faqs" form="searchFAQs" name="search" />
-				<INPUT type="button" form="searchFAQs" name="submitSearch" value="!GO" />
-			</FORM>
 			<TOGGLE priority={ 4 } text={ formatMessage( messages.q1 ) } >
 				<DIV>{ formatMessage( messages.a1 ) }</DIV>
 			</TOGGLE>

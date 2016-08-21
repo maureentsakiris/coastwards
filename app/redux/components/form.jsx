@@ -39,7 +39,7 @@ const messages = defineMessages( {
 
 } )
 
-const upload = ( { intl, filesAccepted, acceptFiles } ) => {
+const form = ( { intl, valid, action, invalid, rejected, validateFiles } ) => {
 
 	const { formatMessage } = intl
 	const formData = Modernizr.xhr2 || Modernizr.xhrresponsetypejson
@@ -54,15 +54,26 @@ const upload = ( { intl, filesAccepted, acceptFiles } ) => {
 
 	}else{
 
-		const accepted = filesAccepted.length > 0
-		const validImages = accepted ? _createValidImagesList( filesAccepted ) : ''
+
+		/*const accepted = valid.length > 0
+		const validImages = accepted ? _createValidImagesList( valid ) : ''*/
+
+		const validList = _createList( valid, 'Valid' )
+		const actionList = _createList( action, 'Action' )
+		const invalidList = _createList( invalid, 'Invalid' )
+		const rejectedList = _createList( rejected, 'Rejected' )
 
 		return(
 
 			<DIV id="Upload" >
 				<FORM action="#" id="upload">
-					{ !accepted && <INPUT name="images" onChange={ acceptFiles } form="upload" type="file" multiple={ false } /> }
-					{ validImages }
+					<INPUT name="images" onChange={ validateFiles } form="upload" type="file" multiple={ true }  />
+					<DIV id="Lists">
+						{ validList }
+						{ actionList }
+						{ invalidList }
+						{ rejectedList }
+					</DIV>
 				</FORM>
 			</DIV>
 
@@ -72,28 +83,40 @@ const upload = ( { intl, filesAccepted, acceptFiles } ) => {
 
 }
 
-const _createValidImagesList = ( filesAccepted ) => {
+const _createList = ( images, comp ) => {
 
-	return _.map( filesAccepted, ( file, index ) => {
+	const list = _.map( images, ( image, index ) => {
 
-		return React.createElement( FILE, {
+		const style = image.status == 'valid' ? { color: 'green' } : image.status == 'action' ? { color: 'orange' } : image.status == 'invalid' ? { color: 'red' } : { color: 'grey' }
+
+		return React.createElement( 'div', {
 
 			key: index,
-			f: file
+			children: image.name,
+			style: style
 
 		} )
 
 	} )
 
+	return React.createElement( 'div', {
+
+		id: comp,
+		children: list
+
+	} )
+
 }
 
-upload.propTypes = {
+form.propTypes = {
 
 	intl: intlShape.isRequired,
-	filesAccepted: PropTypes.array,
-	filesRejected: PropTypes.array,
-	acceptFiles: PropTypes.func
+	rejected: PropTypes.array,
+	valid: PropTypes.array,
+	action: PropTypes.array,
+	invalid: PropTypes.array,
+	validateFiles: PropTypes.func
 
 }
 
-export default injectIntl( upload )
+export default injectIntl( form )

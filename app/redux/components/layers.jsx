@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react'
 
 import READY from 'components/ready'
+import Form from 'containers/form'
 
 const layers = ( { showReady, showForm, showScreen, showMap, setVisibility } ) => {
 
@@ -8,7 +9,7 @@ const layers = ( { showReady, showForm, showScreen, showMap, setVisibility } ) =
 
 		<div>
 			{ showReady && <READY setVisibility={ setVisibility }  /> }
-			{ showForm && <p>form</p> }
+			{ showForm && <Form /> }
 			{ showScreen && <p>screen</p> }
 			{ showMap && <p>map</p> }
 		</div>
