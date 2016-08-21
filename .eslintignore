@@ -1,5 +1,2 @@
 public/build/
-SCRAPS.jsx
-app/utils/Leaflet/_leaflet.js
-app/utils/FormTB/DropzoneTB/EXIF.js
-appTranslate/*
+app/redux/actions/exif.js

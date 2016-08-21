@@ -7,8 +7,6 @@ import FORM from 'components/tags/form'
 import DIV from 'components/tags/div'
 import INPUT from 'components/tags/input'
 
-import FILE from 'containers/file'
-
 const messages = defineMessages( {
 
 	unsupported:{

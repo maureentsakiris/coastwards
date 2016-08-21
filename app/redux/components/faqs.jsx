@@ -3,8 +3,6 @@ import { defineMessages, injectIntl, intlShape } from 'react-intl'
 
 import TOGGLE from 'components/ui/toggle'
 import DIV from 'components/tags/div'
-import FORM from 'components/tags/form'
-import INPUT from 'components/tags/input'
 
 
 const messages = defineMessages( {
@@ -61,11 +59,6 @@ const messages = defineMessages( {
 	}
 
 } )
-
-/*<FORM id="searchFAQs" action="#">
-				<INPUT type="search" placeholder="!search the faqs" form="searchFAQs" name="search" />
-				<INPUT type="button" form="searchFAQs" name="submitSearch" value="!GO" />
-			</FORM>*/
 
 const faqs = ( { intl } ) => {
 
