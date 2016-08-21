@@ -45,6 +45,19 @@ const snackbar = ( state = [ ], action ) => {
 
 }
 
+const layers = ( state = { ready: true, form: false, screen: false, map: true }, action ) => {
+
+	switch ( action.type ){
+
+	case types.SET_VISIBILITY:
+		return  _.extend( {}, state, action.options )
+	default:
+		return state;
+
+	}
+
+}
+
 const upload = ( state = { filesAccepted: [], filesRejected: [] }, action ) => {
 
 	switch ( action.type ){
@@ -76,6 +89,7 @@ const coastwards = combineReducers( {
 	i18n,
 	dialog,
 	snackbar,
+	layers,
 	upload,
 	images
 

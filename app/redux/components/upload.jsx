@@ -61,7 +61,7 @@ const upload = ( { intl, filesAccepted, acceptFiles } ) => {
 
 			<DIV id="Upload" >
 				<FORM action="#" id="upload">
-					{ !accepted && <INPUT name="images" onChange={ acceptFiles } form="upload" type="file" multiple={ true } /> }
+					{ !accepted && <INPUT name="images" onChange={ acceptFiles } form="upload" type="file" multiple={ false } /> }
 					{ validImages }
 				</FORM>
 			</DIV>

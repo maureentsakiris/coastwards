@@ -23,7 +23,7 @@ const mapDispatchToProps = ( dispatch ) => {
 
 		closeDialog: ( ) => {
 
-			dispatch( hideDialog( ) )
+			dispatch( hideDialog() )
 
 		}
 

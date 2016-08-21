@@ -1,4 +1,4 @@
- import React from 'react'
+import React from 'react'
 import { defineMessages, injectIntl, intlShape } from 'react-intl'
 
 import TOGGLE from 'components/ui/toggle'
