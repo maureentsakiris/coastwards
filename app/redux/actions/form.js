@@ -27,38 +27,25 @@ function _promiseFilesSelected ( e ){
 
 function _promiseFilesAccepted ( filesSelected ){ //for images that have been dropped not selected
 
-	return new Promise( ( resolve, reject ) => {
+	let filesAccepted = []
+	let filesRejected = []
 
-		let filesAccepted = []
-		let filesRejected = []
+	_.each( filesSelected, ( file ) => {
 
-		_.each( filesSelected, ( file ) => {
+		if( accepts( file, 'image/*' ) ){ // --> upload.jsx
 
-			if( accepts( file, 'image/*' ) ){ // --> upload.jsx
-
-				filesAccepted.push( file )
-
-			}else{
-
-				file.status = 'rejected'
-				filesRejected.push( file )
-
-			}
-
-		} )
-
-
-		if( !filesAccepted.length ){
-
-			reject( Error( 'warning_all_files_rejected' ) ) // --> error.js
+			filesAccepted.push( file )
 
 		}else{
 
-			resolve( { filesAccepted, filesRejected } )
+			file.status = 'rejected'
+			filesRejected.push( file )
 
 		}
 
 	} )
+
+	return Promise.resolve( { filesAccepted, filesRejected } )
 
 }
 
@@ -87,12 +74,6 @@ export function validateFiles ( e ) {
 				images: files.filesRejected
 
 			} )
-
-			if( files.filesRejected.length > 0 ){
-
-				dispatch( addSnackbarMessage( 'warning_some_files_rejected' ) ) // --> error.js
-				
-			}
 
 			return files.filesAccepted
 
@@ -144,12 +125,6 @@ export function validateFiles ( e ) {
 				images: invalid
 
 			} )
-
-			if( invalid.length > 0 ){
-
-				dispatch( addSnackbarMessage( 'warning_some_images_invalid' ) ) // --> error.js
-				
-			}
 
 			return images
 

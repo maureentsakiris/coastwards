@@ -1,6 +1,8 @@
 import React from 'react'
 import { defineMessages, injectIntl, intlShape } from 'react-intl'
 
+import TOGGLE from 'components/ui/toggle'
+
 import DIV from 'components/tags/div'
 import H from 'components/tags/h'
 import FORM from 'components/tags/form'
@@ -10,10 +12,15 @@ import LABEL from 'components/tags/label'
 
 const messages = defineMessages( {
 
-	ask_a_question:{
-		id: "ask_a_question",
-		description: "Section header - Ask us",
-		defaultMessage: "Still have a question? Ask us! ( in english )"
+	one_more_question:{
+		id: "one_more_question",
+		description: "Section header - Contact us",
+		defaultMessage: "I still have a question!"
+	}, 
+	one_more_question_title:{
+		id: "one_more_question_title",
+		description: "Section header title - Tell us your question (in english please)",
+		defaultMessage: "Tell us your question (in english please)"
 	},
 	label_email:{
 		id: "label_email",
@@ -49,8 +56,7 @@ const ask = ( { intl } ) => {
 
 	return(
 
-		<DIV>
-			<H priority={ 4 } >{ formatMessage( messages.ask_a_question ) }</H>
+		<TOGGLE id="Team" title={ formatMessage( messages.one_more_question_title ) } priority={ 4 } text={ formatMessage( messages.one_more_question ) } >
 			<FORM action="#" id="ask" >
 				<LABEL htmlFor="email" form="ask" >{ formatMessage( messages.label_email ) }
 					<INPUT type="email" name="email" form="ask" placeholder={ formatMessage( messages.placeholder_email ) } />
@@ -60,7 +66,7 @@ const ask = ( { intl } ) => {
 				</LABEL>
 				<INPUT type="submit" form="ask" name="submit" value={ formatMessage( messages.label_submit ) } />
 			</FORM>
-		</DIV>
+		</TOGGLE>
 
 	)
 

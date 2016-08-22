@@ -8,6 +8,7 @@ const mapStateToProps = ( state ) => {
 
 	return {
 
+		formData: state.browser.formData,
 		rejected: state.rejected,
 		valid: state.valid,
 		action: state.action,

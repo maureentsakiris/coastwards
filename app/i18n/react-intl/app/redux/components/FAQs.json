@@ -8,45 +8,5 @@
     "id": "other_questions_title",
     "description": "Section header title - Read the FAQs",
     "defaultMessage": "Read the FAQs"
-  },
-  {
-    "id": "q1",
-    "description": "Aren't satellite images enough?",
-    "defaultMessage": "Aren't satellite images enough?"
-  },
-  {
-    "id": "a1",
-    "description": "No",
-    "defaultMessage": "No, they give us a general idea but not enough to be certain"
-  },
-  {
-    "id": "q2",
-    "description": "Aren't satellite images enough?",
-    "defaultMessage": "Aren't satellite images enough?"
-  },
-  {
-    "id": "a2",
-    "description": "No",
-    "defaultMessage": "No, they give us a general idea but not enough to be certain"
-  },
-  {
-    "id": "q3",
-    "description": "Aren't satellite images enough?",
-    "defaultMessage": "Aren't satellite images enough?"
-  },
-  {
-    "id": "a3",
-    "description": "No",
-    "defaultMessage": "No, they give us a general idea but not enough to be certain"
-  },
-  {
-    "id": "q4",
-    "description": "Aren't satellite images enough?",
-    "defaultMessage": "Aren't satellite images enough?"
-  },
-  {
-    "id": "a4",
-    "description": "No",
-    "defaultMessage": "No, they give us a general idea but not enough to be certain"
   }
 ]

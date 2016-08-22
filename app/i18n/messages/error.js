@@ -3,7 +3,7 @@ import { defineMessages } from 'react-intl'
 
 export const errorTranslations = defineMessages( {
 
-	warning_all_files_rejected:{
+	/*warning_all_files_rejected:{
 		id: "warning_all_files_rejected",
 		description: "Warning - Informs the user that all files selected are the wrong file type",
 		defaultMessage: "The files you selected are not images"
@@ -27,6 +27,6 @@ export const errorTranslations = defineMessages( {
 		id: "warning_all_images_invalid",
 		description: "Warning - Informs user that none of the images have passed the tests",
 		defaultMessage: "Bummer. None of the images have passed the tests"
-	}
+	}*/
 
 } ) 

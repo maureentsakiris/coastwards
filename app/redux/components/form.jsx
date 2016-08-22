@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react'
 import { defineMessages, injectIntl, intlShape } from 'react-intl'
-import Modernizr from 'modernizr'
 import _ from 'underscore'
 
+import H from 'components/tags/h'
 import FORM from 'components/tags/form'
 import DIV from 'components/tags/div'
 import INPUT from 'components/tags/input'
@@ -12,8 +12,13 @@ const messages = defineMessages( {
 	unsupported:{
 		id: "unsupported",
 		description: "Warning - Warns the user that his browser does not support the image upload",
-		defaultMessage: "Your browser does not support the technologies used to upload images"
+		defaultMessage: "Hmm sorry, your browser does not support the technologies used to upload images. Update your browser to the latest version and it should work. See ya there!?"
 	},
+	all_set:{
+		id: "all_set",
+		description: "Section header - All set?",
+		defaultMessage: "All set? Upload your images here"
+	} /*,
 	any_more_questions: {
 		id: "any_more_questions",
 		description: "Status - Asks users if any questions are open",
@@ -33,52 +38,37 @@ const messages = defineMessages( {
 		id: "select_images_mapbox_touch",
 		description: "Status - Select your images",
 		defaultMessage: "Click the big red button to upload pictures"
-	}
+	}*/
 
 } )
 
-const form = ( { intl, valid, action, invalid, rejected, validateFiles } ) => {
+const form = ( { intl, formData, valid, action, invalid, rejected, validateFiles } ) => {
 
 	const { formatMessage } = intl
-	const formData = Modernizr.xhr2 || Modernizr.xhrresponsetypejson || Modernizr.filereader
  
-	if( !formData ){
+	const validList = _createList( valid, 'Valid' )
+	const actionList = _createList( action, 'Action' )
+	const invalidList = _createList( invalid, 'Invalid' )
+	const rejectedList = _createList( rejected, 'Rejected' )
 
-		return( 
+	return(
 
-			<p>{ formatMessage( messages.unsupported ) }</p>
+		<DIV id="Upload" >
+			<H priority={ 2 }>{ formatMessage( messages.all_set ) }</H>
+			{ !formData && <p>{ formatMessage( messages.unsupported ) }</p> }
+			{ formData && <FORM action="#" id="upload">
+				<INPUT name="images" onChange={ validateFiles } form="upload" type="file" multiple={ true }  />
+				<DIV id="Lists">
+					{ validList }
+					{ actionList }
+					{ invalidList }
+					{ rejectedList }
+				</DIV>
+			</FORM> }
+		</DIV>
 
-		)
-
-	}else{
-
-
-		/*const accepted = valid.length > 0
-		const validImages = accepted ? _createValidImagesList( valid ) : ''*/
-
-		const validList = _createList( valid, 'Valid' )
-		const actionList = _createList( action, 'Action' )
-		const invalidList = _createList( invalid, 'Invalid' )
-		const rejectedList = _createList( rejected, 'Rejected' )
-
-		return(
-
-			<DIV id="Upload" >
-				<FORM action="#" id="upload">
-					<INPUT name="images" onChange={ validateFiles } form="upload" type="file" multiple={ true }  />
-					<DIV id="Lists">
-						{ validList }
-						{ actionList }
-						{ invalidList }
-						{ rejectedList }
-					</DIV>
-				</FORM>
-			</DIV>
-
-		)
-
-	}
-
+	)
+	
 }
 
 const _createList = ( images, comp ) => {
@@ -109,6 +99,7 @@ const _createList = ( images, comp ) => {
 form.propTypes = {
 
 	intl: intlShape.isRequired,
+	formData: PropTypes.bool,
 	rejected: PropTypes.array,
 	valid: PropTypes.array,
 	action: PropTypes.array,

@@ -1,6 +1,21 @@
 import { combineReducers } from 'redux'
 import * as types from 'types'
 import _ from 'underscore'
+import Modernizr from 'modernizr'
+
+
+const formData = Modernizr.xhr2 || Modernizr.xhrresponsetypejson || Modernizr.filereader
+
+const browser = ( state = { formData: formData, mapbox: false }, action ) => {
+
+	switch ( action.type ){
+
+	default:
+		return state;
+
+	}
+
+}
 
 const i18n = ( state = { locale: 'en', dir: 'ltr', messages: undefined }, action ) => {
 
@@ -129,6 +144,7 @@ const invalid = ( state = [ ], action ) => {
 
 const coastwards = combineReducers( {
 
+	browser,
 	i18n,
 	dialog,
 	snackbar,

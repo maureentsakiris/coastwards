@@ -2,26 +2,11 @@
   {
     "id": "unsupported",
     "description": "Warning - Warns the user that his browser does not support the image upload",
-    "defaultMessage": "Your browser does not support the technologies used to upload images"
+    "defaultMessage": "Hmm sorry, your browser does not support the technologies used to upload images. Update your browser to the latest version and it should work. See ya there!?"
   },
   {
-    "id": "any_more_questions",
-    "description": "Status - Asks users if any questions are open",
-    "defaultMessage": "Any more questions?"
-  },
-  {
-    "id": "select_images",
-    "description": "Status - Select your images",
-    "defaultMessage": "Select your images below"
-  },
-  {
-    "id": "select_images_mapbox",
-    "description": "Status - Select your images",
-    "defaultMessage": "Drag & drop your images onto the world map to upload (or click the big red button)"
-  },
-  {
-    "id": "select_images_mapbox_touch",
-    "description": "Status - Select your images",
-    "defaultMessage": "Click the big red button to upload pictures"
+    "id": "all_set",
+    "description": "Section header - All set?",
+    "defaultMessage": "All set? Upload your images here"
   }
 ]

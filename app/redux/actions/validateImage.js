@@ -5,12 +5,21 @@ import _ from 'underscore'
 const validations = [
 
 	{
+
 		methodName: "imageHasLocation",
-		options: { required: true, passesWhen: true, abort: false }
+		required: true,
+		passesWhen: true,
+		action: true
+
 	},
 	{
-		methodName: "imageMinimumDimensions",
-		options: { minimumDimensions: [ 800, 800 ], required: true, passesWhen: true, abort: false }
+
+		methodName: "imageHasMinimumDimensions",
+		required: true,
+		passesWhen: true,
+		action: false,
+		options: { minimumDimensions: [ 800, 800 ] }
+
 	}
 	
 ]
@@ -19,12 +28,71 @@ const Validators = {
 
 	imageHasLocation: ( image ) => {
 
-		return true
+		let flag = false
+		let lat, long
+		let tags = image.exifdata
+
+		const _toDecimal = ( number, ref, l ) => {
+
+			let decimal = number[ 0 ].numerator + number[ 1 ].numerator / ( 60 * number[ 1 ].denominator ) + number[ 2 ].numerator / ( 3600 * number[ 2 ].denominator );
+			let flip = l == 'lat' ? ref == 'N' ? 1 : -1 : ref == 'W' ? -1 : 1;
+
+			return decimal * flip;
+
+		}
+
+		if( _.isArray( tags.GPSLatitude ) && _.isArray( tags.GPSLongitude ) ){
+
+			lat = _toDecimal( tags.GPSLatitude, tags.GPSLatitudeRef, 'lat' );
+			long = _toDecimal( tags.GPSLongitude, tags.GPSLongitudeRef, 'long' );
+			flag = true
+
+		}else{
+
+			flag = false
+
+		}
+
+		let result = {
+
+			flag: flag,
+			specs: {
+
+				lat: lat,
+				long: long
+
+			}
+
+		}
+
+		return result
 
 	},
-	imageMinimumDimensions: ( image ) => {
+	imageHasMinimumDimensions: ( image, options ) => {
 
-		return true
+		let flag = false
+		let tags = image.exifdata
+		let dim = options.minimumDimensions
+
+		if( tags.PixelXDimension >= dim[ 0 ] && tags.PixelYDimension >= dim[ 1 ] ){
+
+			flag = true
+
+		}
+
+		let result = {
+
+			flag: flag,
+			specs: {
+
+				width: tags.PixelXDimension,
+				height: tags.PixelYDimension
+
+			}
+
+		}
+
+		return result
 
 	}
 }
@@ -59,11 +127,11 @@ const _promiseRunTests = ( image ) => {
 
 			const runTest = ( test, runNextTest ) => {
 
-				let { methodName, options } = test
+				let { methodName, passesWhen, options } = test
 				const method = Validators[ methodName ]
 
 				let result = method( image, options )
-				let passed = util.isBoolean( options.passesWhen ) ? options.passesWhen === result : result
+				let passed = util.isBoolean( passesWhen ) ? passesWhen === result.flag : result.flag
 
 				image[ methodName ] = { result, passed }
 
@@ -71,22 +139,21 @@ const _promiseRunTests = ( image ) => {
 
 			}
 
-			let test = stack.shift();
+			const countFailed = ( action ) => {
 
-			if( test ){
-				
-				runTest( test, runNextTest )
+				let count = _.chain( validations )
 
-			}else{
+				// exclude location test
+				.filter( ( validation ) => {
 
-				console.log( image )
+					return validation.action === action
 
-				let failed = _.chain( validations )
+				} )
 
 				// filter required validations
 				.filter( ( validation ) => { 
 
-					return validation.options.required 
+					return validation.required 
 
 				} )
 
@@ -106,9 +173,24 @@ const _promiseRunTests = ( image ) => {
 
 				.value()
 
-				let isValid = failed.length == 0;
+				return count == 0 ? true : false
 
-				image.status = isValid ? 'valid' : 'invalid'
+			}
+
+			let test = stack.shift();
+
+			if( test ){
+				
+				runTest( test, runNextTest )
+
+			}else{
+
+				const passedNoAction = countFailed( false )
+				const passedAction = countFailed( true )
+
+				let status = passedNoAction && passedAction ? 'valid' : passedNoAction && !passedAction ? 'action' : 'invalid'
+
+				image.status = status
 
 				resolve( image )
 
@@ -145,221 +227,3 @@ export function validateImage ( image ) {
 	} )
 
 }
-
-
-/*	_runTests ( ){
-
-		const { validations, onValidationDone } = this.props;
-		const { status } = this.state;
-
-		const validatorStack = validations.slice();
-
-		const abortTests = ( ) => {
-
-			onValidationDone( false, status, this );
-
-		}
-
-		const runNextTest = ( ) => {
-
-			let test = validatorStack.shift();
-
-			if( test ){
-
-				this._runTest ( test, runNextTest, abortTests );
-
-			}else{
-
-				let countFailed = _.chain( validations )
-
-				// filter required validations
-				.filter( ( validation ) => { 
-
-					return validation.options.required 
-
-				} )
-
-				// return results for required validations
-				.map( ( requiredValidation ) => {
-
-					return !!status[ requiredValidation.methodName ].passed;
-
-				} )
-
-				// filter for failed validations
-				.filter( ( passed ) => { 
-
-					return passed === false; 
-
-				} )
-
-				.value();
-
-				let isValidDrop = countFailed.length == 0;
-
-				onValidationDone( isValidDrop, status, this );
-
-			}
-
-
-		}
-
-		runNextTest();
-
-	}
-
-	_runTest ( test, runNextTest, abortTests ){
-
-		let { onTestDone } = this.props;
-		let { methodName, label, description, success, error, options } = test;
-
-		const method = ImageValidators[ methodName ];
-
-		const callMethod = ( ) => {
-
-			let result = method( this, options );
-
-			let passed = util.isBoolean( options.passesWhen ) ? options.passesWhen === result.flag : result.flag;
-			let message = passed ? success : error;
-
-			onTestDone( this, message, passed, result, test );
-
-			let callback = !passed && options.abort ? abortTests : runNextTest;
-
-			status[ methodName ] = { result, passed, message, label, description };
-			validations[ methodName ] = { result, passed };
-
-			this.setState( ( state ) => {
-
-				return { 
-
-					status: _.extend( state.status, status ), 
-					validations: _.extend( state.validations, validations )
-
-				}
-
-			}, callback );
-
-		}
-
-		let status = this.state.status;
-		let validations = this.state.validations;
-		status[ methodName ] = { label, description };
-
-		this.setState( ( state ) => {
-
-			return {
-
-				status: _.extend( state.status, status )
-
-			}
-
-		}, callMethod );
-
-	}
-
-}
-
-
-const ImageValidators = {
-
-	imageHasLocation: function ( comp ) {
-
-		let flag = false;
-		let lat, long;
-		let tags = comp.state.tags;
-
-		const _toDecimal = ( number, ref, l ) => {
-
-			let decimal = number[ 0 ].numerator + number[ 1 ].numerator / ( 60 * number[ 1 ].denominator ) + number[ 2 ].numerator / ( 3600 * number[ 2 ].denominator );
-			let flip = l == 'lat' ? ref == 'N' ? 1 : -1 : ref == 'W' ? -1 : 1;
-
-			return decimal * flip;
-
-		}
-
-		if( _.isArray( tags.GPSLatitude ) && _.isArray( tags.GPSLongitude ) ){
-
-			lat = _toDecimal( tags.GPSLatitude, tags.GPSLatitudeRef, 'lat' );
-			long = _toDecimal( tags.GPSLongitude, tags.GPSLongitudeRef, 'long' );
-			flag = true;
-
-		}else{
-
-			flag = false;
-
-		}
-
-		let result = {
-
-			flag: flag,
-			specs: {
-
-				lat: lat,
-				long: long
-
-			}
-
-		}
-
-		return result;
-
-	},
-	imageMinimumDimensions: function ( comp, options ) {
-
-		let flag = false;
-		let tags = comp.state.tags;
-		let dim = options.minimumDimensions;
-
-		if( tags.PixelXDimension >= dim[ 0 ] && tags.PixelXDimension >= dim[ 1 ] ){
-
-			flag = true;
-
-		}
-
-		let result = {
-
-			flag: flag,
-			specs: {
-
-				width: tags.PixelXDimension,
-				height: tags.PixelYDimension
-
-			}
-
-		}
-
-		return result;
-
-	},
-	imageWithFlash: function (  ) {
-
-		let flag = false;
-
-		let result = {
-
-			flag: flag,
-			specs: {}
-
-		}
-
-		return result;
-
-	},
-	imageHasColor: function (  ) {
-
-		let flag = true;
-
-		let result = {
-
-			flag: flag,
-			specs: {}
-
-		}
-
-		return result;
-
-	}
-
-
-}*/

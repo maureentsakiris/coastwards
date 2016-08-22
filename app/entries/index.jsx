@@ -20,8 +20,6 @@ import Guidelines from 'components/Guidelines'
 import Team from 'components/Team'
 import FAQs from 'components/FAQs'
 
-import HR from 'components/tags/hr'
-
 //TODO: i18nLinks should handle that itself?
 import i18nLocales from 'actions/i18n/i18nLocales'
 
@@ -50,7 +48,6 @@ ReactDom.render(
 				<Guidelines />
 				<Team />
 				<FAQs />
-				<HR />
 				<Form />
 				<Snackbar />
 				<Dialog />

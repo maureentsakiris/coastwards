@@ -1,8 +1,13 @@
 [
   {
-    "id": "ask_a_question",
-    "description": "Section header - Ask us",
-    "defaultMessage": "Still have a question? Ask us! ( in english )"
+    "id": "one_more_question",
+    "description": "Section header - Contact us",
+    "defaultMessage": "I still have a question!"
+  },
+  {
+    "id": "one_more_question_title",
+    "description": "Section header title - Tell us your question (in english please)",
+    "defaultMessage": "Tell us your question (in english please)"
   },
   {
     "id": "label_email",
