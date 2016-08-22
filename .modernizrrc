@@ -8,6 +8,7 @@
   "feature-detects": [ 
     "network/xhr2",
     "network/xhr-responsetype-json",
-    "touchevents"
+    "touchevents",
+    "file/api"
   ]
 }

@@ -40,7 +40,7 @@ const messages = defineMessages( {
 const form = ( { intl, valid, action, invalid, rejected, validateFiles } ) => {
 
 	const { formatMessage } = intl
-	const formData = Modernizr.xhr2 || Modernizr.xhrresponsetypejson
+	const formData = Modernizr.xhr2 || Modernizr.xhrresponsetypejson || Modernizr.filereader
  
 	if( !formData ){
 
