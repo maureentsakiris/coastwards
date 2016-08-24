@@ -1,5 +1,4 @@
 import * as types from 'types'
-import { addSnackbarMessage } from 'actions/snackbar'
 import _ from 'underscore'
 import { validateImage } from 'actions/validateImage'
 import accepts from 'attr-accept'

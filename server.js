@@ -10,7 +10,8 @@ const isProduction = globalConfigs.env === 'production';
 const server = globalConfigs.server;
 const portToListen = isProduction ? server.port : 8888;
 
-const contributions = require( './server/contributions' );
+const validate = require( './server/validate' );
+const contribute = require( './server/contribute' );
 const translate = require( './server/translate' );
 
 
@@ -33,7 +34,8 @@ app.get( '/', function ( req, res ) {
 
 } );
 
-app.use( '/contributions', contributions );
+app.use( '/validate', validate );
+app.use( '/contribute', contribute );
 app.use( '/translate', translate );
 
 if ( !isProduction ) {
