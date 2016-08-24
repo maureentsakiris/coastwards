@@ -38,6 +38,7 @@ const form = ( { intl, uploadSupported, valid, action, invalid, rejected, valida
 			{ !uploadSupported && <p>{ formatMessage( messages.unsupported ) }</p> }
 			{ uploadSupported && <FORM action="#" id="upload">
 				<INPUT id="images" name="images" onChange={ validateFiles } form="upload" type="file" multiple={ true }  />
+				<canvas id="canvas" style={ { display: 'none' } } >canvas</canvas>
 				<DIV id="Lists">
 					{ validList }
 					{ actionList }
@@ -57,13 +58,21 @@ const _createList = ( images, comp ) => {
 
 		const style = image.status == 'valid' ? { color: 'green' } : image.status == 'action' ? { color: 'orange' } : image.status == 'invalid' ? { color: 'red' } : { color: 'grey' }
 
-		return React.createElement( 'div', {
+		/*return React.createElement( 'div', {
 
 			key: index,
-			children: image.name,
+			children: image.preview,
 			style: style
 
-		} )
+		} )*/
+
+		return (
+
+			<DIV>
+				<img src={ image.dataURL } />
+			</DIV>
+
+		)
 
 	} )
 
