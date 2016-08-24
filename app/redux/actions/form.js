@@ -81,7 +81,7 @@ export function validateFiles ( e ) {
 		.then( _promiseFilesValidated )
 		.then( ( images ) => {
 
-			//console.log( images )
+			console.log( images )
 
 			let valid = []
 			let action = []
@@ -131,7 +131,8 @@ export function validateFiles ( e ) {
 		} )
 		.catch( ( error ) => {
 
-			dispatch( addSnackbarMessage( error ) )
+			console.log( error )
+			//dispatch( addSnackbarMessage( error ) )
 
 		} )
 

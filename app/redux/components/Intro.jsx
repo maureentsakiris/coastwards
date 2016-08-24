@@ -14,7 +14,7 @@ const messages = defineMessages( {
 	no_account:{
 		id: "no_account",
 		description: "Tagline. Informs user that creating an account is not necessary",
-		defaultMessage: "No account. Just drag & drop. (Like now)"
+		defaultMessage: "No account. Just drag & drop"
 	}
 
 } )

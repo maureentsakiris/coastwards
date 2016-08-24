@@ -4,9 +4,9 @@ import _ from 'underscore'
 import Modernizr from 'modernizr'
 
 
-const formData = Modernizr.xhr2 || Modernizr.xhrresponsetypejson || Modernizr.filereader
+const uploadSupported = Modernizr.xhr2 || Modernizr.xhrresponsetypejson || Modernizr.filereader 
 
-const browser = ( state = { formData: formData, mapbox: false }, action ) => {
+const browser = ( state = { uploadSupported: uploadSupported, mapboxSupported: false }, action ) => {
 
 	switch ( action.type ){
 

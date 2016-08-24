@@ -2,16 +2,8 @@ import util from 'util'
 import EXIF from './exif'
 import _ from 'underscore'
 
-const validations = [
+/*const validations = [
 
-	{
-
-		methodName: "imageHasLocation",
-		required: true,
-		passesWhen: true,
-		action: true
-
-	},
 	{
 
 		methodName: "imageHasMinimumDimensions",
@@ -19,6 +11,14 @@ const validations = [
 		passesWhen: true,
 		action: false,
 		options: { minimumDimensions: [ 800, 800 ] }
+
+	},
+	{
+
+		methodName: "imageHasLocation",
+		required: true,
+		passesWhen: true,
+		action: true
 
 	}
 	
@@ -95,39 +95,20 @@ const Validators = {
 		return result
 
 	}
-}
+}*/
 
-const _promiseEXIF = ( image ) => {
+/*const _promiseRunTests = ( image ) => {
 
-	return new Promise( ( resolve, reject ) => {
-
-		var exif = EXIF.getData( image, function ( ) {
-
-			resolve( image )
-
-		} );
-
-		if( !exif ){
-
-			reject( Error( 'actions/form.js/_promiseFilesValidated/Extracting EXIF data failed' ) )
-
-		}
-
-	} );
-
-}
-
-const _promiseRunTests = ( image ) => {
-
-	return new Promise( ( resolve/*, reject*/ ) => {
+	return new Promise( ( resolve ) => {
 
 		const stack = validations.slice()
+		let abort = false
 
 		const runNextTest = ( ) => {
 
 			const runTest = ( test, runNextTest ) => {
 
-				let { methodName, passesWhen, options } = test
+				let { methodName, required, passesWhen, action, options } = test
 				const method = Validators[ methodName ]
 
 				let result = method( image, options )
@@ -135,71 +116,178 @@ const _promiseRunTests = ( image ) => {
 
 				image[ methodName ] = { result, passed }
 
+				if( !passed && required && !action ){
+
+					abort = true
+
+				}
+
 				runNextTest()
 
 			}
 
-			const countFailed = ( action ) => {
+			if( abort ){
 
-				let count = _.chain( validations )
-
-				// exclude location test
-				.filter( ( validation ) => {
-
-					return validation.action === action
-
-				} )
-
-				// filter required validations
-				.filter( ( validation ) => { 
-
-					return validation.required 
-
-				} )
-
-				// return results for required validations
-				.map( ( requiredValidation ) => {
-
-					return !!image[ requiredValidation.methodName ].passed;
-
-				} )
-
-				// filter for failed validations
-				.filter( ( passed ) => { 
-
-					return passed === false; 
-
-				} )
-
-				.value()
-
-				return count == 0 ? true : false
-
-			}
-
-			let test = stack.shift();
-
-			if( test ){
-				
-				runTest( test, runNextTest )
+				image.status = 'invalid'
+				resolve( image )
 
 			}else{
 
-				const passedNoAction = countFailed( false )
-				const passedAction = countFailed( true )
+				let test = stack.shift();
 
-				let status = passedNoAction && passedAction ? 'valid' : passedNoAction && !passedAction ? 'action' : 'invalid'
+				if( test ){
+					
+					runTest( test, runNextTest )
 
-				image.status = status
+				}else{
 
-				resolve( image )
+					let count = _.chain( validations )
 
+					// filter required validations
+					.filter( ( validation ) => { 
+
+						return validation.required 
+
+					} )
+
+					// return results for required validations
+					.map( ( requiredValidation ) => {
+
+						return !!image[ requiredValidation.methodName ].passed;
+
+					} )
+
+					// filter for failed validations
+					.filter( ( passed ) => { 
+
+						return passed === false; 
+
+					} )
+
+					.value()
+
+					let status = count == 0 ? 'valid' : 'action'
+					image.status = status
+
+					resolve( image )
+
+
+				}
 
 			}
 
 		}
 
 		runNextTest()
+
+	} )
+
+}*/
+
+const _promiseEXIF = ( image ) => {
+
+	return new Promise( ( resolve, reject ) => {
+
+		var exif = EXIF.getData( image, function ( ) {
+
+			if( _.isEmpty( image.exifdata ) ){
+
+				reject( Error( 'exifdata_empty' ) )
+
+			}else{
+
+				resolve( image )
+
+			}
+
+		} );
+
+		if( !exif ){
+
+			reject( Error( 'exifdata_undefined' ) )
+
+		}
+
+	} );
+
+}
+
+const _promiseMinimumDimension = ( image ) => {
+
+	return new Promise( ( resolve, reject ) => {
+
+		let exif = image.exifdata
+
+		if( exif.PixelXDimension && exif.PixelXDimension >= 800 ){
+
+			resolve( image )
+
+		}else{
+
+			reject( Error( 'image_too_small' ) )
+
+		}
+
+	} )
+
+}
+
+const _promiseGoogleVision = ( image ) => {
+
+	return new Promise ( ( resolve, reject ) => {
+
+		const reader = new FileReader()
+
+		reader.onload = function ( e ) {
+
+			console.log( e )
+
+			resolve( image )
+
+		}
+
+		reader.onerror = function ( error ) {
+
+			reject( error )
+
+		}
+
+		reader.readAsDataURL( image )
+
+	} )
+
+}
+
+const _promiseLocation = ( image ) => {
+
+	return new Promise( ( resolve/*, reject*/ ) => {
+
+		const _toDecimal = ( number, ref, l ) => {
+
+			let decimal = number[ 0 ].numerator + number[ 1 ].numerator / ( 60 * number[ 1 ].denominator ) + number[ 2 ].numerator / ( 3600 * number[ 2 ].denominator );
+			let flip = l == 'lat' ? ref == 'N' ? 1 : -1 : ref == 'W' ? -1 : 1;
+
+			return decimal * flip;
+
+		}
+
+		let exif = image.exifdata
+
+		if( _.isArray( exif.GPSLatitude ) && _.isArray( exif.GPSLongitude ) ){
+
+			image.lat = _toDecimal( exif.GPSLatitude, exif.GPSLatitudeRef, 'lat' );
+			image.long = _toDecimal( exif.GPSLongitude, exif.GPSLongitudeRef, 'long' );
+	
+			image.status = 'valid'
+			resolve( image )
+
+		}else{
+
+			image.status = 'action'
+			resolve( image )
+			//reject( Error( 'location_undefined' ) )
+
+		}
 
 	} )
 
@@ -211,7 +299,9 @@ export function validateImage ( image ) {
 	return new Promise( ( resolve, reject ) => {
 
 		_promiseEXIF( image )
-		.then( _promiseRunTests )
+		.then( _promiseMinimumDimension )
+		.then( _promiseGoogleVision )
+		.then( _promiseLocation )
 		.then( ( image ) => {
 
 			resolve( image )
@@ -220,7 +310,9 @@ export function validateImage ( image ) {
 		} )
 		.catch( ( error ) => {
 
-			reject( error )
+			image.status = 'invalid'
+			image.error = error
+			resolve( image )
 
 		} )
 

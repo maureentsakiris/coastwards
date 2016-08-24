@@ -5,17 +5,35 @@ import LI from 'components/tags/li'
 import I18nLink from 'containers/i18n/i18nLink'
 
 
-const i18nLinks = ( { availableLanguages, id, className } ) => (
+const i18nLinks = ( { availableLanguages, id, className } ) => { 
 
-	<UL id={ id } className={ className } >
-		{ availableLanguages.map( ( language, key ) => 
+	const styleUL = {
 
-			<LI key={ key }><I18nLink locale={ language.locale } title={ language.name } >{ language.name }</I18nLink></LI>
+		listStyleType: 'none',
+		padding: 0
 
-		) }
-	</UL>
+	}
 
-)
+	const styleLI = {
+
+		display: 'inline-block',
+		marginRight: '1em'
+
+	}
+
+	return (
+
+		<UL id={ id } className={ className } style={ styleUL } >
+			{ availableLanguages.map( ( language, key ) => 
+
+				<LI key={ key }  style={ styleLI } ><I18nLink locale={ language.locale } title={ language.name } >{ language.name }</I18nLink></LI>
+
+			) }
+		</UL>
+
+	)	
+
+}
 
 i18nLinks.propTypes = {
 
