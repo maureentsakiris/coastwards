@@ -8,7 +8,7 @@ import INPUT from 'components/tags/input'
 import P from 'components/tags/p'
 import BUTTON from 'components/tags/button'
 import A from 'components/tags/a'
-import SMALL from 'components/tags/small'
+import SPAN from 'components/tags/span'
 
 const messages = defineMessages( {
 
@@ -65,9 +65,11 @@ const messages = defineMessages( {
 
 } )
 
-const form = ( { intl, uploadSupported, validateFile, status, uploadImage, preview } ) => {
+const form = ( { intl, uploadSupported, validateFile, status, progress, uploadImage } ) => {
 
 	const { formatMessage } = intl
+
+	const stat = messages[ status ] ? formatMessage( messages[ status ] ) : status
 
 	return(
 
@@ -78,8 +80,11 @@ const form = ( { intl, uploadSupported, validateFile, status, uploadImage, previ
 				<P>
 					<small>( { formatMessage( messages.one_by_one ) } <A href="#" onClick={ ( ) => { } } >{ formatMessage( messages.check_for_batch_upload ) }</A> )</small>
 				</P>
-				{ !status && <INPUT id="images" name="images" onChange={ validateFile } form="upload" type="file" multiple={ false } accept="image/*" /> }
-				{ status && <P>{ formatMessage( messages[ status ] ) }</P> }
+				<P>
+					{ !status && <INPUT id="images" name="images" onChange={ validateFile } form="upload" type="file" multiple={ false } accept="image/*" /> }
+					{ status && <SPAN>{ stat }</SPAN> }
+					{ status == 'status_uploading' && <SPAN> { progress }%</SPAN> }
+				</P>
 				{ status == 'status_hurray' && <BUTTON onClick={ uploadImage }>{ formatMessage( messages.upload_image ) }</BUTTON> }
 			</FORM> }
 		</DIV>
@@ -95,6 +100,7 @@ form.propTypes = {
 	validateFile: PropTypes.func,
 	status: PropTypes.string,
 	uploadImage: PropTypes.func,
+	progress: PropTypes.number,
 	preview: PropTypes.string
 
 }

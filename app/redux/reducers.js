@@ -60,16 +60,20 @@ const snackbar = ( state = [ ], action ) => {
 
 }
 
-const form = ( state = { status: '', file: {}, preview: '' }, action ) => {
+const form = ( state = { status: '', file: {}, progress: 0, preview: '' }, action ) => {
 
 	switch ( action.type ){
 
 	case types.SET_FORM_STATUS:
 		return _.extend( {}, state, { status: action.to } )
-	case types.SET_FORM_PREVIEW:
-		return _.extend( {}, state, { preview: action.to } )
 	case types.SET_FILE_TO_UPLOAD:
 		return _.extend( {}, state, { file: action.to } )
+	case types.SET_FORM_DATA:
+		return _.extend( {}, state, { formData: action.to } )
+	case types.SET_UPLOAD_PROGRESS:
+		return _.extend( {}, state, { progress: action.to } )
+	case types.SET_FORM_PREVIEW:
+		return _.extend( {}, state, { preview: action.to } )
 	default:
 		return state;
 

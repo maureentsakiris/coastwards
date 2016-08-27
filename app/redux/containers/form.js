@@ -10,6 +10,7 @@ const mapStateToProps = ( state ) => {
 
 		uploadSupported: state.browser.uploadSupported,
 		status: state.form.status,
+		progress: state.form.progress,
 		preview: state.form.preview
 
 	}

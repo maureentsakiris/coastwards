@@ -1,20 +1,22 @@
 import * as types from 'types'
-import { promiseType, promiseEXIF, promiseMinimumBoxDimensions, promiseCanvasBoxResize, promiseLocation, promiseDataURLtoBlob } from 'actions/util/image'
+import { promiseType, promiseEXIF, promiseMinimumBoxDimensions, promiseCanvasBoxResize, promiseLocation } from 'actions/util/image'
+import { promiseDataURLtoBlob } from 'actions/util/form'
 import { promiseXHR } from 'actions/util/xhr'
+
 
 const _promiseFile = ( e ) => {
 
 	return new Promise( ( resolve, reject ) => {
 
-		const selected = e.dataTransfer ? e.dataTransfer.files : e.currentTarget.files;
+		const selected = e.dataTransfer ? e.dataTransfer.files : e.currentTarget.files
 
 		if( selected.length > 0 ){
 
-			resolve( selected[ 0 ] );
+			resolve( selected[ 0 ] )
 
 		}else{
 
-			reject( Error( 'actions/form.js/_promiseFilesSelected/selected.length = 0' ) );
+			reject( Error( 'files_undefined' ) )
 
 		}
 
@@ -29,7 +31,7 @@ const _promiseLocation = ( image ) => {
 		promiseLocation( image )
 		.then( ( image ) => {
 
-			image.manual = false
+			image.manual = 0
 			resolve( image )
 			return image
 
@@ -38,9 +40,8 @@ const _promiseLocation = ( image ) => {
 
 			if( error.message == 'location_undefined' ){
 
-				console.log( "Prompt user to locate image" )
 				// locateImage( image )
-				image.manual = true
+				image.manual = 1
 				resolve( image )
 
 			}else{
@@ -101,7 +102,41 @@ const _promiseSafe = ( image ) => {
 		} )
 		.catch( ( error ) => {
 
-			console.log( error )
+			reject( error )
+
+		} )
+
+	} )
+
+}
+
+
+const _prepareForm = ( image ) => {
+
+	return new Promise( ( resolve, reject ) => {
+
+		promiseDataURLtoBlob( image.dataURL )
+		.then( ( blob ) => {
+
+			const { exifdata, lat, long, manual, labels } = image
+
+			const devLabels = labels ? labels : {}
+
+			let formData = new FormData()
+
+			formData.append( 'file', blob, 'file.jpg' )
+			formData.append( 'exifdata', JSON.stringify( exifdata ) )
+			formData.append( 'lat', lat )
+			formData.append( 'long', long )
+			formData.append( 'manual', manual )
+			formData.append( 'labels', JSON.stringify( devLabels ) )
+
+			resolve( formData )
+			return formData
+
+		} )
+		.catch( ( error ) => {
+
 			reject( error )
 
 		} )
@@ -134,15 +169,21 @@ export const validateFile = ( e ) => {
 		.then( ( image ) => {
 
 			//dispatch( { type: types.SET_FORM_PREVIEW, to: image.dataURL } )
-			return _promiseSafe( image )
-			//return image
+			//return _promiseSafe( image )
+			return image
 
 		} )
 		.then( ( image ) => {
 
-			dispatch( { type: types.SET_FORM_STATUS, to: 'status_hurray' } )
 			dispatch( { type: types.SET_FILE_TO_UPLOAD, to: image } )
-			return image
+			return _prepareForm( image )
+
+		} )
+		.then( ( formData ) => {
+
+			dispatch( { type: types.SET_FORM_DATA, to: formData } )
+			dispatch( { type: types.SET_FORM_STATUS, to: 'status_hurray' } )
+			return formData
 
 		} )
 		.catch( ( error ) => {
@@ -157,49 +198,33 @@ export const validateFile = ( e ) => {
 }
 
 
-const _promiseFormData = ( blob, fileObj ) => {
-
-	return new Promise( ( resolve, reject ) => {
-
-		const { exifdata, lat, long, manual, name, labels } = fileObj
-
-		let formData = new FormData()
-
-		formData.append( 'file', blob )
-		formData.append( 'exifdata', JSON.stringify( exifdata ) )
-		formData.append( 'lat', lat )
-		formData.append( 'long', long )
-		formData.append( 'manual', manual )
-		formData.append( 'filename', name )
-		formData.append( 'labels', JSON.stringify( labels ) )
-
-		resolve( formData )
-
-	} )
-
-}
-
-export const uploadImage = ( e ) => {
+export const uploadImage = ( ) => {
 
 	return function ( dispatch, getState ){
 
+		dispatch( { type: types.SET_FORM_STATUS, to: 'status_uploading' } )
+
 		const state = getState()
-		const fileObj = state.form.file
+		const formData = state.form.formData
 
-		promiseDataURLtoBlob( fileObj.dataURL )
-		.then( ( blob ) => {
+		let options = {
 
-			return _promiseFormData( blob, fileObj )
+			data: formData,
+			url: '/contribute/upload',
+			onProgress: function ( e ) {
 
-		} )
-		.then( ( formData ) => {
-
-			for ( var pair of formData.entries() ) {
-
-				console.log( pair[ 0 ]+ ', ' + pair[ 1 ] )
+				let percent = parseInt( e.loaded / e.total * 100 )
+				dispatch( { type: types.SET_UPLOAD_PROGRESS, to: percent } )
 
 			}
-			return formData
+
+		}
+
+		promiseXHR( options )
+		.then( ( response ) => {
+
+			dispatch( { type: types.SET_FORM_STATUS, to: response } )
+			return response
 
 		} )
 		.catch( ( error ) => {
@@ -208,20 +233,6 @@ export const uploadImage = ( e ) => {
 
 		} )
 
-		dispatch( { type: types.SET_FORM_STATUS, to: 'status_uploading' } )
-
 	}
 
 }
-
-
-/*let drop = {
-
-			file: file,
-			exifJSON: JSON.stringify( exifdata ),
-			validationsJSON: JSON.stringify( validations ),
-			validations: validations,
-			manual: 0,
-			exifDateTime: exifdata.DateTimeOriginal || exifdata.DateTimeDigitized || exifdata.DateTime
-
-		}*/

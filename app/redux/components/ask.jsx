@@ -3,8 +3,6 @@ import { defineMessages, injectIntl, intlShape } from 'react-intl'
 
 import TOGGLE from 'components/ui/toggle'
 
-import DIV from 'components/tags/div'
-import H from 'components/tags/h'
 import FORM from 'components/tags/form'
 import INPUT from 'components/tags/input'
 import TEXTAREA from 'components/tags/textarea'

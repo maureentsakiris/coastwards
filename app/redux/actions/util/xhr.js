@@ -1,5 +1,4 @@
-import _ from 'underscore';
-import http from 'http'
+import _ from 'underscore'
 
 export const promiseXHR = ( options ) => {
 
@@ -10,13 +9,13 @@ export const promiseXHR = ( options ) => {
 
 	}
 
-	var opts = _.extend( options, defaultOptions );
+	var opts = _.extend( defaultOptions, options );
 	
 	return new Promise( ( resolve, reject ) => {
 
 		if( !opts.url ){
 
-			return reject( Error( 'promiseXHR_path_empty' ) );
+			return reject( Error( 'promiseXHR_url_empty' ) );
 
 		}
 
