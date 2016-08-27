@@ -1,140 +1,227 @@
 import * as types from 'types'
-import _ from 'underscore'
-import { validateImage } from 'actions/validateImage'
-import accepts from 'attr-accept'
+import { promiseType, promiseEXIF, promiseMinimumBoxDimensions, promiseCanvasBoxResize, promiseLocation, promiseDataURLtoBlob } from 'actions/util/image'
+import { promiseXHR } from 'actions/util/xhr'
 
-
-function _promiseFilesSelected ( e ){
+const _promiseFile = ( e ) => {
 
 	return new Promise( ( resolve, reject ) => {
 
-		const filesSelected = e.dataTransfer ? e.dataTransfer.files : e.currentTarget.files;
+		const selected = e.dataTransfer ? e.dataTransfer.files : e.currentTarget.files;
 
-		if( filesSelected.length > 0 ){
+		if( selected.length > 0 ){
 
-			resolve( filesSelected );
-
-		}else{
-
-			reject( Error( 'actions/form.js/_promiseFilesSelected/filesSelected.length = 0' ) );
-
-		}
-
-	} );
-
-}
-
-function _promiseFilesAccepted ( filesSelected ){ //for images that have been dropped not selected
-
-	let filesAccepted = []
-	let filesRejected = []
-
-	_.each( filesSelected, ( file ) => {
-
-		if( accepts( file, 'image/*' ) ){ // --> upload.jsx
-
-			filesAccepted.push( file )
+			resolve( selected[ 0 ] );
 
 		}else{
 
-			file.status = 'rejected'
-			filesRejected.push( file )
+			reject( Error( 'actions/form.js/_promiseFilesSelected/selected.length = 0' ) );
 
 		}
 
 	} )
 
-	return Promise.resolve( { filesAccepted, filesRejected } )
-
 }
 
-function _promiseFilesValidated ( filesAccepted ){
+const _promiseLocation = ( image ) => {
 
-	return Promise.all( _.map( filesAccepted, ( image ) => { 
+	return new Promise( ( resolve, reject ) => {
 
-		return validateImage( image )
+		promiseLocation( image )
+		.then( ( image ) => {
 
-	} ) )
-
-}
-
-
-export function validateFiles ( e ) {
-
-	return function ( dispatch ) {
-
-		_promiseFilesSelected( e )
-		.then( _promiseFilesAccepted )
-		.then( ( files ) => {
-
-			dispatch( {
-
-				type: types.SET_REJECTED,
-				images: files.filesRejected
-
-			} )
-
-			return files.filesAccepted
+			image.manual = false
+			resolve( image )
+			return image
 
 		} )
-		.then( _promiseFilesValidated )
-		.then( ( images ) => {
+		.catch( ( error ) => {
 
-			console.log( images )
+			if( error.message == 'location_undefined' ){
 
-			let valid = []
-			let action = []
-			let invalid = []
+				console.log( "Prompt user to locate image" )
+				// locateImage( image )
+				image.manual = true
+				resolve( image )
 
-			_.each( images, ( image ) => {
+			}else{
 
-				if( image.status === 'valid' ){
+				reject( error )
 
-					valid.push( image )
+			}
 
-				}else if( image.status === 'action' ){
+		} )
 
-					action.push( image )
+	} )
 
-				}else if( image.status === 'invalid' ){
+}
 
-					invalid.push( image )
+const _promiseSafe = ( image ) => {
 
+	return new Promise ( ( resolve, reject ) => {
+
+		let content = image.dataURL.replace( 'data:image/jpeg;base64,', '' ) // remove content type
+		let data = JSON.stringify( {
+
+			"requests":[
+				{
+					"image": { "content": content },
+					"features":[
+						{
+							"type":"FACE_DETECTION",
+							"maxResults":1
+						},
+						{
+							"type":"LABEL_DETECTION"
+						},
+						{
+							"type":"SAFE_SEARCH_DETECTION"
+						}
+
+					]
 				}
+			]
+		} )
 
-			} )
+		let options = { 
 
-			dispatch( {
+			url: 'https://vision.googleapis.com/v1/images:annotate?fields=responses&key=AIzaSyBL_zQUvMQNSnljycIZbHTYvscgYNLsp50',
+			data: data
 
-				type: types.SET_VALID,
-				images: valid
+		}
 
-			} )
+		promiseXHR( options )
+		.then( JSON.parse )
+		.then( ( response ) => {
 
-			dispatch( {
-
-				type: types.SET_ACTION,
-				images: action
-
-			} )
-
-			dispatch( {
-
-				type: types.SET_INVALID,
-				images: invalid
-
-			} )
-
-			return images
+			let labels = response.responses[ 0 ].labelAnnotations
+			image.labels = labels
+			resolve( image )
+			return image
 
 		} )
 		.catch( ( error ) => {
 
 			console.log( error )
-			//dispatch( addSnackbarMessage( error ) )
+			reject( error )
+
+		} )
+
+	} )
+
+}
+
+
+export const validateFile = ( e ) => {
+
+	return function ( dispatch ){
+
+		dispatch( { type: types.SET_FORM_STATUS, to: 'status_validating' } )
+
+		_promiseFile( e )
+		.then( promiseType )
+		.then( promiseEXIF )
+		.then( ( image ) => {
+
+			return promiseMinimumBoxDimensions( image, 800 )
+
+		} )
+		.then( ( image ) => {
+
+			return promiseCanvasBoxResize( image, 800 )
+
+		} )
+		.then( _promiseLocation )
+		.then( ( image ) => {
+
+			//dispatch( { type: types.SET_FORM_PREVIEW, to: image.dataURL } )
+			return _promiseSafe( image )
+			//return image
+
+		} )
+		.then( ( image ) => {
+
+			dispatch( { type: types.SET_FORM_STATUS, to: 'status_hurray' } )
+			dispatch( { type: types.SET_FILE_TO_UPLOAD, to: image } )
+			return image
+
+		} )
+		.catch( ( error ) => {
+
+			dispatch( { type: types.SET_FORM_STATUS, to: error.message } )
+			console.log( error )
 
 		} )
 
 	}
 
 }
+
+
+const _promiseFormData = ( blob, fileObj ) => {
+
+	return new Promise( ( resolve, reject ) => {
+
+		const { exifdata, lat, long, manual, name, labels } = fileObj
+
+		let formData = new FormData()
+
+		formData.append( 'file', blob )
+		formData.append( 'exifdata', JSON.stringify( exifdata ) )
+		formData.append( 'lat', lat )
+		formData.append( 'long', long )
+		formData.append( 'manual', manual )
+		formData.append( 'filename', name )
+		formData.append( 'labels', JSON.stringify( labels ) )
+
+		resolve( formData )
+
+	} )
+
+}
+
+export const uploadImage = ( e ) => {
+
+	return function ( dispatch, getState ){
+
+		const state = getState()
+		const fileObj = state.form.file
+
+		promiseDataURLtoBlob( fileObj.dataURL )
+		.then( ( blob ) => {
+
+			return _promiseFormData( blob, fileObj )
+
+		} )
+		.then( ( formData ) => {
+
+			for ( var pair of formData.entries() ) {
+
+				console.log( pair[ 0 ]+ ', ' + pair[ 1 ] )
+
+			}
+			return formData
+
+		} )
+		.catch( ( error ) => {
+
+			console.log( error )
+
+		} )
+
+		dispatch( { type: types.SET_FORM_STATUS, to: 'status_uploading' } )
+
+	}
+
+}
+
+
+/*let drop = {
+
+			file: file,
+			exifJSON: JSON.stringify( exifdata ),
+			validationsJSON: JSON.stringify( validations ),
+			validations: validations,
+			manual: 0,
+			exifDateTime: exifdata.DateTimeOriginal || exifdata.DateTimeDigitized || exifdata.DateTime
+
+		}*/

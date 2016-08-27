@@ -8,5 +8,40 @@
     "id": "all_set",
     "description": "Section header - All set?",
     "defaultMessage": "Do you have any pictures of coasts on your device? Why not upload them now?"
+  },
+  {
+    "id": "one_by_one",
+    "description": "Note - Informs user that only one image can be uploaded at a time",
+    "defaultMessage": "At the moment we can only accept one image at a time."
+  },
+  {
+    "id": "check_for_batch_upload",
+    "description": "Link - Leads to a contact form for contributors with too many images to upload one by one",
+    "defaultMessage": "Check here if your images are viable for a batch upload"
+  },
+  {
+    "id": "status_validating",
+    "description": "Status - Informs user that selected image(s) is being validated",
+    "defaultMessage": "Validating your image .. (just a few seconds)"
+  },
+  {
+    "id": "upload_image",
+    "description": "Button label - Prompts the user to upload the image",
+    "defaultMessage": "UPLOAD"
+  },
+  {
+    "id": "exifdata_empty",
+    "description": "Error - Informs user that exifdata is missing and why that could be",
+    "defaultMessage": "Hm. We could not extract any metadata (we need that to know when the image was taken and more importantly where ). Social media, screenshots, scans"
+  },
+  {
+    "id": "status_hurray",
+    "description": "Status - Informs user that image validation was successfull",
+    "defaultMessage": "Awesome!!! Your image passed all the tests and can now be uploaded"
+  },
+  {
+    "id": "status_uploading",
+    "description": "Status - Informs user that his image is being uploaded",
+    "defaultMessage": "Uploading..."
   }
 ]

@@ -4,7 +4,7 @@ import _ from 'underscore'
 import Modernizr from 'modernizr'
 
 
-const uploadSupported = Modernizr.xhr2 || Modernizr.xhrresponsetypejson || Modernizr.filereader 
+const uploadSupported = Modernizr.xhr2 || Modernizr.xhrresponsetypejson || Modernizr.filereader || Modernizr.blob
 
 const browser = ( state = { uploadSupported: uploadSupported, mapboxSupported: false }, action ) => {
 
@@ -60,86 +60,23 @@ const snackbar = ( state = [ ], action ) => {
 
 }
 
-const rejected = ( state = [ ], action ) => {
+const form = ( state = { status: '', file: {}, preview: '' }, action ) => {
 
 	switch ( action.type ){
 
-	case types.SET_REJECTED:
-		return action.images
-	case types.ADD_REJECTED:
-		return [ ...state, action.images ]
-	case types.REMOVE_REJECTED:
-		return _.without( state, action.images )
+	case types.SET_FORM_STATUS:
+		return _.extend( {}, state, { status: action.to } )
+	case types.SET_FORM_PREVIEW:
+		return _.extend( {}, state, { preview: action.to } )
+	case types.SET_FILE_TO_UPLOAD:
+		return _.extend( {}, state, { file: action.to } )
 	default:
 		return state;
 
 	}
 
-}
+} 
 
-const valid = ( state = [ ], action ) => {
-
-	switch ( action.type ){
-
-	case types.SET_VALID:
-		return action.images
-	case types.ADD_VALID:
-		return [ ...state, action.images ]
-	case types.REMOVE_VALID:
-		return _.without( state, action.images )
-	default:
-		return state;
-
-	}
-
-}
-
-const action = ( state = [ ], action ) => {
-
-	switch ( action.type ){
-
-	case types.SET_ACTION:
-		return action.images
-	case types.ADD_ACTION:
-		return [ ...state, action.images ]
-	case types.REMOVE_ACTION:
-		return _.without( state, action.images )
-	default:
-		return state;
-
-	}
-
-}
-
-const invalid = ( state = [ ], action ) => {
-
-	switch ( action.type ){
-
-	case types.SET_INVALID:
-		return action.images
-	case types.ADD_INVALID:
-		return [ ...state, action.images ]
-	case types.REMOVE_INVALID:
-		return _.without( state, action.images )
-	default:
-		return state;
-
-	}
-
-}
-
-/*const layers = ( state = { ready: true, form: false, screen: false, map: true }, action ) => {
-
-	switch ( action.type ){
-
-	case types.SET_VISIBILITY:
-		return  _.extend( {}, state, action.options )
-	default:
-		return state;
-
-	}
-
-}*/
 
 
 const coastwards = combineReducers( {
@@ -148,10 +85,7 @@ const coastwards = combineReducers( {
 	i18n,
 	dialog,
 	snackbar,
-	rejected,
-	valid,
-	action, 
-	invalid
+	form
 
 } )
 

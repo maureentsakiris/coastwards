@@ -1,9 +1,12 @@
 import React, { PropTypes } from 'react'
-import { injectIntl, intlShape } from 'react-intl'
+import { defineMessages, injectIntl, intlShape } from 'react-intl'
 import _ from 'underscore'
 
-import { errorTranslations } from 'messages/error'
-const translations = _.extend( errorTranslations )
+
+const intlMessages = defineMessages( {
+
+
+} )
 
 const snackbar = ( { intl, messages } ) => {
 
@@ -42,7 +45,7 @@ const _composeMessages = ( intl, messages ) => {
 	return _.map( messages, ( message, index ) => {
 
 		const mess = typeof message === 'object' ? message.message : message //if error object
-		const m = translations[ mess ] ? formatMessage( translations[ mess ] ) : mess //if translation 
+		const m = intlMessages[ mess ] ? formatMessage( intlMessages[ mess ] ) : mess //if translation 
 
 		return React.createElement( 'p', {
 

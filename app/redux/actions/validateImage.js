@@ -89,7 +89,7 @@ const _promiseResize = ( image ) => {
 			img.onload = () => {
 
 				let canvas = document.getElementById( 'canvas' )
-				let max = 800
+				let max = 500
 				let width = img.width
 				let height = img.height
 
@@ -146,7 +146,11 @@ const _promiseGoogle = ( image ) => {
 
 	return new Promise( ( resolve, reject ) => {
 	
-		
+		setTimeout( ( ) => { 
+
+			resolve( image ) 
+
+		}, 5000 )
 	
 	} )
 
@@ -188,6 +192,7 @@ const _promiseLocation = ( image ) => {
 }
 
 
+// inside Promise.all --> One fails, all fail
 export function validateImage ( image ) {
 
 	return new Promise( ( resolve, reject ) => {
@@ -195,6 +200,7 @@ export function validateImage ( image ) {
 		_promiseEXIF( image )
 		.then( _promiseMinimumDimension )
 		.then( _promiseResize )
+		.then( _promiseGoogle )
 		.then( _promiseLocation )
 		.then( ( image ) => {
 
@@ -461,3 +467,278 @@ const Validators = {
 	} )
 
 }*/
+
+
+
+
+
+/*
+
+function _promiseFilesSelected ( e ){
+
+	return new Promise( ( resolve, reject ) => {
+
+		const selected = e.dataTransfer ? e.dataTransfer.files : e.currentTarget.files;
+
+		if( selected.length > 0 ){
+
+			resolve( selected );
+
+		}else{
+
+			reject( Error( 'actions/form.js/_promiseFilesSelected/selected.length = 0' ) );
+
+		}
+
+	} );
+
+}
+
+function _promiseRequiredValidations ( selected ){ //for images that have been dropped not selected
+
+	return Promise.all( _.map( selected, ( file ) => {
+
+		return promiseType( file, 'image/*' )
+
+	} ) )
+
+	let accepted = []
+	let rejected = []
+
+	_.each( selected, ( file ) => {
+
+		promiseType( file, 'image/*' )
+		.then( ( file ) => {
+
+			return promiseMinimumBoxDimension( file, 800 )
+
+		} )
+		.then( ( file ) => {
+
+			accepted.push( file )
+			return file
+
+		} )
+		.catch( ( error ) => {
+
+			rejected.push( file )
+			throw error
+
+		} )
+
+	} )
+
+	return { accepted, rejected }
+
+}*/
+
+/*function _promiseLocalValidations ( filesAccepted ){
+
+	return Promise.all( _.map( filesAccepted, ( image ) => {
+
+		return validateImageLocally( image )
+
+	} ) )
+
+}*/
+
+/*function _promiseFilesValidated ( filesAccepted ){
+
+	return Promise.all( _.map( filesAccepted, ( image ) => { 
+
+		return validateImage( image )
+
+	} ) )
+
+}*/
+
+
+/*export function validateFiles ( e ) {
+
+	return function ( dispatch ) {
+
+		_promiseFilesSelected( e )
+		.then( ( selected ) => {
+
+			dispatch( {
+
+				type: types.SET_SELECTED,
+				to: selected
+
+			} )
+
+			return selected
+
+		} )
+		.then( _promiseFilesType )
+		.then( ( acceptedRejected ) => {
+
+			dispatch( {
+
+				type: types.SET_REJECTED,
+				to: acceptedRejected.rejected
+
+			} )
+
+			dispatch( {
+
+				type: types.SET_ACCEPTED,
+				to: acceptedRejected.accepted
+
+			} )
+
+			return acceptedRejected.accepted
+
+		} )
+		.then( _promiseFilesMinimumBoxDimension )
+		.then( )
+		.catch( ( error ) => {
+
+			console.log( error )
+
+		} )*/
+
+
+		/*_promiseFilesSelected( e )
+		.then( ( files ) => {
+
+			dispatch( {
+
+				type: types.SET_SELECTED,
+				to: files
+
+			} )
+
+			return files
+
+		} )
+		.then( _promiseFilesAccepted )
+		.then( ( files ) => {
+
+			dispatch( {
+
+				type: types.SET_REJECTED,
+				to: files.filesRejected
+
+			} )
+
+			let count = files.filesAccepted.length
+			let accepted
+
+			if( count > MAX_FILE_UPLOAD ){
+
+				accepted = files.filesAccepted.slice( 0, MAX_FILE_UPLOAD )
+
+				if( count > MIN_BATCH_UPLOAD ){
+
+					dispatch( {
+
+						type: types.SHOW_DIALOG,
+						title: "!DO YOU HAVE A LOT OF IMAGES?",
+						message: "!Image upload is limited to 5 at a time ... If you have more than 50 images contact us to send them to us directly and we will upload them for you",
+						active: true
+
+					} )
+
+				}else{
+
+					dispatch( addSnackbarMessage( "!Slow down cowboy, image upload is limited to 5 at a time" ) )
+
+				}
+
+			}else{
+
+				accepted = files.filesAccepted
+
+			}
+
+			dispatch( {
+
+				type: types.SET_ACCEPTED,
+				to: accepted
+
+			} )
+
+			if( accepted.length > 0 ){
+
+				dispatch( {
+
+					type: types.SET_STATUS,
+					to: { validating: true }
+
+				} )
+
+			}
+
+			return accepted
+
+		} )
+		.then( _promiseFilesValidated )
+		.then( ( images ) => {
+
+			dispatch( {
+
+				type: types.SET_STATUS,
+				to: { validating: false }
+
+			} )
+
+			console.log( images )
+
+			let valid = []
+			let action = []
+			let invalid = []
+
+			_.each( images, ( image ) => {
+
+				if( image.status === 'valid' ){
+
+					valid.push( image )
+
+				}else if( image.status === 'action' ){
+
+					action.push( image )
+
+				}else if( image.status === 'invalid' ){
+
+					invalid.push( image )
+
+				}
+
+			} )
+
+			dispatch( {
+
+				type: types.SET_VALID,
+				to: valid
+
+			} )
+
+			dispatch( {
+
+				type: types.SET_ACTION,
+				to: action
+
+			} )
+
+			dispatch( {
+
+				type: types.SET_INVALID,
+				to: invalid
+
+			} )
+
+			return images
+
+		} )
+		.catch( ( error ) => {
+
+			console.log( error )
+			//dispatch( addSnackbarMessage( error ) )
+
+		} )*/
+
+/*	}
+
+}*/
+

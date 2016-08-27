@@ -9,6 +9,7 @@
     "network/xhr2",
     "network/xhr-responsetype-json",
     "touchevents",
-    "file/api"
+    "file/api",
+    "blob"
   ]
 }
