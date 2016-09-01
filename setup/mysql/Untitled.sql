@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `coastwards` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `coastwards`;
 -- MySQL dump 10.13  Distrib 5.7.9, for osx10.9 (x86_64)
 --
 -- Host: localhost    Database: coastwards
@@ -54,4 +52,4 @@ CREATE TABLE `contributions` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-09-01 11:40:50
+-- Dump completed on 2016-09-01 11:42:07

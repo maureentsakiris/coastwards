@@ -8,6 +8,8 @@ import accepts from 'attr-accept'
 
 export const promiseType = ( image, type ) => {
 
+	//console.log( "promiseType" )
+
 	return new Promise( ( resolve, reject ) => {
 
 		if( accepts( image, type ) ){
@@ -25,6 +27,8 @@ export const promiseType = ( image, type ) => {
 }
 
 export const promiseEXIF = ( image ) => {
+
+	//console.log( "promiseEXIF" )
 
 	return new Promise( ( resolve, reject ) => {
 
@@ -54,6 +58,7 @@ export const promiseEXIF = ( image ) => {
 
 export const promiseMinimumBoxDimensions = ( image, boxlength ) => {
 
+	//console.log( "promiseMinimumBoxDimensions" )
 
 	return new Promise( ( resolve, reject ) => {
 
@@ -63,29 +68,58 @@ export const promiseMinimumBoxDimensions = ( image, boxlength ) => {
 
 		}
 
-		if( !image.exifdata ){
+		const _dotheMath = ( width, height ) => {
 
-			reject( Error( 'You need to promiseEXIF first to promiseMinimumBoxDimensions' ) )
+			let shortSide = width <= height ? width : height
+
+			if( shortSide >= boxlength ){
+
+				resolve( image )
+
+			}else{
+
+				reject( Error( 'image_too_small' ) )
+
+			}
 
 		}
 
-		let exif = image.exifdata
+		if( image.exifdata && image.exifdata.PixelXDimension && image.exifdata.PixelYDimension ){
 
-		if( !exif.PixelXDimension || !exif.PixelYDimension ){
+			_dotheMath( image.exifdata.PixelXDimension, image.exifdata.PixelYDimension )
 
-			reject( Error( 'image_size_undefined' ) )
+		}else if( !image.exifdata && window.FileReader ){
 
-		}
+			let reader = new FileReader()
 
-		let shortSide = exif.PixelXDimension <= exif.PixelYDimension ? exif.PixelXDimension : exif.PixelYDimension
+			reader.onload = function ( e ){
 
-		if( shortSide >= boxlength ){
+				let img = new Image()
 
-			resolve( image )
+				img.onload = function ( ){
+
+					image.width = img.width
+					image.height = img.height
+
+					_dotheMath( img.width, img.height )
+
+				}
+
+				img.src = e.target.result
+
+			}
+
+			reader.onerror = function ( error ) {
+
+				reject( error )
+
+			}
+
+			reader.readAsDataURL( image )
 
 		}else{
 
-			reject( Error( 'image_too_small' ) )
+			reject( Error( 'dimensions_undefined' ) )
 
 		}
 
@@ -94,6 +128,8 @@ export const promiseMinimumBoxDimensions = ( image, boxlength ) => {
 }
 
 export const promiseCanvasBoxResize = ( image, boxlength ) => {
+
+	//console.log( "promiseCanvasBoxResize" )
 
 	return new Promise ( ( resolve, reject ) => {
 
@@ -109,37 +145,88 @@ export const promiseCanvasBoxResize = ( image, boxlength ) => {
 				canvas.setAttribute( "style", "display:none" )
 				document.body.appendChild( canvas )
 
-				let max = boxlength
 				let width = img.width
 				let height = img.height
 
 				if ( width > height ) {
 
-					if ( width > max ) {
+					if ( width > boxlength ) {
 
-						height *= max / width
-						width = max
+						height *= boxlength / width
+						width = boxlength
 
 					}
 					
 				} else {
 
-					if ( height > max ) {
+					if ( height > boxlength ) {
 
-						width *= max / height
-						height = max
+						width *= boxlength / height
+						height = boxlength
 
 					}
 
 				}
 
+				let ctx = canvas.getContext( "2d" )
 				canvas.width = width
 				canvas.height = height
-		
-				let ctx = canvas.getContext( "2d" )
-				ctx.drawImage( img, 0, 0, width, height )
-				let resizedImage = canvas.toDataURL( "image/jpeg", 1.0 )
+				ctx.save()
 
+				/*let height = canvas.height
+				let width = canvas.width*/
+
+				let orientation = image.exifdata.Orientation
+				if ( !orientation || orientation > 8 ) {
+
+					reject( Error( "orientation_undefined" ) )
+
+				}
+
+				if ( orientation > 4 ) {
+
+					canvas.width = height
+					canvas.height = width
+				
+				}
+
+				switch ( orientation ) {
+
+				case 2: 
+					ctx.translate( width, 0 )
+					ctx.scale( -1, 1 )
+					break
+				case 3: 
+					ctx.translate( width, height )
+					ctx.rotate( Math.PI )
+					break
+				case 4: 
+					ctx.translate( 0, height )
+					ctx.scale( 1, -1 )
+					break
+				case 5: 
+					ctx.rotate( 0.5 * Math.PI )
+					ctx.scale( 1, -1 )
+					break
+				case 6: 
+					ctx.rotate( 0.5 * Math.PI )
+					ctx.translate( 0, -height )
+					break
+				case 7: 
+					ctx.rotate( 0.5 * Math.PI )
+					ctx.translate( width, -height )
+					ctx.scale( -1, 1 )
+					break
+				case 8: 
+					ctx.rotate( -0.5 * Math.PI )
+					ctx.translate ( -width, 0 )
+					break
+				}
+
+				ctx.drawImage( img, 0, 0, width, height )
+				ctx.restore()
+
+				let resizedImage = canvas.toDataURL( "image/jpeg", 1.0 )
 				image.dataURL = resizedImage
 
 				resolve( image )
@@ -164,6 +251,8 @@ export const promiseCanvasBoxResize = ( image, boxlength ) => {
 }
 
 export const promiseLocation = ( image ) => {
+
+	//console.log( "promiseLocation" )
 
 	return new Promise( ( resolve, reject ) => {
 

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 
-import { validateFile, uploadImage } from 'actions/form'
+import { validateFile, setMaterial, uploadImage } from 'actions/form'
 import FORM from 'components/form'
 
 
@@ -10,8 +10,8 @@ const mapStateToProps = ( state ) => {
 
 		uploadSupported: state.browser.uploadSupported,
 		status: state.form.status,
-		progress: state.form.progress,
-		preview: state.form.preview
+		image: state.form.image,
+		progress: state.form.progress
 
 	}
 
@@ -24,6 +24,11 @@ const mapDispatchToProps = ( dispatch ) => {
 		validateFile: ( e ) => {
 
 			dispatch( validateFile( e ) )
+
+		},
+		setMaterial: ( e ) => {
+
+			dispatch( setMaterial( e ) )
 
 		},
 		uploadImage: ( e ) => {

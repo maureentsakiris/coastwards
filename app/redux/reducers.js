@@ -60,28 +60,45 @@ const snackbar = ( state = [ ], action ) => {
 
 }
 
-const form = ( state = { status: '', file: {}, progress: 0, preview: '' }, action ) => {
+const form = ( state = { status: '', image: {}, material: '', comment: '', hashtag: '', progress: 0 }, action ) => {
 
 	switch ( action.type ){
 
 	case types.SET_FORM_STATUS:
 		return _.extend( {}, state, { status: action.to } )
-	case types.SET_FILE_TO_UPLOAD:
-		return _.extend( {}, state, { file: action.to } )
+	case types.SET_IMAGE_TO_UPLOAD:
+		return _.extend( {}, state, { image: action.to } )
 	case types.SET_FORM_DATA:
 		return _.extend( {}, state, { formData: action.to } )
+	case types.SET_MATERIAL:
+		return _.extend( {}, state, { material: action.to } )
+	case types.SET_COMMENT:
+		return _.extend( {}, state, { comment: action.to } )
+	case types.SET_HASHTAG:
+		return _.extend( {}, state, { hashtag: action.to } )
 	case types.SET_UPLOAD_PROGRESS:
 		return _.extend( {}, state, { progress: action.to } )
-	case types.SET_FORM_PREVIEW:
-		return _.extend( {}, state, { preview: action.to } )
+	case types.RESET_FORM:
+		return _.extend( {}, state, { image: {}, material: '', comment: '', hashtag: '', progress: 0 } )
 	default:
-		return state;
+		return state
 
 	}
 
 } 
 
+const selected = ( state = [ ], action ) => {
 
+	switch ( action.type ){
+
+	case types.ADD_SELECTED:
+		return [ ...state, action.file ]
+	default: 
+		return state
+
+	}
+
+}
 
 const coastwards = combineReducers( {
 
@@ -89,7 +106,8 @@ const coastwards = combineReducers( {
 	i18n,
 	dialog,
 	snackbar,
-	form
+	form,
+	selected
 
 } )
 

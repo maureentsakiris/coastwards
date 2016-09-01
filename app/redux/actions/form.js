@@ -3,6 +3,16 @@ import { promiseType, promiseEXIF, promiseMinimumBoxDimensions, promiseCanvasBox
 import { promiseDataURLtoBlob } from 'actions/util/form'
 import { promiseXHR } from 'actions/util/xhr'
 
+import _ from 'underscore'
+
+
+const _resetForm = ( dispatch ) => {
+
+	dispatch( { type: types.RESET_FORM } )
+	document.getElementById( 'upload' ).reset()
+
+}
+
 
 const _promiseFile = ( e ) => {
 
@@ -38,9 +48,11 @@ const _promiseLocation = ( image ) => {
 		} )
 		.catch( ( error ) => {
 
-			if( error.message == 'location_undefined' ){
+			reject( error )
 
-				// locateImage( image )
+			/*if( error.message == 'location_undefined' ){
+
+				locateImage( image )
 				image.manual = 1
 				resolve( image )
 
@@ -48,7 +60,7 @@ const _promiseLocation = ( image ) => {
 
 				reject( error )
 
-			}
+			}*/
 
 		} )
 
@@ -61,6 +73,7 @@ const _promiseSafe = ( image ) => {
 	return new Promise ( ( resolve, reject ) => {
 
 		let content = image.dataURL.replace( 'data:image/jpeg;base64,', '' ) // remove content type
+
 		let data = JSON.stringify( {
 
 			"requests":[
@@ -69,7 +82,7 @@ const _promiseSafe = ( image ) => {
 					"features":[
 						{
 							"type":"FACE_DETECTION",
-							"maxResults":1
+							"maxResults": 1
 						},
 						{
 							"type":"LABEL_DETECTION"
@@ -94,8 +107,33 @@ const _promiseSafe = ( image ) => {
 		.then( JSON.parse )
 		.then( ( response ) => {
 
-			let labels = response.responses[ 0 ].labelAnnotations
-			image.labels = labels
+			let annotations = response.responses[ 0 ]
+
+			console.log( annotations )
+
+			if( annotations.faceAnnotations ){
+
+				reject( Error( "faces_detected" ) )
+
+			}
+
+			if( _.contains( annotations.safeSearchAnnotation, 'LIKELY' ) || _.contains( annotations.safeSearchAnnotation, 'VERY_LIKELY' ) ){
+
+				reject( Error( "spam_detected" ) )
+
+			}
+
+			let coast = _.filter( annotations.labelAnnotations, { description: 'coast' } )
+			let shore = _.filter( annotations.labelAnnotations, { description: 'shore' } )
+			let harbor = _.filter( annotations.labelAnnotations, { description: 'harbor' } )
+
+			if( !coast.length && !shore.length && !harbor.length ){
+
+				reject( Error( "not_a_coast" ) )
+
+			}
+			
+			image.labels = annotations.labelAnnotations
 			resolve( image )
 			return image
 
@@ -111,49 +149,33 @@ const _promiseSafe = ( image ) => {
 }
 
 
-const _prepareForm = ( image ) => {
-
-	return new Promise( ( resolve, reject ) => {
-
-		promiseDataURLtoBlob( image.dataURL )
-		.then( ( blob ) => {
-
-			const { exifdata, lat, long, manual, labels } = image
-
-			const devLabels = labels ? labels : {}
-
-			let formData = new FormData()
-
-			formData.append( 'file', blob, 'file.jpg' )
-			formData.append( 'exifdata', JSON.stringify( exifdata ) )
-			formData.append( 'lat', lat )
-			formData.append( 'long', long )
-			formData.append( 'manual', manual )
-			formData.append( 'labels', JSON.stringify( devLabels ) )
-
-			resolve( formData )
-			return formData
-
-		} )
-		.catch( ( error ) => {
-
-			reject( error )
-
-		} )
-
-	} )
-
-}
-
-
 export const validateFile = ( e ) => {
 
-	return function ( dispatch ){
+	return function ( dispatch, getState ){
+
+		const state = getState()
 
 		dispatch( { type: types.SET_FORM_STATUS, to: 'status_validating' } )
 
-		_promiseFile( e )
+		_promiseFile( e ) //eslint-disable-line promise/always-return
 		.then( promiseType )
+		.then( ( file ) => {
+
+			//MATTHIAS
+			let index = state.selected.indexOf( file.name )
+
+			if( index == -1 ){
+
+				dispatch( { type: types.ADD_SELECTED, file: file.name } )
+				return file
+
+			}else{
+
+				throw Error( 'duplicate_file' )
+
+			}
+
+		} )
 		.then( promiseEXIF )
 		.then( ( image ) => {
 
@@ -162,36 +184,42 @@ export const validateFile = ( e ) => {
 		} )
 		.then( ( image ) => {
 
-			return promiseCanvasBoxResize( image, 800 )
+			return promiseCanvasBoxResize( image, 400 )
+
+		} )
+		.then( ( image ) => {
+
+			return _promiseSafe( image )
+			//return image
 
 		} )
 		.then( _promiseLocation )
 		.then( ( image ) => {
 
-			//dispatch( { type: types.SET_FORM_PREVIEW, to: image.dataURL } )
-			//return _promiseSafe( image )
-			return image
-
-		} )
-		.then( ( image ) => {
-
-			dispatch( { type: types.SET_FILE_TO_UPLOAD, to: image } )
-			return _prepareForm( image )
-
-		} )
-		.then( ( formData ) => {
-
-			dispatch( { type: types.SET_FORM_DATA, to: formData } )
+			dispatch( { type: types.SET_IMAGE_TO_UPLOAD, to: image } )
 			dispatch( { type: types.SET_FORM_STATUS, to: 'status_hurray' } )
-			return formData
+			return image
 
 		} )
 		.catch( ( error ) => {
 
 			dispatch( { type: types.SET_FORM_STATUS, to: error.message } )
+			_resetForm( dispatch )
 			console.log( error )
 
 		} )
+
+	}
+
+}
+
+
+
+export const setMaterial = ( e ) => {
+
+	return function ( dispatch ){
+
+		dispatch( { type: types.SET_MATERIAL, to: e.currentTarget.value } )
 
 	}
 
@@ -202,33 +230,63 @@ export const uploadImage = ( ) => {
 
 	return function ( dispatch, getState ){
 
-		dispatch( { type: types.SET_FORM_STATUS, to: 'status_uploading' } )
-
 		const state = getState()
-		const formData = state.form.formData
+		const { image, material, comment, hashtag } = state.form
 
-		let options = {
+		promiseDataURLtoBlob( image.dataURL )
+		.then( ( blob ) => {
 
-			data: formData,
-			url: '/contribute/upload',
-			onProgress: function ( e ) {
+			const { exifdata, lat, long, manual, labels } = image
+			const devLabels = labels ? labels : {}
+			const datetime = exifdata.DateTimeOriginal || exifdata.DateTimeDigitized || exifdata.DateTime
 
-				let percent = parseInt( e.loaded / e.total * 100 )
-				dispatch( { type: types.SET_UPLOAD_PROGRESS, to: percent } )
+			let formData = new FormData()
+
+			formData.append( 'file', blob, 'file.jpg' )
+			formData.append( 'exifdata', JSON.stringify( exifdata ) )
+			formData.append( 'lat', lat )
+			formData.append( 'long', long )
+			formData.append( 'manual', manual )
+			formData.append( 'datetime', datetime )
+			formData.append( 'labels', JSON.stringify( devLabels ) )
+			formData.append( 'material', material )
+			formData.append( 'comment', comment )
+			formData.append( 'hashtag', hashtag )
+			
+
+			return formData
+
+		} )
+		.then( ( formData ) => {
+
+			let options = {
+
+				data: formData,
+				url: '/contribute/upload',
+				onProgress: function ( e ) {
+
+					let percent = parseInt( e.loaded / e.total * 100 )
+					dispatch( { type: types.SET_UPLOAD_PROGRESS, to: percent } )
+
+				}
 
 			}
 
-		}
+			dispatch( { type: types.SET_FORM_STATUS, to: 'status_uploading' } )
+			return promiseXHR( options )
 
-		promiseXHR( options )
+		} )
 		.then( ( response ) => {
 
 			dispatch( { type: types.SET_FORM_STATUS, to: response } )
+			dispatch( { type: types.RESET_FORM } )
 			return response
 
 		} )
 		.catch( ( error ) => {
 
+			dispatch( { type: types.SET_FORM_STATUS, to: 'upload_error' } )
+			_resetForm( dispatch )
 			console.log( error )
 
 		} )

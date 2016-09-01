@@ -102,14 +102,14 @@ const _promiseInsertFile = ( formData ) => {
 	return new Promise( function ( resolve, reject ) {
 
 		const { ip, fields } = formData
-		const { long, lat, manual, labels, exifdata } = fields
+		const { long, lat, manual, datetime, labels, exifdata, material, adaptation, comment, hashtag } = fields
 		const uid = formData.files.file.uid
 		const point = util.format( 'POINT(%s %s)', long, lat )
 
 		
 
 		// Truncate table coastwards.contributions
-		var sql = 'INSERT INTO ??.?? ( ??, ??, ??, ??, ??, ?? ) VALUES ( (ST_PointFromText(?)), ?, ?, ?, ?, ? )'
+		var sql = 'INSERT INTO ??.?? ( ??, ??, ??, ??, ??, ??, ??, ??, ??, ??, ?? ) VALUES ( (ST_PointFromText(?)), ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )'
 		var inserts = [ 
 			'coastwards', 
 			'contributions',
@@ -119,16 +119,26 @@ const _promiseInsertFile = ( formData ) => {
 
 			'contribution_point_manual',
 			'contribution_uid',
+			'contribution_exif_datetime',
 			'contribution_labels',
 			'contribution_exif',
 			'contribution_ip',
+			'contribution_material',
+			'contribution_adaptation',
+			'contribution_comment',
+			'contribution_hashtag',
 
 			point,
 			manual,
 			uid,
+			datetime,
 			labels,
 			exifdata,
-			ip
+			ip,
+			material,
+			adaptation,
+			comment,
+			hashtag
 
 		]
 
