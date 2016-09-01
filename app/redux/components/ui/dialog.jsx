@@ -1,9 +1,8 @@
 import React, { PropTypes } from 'react'
 import { defineMessages, injectIntl, intlShape } from 'react-intl'
-import _ from 'underscore'
 
-import { errorTranslations } from 'messages/error'
-const dialogTranslations = defineMessages( {
+
+const messages = defineMessages( {
 
 	close_dialog:{
 		id: "close_dialog",
@@ -12,7 +11,6 @@ const dialogTranslations = defineMessages( {
 	}
 
 } )
-const translations = _.extend( errorTranslations, dialogTranslations )
 
 import DIV from 'components/tags/div'
 import H from 'components/tags/h'
@@ -43,13 +41,13 @@ const dialog = ( { intl, title, message, active, closeDialog } ) => {
 			
 		}
 
-		const t = translations[ title ] ? formatMessage( translations[ title ] ) : title
-		const m = translations[ message ] ? formatMessage( translations[ message ] ) : message
+		const t = messages[ title ] ? formatMessage( messages[ title ] ) : title
+		const m = messages[ message ] ? formatMessage( messages[ message ] ) : message
 
 		return(
 
 			<DIV style={ style } >
-				<A href="#" onClick={ closeDialog } title={ formatMessage( translations.close_dialog ) } ><I className="material-icons" >&#xE5CD;</I></A>
+				<A href="#" onClick={ closeDialog } title={ formatMessage( messages.close_dialog ) } ><I className="material-icons" >&#xE5CD;</I></A>
 				<H priority={ 4 } >{ t }</H>
 				<P>{ m }</P>
 			</DIV>

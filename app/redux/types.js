@@ -9,25 +9,15 @@ export const HIDE_DIALOG = 'HIDE_DIALOG'
 export const ADD_SNACKBAR_MESSAGE = 'ADD_SNACKBAR_MESSAGE'
 export const REMOVE_SNACKBAR_MESSAGE = 'REMOVE_SNACKBAR_MESSAGE'
 
-/*//layers
-export const SET_VISIBILITY = 'SET_VISIBILITY'*/
+//form
+export const SET_FORM_STATUS = 'SET_FORM_STATUS'
+export const SET_IMAGE_TO_UPLOAD = 'SET_IMAGE_TO_UPLOAD'
+export const SET_FORM_DATA = 'SET_FORM_DATA'
+export const SET_MATERIAL = 'SET_MATERIAL'
+export const SET_UPLOAD_PROGRESS = 'SET_UPLOAD_PROGRESS'
+export const SET_COMMENT = 'SET_COMMENT'
+export const SET_HASHTAG = 'SET_HASHTAG'
+export const RESET_FORM = 'RESET_FORM'
 
-//rejected
-export const SET_REJECTED = 'SET_REJECTED'
-export const ADD_REJECTED = 'ADD_REJECTED'
-export const REMOVE_REJECTED = 'REMOVE_REJECTED'
-
-//valid
-export const SET_VALID = 'SET_VALID'
-export const ADD_VALID = 'ADD_VALID'
-export const REMOVE_VALID = 'REMOVE_VALID'
-
-//action
-export const SET_ACTION = 'SET_ACTION'
-export const ADD_ACTION = 'ADD_ACTION'
-export const REMOVE_ACTION = 'REMOVE_ACTION'
-
-//invalid
-export const SET_INVALID = 'SET_INVALID'
-export const ADD_INVALID = 'ADD_INVALID'
-export const REMOVE_INVALID = 'REMOVE_INVALID'
+//selected
+export const ADD_SELECTED = 'ADD_SELECTED'

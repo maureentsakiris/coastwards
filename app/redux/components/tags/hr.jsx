@@ -5,13 +5,11 @@ import { globalAttr, hrAttr } from './attributes'
 
 const hr = ( { hocProps } ) => {
 
-	const { children, ...restProps } = hocProps
-	const allowedProps = _.pick( restProps, _.union( globalAttr, hrAttr ) )
-
+	const allowedProps = _.pick( hocProps, _.union( globalAttr, hrAttr ) )
 
 	return(
 
-		<hr { ...allowedProps } >{ children }</hr>
+		<hr { ...allowedProps } />
 
 	)
 

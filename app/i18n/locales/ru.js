@@ -1,6 +1,6 @@
 module.exports = {
 	locale: 'ru',
-	direction: 'ltr',
+	dir: 'ltr',
 	messages: {
 		'hello': 'Kakti?'
 	}

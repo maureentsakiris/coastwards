@@ -1,6 +1,6 @@
 module.exports = {
 	locale: 'it',
-	direction: 'ltr',
+	dir: 'ltr',
 	messages: {
 		'hello': 'Bon giorno mondo!'
 	}

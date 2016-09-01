@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { IntlProvider } from 'react-intl'
+import I18N from 'components/i18n/i18n'
 
 
 const mapStateToProps = ( state ) => {
@@ -21,6 +21,6 @@ const i18nProvider = connect(
 
 	mapStateToProps
 
-)( IntlProvider )
+)( I18N )
 
 export default i18nProvider

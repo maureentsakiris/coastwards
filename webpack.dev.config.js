@@ -10,6 +10,10 @@ const BUILD_ROOT = path.join( PROJECT_ROOT, 'public/build' )
 const ENTRY_INDEX = path.join( PROJECT_ROOT, 'app/entries/index.jsx' )
 const ENTRY_TRANSLATE = path.join( PROJECT_ROOT, 'app/entries/translate.jsx' )
 
+const ASSETS = path.join( PROJECT_ROOT, 'app/assets/' )
+const I18N = path.join( PROJECT_ROOT, 'app/i18n/' )
+const REDUX = path.join( PROJECT_ROOT, 'app/redux/' )
+
 const config = {
 
 	server: server,
@@ -24,7 +28,7 @@ const config = {
 		translate: ENTRY_TRANSLATE
 	},
 	resolve: {
-		root: [ path.join( PROJECT_ROOT, 'app/redux/' ), path.join( PROJECT_ROOT, 'app/i18n/' ) ],
+		root: [ REDUX, I18N, ASSETS ],
 		alias: {
 			modernizr$:  path.join( PROJECT_ROOT, '.modernizrrc' )
 		},
@@ -46,6 +50,11 @@ const config = {
 			{
 				test: /\.modernizrrc$/,
 				loader: 'modernizr'
+			},
+			{ 
+				test: /\.(jpe?g|png|gif|svg)$/i,
+				include: ASSETS,
+				loader: 'url?limit=10000!img?progressive=true' 
 			}
 		]
 	},
