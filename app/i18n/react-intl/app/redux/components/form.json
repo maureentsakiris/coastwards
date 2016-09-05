@@ -42,17 +42,7 @@
   {
     "id": "exifdata_empty",
     "description": "Error - Informs user that exifdata is missing and why that could be",
-    "defaultMessage": ":/ We couldn't find any metadata in your image. Our best guess is that it was sent through social media, like Facebook or Whatsapp, because they strip the metadata. Or, it might be a scan or a screenshot. We need the metadata to make sure the"
-  },
-  {
-    "id": "exifdata_undefined",
-    "description": "Error - Informs user that exifdata is missing and why that could be",
-    "defaultMessage": "Hm, we couldn't extract the metadata from the image but we need that information to ensure at least some level of relevance to our research. Try this:"
-  },
-  {
-    "id": "image_size_undefined",
-    "description": "Error - Informs the user that we couldn't determine image size",
-    "defaultMessage": "We couldn't find information on the size of the image in the metadata. We need to make sure it is big enough to be analysed. This is rather unusual. Do you have the original file somewhere? Try that one!"
+    "defaultMessage": ":/ We couldn't find any metadata in your image. Our best guess is that it was sent through social media, like Facebook or Whatsapp, because they strip the metadata. Or, it might be a scan or a screenshot. We need the metadata to run some tests that make sure the images being uploaded have some relevance to the project. Try another one!"
   },
   {
     "id": "image_too_small",
@@ -63,11 +53,6 @@
     "id": "orientation_undefined",
     "description": "Error - Informs user that image orientation is undefined",
     "defaultMessage": "We couldn't find information on image's orientation so we can't rotate it for image validation. Bummer, but keep on trying!"
-  },
-  {
-    "id": "location_undefined",
-    "description": "Error - Informs user that we couldn't extract information on the location it was taken",
-    "defaultMessage": "Ok so, you'll probably see this message a lot. We have the metadata but it does not tell us where the image was taken. Do you mind locating it for us on a map? (If you remember, of course)"
   },
   {
     "id": "faces_detected",
@@ -90,14 +75,19 @@
     "defaultMessage": "Crap, something went wrong during upload. I'm sure this is my fault (or maybe your connection is bad). Try again?"
   },
   {
+    "id": "status_drag_and_drop",
+    "description": "Status - Prompts user to drag and drop images onto the world map (or click the big red button)",
+    "defaultMessage": "Drag & drop your images onto the world map to upload (or click the big red button)"
+  },
+  {
+    "id": "status_click_button",
+    "description": "Status - Prompts user to upload images by clicking on the big red button",
+    "defaultMessage": "Click the big red button to upload images"
+  },
+  {
     "id": "status_validating",
     "description": "Status - Informs user that selected image(s) is being validated",
     "defaultMessage": "Validating your image .. (just a few seconds)"
-  },
-  {
-    "id": "status_hurray",
-    "description": "Status - Informs user that image validation was successfull",
-    "defaultMessage": "Awesome!!! Your image passed all the tests and can now be uploaded"
   },
   {
     "id": "status_uploading",
@@ -158,5 +148,20 @@
     "id": "notsure",
     "description": "Material - Not sure",
     "defaultMessage": "Not sure"
+  },
+  {
+    "id": "status_location_undefined",
+    "description": "Status - Informs user that we couldn't extract the location from the metadata and prompts user to locate the image for us",
+    "defaultMessage": "Ok so, you'll probably see this message more often than we'd like to admit. We have the metadata but it does not tell us where the image was taken. Do you remember the exact location of this coast?"
+  },
+  {
+    "id": "yes_location_known",
+    "description": "Label - Yes, I can locate this coast",
+    "defaultMessage": "Yes, I can locate this coast"
+  },
+  {
+    "id": "no_location_unknown",
+    "description": "Label - No, I don't remember",
+    "defaultMessage": "No, I don't remember"
   }
 ]

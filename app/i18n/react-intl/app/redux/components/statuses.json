@@ -1,0 +1,22 @@
+[
+  {
+    "id": "close_status",
+    "description": "Hover title - Close status",
+    "defaultMessage": "Close status"
+  },
+  {
+    "id": "status_validating",
+    "description": "Status - Informs user that selected image(s) is being validated",
+    "defaultMessage": "Validating your image .. (just a few seconds)"
+  },
+  {
+    "id": "status_uploading",
+    "description": "Status - Informs user that his image is being uploaded",
+    "defaultMessage": "Uploading..."
+  },
+  {
+    "id": "status_upload_ok",
+    "description": "Status - Informs user that his image was uploaded successfully",
+    "defaultMessage": "WOHOO! Nice one! Your image was uploaded. Next one! :)"
+  }
+]

@@ -1,0 +1,92 @@
+[
+  {
+    "id": "unsupported",
+    "description": "Warning - Warns the user that his browser does not support the image upload",
+    "defaultMessage": ":/ Looks like you are on an old browser that does not support some features we need to make this website work. Sorry, you'll need to upgrade or switch browsers to continue..."
+  },
+  {
+    "id": "all_set",
+    "description": "Section header - All set?",
+    "defaultMessage": "Do you have any pictures of coasts on your device? Why not upload them now?"
+  },
+  {
+    "id": "one_by_one",
+    "description": "Note - Informs user that only one image can be uploaded at a time",
+    "defaultMessage": "At the moment we can only accept one image at a time."
+  },
+  {
+    "id": "check_for_batch_upload",
+    "description": "Link - Leads to a contact form for contributors with too many images to upload one by one",
+    "defaultMessage": "Contact us if you have too many to upload one by one"
+  },
+  {
+    "id": "upload_image",
+    "description": "Button label - Prompts the user to upload the image",
+    "defaultMessage": "UPLOAD"
+  },
+  {
+    "id": "help_more",
+    "description": "Header - Asks user to help even more by answering a few questions",
+    "defaultMessage": "Two more questions though, if we may!"
+  },
+  {
+    "id": "img_alt",
+    "description": "Alt - Alternative description of the uploaded image",
+    "defaultMessage": "Your image"
+  },
+  {
+    "id": "select_material",
+    "description": "Header - Asks user to describe the coast material",
+    "defaultMessage": "How would you describe the coast material?"
+  },
+  {
+    "id": "sand",
+    "description": "Material - Sand",
+    "defaultMessage": "Sand"
+  },
+  {
+    "id": "pebble",
+    "description": "Material - Pebble",
+    "defaultMessage": "Pebble"
+  },
+  {
+    "id": "rock",
+    "description": "Material - Rock",
+    "defaultMessage": "Rock"
+  },
+  {
+    "id": "mud",
+    "description": "Material - Mud",
+    "defaultMessage": "Mud"
+  },
+  {
+    "id": "manmade",
+    "description": "Material - Man-made",
+    "defaultMessage": "Man-made"
+  },
+  {
+    "id": "ice",
+    "description": "Material - Ice",
+    "defaultMessage": "Ice"
+  },
+  {
+    "id": "notsure",
+    "description": "Material - Not sure",
+    "defaultMessage": "Not sure"
+  },
+  {
+    "id": "status_location_undefined",
+    "description": "Status - Informs user that we couldn't extract the location from the metadata and prompts user to locate the image for us",
+    "defaultMessage": "Ok so, you'll probably see this message more often than we'd like to admit. We have the metadata but it does not tell us where the image was taken. Do you remember the exact location of this coast?"
+  },
+  {
+    "id": "yes_location_known",
+    "description": "Label - Yes, I can locate this coast",
+    "defaultMessage": "Yes, I can locate this coast"
+  },
+  {
+    "id": "no_location_unknown",
+    "description": "Label - No, I don't remember",
+    "defaultMessage": "No, I don't remember"
+  }
+]

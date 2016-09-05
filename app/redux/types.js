@@ -9,8 +9,22 @@ export const HIDE_DIALOG = 'HIDE_DIALOG'
 export const ADD_SNACKBAR_MESSAGE = 'ADD_SNACKBAR_MESSAGE'
 export const REMOVE_SNACKBAR_MESSAGE = 'REMOVE_SNACKBAR_MESSAGE'
 
+//layers
+export const SET_LAYER_VISIBILITY = 'SET_LAYER_VISIBILITY'
+export const RESET_LAYERS = 'RESET_LAYERS'
+
+//prompt
+export const SET_PROMPT_MSG = 'SET_PROMPT_MSG'
+
+//status
+export const SET_STATUS_MSG = 'SET_STATUS_MSG'
+
+//error
+export const SET_ERROR_MSG = 'SET_ERROR_MSG'
+
 //form
-export const SET_FORM_STATUS = 'SET_FORM_STATUS'
+export const SET_FORM_ERROR = 'SET_FORM_ERROR'
+export const SET_FORM_PROMPT = 'SET_FORM_PROMPT'
 export const SET_IMAGE_TO_UPLOAD = 'SET_IMAGE_TO_UPLOAD'
 export const SET_FORM_DATA = 'SET_FORM_DATA'
 export const SET_MATERIAL = 'SET_MATERIAL'
