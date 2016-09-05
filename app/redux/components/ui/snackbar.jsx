@@ -5,6 +5,11 @@ import _ from 'underscore'
 
 const intlMessages = defineMessages( {
 
+	selected_truncated:{
+		id: "selected_truncated",
+		description: "Warning - Informs the user that more than one file have been dropped but we can only process one at a time",
+		defaultMessage: "Sorry, at the moment we can only process one image at a time!"
+	}
 
 } )
 

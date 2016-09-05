@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { hideDialog } from 'actions/dialog'
+import { hideDialog } from 'actions/ui/dialog'
 import DIALOG from 'components/ui/dialog'
 
 

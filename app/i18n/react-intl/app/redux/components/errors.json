@@ -1,6 +1,6 @@
 [
   {
-    "id": "close_errors",
+    "id": "close",
     "description": "Hover title - Close",
     "defaultMessage": "Close"
   },
@@ -22,7 +22,7 @@
   {
     "id": "exifdata_empty",
     "description": "Error - Informs user that exifdata is missing and why that could be",
-    "defaultMessage": ":/ We couldn't find any metadata in your image. Our best guess is that it was sent through social media, like Facebook or Whatsapp, because they strip the metadata. Or, it might be a scan or a screenshot. We need the metadata to run some tests that make sure the images being uploaded have some relevance to the project. Try another one!"
+    "defaultMessage": "We couldn't find any metadata in your image. Our best guess is that it was sent through social media, like Facebook or Whatsapp, because they strip the metadata. Or, it might be a scan or a screenshot. We need the metadata to run some tests that make sure the images being uploaded have some relevance to the project. Try another one!"
   },
   {
     "id": "image_too_small",

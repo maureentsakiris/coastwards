@@ -30,7 +30,7 @@ export const globalAttr = [
 ]
 
 export const aAttr = [ 'download', 'href', 'hrefLang', 'media', 'rel', 'target' ]
-export const divAttr = [ 'onClick' ]
+export const divAttr = [ 'onClick', 'onDragOver', 'onDragEnter', 'onDragLeave', 'onDrop' ]
 export const hAttr = []
 export const liAttr = [ 'value' ]
 export const menuAttr = [ 'label', 'type' ]

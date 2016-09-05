@@ -46,7 +46,7 @@ input.propTypes = {
 		required: PropTypes.bool,
 		size: PropTypes.number,
 		src: PropTypes.string,
-		step: PropTypes.number,
+		step: PropTypes.string,
 		type: PropTypes.oneOf( [ 'button', 'checkbox', 'color', 'date', 'datetime', 'datetime-local', 'email', 'file', 'hidden', 'image', 'month', 'number', 'password', 'radio', 'range', 'reset', 'search', 'submit', 'tel', 'text', 'time', 'url', 'week' ] ),
 		value: PropTypes.string,
 		width: PropTypes.number

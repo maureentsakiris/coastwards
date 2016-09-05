@@ -9,8 +9,8 @@ import I from 'components/tags/i'
 
 const messages = defineMessages( {
 
-	close_errors:{
-		id: "close_errors",
+	close:{
+		id: "close",
 		description: "Hover title - Close",
 		defaultMessage: "Close"
 	},
@@ -34,7 +34,7 @@ const messages = defineMessages( {
 	exifdata_empty:{
 		id: "exifdata_empty",
 		description: "Error - Informs user that exifdata is missing and why that could be",
-		defaultMessage: ":/ We couldn't find any metadata in your image. Our best guess is that it was sent through social media, like Facebook or Whatsapp, because they strip the metadata. Or, it might be a scan or a screenshot. We need the metadata to run some tests that make sure the images being uploaded have some relevance to the project. Try another one!"
+		defaultMessage: "We couldn't find any metadata in your image. Our best guess is that it was sent through social media, like Facebook or Whatsapp, because they strip the metadata. Or, it might be a scan or a screenshot. We need the metadata to run some tests that make sure the images being uploaded have some relevance to the project. Try another one!"
 	},
 	image_too_small:{
 		id: "image_too_small",
@@ -61,6 +61,14 @@ const messages = defineMessages( {
 		description: "Error - Informs user that image probably does not depict a coast",
 		defaultMessage: "So, clever alogrithms tell us that this image probably does not depict a coast. Sorry, we have to set some filters to ensure the image's relevance to our research. Try another one!"
 	},
+	location_undefined:{
+		id: "location_undefined",
+		description: "Error - Informs user that we couldn't extract the location from the metadata",
+		defaultMessage: "That's too bad. We need to know where the coast is located but we couldn't find information on where this image was taken in the metadata. Try uploading an image that was taken with a mobile or modern digital camera!"
+	},
+
+
+
 	upload_error:{
 		id: "upload_error",
 		description: "Error - Informs user that an error ocurred during upload",
@@ -69,18 +77,23 @@ const messages = defineMessages( {
 
 } )
 
-const errors = ( { intl, hide, error } ) => {
+const errors = ( { intl, show, error, hide } ) => {
 
 	const { formatMessage } = intl
 
 	const err = messages[ error ] ? formatMessage( messages[ error ] ) : error
 
+	const style = {
+
+		display: show ? 'block' : 'none'
+
+	}
+
 
 	return(
 
-		<DIV id="Status" >
-			<H priority={ 2 }>{ err }</H>
-			<A href="#" onClick={ hide } title={ formatMessage( messages.close_errors ) } ><I className="material-icons" >&#xE5CD;</I></A>
+		<DIV id="Errors" style={ style } >
+			<H priority={ 2 }>{ err } <A href="#" onClick={ hide } title={ formatMessage( messages.close ) } ><I className="material-icons" style={ { verticalAlign: 'middle' } } >&#xE5CD;</I></A></H>
 		</DIV>
 
 	)
@@ -90,8 +103,11 @@ const errors = ( { intl, hide, error } ) => {
 errors.propTypes = {
 
 	intl: intlShape.isRequired,
+
+	show: PropTypes.bool,
+	error: PropTypes.string,
+
 	hide: PropTypes.func,
-	error: PropTypes.string
 
 }
 

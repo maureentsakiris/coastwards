@@ -8,6 +8,7 @@ const mapStateToProps = ( state ) => {
 
 	return {
 
+		show: state.layers.statuses,
 		status: state.status
 
 	}

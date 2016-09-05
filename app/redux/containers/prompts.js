@@ -8,6 +8,7 @@ const mapStateToProps = ( state ) => {
 
 	return {
 
+		show: state.layers.prompts,
 		prompt: state.prompt
 
 	}

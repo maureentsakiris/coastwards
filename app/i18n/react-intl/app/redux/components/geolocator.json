@@ -1,0 +1,22 @@
+[
+  {
+    "id": "check_in_location",
+    "description": "Label - Check in given location",
+    "defaultMessage": "Check in"
+  },
+  {
+    "id": "cancel_check_in",
+    "description": "Label - Cancel check in",
+    "defaultMessage": "Cancel check in"
+  },
+  {
+    "id": "latitude",
+    "description": "Placeholder - Latitude",
+    "defaultMessage": "Latitude"
+  },
+  {
+    "id": "longitude",
+    "description": "Placeholder - Longitude",
+    "defaultMessage": "Longitude"
+  }
+]

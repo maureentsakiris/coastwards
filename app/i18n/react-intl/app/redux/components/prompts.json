@@ -1,17 +1,22 @@
 [
   {
-    "id": "close_prompts",
+    "id": "close",
     "description": "Hover title - Close",
     "defaultMessage": "Close"
   },
   {
+    "id": "select_file",
+    "description": "Prompt - Prompts user to select a file through the file system",
+    "defaultMessage": "Select your file below to upload"
+  },
+  {
     "id": "drag_and_drop",
     "description": "Prompt - Prompts user to drag and drop images onto the world map (or click the big red button)",
-    "defaultMessage": "Drag & drop your images onto the world map to upload (or click the big red button)"
+    "defaultMessage": "Drag & drop your image onto the world map to upload (or click the big red button)"
   },
   {
     "id": "click_button",
     "description": "Prompt - Prompts user to upload images by clicking on the big red button",
-    "defaultMessage": "Click the big red button to upload images"
+    "defaultMessage": "Click the big red button to upload an image"
   }
 ]

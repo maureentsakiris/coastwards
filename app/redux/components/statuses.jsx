@@ -7,12 +7,6 @@ import H from 'components/tags/h'
 
 const messages = defineMessages( {
 
-	close_status:{
-		id: "close_status",
-		description: "Hover title - Close status",
-		defaultMessage: "Close status"
-	},
-
 	status_validating:{
 		id: "status_validating",
 		description: "Status - Informs user that selected image(s) is being validated",
@@ -31,16 +25,21 @@ const messages = defineMessages( {
 
 } )
 
-const statuses = ( { intl, status } ) => {
+const statuses = ( { intl, show, status } ) => {
 
 	const { formatMessage } = intl
 
 	const stat = messages[ status ] ? formatMessage( messages[ status ] ) : status
 
+	const style = {
+
+		display: show ? 'block' : 'none'
+
+	}
 
 	return(
 
-		<DIV id="Status" >
+		<DIV id="Statuses" style={ style } >
 			<H priority={ 2 }>{ stat }</H>
 		</DIV>
 
@@ -51,8 +50,11 @@ const statuses = ( { intl, status } ) => {
 statuses.propTypes = {
 
 	intl: intlShape.isRequired,
-	resetForm: PropTypes.func,
-	status: PropTypes.string
+
+	show: PropTypes.bool,
+	status: PropTypes.string,
+
+	resetForm: PropTypes.func
 
 }
 

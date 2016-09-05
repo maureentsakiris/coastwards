@@ -1,12 +1,13 @@
 import * as types from 'types'
 import { promiseType, promiseEXIF, promiseMinimumBoxDimensions, promiseCanvasBoxResize, promiseLocation } from 'actions/util/image'
+import { addSnackbarMessage } from 'actions/ui/snackbar'
 import { promiseDataURLtoBlob } from 'actions/util/form'
 import { promiseXHR } from 'actions/util/xhr'
 
 import _ from 'underscore'
 
 
-const _promiseFile = ( e ) => {
+const _promiseFiles = ( e ) => {
 
 	return new Promise( ( resolve, reject ) => {
 
@@ -14,7 +15,7 @@ const _promiseFile = ( e ) => {
 
 		if( selected.length > 0 ){
 
-			resolve( selected[ 0 ] )
+			resolve( selected )
 
 		}else{
 
@@ -141,7 +142,18 @@ export const validateFile = ( e ) => {
 		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'errors', to: false } )
 		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'upload', to: false } )
 
-		_promiseFile( e ) //eslint-disable-line promise/always-return
+		_promiseFiles( e ) //eslint-disable-line promise/always-return
+		.then( ( selected ) => {
+
+			if( selected.length > 1 ){
+
+				dispatch( addSnackbarMessage( 'selected_truncated' ) )
+
+			}
+
+			return selected[ 0 ]
+
+		} )
 		.then( promiseType )
 		.then( ( file ) => {
 
@@ -188,18 +200,16 @@ export const validateFile = ( e ) => {
 		} )
 		.catch( ( error ) => {
 
-			if( error.message == 'location_undefined' ){
+			if( error.message == 'location_undefined' && state.browser.mapboxSupported ){
 
 				dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'locate', to: true } )
 				dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'statuses', to: false } )
 
 			}else{
 
+				dispatch( resetMain() )
 				dispatch( { type: types.SET_ERROR_MSG, to: error.message } )
 				dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'errors', to: true } )
-				dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'statuses', to: false } )
-				dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'upload', to: true } )
-				resetForm()
 				console.log( error )
 
 			}
@@ -281,23 +291,24 @@ export const uploadImage = ( ) => {
 
 			dispatch( { type: types.SET_STATUS_MSG, to: 'status_uploading' } )
 			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'statuses', to: true } )
+			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'form', to: false } )
 
 			return promiseXHR( options )
 
 		} )
 		.then( ( response ) => {
 
-			dispatch( { type: types.SET_ERROR_MSG, to: response } )
-			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'errors', to: false } )
-			dispatch( { type: types.RESET_FORM } )
+			dispatch( resetMain() )
+			dispatch( { type: types.SET_STATUS_MSG, to: response } )
+			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'statuses', to: true } )
 			return response
 
 		} )
 		.catch( ( error ) => {
 
+			dispatch( resetMain() )
 			dispatch( { type: types.SET_ERROR_MSG, to: 'upload_error' } )
-			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'errors', to: false } )
-			resetForm()
+			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'errors', to: true } )
 			console.log( error )
 
 		} )
@@ -306,16 +317,16 @@ export const uploadImage = ( ) => {
 
 }
 
-export const resetForm = ( ) => {
+export const resetMain = ( ) => {
 
 	return function ( dispatch ){
 
-		console.log( "resetting form" )
+		console.log( "TOTAL RESET" );
 
+		document.getElementById( 'Upload' ).reset()
+		document.getElementById( 'Form' ).reset()
 		dispatch( { type: types.RESET_FORM } )
 		dispatch( { type: types.RESET_LAYERS } )
-
-		document.getElementById( 'upload' ).reset()
 
 	}
 

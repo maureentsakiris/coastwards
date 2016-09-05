@@ -1,108 +1,13 @@
 [
   {
-    "id": "unsupported",
-    "description": "Warning - Warns the user that his browser does not support the image upload",
-    "defaultMessage": ":/ Looks like you are on an old browser that does not support some features we need to make this website work. Sorry, you'll need to upgrade or switch browsers to continue..."
-  },
-  {
-    "id": "all_set",
-    "description": "Section header - All set?",
-    "defaultMessage": "Do you have any pictures of coasts on your device? Why not upload them now?"
-  },
-  {
-    "id": "one_by_one",
-    "description": "Note - Informs user that only one image can be uploaded at a time",
-    "defaultMessage": "At the moment we can only accept one image at a time."
-  },
-  {
-    "id": "check_for_batch_upload",
-    "description": "Link - Leads to a contact form for contributors with too many images to upload one by one",
-    "defaultMessage": "Contact us if you have too many to upload one by one"
-  },
-  {
-    "id": "upload_image",
-    "description": "Button label - Prompts the user to upload the image",
-    "defaultMessage": "UPLOAD"
-  },
-  {
-    "id": "files_undefined",
-    "description": "Error - Informs user that no files were selected",
-    "defaultMessage": "No files were selected."
-  },
-  {
-    "id": "wrong_filetype",
-    "description": "Error - Informs the user that the selected image has the wrong file type",
-    "defaultMessage": "Em... the file you selected is not an image. It should have of the following extensions: jpg, jpeg, tif, tiff, gif or png"
-  },
-  {
-    "id": "duplicate_file",
-    "description": "Error - Informs user that the file has already been selected before",
-    "defaultMessage": "You've already selected this file before!"
-  },
-  {
-    "id": "exifdata_empty",
-    "description": "Error - Informs user that exifdata is missing and why that could be",
-    "defaultMessage": ":/ We couldn't find any metadata in your image. Our best guess is that it was sent through social media, like Facebook or Whatsapp, because they strip the metadata. Or, it might be a scan or a screenshot. We need the metadata to run some tests that make sure the images being uploaded have some relevance to the project. Try another one!"
-  },
-  {
-    "id": "image_too_small",
-    "description": "Error - Informs user that the image is too small",
-    "defaultMessage": "Your image is too small for us to analyse. Do you have the original file somewhere? Try that one!"
-  },
-  {
-    "id": "orientation_undefined",
-    "description": "Error - Informs user that image orientation is undefined",
-    "defaultMessage": "We couldn't find information on image's orientation so we can't rotate it for image validation. Bummer, but keep on trying!"
-  },
-  {
-    "id": "faces_detected",
-    "description": "Error - Informs user that faces were detected in image",
-    "defaultMessage": "Sorry, for privacy concerns we have to reject images with faces... (Yeah, selfies, too)"
-  },
-  {
-    "id": "spam_detected",
-    "description": "Error - Informs user that image did not pass spam filter",
-    "defaultMessage": "You sure that's a picture of a coast? We have our doubts..."
-  },
-  {
-    "id": "not_a_coast",
-    "description": "Error - Informs user that image probably does not depict a coast",
-    "defaultMessage": "So, clever alogrithms tell us that this image probably does not depict a coast. Sorry, we have to set some filters to ensure the image's relevance to our research. Try another one!"
-  },
-  {
-    "id": "upload_error",
-    "description": "Error - Informs user that an error ocurred during upload",
-    "defaultMessage": "Crap, something went wrong during upload. I'm sure this is my fault (or maybe your connection is bad). Try again?"
-  },
-  {
-    "id": "status_drag_and_drop",
-    "description": "Status - Prompts user to drag and drop images onto the world map (or click the big red button)",
-    "defaultMessage": "Drag & drop your images onto the world map to upload (or click the big red button)"
-  },
-  {
-    "id": "status_click_button",
-    "description": "Status - Prompts user to upload images by clicking on the big red button",
-    "defaultMessage": "Click the big red button to upload images"
-  },
-  {
-    "id": "status_validating",
-    "description": "Status - Informs user that selected image(s) is being validated",
-    "defaultMessage": "Validating your image .. (just a few seconds)"
-  },
-  {
-    "id": "status_uploading",
-    "description": "Status - Informs user that his image is being uploaded",
-    "defaultMessage": "Uploading..."
-  },
-  {
-    "id": "status_upload_ok",
-    "description": "Status - Informs user that his image was uploaded successfully",
-    "defaultMessage": "WOHOO! Nice one! Your image was uploaded. Next one! :)"
+    "id": "hurray",
+    "description": "Header - Informs user that his or her image has passed all the tests and is now ready for upload",
+    "defaultMessage": "AWESOME! Your image passed all the tests and is ready for upload!"
   },
   {
     "id": "help_more",
     "description": "Header - Asks user to help even more by answering a few questions",
-    "defaultMessage": "Two more questions though, if we may!"
+    "defaultMessage": "Two more questions though, if we may:"
   },
   {
     "id": "img_alt",
@@ -150,18 +55,13 @@
     "defaultMessage": "Not sure"
   },
   {
-    "id": "status_location_undefined",
-    "description": "Status - Informs user that we couldn't extract the location from the metadata and prompts user to locate the image for us",
-    "defaultMessage": "Ok so, you'll probably see this message more often than we'd like to admit. We have the metadata but it does not tell us where the image was taken. Do you remember the exact location of this coast?"
+    "id": "upload_image",
+    "description": "Button label - Prompts the user to upload the image",
+    "defaultMessage": "UPLOAD"
   },
   {
-    "id": "yes_location_known",
-    "description": "Label - Yes, I can locate this coast",
-    "defaultMessage": "Yes, I can locate this coast"
-  },
-  {
-    "id": "no_location_unknown",
-    "description": "Label - No, I don't remember",
-    "defaultMessage": "No, I don't remember"
+    "id": "cancel_upload",
+    "description": "Button label - Cancel upload",
+    "defaultMessage": "Cancel upload"
   }
 ]

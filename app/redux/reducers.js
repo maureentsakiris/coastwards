@@ -5,8 +5,10 @@ import Modernizr from 'modernizr'
 
 
 const uploadSupported = Modernizr.xhr2r || Modernizr.filereader || Modernizr.blob || Modernizr.canvas
+const mapboxSupported = true
+const dndSupported = false
 
-const browser = ( state = { uploadSupported: uploadSupported, mapboxSupported: false }, action ) => {
+const browser = ( state = { uploadSupported: uploadSupported, mapboxSupported: mapboxSupported, dndSupported: dndSupported }, action ) => {
 
 	switch ( action.type ){
 
@@ -75,7 +77,9 @@ const layers = ( state = { upload: true, prompts: true, statuses: false, errors:
 
 }
 
-const prompt = ( state = 'click_button', action ) => {
+const initPrompt = !mapboxSupported ? 'select_file' : !dndSupported ? 'drag_and_drop' : 'click_button'
+
+const prompt = ( state = initPrompt, action ) => {
 
 	switch ( action.type ){
 
@@ -121,8 +125,6 @@ const form = ( state = { image: {}, material: '', comment: '', hashtag: '', prog
 
 	case types.SET_IMAGE_TO_UPLOAD:
 		return _.extend( {}, state, { image: action.to } )
-	case types.SET_FORM_DATA:
-		return _.extend( {}, state, { formData: action.to } )
 	case types.SET_MATERIAL:
 		return _.extend( {}, state, { material: action.to } )
 	case types.SET_COMMENT:
@@ -132,7 +134,7 @@ const form = ( state = { image: {}, material: '', comment: '', hashtag: '', prog
 	case types.SET_UPLOAD_PROGRESS:
 		return _.extend( {}, state, { progress: action.to } )
 	case types.RESET_FORM:
-		return _.extend( {}, state, { error: '', image: {}, material: '', comment: '', hashtag: '', progress: 0 } )
+		return _.extend( {}, state, { image: {}, material: '', comment: '', hashtag: '', progress: 0 } )
 	default:
 		return state
 

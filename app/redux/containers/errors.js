@@ -8,7 +8,8 @@ const mapStateToProps = ( state ) => {
 
 	return {
 
-		error: state.error
+		error: state.error,
+		show: state.layers.errors
 
 	}
 

@@ -9,37 +9,46 @@ import I from 'components/tags/i'
 
 const messages = defineMessages( {
 
-	close_prompts:{
-		id: "close_prompts",
+	close:{
+		id: "close",
 		description: "Hover title - Close",
 		defaultMessage: "Close"
 	},
 
+	select_file:{
+		id: "select_file",
+		description: "Prompt - Prompts user to select a file through the file system",
+		defaultMessage: "Select your file below to upload"
+	},
 	drag_and_drop:{
 		id: "drag_and_drop",
 		description: "Prompt - Prompts user to drag and drop images onto the world map (or click the big red button)",
-		defaultMessage: "Drag & drop your images onto the world map to upload (or click the big red button)"
+		defaultMessage: "Drag & drop your image onto the world map to upload (or click the big red button)"
 	},
 	click_button:{
 		id: "click_button",
 		description: "Prompt - Prompts user to upload images by clicking on the big red button",
-		defaultMessage: "Click the big red button to upload images"
+		defaultMessage: "Click the big red button to upload an image"
 	},
 
 } )
 
-const prompts = ( { intl, hide, prompt } ) => {
+const prompts = ( { intl, show, prompt, hide } ) => {
 
 	const { formatMessage } = intl
 
 	const err = messages[ prompt ] ? formatMessage( messages[ prompt ] ) : prompt
 
+	const style = {
+
+		display: show ? 'block' : 'none'
+
+	}
 
 	return(
 
-		<DIV id="Prompt" >
-			<H priority={ 2 }>{ err }</H>
-			<A href="#" onClick={ hide } title={ formatMessage( messages.close_prompts ) } ><I className="material-icons" >&#xE5CD;</I></A>
+		<DIV id="Prompts" style={ style } >
+			<H priority={ 2 }>{ err } <A href="#" onClick={ hide } title={ formatMessage( messages.close ) } ><I className="material-icons" style={ { verticalAlign: 'middle' } } >&#xE5CD;</I></A></H>
 		</DIV>
 
 	)
@@ -49,8 +58,11 @@ const prompts = ( { intl, hide, prompt } ) => {
 prompts.propTypes = {
 
 	intl: intlShape.isRequired,
-	hide: PropTypes.func,
-	prompt: PropTypes.string
+	
+	show: PropTypes.bool,
+	prompt: PropTypes.string,
+
+	hide: PropTypes.func
 
 }
 

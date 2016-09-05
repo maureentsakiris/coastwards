@@ -1,27 +1,52 @@
 [
   {
-    "id": "unsupported",
-    "description": "Warning - Warns the user that his browser does not support the image upload",
-    "defaultMessage": "Your browser does not support the technologies used to upload images"
+    "id": "help_more",
+    "description": "Header - Asks user to help even more by answering a few questions",
+    "defaultMessage": "Two more questions though, if we may!"
   },
   {
-    "id": "any_more_questions",
-    "description": "Status - Asks users if any questions are open",
-    "defaultMessage": "Any more questions?"
+    "id": "img_alt",
+    "description": "Alt - Alternative description of the uploaded image",
+    "defaultMessage": "Your image"
   },
   {
-    "id": "select_images",
-    "description": "Status - Select your images",
-    "defaultMessage": "Select your images below"
+    "id": "select_material",
+    "description": "Header - Asks user to describe the coast material",
+    "defaultMessage": "How would you describe the coast material?"
   },
   {
-    "id": "select_images_mapbox",
-    "description": "Status - Select your images",
-    "defaultMessage": "Drag & drop your images onto the world map to upload (or click the big red button)"
+    "id": "sand",
+    "description": "Material - Sand",
+    "defaultMessage": "Sand"
   },
   {
-    "id": "select_images_mapbox_touch",
-    "description": "Status - Select your images",
-    "defaultMessage": "Click the big red button to upload pictures"
+    "id": "pebble",
+    "description": "Material - Pebble",
+    "defaultMessage": "Pebble"
+  },
+  {
+    "id": "rock",
+    "description": "Material - Rock",
+    "defaultMessage": "Rock"
+  },
+  {
+    "id": "mud",
+    "description": "Material - Mud",
+    "defaultMessage": "Mud"
+  },
+  {
+    "id": "manmade",
+    "description": "Material - Man-made",
+    "defaultMessage": "Man-made"
+  },
+  {
+    "id": "ice",
+    "description": "Material - Ice",
+    "defaultMessage": "Ice"
+  },
+  {
+    "id": "notsure",
+    "description": "Material - Not sure",
+    "defaultMessage": "Not sure"
   }
 ]

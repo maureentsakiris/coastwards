@@ -4,18 +4,16 @@ import { defineMessages, injectIntl, intlShape } from 'react-intl'
 import Errors from 'containers/errors'
 import Statuses from 'containers/statuses'
 import Prompts from 'containers/prompts'
+import Upload from 'containers/upload'
+import Locate from 'containers/locate'
+import Geolocator from 'containers/geolocator'
+import Form from 'containers/form'
 
 import H from 'components/tags/h'
-import FORM from 'components/tags/form'
 import DIV from 'components/tags/div'
 import SMALL from 'components/tags/small'
-import P from 'components/tags/p'
 import A from 'components/tags/a'
 import HR from 'components/tags/hr'
-
-import INPUT from 'components/tags/input'
-import BUTTON from 'components/tags/button'
-
 
 const messages = defineMessages( {
 
@@ -38,116 +36,45 @@ const messages = defineMessages( {
 		id: "check_for_batch_upload",
 		description: "Link - Leads to a contact form for contributors with too many images to upload one by one",
 		defaultMessage: "Contact us if you have too many to upload one by one"
-	},
-	upload_image:{
-		id: "upload_image",
-		description: "Button label - Prompts the user to upload the image",
-		defaultMessage: "UPLOAD"
-	},
-
-
-	help_more:{
-		id: "help_more",
-		description: "Header - Asks user to help even more by answering a few questions",
-		defaultMessage: "Two more questions though, if we may!"
-	},
-	img_alt: {
-		id: "img_alt",
-		description: "Alt - Alternative description of the uploaded image",
-		defaultMessage: "Your image"
-	},
-	select_material:{
-		id: "select_material",
-		description: "Header - Asks user to describe the coast material",
-		defaultMessage: "How would you describe the coast material?"
-	},
-
-
-	//materials
-	sand:{
-		id: "sand",
-		description: "Material - Sand",
-		defaultMessage: "Sand"
-	},
-	pebble:{
-		id: "pebble",
-		description: "Material - Pebble",
-		defaultMessage: "Pebble"
-	},
-	rock:{
-		id: "rock",
-		description: "Material - Rock",
-		defaultMessage: "Rock"
-	},
-	mud:{
-		id: "mud",
-		description: "Material - Mud",
-		defaultMessage: "Mud"
-	},
-	manmade:{
-		id: "manmade",
-		description: "Material - Man-made",
-		defaultMessage: "Man-made"
-	},
-	ice:{
-		id: "ice",
-		description: "Material - Ice",
-		defaultMessage: "Ice"
-	},
-	notsure:{
-		id: "notsure",
-		description: "Material - Not sure",
-		defaultMessage: "Not sure"
-	},
-
-	//locate
-	status_location_undefined:{
-		id: "status_location_undefined",
-		description: "Status - Informs user that we couldn't extract the location from the metadata and prompts user to locate the image for us",
-		defaultMessage: "Ok so, you'll probably see this message more often than we'd like to admit. We have the metadata but it does not tell us where the image was taken. Do you remember the exact location of this coast?"
-	},
-	yes_location_known:{
-		id: "yes_location_known",
-		description: "Label - Yes, I can locate this coast",
-		defaultMessage: "Yes, I can locate this coast"
-	},
-	no_location_unknown:{
-		id: "no_location_unknown",
-		description: "Label - No, I don't remember",
-		defaultMessage: "No, I don't remember"
 	}
 
 } )
 
-const main = ( { intl, uploadSupported, showUpload, showPrompts, showErrors, showStatuses, showLocate, showGeolocator, showForm, validateFile, locateCoast, resetForm } ) => {
+const main = ( { intl, uploadSupported } ) => {
 
 	const { formatMessage } = intl
 
-	return(
+	if( !uploadSupported ){
 
-		<DIV id="Upload" >
-			<H priority={ 2 }>{ formatMessage( messages.all_set ) }</H>
-			{ !uploadSupported && <p>{ formatMessage( messages.unsupported ) }</p> }
-			{ uploadSupported && <FORM action="#" id="upload">
+		return(
+
+			<DIV id="Main" >
+				<H priority={ 2 }>{ formatMessage( messages.all_set ) }</H>
+				<p>{ formatMessage( messages.unsupported ) }</p>
+			</DIV>
+
+		)
+
+	}else{
+
+		return(
+
+			<DIV id="Main" >
+				<H priority={ 2 }>{ formatMessage( messages.all_set ) }</H>
 				<SMALL>( { formatMessage( messages.one_by_one ) } <A href="#" onClick={ ( ) => { } } >{ formatMessage( messages.check_for_batch_upload ) }</A> )</SMALL>
 				<HR/>
-				{ showErrors && <Errors /> }
-				{ showStatuses && <Statuses /> }
-				{ showPrompts && <Prompts /> }
-				{ showUpload && <INPUT id="images" name="images" onChange={ validateFile } form="upload" type="file" multiple={ false } accept="image/*" /> }
-				{ showLocate && 
-					<DIV>
-						<H priority={ 2 }>{ formatMessage( messages.status_location_undefined ) }</H>
-						<BUTTON type="button" onClick={ locateCoast }>{ formatMessage( messages.yes_location_known ) }</BUTTON>
-						<BUTTON type="button" onClick={ resetForm }>{ formatMessage( messages.no_location_unknown ) }</BUTTON>
-					</DIV> }
-				{ showGeolocator && <P>geolocator</P> }
-				{ showForm && <P>Form</P> }
-				
-			</FORM> }
-		</DIV>
+				<Prompts />
+				<Errors /> 
+				<Statuses />
+				<Upload />
+				<Locate />
+				<Geolocator />
+				<Form />
+			</DIV>
 
-	)
+		)
+
+	}
 	
 }
 
@@ -155,27 +82,8 @@ main.propTypes = {
 
 	intl: intlShape.isRequired,
 
-	uploadSupported: PropTypes.bool,
-
-	showUpload: PropTypes.bool,
-	showPrompts: PropTypes.bool,
-	showStatuses: PropTypes.bool,
-	showErrors: PropTypes.bool,
-	showLocate: PropTypes.bool,
-	showGeolocator: PropTypes.bool,
-	showForm: PropTypes.bool,
-
-	validateFile: PropTypes.func,
-	locateCoast: PropTypes.func,
-	uploadImage: PropTypes.func,
-	resetForm: PropTypes.func,
-
-	image: PropTypes.object,
-	setMaterial: PropTypes.func,
-	progress: PropTypes.number,
+	uploadSupported: PropTypes.bool
 	
-	
-
 }
 
 export default injectIntl( main )
