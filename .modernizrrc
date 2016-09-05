@@ -10,6 +10,7 @@
     "network/xhr-responsetype-json",
     "touchevents",
     "file/api",
-    "blob"
+    "blob",
+    "canvas"
   ]
 }

@@ -1,10 +1,8 @@
 import EXIF from './exif'
 import _ from 'underscore'
 import accepts from 'attr-accept'
+import Modernirz from 'modernizr'
 
-/*
-	TODO: Feature detection!!! and Error message translation
-*/
 
 export const promiseType = ( image, type ) => {
 
@@ -18,7 +16,7 @@ export const promiseType = ( image, type ) => {
 
 		}else{
 
-			reject( Error( 'wrong_filetype' ) )
+			reject( Error( 'wrong_filetype' ) ) //YES
 
 		}
 
@@ -32,7 +30,7 @@ export const promiseEXIF = ( image ) => {
 
 	return new Promise( ( resolve, reject ) => {
 
-		let exif = EXIF.getData( image, function ( ) {
+		EXIF.getData( image, function ( ) {
 
 			if( _.isEmpty( image.exifdata ) ){
 
@@ -45,12 +43,6 @@ export const promiseEXIF = ( image ) => {
 			}
 
 		} )
-
-		if( !exif ){
-
-			reject( Error( 'exifdata_undefined' ) )
-
-		}
 
 	} )
 
@@ -78,7 +70,7 @@ export const promiseMinimumBoxDimensions = ( image, boxlength ) => {
 
 			}else{
 
-				reject( Error( 'image_too_small' ) )
+				reject( Error( 'image_too_small' ) ) //YES
 
 			}
 
@@ -88,7 +80,7 @@ export const promiseMinimumBoxDimensions = ( image, boxlength ) => {
 
 			_dotheMath( image.exifdata.PixelXDimension, image.exifdata.PixelYDimension )
 
-		}else if( !image.exifdata && window.FileReader ){
+		}else if( !image.exifdata && Modernirz.filereader ){
 
 			let reader = new FileReader()
 
@@ -119,7 +111,7 @@ export const promiseMinimumBoxDimensions = ( image, boxlength ) => {
 
 		}else{
 
-			reject( Error( 'dimensions_undefined' ) )
+			reject( Error( 'unsupported' ) ) //YES
 
 		}
 
@@ -132,6 +124,18 @@ export const promiseCanvasBoxResize = ( image, boxlength ) => {
 	//console.log( "promiseCanvasBoxResize" )
 
 	return new Promise ( ( resolve, reject ) => {
+
+		if( !Modernirz.filereader || !Modernirz.canvas ){
+
+			reject( Error( 'unsupported' ) )
+
+		}
+
+		if( !image.exifdata ){ //empty exif is dealt with in promiseEXIF
+
+			reject( Error( 'You need to promiseEXIF before you can promiseCanvasBoxResize' ) )
+
+		}
 
 		const reader = new FileReader()
 
@@ -173,13 +177,10 @@ export const promiseCanvasBoxResize = ( image, boxlength ) => {
 				canvas.height = height
 				ctx.save()
 
-				/*let height = canvas.height
-				let width = canvas.width*/
-
 				let orientation = image.exifdata.Orientation
 				if ( !orientation || orientation > 8 ) {
 
-					reject( Error( "orientation_undefined" ) )
+					reject( Error( "orientation_undefined" ) ) //YES
 
 				}
 
@@ -256,9 +257,9 @@ export const promiseLocation = ( image ) => {
 
 	return new Promise( ( resolve, reject ) => {
 
-		if( !image.exifdata ){
+		if( !image.exifdata ){ //empty exif is dealt with in promiseEXIF
 
-			reject( Error( 'You need to promiseEXIF first to promiseLocation' ) )
+			reject( Error( 'You need to promiseEXIF before you can promiseLocation' ) )
 
 		}
 
@@ -282,7 +283,7 @@ export const promiseLocation = ( image ) => {
 
 		}else{
 
-			reject( Error( 'location_undefined' ) )
+			reject( Error( 'location_undefined' ) ) //YES
 
 		}
 

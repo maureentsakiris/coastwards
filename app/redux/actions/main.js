@@ -6,14 +6,6 @@ import { promiseXHR } from 'actions/util/xhr'
 import _ from 'underscore'
 
 
-const _resetForm = ( dispatch ) => {
-
-	dispatch( { type: types.RESET_FORM } )
-	document.getElementById( 'upload' ).reset()
-
-}
-
-
 const _promiseFile = ( e ) => {
 
 	return new Promise( ( resolve, reject ) => {
@@ -26,43 +18,9 @@ const _promiseFile = ( e ) => {
 
 		}else{
 
-			reject( Error( 'files_undefined' ) )
+			reject( Error( 'files_undefined' ) ) //YES
 
 		}
-
-	} )
-
-}
-
-const _promiseLocation = ( image ) => {
-
-	return new Promise( ( resolve, reject ) => {
-
-		promiseLocation( image )
-		.then( ( image ) => {
-
-			image.manual = 0
-			resolve( image )
-			return image
-
-		} )
-		.catch( ( error ) => {
-
-			reject( error )
-
-			/*if( error.message == 'location_undefined' ){
-
-				locateImage( image )
-				image.manual = 1
-				resolve( image )
-
-			}else{
-
-				reject( error )
-
-			}*/
-
-		} )
 
 	} )
 
@@ -113,13 +71,13 @@ const _promiseSafe = ( image ) => {
 
 			if( annotations.faceAnnotations ){
 
-				reject( Error( "faces_detected" ) )
+				reject( Error( "faces_detected" ) ) //YES
 
 			}
 
 			if( _.contains( annotations.safeSearchAnnotation, 'LIKELY' ) || _.contains( annotations.safeSearchAnnotation, 'VERY_LIKELY' ) ){
-
-				reject( Error( "spam_detected" ) )
+ 
+				reject( Error( "spam_detected" ) ) //YES
 
 			}
 
@@ -129,11 +87,33 @@ const _promiseSafe = ( image ) => {
 
 			if( !coast.length && !shore.length && !harbor.length ){
 
-				reject( Error( "not_a_coast" ) )
+				reject( Error( "not_a_coast" ) ) //YES
 
 			}
 			
 			image.labels = annotations.labelAnnotations
+			resolve( image )
+			return image
+
+		} )
+		.catch( ( error ) => {
+
+			reject( error )
+
+		} )
+
+	} )
+
+}
+
+const _promiseLocation = ( image ) => {
+
+	return new Promise( ( resolve, reject ) => {
+
+		promiseLocation( image )
+		.then( ( image ) => {
+
+			image.manual = 0
 			resolve( image )
 			return image
 
@@ -155,7 +135,11 @@ export const validateFile = ( e ) => {
 
 		const state = getState()
 
-		dispatch( { type: types.SET_FORM_STATUS, to: 'status_validating' } )
+		dispatch( { type: types.SET_STATUS_MSG, to: 'status_validating' } )
+		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'statuses', to: true } )
+		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'prompts', to: false } )
+		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'errors', to: false } )
+		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'upload', to: false } )
 
 		_promiseFile( e ) //eslint-disable-line promise/always-return
 		.then( promiseType )
@@ -171,7 +155,7 @@ export const validateFile = ( e ) => {
 
 			}else{
 
-				throw Error( 'duplicate_file' )
+				throw Error( 'duplicate_file' ) //YES
 
 			}
 
@@ -184,7 +168,7 @@ export const validateFile = ( e ) => {
 		} )
 		.then( ( image ) => {
 
-			return promiseCanvasBoxResize( image, 400 )
+			return promiseCanvasBoxResize( image, 500 )
 
 		} )
 		.then( ( image ) => {
@@ -197,15 +181,28 @@ export const validateFile = ( e ) => {
 		.then( ( image ) => {
 
 			dispatch( { type: types.SET_IMAGE_TO_UPLOAD, to: image } )
-			dispatch( { type: types.SET_FORM_STATUS, to: 'status_hurray' } )
+			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'form', to: true } )
+			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'statuses', to: false } )
 			return image
 
 		} )
 		.catch( ( error ) => {
 
-			dispatch( { type: types.SET_FORM_STATUS, to: error.message } )
-			_resetForm( dispatch )
-			console.log( error )
+			if( error.message == 'location_undefined' ){
+
+				dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'locate', to: true } )
+				dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'statuses', to: false } )
+
+			}else{
+
+				dispatch( { type: types.SET_ERROR_MSG, to: error.message } )
+				dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'errors', to: true } )
+				dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'statuses', to: false } )
+				dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'upload', to: true } )
+				resetForm()
+				console.log( error )
+
+			}
 
 		} )
 
@@ -214,6 +211,16 @@ export const validateFile = ( e ) => {
 }
 
 
+export const locateCoast = ( ) => {
+
+	return function ( dispatch ){
+
+		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'locate', to: false } )
+		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'geolocator', to: true } )
+
+	}
+
+}
 
 export const setMaterial = ( e ) => {
 
@@ -272,24 +279,43 @@ export const uploadImage = ( ) => {
 
 			}
 
-			dispatch( { type: types.SET_FORM_STATUS, to: 'status_uploading' } )
+			dispatch( { type: types.SET_STATUS_MSG, to: 'status_uploading' } )
+			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'statuses', to: true } )
+
 			return promiseXHR( options )
 
 		} )
 		.then( ( response ) => {
 
-			dispatch( { type: types.SET_FORM_STATUS, to: response } )
+			dispatch( { type: types.SET_ERROR_MSG, to: response } )
+			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'errors', to: false } )
 			dispatch( { type: types.RESET_FORM } )
 			return response
 
 		} )
 		.catch( ( error ) => {
 
-			dispatch( { type: types.SET_FORM_STATUS, to: 'upload_error' } )
-			_resetForm( dispatch )
+			dispatch( { type: types.SET_ERROR_MSG, to: 'upload_error' } )
+			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'errors', to: false } )
+			resetForm()
 			console.log( error )
 
 		} )
+
+	}
+
+}
+
+export const resetForm = ( ) => {
+
+	return function ( dispatch ){
+
+		console.log( "resetting form" )
+
+		dispatch( { type: types.RESET_FORM } )
+		dispatch( { type: types.RESET_LAYERS } )
+
+		document.getElementById( 'upload' ).reset()
 
 	}
 

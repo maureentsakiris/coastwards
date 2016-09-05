@@ -9,7 +9,7 @@ import { loadLanguage } from 'actions/i18n/i18n'
 
 import I18nProvider from 'containers/i18n/i18nProvider'
 import Context from 'containers/context/context'
-import Form from 'containers/form'
+import Main from 'containers/main'
 import Snackbar from 'containers/ui/snackbar'
 import Dialog from 'containers/ui/dialog'
 
@@ -48,7 +48,7 @@ ReactDom.render(
 				<Guidelines />
 				<Team />
 				<FAQs />
-				<Form />
+				<Main />
 				<Snackbar />
 				<Dialog />
 			</Context>

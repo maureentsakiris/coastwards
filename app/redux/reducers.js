@@ -4,7 +4,7 @@ import _ from 'underscore'
 import Modernizr from 'modernizr'
 
 
-const uploadSupported = Modernizr.xhr2 || Modernizr.xhrresponsetypejson || Modernizr.filereader || Modernizr.blob
+const uploadSupported = Modernizr.xhr2r || Modernizr.filereader || Modernizr.blob || Modernizr.canvas
 
 const browser = ( state = { uploadSupported: uploadSupported, mapboxSupported: false }, action ) => {
 
@@ -60,12 +60,65 @@ const snackbar = ( state = [ ], action ) => {
 
 }
 
-const form = ( state = { status: '', image: {}, material: '', comment: '', hashtag: '', progress: 0 }, action ) => {
+const layers = ( state = { upload: true, prompts: true, statuses: false, errors: false, locate: false, geolocaterm: false, form: false }, action ) => {
 
 	switch ( action.type ){
 
-	case types.SET_FORM_STATUS:
-		return _.extend( {}, state, { status: action.to } )
+	case types.SET_LAYER_VISIBILITY:
+		return _.extend( {}, state, { [ action.layer ]: action.to } )
+	case types.RESET_LAYERS:
+		return { upload: true, prompts: false, statuses: false, errors: false, locate: false, geolocaterm: false, form: false }
+	default: 
+		return state
+
+	}
+
+}
+
+const prompt = ( state = 'click_button', action ) => {
+
+	switch ( action.type ){
+
+	case types.SET_PROMPT_MSG:
+		return action.to
+	default:
+		return state
+
+	}
+
+}
+
+const status = ( state = '', action ) => {
+
+	switch ( action.type ){
+
+	case types.SET_STATUS_MSG:
+		return action.to
+	default:
+		return state
+
+	}
+
+}
+
+const error = ( state = '', action ) => {
+
+	switch ( action.type ){
+
+	case types.SET_ERROR_MSG:
+		return action.to
+	default:
+		return state
+
+	}
+
+}
+
+
+const form = ( state = { image: {}, material: '', comment: '', hashtag: '', progress: 0 }, action ) => {
+
+	switch ( action.type ){
+
 	case types.SET_IMAGE_TO_UPLOAD:
 		return _.extend( {}, state, { image: action.to } )
 	case types.SET_FORM_DATA:
@@ -79,7 +132,7 @@ const form = ( state = { status: '', image: {}, material: '', comment: '', hasht
 	case types.SET_UPLOAD_PROGRESS:
 		return _.extend( {}, state, { progress: action.to } )
 	case types.RESET_FORM:
-		return _.extend( {}, state, { image: {}, material: '', comment: '', hashtag: '', progress: 0 } )
+		return _.extend( {}, state, { error: '', image: {}, material: '', comment: '', hashtag: '', progress: 0 } )
 	default:
 		return state
 
@@ -106,6 +159,10 @@ const coastwards = combineReducers( {
 	i18n,
 	dialog,
 	snackbar,
+	layers,
+	prompt,
+	status,
+	error,
 	form,
 	selected
 
