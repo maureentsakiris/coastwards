@@ -5,7 +5,7 @@ import Modernizr from 'modernizr'
 
 
 const uploadSupported = Modernizr.xhr2r || Modernizr.filereader || Modernizr.blob || Modernizr.canvas
-const mapboxSupported = true
+const mapboxSupported = false
 const dndSupported = false
 
 const browser = ( state = { uploadSupported: uploadSupported, mapboxSupported: mapboxSupported, dndSupported: dndSupported }, action ) => {

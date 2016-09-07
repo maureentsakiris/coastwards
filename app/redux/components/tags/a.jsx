@@ -10,7 +10,7 @@ const a = ( { hocProps } ) => {
 
 	const _onClick = ( e ) => {
 
-		e.preventDefault
+		e.preventDefault()
 		onClick()
 
 	}

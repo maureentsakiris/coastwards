@@ -50,6 +50,11 @@
     "defaultMessage": "So, clever alogrithms tell us that this image probably does not depict a coast. Sorry, we have to set some filters to ensure the image's relevance to our research. Try another one!"
   },
   {
+    "id": "location_undefined",
+    "description": "Error - Informs user that we couldn't extract the location from the metadata",
+    "defaultMessage": "That's too bad. We need to know where the coast is located but we couldn't find information on where this image was taken in the metadata. Try uploading an image that was taken with a mobile or modern digital camera!"
+  },
+  {
     "id": "upload_error",
     "description": "Error - Informs user that an error ocurred during upload",
     "defaultMessage": "Crap, something went wrong during upload. I'm sure this is my fault (or maybe your connection is bad). Try again?"

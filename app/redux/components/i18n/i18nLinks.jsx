@@ -26,7 +26,7 @@ const i18nLinks = ( { availableLanguages, id, className } ) => {
 		<UL id={ id } className={ className } style={ styleUL } >
 			{ availableLanguages.map( ( language, key ) => 
 
-				<LI key={ key }  style={ styleLI } ><I18nLink locale={ language.locale } title={ language.name } >{ language.name }</I18nLink></LI>
+				<LI key={ key }  style={ styleLI } ><I18nLink locale={ language.locale } title={ language.en } >{ language.name }</I18nLink></LI>
 
 			) }
 		</UL>

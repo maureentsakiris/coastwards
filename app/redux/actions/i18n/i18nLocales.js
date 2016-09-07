@@ -10,40 +10,49 @@ import { addLocaleData } from 'react-intl';
 const Locales = [
 	{
 		locale: 'en',
-		name: 'English'
-	},
-	{
-		locale: 'de',
-		name: 'Deutsch'
+		name: 'English',
+		en: 'English'
 	},
 	{
 		locale: 'es',
-		name: 'Español'
-	},
-	/*{
-		locale: 'it',
-		name: 'Italiano'
+		name: 'Español',
+		en: 'Spanish'
 	},
 	{
-		locale: 'ru',
-		name: 'русский'
-	},*/
-	/*{
 		locale: 'hi',
-		name: 'हिन्दी, हिंदी'
-	},*/
-	/*{
-		locale: 'bn',
-		name: 'বাংলা'
-	},*/
-	/*{
-		locale: 'ar',
-		name: 'العربية'
+		name: 'हिन्दी, हिंदी',
+		en: 'Hindi'
 	},
 	{
 		locale: 'zh',
-		name: '中文'
-	}*/
+		name: '中文',
+		en: 'Chinese'
+	},
+	{
+		locale: 'ar',
+		name: 'العربية',
+		en: 'Arabic'
+	},
+	{
+		locale: 'ru',
+		name: 'русский',
+		en: 'Russian'
+	},
+	{
+		locale: 'bn',
+		name: 'বাংলা',
+		en: 'Bengali'
+	},
+	{
+		locale: 'de',
+		name: 'Deutsch',
+		en: 'German'
+	},
+	{
+		locale: 'it',
+		name: 'Italiano',
+		en: 'Italian'
+	}
 ]
 
 const hasIntl = typeof ( Intl ) !== 'undefined';

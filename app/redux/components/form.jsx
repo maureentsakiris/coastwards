@@ -79,7 +79,7 @@ const messages = defineMessages( {
 	cancel_upload:{
 		id: "cancel_upload",
 		description: "Button label - Cancel upload",
-		defaultMessage: "Cancel upload"
+		defaultMessage: "Cancel"
 	}
 
 } )
@@ -94,6 +94,12 @@ const form = ( { intl, show, image, setMaterial, uploadImage, resetMain } ) => {
 
 	}
 
+	const styleRadio = {
+
+		margin: '0 1em 0 0.5em'
+
+	}
+
 	return(
 
 		<FORM id="Form" style={ style } action="#" >
@@ -101,16 +107,21 @@ const form = ( { intl, show, image, setMaterial, uploadImage, resetMain } ) => {
 			<H priority={ 2 }>{ formatMessage( messages.hurray ) }</H>
 			<H priority={ 3 }>{ formatMessage( messages.help_more ) }</H>
 			<H priority={ 4 }>{ formatMessage( messages.select_material ) }</H>
-			<SPAN><INPUT form="Form" type="radio" name="material" value="sand" onClick={ setMaterial } />{ formatMessage( messages.sand ) }</SPAN>
-			<SPAN><INPUT form="Form" type="radio" name="material" value="pebbles" onClick={ setMaterial } />{ formatMessage( messages.pebble ) }</SPAN>
-			<SPAN><INPUT form="Form" type="radio" name="material" value="rock" onClick={ setMaterial } />{ formatMessage( messages.rock ) }</SPAN>
-			<SPAN><INPUT form="Form" type="radio" name="material" value="mud" onClick={ setMaterial } />{ formatMessage( messages.mud ) }</SPAN>
-			<SPAN><INPUT form="Form" type="radio" name="material" value="ice" onClick={ setMaterial } />{ formatMessage( messages.ice ) }</SPAN>
-			<SPAN><INPUT form="Form" type="radio" name="material" value="manmade" onClick={ setMaterial } />{ formatMessage( messages.manmade ) }</SPAN>
-			<SPAN><INPUT form="Form" type="radio" name="material" value="notsure" onClick={ setMaterial } />{ formatMessage( messages.notsure ) }</SPAN>
-			<BR />
-			<BUTTON type="button" onClick={ uploadImage }>{ formatMessage( messages.upload_image ) }</BUTTON>
-			<BUTTON type="button" onClick={ resetMain }>{ formatMessage( messages.cancel_upload ) }</BUTTON>
+			<SPAN><INPUT form="Form" type="radio" name="material" value="sand" onClick={ setMaterial } style={ styleRadio } />{ formatMessage( messages.sand ) }</SPAN>
+			<SPAN><INPUT form="Form" type="radio" name="material" value="pebbles" onClick={ setMaterial } style={ styleRadio } />{ formatMessage( messages.pebble ) }</SPAN>
+			<SPAN><INPUT form="Form" type="radio" name="material" value="rock" onClick={ setMaterial } style={ styleRadio } />{ formatMessage( messages.rock ) }</SPAN>
+			<SPAN><INPUT form="Form" type="radio" name="material" value="mud" onClick={ setMaterial } style={ styleRadio } />{ formatMessage( messages.mud ) }</SPAN>
+			<SPAN><INPUT form="Form" type="radio" name="material" value="ice" onClick={ setMaterial } style={ styleRadio } />{ formatMessage( messages.ice ) }</SPAN>
+			<SPAN><INPUT form="Form" type="radio" name="material" value="manmade" onClick={ setMaterial } style={ styleRadio } />{ formatMessage( messages.manmade ) }</SPAN>
+			<SPAN><INPUT form="Form" type="radio" name="material" value="notsure" onClick={ setMaterial } style={ styleRadio } />{ formatMessage( messages.notsure ) }</SPAN>
+			<BR /><BR />
+			<H priority={ 4 }>Can you see any existing adaptation measures?</H>
+			<SPAN><INPUT form="Form" type="radio" name="material" value="dike" onClick={ setMaterial } style={ styleRadio } />Dike</SPAN>
+			<SPAN><INPUT form="Form" type="radio" name="material" value="nourishment" onClick={ setMaterial } style={ styleRadio } />Beach nourishment</SPAN>
+			<BR /><BR />
+			<BUTTON type="button" onClick={ resetMain }  style={ styleRadio } >{ formatMessage( messages.cancel_upload ) }</BUTTON>
+			<BUTTON type="button" onClick={ uploadImage }  style={ styleRadio } >{ formatMessage( messages.upload_image ) }</BUTTON>
+			<BR /><BR />
 		</FORM>
 
 	)

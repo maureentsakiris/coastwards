@@ -7,9 +7,17 @@ import FORM from 'components/tags/form'
 import INPUT from 'components/tags/input'
 import TEXTAREA from 'components/tags/textarea'
 import LABEL from 'components/tags/label'
+import H from 'components/tags/h'
+
+import BR from 'components/tags/br'
 
 const messages = defineMessages( {
 
+	ask_us:{
+		id: "ask_us",
+		description: "Header - Ask us!",
+		defaultMessage: "Ask us! (In english please)"
+	},
 	one_more_question:{
 		id: "one_more_question",
 		description: "Section header - Contact us",
@@ -54,14 +62,19 @@ const ask = ( { intl } ) => {
 
 	return(
 
-		<TOGGLE id="Team" title={ formatMessage( messages.one_more_question_title ) } priority={ 4 } text={ formatMessage( messages.one_more_question ) } >
+		<TOGGLE id="Ask" title={ formatMessage( messages.one_more_question_title ) } priority={ 4 } text={ formatMessage( messages.one_more_question ) } >
+			<H priority={ 5 }>{ formatMessage( messages.ask_us ) }</H>
 			<FORM action="#" id="ask" >
-				<LABEL htmlFor="email" form="ask" >{ formatMessage( messages.label_email ) }
+				<LABEL htmlFor="email" form="ask" >{ formatMessage( messages.label_email ) }:
+					<BR />
 					<INPUT type="email" name="email" form="ask" placeholder={ formatMessage( messages.placeholder_email ) } />
 				</LABEL>
-				<LABEL htmlFor="question" form="ask" >{ formatMessage( messages.label_question ) }
+				<BR /><BR />
+				<LABEL htmlFor="question" form="ask" >{ formatMessage( messages.label_question ) }:
+					<BR />
 					<TEXTAREA form="ask" name="question" placeholder={ formatMessage( messages.placeholder_question ) } />
 				</LABEL>
+				<BR /><BR />
 				<INPUT type="submit" form="ask" name="submit" value={ formatMessage( messages.label_submit ) } />
 			</FORM>
 		</TOGGLE>
