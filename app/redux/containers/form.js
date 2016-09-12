@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 
-import { setMaterial, uploadImage, resetMain } from 'actions/main'
+import { setMaterial, /*setAdaptation,*/ setComment, setHashtag, uploadImage, resetMain } from 'actions/main'
 import FORM from 'components/form'
 
 
@@ -22,6 +22,21 @@ const mapDispatchToProps = ( dispatch ) => {
 		setMaterial: ( e ) => {
 
 			dispatch( setMaterial( e ) )
+
+		},
+		/*setAdaptation: ( e ) => {
+
+			dispatch( setAdaptation( e ) )
+
+		},*/
+		setComment: ( e ) => {
+
+			dispatch( setComment( e ) )
+
+		},
+		setHashtag: ( e ) => {
+
+			dispatch( setHashtag( e ) )
 
 		},
 		uploadImage: ( e ) => {

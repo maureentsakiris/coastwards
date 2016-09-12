@@ -5,6 +5,7 @@ import Modernizr from 'modernizr'
 
 
 const uploadSupported = Modernizr.xhr2r || Modernizr.filereader || Modernizr.blob || Modernizr.canvas
+
 const mapboxSupported = false
 const dndSupported = false
 
@@ -62,7 +63,7 @@ const snackbar = ( state = [ ], action ) => {
 
 }
 
-const layers = ( state = { upload: true, prompts: true, statuses: false, errors: false, locate: false, geolocaterm: false, form: false }, action ) => {
+const layers = ( state = { upload: true, prompts: mapboxSupported && dndSupported, statuses: false, errors: false, locate: false, geolocaterm: false, form: false }, action ) => {
 
 	switch ( action.type ){
 
@@ -77,7 +78,7 @@ const layers = ( state = { upload: true, prompts: true, statuses: false, errors:
 
 }
 
-const initPrompt = !mapboxSupported ? 'select_file' : !dndSupported ? 'drag_and_drop' : 'click_button'
+const initPrompt = dndSupported ? 'drag_and_drop' : 'select_file'
 
 const prompt = ( state = initPrompt, action ) => {
 
@@ -119,7 +120,7 @@ const error = ( state = '', action ) => {
 }
 
 
-const form = ( state = { image: {}, material: '', comment: '', hashtag: '', progress: 0 }, action ) => {
+const form = ( state = { image: {}, material: '', adaptation: '', comment: '', hashtag: '', progress: 0 }, action ) => {
 
 	switch ( action.type ){
 
@@ -127,6 +128,8 @@ const form = ( state = { image: {}, material: '', comment: '', hashtag: '', prog
 		return _.extend( {}, state, { image: action.to } )
 	case types.SET_MATERIAL:
 		return _.extend( {}, state, { material: action.to } )
+	case types.SET_ADAPTATION:
+		return _.extend( {}, state, { adaptation: action.to } )
 	case types.SET_COMMENT:
 		return _.extend( {}, state, { comment: action.to } )
 	case types.SET_HASHTAG:

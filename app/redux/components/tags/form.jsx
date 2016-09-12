@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import _ from 'underscore'
-import tag from './tag'
+import hoc from './hoc'
 import { globalAttr, formAttr } from './attributes'
 
 const form = ( { hocProps } ) => {
@@ -35,4 +35,4 @@ form.propTypes = {
 
 }
 
-export default tag( form )
+export default hoc( form )

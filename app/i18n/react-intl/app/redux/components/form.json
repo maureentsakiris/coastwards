@@ -1,5 +1,10 @@
 [
   {
+    "id": "img_alt",
+    "description": "Alt - Alternative description of the uploaded image",
+    "defaultMessage": "Your image"
+  },
+  {
     "id": "hurray",
     "description": "Header - Informs user that his or her image has passed all the tests and is now ready for upload",
     "defaultMessage": "AWESOME! Your image passed all the tests and is ready for upload!"
@@ -7,12 +12,12 @@
   {
     "id": "help_more",
     "description": "Header - Asks user to help even more by answering a few questions",
-    "defaultMessage": "Two more questions though, if we may:"
+    "defaultMessage": "One more question though – if we may"
   },
   {
-    "id": "img_alt",
-    "description": "Alt - Alternative description of the uploaded image",
-    "defaultMessage": "Your image"
+    "id": "help_even_more",
+    "description": "Header - Asks users to answer even more questions, if they feel like it",
+    "defaultMessage": "Want to help even more?"
   },
   {
     "id": "select_material",
@@ -62,6 +67,31 @@
   {
     "id": "cancel_upload",
     "description": "Button label - Cancel upload",
-    "defaultMessage": "Cancel"
+    "defaultMessage": "CANCEL"
+  },
+  {
+    "id": "select_adaptation",
+    "description": "Header - Asks user to select one of the following adaptation measures",
+    "defaultMessage": "Can you see any of the following adaptation measures?"
+  },
+  {
+    "id": "comment",
+    "description": "Label - Comment",
+    "defaultMessage": "Say hello, leave us a not, tell us a story..."
+  },
+  {
+    "id": "placeholder_comment",
+    "description": "Placeholder - Prompts user to leave a comment like ... Hello world!",
+    "defaultMessage": "Hello world!"
+  },
+  {
+    "id": "hashtag",
+    "description": "Label - Hashtag",
+    "defaultMessage": "Hashtag your image! (So you can find it again)"
+  },
+  {
+    "id": "placeholder_hashtag",
+    "description": "Placeholder -",
+    "defaultMessage": "#mycrazysummerwithgeorgie"
   }
 ]

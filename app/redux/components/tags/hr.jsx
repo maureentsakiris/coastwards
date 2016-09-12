@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import _ from 'underscore'
-import tag from './tag'
+import hoc from './hoc'
 import { globalAttr, hrAttr } from './attributes'
 
 const hr = ( { hocProps } ) => {
@@ -21,4 +21,4 @@ hr.propTypes = {
 
 }
 
-export default tag( hr )
+export default hoc( hr )

@@ -4,14 +4,22 @@ import { defineMessages, injectIntl, intlShape } from 'react-intl'
 import H from 'components/tags/h'
 import IMG from 'components/tags/img'
 import FORM from 'components/tags/form'
-import SPAN from 'components/tags/span'
-import INPUT from 'components/tags/input'
 import BUTTON from 'components/tags/button'
+/*import TOGGLE from 'components/ui/toggle'*/
+
+import RADIOGROUP from 'components/form/radiogroup/radiogroup'
+import COMMENT from 'components/form/input/comment'
+import HASHTAG from 'components/form/input/hashtag'
 
 import BR from 'components/tags/br'
 
 const messages = defineMessages( {
 
+	img_alt: {
+		id: "img_alt",
+		description: "Alt - Alternative description of the uploaded image",
+		defaultMessage: "Your image"
+	},
 	hurray:{
 		id: "hurray",
 		description: "Header - Informs user that his or her image has passed all the tests and is now ready for upload",
@@ -20,21 +28,22 @@ const messages = defineMessages( {
 	help_more:{
 		id: "help_more",
 		description: "Header - Asks user to help even more by answering a few questions",
-		defaultMessage: "Two more questions though, if we may:"
+		defaultMessage: "One more question though – if we may"
 	},
-	img_alt: {
-		id: "img_alt",
-		description: "Alt - Alternative description of the uploaded image",
-		defaultMessage: "Your image"
+	help_even_more:{
+		id: "help_even_more",
+		description: "Header - Asks users to answer even more questions, if they feel like it",
+		defaultMessage: "Want to help even more?"
 	},
+	
+
+
+	//materials
 	select_material:{
 		id: "select_material",
 		description: "Header - Asks user to describe the coast material",
 		defaultMessage: "How would you describe the coast material?"
 	},
-
-
-	//materials
 	sand:{
 		id: "sand",
 		description: "Material - Sand",
@@ -79,12 +88,45 @@ const messages = defineMessages( {
 	cancel_upload:{
 		id: "cancel_upload",
 		description: "Button label - Cancel upload",
-		defaultMessage: "Cancel"
+		defaultMessage: "CANCEL"
+	},
+
+	//adaptation
+	select_adaptation:{
+		id: "select_adaptation",
+		description: "Header - Asks user to select one of the following adaptation measures",
+		defaultMessage: "Can you see any of the following adaptation measures?"
+	},
+
+
+	//comment
+	comment:{
+		id: "comment",
+		description: "Label - Comment",
+		defaultMessage: "Say hello, leave us a not, tell us a story..."
+	}, 
+	placeholder_comment:{
+		id: "placeholder_comment",
+		description: "Placeholder - Prompts user to leave a comment like ... Hello world!",
+		defaultMessage: "Hello world!"
+	},
+
+	//hashtag
+	hashtag:{
+		id: "hashtag",
+		description: "Label - Hashtag",
+		defaultMessage: "Hashtag your image! (So you can find it again)"
+	},
+	placeholder_hashtag:{
+		id: "placeholder_hashtag",
+		description: "Placeholder - ",
+		defaultMessage: "#mycrazysummerwithgeorgie"
 	}
+	
 
 } )
 
-const form = ( { intl, show, image, setMaterial, uploadImage, resetMain } ) => {
+const form = ( { intl, show, image, setMaterial, /*setAdaptation,*/ setComment, setHashtag, uploadImage, resetMain } ) => {
 
 	const { formatMessage } = intl
 
@@ -94,11 +136,24 @@ const form = ( { intl, show, image, setMaterial, uploadImage, resetMain } ) => {
 
 	}
 
-	const styleRadio = {
+	const materials = [
 
-		margin: '0 1em 0 0.5em'
+		{ label: formatMessage( messages.sand ), value: 'sand' },
+		{ label: formatMessage( messages.pebble ), value: 'pebble' },
+		{ label: formatMessage( messages.rock ), value: 'rock' },
+		{ label: formatMessage( messages.mud ), value: 'mud' },
+		{ label: formatMessage( messages.ice ), value: 'ice' },
+		{ label: formatMessage( messages.manmade ), value: 'manmade' },
+		{ label: formatMessage( messages.notsure ), value: 'notsure' }
 
-	}
+	]
+
+	/*const adaptations = [
+
+		{ label: "!Dike", value: "dike" },
+		{ label: "!Wave-breaker", value: "wavebreaker" }
+
+	]*/
 
 	return(
 
@@ -106,22 +161,14 @@ const form = ( { intl, show, image, setMaterial, uploadImage, resetMain } ) => {
 			{ image.dataURL && <IMG src={ image.dataURL } alt="your image" /> }
 			<H priority={ 2 }>{ formatMessage( messages.hurray ) }</H>
 			<H priority={ 3 }>{ formatMessage( messages.help_more ) }</H>
-			<H priority={ 4 }>{ formatMessage( messages.select_material ) }</H>
-			<SPAN><INPUT form="Form" type="radio" name="material" value="sand" onClick={ setMaterial } style={ styleRadio } />{ formatMessage( messages.sand ) }</SPAN>
-			<SPAN><INPUT form="Form" type="radio" name="material" value="pebbles" onClick={ setMaterial } style={ styleRadio } />{ formatMessage( messages.pebble ) }</SPAN>
-			<SPAN><INPUT form="Form" type="radio" name="material" value="rock" onClick={ setMaterial } style={ styleRadio } />{ formatMessage( messages.rock ) }</SPAN>
-			<SPAN><INPUT form="Form" type="radio" name="material" value="mud" onClick={ setMaterial } style={ styleRadio } />{ formatMessage( messages.mud ) }</SPAN>
-			<SPAN><INPUT form="Form" type="radio" name="material" value="ice" onClick={ setMaterial } style={ styleRadio } />{ formatMessage( messages.ice ) }</SPAN>
-			<SPAN><INPUT form="Form" type="radio" name="material" value="manmade" onClick={ setMaterial } style={ styleRadio } />{ formatMessage( messages.manmade ) }</SPAN>
-			<SPAN><INPUT form="Form" type="radio" name="material" value="notsure" onClick={ setMaterial } style={ styleRadio } />{ formatMessage( messages.notsure ) }</SPAN>
-			<BR /><BR />
-			<H priority={ 4 }>Can you see any existing adaptation measures?</H>
-			<SPAN><INPUT form="Form" type="radio" name="material" value="dike" onClick={ setMaterial } style={ styleRadio } />Dike</SPAN>
-			<SPAN><INPUT form="Form" type="radio" name="material" value="nourishment" onClick={ setMaterial } style={ styleRadio } />Beach nourishment</SPAN>
-			<BR /><BR />
-			<BUTTON type="button" onClick={ resetMain }  style={ styleRadio } >{ formatMessage( messages.cancel_upload ) }</BUTTON>
-			<BUTTON type="button" onClick={ uploadImage }  style={ styleRadio } >{ formatMessage( messages.upload_image ) }</BUTTON>
-			<BR /><BR />
+			<RADIOGROUP form="Form" label={ formatMessage( messages.select_material ) } name="material" options={ materials } onClick={ setMaterial } />
+			<BR/><BR/>
+			<COMMENT form="Form" label={ formatMessage( messages.comment ) } name="comment" placeholder={ formatMessage( messages.placeholder_comment ) } onChange={ setComment } />
+			<BR/><BR/>
+			<HASHTAG form="Form" label={ formatMessage( messages.hashtag ) } name="hashtag" placeholder={ formatMessage( messages.placeholder_hashtag ) } onChange={ setHashtag } />
+			<BR/><BR/>
+			<BUTTON type="button" onClick={ resetMain } >{ formatMessage( messages.cancel_upload ) }</BUTTON>
+			<BUTTON type="button" onClick={ uploadImage } >{ formatMessage( messages.upload_image ) }</BUTTON>
 		</FORM>
 
 	)
@@ -136,9 +183,17 @@ form.propTypes = {
 	image: PropTypes.object,
 
 	setMaterial: PropTypes.func,
+	/*setAdaptation: PropTypes.func,*/
+	setComment: PropTypes.func,
+	setHashtag: PropTypes.func,
+
 	uploadImage: PropTypes.func,
 	resetMain: PropTypes.func
 
 }
 
 export default injectIntl( form )
+
+/*<TOGGLE priority={ 5 } text={ formatMessage( messages.help_even_more ) } >
+				<RADIOGROUP form="Form" label={ formatMessage( messages.select_adaptation ) } name="adaptation" options={ adaptations } onClick={ setAdaptation } />
+			</TOGGLE>*/

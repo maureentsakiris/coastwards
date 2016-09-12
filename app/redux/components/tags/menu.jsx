@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import _ from 'underscore'
-import tag from './tag'
+import hoc from './hoc'
 import { globalAttr, menuAttr } from './attributes'
 
 const menu = ( { hocProps } ) => {
@@ -27,4 +27,4 @@ menu.propTypes = {
 
 }
 
-export default tag( menu )
+export default hoc( menu )

@@ -185,8 +185,8 @@ export const validateFile = ( e ) => {
 		} )
 		.then( ( image ) => {
 
-			return _promiseSafe( image )
-			//return image
+			//return _promiseSafe( image )
+			return image
 
 		} )
 		.then( _promiseLocation )
@@ -220,7 +220,6 @@ export const validateFile = ( e ) => {
 
 }
 
-
 export const locateCoast = ( ) => {
 
 	return function ( dispatch ){
@@ -242,13 +241,42 @@ export const setMaterial = ( e ) => {
 
 }
 
+export const setAdaptation = ( e ) => {
+
+	return function ( dispatch ){
+
+		dispatch( { type: types.SET_ADAPTATION, to: e.currentTarget.value } )
+
+	}
+
+}
+
+export const setComment = ( e ) => {
+
+	return function ( dispatch ){
+
+		dispatch( { type: types.SET_COMMENT, to: e.currentTarget.value } )
+
+	}
+
+}
+
+export const setHashtag = ( e ) => {
+
+	return function ( dispatch ){
+
+		dispatch( { type: types.SET_HASHTAG, to: e.currentTarget.value } )
+
+	}
+
+}
 
 export const uploadImage = ( ) => {
 
 	return function ( dispatch, getState ){
 
 		const state = getState()
-		const { image, material, comment, hashtag } = state.form
+		const { image, material, adaptation, comment, hashtag } = state.form
 
 		promiseDataURLtoBlob( image.dataURL )
 		.then( ( blob ) => {
@@ -267,6 +295,7 @@ export const uploadImage = ( ) => {
 			formData.append( 'datetime', datetime )
 			formData.append( 'labels', JSON.stringify( devLabels ) )
 			formData.append( 'material', material )
+			formData.append( 'adaptation', adaptation )
 			formData.append( 'comment', comment )
 			formData.append( 'hashtag', hashtag )
 			
@@ -275,6 +304,12 @@ export const uploadImage = ( ) => {
 
 		} )
 		.then( ( formData ) => {
+
+			for ( var pair of formData.entries() ) {
+
+				console.log( pair[ 0 ]+ ', ' + pair[ 1 ] )
+
+			}
 
 			let options = {
 

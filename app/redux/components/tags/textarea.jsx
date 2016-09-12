@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import _ from 'underscore'
-import tag from './tag'
+import hoc from './hoc'
 import { globalAttr, textareaAttr } from './attributes'
 
 const textarea = ( { hocProps } ) => {
@@ -37,4 +37,4 @@ textarea.propTypes = {
 
 }
 
-export default tag( textarea )
+export default hoc( textarea )

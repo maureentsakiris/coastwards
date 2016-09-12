@@ -3,20 +3,5 @@
     "id": "unsupported",
     "description": "Warning - Warns the user that his browser does not support the image upload",
     "defaultMessage": ":/ Looks like you are on an old browser that does not support some features we need to make this website work. Sorry, you'll need to upgrade or switch browsers to continue..."
-  },
-  {
-    "id": "all_set",
-    "description": "Section header - All set?",
-    "defaultMessage": "Do you have any pictures of coasts on your device? Why not upload them now?"
-  },
-  {
-    "id": "one_by_one",
-    "description": "Note - Informs user that only one image can be uploaded at a time",
-    "defaultMessage": "At the moment we can only accept one image at a time."
-  },
-  {
-    "id": "check_for_batch_upload",
-    "description": "Link - Leads to a contact form for contributors with too many images to upload one by one",
-    "defaultMessage": "Contact us if you have too many to upload one by one"
   }
 ]

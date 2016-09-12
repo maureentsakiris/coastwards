@@ -7,10 +7,10 @@
   ],
   "feature-detects": [ 
     "network/xhr2",
-    "network/xhr-responsetype-json",
     "touchevents",
     "file/api",
     "blob",
-    "canvas"
+    "canvas",
+    "css/flexbox"
   ]
 }

@@ -19,9 +19,12 @@ import How from 'components/How'
 import Guidelines from 'components/Guidelines'
 import Team from 'components/Team'
 import FAQs from 'components/FAQs'
+import Prompt from 'components/Prompt'
 
 //TODO: i18nLinks should handle that itself?
 import i18nLocales from 'actions/i18n/i18nLocales'
+
+import style from './_index'
 
 
 let store = createStore( coastwards, compose(
@@ -41,13 +44,14 @@ ReactDom.render(
 
 	<Provider store={ store } >
 		<I18nProvider>
-			<Context>
+			<Context className={ style.context } >
 				<I18nLinks availableLanguages={ i18nLocales.locales } id="I18n" />
 				<Intro />
 				<How />
 				<Guidelines />
 				<Team />
 				<FAQs />
+				<Prompt />
 				<Main />
 				<Snackbar />
 				<Dialog />

@@ -1,7 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 
 
-const tag = ( ComposedComponent ) => class extends Component {
+const hoc = ( ComposedComponent ) => class extends Component {
 
 	static displayName = 'tagHOC'
 
@@ -71,4 +71,4 @@ const tag = ( ComposedComponent ) => class extends Component {
 
 }
 
-export default tag
+export default hoc
