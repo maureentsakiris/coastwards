@@ -14,12 +14,14 @@ import Snackbar from 'containers/ui/snackbar'
 import Dialog from 'containers/ui/dialog'
 
 import I18nLinks from 'components/i18n/i18nLinks'
-import Intro from 'components/Intro'
-import How from 'components/How'
-import Guidelines from 'components/Guidelines'
-import Team from 'components/Team'
-import FAQs from 'components/FAQs'
-import Prompt from 'components/Prompt'
+import Intro from 'components/intro'
+import How from 'components/how'
+import Guidelines from 'components/guidelines'
+import Team from 'components/team'
+import FAQs from 'components/faqs'
+import Ask from 'components/ask'
+import Prompt from 'components/prompt'
+
 
 //TODO: i18nLinks should handle that itself?
 import i18nLocales from 'actions/i18n/i18nLocales'
@@ -51,6 +53,7 @@ ReactDom.render(
 				<Guidelines />
 				<Team />
 				<FAQs />
+				<Ask />
 				<Prompt />
 				<Main />
 				<Snackbar />

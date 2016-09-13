@@ -52,7 +52,7 @@
   {
     "id": "location_undefined",
     "description": "Error - Informs user that we couldn't extract the location from the metadata",
-    "defaultMessage": "That's too bad. We need to know where the coast is located but we couldn't find information on where this image was taken in the metadata. Try uploading an image that was taken with a mobile or modern digital camera!"
+    "defaultMessage": "That's too bad. We need to know where the coast is located but we couldn't find that information in the metadata. Switch to a modern browser to locate the coast for us (unfortenately yours doesn't support some of the features we need) or try uploading an image that was taken with a mobile or digital camera."
   },
   {
     "id": "upload_error",

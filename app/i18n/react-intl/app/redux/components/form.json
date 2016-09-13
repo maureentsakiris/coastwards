@@ -10,18 +10,8 @@
     "defaultMessage": "AWESOME! Your image passed all the tests and is ready for upload!"
   },
   {
-    "id": "help_more",
-    "description": "Header - Asks user to help even more by answering a few questions",
-    "defaultMessage": "One more question though – if we may"
-  },
-  {
-    "id": "help_even_more",
-    "description": "Header - Asks users to answer even more questions, if they feel like it",
-    "defaultMessage": "Want to help even more?"
-  },
-  {
     "id": "select_material",
-    "description": "Header - Asks user to describe the coast material",
+    "description": "Header - Asks user to help even more by answering a few questions",
     "defaultMessage": "How would you describe the coast material?"
   },
   {
@@ -60,6 +50,26 @@
     "defaultMessage": "Not sure"
   },
   {
+    "id": "say_hello",
+    "description": "Header - Prompts user to leave a comment",
+    "defaultMessage": "Say hello, leave us a note, tell us the story of your coast..."
+  },
+  {
+    "id": "placeholder_say_hello",
+    "description": "Placeholder - Prompts user to leave a comment like ... Hello world!",
+    "defaultMessage": "Hello world!"
+  },
+  {
+    "id": "hashtag_your_image",
+    "description": "Header - Prompts user to hashtag the image",
+    "defaultMessage": "Give your image a hashtag!"
+  },
+  {
+    "id": "placeholder_hashtag_your_image",
+    "description": "Placeholder -",
+    "defaultMessage": "#mycrazysummerwithgeorgie"
+  },
+  {
     "id": "upload_image",
     "description": "Button label - Prompts the user to upload the image",
     "defaultMessage": "UPLOAD"
@@ -68,30 +78,5 @@
     "id": "cancel_upload",
     "description": "Button label - Cancel upload",
     "defaultMessage": "CANCEL"
-  },
-  {
-    "id": "select_adaptation",
-    "description": "Header - Asks user to select one of the following adaptation measures",
-    "defaultMessage": "Can you see any of the following adaptation measures?"
-  },
-  {
-    "id": "comment",
-    "description": "Label - Comment",
-    "defaultMessage": "Say hello, leave us a not, tell us a story..."
-  },
-  {
-    "id": "placeholder_comment",
-    "description": "Placeholder - Prompts user to leave a comment like ... Hello world!",
-    "defaultMessage": "Hello world!"
-  },
-  {
-    "id": "hashtag",
-    "description": "Label - Hashtag",
-    "defaultMessage": "Hashtag your image! (So you can find it again)"
-  },
-  {
-    "id": "placeholder_hashtag",
-    "description": "Placeholder -",
-    "defaultMessage": "#mycrazysummerwithgeorgie"
   }
 ]

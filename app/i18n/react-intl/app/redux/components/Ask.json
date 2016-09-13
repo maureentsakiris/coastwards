@@ -12,7 +12,7 @@
   {
     "id": "one_more_question_title",
     "description": "Section header title - Tell us your question (in english please)",
-    "defaultMessage": "Tell us your question (in english please)"
+    "defaultMessage": "Ask us (in english please)"
   },
   {
     "id": "label_email",
@@ -32,7 +32,7 @@
   {
     "id": "placeholder_question",
     "description": "Placeholder - Tell us your question",
-    "defaultMessage": "Tell us your question ..."
+    "defaultMessage": "What's your question?"
   },
   {
     "id": "label_submit",

@@ -10,6 +10,8 @@ import BUTTON from 'components/tags/button'
 import RADIOGROUP from 'components/form/radiogroup/radiogroup'
 import COMMENT from 'components/form/input/comment'
 import HASHTAG from 'components/form/input/hashtag'
+import CANCEL from 'components/form/button/cancel'
+import GO from 'components/form/button/go'
 
 import BR from 'components/tags/br'
 
@@ -25,23 +27,12 @@ const messages = defineMessages( {
 		description: "Header - Informs user that his or her image has passed all the tests and is now ready for upload",
 		defaultMessage: "AWESOME! Your image passed all the tests and is ready for upload!"
 	},
-	help_more:{
-		id: "help_more",
-		description: "Header - Asks user to help even more by answering a few questions",
-		defaultMessage: "One more question though – if we may"
-	},
-	help_even_more:{
-		id: "help_even_more",
-		description: "Header - Asks users to answer even more questions, if they feel like it",
-		defaultMessage: "Want to help even more?"
-	},
-	
 
 
 	//materials
 	select_material:{
 		id: "select_material",
-		description: "Header - Asks user to describe the coast material",
+		description: "Header - Asks user to help even more by answering a few questions",
 		defaultMessage: "How would you describe the coast material?"
 	},
 	sand:{
@@ -80,6 +71,32 @@ const messages = defineMessages( {
 		defaultMessage: "Not sure"
 	},
 
+	//comment
+	say_hello:{
+		id: "say_hello",
+		description: "Header - Prompts user to leave a comment",
+		defaultMessage: "Say hello, leave us a note, tell us the story of your coast..."
+	},
+	placeholder_say_hello:{
+		id: "placeholder_say_hello",
+		description: "Placeholder - Prompts user to leave a comment like ... Hello world!",
+		defaultMessage: "Hello world!"
+	},
+
+	//hashtag
+	hashtag_your_image:{
+		id: "hashtag_your_image",
+		description: "Header - Prompts user to hashtag the image",
+		defaultMessage: "Give your image a hashtag!"
+	},
+	placeholder_hashtag_your_image:{
+		id: "placeholder_hashtag_your_image",
+		description: "Placeholder - ",
+		defaultMessage: "#mycrazysummerwithgeorgie"
+	},
+
+
+	//upload
 	upload_image:{
 		id: "upload_image",
 		description: "Button label - Prompts the user to upload the image",
@@ -90,38 +107,6 @@ const messages = defineMessages( {
 		description: "Button label - Cancel upload",
 		defaultMessage: "CANCEL"
 	},
-
-	//adaptation
-	select_adaptation:{
-		id: "select_adaptation",
-		description: "Header - Asks user to select one of the following adaptation measures",
-		defaultMessage: "Can you see any of the following adaptation measures?"
-	},
-
-
-	//comment
-	comment:{
-		id: "comment",
-		description: "Label - Comment",
-		defaultMessage: "Say hello, leave us a not, tell us a story..."
-	}, 
-	placeholder_comment:{
-		id: "placeholder_comment",
-		description: "Placeholder - Prompts user to leave a comment like ... Hello world!",
-		defaultMessage: "Hello world!"
-	},
-
-	//hashtag
-	hashtag:{
-		id: "hashtag",
-		description: "Label - Hashtag",
-		defaultMessage: "Hashtag your image! (So you can find it again)"
-	},
-	placeholder_hashtag:{
-		id: "placeholder_hashtag",
-		description: "Placeholder - ",
-		defaultMessage: "#mycrazysummerwithgeorgie"
-	}
 	
 
 } )
@@ -158,17 +143,17 @@ const form = ( { intl, show, image, setMaterial, /*setAdaptation,*/ setComment, 
 	return(
 
 		<FORM id="Form" style={ style } action="#" >
-			{ image.dataURL && <IMG src={ image.dataURL } alt="your image" /> }
 			<H priority={ 2 }>{ formatMessage( messages.hurray ) }</H>
-			<H priority={ 3 }>{ formatMessage( messages.help_more ) }</H>
+			{ image.dataURL && <IMG src={ image.dataURL } alt="your image" /> }
+			<BR/><BR/>
 			<RADIOGROUP form="Form" label={ formatMessage( messages.select_material ) } name="material" options={ materials } onClick={ setMaterial } />
+			<BR/>
+			<COMMENT form="Form" label={ formatMessage( messages.say_hello ) } name="comment" placeholder={ formatMessage( messages.placeholder_say_hello ) } onChange={ setComment } />
+			<BR/>
+			<HASHTAG form="Form" label={ formatMessage( messages.hashtag_your_image ) } name="hashtag" placeholder={ formatMessage( messages.placeholder_hashtag_your_image ) } onChange={ setHashtag } />
 			<BR/><BR/>
-			<COMMENT form="Form" label={ formatMessage( messages.comment ) } name="comment" placeholder={ formatMessage( messages.placeholder_comment ) } onChange={ setComment } />
-			<BR/><BR/>
-			<HASHTAG form="Form" label={ formatMessage( messages.hashtag ) } name="hashtag" placeholder={ formatMessage( messages.placeholder_hashtag ) } onChange={ setHashtag } />
-			<BR/><BR/>
-			<BUTTON type="button" onClick={ resetMain } >{ formatMessage( messages.cancel_upload ) }</BUTTON>
-			<BUTTON type="button" onClick={ uploadImage } >{ formatMessage( messages.upload_image ) }</BUTTON>
+			<CANCEL onClick={ resetMain } label={ formatMessage( messages.cancel_upload ) } />
+			<GO onClick={ uploadImage } label={ formatMessage( messages.upload_image ) } />
 		</FORM>
 
 	)

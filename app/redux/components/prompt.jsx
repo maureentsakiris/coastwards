@@ -5,7 +5,6 @@ import H from 'components/tags/h'
 import DIV from 'components/tags/div'
 import SMALL from 'components/tags/small'
 import A from 'components/tags/a'
-import HR from 'components/tags/hr'
 
 const messages = defineMessages( {
 
@@ -36,7 +35,6 @@ const prompt = ( { intl } ) => {
 		<DIV id="Prompt" >
 			<H priority={ 2 }>{ formatMessage( messages.all_set ) }</H>
 			<SMALL>( { formatMessage( messages.one_by_one ) } <A href="#" onClick={ ( ) => { } } >{ formatMessage( messages.check_for_batch_upload ) }</A> )</SMALL>
-			<HR/>
 		</DIV>
 
 	)

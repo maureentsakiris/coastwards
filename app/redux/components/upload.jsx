@@ -3,6 +3,7 @@ import React, { PropTypes } from 'react'
 import FORM from 'components/tags/form'
 import DIV from 'components/tags/div'
 import INPUT from 'components/tags/input'
+import BR from 'components/tags/br'
 
 
 const main = ( { show, showDropzone, validateFile } ) => {
@@ -23,6 +24,7 @@ const main = ( { show, showDropzone, validateFile } ) => {
 	return(
 
 		<FORM id="Upload" action="#" style={ style } >
+			<BR />
 			<INPUT id="images" name="images" onChange={ validateFile } form="Upload" type="file" multiple={ false } accept="image/*" />
 			{ showDropzone && <DIV onDragOver={ _preventDefault } onDragEnter={ _preventDefault } onDragLeave={ _preventDefault } onDrop={ _onDrop.bind( this, validateFile ) } style={ styleZone } ></DIV> }
 		</FORM>

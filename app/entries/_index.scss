@@ -1,9 +1,11 @@
+@import 'app/styles/_reset';
 @import 'app/styles/_base';
-@import 'app/styles/_coastwards';
 
 
 .context{
 	
-	
+	padding: 5%;
+	max-width: $container-width;
+	margin: 0 auto;
 
 }

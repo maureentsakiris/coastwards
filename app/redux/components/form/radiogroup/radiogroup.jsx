@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react'
 import _ from 'underscore'
 
 import hoc from 'components/form/hoc'
-import SPAN from 'components/tags/span'
+import DIV from 'components/tags/div'
 import RADIO from 'components/form/radiogroup/radio'
 
 
@@ -14,9 +14,9 @@ const radiogroup = ( { hocProps } ) => {
 
 	return(
 
-		<SPAN>
+		<DIV>
 			{ radios }
-		</SPAN>
+		</DIV>
 
 	)
 	

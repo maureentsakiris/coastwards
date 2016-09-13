@@ -2,7 +2,6 @@ import React from 'react'
 import { defineMessages, injectIntl, intlShape } from 'react-intl'
 
 import Questions from 'components/Questions'
-import Ask from 'components/Ask'
 
 import TOGGLE from 'components/ui/toggle'
 
@@ -29,8 +28,6 @@ const faqs = ( { intl } ) => {
 
 		<TOGGLE id="Faqs" title={ formatMessage( messages.other_questions_title ) } priority={ 3 } text={ formatMessage( messages.other_questions ) } >
 			<Questions />
-			{ '...' }
-			<Ask />
 		</TOGGLE>
 	)
 

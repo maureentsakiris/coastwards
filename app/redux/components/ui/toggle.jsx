@@ -42,17 +42,11 @@ class Toggle extends Component {
 		const { children, priority, text, title, ...restProps } = this.props
 		const { expanded } = this.state
 
-		const styleH = {
-
-			marginBottom: '0.2em'
-
-		}
-
 		return (
 
 			<DIV { ...restProps } >
 				<A onClick={ this._toggle } title={ title } >
-					<H priority={ priority } style={ styleH }>
+					<H priority={ priority } >
 						{ text } 		
 						{ !expanded && <I className="material-icons" style={ { verticalAlign: 'middle' } } >&#xE5CC;</I> }
 						{ expanded && <I className="material-icons" style={ { verticalAlign: 'middle' } } >&#xE5CF;</I> }

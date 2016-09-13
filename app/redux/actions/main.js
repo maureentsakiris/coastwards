@@ -180,7 +180,7 @@ export const validateFile = ( e ) => {
 		} )
 		.then( ( image ) => {
 
-			return promiseCanvasBoxResize( image, 500 )
+			return promiseCanvasBoxResize( image, 640 )
 
 		} )
 		.then( ( image ) => {
