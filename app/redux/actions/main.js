@@ -121,7 +121,16 @@ const _promiseLocation = ( image ) => {
 		} )
 		.catch( ( error ) => {
 
-			reject( error )
+			if( error.message == 'location_undefined' ){
+
+				image.manual = 1
+				resolve( image )
+
+			}else{
+
+				reject( error )
+
+			}
 
 		} )
 
@@ -134,7 +143,7 @@ export const validateFile = ( e ) => {
 
 	return function ( dispatch, getState ){
 
-		const state = getState()
+		let state = getState()
 
 		dispatch( { type: types.SET_STATUS_MSG, to: 'status_validating' } )
 		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'statuses', to: true } )
@@ -175,7 +184,7 @@ export const validateFile = ( e ) => {
 		.then( promiseEXIF )
 		.then( ( image ) => {
 
-			return promiseMinimumBoxDimensions( image, 800 )
+			return promiseMinimumBoxDimensions( image, 640 )
 
 		} )
 		.then( ( image ) => {
@@ -185,34 +194,39 @@ export const validateFile = ( e ) => {
 		} )
 		.then( ( image ) => {
 
-			//return _promiseSafe( image )
-			return image
+			return _promiseSafe( image )
+			//return image
 
 		} )
 		.then( _promiseLocation )
 		.then( ( image ) => {
 
 			dispatch( { type: types.SET_IMAGE_TO_UPLOAD, to: image } )
-			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'form', to: true } )
 			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'statuses', to: false } )
+
+			if( image.manual == 0 ){
+
+				dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'form', to: true } )
+
+			}else if ( image.manual == 1 && state.browser.mapboxSupported ){
+
+				dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'locate', to: true } )
+
+			}else{
+
+				throw Error( 'location_undefined' )
+
+			}
+
 			return image
 
 		} )
 		.catch( ( error ) => {
 
-			if( error.message == 'location_undefined' && state.browser.mapboxSupported ){
-
-				dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'locate', to: true } )
-				dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'statuses', to: false } )
-
-			}else{
-
-				dispatch( resetMain() )
-				dispatch( { type: types.SET_ERROR_MSG, to: error.message } )
-				dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'errors', to: true } )
-				console.log( error )
-
-			}
+			dispatch( resetMain() )
+			dispatch( { type: types.SET_ERROR_MSG, to: error.message } )
+			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'errors', to: true } )
+			console.log( error )
 
 		} )
 
@@ -271,15 +285,45 @@ export const setHashtag = ( e ) => {
 
 }
 
+
+const _composeFormData = ( state ) => {
+
+	const { image, material, adaptation, comment, hashtag } = state.form
+
+	const { exifdata, lat, long, manual, labels } = image
+	const devLabels = labels ? labels : {}
+	const datetime = exifdata.DateTimeOriginal || exifdata.DateTimeDigitized || exifdata.DateTime
+
+	let formData = new FormData()
+
+	formData.append( 'exifdata', JSON.stringify( exifdata ) )
+	formData.append( 'lat', lat )
+	formData.append( 'long', long )
+	formData.append( 'manual', manual )
+	formData.append( 'datetime', datetime )
+	formData.append( 'labels', JSON.stringify( devLabels ) )
+	formData.append( 'material', material )
+	formData.append( 'adaptation', adaptation )
+	formData.append( 'comment', comment )
+	formData.append( 'hashtag', hashtag )
+	
+
+	return formData
+
+}
+
+
 export const uploadImage = ( ) => {
 
 	return function ( dispatch, getState ){
 
 		const state = getState()
-		const { image, material, adaptation, comment, hashtag } = state.form
+		const { image } = state.form
 
 		promiseDataURLtoBlob( image.dataURL )
 		.then( ( blob ) => {
+
+			const { image, material, adaptation, comment, hashtag } = state.form
 
 			const { exifdata, lat, long, manual, labels } = image
 			const devLabels = labels ? labels : {}
@@ -298,6 +342,8 @@ export const uploadImage = ( ) => {
 			formData.append( 'adaptation', adaptation )
 			formData.append( 'comment', comment )
 			formData.append( 'hashtag', hashtag )
+
+			//UPDATE the table in form.jsx if something changes here!!!!
 			
 
 			return formData

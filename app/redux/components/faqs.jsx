@@ -5,6 +5,8 @@ import Questions from 'components/Questions'
 
 import TOGGLE from 'components/ui/toggle'
 
+import style from '_base'
+
 const messages = defineMessages( {
 
 	other_questions:{
@@ -26,7 +28,7 @@ const faqs = ( { intl } ) => {
 
 	return(
 
-		<TOGGLE id="Faqs" title={ formatMessage( messages.other_questions_title ) } priority={ 3 } text={ formatMessage( messages.other_questions ) } >
+		<TOGGLE id="Faqs" title={ formatMessage( messages.other_questions_title ) } priority={ 3 } text={ formatMessage( messages.other_questions ) } className={ style.corset } >
 			<Questions />
 		</TOGGLE>
 	)

@@ -6,6 +6,8 @@ import DIV from 'components/tags/div'
 import P from 'components/tags/p'
 import H from 'components/tags/h'
 
+import style from '_base'
+
 const messages = defineMessages( {
 
 	how:{
@@ -94,7 +96,7 @@ const how = ( { intl } ) => {
 
 	return(
 
-		<TOGGLE id="How" title={ formatMessage( messages.how_title ) } priority={ 3 } text={ formatMessage( messages.how ) } >
+		<TOGGLE id="How" title={ formatMessage( messages.how_title ) } priority={ 3 } text={ formatMessage( messages.how ) } className={ style.corset } >
 			<DIV>
 				<P>{ formatMessage( messages.sea_levels_rise_because ) }</P>
 				<P>{ formatMessage( messages.only ) }</P>

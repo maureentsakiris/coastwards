@@ -6,6 +6,8 @@ import DIV from 'components/tags/div'
 import SMALL from 'components/tags/small'
 import A from 'components/tags/a'
 
+import style from '_base'
+
 const messages = defineMessages( {
 
 	all_set:{
@@ -32,7 +34,7 @@ const prompt = ( { intl } ) => {
 
 	return(
 
-		<DIV id="Prompt" >
+		<DIV id="Prompt" className={ style.corset } >
 			<H priority={ 2 }>{ formatMessage( messages.all_set ) }</H>
 			<SMALL>( { formatMessage( messages.one_by_one ) } <A href="#" onClick={ ( ) => { } } >{ formatMessage( messages.check_for_batch_upload ) }</A> )</SMALL>
 		</DIV>

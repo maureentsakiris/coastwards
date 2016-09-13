@@ -1,1 +1,16 @@
 @import 'app/styles/_theme';
+@import 'app/styles/_coastwards';
+
+
+.corset{
+
+	max-width: $container-width;
+	margin: 0 auto;
+
+}
+
+.center{
+
+	text-align: center;
+
+}

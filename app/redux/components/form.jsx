@@ -4,8 +4,12 @@ import { defineMessages, injectIntl, intlShape } from 'react-intl'
 import H from 'components/tags/h'
 import IMG from 'components/tags/img'
 import FORM from 'components/tags/form'
-import BUTTON from 'components/tags/button'
-/*import TOGGLE from 'components/ui/toggle'*/
+import TABLE from 'components/tags/table'
+import TBODY from 'components/tags/tbody'
+import TR from 'components/tags/tr'
+import TD from 'components/tags/td'
+
+import TOGGLE from 'components/ui/toggle'
 
 import RADIOGROUP from 'components/form/radiogroup/radiogroup'
 import COMMENT from 'components/form/input/comment'
@@ -95,6 +99,12 @@ const messages = defineMessages( {
 		defaultMessage: "#mycrazysummerwithgeorgie"
 	},
 
+	//privacy
+	data_privacy:{
+		id: "data_privacy",
+		description: "Header - Gives user the opportunity to see exactly what information is beind sent to our servers",
+		defaultMessage: "See exactly what information will be sent to our servers"
+	},
 
 	//upload
 	upload_image:{
@@ -151,6 +161,16 @@ const form = ( { intl, show, image, setMaterial, /*setAdaptation,*/ setComment, 
 			<COMMENT form="Form" label={ formatMessage( messages.say_hello ) } name="comment" placeholder={ formatMessage( messages.placeholder_say_hello ) } onChange={ setComment } />
 			<BR/>
 			<HASHTAG form="Form" label={ formatMessage( messages.hashtag_your_image ) } name="hashtag" placeholder={ formatMessage( messages.placeholder_hashtag_your_image ) } onChange={ setHashtag } />
+			<TOGGLE priority={ 6 } text={ formatMessage( messages.data_privacy ).toUpperCase() } >
+				<TABLE>
+					<TBODY>
+						<TR>
+							<TD>EXIF</TD>
+							<TD>....</TD>
+						</TR>
+					</TBODY>
+				</TABLE>
+			</TOGGLE>
 			<BR/><BR/>
 			<CANCEL onClick={ resetMain } label={ formatMessage( messages.cancel_upload ) } />
 			<GO onClick={ uploadImage } label={ formatMessage( messages.upload_image ) } />

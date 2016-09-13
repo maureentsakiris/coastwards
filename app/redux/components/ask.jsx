@@ -10,9 +10,9 @@ import COMMENT from 'components/form/input/comment'
 import SUBMIT from  'components/form/button/submit'
 
 
-import H from 'components/tags/h'
-
 import BR from 'components/tags/br'
+
+import style from '_base'
 
 const messages = defineMessages( {
 
@@ -65,8 +65,7 @@ const ask = ( { intl } ) => {
 
 	return(
 
-		<TOGGLE id="AskUs" title={ formatMessage( messages.one_more_question_title ) } priority={ 3 } text={ formatMessage( messages.one_more_question ) } >
-			<H priority={ 4 }>{ formatMessage( messages.ask_us ) }</H>
+		<TOGGLE id="AskUs" title={ formatMessage( messages.one_more_question_title ) } priority={ 3 } text={ formatMessage( messages.one_more_question ) } className={ style.corset } >
 			<FORM action="#" id="Ask" >
 				<EMAIL form="Ask" label={ formatMessage( messages.label_email ) } name="email" placeholder={ formatMessage( messages.placeholder_email ) } />
 				<BR />

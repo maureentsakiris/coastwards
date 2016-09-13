@@ -47,7 +47,7 @@ ReactDom.render(
 	<Provider store={ store } >
 		<I18nProvider>
 			<Context className={ style.context } >
-				<I18nLinks availableLanguages={ i18nLocales.locales } id="I18n" />
+				<I18nLinks availableLanguages={ i18nLocales.locales } id="I18n" className={ style.center } />
 				<Intro />
 				<How />
 				<Guidelines />

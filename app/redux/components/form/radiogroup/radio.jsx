@@ -9,8 +9,9 @@ const radio = ( { form, label, name, value, onClick } ) => {
 
 	return(
 
-		<SPAN className={ style.span }>
-			<INPUT type="radio" form={ form } name={ name } value={ value } onClick={ onClick } />{ label }
+		<SPAN className={ style.radio }>
+			<INPUT type="radio" form={ form } name={ name } value={ value } onClick={ onClick } />
+			<SPAN>{ label }</SPAN>
 		</SPAN>
 
 	)

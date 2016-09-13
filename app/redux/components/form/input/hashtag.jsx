@@ -3,8 +3,6 @@ import React, { PropTypes } from 'react'
 import hoc from 'components/form/hoc'
 import INPUT from 'components/tags/input'
 
-import validator from 'validator'
-
 
 const hashtag = ( { hocProps } ) => {
 
@@ -12,17 +10,16 @@ const hashtag = ( { hocProps } ) => {
 
 	const validate = ( e ) => {
 
-		let val = validator.blacklist( e.target.value, ' ' )
-
+		let val = e.target.value.replace( /[^0-9a-z]/gi, '' )
 		if( val.indexOf( '#' ) !== 0 ){
 
 			val = '#' + val
 
 		}
+		e.target.value = val
 
-		e.target.value = val.toLowerCase()
-		
 		onChange( e )
+
 
 	}
 
@@ -39,8 +36,9 @@ hashtag.propTypes = {
 
 	hocProps: PropTypes.shape( {
 
-		onChange: PropTypes.func,
-		placeholder: PropTypes.string
+		placeholder: PropTypes.string,
+
+		onChange: PropTypes.func
 
 	} )
 

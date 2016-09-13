@@ -48,4 +48,10 @@ export const textareaAttr = [ 'autoFocus', 'cols', 'dirname', 'disabled', 'form'
 export const hrAttr = []
 export const imgAttr = [ 'alt', 'crossorigin', 'height', 'ismap', 'longdesc', 'src', 'usemap', 'width' ]
 export const brAttr = []
-
+export const tableAttr = [ 'border', 'sortable' ]
+export const theadAttr = []
+export const tbodyAttr = []
+export const tfootAttr = []
+export const trAttr = []
+export const thAttr = []
+export const tdAttr = []

@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react'
 import { defineMessages, injectIntl, intlShape } from 'react-intl'
+import Classnames from 'classnames'
 
 import Errors from 'containers/errors'
 import Statuses from 'containers/statuses'
@@ -12,6 +13,8 @@ import Form from 'containers/form'
 import H from 'components/tags/h'
 import DIV from 'components/tags/div'
 
+import style from '_base'
+
 const messages = defineMessages( {
 
 	unsupported:{
@@ -22,15 +25,21 @@ const messages = defineMessages( {
 
 } )
 
-const main = ( { intl, uploadSupported } ) => {
+const main = ( { intl, uploadSupported, mapboxSupported } ) => {
 
 	const { formatMessage } = intl
+
+	const cls = Classnames( {
+
+		[ style.corset ]: !mapboxSupported
+
+	} )
 
 	if( !uploadSupported ){
 
 		return(
 
-			<DIV id="Main" >
+			<DIV id="Main" className={ cls } >
 				<H priority={ 2 }>{ formatMessage( messages.all_set ) }</H>
 				<p>{ formatMessage( messages.unsupported ) }</p>
 			</DIV>
@@ -41,7 +50,7 @@ const main = ( { intl, uploadSupported } ) => {
 
 		return(
 
-			<DIV id="Main" >
+			<DIV id="Main" className={ cls } >
 				<Prompts />
 				<Errors /> 
 				<Statuses />
@@ -61,7 +70,8 @@ main.propTypes = {
 
 	intl: intlShape.isRequired,
 
-	uploadSupported: PropTypes.bool
+	uploadSupported: PropTypes.bool,
+	mapboxSupported: PropTypes.bool
 	
 }
 

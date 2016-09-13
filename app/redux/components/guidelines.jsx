@@ -4,6 +4,8 @@ import { defineMessages, injectIntl, intlShape } from 'react-intl'
 import TOGGLE from 'components/ui/toggle'
 import DIV from 'components/tags/div'
 
+import style from '_base'
+
 const messages = defineMessages( {
 
 	any_picture:{
@@ -25,7 +27,7 @@ const guidelines = ( { intl } ) => {
 
 	return(
 
-		<TOGGLE id="Guidelines" title={ formatMessage( messages.any_picture_title ) } priority={ 3 } text={ formatMessage( messages.any_picture ) } >
+		<TOGGLE id="Guidelines" title={ formatMessage( messages.any_picture_title ) } priority={ 3 } text={ formatMessage( messages.any_picture ) } className={ style.corset } >
 			<DIV>Illustrations with guidelines</DIV>
 		</TOGGLE>
 

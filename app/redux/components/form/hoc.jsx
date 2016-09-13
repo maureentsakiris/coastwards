@@ -1,7 +1,10 @@
-import React, { PropTypes, Component } from 'react';
+import React, { PropTypes, Component } from 'react'
+import Classnames from 'classnames'
 
 import LABEL from 'components/tags/label'
 import SPAN from 'components/tags/span'
+
+import style from './_hoc'
 
 const hoc = ( ComposedComponent ) => class extends Component {
 
@@ -26,9 +29,11 @@ const hoc = ( ComposedComponent ) => class extends Component {
 
 		const { form, label, name, className } = this.props
 
+		const cls = Classnames( className, style )
+
 		return(
 
-			<LABEL htmlFor={ name } form={ form } className={ className } >
+			<LABEL htmlFor={ name } form={ form } className={ cls } >
 				<SPAN>{ label }</SPAN>
 				<ComposedComponent hocProps={ this.props } />
 			</LABEL>

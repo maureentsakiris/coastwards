@@ -4,6 +4,8 @@ import { defineMessages, injectIntl, intlShape } from 'react-intl'
 import DIV from 'components/tags/div'
 import H from 'components/tags/h'
 
+import style from '_base'
+
 const messages = defineMessages( {
 
 	help_science:{
@@ -25,7 +27,7 @@ const intro = ( { intl } ) => {
 
 	return(
 
-		<DIV id="Intro" >
+		<DIV id="Intro" className={ style.corset } >
 			<H priority={ 1 } >{ formatMessage( messages.help_science ) }</H>
 			<H priority={ 2 } >{ formatMessage( messages.no_account ) }</H>
 		</DIV>
