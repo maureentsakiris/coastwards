@@ -42,11 +42,11 @@ const messages = defineMessages( {
 		description: "Script - So forget that bathtub image. It’s more complicated than that.",
 		defaultMessage: "So forget that bathtub image. It’s more complicated than that."
 	},
-	how_then:{
-		id: "how_then",
-		description: "Script - How does a picture help, then?",
-		defaultMessage: "How does a picture help, then?"
-	},
+	/*why:{
+		id: "why",
+		description: "Script - WHy?",
+		defaultMessage: "Why?"
+	},*/
 	in_a_nutshell:{
 		id: "in_a_nutshell",
 		description: "Script - In a nutshell, they give science what satellites cannot: A close-up image of a coast. The possibility to study the bigger picture, in as much detail as possible.",
@@ -54,13 +54,13 @@ const messages = defineMessages( {
 	},
 	place_on_map:{
 		id: "place_on_map",
-		description: "Script - First, your images will be checked for information on the location they were taken, so we can place them on a map.",
-		defaultMessage: "First, your images will be checked for information on the location they were taken, so we can place them on a map."
+		description: "Script - First, it will be checked for information on the location it was taken, so we can place it on a map.",
+		defaultMessage: "First, it will be checked for information on the location it was taken, so we can place it on a map."
 	},
 	determine_coastal_type:{
 		id: "determine_coastal_type",
-		description: "Script - Then, they will be analysed by scientists and citizen scientists (and maybe some day computers) to determine the coastal type at that location.",
-		defaultMessage: "Then, they will be analysed by scientists and citizen scientists (and maybe some day computers) to determine the coastal type at that location."
+		description: "Script - Then, it will be analysed by scientists and citizen scientists to determine the coastal type at that location.",
+		defaultMessage: "Then, it will be analysed by scientists and citizen scientists to determine the coastal type at that location."
 	},
 	the_more_the_better:{
 		id: "the_more_the_better",
@@ -74,8 +74,8 @@ const messages = defineMessages( {
 	},
 	policy_makers:{
 		id: "policy_makers",
-		description: "Script - These predictions in return inform policy makers at national and international levels on which actions to take and which countries are in need of international help.",
-		defaultMessage: "These predictions in return inform policy makers at national and international levels on which actions to take and which countries are in need of international help."
+		description: "Script - These predictions in return inform policy makers at national and international levels on which actions to take and which countries need international support.",
+		defaultMessage: "These predictions in return inform policy makers at national and international levels on which actions to take and which countries need international support."
 	},
 	best_advice:{
 		id: "best_advice",
@@ -86,6 +86,11 @@ const messages = defineMessages( {
 		id: "easy_beautiful_meaningful",
 		description: "Script - Together we can create this map. It's easy. It's beautiful. And it will make a difference!",
 		defaultMessage: "Together we can create this map. It's easy. It's beautiful. And it will make a difference!"
+	},
+	send_a_signal:{
+		id: "send_a_signal",
+		description: "Script - Let's send a signal and work together. It's simple. And beautiful, too.",
+		defaultMessage: "Let's send a signal and work together. It's simple. And beautiful, too."
 	}
 
 } )
@@ -98,11 +103,6 @@ const how = ( { intl } ) => {
 
 		<TOGGLE id="How" title={ formatMessage( messages.how_title ) } priority={ 3 } text={ formatMessage( messages.how ) } className={ style.corset } >
 			<DIV>
-				<P>{ formatMessage( messages.sea_levels_rise_because ) }</P>
-				<P>{ formatMessage( messages.only ) }</P>
-				<P>{ formatMessage( messages.sea_levels_rise_vary_drastically ) }</P>
-				<P>{ formatMessage( messages.forget_bathtub ) }</P>
-				<H priority={ 4 }>{ formatMessage( messages.how_then ) }</H>
 				<P>{ formatMessage( messages.in_a_nutshell ) }</P>
 				<P>
 					{ formatMessage( messages.place_on_map ) } { " " }
@@ -111,8 +111,12 @@ const how = ( { intl } ) => {
 					{ formatMessage( messages.computer_programs ) } { " " }
 					{ formatMessage( messages.policy_makers ) }
 				</P>
+				<P>{ formatMessage( messages.sea_levels_rise_because ) }</P>
+				<P>{ formatMessage( messages.only ) }</P>
+				<P>{ formatMessage( messages.sea_levels_rise_vary_drastically ) }</P>
+				<P>{ formatMessage( messages.forget_bathtub ) }</P>
 				<P>{ formatMessage( messages.best_advice ) }</P>
-				<H priority={ 4 }>{ formatMessage( messages.easy_beautiful_meaningful ) }</H>
+				<H priority={ 4 }>{ formatMessage( messages.send_a_signal ) }</H>
 			</DIV>
 		</TOGGLE>
 

@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react'
 import { defineMessages, injectIntl, intlShape } from 'react-intl'
+import _ from 'underscore'
 
 import H from 'components/tags/h'
 import IMG from 'components/tags/img'
@@ -143,6 +144,21 @@ const form = ( { intl, show, image, setMaterial, /*setAdaptation,*/ setComment, 
 
 	]
 
+	const exifTable = _.map( image.exifdata, ( exif, key ) => {
+
+		const data = exif.toString()
+
+		return(
+
+			<TR key={ key }>
+				<TD>{ key }</TD>
+				<TD>{ data }</TD>
+			</TR>
+
+		)
+
+	} )
+
 	/*const adaptations = [
 
 		{ label: "!Dike", value: "dike" },
@@ -164,10 +180,7 @@ const form = ( { intl, show, image, setMaterial, /*setAdaptation,*/ setComment, 
 			<TOGGLE priority={ 6 } text={ formatMessage( messages.data_privacy ).toUpperCase() } >
 				<TABLE>
 					<TBODY>
-						<TR>
-							<TD>EXIF</TD>
-							<TD>....</TD>
-						</TR>
+						{ exifTable }
 					</TBODY>
 				</TABLE>
 			</TOGGLE>

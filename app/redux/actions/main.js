@@ -194,8 +194,8 @@ export const validateFile = ( e ) => {
 		} )
 		.then( ( image ) => {
 
-			return _promiseSafe( image )
-			//return image
+			//return _promiseSafe( image )
+			return image
 
 		} )
 		.then( _promiseLocation )

@@ -2,7 +2,7 @@ import React from 'react'
 import { defineMessages, injectIntl, intlShape } from 'react-intl'
 
 import TOGGLE from 'components/ui/toggle'
-import DIV from 'components/tags/div'
+import P from 'components/tags/p'
 
 import style from '_base'
 
@@ -28,7 +28,17 @@ const team = ( { intl } ) => {
 	return(
 
 		<TOGGLE id="Team" title={ formatMessage( messages.who_are_you_title ) } priority={ 3 } text={ formatMessage( messages.who_are_you ) } className={ style.corset } >
-			<DIV>Team portrait</DIV>
+			<P>Nassos</P>
+			<P>Jörn</P>
+			<P>Claudia</P>
+			<P>Jan</P>
+			<P>Sara</P>
+			<P>Lena</P>
+			<P>Neli</P>
+			<P>Barbara</P>
+			<P>Mark</P>
+			<P>Maureen</P>
+			<P>Figo</P>
 		</TOGGLE>
 
 	)

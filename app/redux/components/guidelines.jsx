@@ -2,6 +2,7 @@ import React from 'react'
 import { defineMessages, injectIntl, intlShape } from 'react-intl'
 
 import TOGGLE from 'components/ui/toggle'
+import H from 'components/tags/H'
 import DIV from 'components/tags/div'
 
 import style from '_base'
