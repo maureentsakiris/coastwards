@@ -1,10 +1,13 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import React, { Component, PropTypes } from 'react'
+import PureRenderMixin from 'react-addons-pure-render-mixin'
+import Classnames from 'classnames'
 
 import DIV from 'components/tags/div'
 import A from 'components/tags/a'
 import H from 'components/tags/h'
 import I from 'components/tags/i'
+
+import style from './_toggle'
 
 class Toggle extends Component {
 
@@ -14,7 +17,8 @@ class Toggle extends Component {
 		priority: PropTypes.number.isRequired,
 		text: PropTypes.string.isRequired,
 		expanded: PropTypes.bool,
-		title: PropTypes.string
+		title: PropTypes.string,
+		className: PropTypes.string
 
 	}
 
@@ -39,12 +43,14 @@ class Toggle extends Component {
 
 	render () {
 
-		const { children, priority, text, title, ...restProps } = this.props
+		const { children, priority, text, title, className, ...restProps } = this.props
 		const { expanded } = this.state
+
+		const cls = Classnames( style.toggle, className )
 
 		return (
 
-			<DIV { ...restProps } >
+			<DIV { ...restProps } className={ cls } >
 				<A onClick={ this._toggle } title={ title } >
 					<H priority={ priority } >
 						{ text } 		
