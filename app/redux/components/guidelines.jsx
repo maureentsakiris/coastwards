@@ -3,9 +3,8 @@ import { defineMessages, injectIntl, intlShape } from 'react-intl'
 import _ from 'underscore'
 
 import TOGGLE from 'components/ui/toggle'
-import H from 'components/tags/H'
-import DIV from 'components/tags/div'
 import H from 'components/tags/h'
+import DIV from 'components/tags/div'
 import P from 'components/tags/p'
 // import IMG from 'components/tags/img'
 

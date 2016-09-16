@@ -184,18 +184,18 @@ export const validateFile = ( e ) => {
 		.then( promiseEXIF )
 		.then( ( image ) => {
 
-			return promiseMinimumBoxDimensions( image, 640 )
+			return promiseMinimumBoxDimensions( image, 800 )
 
 		} )
 		.then( ( image ) => {
 
-			return promiseCanvasBoxResize( image, 640 )
+			return promiseCanvasBoxResize( image, 800 )
 
 		} )
 		.then( ( image ) => {
 
-			//return _promiseSafe( image )
-			return image
+			return _promiseSafe( image )
+			//return image
 
 		} )
 		.then( _promiseLocation )

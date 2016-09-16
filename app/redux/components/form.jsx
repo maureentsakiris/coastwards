@@ -6,7 +6,9 @@ import H from 'components/tags/h'
 import IMG from 'components/tags/img'
 import FORM from 'components/tags/form'
 import TABLE from 'components/tags/table'
+import THEAD from 'components/tags/thead'
 import TBODY from 'components/tags/tbody'
+import TH from 'components/tags/th'
 import TR from 'components/tags/tr'
 import TD from 'components/tags/td'
 
@@ -19,6 +21,8 @@ import CANCEL from 'components/form/button/cancel'
 import GO from 'components/form/button/go'
 
 import BR from 'components/tags/br'
+
+import cls from './_form.scss'
 
 const messages = defineMessages( {
 
@@ -104,7 +108,7 @@ const messages = defineMessages( {
 	data_privacy:{
 		id: "data_privacy",
 		description: "Header - Gives user the opportunity to see exactly what information is beind sent to our servers",
-		defaultMessage: "See exactly what information will be sent to our servers"
+		defaultMessage: "See what other information will be sent to our servers"
 	},
 
 	//upload
@@ -144,6 +148,8 @@ const form = ( { intl, show, image, setMaterial, /*setAdaptation,*/ setComment, 
 
 	]
 
+
+
 	const exifTable = _.map( image.exifdata, ( exif, key ) => {
 
 		const data = exif.toString()
@@ -153,6 +159,20 @@ const form = ( { intl, show, image, setMaterial, /*setAdaptation,*/ setComment, 
 			<TR key={ key }>
 				<TD>{ key }</TD>
 				<TD>{ data }</TD>
+			</TR>
+
+		)
+
+	} )
+
+
+	const labelsTable = _.map( image.labels, ( label, key ) => {
+
+		return(
+
+			<TR key={ key }>
+				<TD>{ label.description }</TD>
+				<TD>{ label.score }</TD>
 			</TR>
 
 		)
@@ -178,7 +198,34 @@ const form = ( { intl, show, image, setMaterial, /*setAdaptation,*/ setComment, 
 			<BR/>
 			<HASHTAG form="Form" label={ formatMessage( messages.hashtag_your_image ) } name="hashtag" placeholder={ formatMessage( messages.placeholder_hashtag_your_image ) } onChange={ setHashtag } />
 			<TOGGLE priority={ 6 } text={ formatMessage( messages.data_privacy ).toUpperCase() } >
-				<TABLE>
+				<TABLE className={ cls.table } >
+					<THEAD>
+						<TR>
+							<TH>Image</TH>
+							<TH></TH>
+						</TR>
+					</THEAD>
+					<TBODY>
+						<TR>
+							<TD>Image</TD>
+							<TD>We save the image at 800 pixels width and give it a new unique filename</TD>
+						</TR>
+					</TBODY>
+					<THEAD>
+						<TR>
+							<TH>Labels</TH>
+							<TH>Score</TH>
+						</TR>
+					</THEAD>
+					<TBODY>
+						{ labelsTable }
+					</TBODY>
+					<THEAD>
+						<TR>
+							<TH>Exifdata</TH>
+							<TH>Value</TH>
+						</TR>
+					</THEAD>
 					<TBODY>
 						{ exifTable }
 					</TBODY>

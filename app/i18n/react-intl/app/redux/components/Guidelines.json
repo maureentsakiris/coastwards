@@ -15,11 +15,6 @@
     "defaultMessage": "Any coast but not any picture. Our goal is to determine the coast material at a given location. So logically, we need to see the material of the coast in the image and we need to know where this image was taken."
   },
   {
-    "id": "quick_guidelines",
-    "description": "Header - Some quick guidelines",
-    "defaultMessage": "Here are a few guidelines..."
-  },
-  {
     "id": "guideline_loacation_header",
     "description": "Header - We need the location",
     "defaultMessage": "We need to know the location of the coast"

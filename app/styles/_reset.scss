@@ -153,5 +153,29 @@ textarea{
 input[type=text],input[type=email]{
 
 	width: 300px;
+	max-width: 100%;
+
+}
+
+
+//tables
+
+table{
+
+	border-collapse: separate;
+	border-spacing: 2;
+
+}
+
+td,th{
+
+	padding: 0.5em;
+
+}
+
+th{
+
+	text-align: left;
+	background-color: #e5e5e5;
 
 }
