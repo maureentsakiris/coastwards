@@ -1,18 +1,11 @@
 import React, { PropTypes } from 'react'
 import { defineMessages, injectIntl, intlShape } from 'react-intl'
-import _ from 'underscore'
+
+import FORMDATA from 'containers/formdata'
 
 import H from 'components/tags/h'
 import IMG from 'components/tags/img'
 import FORM from 'components/tags/form'
-import TABLE from 'components/tags/table'
-import THEAD from 'components/tags/thead'
-import TBODY from 'components/tags/tbody'
-import TH from 'components/tags/th'
-import TR from 'components/tags/tr'
-import TD from 'components/tags/td'
-
-import TOGGLE from 'components/ui/toggle'
 
 import RADIOGROUP from 'components/form/radiogroup/radiogroup'
 import COMMENT from 'components/form/input/comment'
@@ -22,7 +15,6 @@ import GO from 'components/form/button/go'
 
 import BR from 'components/tags/br'
 
-import cls from './_form.scss'
 
 const messages = defineMessages( {
 
@@ -104,13 +96,6 @@ const messages = defineMessages( {
 		defaultMessage: "#mycrazysummerwithgeorgie"
 	},
 
-	//privacy
-	data_privacy:{
-		id: "data_privacy",
-		description: "Header - Gives user the opportunity to see exactly what information is beind sent to our servers",
-		defaultMessage: "See what other information will be sent to our servers"
-	},
-
 	//upload
 	upload_image:{
 		id: "upload_image",
@@ -121,8 +106,7 @@ const messages = defineMessages( {
 		id: "cancel_upload",
 		description: "Button label - Cancel upload",
 		defaultMessage: "CANCEL"
-	},
-	
+	}
 
 } )
 
@@ -149,36 +133,6 @@ const form = ( { intl, show, image, setMaterial, /*setAdaptation,*/ setComment, 
 	]
 
 
-
-	const exifTable = _.map( image.exifdata, ( exif, key ) => {
-
-		const data = exif.toString()
-
-		return(
-
-			<TR key={ key }>
-				<TD>{ key }</TD>
-				<TD>{ data }</TD>
-			</TR>
-
-		)
-
-	} )
-
-
-	const labelsTable = _.map( image.labels, ( label, key ) => {
-
-		return(
-
-			<TR key={ key }>
-				<TD>{ label.description }</TD>
-				<TD>{ label.score }</TD>
-			</TR>
-
-		)
-
-	} )
-
 	/*const adaptations = [
 
 		{ label: "!Dike", value: "dike" },
@@ -197,40 +151,7 @@ const form = ( { intl, show, image, setMaterial, /*setAdaptation,*/ setComment, 
 			<COMMENT form="Form" label={ formatMessage( messages.say_hello ) } name="comment" placeholder={ formatMessage( messages.placeholder_say_hello ) } onChange={ setComment } />
 			<BR/>
 			<HASHTAG form="Form" label={ formatMessage( messages.hashtag_your_image ) } name="hashtag" placeholder={ formatMessage( messages.placeholder_hashtag_your_image ) } onChange={ setHashtag } />
-			<TOGGLE priority={ 6 } text={ formatMessage( messages.data_privacy ).toUpperCase() } >
-				<TABLE className={ cls.table } >
-					<THEAD>
-						<TR>
-							<TH>Image</TH>
-							<TH></TH>
-						</TR>
-					</THEAD>
-					<TBODY>
-						<TR>
-							<TD>Image</TD>
-							<TD>We save the image at 800 pixels width and give it a new unique filename</TD>
-						</TR>
-					</TBODY>
-					<THEAD>
-						<TR>
-							<TH>Labels</TH>
-							<TH>Score</TH>
-						</TR>
-					</THEAD>
-					<TBODY>
-						{ labelsTable }
-					</TBODY>
-					<THEAD>
-						<TR>
-							<TH>Exifdata</TH>
-							<TH>Value</TH>
-						</TR>
-					</THEAD>
-					<TBODY>
-						{ exifTable }
-					</TBODY>
-				</TABLE>
-			</TOGGLE>
+			<FORMDATA />
 			<BR/><BR/>
 			<CANCEL onClick={ resetMain } label={ formatMessage( messages.cancel_upload ) } />
 			<GO onClick={ uploadImage } label={ formatMessage( messages.upload_image ) } />

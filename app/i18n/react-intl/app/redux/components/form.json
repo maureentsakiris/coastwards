@@ -70,11 +70,6 @@
     "defaultMessage": "#mycrazysummerwithgeorgie"
   },
   {
-    "id": "data_privacy",
-    "description": "Header - Gives user the opportunity to see exactly what information is beind sent to our servers",
-    "defaultMessage": "See what other information will be sent to our servers"
-  },
-  {
     "id": "upload_image",
     "description": "Button label - Prompts the user to upload the image",
     "defaultMessage": "UPLOAD"

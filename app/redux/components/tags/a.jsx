@@ -29,7 +29,7 @@ a.propTypes = {
 	hocProps: PropTypes.shape( {
 
 		active: PropTypes.bool,
-		onClick: PropTypes.func.isRequired,
+		onClick: PropTypes.func,
 
 		download: PropTypes.bool,
 		href: PropTypes.string,

@@ -1,12 +1,11 @@
 import * as types from 'types'
 
-export function showDialog ( title, message ){
+export function showDialog ( component ){
 
 	return {
 
 		type: types.SHOW_DIALOG,
-		title: title,
-		message: message
+		component: component
 
 	}
 

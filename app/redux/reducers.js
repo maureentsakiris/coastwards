@@ -20,6 +20,17 @@ const browser = ( state = { uploadSupported: uploadSupported, mapboxSupported: m
 
 }
 
+const config = ( state= { google: true, imageWidth: 800 }, action ) => {
+
+	switch ( action.type ){
+
+	default:
+		return state;
+
+	}
+
+}
+
 const i18n = ( state = { locale: 'en', dir: 'ltr', messages: undefined }, action ) => {
 
 	switch ( action.type ){
@@ -33,14 +44,14 @@ const i18n = ( state = { locale: 'en', dir: 'ltr', messages: undefined }, action
 
 }
 
-const dialog = ( state = { title: '', message: '', active: false }, action ) => {
+const dialog = ( state = { component: '', active: false }, action ) => {
 
 	switch ( action.type ){
 
 	case types.SHOW_DIALOG:
-		return { ...state, title: action.title, message: action.message, active: true }
+		return { ...state, component: action.component, active: true }
 	case types.HIDE_DIALOG:
-		return { ...state, title: '', message: '', active: false }
+		return { ...state, component: '', active: false }
 	default:
 		return state;
 
@@ -161,6 +172,7 @@ const selected = ( state = [ ], action ) => {
 const coastwards = combineReducers( {
 
 	browser,
+	config,
 	i18n,
 	dialog,
 	snackbar,

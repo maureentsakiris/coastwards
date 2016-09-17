@@ -5,12 +5,11 @@ import DIALOG from 'components/ui/dialog'
 
 const mapStateToProps = ( state ) => {
 
-	const { title, message, active } = state.dialog
+	const { component, active } = state.dialog
 
-	return {
+	return { 
 
-		title: title,
-		message: message,
+		component: component,
 		active: active
 
 	}

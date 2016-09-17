@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react'
 import PureRenderMixin from 'react-addons-pure-render-mixin'
-import Classnames from 'classnames'
 
 import DIV from 'components/tags/div'
 import A from 'components/tags/a'
@@ -46,12 +45,10 @@ class Toggle extends Component {
 		const { children, priority, text, title, className, ...restProps } = this.props
 		const { expanded } = this.state
 
-		const cls = Classnames( style.toggle, className )
-
 		return (
 
-			<DIV { ...restProps } className={ cls } >
-				<A onClick={ this._toggle } title={ title } >
+			<DIV { ...restProps } className={ className } >
+				<A onClick={ this._toggle } title={ title } className={ style.toggleLink }  >
 					<H priority={ priority } >
 						{ text } 		
 						{ !expanded && <I className="material-icons" style={ { verticalAlign: 'middle' } } >&#xE5CC;</I> }
