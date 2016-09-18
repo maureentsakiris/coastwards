@@ -39,7 +39,7 @@ const messages = defineMessages( {
 	placeholder_email: {
 		id: "placeholder_email",
 		description: "Placeholder - Email",
-		defaultMessage: "Your email"
+		defaultMessage: "And your email"
 	},
 	label_question:{
 		id: "label_question",
@@ -65,7 +65,7 @@ const ask = ( { intl } ) => {
 
 	return(
 
-		<TOGGLE id="AskUs" title={ formatMessage( messages.one_more_question_title ) } priority={ 3 } text={ formatMessage( messages.one_more_question ) } className={ style.corset } >
+		<TOGGLE id="AskUs" title={ formatMessage( messages.one_more_question_title ) } priority={ 3 } text={ formatMessage( messages.one_more_question ) } className={ style.corset } classNameHeader={ style.italic } >
 			<FORM action="#" id="Ask" >
 				<COMMENT form="Ask" label={ formatMessage( messages.label_question ) } name="comment" placeholder={ formatMessage( messages.placeholder_question ) } />
 				<BR />

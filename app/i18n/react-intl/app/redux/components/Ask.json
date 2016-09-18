@@ -22,7 +22,7 @@
   {
     "id": "placeholder_email",
     "description": "Placeholder - Email",
-    "defaultMessage": "Your email"
+    "defaultMessage": "And your email"
   },
   {
     "id": "label_question",

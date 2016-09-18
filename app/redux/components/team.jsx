@@ -27,7 +27,7 @@ const team = ( { intl } ) => {
 
 	return(
 
-		<TOGGLE id="Team" title={ formatMessage( messages.who_are_you_title ) } priority={ 3 } text={ formatMessage( messages.who_are_you ) } className={ style.corset } >
+		<TOGGLE id="Team" title={ formatMessage( messages.who_are_you_title ) } priority={ 3 } text={ formatMessage( messages.who_are_you ) } className={ style.corset } classNameHeader={ style.italic } >
 			<P>Nassos</P>
 			<P>Jörn</P>
 			<P>Claudia</P>

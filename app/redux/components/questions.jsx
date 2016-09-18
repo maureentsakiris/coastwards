@@ -4,6 +4,8 @@ import { defineMessages, injectIntl, intlShape } from 'react-intl'
 import TOGGLE from 'components/ui/toggle'
 import DIV from 'components/tags/div'
 
+import style from '_base'
+
 const messages = defineMessages( {
 
 	/*faqs:{
@@ -23,13 +25,13 @@ const messages = defineMessages( {
 	},
 	a1:{
 		id: "a1",
-		description: "Yes and no, some satellite images are detailed enough to give us a good idea of the coast material but to be certain we need a close-up image.",
-		defaultMessage: "Yes and no, some satellite images are detailed enough to give us a good idea of the coast material but to be certain we need a close-up image."
+		description: "...",
+		defaultMessage: "..."
 	},
 	q2:{
 		id: "q2",
-		description: "... can the images I upload be traced back to me? (Data privacy)",
-		defaultMessage: "... can the images I upload be traced back to me? (Data privacy)"
+		description: "... can the images I upload be traced back to me?",
+		defaultMessage: "... can the images I upload be traced back to me?"
 	},
 	a2:{
 		id: "a2",
@@ -48,8 +50,8 @@ const messages = defineMessages( {
 	},
 	q4:{
 		id: "q4",
-		description: "... will I notified about publications resulting from this project?",
-		defaultMessage: "... will I notified about publications resulting from this project?"
+		description: "... will I be notified about publications resulting from this project?",
+		defaultMessage: "... will I be notified about publications resulting from this project?"
 	},
 	a4:{
 		id: "a4",
@@ -86,22 +88,22 @@ const questions = ( { intl } ) => {
 	return(
 
 		<DIV id="Questions">
-			<TOGGLE priority={ 4 } text={ formatMessage( messages.q1 ) } >
+			<TOGGLE priority={ 4 } text={ formatMessage( messages.q1 ) } classNameHeader={ style.italic }  >
 				<DIV>{ formatMessage( messages.a1 ) }</DIV>
 			</TOGGLE>
-			<TOGGLE priority={ 4 } text={ formatMessage( messages.q2 ) } >
+			<TOGGLE priority={ 4 } text={ formatMessage( messages.q2 ) } classNameHeader={ style.italic }  >
 				<DIV>{ formatMessage( messages.a2 ) }</DIV>
 			</TOGGLE>
-			<TOGGLE priority={ 4 } text={ formatMessage( messages.q3 ) } >
+			<TOGGLE priority={ 4 } text={ formatMessage( messages.q3 ) } classNameHeader={ style.italic }  >
 				<DIV>{ formatMessage( messages.a3 ) }</DIV>
 			</TOGGLE>
-			<TOGGLE priority={ 4 } text={ formatMessage( messages.q4 ) } >
+			<TOGGLE priority={ 4 } text={ formatMessage( messages.q4 ) } classNameHeader={ style.italic }  >
 				<DIV>{ formatMessage( messages.a4 ) }</DIV>
 			</TOGGLE>
-			<TOGGLE priority={ 4 } text={ formatMessage( messages.q5 ) } >
+			<TOGGLE priority={ 4 } text={ formatMessage( messages.q5 ) } classNameHeader={ style.italic }  >
 				<DIV>{ formatMessage( messages.a5 ) }</DIV>
 			</TOGGLE>
-			<TOGGLE priority={ 4 } text={ formatMessage( messages.q6 ) } >
+			<TOGGLE priority={ 4 } text={ formatMessage( messages.q6 ) } classNameHeader={ style.italic }  >
 				<DIV>{ formatMessage( messages.a6 ) }</DIV>
 			</TOGGLE>
 		</DIV>

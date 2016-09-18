@@ -15,14 +15,14 @@
     "defaultMessage": "Any coast but not any picture. We need these pictures to get a closer look at coasts (not people) and we need to know where these coasts are. So these are our guidelines:"
   },
   {
-    "id": "guideline_loacation_header",
-    "description": "Header - We need the location",
-    "defaultMessage": "We need to know the location of the coast"
+    "id": "guideline_original_header",
+    "description": "Header - We need the original image",
+    "defaultMessage": "We need the original image"
   },
   {
-    "id": "guideline_location_text",
-    "description": "Guideline - Location",
-    "defaultMessage": "Unfortunately, this means: No images from Facebook or Whatsapp and probably most other social media. No scans. No screenshots."
+    "id": "guideline_original_text",
+    "description": "Guideline - Original",
+    "defaultMessage": "This means: No images from Facebook, Whatsapp or other Social Media and no scans or screenshots. Images from these sources do not have any metadata and we need the metadata to figure out where the coast is located and when the image was taken."
   },
   {
     "id": "guideline_faces_header",
@@ -32,17 +32,7 @@
   {
     "id": "guideline_faces_text",
     "description": "Guideline - Faces",
-    "defaultMessage": "For privacy concerns, we cannot accept images with faces. During validation we run the images through face detection to enforce this policy."
-  },
-  {
-    "id": "guideline_original_header",
-    "description": "Header - Material",
-    "defaultMessage": "We need the original image"
-  },
-  {
-    "id": "guideline_original_text",
-    "description": "Guideline - Material",
-    "defaultMessage": "...."
+    "defaultMessage": "That's a no-go for data privacy reasons."
   },
   {
     "id": "guideline_material_header",
@@ -52,6 +42,6 @@
   {
     "id": "guideline_material_text",
     "description": "Guideline - Material",
-    "defaultMessage": "Ideally, the shoreline divides the image in two, so we can see the coast material and adaptation measures, if present."
+    "defaultMessage": "There are hundreds of beautiful images of coasts out there we cannot use because we cannot see the coast material. Images with sunsets, for example. Ideally, the shoreline divides the images in the middle with the sun in your back."
   }
 ]

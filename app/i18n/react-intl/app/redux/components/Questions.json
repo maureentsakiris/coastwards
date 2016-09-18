@@ -6,13 +6,13 @@
   },
   {
     "id": "a1",
-    "description": "Yes and no, some satellite images are detailed enough to give us a good idea of the coast material but to be certain we need a close-up image.",
-    "defaultMessage": "Yes and no, some satellite images are detailed enough to give us a good idea of the coast material but to be certain we need a close-up image."
+    "description": "...",
+    "defaultMessage": "..."
   },
   {
     "id": "q2",
-    "description": "... can the images I upload be traced back to me? (Data privacy)",
-    "defaultMessage": "... can the images I upload be traced back to me? (Data privacy)"
+    "description": "... can the images I upload be traced back to me?",
+    "defaultMessage": "... can the images I upload be traced back to me?"
   },
   {
     "id": "a2",
@@ -31,8 +31,8 @@
   },
   {
     "id": "q4",
-    "description": "... will I notified about publications resulting from this project?",
-    "defaultMessage": "... will I notified about publications resulting from this project?"
+    "description": "... will I be notified about publications resulting from this project?",
+    "defaultMessage": "... will I be notified about publications resulting from this project?"
   },
   {
     "id": "a4",

@@ -12,7 +12,7 @@ const messages = defineMessages( {
 	other_questions:{
 		id: "other_questions",
 		description: "Section header - But ...",
-		defaultMessage: "But..."
+		defaultMessage: "But ..."
 	},
 	other_questions_title:{
 		id: "other_questions_title",
@@ -28,7 +28,7 @@ const faqs = ( { intl } ) => {
 
 	return(
 
-		<TOGGLE id="Faqs" title={ formatMessage( messages.other_questions_title ) } priority={ 3 } text={ formatMessage( messages.other_questions ) } className={ style.corset } >
+		<TOGGLE id="Faqs" title={ formatMessage( messages.other_questions_title ) } priority={ 3 } text={ formatMessage( messages.other_questions ) } className={ style.corset } classNameHeader={ style.italic } >
 			<Questions />
 		</TOGGLE>
 	)

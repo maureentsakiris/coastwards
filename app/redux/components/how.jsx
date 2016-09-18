@@ -4,7 +4,6 @@ import { defineMessages, injectIntl, intlShape } from 'react-intl'
 import TOGGLE from 'components/ui/toggle'
 import DIV from 'components/tags/div'
 import P from 'components/tags/p'
-import H from 'components/tags/h'
 
 import style from '_base'
 
@@ -113,7 +112,7 @@ const how = ( { intl } ) => {
 
 	return(
 
-		<TOGGLE id="How" title={ formatMessage( messages.how_title ) } priority={ 3 } text={ formatMessage( messages.how ) } className={ style.corset } >
+		<TOGGLE id="How" title={ formatMessage( messages.how_title ) } priority={ 3 } text={ formatMessage( messages.how ) } className={ style.corset } classNameHeader={ style.italic } >
 			<DIV>
 				<P>{ formatMessage( messages.in_a_nutshell ) }</P>
 				<P>{ formatMessage( messages.what_happens ) }</P>

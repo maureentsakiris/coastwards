@@ -3,7 +3,6 @@ import { defineMessages, injectIntl, intlShape } from 'react-intl'
 import _ from 'underscore'
 
 import TOGGLE from 'components/ui/toggle'
-import H from 'components/tags/h'
 import DIV from 'components/tags/div'
 import P from 'components/tags/p'
 // import IMG from 'components/tags/img'
@@ -29,15 +28,15 @@ const messages = defineMessages( {
 	},
 
 	//guidelines
-	guideline_location_header:{
-		id: "guideline_loacation_header",
-		description: "Header - We need the location",
-		defaultMessage: "We need to know the location of the coast"
+	guideline_original_header:{
+		id: "guideline_original_header",
+		description: "Header - We need the original image",
+		defaultMessage: "We need the original image"
 	},
-	guideline_location_text:{
-		id: "guideline_location_text",
-		description: "Guideline - Location",
-		defaultMessage: "Unfortunately, this means: No images from Facebook or Whatsapp and probably most other social media. No scans. No screenshots.",
+	guideline_original_text:{
+		id: "guideline_original_text",
+		description: "Guideline - Original",
+		defaultMessage: "This means: No images from Facebook, Whatsapp or other Social Media and no scans or screenshots. Images from these sources do not have any metadata and we need the metadata to figure out where the coast is located and when the image was taken.",
 	},
 	guideline_faces_header:{
 		id: "guideline_faces_header",
@@ -47,17 +46,7 @@ const messages = defineMessages( {
 	guideline_faces_text:{
 		id: "guideline_faces_text",
 		description: "Guideline - Faces",
-		defaultMessage: "For privacy concerns, we cannot accept images with faces. During validation we run the images through face detection to enforce this policy."
-	},
-	guideline_original_header:{
-		id: "guideline_original_header",
-		description: "Header - Material",
-		defaultMessage: "We need the original image"
-	},
-	guideline_original_text:{
-		id: "guideline_original_text",
-		description: "Guideline - Material",
-		defaultMessage: "...."
+		defaultMessage: "That's a no-go for data privacy reasons."
 	},
 	guideline_material_header:{
 		id: "guideline_material_header",
@@ -67,7 +56,7 @@ const messages = defineMessages( {
 	guideline_material_text:{
 		id: "guideline_material_text",
 		description: "Guideline - Material",
-		defaultMessage: "Ideally, the shoreline divides the image in two, so we can see the coast material and adaptation measures, if present."
+		defaultMessage: "There are hundreds of beautiful images of coasts out there we cannot use because we cannot see the coast material. Images with sunsets, for example. Ideally, the shoreline divides the images in the middle with the sun in your back."
 	}
 
 } )
@@ -78,9 +67,8 @@ const guidelines = ( { intl } ) => {
 
 	const glData = [
 
-		{ img: 'location', header: formatMessage( messages.guideline_location_header ), text: formatMessage( messages.guideline_location_text ) },
-		{ img: 'faces', header: formatMessage( messages.guideline_faces_header ), text: formatMessage( messages.guideline_faces_text ) },
 		{ img: 'original', header: formatMessage( messages.guideline_original_header ), text: formatMessage( messages.guideline_original_text ) },
+		{ img: 'faces', header: formatMessage( messages.guideline_faces_header ), text: formatMessage( messages.guideline_faces_text ) },
 		{ img: 'material', header: formatMessage( messages.guideline_material_header ), text: formatMessage( messages.guideline_material_text ) }
 
 	]
@@ -92,11 +80,10 @@ const guidelines = ( { intl } ) => {
 
 		<P>{ gl.text }</P>*/
 
-		const header = ( key + 1 ) + ' - ' + gl.header
 
 		return(
 
-			<TOGGLE key={ key } title={ gl.header } priority={ 4 } text={ header } >
+			<TOGGLE key={ key } title={ gl.header } priority={ 4 } text={ gl.header } >
 				<P>{ gl.text }</P>
 			</TOGGLE>
 
@@ -106,7 +93,7 @@ const guidelines = ( { intl } ) => {
 
 	return(
 
-		<TOGGLE id="Guidelines" title={ formatMessage( messages.any_picture_title ) } priority={ 3 } text={ formatMessage( messages.any_picture ) } className={ style.corset } >
+		<TOGGLE id="Guidelines" title={ formatMessage( messages.any_picture_title ) } priority={ 3 } text={ formatMessage( messages.any_picture ) } className={ style.corset } classNameHeader={ style.italic } >
 			<P>{ formatMessage( messages.any_coast ) }</P>
 			<DIV>{ gls }</DIV>
 		</TOGGLE>

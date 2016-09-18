@@ -146,11 +146,11 @@ const form = ( { intl, show, image, setMaterial, /*setAdaptation,*/ setComment, 
 			<H priority={ 2 }>{ formatMessage( messages.hurray ) }</H>
 			{ image.dataURL && <IMG src={ image.dataURL } alt="your image" /> }
 			<BR/><BR/>
-			<RADIOGROUP form="Form" label={ formatMessage( messages.select_material ) } name="material" options={ materials } onClick={ setMaterial } />
+			<RADIOGROUP form="Form" label={ formatMessage( messages.select_material ) } name="material" options={ materials } onClick={ setMaterial } preferPlaceholder={ false } />
 			<BR/>
-			<COMMENT form="Form" label={ formatMessage( messages.say_hello ) } name="comment" placeholder={ formatMessage( messages.placeholder_say_hello ) } onChange={ setComment } />
+			<COMMENT form="Form" label={ formatMessage( messages.say_hello ) } name="comment" placeholder={ formatMessage( messages.placeholder_say_hello ) } onChange={ setComment } preferPlaceholder={ false } />
 			<BR/>
-			<HASHTAG form="Form" label={ formatMessage( messages.hashtag_your_image ) } name="hashtag" placeholder={ formatMessage( messages.placeholder_hashtag_your_image ) } onChange={ setHashtag } />
+			<HASHTAG form="Form" label={ formatMessage( messages.hashtag_your_image ) } name="hashtag" placeholder={ formatMessage( messages.placeholder_hashtag_your_image ) } onChange={ setHashtag } preferPlaceholder={ false } />
 			<FORMDATA />
 			<BR/><BR/>
 			<CANCEL onClick={ resetMain } label={ formatMessage( messages.cancel_upload ) } />
