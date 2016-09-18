@@ -35,9 +35,14 @@
     "defaultMessage": "In a nutshell, it gives science what satellites cannot: A close-up image of a coast. The possibility to study the bigger picture, in as much detail as possible."
   },
   {
+    "id": "what_happens",
+    "description": "Script - Here is what is going to happen.",
+    "defaultMessage": "Here is what's gonna happen."
+  },
+  {
     "id": "place_on_map",
     "description": "Script - First, it will be checked for information on the location it was taken, so we can place it on a map.",
-    "defaultMessage": "First, it will be checked for information on the location it was taken, so we can place it on a map."
+    "defaultMessage": "First, your image will be checked for information on the location it was taken, so we can place it on a map."
   },
   {
     "id": "determine_coastal_type",
@@ -47,7 +52,7 @@
   {
     "id": "the_more_the_better",
     "description": "Script - The more images are analysed, the more detail is added to a global map of what types exists and where.",
-    "defaultMessage": "The more images are analysed, the more detail is added to a global map of what types exists and where."
+    "defaultMessage": "The more images are analysed, the more detail is added to a global map of what types of coasts exists and where."
   },
   {
     "id": "computer_programs",

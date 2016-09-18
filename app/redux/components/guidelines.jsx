@@ -25,7 +25,7 @@ const messages = defineMessages( {
 	any_coast:{
 		id: "any_coast",
 		description: "Header - ",
-		defaultMessage: "Any coast but not any picture. We need these pictures to look at coasts (not people) and we need to know where these coasts are. So these are our guidelines:",
+		defaultMessage: "Any coast but not any picture. We need these pictures to get a closer look at coasts (not people) and we need to know where these coasts are. So these are our guidelines:",
 	},
 
 	//guidelines
@@ -49,6 +49,16 @@ const messages = defineMessages( {
 		description: "Guideline - Faces",
 		defaultMessage: "For privacy concerns, we cannot accept images with faces. During validation we run the images through face detection to enforce this policy."
 	},
+	guideline_original_header:{
+		id: "guideline_original_header",
+		description: "Header - Material",
+		defaultMessage: "We need the original image"
+	},
+	guideline_original_text:{
+		id: "guideline_original_text",
+		description: "Guideline - Material",
+		defaultMessage: "...."
+	},
 	guideline_material_header:{
 		id: "guideline_material_header",
 		description: "Header - Material",
@@ -70,6 +80,7 @@ const guidelines = ( { intl } ) => {
 
 		{ img: 'location', header: formatMessage( messages.guideline_location_header ), text: formatMessage( messages.guideline_location_text ) },
 		{ img: 'faces', header: formatMessage( messages.guideline_faces_header ), text: formatMessage( messages.guideline_faces_text ) },
+		{ img: 'original', header: formatMessage( messages.guideline_original_header ), text: formatMessage( messages.guideline_original_text ) },
 		{ img: 'material', header: formatMessage( messages.guideline_material_header ), text: formatMessage( messages.guideline_material_text ) }
 
 	]

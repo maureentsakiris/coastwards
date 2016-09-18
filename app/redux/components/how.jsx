@@ -52,10 +52,15 @@ const messages = defineMessages( {
 		description: "Script - In a nutshell, it gives science what satellites cannot: A close-up image of a coast. The possibility to study the bigger picture, in as much detail as possible.",
 		defaultMessage: "In a nutshell, it gives science what satellites cannot: A close-up image of a coast. The possibility to study the bigger picture, in as much detail as possible."
 	},
+	what_happens:{
+		id: "what_happens",
+		description: "Script - Here is what is going to happen.",
+		defaultMessage: "Here is what's gonna happen."
+	},
 	place_on_map:{
 		id: "place_on_map",
 		description: "Script - First, it will be checked for information on the location it was taken, so we can place it on a map.",
-		defaultMessage: "First, it will be checked for information on the location it was taken, so we can place it on a map."
+		defaultMessage: "First, your image will be checked for information on the location it was taken, so we can place it on a map."
 	},
 	determine_coastal_type:{
 		id: "determine_coastal_type",
@@ -65,7 +70,7 @@ const messages = defineMessages( {
 	the_more_the_better:{
 		id: "the_more_the_better",
 		description: "Script - The more images are analysed, the more detail is added to a global map of what types exists and where.",
-		defaultMessage: "The more images are analysed, the more detail is added to a global map of what types exists and where."
+		defaultMessage: "The more images are analysed, the more detail is added to a global map of what types of coasts exists and where."
 	},
 	computer_programs:{
 		id: "computer_programs",
@@ -99,24 +104,27 @@ const how = ( { intl } ) => {
 
 	const { formatMessage } = intl
 
+	/*<P>{ formatMessage( messages.best_advice ) }</P>
+				<P>{ formatMessage( messages.sea_levels_rise_because ) }</P>
+				<P>{ formatMessage( messages.only ) }</P>
+				<P>{ formatMessage( messages.sea_levels_rise_vary_drastically ) }</P>
+				<P>{ formatMessage( messages.forget_bathtub ) }</P>
+*/
+
 	return(
 
 		<TOGGLE id="How" title={ formatMessage( messages.how_title ) } priority={ 3 } text={ formatMessage( messages.how ) } className={ style.corset } >
 			<DIV>
 				<P>{ formatMessage( messages.in_a_nutshell ) }</P>
+				<P>{ formatMessage( messages.what_happens ) }</P>
+				<P>{ formatMessage( messages.place_on_map ) }</P>
 				<P>
-					{ formatMessage( messages.place_on_map ) } { " " }
 					{ formatMessage( messages.determine_coastal_type ) } { " " }
-					{ formatMessage( messages.the_more_the_better ) } { " " }
-					{ formatMessage( messages.computer_programs ) } { " " }
-					{ formatMessage( messages.policy_makers ) } { " " }
+					{ formatMessage( messages.the_more_the_better ) }
 				</P>
+				<P>{ formatMessage( messages.computer_programs ) }</P>
+				<P>{ formatMessage( messages.policy_makers ) }</P>
 				<P>{ formatMessage( messages.best_advice ) }</P>
-				<P>{ formatMessage( messages.sea_levels_rise_because ) }</P>
-				<P>{ formatMessage( messages.only ) }</P>
-				<P>{ formatMessage( messages.sea_levels_rise_vary_drastically ) }</P>
-				<P>{ formatMessage( messages.forget_bathtub ) }</P>
-				<H priority={ 4 }>{ formatMessage( messages.send_a_signal ) }</H>
 			</DIV>
 		</TOGGLE>
 
