@@ -22,6 +22,8 @@ import FAQs from 'components/faqs'
 import Ask from 'components/ask'
 import Prompt from 'components/prompt'
 
+import DIV from 'components/tags/div'
+
 
 //TODO: i18nLinks should handle that itself?
 import i18nLocales from 'actions/i18n/i18nLocales'
@@ -46,16 +48,18 @@ ReactDom.render(
 
 	<Provider store={ store } >
 		<I18nProvider>
-			<Context className={ style.context } >
-				<I18nLinks availableLanguages={ i18nLocales.locales } id="I18n" className={ style.center } />
-				<Intro />
-				<How />
-				<Guidelines />
-				<Team />
-				<FAQs />
-				<Ask />
-				<Prompt />
-				<Main />
+			<Context>
+				<DIV id="Site"  className={ style.site }>
+					<I18nLinks availableLanguages={ i18nLocales.locales } id="I18n" className={ style.center } />
+					<Intro />
+					<How />
+					<Guidelines />
+					<Team />
+					<FAQs />
+					<Ask />
+					<Prompt />
+					<Main />
+				</DIV>
 				<Snackbar />
 				<Dialog />
 			</Context>

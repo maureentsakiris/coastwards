@@ -93,7 +93,7 @@ const messages = defineMessages( {
 	placeholder_hashtag_your_image:{
 		id: "placeholder_hashtag_your_image",
 		description: "Placeholder - ",
-		defaultMessage: "#mycrazysummerwithgeorgie"
+		defaultMessage: "#iwashere"
 	},
 
 	//upload

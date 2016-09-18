@@ -11,8 +11,8 @@ const messages = defineMessages( {
 
 	other_questions:{
 		id: "other_questions",
-		description: "Section header - Other questions...",
-		defaultMessage: "Other questions..."
+		description: "Section header - But ...",
+		defaultMessage: "But..."
 	},
 	other_questions_title:{
 		id: "other_questions_title",

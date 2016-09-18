@@ -20,7 +20,7 @@ const messages = defineMessages( {
 	data_privacy:{
 		id: "data_privacy",
 		description: "Header - Gives user the opportunity to see exactly what information is beind sent to our servers",
-		defaultMessage: "See what other information will be sent to our servers"
+		defaultMessage: "See what else will be sent to our servers"
 	}
 
 

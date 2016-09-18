@@ -1,8 +1,8 @@
 [
   {
     "id": "q1",
-    "description": "Aren't satellite images enough?",
-    "defaultMessage": "Aren't satellite images enough?"
+    "description": "... aren't satellite images enough?",
+    "defaultMessage": "... aren't satellite images enough?"
   },
   {
     "id": "a1",
@@ -11,8 +11,8 @@
   },
   {
     "id": "q2",
-    "description": "Can the images I upload be traced back to me? (Data privacy)",
-    "defaultMessage": "Can the images I upload be traced back to me? (Data privacy)"
+    "description": "... can the images I upload be traced back to me? (Data privacy)",
+    "defaultMessage": "... can the images I upload be traced back to me? (Data privacy)"
   },
   {
     "id": "a2",
@@ -21,8 +21,8 @@
   },
   {
     "id": "q3",
-    "description": "Do I have to provide any personal data?",
-    "defaultMessage": "Do I have to provide any personal data?"
+    "description": "... do I have to provide any personal data?",
+    "defaultMessage": "... do I have to provide any personal data?"
   },
   {
     "id": "a3",
@@ -31,8 +31,8 @@
   },
   {
     "id": "q4",
-    "description": "Will I notified about publications resulting from this project?",
-    "defaultMessage": "Will I notified about publications resulting from this project?"
+    "description": "... will I notified about publications resulting from this project?",
+    "defaultMessage": "... will I notified about publications resulting from this project?"
   },
   {
     "id": "a4",
@@ -41,8 +41,8 @@
   },
   {
     "id": "q5",
-    "description": "Who has access to the data you collect?",
-    "defaultMessage": "Who has access to the data you collect?"
+    "description": "... who has access to the data you collect?",
+    "defaultMessage": "... who has access to the data you collect?"
   },
   {
     "id": "a5",
@@ -51,8 +51,8 @@
   },
   {
     "id": "q6",
-    "description": "How many pictures do you need?",
-    "defaultMessage": "How many pictures do you need?"
+    "description": "... how many pictures do you need?",
+    "defaultMessage": "... how many pictures do you need?"
   },
   {
     "id": "a6",

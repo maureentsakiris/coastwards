@@ -7,7 +7,7 @@
   {
     "id": "one_more_question",
     "description": "Section header - Contact us",
-    "defaultMessage": "I still have a question!"
+    "defaultMessage": "Still have a question!"
   },
   {
     "id": "one_more_question_title",
@@ -17,7 +17,7 @@
   {
     "id": "label_email",
     "description": "Lable - Email",
-    "defaultMessage": "Email"
+    "defaultMessage": "Your email"
   },
   {
     "id": "placeholder_email",
@@ -27,12 +27,12 @@
   {
     "id": "label_question",
     "description": "Label - Your Question",
-    "defaultMessage": "Your question"
+    "defaultMessage": "Tell us your question"
   },
   {
     "id": "placeholder_question",
     "description": "Placeholder - Tell us your question",
-    "defaultMessage": "What's your question?"
+    "defaultMessage": "Tell us your question"
   },
   {
     "id": "label_submit",

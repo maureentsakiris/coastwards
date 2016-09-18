@@ -17,7 +17,7 @@ const messages = defineMessages( {
 	whyIP_text:{
 		id: "whyIP_text",
 		description: "P - ",
-		defaultMessage: "We need to be able to prove that there is a source of the image that is not ourselves. Basically, we are covering our own asses BUT we can only point to your IP Address, not to you."
+		defaultMessage: "We need to be able to prove that we are not the source of the image. Basically, we are covering our own asses BUT we can only point to your IP Address, not to you."
 	},
 	ip_address_learn_more:{
 		id: "ip_address_learn_more",

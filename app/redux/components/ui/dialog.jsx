@@ -34,8 +34,10 @@ const dialog = ( { intl, component, active, closeDialog } ) => {
 		return(
 
 			<DIV className={ style.dialog } >
-				<A href="#" onClick={ closeDialog } title={ formatMessage( messages.close_dialog ) } ><I className="material-icons" >&#xE5CD;</I></A>
-				<WHYIP style={ { display: component == 'WHYIP' ? 'block' : 'none' } } />
+				<A className={ style.close } href="#" onClick={ closeDialog } title={ formatMessage( messages.close_dialog ) } ><I className="material-icons" >&#xE5CD;</I></A>
+				<DIV className={ style.body } >
+					<WHYIP style={ { display: component == 'WHYIP' ? 'block' : 'none' } } />
+				</DIV>
 			</DIV>
 
 		)

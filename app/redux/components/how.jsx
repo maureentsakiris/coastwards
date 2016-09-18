@@ -12,8 +12,8 @@ const messages = defineMessages( {
 
 	how:{
 		id: "how",
-		description: "Section header - How does a picture help",
-		defaultMessage: "How does a picture help?"
+		description: "Section header - How does my picture help",
+		defaultMessage: "How does my picture help?"
 	},
 	how_title:{
 		id:"how_title",
@@ -49,8 +49,8 @@ const messages = defineMessages( {
 	},*/
 	in_a_nutshell:{
 		id: "in_a_nutshell",
-		description: "Script - In a nutshell, they give science what satellites cannot: A close-up image of a coast. The possibility to study the bigger picture, in as much detail as possible.",
-		defaultMessage: "In a nutshell, they give science what satellites cannot: A close-up image of a coast. The possibility to study the bigger picture, in as much detail as possible."
+		description: "Script - In a nutshell, it gives science what satellites cannot: A close-up image of a coast. The possibility to study the bigger picture, in as much detail as possible.",
+		defaultMessage: "In a nutshell, it gives science what satellites cannot: A close-up image of a coast. The possibility to study the bigger picture, in as much detail as possible."
 	},
 	place_on_map:{
 		id: "place_on_map",
@@ -80,7 +80,7 @@ const messages = defineMessages( {
 	best_advice:{
 		id: "best_advice",
 		description: "Script - Your images help science give their best advice on how to best protect ourselves, our children and our grandchil- dren from sea-level rise.",
-		defaultMessage: "Your images help science give their best advice on how to best protect ourselves, our children and our grandchildren from sea-level rise."
+		defaultMessage: "Your images help scientists give their best advice on how to best protect ourselves, our children and our grandchildren from sea-level rise."
 	},
 	easy_beautiful_meaningful:{
 		id: "easy_beautiful_meaningful",
@@ -90,7 +90,7 @@ const messages = defineMessages( {
 	send_a_signal:{
 		id: "send_a_signal",
 		description: "Script - Let's send a signal and work together. It's simple. And beautiful, too.",
-		defaultMessage: "Let's send a signal and work together. It's simple. And beautiful, too."
+		defaultMessage: "Help us send a signal. Of love, hope, solidarity. It's simple (for you). And beautiful, too."
 	}
 
 } )
@@ -109,13 +109,13 @@ const how = ( { intl } ) => {
 					{ formatMessage( messages.determine_coastal_type ) } { " " }
 					{ formatMessage( messages.the_more_the_better ) } { " " }
 					{ formatMessage( messages.computer_programs ) } { " " }
-					{ formatMessage( messages.policy_makers ) }
+					{ formatMessage( messages.policy_makers ) } { " " }
 				</P>
+				<P>{ formatMessage( messages.best_advice ) }</P>
 				<P>{ formatMessage( messages.sea_levels_rise_because ) }</P>
 				<P>{ formatMessage( messages.only ) }</P>
 				<P>{ formatMessage( messages.sea_levels_rise_vary_drastically ) }</P>
 				<P>{ formatMessage( messages.forget_bathtub ) }</P>
-				<P>{ formatMessage( messages.best_advice ) }</P>
 				<H priority={ 4 }>{ formatMessage( messages.send_a_signal ) }</H>
 			</DIV>
 		</TOGGLE>

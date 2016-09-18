@@ -20,7 +20,7 @@ const browser = ( state = { uploadSupported: uploadSupported, mapboxSupported: m
 
 }
 
-const config = ( state= { google: true, imageWidth: 800 }, action ) => {
+const config = ( state= { google: false, imageWidth: 800 }, action ) => {
 
 	switch ( action.type ){
 

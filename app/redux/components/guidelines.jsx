@@ -25,7 +25,7 @@ const messages = defineMessages( {
 	any_coast:{
 		id: "any_coast",
 		description: "Header - ",
-		defaultMessage: "Any coast but not any picture. Our goal is to determine the coast material at a given location. So logically, we need to see the material of the coast in the image and we need to know where this image was taken."
+		defaultMessage: "Any coast but not any picture. We need these pictures to look at coasts (not people) and we need to know where these coasts are. So these are our guidelines:",
 	},
 
 	//guidelines
@@ -37,7 +37,7 @@ const messages = defineMessages( {
 	guideline_location_text:{
 		id: "guideline_location_text",
 		description: "Guideline - Location",
-		defaultMessage: "If the image was taken with a modern mobile or digital camera, chances are good that we can automatically extract the location from the metadata. Otherwise, there is still the possibility for you to manually determine the location by placing a marker on a map (modern browsers only) -- if you remember, of course!"
+		defaultMessage: "Unfortunately, this means: No images from Facebook or Whatsapp and probably most other social media. No scans. No screenshots.",
 	},
 	guideline_faces_header:{
 		id: "guideline_faces_header",
@@ -96,7 +96,7 @@ const guidelines = ( { intl } ) => {
 	return(
 
 		<TOGGLE id="Guidelines" title={ formatMessage( messages.any_picture_title ) } priority={ 3 } text={ formatMessage( messages.any_picture ) } className={ style.corset } >
-			<H priority={ 4 } >{ formatMessage( messages.any_coast ) }</H>
+			<P>{ formatMessage( messages.any_coast ) }</P>
 			<DIV>{ gls }</DIV>
 		</TOGGLE>
 
