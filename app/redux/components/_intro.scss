@@ -1,13 +1,8 @@
 @import 'app/styles/base';
 
-.corset{
+.intro{
 
 	@extend %corset;
-
-}
-
-.center{
-
-	@extend %center;
+	text-align: center;
 
 }

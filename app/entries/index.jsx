@@ -48,15 +48,20 @@ ReactDom.render(
 	<Provider store={ store } >
 		<I18nProvider>
 			<Context>
-				<DIV id="Site"  className={ style.site }>
-					<I18nLinks availableLanguages={ i18nLocales.locales } id="I18n" className={ style.center } />
-					<Intro />
-					<How />
-					<Guidelines />
-					<Team />
-					<FAQs />
-					<Prompt />
-					<Main />
+				<DIV id="Site" >
+					<DIV id="Top" className={ style.top }>
+						<I18nLinks availableLanguages={ i18nLocales.locales } id="I18n" className={ style.i18n } />
+						<Intro />
+					</DIV>
+					<DIV id="Middle" className={ style.middle } >
+						<How />
+						<Guidelines />
+						<Team />
+						<FAQs />
+					</DIV>
+					<DIV id="Bottom" className={ style.bottom }>
+						<Main />
+					</DIV>
 				</DIV>
 				<Snackbar />
 				<Dialog />

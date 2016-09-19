@@ -37,12 +37,12 @@
   {
     "id": "label_question",
     "description": "Label - Your Question",
-    "defaultMessage": "... still have a question? Ask us!"
+    "defaultMessage": "... you still have a question? Ask us!"
   },
   {
     "id": "placeholder_question",
-    "description": "Placeholder - ... still have a question? Ask us!",
-    "defaultMessage": "... still have a question? Ask us!"
+    "description": "Placeholder - ... you still have a question? Ask us!",
+    "defaultMessage": "... you still have a question? Ask us!"
   },
   {
     "id": "label_submit",

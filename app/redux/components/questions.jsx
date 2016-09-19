@@ -3,8 +3,10 @@ import { defineMessages, injectIntl, intlShape } from 'react-intl'
 
 import TOGGLE from 'components/ui/toggle'
 import DIV from 'components/tags/div'
+import A from 'components/tags/a'
 
-import style from './_toggleQuestion'
+import style from './_questions'
+
 
 const messages = defineMessages( {
 
@@ -35,8 +37,13 @@ const messages = defineMessages( {
 	},
 	a2:{
 		id: "a2",
-		description: "Short answer: No. We have to save an IP address to be able to show that the image was uploaded by someone else, but an IP address gives us only a rough location (at best) and absolutely no personal information. In an effort to be as transparent as possible you can view the entire information we send to our server before you decide to upload the image.",
-		defaultMessage: "Short answer: No. We have to save an IP address to be able to show that the image was uploaded by someone else, but an IP address gives us only a rough location (at best) and absolutely no personal information. In an effort to be as transparent as possible you can view the entire information we send to our server before you decide to upload the image."
+		description: "Short answer: No. We have to save an IP address it only gives us a rough location (at best) and absolutely no personal information. In an effort to be as transparent as possible you can view the entire information we send to our server before you decide to upload the image.",
+		defaultMessage: "Short answer: No. We have to save an IP address it only gives us a rough location (at best) and absolutely no personal information. In an effort to be as transparent as possible you can view the entire information we send to our server before you decide to upload the image."
+	},
+	a2_why:{
+		id: "a2_why",
+		description: "Link - ",
+		defaultMessage: "Why do you need my IP Address?"
 	},
 	q3:{
 		id: "q3",
@@ -81,29 +88,29 @@ const messages = defineMessages( {
 
 } )
 
-const questions = ( { intl, className } ) => {
+const questions = ( { intl, showDialog } ) => {
 
 	const { formatMessage } = intl
 
 	return(
 
-		<DIV id="Questions"  className={ className } >
-			<TOGGLE priority={ 4 } text={ formatMessage( messages.q1 ) } classNameHeader={ style.question }  >
+		<DIV id="Questions" >
+			<TOGGLE priority={ 4 } text={ formatMessage( messages.q1 ) } className={ style.toggle } >
 				<DIV>{ formatMessage( messages.a1 ) }</DIV>
 			</TOGGLE>
-			<TOGGLE priority={ 4 } text={ formatMessage( messages.q2 ) } classNameHeader={ style.question }  >
-				<DIV>{ formatMessage( messages.a2 ) }</DIV>
+			<TOGGLE priority={ 4 } text={ formatMessage( messages.q2 ) } className={ style.toggle } >
+				<DIV>{ formatMessage( messages.a2 ) } <A onClick={ showDialog.bind( this, 'WHYIP' ) }>{ formatMessage( messages.a2_why ) }</A></DIV>
 			</TOGGLE>
-			<TOGGLE priority={ 4 } text={ formatMessage( messages.q3 ) } classNameHeader={ style.question }  >
+			<TOGGLE priority={ 4 } text={ formatMessage( messages.q3 ) } className={ style.toggle } >
 				<DIV>{ formatMessage( messages.a3 ) }</DIV>
 			</TOGGLE>
-			<TOGGLE priority={ 4 } text={ formatMessage( messages.q4 ) } classNameHeader={ style.question }  >
+			<TOGGLE priority={ 4 } text={ formatMessage( messages.q4 ) } className={ style.toggle } >
 				<DIV>{ formatMessage( messages.a4 ) }</DIV>
 			</TOGGLE>
-			<TOGGLE priority={ 4 } text={ formatMessage( messages.q5 ) } classNameHeader={ style.question }  >
+			<TOGGLE priority={ 4 } text={ formatMessage( messages.q5 ) } className={ style.toggle } >
 				<DIV>{ formatMessage( messages.a5 ) }</DIV>
 			</TOGGLE>
-			<TOGGLE priority={ 4 } text={ formatMessage( messages.q6 ) } classNameHeader={ style.question }  >
+			<TOGGLE priority={ 4 } text={ formatMessage( messages.q6 ) } className={ style.toggle } >
 				<DIV>{ formatMessage( messages.a6 ) }</DIV>
 			</TOGGLE>
 		</DIV>
@@ -115,7 +122,7 @@ questions.propTypes = {
 
 	intl: intlShape.isRequired,
 
-	className: PropTypes.string
+	showDialog: PropTypes.func
 
 }
 

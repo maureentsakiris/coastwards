@@ -232,6 +232,7 @@ export const validateFile = ( e ) => {
 
 			dispatch( resetMain() )
 			dispatch( { type: types.SET_ERROR_MSG, to: error.message } )
+			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'upload', to: false } )
 			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'errors', to: true } )
 			console.log( error )
 

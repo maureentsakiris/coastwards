@@ -16,8 +16,13 @@
   },
   {
     "id": "a2",
-    "description": "Short answer: No. We have to save an IP address to be able to show that the image was uploaded by someone else, but an IP address gives us only a rough location (at best) and absolutely no personal information. In an effort to be as transparent as possible you can view the entire information we send to our server before you decide to upload the image.",
-    "defaultMessage": "Short answer: No. We have to save an IP address to be able to show that the image was uploaded by someone else, but an IP address gives us only a rough location (at best) and absolutely no personal information. In an effort to be as transparent as possible you can view the entire information we send to our server before you decide to upload the image."
+    "description": "Short answer: No. We have to save an IP address it only gives us a rough location (at best) and absolutely no personal information. In an effort to be as transparent as possible you can view the entire information we send to our server before you decide to upload the image.",
+    "defaultMessage": "Short answer: No. We have to save an IP address it only gives us a rough location (at best) and absolutely no personal information. In an effort to be as transparent as possible you can view the entire information we send to our server before you decide to upload the image."
+  },
+  {
+    "id": "a2_why",
+    "description": "Link -",
+    "defaultMessage": "Why do you need my IP Address?"
   },
   {
     "id": "q3",

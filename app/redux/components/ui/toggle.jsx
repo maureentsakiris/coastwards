@@ -46,19 +46,23 @@ class Toggle extends Component {
 		const { children, priority, text, title, className, ...restProps } = this.props
 		const { expanded } = this.state
 
-		const cls = Classnames( style.toggle, className )
+		const clsChildren = Classnames( {
+
+			[ style.children ]: expanded
+
+		} )
 
 		return (
 
-			<DIV { ...restProps } className={ cls } >
-				<A onClick={ this._toggle } title={ title }  >
+			<DIV { ...restProps } className={ className } >
+				<A onClick={ this._toggle } title={ title } className={ style.anchor } >
 					<H priority={ priority } >
 						{ text } 		
 						{ !expanded && <I className="material-icons" style={ { verticalAlign: 'middle' } } >&#xE5CC;</I> }
 						{ expanded && <I className="material-icons" style={ { verticalAlign: 'middle' } } >&#xE5CF;</I> }
 					</H>
 				</A>
-				{ expanded && <DIV>{ children }</DIV> }
+				{ expanded && <DIV className={ clsChildren } >{ children }</DIV> }
 			</DIV>
 
 		)

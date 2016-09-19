@@ -1,0 +1,14 @@
+@import 'app/styles/base';
+
+.toggle{
+
+	@extend %toggle;
+	border-top: 1px solid #f1f1f1;
+
+}
+
+.ask{
+
+	margin-top: $site-padding-top;
+
+}

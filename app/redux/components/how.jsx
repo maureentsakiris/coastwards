@@ -5,9 +5,8 @@ import TOGGLE from 'components/ui/toggle'
 import DIV from 'components/tags/div'
 import P from 'components/tags/p'
 import H from 'components/tags/h'
-import SMALL from 'components/tags/small'
 
-import style from './_toggleQuestion'
+import style from './_how'
 
 const messages = defineMessages( {
 
@@ -126,8 +125,8 @@ const how = ( { intl } ) => {
 
 	return(
 
-		<TOGGLE id="How" title={ formatMessage( messages.how_title ) } priority={ 3 } text={ formatMessage( messages.how ) } className={ style.toggleQuestion } >
-			<DIV className={ style.toggleDiv } >
+		<TOGGLE id="How" title={ formatMessage( messages.how_title ) } priority={ 3 } text={ formatMessage( messages.how ) } className={ style.toggle } >
+			<DIV>
 				<P>{ formatMessage( messages.in_a_nutshell ) }</P>
 				<P>{ formatMessage( messages.how_it_works ) }</P>
 				<P>{ formatMessage( messages.place_on_map ) }</P>

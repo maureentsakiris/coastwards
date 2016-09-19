@@ -6,7 +6,7 @@ import DIV from 'components/tags/div'
 import SMALL from 'components/tags/small'
 import A from 'components/tags/a'
 
-import style from './_headers.scss'
+import style from './_prompt'
 
 const messages = defineMessages( {
 

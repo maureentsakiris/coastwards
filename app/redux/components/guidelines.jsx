@@ -6,9 +6,8 @@ import TOGGLE from 'components/ui/toggle'
 import DIV from 'components/tags/div'
 import P from 'components/tags/p'
 import H from 'components/tags/h'
-// import IMG from 'components/tags/img'
 
-import style from './_toggleQuestion'
+import style from './_guidelines'
 
 const messages = defineMessages( {
 
@@ -85,7 +84,7 @@ const guidelines = ( { intl } ) => {
 		return(
 
 			<DIV key={ key } >
-				<H priority={ 4 }>{ gl.header }</H>
+				<H priority={ 4 } className={ style.glheader } >{ gl.header }</H>
 				<P>{ gl.text }</P>
 			</DIV>
 
@@ -95,9 +94,9 @@ const guidelines = ( { intl } ) => {
 
 	return(
 
-		<TOGGLE id="Guidelines" title={ formatMessage( messages.any_picture_title ) } priority={ 3 } text={ formatMessage( messages.any_picture ) } className={ style.toggleQuestion } >
+		<TOGGLE id="Guidelines" title={ formatMessage( messages.any_picture_title ) } priority={ 3 } text={ formatMessage( messages.any_picture ) } className={ style.toggle } >
 			<P>{ formatMessage( messages.any_coast ) }</P>
-			<DIV  className={ style.toggleDiv } >{ gls }</DIV>
+			<DIV>{ gls }</DIV>
 		</TOGGLE>
 
 	)

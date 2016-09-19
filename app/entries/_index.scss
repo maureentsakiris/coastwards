@@ -2,15 +2,47 @@
 @import 'app/styles/tags';
 @import 'app/styles/base';
 
+$no-flexbox-spacing: $site-padding-top;
 
-.site{
+
+%paddingSides{
 	
-	padding: $site-padding-top $site-padding-sides;
+	padding-right: $site-padding-sides;
+	padding-left: $site-padding-sides;
 
 }
 
-.center{
+.i18n{
 
-	@extend %center;
+	text-align: center;
+	margin-bottom: $no-flexbox-spacing;
+
+}
+
+%page{
+
+	margin-bottom: $no-flexbox-spacing;
+
+}
+
+.top{
+
+	@extend %page;
+	@extend %paddingSides;
+	padding-top: $site-padding-top;
+
+}
+
+.middle{
+
+	@extend %page;
+	@extend %paddingSides;
+
+}
+
+.bottom{
+
+	@extend %page;
+	//padding-bottom: $site-padding-bottom;
 
 }

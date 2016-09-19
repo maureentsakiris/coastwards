@@ -7,8 +7,40 @@
 
 }
 
-%center{
+/* %center{
 
 	text-align: center;
+
+} */
+
+%toggle{
+
+	@extend %corset;
+
+	&>a{
+
+		padding: 1em 0;
+
+	}
+
+	&>div{
+
+		margin-bottom: 1em;
+
+	}
+
+	h3{
+
+		position: relative;
+		font-style: italic;
+
+		i{
+
+			position: absolute;
+			right: 0;
+
+		}
+
+	}
 
 }

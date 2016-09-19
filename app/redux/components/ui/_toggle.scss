@@ -1,9 +1,18 @@
-.toggle{
+.anchor{
 
-	a{
+	text-decoration: none;
+	display: block;
 
-		text-decoration: none;
+	h1,h2,h3,h4,h5,h6{
+
+		margin: 0;
 
 	}
+	
+}
+
+.children{
+
+	margin-bottom: 2em;
 
 }

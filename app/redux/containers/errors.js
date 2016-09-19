@@ -22,6 +22,7 @@ const mapDispatchToProps = ( dispatch ) => {
 		hide: ( ) => {
 
 			dispatch( { type: 'SET_LAYER_VISIBILITY', layer: 'errors', to: false } )
+			dispatch( { type: 'SET_LAYER_VISIBILITY', layer: 'upload', to: true } )
 
 		},
 		resetForm: ( ) => {

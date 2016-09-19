@@ -1,7 +1,7 @@
 import React from 'react'
 import { defineMessages, injectIntl, intlShape } from 'react-intl'
 
-import Questions from 'components/Questions'
+import Questions from 'containers/questions'
 
 
 import TOGGLE from 'components/ui/toggle'
@@ -12,7 +12,7 @@ import COMMENT from 'components/form/input/comment'
 import SUBMIT from  'components/form/button/submit'
 import BR from 'components/tags/br'
 
-import style from './_toggleQuestion'
+import style from './_faqs'
 
 const messages = defineMessages( {
 
@@ -56,12 +56,12 @@ const messages = defineMessages( {
 	label_question:{
 		id: "label_question",
 		description: "Label - Your Question",
-		defaultMessage: "... still have a question? Ask us!"
+		defaultMessage: "... you still have a question? Ask us!"
 	},
 	placeholder_question:{
 		id: "placeholder_question",
-		description: "Placeholder - ... still have a question? Ask us!",
-		defaultMessage: "... still have a question? Ask us!"
+		description: "Placeholder - ... you still have a question? Ask us!",
+		defaultMessage: "... you still have a question? Ask us!"
 	},
 	label_submit:{
 		id: "label_submit",
@@ -77,9 +77,9 @@ const faqs = ( { intl } ) => {
 
 	return(
 
-		<TOGGLE id="Faqs" title={ formatMessage( messages.other_questions_title ) } priority={ 3 } text={ formatMessage( messages.other_questions ) } className={ style.toggleQuestion } >
+		<TOGGLE id="Faqs" title={ formatMessage( messages.other_questions_title ) } priority={ 3 } text={ formatMessage( messages.other_questions ) } className={ style.toggle } >
 			<Questions />
-			<FORM action="#" id="Ask"  className={ style.toggleDiv } >
+			<FORM action="#" id="Ask"  className={ style.ask } >
 				<COMMENT form="Ask" label={ formatMessage( messages.label_question ) } name="comment" placeholder={ formatMessage( messages.placeholder_question ) } />
 				<BR />
 				<EMAIL form="Ask" label={ formatMessage( messages.label_email ) } name="email" placeholder={ formatMessage( messages.placeholder_email ) } />

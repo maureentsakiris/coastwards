@@ -5,7 +5,7 @@ import TOGGLE from 'components/ui/toggle'
 import P from 'components/tags/p'
 import H from 'components/tags/h'
 
-import style from './_toggleQuestion'
+import style from './_team'
 
 const messages = defineMessages( {
 
@@ -50,7 +50,7 @@ const team = ( { intl } ) => {
 
 	return(
 
-		<TOGGLE id="Team" title={ formatMessage( messages.who_are_you_title ) } priority={ 3 } text={ formatMessage( messages.who_are_you ) } className={ style.toggleQuestion } >
+		<TOGGLE id="Team" title={ formatMessage( messages.who_are_you_title ) } priority={ 3 } text={ formatMessage( messages.who_are_you ) } className={ style.toggle } >
 			<H priority={ 4 }>{ formatMessage( messages.hi_there ) }</H>
 		</TOGGLE>
 
