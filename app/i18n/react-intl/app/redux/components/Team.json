@@ -5,6 +5,16 @@
     "defaultMessage": "Who are you?"
   },
   {
+    "id": "hi_there",
+    "description": "Paragraph",
+    "defaultMessage": "We are the 'Coastal Risks and Sea-Level Rise Research Group' at the University of Kiel in Germany and this project is funded by the 'Future Ocean Excellence Cluster'."
+  },
+  {
+    "id": "we_are",
+    "description": "Paragraph",
+    "defaultMessage": "I'm Maureen, the project leader and this is the team of scientists:"
+  },
+  {
     "id": "who_are_you_title",
     "description": "Section header - Meet us!",
     "defaultMessage": "Meet us!"

@@ -5,9 +5,10 @@ import _ from 'underscore'
 import TOGGLE from 'components/ui/toggle'
 import DIV from 'components/tags/div'
 import P from 'components/tags/p'
+import H from 'components/tags/h'
 // import IMG from 'components/tags/img'
 
-import style from '_base'
+import style from './_toggleQuestion'
 
 const messages = defineMessages( {
 
@@ -56,7 +57,7 @@ const messages = defineMessages( {
 	guideline_material_text:{
 		id: "guideline_material_text",
 		description: "Guideline - Material",
-		defaultMessage: "There are hundreds of beautiful images of coasts out there we cannot use because we cannot see the coast material. Images with sunsets, for example. Ideally, the shoreline divides the images in the middle with the sun in your back."
+		defaultMessage: "You probably didn't care much about the coast material at the time you took the picture (unless you're robert), so please bear in mind that we don't care about how beautiful or ugly the image is, as long as we can see the coast material."
 	}
 
 } )
@@ -83,9 +84,10 @@ const guidelines = ( { intl } ) => {
 
 		return(
 
-			<TOGGLE key={ key } title={ gl.header } priority={ 4 } text={ gl.header } >
+			<DIV key={ key } >
+				<H priority={ 4 }>{ gl.header }</H>
 				<P>{ gl.text }</P>
-			</TOGGLE>
+			</DIV>
 
 		)
 
@@ -93,9 +95,9 @@ const guidelines = ( { intl } ) => {
 
 	return(
 
-		<TOGGLE id="Guidelines" title={ formatMessage( messages.any_picture_title ) } priority={ 3 } text={ formatMessage( messages.any_picture ) } className={ style.corset } classNameHeader={ style.italic } >
+		<TOGGLE id="Guidelines" title={ formatMessage( messages.any_picture_title ) } priority={ 3 } text={ formatMessage( messages.any_picture ) } className={ style.toggleQuestion } >
 			<P>{ formatMessage( messages.any_coast ) }</P>
-			<DIV>{ gls }</DIV>
+			<DIV  className={ style.toggleDiv } >{ gls }</DIV>
 		</TOGGLE>
 
 	)

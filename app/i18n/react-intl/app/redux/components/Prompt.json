@@ -1,8 +1,13 @@
 [
   {
-    "id": "all_set",
+    "id": "pictures_on_device",
     "description": "Section header - All set?",
-    "defaultMessage": "Do you have any pictures of coasts on your device? Why not upload them now?"
+    "defaultMessage": "Do you have any pictures of coasts on your device?"
+  },
+  {
+    "id": "why_not_now",
+    "description": "Section header",
+    "defaultMessage": "Why not upload them now?"
   },
   {
     "id": "one_by_one",

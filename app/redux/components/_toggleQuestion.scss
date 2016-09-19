@@ -1,0 +1,39 @@
+@import 'app/styles/base';
+
+.toggleQuestion{
+
+	@extend %corset;
+
+	display: block;
+	border-top: 1px solid #f1f1f1;
+
+	h3{
+
+		position: relative;
+		font-style: italic;
+
+		i{
+
+			position: absolute;
+			right: 0;
+
+		}
+
+	}
+
+
+}
+
+.toggleDiv{
+
+	padding-bottom: 1em;
+
+}
+
+
+
+.question{
+
+	font-style: italic;
+
+}

@@ -6,14 +6,19 @@ import DIV from 'components/tags/div'
 import SMALL from 'components/tags/small'
 import A from 'components/tags/a'
 
-import style from '_base'
+import style from './_headers.scss'
 
 const messages = defineMessages( {
 
-	all_set:{
-		id: "all_set",
+	pictures_on_device:{
+		id: "pictures_on_device",
 		description: "Section header - All set?",
-		defaultMessage: "Do you have any pictures of coasts on your device? Why not upload them now?"
+		defaultMessage: "Do you have any pictures of coasts on your device?"
+	},
+	why_not_now:{
+		id: "why_not_now",
+		description: "Section header",
+		defaultMessage: "Why not upload them now?"
 	},
 	one_by_one:{
 		id: "one_by_one",
@@ -35,8 +40,8 @@ const prompt = ( { intl } ) => {
 	return(
 
 		<DIV id="Prompt" className={ style.corset } >
-			<H priority={ 2 }>{ formatMessage( messages.all_set ) }</H>
-			<SMALL>( { formatMessage( messages.one_by_one ) } <A href="#" onClick={ ( ) => { } } >{ formatMessage( messages.check_for_batch_upload ) }</A> )</SMALL>
+			<H priority={ 2 } className={ style.center } >{ formatMessage( messages.pictures_on_device ) } { formatMessage( messages.why_not_now ) }</H>
+			<SMALL className={ style.center } >( { formatMessage( messages.one_by_one ) } <A href="#" onClick={ ( ) => { } } >{ formatMessage( messages.check_for_batch_upload ) }</A> )</SMALL>
 		</DIV>
 
 	)

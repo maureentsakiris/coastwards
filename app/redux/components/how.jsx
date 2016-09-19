@@ -4,8 +4,10 @@ import { defineMessages, injectIntl, intlShape } from 'react-intl'
 import TOGGLE from 'components/ui/toggle'
 import DIV from 'components/tags/div'
 import P from 'components/tags/p'
+import H from 'components/tags/h'
+import SMALL from 'components/tags/small'
 
-import style from '_base'
+import style from './_toggleQuestion'
 
 const messages = defineMessages( {
 
@@ -51,10 +53,10 @@ const messages = defineMessages( {
 		description: "Script - In a nutshell, it gives science what satellites cannot: A close-up image of a coast. The possibility to study the bigger picture, in as much detail as possible.",
 		defaultMessage: "In a nutshell, it gives science what satellites cannot: A close-up image of a coast. The possibility to study the bigger picture, in as much detail as possible."
 	},
-	what_happens:{
-		id: "what_happens",
-		description: "Script - Here is what is going to happen.",
-		defaultMessage: "Here is what's gonna happen."
+	how_it_works:{
+		id: "how_it_works",
+		description: "Script - Here is how it works",
+		defaultMessage: "Here is how it works."
 	},
 	place_on_map:{
 		id: "place_on_map",
@@ -73,23 +75,33 @@ const messages = defineMessages( {
 	},
 	computer_programs:{
 		id: "computer_programs",
-		description: "Script - This map is then fed into computer programs that help scientists make prediction on how different coasts respond under different circumstances.",
-		defaultMessage: "This map is then fed into computer programs that help scientists make prediction on how different coasts respond under different circumstances."
+		description: "Script - This map is then fed into computer programs, called integrated assessment models, that help scientists make predictions on how different coasts respond under different circumstances.",
+		defaultMessage: "This map is then fed into computer programs, called integrated assessment models, that help scientists make predictions on how different coasts respond under different circumstances."
 	},
 	policy_makers:{
 		id: "policy_makers",
-		description: "Script - These predictions in return inform policy makers at national and international levels on which actions to take and which countries need international support.",
-		defaultMessage: "These predictions in return inform policy makers at national and international levels on which actions to take and which countries need international support."
+		description: "Script - And these predictions inform policy makers at national and international levels on which actions to take and which countries need international support.",
+		defaultMessage: "And these predictions inform policy makers at national and international levels on which actions to take and which countries need international support."
 	},
 	best_advice:{
 		id: "best_advice",
-		description: "Script - Your images help science give their best advice on how to best protect ourselves, our children and our grandchil- dren from sea-level rise.",
-		defaultMessage: "Your images help scientists give their best advice on how to best protect ourselves, our children and our grandchildren from sea-level rise."
+		description: "Script - So, your images help science give their best advice on how to protect ourselves, our children and our grandchil- dren from sea-level rise.",
+		defaultMessage: "So, your images help scientists give their best advice on how to protect ourselves, our children and our grandchildren from sea-level rise."
+	},
+	together:{
+		id: "together",
+		description: "Script",
+		defaultMessage: "Together we can create this global map of coasts. And together we can deal with climate change. Let's send that signal."
+	},
+	seriously:{
+		id: "seriously",
+		description: "Script",
+		defaultMessage: "Seriously, wouldn't that be a beautiful signal to send? One of global collaboration in the face of climate change?"
 	},
 	easy_beautiful_meaningful:{
 		id: "easy_beautiful_meaningful",
 		description: "Script - Together we can create this map. It's easy. It's beautiful. And it will make a difference!",
-		defaultMessage: "Together we can create this map. It's easy. It's beautiful. And it will make a difference!"
+		defaultMessage: "Together we can create this global map of coasts. It's easy. It's beautiful. And it will make a difference!"
 	},
 	send_a_signal:{
 		id: "send_a_signal",
@@ -108,14 +120,16 @@ const how = ( { intl } ) => {
 				<P>{ formatMessage( messages.only ) }</P>
 				<P>{ formatMessage( messages.sea_levels_rise_vary_drastically ) }</P>
 				<P>{ formatMessage( messages.forget_bathtub ) }</P>
+
+<H priority={ 4 }><SMALL>{ formatMessage( messages.seriously ) }</SMALL></H>
 */
 
 	return(
 
-		<TOGGLE id="How" title={ formatMessage( messages.how_title ) } priority={ 3 } text={ formatMessage( messages.how ) } className={ style.corset } classNameHeader={ style.italic } >
-			<DIV>
+		<TOGGLE id="How" title={ formatMessage( messages.how_title ) } priority={ 3 } text={ formatMessage( messages.how ) } className={ style.toggleQuestion } >
+			<DIV className={ style.toggleDiv } >
 				<P>{ formatMessage( messages.in_a_nutshell ) }</P>
-				<P>{ formatMessage( messages.what_happens ) }</P>
+				<P>{ formatMessage( messages.how_it_works ) }</P>
 				<P>{ formatMessage( messages.place_on_map ) }</P>
 				<P>
 					{ formatMessage( messages.determine_coastal_type ) } { " " }
@@ -124,6 +138,7 @@ const how = ( { intl } ) => {
 				<P>{ formatMessage( messages.computer_programs ) }</P>
 				<P>{ formatMessage( messages.policy_makers ) }</P>
 				<P>{ formatMessage( messages.best_advice ) }</P>
+				<H priority={ 4 }>{ formatMessage( messages.together ) }</H>
 			</DIV>
 		</TOGGLE>
 

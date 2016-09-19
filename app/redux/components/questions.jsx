@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import { defineMessages, injectIntl, intlShape } from 'react-intl'
 
 import TOGGLE from 'components/ui/toggle'
 import DIV from 'components/tags/div'
 
-import style from '_base'
+import style from './_toggleQuestion'
 
 const messages = defineMessages( {
 
@@ -81,29 +81,29 @@ const messages = defineMessages( {
 
 } )
 
-const questions = ( { intl } ) => {
+const questions = ( { intl, className } ) => {
 
 	const { formatMessage } = intl
 
 	return(
 
-		<DIV id="Questions">
-			<TOGGLE priority={ 4 } text={ formatMessage( messages.q1 ) } classNameHeader={ style.italic }  >
+		<DIV id="Questions"  className={ className } >
+			<TOGGLE priority={ 4 } text={ formatMessage( messages.q1 ) } classNameHeader={ style.question }  >
 				<DIV>{ formatMessage( messages.a1 ) }</DIV>
 			</TOGGLE>
-			<TOGGLE priority={ 4 } text={ formatMessage( messages.q2 ) } classNameHeader={ style.italic }  >
+			<TOGGLE priority={ 4 } text={ formatMessage( messages.q2 ) } classNameHeader={ style.question }  >
 				<DIV>{ formatMessage( messages.a2 ) }</DIV>
 			</TOGGLE>
-			<TOGGLE priority={ 4 } text={ formatMessage( messages.q3 ) } classNameHeader={ style.italic }  >
+			<TOGGLE priority={ 4 } text={ formatMessage( messages.q3 ) } classNameHeader={ style.question }  >
 				<DIV>{ formatMessage( messages.a3 ) }</DIV>
 			</TOGGLE>
-			<TOGGLE priority={ 4 } text={ formatMessage( messages.q4 ) } classNameHeader={ style.italic }  >
+			<TOGGLE priority={ 4 } text={ formatMessage( messages.q4 ) } classNameHeader={ style.question }  >
 				<DIV>{ formatMessage( messages.a4 ) }</DIV>
 			</TOGGLE>
-			<TOGGLE priority={ 4 } text={ formatMessage( messages.q5 ) } classNameHeader={ style.italic }  >
+			<TOGGLE priority={ 4 } text={ formatMessage( messages.q5 ) } classNameHeader={ style.question }  >
 				<DIV>{ formatMessage( messages.a5 ) }</DIV>
 			</TOGGLE>
-			<TOGGLE priority={ 4 } text={ formatMessage( messages.q6 ) } classNameHeader={ style.italic }  >
+			<TOGGLE priority={ 4 } text={ formatMessage( messages.q6 ) } classNameHeader={ style.question }  >
 				<DIV>{ formatMessage( messages.a6 ) }</DIV>
 			</TOGGLE>
 		</DIV>
@@ -113,7 +113,9 @@ const questions = ( { intl } ) => {
 
 questions.propTypes = {
 
-	intl: intlShape.isRequired
+	intl: intlShape.isRequired,
+
+	className: PropTypes.string
 
 }
 

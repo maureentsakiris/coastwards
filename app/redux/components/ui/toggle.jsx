@@ -18,8 +18,7 @@ class Toggle extends Component {
 		text: PropTypes.string.isRequired,
 		expanded: PropTypes.bool,
 		title: PropTypes.string,
-		className: PropTypes.string,
-		classNameHeader: PropTypes.string
+		className: PropTypes.string
 
 	}
 
@@ -44,22 +43,22 @@ class Toggle extends Component {
 
 	render () {
 
-		const { children, priority, text, title, className, classNameHeader, ...restProps } = this.props
+		const { children, priority, text, title, className, ...restProps } = this.props
 		const { expanded } = this.state
 
-		const clsH = Classnames( style.toggleLink, classNameHeader )
+		const cls = Classnames( style.toggle, className )
 
 		return (
 
-			<DIV { ...restProps } className={ className } >
-				<A onClick={ this._toggle } title={ title } className={ clsH }  >
+			<DIV { ...restProps } className={ cls } >
+				<A onClick={ this._toggle } title={ title }  >
 					<H priority={ priority } >
 						{ text } 		
 						{ !expanded && <I className="material-icons" style={ { verticalAlign: 'middle' } } >&#xE5CC;</I> }
 						{ expanded && <I className="material-icons" style={ { verticalAlign: 'middle' } } >&#xE5CF;</I> }
 					</H>
 				</A>
-				{ expanded && children }
+				{ expanded && <DIV>{ children }</DIV> }
 			</DIV>
 
 		)

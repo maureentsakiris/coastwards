@@ -35,9 +35,9 @@
     "defaultMessage": "In a nutshell, it gives science what satellites cannot: A close-up image of a coast. The possibility to study the bigger picture, in as much detail as possible."
   },
   {
-    "id": "what_happens",
-    "description": "Script - Here is what is going to happen.",
-    "defaultMessage": "Here is what's gonna happen."
+    "id": "how_it_works",
+    "description": "Script - Here is how it works",
+    "defaultMessage": "Here is how it works."
   },
   {
     "id": "place_on_map",
@@ -56,23 +56,33 @@
   },
   {
     "id": "computer_programs",
-    "description": "Script - This map is then fed into computer programs that help scientists make prediction on how different coasts respond under different circumstances.",
-    "defaultMessage": "This map is then fed into computer programs that help scientists make prediction on how different coasts respond under different circumstances."
+    "description": "Script - This map is then fed into computer programs, called integrated assessment models, that help scientists make predictions on how different coasts respond under different circumstances.",
+    "defaultMessage": "This map is then fed into computer programs, called integrated assessment models, that help scientists make predictions on how different coasts respond under different circumstances."
   },
   {
     "id": "policy_makers",
-    "description": "Script - These predictions in return inform policy makers at national and international levels on which actions to take and which countries need international support.",
-    "defaultMessage": "These predictions in return inform policy makers at national and international levels on which actions to take and which countries need international support."
+    "description": "Script - And these predictions inform policy makers at national and international levels on which actions to take and which countries need international support.",
+    "defaultMessage": "And these predictions inform policy makers at national and international levels on which actions to take and which countries need international support."
   },
   {
     "id": "best_advice",
-    "description": "Script - Your images help science give their best advice on how to best protect ourselves, our children and our grandchil- dren from sea-level rise.",
-    "defaultMessage": "Your images help scientists give their best advice on how to best protect ourselves, our children and our grandchildren from sea-level rise."
+    "description": "Script - So, your images help science give their best advice on how to protect ourselves, our children and our grandchil- dren from sea-level rise.",
+    "defaultMessage": "So, your images help scientists give their best advice on how to protect ourselves, our children and our grandchildren from sea-level rise."
+  },
+  {
+    "id": "together",
+    "description": "Script",
+    "defaultMessage": "Together we can create this global map of coasts. And together we can deal with climate change. Let's send that signal."
+  },
+  {
+    "id": "seriously",
+    "description": "Script",
+    "defaultMessage": "Seriously, wouldn't that be a beautiful signal to send? One of global collaboration in the face of climate change?"
   },
   {
     "id": "easy_beautiful_meaningful",
     "description": "Script - Together we can create this map. It's easy. It's beautiful. And it will make a difference!",
-    "defaultMessage": "Together we can create this map. It's easy. It's beautiful. And it will make a difference!"
+    "defaultMessage": "Together we can create this global map of coasts. It's easy. It's beautiful. And it will make a difference!"
   },
   {
     "id": "send_a_signal",

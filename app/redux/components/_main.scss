@@ -1,0 +1,13 @@
+@import 'app/styles/base';
+
+.center{
+
+	@extend %center;
+
+}
+
+.corset{
+
+	@extend %corset;
+
+}

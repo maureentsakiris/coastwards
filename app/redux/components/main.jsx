@@ -13,7 +13,7 @@ import Form from 'containers/form'
 import H from 'components/tags/h'
 import DIV from 'components/tags/div'
 
-import style from '_base'
+import style from './_main'
 
 const messages = defineMessages( {
 

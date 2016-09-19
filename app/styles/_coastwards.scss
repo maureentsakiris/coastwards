@@ -1,5 +1,14 @@
-.italic{
 
-	font-style: italic;
+
+%corset{
+
+	max-width: $corset-width;
+	margin: 0 auto;
+
+}
+
+%center{
+
+	text-align: center;
 
 }

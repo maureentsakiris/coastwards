@@ -1,9 +1,16 @@
-@import 'app/styles/_reset';
-@import 'app/styles/_base';
+@import 'app/styles/reset';
+@import 'app/styles/tags';
+@import 'app/styles/base';
 
 
 .site{
 	
 	padding: $site-padding-top $site-padding-sides;
+
+}
+
+.center{
+
+	@extend %center;
 
 }
