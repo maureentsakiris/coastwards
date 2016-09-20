@@ -60,6 +60,7 @@ ReactDom.render(
 						<FAQs />
 					</DIV>
 					<DIV id="Bottom" className={ style.bottom }>
+						<Prompt />
 						<Main />
 					</DIV>
 				</DIV>

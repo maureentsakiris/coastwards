@@ -37,11 +37,12 @@ const prompt = ( { intl } ) => {
 
 	const { formatMessage } = intl
 
+	/*<SMALL className={ style.center } >( { formatMessage( messages.one_by_one ) } <A href="#" onClick={ ( ) => { } } >{ formatMessage( messages.check_for_batch_upload ) }</A> )</SMALL>*/
+
 	return(
 
 		<DIV id="Prompt" className={ style.corset } >
-			<H priority={ 2 } className={ style.center } >{ formatMessage( messages.pictures_on_device ) } { formatMessage( messages.why_not_now ) }</H>
-			<SMALL className={ style.center } >( { formatMessage( messages.one_by_one ) } <A href="#" onClick={ ( ) => { } } >{ formatMessage( messages.check_for_batch_upload ) }</A> )</SMALL>
+			<H priority={ 2 } >{ formatMessage( messages.pictures_on_device ) } { formatMessage( messages.why_not_now ) }</H>
 		</DIV>
 
 	)

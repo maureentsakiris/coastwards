@@ -18,5 +18,35 @@
     "id": "who_are_you_title",
     "description": "Section header - Meet us!",
     "defaultMessage": "Meet us!"
+  },
+  {
+    "id": "more",
+    "description": "Team",
+    "defaultMessage": "More"
+  },
+  {
+    "id": "nassos",
+    "description": "Team",
+    "defaultMessage": "Nassos is the group leader and a professor at the University of Kiel. He's greek, has two little boys and his desk looks like hell. His research has led him over England to Germany where he settled down with his family in Kiel (though he would never admit that)."
+  },
+  {
+    "id": "nassos_official",
+    "description": "Team",
+    "defaultMessage": "Nassos has participated as a principal investigator in a number of collaborative research projects. He has co-authored peer-reviewed articles, book chapters and scientific reports and has also contributed to the Stern Review on the Economics of Climate Change and to the Fifth Assessment Report of the IPCC WGII. His teaching includes modules on “Climate Change”, “Coastal Zone Dynamics”, “Applications of GIS in coastal regions” and “Coasts of the World\"."
+  },
+  {
+    "id": "claudia",
+    "description": "Team",
+    "defaultMessage": "Claudia is Doctoral Researcher and she is the rising star that will turn your images into something meaningful. She's a charming though questioner and eager to learn for herself. She's also always the first to laugh."
+  },
+  {
+    "id": "joern",
+    "description": "Team",
+    "defaultMessage": "Jörn is probably the least stressed father of 4 you have ever met. He's very tall with hair down to his hips and kindly stoops down when he talks to people."
+  },
+  {
+    "id": "me",
+    "description": "Team",
+    "defaultMessage": "That's me. I'm not a scientist and I'm crazy enough to imagine a map of coasts, that was created by people all over the world to deal with the consequences of climate change. I would very much like to see that image. Wouldn't you?"
   }
 ]

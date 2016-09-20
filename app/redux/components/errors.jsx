@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react'
 import { defineMessages, injectIntl, intlShape } from 'react-intl'
 
 import DIV from 'components/tags/div'
-import H from 'components/tags/h'
+import P from 'components/tags/p'
 import A from 'components/tags/a'
 import I from 'components/tags/i'
 
@@ -93,7 +93,7 @@ const errors = ( { intl, show, error, hide } ) => {
 	return(
 
 		<DIV id="Errors" style={ style } >
-			<H priority={ 2 }>{ err } <A href="#" onClick={ hide } title={ formatMessage( messages.close ) } ><I className="material-icons" style={ { verticalAlign: 'middle' } } >&#xE5CD;</I></A></H>
+			<P>{ err } <A href="#" onClick={ hide } title={ formatMessage( messages.close ) } ><I className="material-icons" style={ { verticalAlign: 'middle' } } >&#xE5CD;</I></A></P>
 		</DIV>
 
 	)

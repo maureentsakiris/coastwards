@@ -121,6 +121,8 @@ const how = ( { intl } ) => {
 				<P>{ formatMessage( messages.forget_bathtub ) }</P>
 
 <H priority={ 4 }><SMALL>{ formatMessage( messages.seriously ) }</SMALL></H>
+
+<H priority={ 4 }>{ formatMessage( messages.together ) }</H>
 */
 
 	return(
@@ -137,7 +139,6 @@ const how = ( { intl } ) => {
 				<P>{ formatMessage( messages.computer_programs ) }</P>
 				<P>{ formatMessage( messages.policy_makers ) }</P>
 				<P>{ formatMessage( messages.best_advice ) }</P>
-				<H priority={ 4 }>{ formatMessage( messages.together ) }</H>
 			</DIV>
 		</TOGGLE>
 

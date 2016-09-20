@@ -4,6 +4,7 @@ import { defineMessages, injectIntl, intlShape } from 'react-intl'
 import TOGGLE from 'components/ui/toggle'
 import P from 'components/tags/p'
 import H from 'components/tags/h'
+import A from 'components/tags/a'
 
 import style from './_team'
 
@@ -28,6 +29,53 @@ const messages = defineMessages( {
 		id: "who_are_you_title",
 		description: "Section header - Meet us!",
 		defaultMessage: "Meet us!"
+	},
+
+	//team
+	more:{
+		id: "more",
+		description: "Team",
+		defaultMessage: "More"
+	},
+	nassos:{
+		id: "nassos",
+		description: "Team",
+		defaultMessage: "Nassos is the group leader and a professor at the University of Kiel. He's greek, has two little boys and his desk looks like hell. His research has led him over England to Germany where he settled down with his family in Kiel (though he would never admit that)."
+	},
+	nassos_official:{
+		id: "nassos_official",
+		description: "Team",
+		defaultMessage: 'Nassos has participated as a principal investigator in a number of collaborative research projects. He has co-authored peer-reviewed articles, book chapters and scientific reports and has also contributed to the Stern Review on the Economics of Climate Change and to the Fifth Assessment Report of the IPCC WGII. His teaching includes modules on “Climate Change”, “Coastal Zone Dynamics”, “Applications of GIS in coastal regions” and “Coasts of the World".'
+	},
+	claudia:{
+		id: "claudia",
+		description: "Team",
+		defaultMessage: "Claudia is Doctoral Researcher and she is the rising star that will turn your images into something meaningful. She's a charming though questioner and eager to learn for herself. She's also always the first to laugh."
+	},
+	claudia_official:{
+		id: "nassos_official",
+		description: "Team",
+		defaultMessage: 'Nassos has participated as a principal investigator in a number of collaborative research projects. He has co-authored peer-reviewed articles, book chapters and scientific reports and has also contributed to the Stern Review on the Economics of Climate Change and to the Fifth Assessment Report of the IPCC WGII. His teaching includes modules on “Climate Change”, “Coastal Zone Dynamics”, “Applications of GIS in coastal regions” and “Coasts of the World".'
+	},
+	joern:{
+		id: "joern",
+		description: "Team",
+		defaultMessage: "Jörn is probably the least stressed father of 4 you have ever met. He's very tall with hair down to his hips and kindly stoops down when he talks to people."
+	},
+	joern_official:{
+		id: "nassos_official",
+		description: "Team",
+		defaultMessage: 'Nassos has participated as a principal investigator in a number of collaborative research projects. He has co-authored peer-reviewed articles, book chapters and scientific reports and has also contributed to the Stern Review on the Economics of Climate Change and to the Fifth Assessment Report of the IPCC WGII. His teaching includes modules on “Climate Change”, “Coastal Zone Dynamics”, “Applications of GIS in coastal regions” and “Coasts of the World".'
+	},
+	me:{
+		id: "me",
+		description: "Team",
+		defaultMessage: "That's me. I'm not a scientist and I'm crazy enough to imagine a map of coasts, that was created by people all over the world to deal with the consequences of climate change. I would very much like to see that image. Wouldn't you?"
+	},
+	me_official:{
+		id: "nassos_official",
+		description: "Team",
+		defaultMessage: 'Nassos has participated as a principal investigator in a number of collaborative research projects. He has co-authored peer-reviewed articles, book chapters and scientific reports and has also contributed to the Stern Review on the Economics of Climate Change and to the Fifth Assessment Report of the IPCC WGII. His teaching includes modules on “Climate Change”, “Coastal Zone Dynamics”, “Applications of GIS in coastal regions” and “Coasts of the World".'
 	}
 
 } )
@@ -51,7 +99,15 @@ const team = ( { intl } ) => {
 	return(
 
 		<TOGGLE id="Team" title={ formatMessage( messages.who_are_you_title ) } priority={ 3 } text={ formatMessage( messages.who_are_you ) } className={ style.toggle } >
-			<H priority={ 4 }>{ formatMessage( messages.hi_there ) }</H>
+			<P>{ formatMessage( messages.hi_there ) }</P>
+			<H priority={ 4 }>Athanasios Vafeidis</H>
+			<P>{ formatMessage( messages.nassos ) } <A>{ formatMessage( messages.more ) }</A></P>
+			<H priority={ 4 }>Claudia  Wolff</H>
+			<P>{ formatMessage( messages.claudia ) } <A>{ formatMessage( messages.more ) }</A></P>
+			<H priority={ 4 }>Jörn Schmidt</H>
+			<P>{ formatMessage( messages.joern ) } <A>{ formatMessage( messages.more ) }</A></P>
+			<H priority={ 4 }>Maureen Tsakiris</H>
+			<P>{ formatMessage( messages.me ) } <A>{ formatMessage( messages.more ) }</A></P>
 		</TOGGLE>
 
 	)
