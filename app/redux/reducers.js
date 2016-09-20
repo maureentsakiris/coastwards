@@ -5,7 +5,6 @@ import Modernizr from 'modernizr'
 
 
 const uploadSupported = Modernizr.xhr2r || Modernizr.filereader || Modernizr.blob || Modernizr.canvas
-
 const mapboxSupported = false
 const dndSupported = false
 
@@ -20,7 +19,7 @@ const browser = ( state = { uploadSupported: uploadSupported, mapboxSupported: m
 
 }
 
-const config = ( state= { google: false, imageWidth: 800 }, action ) => {
+const config = ( state= { google: true, imageWidth: 1600 }, action ) => {
 
 	switch ( action.type ){
 
@@ -74,14 +73,14 @@ const snackbar = ( state = [ ], action ) => {
 
 }
 
-const layers = ( state = { upload: true, prompts: mapboxSupported && dndSupported, statuses: false, errors: false, locate: false, geolocaterm: false, form: false }, action ) => {
+const layers = ( state = { upload: true, prompts: true, statuses: false, errors: false, locate: false, geolocaterm: false, form: false }, action ) => {
 
 	switch ( action.type ){
 
 	case types.SET_LAYER_VISIBILITY:
 		return _.extend( {}, state, { [ action.layer ]: action.to } )
 	case types.RESET_LAYERS:
-		return { upload: true, prompts: false, statuses: false, errors: false, locate: false, geolocaterm: false, form: false }
+		return { upload: true, prompts: true, statuses: false, errors: false, locate: false, geolocaterm: false, form: false }
 	default: 
 		return state
 
@@ -131,7 +130,7 @@ const error = ( state = '', action ) => {
 }
 
 
-const form = ( state = { image: {}, material: '', adaptation: '', comment: '', hashtag: '', progress: 0 }, action ) => {
+const form = ( state = { image: {}, material: '', uid: '', adaptation: '', comment: '', hashtag: '', progress: 0 }, action ) => {
 
 	switch ( action.type ){
 
@@ -139,6 +138,8 @@ const form = ( state = { image: {}, material: '', adaptation: '', comment: '', h
 		return _.extend( {}, state, { image: action.to } )
 	case types.SET_MATERIAL:
 		return _.extend( {}, state, { material: action.to } )
+	case types.SET_UID:
+		return _.extend( {}, state, { uid: action.to } )
 	case types.SET_ADAPTATION:
 		return _.extend( {}, state, { adaptation: action.to } )
 	case types.SET_COMMENT:
@@ -148,7 +149,7 @@ const form = ( state = { image: {}, material: '', adaptation: '', comment: '', h
 	case types.SET_UPLOAD_PROGRESS:
 		return _.extend( {}, state, { progress: action.to } )
 	case types.RESET_FORM:
-		return _.extend( {}, state, { image: {}, material: '', comment: '', hashtag: '', progress: 0 } )
+		return _.extend( {}, state, { image: {}, material: '', uid: '', comment: '', hashtag: '', progress: 0 } )
 	default:
 		return state
 

@@ -1,10 +1,13 @@
 import React, { PropTypes } from 'react'
 import { defineMessages, injectIntl, intlShape } from 'react-intl'
+import Classnames from 'classnames'
 
 import DIV from 'components/tags/div'
 import H from 'components/tags/h'
 import A from 'components/tags/a'
 import I from 'components/tags/i'
+
+//import style from './_prompts'
 
 
 const messages = defineMessages( {
@@ -18,7 +21,7 @@ const messages = defineMessages( {
 	select_file:{
 		id: "select_file",
 		description: "Prompt - Prompts user to select a file through the file system",
-		defaultMessage: "Select your file below to upload"
+		defaultMessage: "Do you have any pictures of coasts on your device? Why not upload them now?"
 	},
 	drag_and_drop:{
 		id: "drag_and_drop",
@@ -33,22 +36,26 @@ const messages = defineMessages( {
 
 } )
 
-const prompts = ( { intl, show, prompt, hide } ) => {
+const prompts = ( { intl, className, show, prompt, mapboxSupported, hide } ) => {
 
 	const { formatMessage } = intl
 
 	const err = messages[ prompt ] ? formatMessage( messages[ prompt ] ) : prompt
 
-	const style = {
+	const s = {
 
 		display: show ? 'block' : 'none'
 
 	}
 
+	const cls = Classnames( className )
+
 	return(
 
-		<DIV id="Prompts" style={ style } >
-			<H priority={ 2 }>{ err } <A href="#" onClick={ hide } title={ formatMessage( messages.close ) } ><I className="material-icons" style={ { verticalAlign: 'middle' } } >&#xE5CD;</I></A></H>
+		<DIV id="Prompts" style={ s } className={ cls } >
+			<H priority={ 2 }>{ err } 
+				{ mapboxSupported && <A href="#" onClick={ hide } title={ formatMessage( messages.close ) } ><I className="material-icons" style={ { verticalAlign: 'middle' } } >&#xE5CD;</I></A> }
+			</H>
 		</DIV>
 
 	)
@@ -58,9 +65,12 @@ const prompts = ( { intl, show, prompt, hide } ) => {
 prompts.propTypes = {
 
 	intl: intlShape.isRequired,
+
+	className: PropTypes.string,
 	
 	show: PropTypes.bool,
 	prompt: PropTypes.string,
+	mapboxSupported: PropTypes.bool,
 
 	hide: PropTypes.func
 

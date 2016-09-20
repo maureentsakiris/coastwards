@@ -19,7 +19,6 @@ import How from 'components/how'
 import Guidelines from 'components/guidelines'
 import Team from 'components/team'
 import FAQs from 'components/faqs'
-import Prompt from 'components/prompt'
 
 import DIV from 'components/tags/div'
 
@@ -48,22 +47,15 @@ ReactDom.render(
 	<Provider store={ store } >
 		<I18nProvider>
 			<Context>
-				<DIV id="Site" >
-					<DIV id="Top" className={ style.top }>
-						<I18nLinks availableLanguages={ i18nLocales.locales } id="I18n" className={ style.i18n } />
-						<Intro />
-					</DIV>
-					<DIV id="Middle" className={ style.middle } >
-						<How />
-						<Guidelines />
-						<Team />
-						<FAQs />
-					</DIV>
-					<DIV id="Bottom" className={ style.bottom }>
-						<Prompt />
-						<Main />
-					</DIV>
+				<I18nLinks availableLanguages={ i18nLocales.locales } id="I18n" className={ style.i18n } />
+				<DIV id="Info" className={ style.info } >
+					<Intro />
+					<How />
+					<Guidelines />
+					<Team />
+					<FAQs />
 				</DIV>
+				<Main />
 				<Snackbar />
 				<Dialog />
 			</Context>

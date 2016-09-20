@@ -26,7 +26,7 @@ const messages = defineMessages( {
 
 } )
 
-const formdata = ( { intl, image, imageWidth, showDialog } ) => {
+const formdata = ( { intl, image, uid, imageWidth, showDialog } ) => {
 
 	const { formatMessage } = intl
 
@@ -93,7 +93,11 @@ const formdata = ( { intl, image, imageWidth, showDialog } ) => {
 				<TBODY>
 					<TR>
 						<TD>Image</TD>
-						<TD>We save the image at { imageWidth } pixels width and give it a new unique filename</TD>
+						<TD>We save the image at { imageWidth } pixels width and strip the metadata</TD>
+					</TR>
+					<TR>
+						<TD>Unique identifier</TD>
+						<TD>{ uid }</TD>
 					</TR>
 					<TR>
 						<TD>Latitude</TD>
@@ -142,6 +146,7 @@ formdata.propTypes = {
 	intl: intlShape.isRequired,
 
 	image: PropTypes.object,
+	uid: PropTypes.string,
 	imageWidth: PropTypes.number,
 
 	showDialog: PropTypes.func

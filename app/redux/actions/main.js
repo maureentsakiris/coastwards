@@ -3,6 +3,7 @@ import { promiseType, promiseEXIF, promiseMinimumBoxDimensions, promiseCanvasBox
 import { addSnackbarMessage } from 'actions/ui/snackbar'
 import { promiseDataURLtoBlob } from 'actions/util/form'
 import { promiseXHR } from 'actions/util/xhr'
+import uuid from 'node-uuid'
 
 import _ from 'underscore'
 
@@ -208,6 +209,8 @@ export const validateFile = ( e ) => {
 		.then( _promiseLocation )
 		.then( ( image ) => {
 
+			const uid = uuid.v1()
+			dispatch( { type: types.SET_UID, to: uid } )
 			dispatch( { type: types.SET_IMAGE_TO_UPLOAD, to: image } )
 			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'statuses', to: false } )
 
@@ -232,8 +235,8 @@ export const validateFile = ( e ) => {
 
 			dispatch( resetMain() )
 			dispatch( { type: types.SET_ERROR_MSG, to: error.message } )
-			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'upload', to: false } )
 			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'errors', to: true } )
+			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'prompts', to: false } )
 			console.log( error )
 
 		} )
@@ -293,34 +296,6 @@ export const setHashtag = ( e ) => {
 
 }
 
-
-const _composeFormData = ( state ) => {
-
-	const { image, material, adaptation, comment, hashtag } = state.form
-
-	const { exifdata, lat, long, manual, labels } = image
-	const devLabels = labels ? labels : {}
-	const datetime = exifdata.DateTimeOriginal || exifdata.DateTimeDigitized || exifdata.DateTime
-
-	let formData = new FormData()
-
-	formData.append( 'exifdata', JSON.stringify( exifdata ) )
-	formData.append( 'lat', lat )
-	formData.append( 'long', long )
-	formData.append( 'manual', manual )
-	formData.append( 'datetime', datetime )
-	formData.append( 'labels', JSON.stringify( devLabels ) )
-	formData.append( 'material', material )
-	formData.append( 'adaptation', adaptation )
-	formData.append( 'comment', comment )
-	formData.append( 'hashtag', hashtag )
-	
-
-	return formData
-
-}
-
-
 export const uploadImage = ( ) => {
 
 	return function ( dispatch, getState ){
@@ -331,7 +306,7 @@ export const uploadImage = ( ) => {
 		promiseDataURLtoBlob( image.dataURL )
 		.then( ( blob ) => {
 
-			const { image, material, adaptation, comment, hashtag } = state.form
+			const { image, material, adaptation, comment, hashtag, uid } = state.form
 
 			const { exifdata, lat, long, manual, labels } = image
 			const devLabels = labels ? labels : {}
@@ -339,11 +314,12 @@ export const uploadImage = ( ) => {
 
 			let formData = new FormData()
 
-			formData.append( 'file', blob, 'file.jpg' )
+			formData.append( 'file', blob, uid + '.jpg' )
 			formData.append( 'exifdata', JSON.stringify( exifdata ) )
 			formData.append( 'lat', lat )
 			formData.append( 'long', long )
 			formData.append( 'manual', manual )
+			formData.append( 'uid', uid )
 			formData.append( 'datetime', datetime )
 			formData.append( 'labels', JSON.stringify( devLabels ) )
 			formData.append( 'material', material )
@@ -359,11 +335,11 @@ export const uploadImage = ( ) => {
 		} )
 		.then( ( formData ) => {
 
-			for ( var pair of formData.entries() ) {
+			/*for ( var pair of formData.entries() ) {
 
 				console.log( pair[ 0 ]+ ', ' + pair[ 1 ] )
 
-			}
+			}*/
 
 			let options = {
 
@@ -390,6 +366,8 @@ export const uploadImage = ( ) => {
 			dispatch( resetMain() )
 			dispatch( { type: types.SET_STATUS_MSG, to: response } )
 			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'statuses', to: true } )
+			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'prompts', to: false } )
+
 			return response
 
 		} )
@@ -398,6 +376,7 @@ export const uploadImage = ( ) => {
 			dispatch( resetMain() )
 			dispatch( { type: types.SET_ERROR_MSG, to: 'upload_error' } )
 			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'errors', to: true } )
+			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'prompts', to: false } )
 			console.log( error )
 
 		} )
@@ -413,7 +392,7 @@ export const resetMain = ( ) => {
 		console.log( "TOTAL RESET" );
 
 		document.getElementById( 'Upload' ).reset()
-		document.getElementById( 'Form' ).reset()
+		//document.getElementById( 'Form' ).reset()
 		dispatch( { type: types.RESET_FORM } )
 		dispatch( { type: types.RESET_LAYERS } )
 

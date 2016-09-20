@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react'
 import { defineMessages, injectIntl, intlShape } from 'react-intl'
-import Classnames from 'classnames'
 
 import Errors from 'containers/errors'
 import Statuses from 'containers/statuses'
@@ -10,8 +9,8 @@ import Locate from 'containers/locate'
 import Geolocator from 'containers/geolocator'
 import Form from 'containers/form'
 
-import H from 'components/tags/h'
 import DIV from 'components/tags/div'
+import P from 'components/tags/p'
 
 import style from './_main'
 
@@ -29,34 +28,47 @@ const main = ( { intl, uploadSupported, mapboxSupported } ) => {
 
 	const { formatMessage } = intl
 
-	const cls = Classnames( {
-
-		[ style.corset ]: !mapboxSupported
-
-	} )
-
 	if( !uploadSupported ){
 
 		return(
 
-			<DIV id="Main" className={ cls } >
-				<H priority={ 2 }>{ formatMessage( messages.all_set ) }</H>
-				<p>{ formatMessage( messages.unsupported ) }</p>
+			<DIV id="Main" className={ style.pad } >
+				<Prompts />
+				<P className={ style.corset } >{ formatMessage( messages.unsupported ) }</P>
 			</DIV>
 
 		)
 
-	}else{
+	}else if ( uploadSupported && !mapboxSupported ){
 
 		return(
 
-			<DIV id="Main" className={ cls } >
-				<Prompts />
-				<Errors /> 
-				<Statuses />
+			<DIV id="Main" className={ style.pad } >
+				<Prompts className={ style.corset } />
+				<Errors className={ style.corset } /> 
+				<Statuses className={ style.corset } />
+				<Geolocator className={ style.corset } />
+				<Locate className={ style.corset } />
+				<Upload className={ style.corset } />
+				<Form className={ style.corset } />
+			</DIV>
+
+		)
+
+
+	}else if ( uploadSupported && mapboxSupported ) {
+
+		return(
+
+			<DIV id="Main" >
+				<DIV id="Screens" className={ style.pad } >
+					<Prompts />
+					<Errors /> 
+					<Statuses />
+					<Geolocator />
+					<Locate />
+				</DIV>
 				<Upload />
-				<Locate />
-				<Geolocator />
 				<Form />
 			</DIV>
 

@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react'
 import { defineMessages, injectIntl, intlShape } from 'react-intl'
+import Classnames from 'classnames'
 
 import FORMDATA from 'containers/formdata'
 
@@ -14,6 +15,8 @@ import CANCEL from 'components/form/button/cancel'
 import GO from 'components/form/button/go'
 
 import BR from 'components/tags/br'
+
+import style from './_form'
 
 
 const messages = defineMessages( {
@@ -110,60 +113,69 @@ const messages = defineMessages( {
 
 } )
 
-const form = ( { intl, show, image, setMaterial, /*setAdaptation,*/ setComment, setHashtag, uploadImage, resetMain } ) => {
+const form = ( { intl, className, show, image, setMaterial, /*setAdaptation,*/ setComment, setHashtag, uploadImage, resetMain } ) => {
 
 	const { formatMessage } = intl
 
-	const style = {
+	const cls = Classnames( className )
 
-		display: show ? 'block' : 'none'
+
+	if( !show ){
+
+		return null
+
+	}else{
+
+		const materials = [
+
+			{ label: formatMessage( messages.sand ), value: 'sand' },
+			{ label: formatMessage( messages.pebble ), value: 'pebble' },
+			{ label: formatMessage( messages.rock ), value: 'rock' },
+			{ label: formatMessage( messages.mud ), value: 'mud' },
+			{ label: formatMessage( messages.ice ), value: 'ice' },
+			{ label: formatMessage( messages.manmade ), value: 'manmade' },
+			{ label: formatMessage( messages.notsure ), value: 'notsure' }
+
+		]
+
+
+		/*const adaptations = [
+
+			{ label: "!Dike", value: "dike" },
+			{ label: "!Wave-breaker", value: "wavebreaker" }
+
+		]*/
+
+		return(
+
+			<FORM id="Form" action="#" className={ cls } >
+				<H priority={ 2 }>{ formatMessage( messages.hurray ) }</H>
+				{ image.dataURL && <IMG src={ image.dataURL } alt="your image" /> }
+				<BR/><BR/>
+				<RADIOGROUP form="Form" label={ formatMessage( messages.select_material ) } name="material" options={ materials } onClick={ setMaterial } preferPlaceholder={ false } />
+				<BR/>
+				<COMMENT form="Form" label={ formatMessage( messages.say_hello ) } name="comment" placeholder={ formatMessage( messages.placeholder_say_hello ) } onChange={ setComment } preferPlaceholder={ false } />
+				<BR/>
+				<HASHTAG form="Form" label={ formatMessage( messages.hashtag_your_image ) } name="hashtag" placeholder={ formatMessage( messages.placeholder_hashtag_your_image ) } onChange={ setHashtag } preferPlaceholder={ false } />
+				<BR/><BR/>
+				<FORMDATA />
+				<BR/><BR/>
+				<CANCEL className={ style.cancel } onClick={ resetMain } label={ formatMessage( messages.cancel_upload ) } />
+				<GO onClick={ uploadImage } label={ formatMessage( messages.upload_image ) } />
+				<BR/><BR/>
+			</FORM>
+
+		)
 
 	}
-
-	const materials = [
-
-		{ label: formatMessage( messages.sand ), value: 'sand' },
-		{ label: formatMessage( messages.pebble ), value: 'pebble' },
-		{ label: formatMessage( messages.rock ), value: 'rock' },
-		{ label: formatMessage( messages.mud ), value: 'mud' },
-		{ label: formatMessage( messages.ice ), value: 'ice' },
-		{ label: formatMessage( messages.manmade ), value: 'manmade' },
-		{ label: formatMessage( messages.notsure ), value: 'notsure' }
-
-	]
-
-
-	/*const adaptations = [
-
-		{ label: "!Dike", value: "dike" },
-		{ label: "!Wave-breaker", value: "wavebreaker" }
-
-	]*/
-
-	return(
-
-		<FORM id="Form" style={ style } action="#" >
-			<H priority={ 2 }>{ formatMessage( messages.hurray ) }</H>
-			{ image.dataURL && <IMG src={ image.dataURL } alt="your image" /> }
-			<BR/><BR/>
-			<RADIOGROUP form="Form" label={ formatMessage( messages.select_material ) } name="material" options={ materials } onClick={ setMaterial } preferPlaceholder={ false } />
-			<BR/>
-			<COMMENT form="Form" label={ formatMessage( messages.say_hello ) } name="comment" placeholder={ formatMessage( messages.placeholder_say_hello ) } onChange={ setComment } preferPlaceholder={ false } />
-			<BR/>
-			<HASHTAG form="Form" label={ formatMessage( messages.hashtag_your_image ) } name="hashtag" placeholder={ formatMessage( messages.placeholder_hashtag_your_image ) } onChange={ setHashtag } preferPlaceholder={ false } />
-			<FORMDATA />
-			<BR/><BR/>
-			<CANCEL onClick={ resetMain } label={ formatMessage( messages.cancel_upload ) } />
-			<GO onClick={ uploadImage } label={ formatMessage( messages.upload_image ) } />
-		</FORM>
-
-	)
 	
 }
 
 form.propTypes = {
 
 	intl: intlShape.isRequired,
+
+	className: PropTypes.string,
 
 	show: PropTypes.bool,
 	image: PropTypes.object,

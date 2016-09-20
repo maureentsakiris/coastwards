@@ -1,9 +1,12 @@
 import React, { PropTypes } from 'react'
 import { defineMessages, injectIntl, intlShape } from 'react-intl'
+import Classnames from 'classnames'
 
 import H from 'components/tags/h'
 import DIV from 'components/tags/div'
 import BUTTON from 'components/tags/button'
+
+//import style from './_locate'
 
 
 const messages = defineMessages( {
@@ -27,19 +30,21 @@ const messages = defineMessages( {
 
 } )
 
-const main = ( { intl, show, locateCoast, resetMain } ) => {
+const main = ( { intl, className, show, locateCoast, resetMain } ) => {
 
 	const { formatMessage } = intl
 
-	const style = {
+	const s = {
 
 		display: show ? 'block' : 'none'
 
 	}
 
+	const cls = Classnames( className )
+
 	return(
 
-		<DIV id="Locate" style={ style } >
+		<DIV id="Locate" style={ s } className={ cls } >
 			<H priority={ 2 }>{ formatMessage( messages.can_you_locate ) }</H>
 			<BUTTON type="button" onClick={ locateCoast }>{ formatMessage( messages.yes_location_known ) }</BUTTON>
 			<BUTTON type="button" onClick={ resetMain }>{ formatMessage( messages.no_location_unknown ) }</BUTTON>
@@ -52,6 +57,8 @@ const main = ( { intl, show, locateCoast, resetMain } ) => {
 main.propTypes = {
 
 	intl: intlShape.isRequired,
+
+	className: PropTypes.string,
 
 	show: PropTypes.bool,
 

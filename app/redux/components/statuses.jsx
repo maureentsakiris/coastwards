@@ -1,9 +1,11 @@
 import React, { PropTypes } from 'react'
 import { defineMessages, injectIntl, intlShape } from 'react-intl'
+import Classnames from 'classnames'
 
 import DIV from 'components/tags/div'
 import H from 'components/tags/h'
 
+//import style from './_statuses'
 
 const messages = defineMessages( {
 
@@ -15,7 +17,7 @@ const messages = defineMessages( {
 	status_uploading:{
 		id: "status_uploading",
 		description: "Status - Informs user that his image is being uploaded",
-		defaultMessage: "Uploading..."
+		defaultMessage: "Uploading... {progress}%"
 	},
 	status_upload_ok:{
 		id: "status_upload_ok",
@@ -25,21 +27,23 @@ const messages = defineMessages( {
 
 } )
 
-const statuses = ( { intl, show, status } ) => {
+const statuses = ( { intl, className, show, status, progress } ) => {
 
 	const { formatMessage } = intl
 
-	const stat = messages[ status ] ? formatMessage( messages[ status ] ) : status
+	const stat = messages[ status ] ? formatMessage( messages[ status ], { progress: progress } ) : status
 
-	const style = {
+	const s = {
 
 		display: show ? 'block' : 'none'
 
 	}
 
+	const cls = Classnames( className )
+
 	return(
 
-		<DIV id="Statuses" style={ style } >
+		<DIV id="Statuses" style={ s } className={ cls } >
 			<H priority={ 2 }>{ stat }</H>
 		</DIV>
 
@@ -51,8 +55,11 @@ statuses.propTypes = {
 
 	intl: intlShape.isRequired,
 
+	className: PropTypes.string,
+
 	show: PropTypes.bool,
 	status: PropTypes.string,
+	progress: PropTypes.number,
 
 	resetForm: PropTypes.func
 

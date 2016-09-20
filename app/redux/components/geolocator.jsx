@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react'
 import { defineMessages, injectIntl, intlShape } from 'react-intl'
+import Classnames from 'classnames'
 
 import FORM from 'components/tags/form'
 import P from 'components/tags/p'
@@ -7,6 +8,7 @@ import BUTTON from 'components/tags/button'
 import INPUT from 'components/tags/input'
 import BR from 'components/tags/br'
 
+//import style from './_geolocator'
 
 const messages = defineMessages( {
 
@@ -33,19 +35,21 @@ const messages = defineMessages( {
 
 } )
 
-const main = ( { intl, show, resetMain } ) => {
+const main = ( { intl, className, show, resetMain } ) => {
 
 	const { formatMessage } = intl
 
-	const style = {
+	const s = {
 
 		display: show ? 'block' : 'none'
 
 	}
 
+	const cls = Classnames( className )
+
 	return(
 
-		<FORM id="Geolocator" style={ style } action="#" >
+		<FORM id="Geolocator" style={ s } action="#" className={ cls } >
 			<P>
 				<INPUT form="Geolocator" name="lat" type="number" placeholder={ formatMessage( messages.latitude ) } />
 				<BR/><BR/>
@@ -62,6 +66,8 @@ const main = ( { intl, show, resetMain } ) => {
 main.propTypes = {
 
 	intl: intlShape.isRequired,
+
+	className: PropTypes.string,
 
 	show: PropTypes.bool,
 

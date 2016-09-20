@@ -1,8 +1,10 @@
 @import 'app/styles/base';
 
-.center{
+.pad{
 
-	text-align: center;
+	padding-right: $site-padding-sides;
+	padding-left: $site-padding-sides;
+	padding-bottom: $site-padding-bottom;
 
 }
 

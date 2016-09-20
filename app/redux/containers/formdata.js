@@ -9,6 +9,7 @@ const mapStateToProps = ( state ) => {
 	return {
 
 		image: state.form.image,
+		uid: state.form.uid,
 		imageWidth: state.config.imageWidth
 
 	}

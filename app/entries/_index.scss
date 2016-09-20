@@ -2,11 +2,9 @@
 @import 'app/styles/tags';
 @import 'app/styles/base';
 
-$no-flexbox-spacing: $site-padding-top;
 
+.info{
 
-%paddingSides{
-	
 	padding-right: $site-padding-sides;
 	padding-left: $site-padding-sides;
 
@@ -15,34 +13,7 @@ $no-flexbox-spacing: $site-padding-top;
 .i18n{
 
 	text-align: center;
-	margin-bottom: $no-flexbox-spacing;
-
-}
-
-%page{
-
-	margin-bottom: $no-flexbox-spacing;
-
-}
-
-.top{
-
-	@extend %page;
-	@extend %paddingSides;
 	padding-top: $site-padding-top;
 
 }
 
-.middle{
-
-	@extend %page;
-	@extend %paddingSides;
-
-}
-
-.bottom{
-
-	@extend %page;
-	//padding-bottom: $site-padding-bottom;
-
-}

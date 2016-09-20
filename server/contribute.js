@@ -77,13 +77,8 @@ const _promiseFetchForm = ( req ) => {
 
 		form.on( 'fileBegin', function ( name, file ){
 
-			var uid = uuid.v1()
-			var dirname = path.dirname( file.path )
-			var extension = path.extname( file.path )
-			var filename = uid + extension;
-			
-			file.uid = uid
-			file.path = path.join( dirname, filename ) 
+			var dirname = path.dirname( file.path )			
+			file.path = path.join( dirname, file.name ) 
 
 		} )
 
@@ -102,8 +97,7 @@ const _promiseInsertFile = ( formData ) => {
 	return new Promise( function ( resolve, reject ) {
 
 		const { ip, fields } = formData
-		const { long, lat, manual, datetime, labels, exifdata, material, adaptation, comment, hashtag } = fields
-		const uid = formData.files.file.uid
+		const { long, lat, manual, uid, datetime, labels, exifdata, material, adaptation, comment, hashtag } = fields
 		const point = util.format( 'POINT(%s %s)', long, lat )
 
 		

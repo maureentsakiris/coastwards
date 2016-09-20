@@ -114,12 +114,14 @@ table{
 
 	border-collapse: separate;
 	border-spacing: 2;
+	table-layout: fixed;
 
 }
 
 td,th{
 
 	padding: 0.5em;
+	overflow: scroll;
 
 }
 

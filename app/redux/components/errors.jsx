@@ -1,10 +1,13 @@
 import React, { PropTypes } from 'react'
 import { defineMessages, injectIntl, intlShape } from 'react-intl'
+import Classnames from 'classnames'
 
 import DIV from 'components/tags/div'
-import P from 'components/tags/p'
+import H from 'components/tags/h'
 import A from 'components/tags/a'
 import I from 'components/tags/i'
+
+//import style from './_errors'
 
 
 const messages = defineMessages( {
@@ -77,23 +80,26 @@ const messages = defineMessages( {
 
 } )
 
-const errors = ( { intl, show, error, hide } ) => {
+const errors = ( { intl, className, show, error, mapboxSupported, hide } ) => {
 
 	const { formatMessage } = intl
 
 	const err = messages[ error ] ? formatMessage( messages[ error ] ) : error
 
-	const style = {
+	const s = {
 
 		display: show ? 'block' : 'none'
 
 	}
 
+	const cls = Classnames( className )
 
 	return(
 
-		<DIV id="Errors" style={ style } >
-			<P>{ err } <A href="#" onClick={ hide } title={ formatMessage( messages.close ) } ><I className="material-icons" style={ { verticalAlign: 'middle' } } >&#xE5CD;</I></A></P>
+		<DIV id="Errors" style={ s } className={ cls } >
+			<H priority={ 2 }>{ err } 
+				{ mapboxSupported && <A href="#" onClick={ hide } title={ formatMessage( messages.close ) } ><I className="material-icons" style={ { verticalAlign: 'middle' } } >&#xE5CD;</I></A> }
+			</H>
 		</DIV>
 
 	)
@@ -104,8 +110,11 @@ errors.propTypes = {
 
 	intl: intlShape.isRequired,
 
+	className: PropTypes.string,
+
 	show: PropTypes.bool,
 	error: PropTypes.string,
+	mapboxSupported: PropTypes.bool,
 
 	hide: PropTypes.func,
 

@@ -25,6 +25,7 @@ export const SET_ERROR_MSG = 'SET_ERROR_MSG'
 //form
 export const SET_IMAGE_TO_UPLOAD = 'SET_IMAGE_TO_UPLOAD'
 export const SET_MATERIAL = 'SET_MATERIAL'
+export const SET_UID = 'SET_UID'
 export const SET_ADAPTATION = 'SET_ADAPTATION'
 export const SET_UPLOAD_PROGRESS = 'SET_UPLOAD_PROGRESS'
 export const SET_COMMENT = 'SET_COMMENT'

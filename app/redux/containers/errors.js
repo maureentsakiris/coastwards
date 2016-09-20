@@ -9,7 +9,8 @@ const mapStateToProps = ( state ) => {
 	return {
 
 		error: state.error,
-		show: state.layers.errors
+		show: state.layers.errors,
+		mapboxSupported: state.browser.mapboxSupported
 
 	}
 
