@@ -47,8 +47,8 @@ ReactDom.render(
 	<Provider store={ store } >
 		<I18nProvider>
 			<Context>
-				<I18nLinks availableLanguages={ i18nLocales.locales } id="I18n" className={ style.i18n } />
-				<DIV id="Info" className={ style.info } >
+				<DIV id="Top" className={ style.padded } >
+					<I18nLinks availableLanguages={ i18nLocales.locales } id="I18n" className={ style.i18n } />
 					<Intro />
 					<How />
 					<Guidelines />

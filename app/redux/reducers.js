@@ -2,10 +2,22 @@ import { combineReducers } from 'redux'
 import * as types from 'types'
 import _ from 'underscore'
 import Modernizr from 'modernizr'
+import mapboxgl from 'mapbox-gl/dist/mapbox-gl.js'
 
 
-const uploadSupported = Modernizr.xhr2r || Modernizr.filereader || Modernizr.blob || Modernizr.canvas
-const mapboxSupported = false
+Modernizr.addTest( 'draganddrop', function () {
+
+	var div = document.createElement( 'div' )
+	return ( 'draggable' in div ) || ( 'ondragstart' in div && 'ondrop' in div )
+
+} )
+
+/*const uploadSupported = Modernizr.xhr2r || Modernizr.filereader || Modernizr.blob || Modernizr.canvas
+const mapboxSupported = mapboxgl.supported()
+const dndSupported = Modernizr.draganddrop*/
+
+const uploadSupported = true
+const mapboxSupported = true
 const dndSupported = false
 
 const browser = ( state = { uploadSupported: uploadSupported, mapboxSupported: mapboxSupported, dndSupported: dndSupported }, action ) => {
@@ -19,7 +31,7 @@ const browser = ( state = { uploadSupported: uploadSupported, mapboxSupported: m
 
 }
 
-const config = ( state= { google: true, imageWidth: 1600 }, action ) => {
+const config = ( state= { google: false, imageWidth: 1600 }, action ) => {
 
 	switch ( action.type ){
 
@@ -88,9 +100,7 @@ const layers = ( state = { upload: true, prompts: true, statuses: false, errors:
 
 }
 
-const initPrompt = dndSupported ? 'drag_and_drop' : 'select_file'
-
-const prompt = ( state = initPrompt, action ) => {
+const prompt = ( state = 'select_file', action ) => {
 
 	switch ( action.type ){
 

@@ -19,7 +19,7 @@ const messages = defineMessages( {
 	unsupported:{
 		id: "unsupported",
 		description: "Warning - Warns the user that his browser does not support the image upload",
-		defaultMessage: ":/ Looks like you are on an old browser that does not support some features we need to make this website work. Sorry, you'll need to upgrade or switch browsers to continue..."
+		defaultMessage: "Oops nope ... looks like you are on an old browser that does not support some features we need to make this website work. Sorry, you'll need to upgrade or switch browsers to continue."
 	}
 
 } )
@@ -33,7 +33,7 @@ const main = ( { intl, uploadSupported, mapboxSupported } ) => {
 		return(
 
 			<DIV id="Main" className={ style.pad } >
-				<Prompts />
+				<Prompts className={ style.corset } />
 				<P className={ style.corset } >{ formatMessage( messages.unsupported ) }</P>
 			</DIV>
 
@@ -60,16 +60,14 @@ const main = ( { intl, uploadSupported, mapboxSupported } ) => {
 
 		return(
 
-			<DIV id="Main" >
-				<DIV id="Screens" className={ style.pad } >
-					<Prompts />
-					<Errors /> 
-					<Statuses />
-					<Geolocator />
-					<Locate />
-				</DIV>
-				<Upload />
-				<Form />
+			<DIV id="Main" className={ style.main } >
+				<Upload className={ style.screen } />
+				<Geolocator className={ style.screen } />
+				<Locate className={ style.screen } />
+				<Prompts className={ style.screen } />
+				<Statuses className={ style.screen } />
+				<Errors className={ style.screen } /> 
+				<Form className={ style.screen } />
 			</DIV>
 
 		)

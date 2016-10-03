@@ -9,7 +9,8 @@ const mapStateToProps = ( state ) => {
 	return {
 
 		show: state.layers.upload,
-		showDropzone: state.browser.dndSupported,
+		mapboxSupported: state.browser.mapboxSupported,
+		dndSupported: state.browser.dndSupported,
 		prompt: state.prompt
 
 	}

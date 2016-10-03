@@ -3,10 +3,9 @@
 @import 'app/styles/base';
 
 
-.info{
+.padded{
 
-	padding-right: $site-padding-sides;
-	padding-left: $site-padding-sides;
+	@extend %padded;
 
 }
 
