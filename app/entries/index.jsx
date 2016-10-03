@@ -6,6 +6,7 @@ import thunk from 'redux-thunk'
 
 import coastwards from 'reducers'
 import { loadLanguage } from 'actions/i18n/i18n'
+import { showDialog } from 'actions/ui/dialog'
 
 import I18nProvider from 'containers/i18n/i18nProvider'
 import Context from 'containers/context/context'
@@ -40,6 +41,14 @@ let store = createStore( coastwards, compose(
 //load negotiated language
 let negotiatedLocale = document.documentElement.getAttribute( 'lang' );
 store.dispatch( loadLanguage( negotiatedLocale ) )
+
+const state = store.getState()
+
+if( !state.browser.jazzSupported ){
+
+	store.dispatch( showDialog( 'NOJAZZ' ) )
+
+}
 
 
 ReactDom.render( 

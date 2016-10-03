@@ -4,7 +4,7 @@ import { defineMessages, injectIntl, intlShape } from 'react-intl'
 import TOGGLE from 'components/ui/toggle'
 import DIV from 'components/tags/div'
 import P from 'components/tags/p'
-import H from 'components/tags/h'
+import BR from 'components/tags/br'
 
 import style from './_how'
 
@@ -130,14 +130,20 @@ const how = ( { intl } ) => {
 		<TOGGLE id="How" title={ formatMessage( messages.how_title ) } priority={ 3 } text={ formatMessage( messages.how ) } className={ style.toggle } >
 			<DIV>
 				<P>{ formatMessage( messages.in_a_nutshell ) }</P>
+				<BR/>
 				<P>{ formatMessage( messages.how_it_works ) }</P>
+				<BR/>
 				<P>{ formatMessage( messages.place_on_map ) }</P>
+				<BR/>
 				<P>
 					{ formatMessage( messages.determine_coastal_type ) } { " " }
 					{ formatMessage( messages.the_more_the_better ) }
 				</P>
+				<BR/>
 				<P>{ formatMessage( messages.computer_programs ) }</P>
+				<BR/>
 				<P>{ formatMessage( messages.policy_makers ) }</P>
+				<BR/>
 				<P>{ formatMessage( messages.best_advice ) }</P>
 			</DIV>
 		</TOGGLE>

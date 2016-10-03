@@ -12,15 +12,16 @@ Modernizr.addTest( 'draganddrop', function () {
 
 } )
 
-/*const uploadSupported = Modernizr.xhr2r || Modernizr.filereader || Modernizr.blob || Modernizr.canvas
-const mapboxSupported = mapboxgl.supported()
-const dndSupported = Modernizr.draganddrop*/
+Modernizr.addTest( 'mapbox', function () {
 
-const uploadSupported = true
-const mapboxSupported = true
-const dndSupported = false
+	return mapboxgl.supported()
 
-const browser = ( state = { uploadSupported: uploadSupported, mapboxSupported: mapboxSupported, dndSupported: dndSupported }, action ) => {
+} )
+
+const uploadSupported = Modernizr.xhr2 && Modernizr.filereader && Modernizr.blobconstructor && Modernizr.canvas 
+const jazzSupported = Modernizr.mapbox && Modernizr.draganddrop && Modernizr.flexbox && Modernizr.flexwrap && false
+
+const browser = ( state = { uploadSupported: uploadSupported, jazzSupported: jazzSupported }, action ) => {
 
 	switch ( action.type ){
 

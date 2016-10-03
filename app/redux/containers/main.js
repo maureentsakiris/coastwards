@@ -8,7 +8,7 @@ const mapStateToProps = ( state ) => {
 	return {
 
 		uploadSupported: state.browser.uploadSupported,
-		mapboxSupported: state.browser.mapboxSupported
+		jazzSupported: state.browser.jazzSupported
 
 	}
 

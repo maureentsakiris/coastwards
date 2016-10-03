@@ -18,8 +18,8 @@ const messages = defineMessages( {
 
 	other_questions:{
 		id: "other_questions",
-		description: "Section header - But ...",
-		defaultMessage: "But ..."
+		description: "Section header - ... ??",
+		defaultMessage: "... ??"
 	},
 	other_questions_title:{
 		id: "other_questions_title",
@@ -56,12 +56,12 @@ const messages = defineMessages( {
 	label_question:{
 		id: "label_question",
 		description: "Label - Your Question",
-		defaultMessage: "... you still have a question? Ask us!"
+		defaultMessage: "Still have a question? Ask us! (In english, please)"
 	},
 	placeholder_question:{
 		id: "placeholder_question",
-		description: "Placeholder - ... you still have a question? Ask us!",
-		defaultMessage: "... you still have a question? Ask us!"
+		description: "Placeholder - Still have a question? Ask us! (In english, please)",
+		defaultMessage: "Still have a question? Ask us! (In english, please)"
 	},
 	label_submit:{
 		id: "label_submit",

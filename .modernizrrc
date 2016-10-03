@@ -12,6 +12,7 @@
     "blob",
     "canvas",
     "css/flexbox",
+    "css/flexwrap",
     "forms/placeholder"
   ]
 }

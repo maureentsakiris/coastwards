@@ -21,7 +21,7 @@ const messages = defineMessages( {
 	select_file:{
 		id: "select_file",
 		description: "Prompt - Prompts user to select a file through the file system",
-		defaultMessage: "Do you have any pictures of coasts on your device? Why not upload them now?"
+		defaultMessage: "Have any pictures of coasts? Why not upload them now?"
 	},
 	drag_and_drop:{
 		id: "drag_and_drop",
@@ -36,7 +36,7 @@ const messages = defineMessages( {
 
 } )
 
-const prompts = ( { intl, className, show, prompt, mapboxSupported, hide } ) => {
+const prompts = ( { intl, className, show, prompt, flexboxSupported, hide } ) => {
 
 	const { formatMessage } = intl
 
@@ -54,7 +54,7 @@ const prompts = ( { intl, className, show, prompt, mapboxSupported, hide } ) => 
 
 		<DIV id="Prompts" style={ s } className={ cls } >
 			<H priority={ 2 }>{ err } 
-				{ mapboxSupported && <A href="#" onClick={ hide } title={ formatMessage( messages.close ) } ><I className="material-icons" style={ { verticalAlign: 'middle' } } >&#xE5CD;</I></A> }
+				{ flexboxSupported && <A href="#" onClick={ hide } title={ formatMessage( messages.close ) } ><I className="material-icons" style={ { verticalAlign: 'middle' } } >&#xE5CD;</I></A> }
 			</H>
 		</DIV>
 
@@ -70,7 +70,7 @@ prompts.propTypes = {
 	
 	show: PropTypes.bool,
 	prompt: PropTypes.string,
-	mapboxSupported: PropTypes.bool,
+	flexboxSupported: PropTypes.bool,
 
 	hide: PropTypes.func
 

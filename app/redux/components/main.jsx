@@ -24,7 +24,7 @@ const messages = defineMessages( {
 
 } )
 
-const main = ( { intl, uploadSupported, mapboxSupported } ) => {
+const main = ( { intl, uploadSupported, jazzSupported } ) => {
 
 	const { formatMessage } = intl
 
@@ -39,7 +39,7 @@ const main = ( { intl, uploadSupported, mapboxSupported } ) => {
 
 		)
 
-	}else if ( uploadSupported && !mapboxSupported ){
+	}else if ( uploadSupported && !jazzSupported ){
 
 		return(
 
@@ -56,7 +56,7 @@ const main = ( { intl, uploadSupported, mapboxSupported } ) => {
 		)
 
 
-	}else if ( uploadSupported && mapboxSupported ) {
+	}else if ( uploadSupported && jazzSupported ) {
 
 		return(
 
@@ -81,7 +81,7 @@ main.propTypes = {
 	intl: intlShape.isRequired,
 
 	uploadSupported: PropTypes.bool,
-	mapboxSupported: PropTypes.bool
+	jazzSupported: PropTypes.bool
 	
 }
 

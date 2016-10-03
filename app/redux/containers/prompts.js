@@ -10,7 +10,7 @@ const mapStateToProps = ( state ) => {
 
 		show: state.layers.prompts,
 		prompt: state.prompt,
-		mapboxSupported: state.browser.mapboxSupported
+		flexboxSupported: state.browser.flexboxSupported
 
 	}
 

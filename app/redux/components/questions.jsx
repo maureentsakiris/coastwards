@@ -22,8 +22,8 @@ const messages = defineMessages( {
 	},*/
 	q1:{
 		id: "q1",
-		description: "... aren't satellite images enough?",
-		defaultMessage: "... aren't satellite images enough?"
+		description: "Aren't satellite images enough?",
+		defaultMessage: "Aren't satellite images enough?"
 	},
 	a1:{
 		id: "a1",
@@ -32,8 +32,8 @@ const messages = defineMessages( {
 	},
 	q2:{
 		id: "q2",
-		description: "... can the images I upload be traced back to me?",
-		defaultMessage: "... can the images I upload be traced back to me?"
+		description: "Can the images I upload be traced back to me?",
+		defaultMessage: "Can the images I upload be traced back to me?"
 	},
 	a2:{
 		id: "a2",
@@ -47,8 +47,8 @@ const messages = defineMessages( {
 	},
 	q3:{
 		id: "q3",
-		description: "... do I have to provide any personal data?",
-		defaultMessage: "... do I have to provide any personal data?"
+		description: "Do I have to provide any personal data?",
+		defaultMessage: "Do I have to provide any personal data?"
 	},
 	a3:{
 		id: "a3",
@@ -57,8 +57,8 @@ const messages = defineMessages( {
 	},
 	q4:{
 		id: "q4",
-		description: "... will I be notified about publications resulting from this project?",
-		defaultMessage: "... will I be notified about publications resulting from this project?"
+		description: "Will I be notified about publications resulting from this project?",
+		defaultMessage: "Will I be notified about publications resulting from this project?"
 	},
 	a4:{
 		id: "a4",
@@ -67,8 +67,8 @@ const messages = defineMessages( {
 	},
 	q5:{
 		id: "q5",
-		description: "... who has access to the data you collect?",
-		defaultMessage: "... who has access to the data you collect?"
+		description: "Who has access to the data you collect?",
+		defaultMessage: "Who has access to the data you collect?"
 	},
 	a5:{
 		id: "a5",
@@ -77,8 +77,8 @@ const messages = defineMessages( {
 	},
 	q6:{
 		id: "q6",
-		description: "... how many pictures do you need?",
-		defaultMessage: "... how many pictures do you need?"
+		description: "How many pictures do you need?",
+		defaultMessage: "How many pictures do you need?"
 	},
 	a6:{
 		id: "a6",

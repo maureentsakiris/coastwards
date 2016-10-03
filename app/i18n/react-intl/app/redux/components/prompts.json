@@ -7,7 +7,7 @@
   {
     "id": "select_file",
     "description": "Prompt - Prompts user to select a file through the file system",
-    "defaultMessage": "Do you have any pictures of coasts on your device? Why not upload them now?"
+    "defaultMessage": "Have any pictures of coasts? Why not upload them now?"
   },
   {
     "id": "drag_and_drop",

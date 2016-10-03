@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react'
 import { defineMessages, injectIntl, intlShape } from 'react-intl'
 
 import WHYIP from './dialogs/whyIP'
+import NOJAZZ from './dialogs/nojazz'
 
 import DIV from 'components/tags/div'
 import A from 'components/tags/a'
@@ -36,7 +37,8 @@ const dialog = ( { intl, component, active, closeDialog } ) => {
 			<DIV className={ style.dialog } >
 				<A className={ style.close } href="#" onClick={ closeDialog } title={ formatMessage( messages.close_dialog ) } ><I className="material-icons" >&#xE5CD;</I></A>
 				<DIV className={ style.body } >
-					<WHYIP style={ { display: component == 'WHYIP' ? 'block' : 'none' } } />
+					{ component == 'WHYIP' && <WHYIP /> }
+					{ component == 'NOJAZZ' && <NOJAZZ /> }
 				</DIV>
 			</DIV>
 

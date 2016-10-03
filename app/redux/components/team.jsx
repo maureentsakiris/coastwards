@@ -70,7 +70,7 @@ const messages = defineMessages( {
 	me:{
 		id: "me",
 		description: "Team",
-		defaultMessage: "That's me. I'm not a scientist and I'm crazy enough to imagine a map of coasts, that was created by people all over the world to deal with the consequences of climate change. I would very much like to see that image. Wouldn't you?"
+		defaultMessage: "That's me. I'm not a scientist and I'm responsible for any typos or anything else that's wrong about this website. And I am crazy enough to believe that people will upload pictures to protect their coasts from sea-level rise. Don't make me turn my back on society and go live in a cabin in the woods!"
 	},
 	me_official:{
 		id: "nassos_official",

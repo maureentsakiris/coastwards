@@ -56,7 +56,7 @@ const messages = defineMessages( {
 	guideline_material_text:{
 		id: "guideline_material_text",
 		description: "Guideline - Material",
-		defaultMessage: "You probably didn't care much about the coast material at the time you took the picture (unless you're robert), so please bear in mind that we don't care about how beautiful or ugly the image is, as long as we can see the coast material."
+		defaultMessage: "You probably didn't care much about the coast material at the time you took the picture, so please bear in mind that we don't care about how beautiful (sunsets) or ugly (your toes!) the image is, as long as we can see the coast material."
 	}
 
 } )
@@ -84,7 +84,7 @@ const guidelines = ( { intl } ) => {
 		return(
 
 			<DIV key={ key } >
-				<H priority={ 4 } className={ style.glheader } >{ gl.header }</H>
+				<H priority={ 4 } >{ gl.header }</H>
 				<P>{ gl.text }</P>
 			</DIV>
 
