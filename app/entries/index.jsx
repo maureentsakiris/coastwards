@@ -20,6 +20,7 @@ import How from 'components/how'
 import Guidelines from 'components/guidelines'
 import Team from 'components/team'
 import FAQs from 'components/faqs'
+import Prompt from 'components/prompt'
 
 import DIV from 'components/tags/div'
 

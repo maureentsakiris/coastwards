@@ -9,8 +9,7 @@ const mapStateToProps = ( state ) => {
 	return {
 
 		show: state.layers.upload,
-		mapboxSupported: state.browser.mapboxSupported,
-		dndSupported: state.browser.dndSupported,
+		jazzSupported: state.browser.jazzSupported,
 		prompt: state.prompt
 
 	}

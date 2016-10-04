@@ -9,7 +9,7 @@ import BR from 'components/tags/br'
 import style from './_upload'
 
 
-const upload = ( { show, dndSupported, mapboxSupported, className, validateFile } ) => {
+const upload = ( { show, jazzSupported, className, validateFile } ) => {
 
 	const s = {
 
@@ -17,16 +17,19 @@ const upload = ( { show, dndSupported, mapboxSupported, className, validateFile 
 
 	}
 
-	const showDropzone = dndSupported && mapboxSupported
-
 	const cls = Classnames( className )
+	const clsInput = Classnames( {
+
+		[ style.hidden ]: jazzSupported
+
+	} )
 
 	return(
 
 		<FORM id="Upload" action="#" style={ s } className={ cls } >
 			<BR />
-			{ showDropzone && <DIV onDragOver={ _preventDefault } onDragEnter={ _preventDefault } onDragLeave={ _preventDefault } onDrop={ _onDrop.bind( this, validateFile ) } className={ style.dropzone } ></DIV> }
-			<INPUT id="images" name="images" onChange={ validateFile } form="Upload" type="file" multiple={ false } accept="image/*" />
+			{ jazzSupported && <DIV onDragOver={ _preventDefault } onDragEnter={ _preventDefault } onDragLeave={ _preventDefault } onDrop={ _onDrop.bind( this, validateFile ) } className={ style.dropzone } ></DIV> }
+			<INPUT className={ clsInput } id="images" name="images" onChange={ validateFile } form="Upload" type="file" multiple={ false } accept="image/*" />
 		</FORM>
 
 	)
@@ -49,8 +52,7 @@ const _onDrop = ( validateFile, e ) => {
 upload.propTypes = {
 
 	show: PropTypes.bool,
-	mapboxSupported: PropTypes.bool,
-	dndSupported: PropTypes.bool,
+	jazzSupported: PropTypes.bool,
 	className: PropTypes.string,
 
 	validateFile: PropTypes.func

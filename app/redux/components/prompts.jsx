@@ -36,7 +36,7 @@ const messages = defineMessages( {
 
 } )
 
-const prompts = ( { intl, className, show, prompt, flexboxSupported, hide } ) => {
+const prompts = ( { intl, className, show, prompt, jazzSupported, hide } ) => {
 
 	const { formatMessage } = intl
 
@@ -54,7 +54,7 @@ const prompts = ( { intl, className, show, prompt, flexboxSupported, hide } ) =>
 
 		<DIV id="Prompts" style={ s } className={ cls } >
 			<H priority={ 2 }>{ err } 
-				{ flexboxSupported && <A href="#" onClick={ hide } title={ formatMessage( messages.close ) } ><I className="material-icons" style={ { verticalAlign: 'middle' } } >&#xE5CD;</I></A> }
+				{ jazzSupported && <A href="#" onClick={ hide } title={ formatMessage( messages.close ) } ><I className="material-icons" style={ { verticalAlign: 'middle' } } >&#xE5CD;</I></A> }
 			</H>
 		</DIV>
 
@@ -70,7 +70,7 @@ prompts.propTypes = {
 	
 	show: PropTypes.bool,
 	prompt: PropTypes.string,
-	flexboxSupported: PropTypes.bool,
+	jazzSupported: PropTypes.bool,
 
 	hide: PropTypes.func
 

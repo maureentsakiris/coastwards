@@ -9,6 +9,8 @@ import Locate from 'containers/locate'
 import Geolocator from 'containers/geolocator'
 import Form from 'containers/form'
 
+import Prompt from 'components/prompt'
+
 import DIV from 'components/tags/div'
 import P from 'components/tags/p'
 
@@ -47,8 +49,6 @@ const main = ( { intl, uploadSupported, jazzSupported } ) => {
 				<Prompts className={ style.corset } />
 				<Errors className={ style.corset } /> 
 				<Statuses className={ style.corset } />
-				<Geolocator className={ style.corset } />
-				<Locate className={ style.corset } />
 				<Upload className={ style.corset } />
 				<Form className={ style.corset } />
 			</DIV>
@@ -61,13 +61,13 @@ const main = ( { intl, uploadSupported, jazzSupported } ) => {
 		return(
 
 			<DIV id="Main" className={ style.main } >
-				<Upload className={ style.screen } />
 				<Geolocator className={ style.screen } />
-				<Locate className={ style.screen } />
+				<Locate className={ style.screen } /> 
+				<Form />
+				<Upload className={ style.screen } />
 				<Prompts className={ style.screen } />
 				<Statuses className={ style.screen } />
-				<Errors className={ style.screen } /> 
-				<Form className={ style.screen } />
+				<Errors className={ style.screen } />
 			</DIV>
 
 		)
