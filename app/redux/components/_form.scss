@@ -1,7 +1,28 @@
 @import 'app/styles/base';
 
+.hide{
+
+	display: none;
+
+}
+
 .cancel{
 
 	margin-right: 1em;
+
+}
+
+.form{
+
+	position: absolute;
+    top: 0;
+    background: #fff;
+    width: 100%;
+
+}
+
+.corset{
+
+	@extend %corset;
 
 }

@@ -7,6 +7,7 @@ import FORMDATA from 'containers/formdata'
 import H from 'components/tags/h'
 import IMG from 'components/tags/img'
 import FORM from 'components/tags/form'
+import DIV from 'components/tags/div'
 
 import RADIOGROUP from 'components/form/radiogroup/radiogroup'
 import COMMENT from 'components/form/input/comment'
@@ -117,38 +118,37 @@ const form = ( { intl, className, show, image, setMaterial, /*setAdaptation,*/ s
 
 	const { formatMessage } = intl
 
-	const cls = Classnames( className )
+	const cls = Classnames( style.form, className, {
+
+		[ style.hide ]: !show
+
+	} )
 
 
-	if( !show ){
+	const materials = [
 
-		return null
+		{ label: formatMessage( messages.sand ), value: 'sand' },
+		{ label: formatMessage( messages.pebble ), value: 'pebble' },
+		{ label: formatMessage( messages.rock ), value: 'rock' },
+		{ label: formatMessage( messages.mud ), value: 'mud' },
+		{ label: formatMessage( messages.ice ), value: 'ice' },
+		{ label: formatMessage( messages.manmade ), value: 'manmade' },
+		{ label: formatMessage( messages.notsure ), value: 'notsure' }
 
-	}else{
-
-		const materials = [
-
-			{ label: formatMessage( messages.sand ), value: 'sand' },
-			{ label: formatMessage( messages.pebble ), value: 'pebble' },
-			{ label: formatMessage( messages.rock ), value: 'rock' },
-			{ label: formatMessage( messages.mud ), value: 'mud' },
-			{ label: formatMessage( messages.ice ), value: 'ice' },
-			{ label: formatMessage( messages.manmade ), value: 'manmade' },
-			{ label: formatMessage( messages.notsure ), value: 'notsure' }
-
-		]
+	]
 
 
-		/*const adaptations = [
+	/*const adaptations = [
 
-			{ label: "!Dike", value: "dike" },
-			{ label: "!Wave-breaker", value: "wavebreaker" }
+		{ label: "!Dike", value: "dike" },
+		{ label: "!Wave-breaker", value: "wavebreaker" }
 
-		]*/
+	]*/
 
-		return(
+	return(
 
-			<FORM id="Form" action="#" className={ cls } >
+		<FORM id="Form" action="#" className={ cls } >
+			<DIV className={ style.corset }>
 				<H priority={ 2 }>{ formatMessage( messages.hurray ) }</H>
 				{ image.dataURL && <IMG src={ image.dataURL } alt="your image" /> }
 				<BR/><BR/>
@@ -163,11 +163,10 @@ const form = ( { intl, className, show, image, setMaterial, /*setAdaptation,*/ s
 				<CANCEL className={ style.cancel } onClick={ resetMain } label={ formatMessage( messages.cancel_upload ) } />
 				<GO onClick={ uploadImage } label={ formatMessage( messages.upload_image ) } />
 				<BR/><BR/>
-			</FORM>
+			</DIV>
+		</FORM>
 
-		)
-
-	}
+	)
 	
 }
 

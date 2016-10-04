@@ -12,31 +12,28 @@ import style from './_upload'
 
 const upload = ( { show, jazzSupported, className, validateFile } ) => {
 
-	if( !show ){
+	const cls = Classnames( className, {
 
-		return null
+		[ style.hidden ]: !show
 
-	}else{
+	} )
 
-		const cls = Classnames( className )
-		const clsInput = Classnames( {
+	const clsInput = Classnames( {
 
-			[ style.hidden ]: jazzSupported
+		[ style.hidden ]: jazzSupported
 
-		} )
+	} )
 
-		return(
+	return(
 
-			<FORM id="Upload" action="#" className={ cls } >
-				<BR />
-				{ jazzSupported && <DIV onDragOver={ _preventDefault } onDragEnter={ _preventDefault } onDragLeave={ _preventDefault } onDrop={ _onDrop.bind( this, validateFile ) } className={ style.dropzone } ></DIV> }
-				{ jazzSupported && <BUTTON className={ style.upload } onClick={ () => {} }>UPLOAD</BUTTON> }
-				<INPUT className={ clsInput } id="images" name="images" onChange={ validateFile } form="Upload" type="file" multiple={ false } accept="image/*" />
-			</FORM>
+		<FORM id="Upload" action="#" className={ cls } >
+			<BR />
+			{ jazzSupported && <DIV onDragOver={ _preventDefault } onDragEnter={ _preventDefault } onDragLeave={ _preventDefault } onDrop={ _onDrop.bind( this, validateFile ) } className={ style.dropzone } ></DIV> }
+			{ jazzSupported && <BUTTON className={ style.upload } onClick={ () => {} }><i className="material-icons">file_upload</i></BUTTON> }
+			<INPUT className={ clsInput } id="images" name="images" onChange={ validateFile } form="Upload" type="file" multiple={ false } accept="image/*" />
+		</FORM>
 
-		)
-
-	}
+	)
 	
 }
 
