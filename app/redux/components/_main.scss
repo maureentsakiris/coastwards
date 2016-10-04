@@ -21,6 +21,13 @@
 
 }
 
+.mapbox{
+
+	height: 100%;
+	margin-top: $fringe-height;
+
+}
+
 .screen{
 
 	position: absolute;
@@ -28,6 +35,23 @@
 	left: 0;
 	width: 100%;
 	height: 100%;
+	@extend %flexcontainer;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
 	text-align: center;
+	padding: $fringe-height $site-padding-sides;
+	background-color: rgba(255, 255, 255, 0.45);
+
+}
+
+.fringe{
+
+	position: absolute;
+	width: 100%;
+	background: transparent;
+	height: $fringe-height;
+	z-index: 1;
+	//box-shadow: 0 2px 2px 0 rgba( 0,0,0, 0.1 );
 
 }

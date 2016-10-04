@@ -50,7 +50,7 @@ const config = {
 			{
 				test: /\.jsx?$/,
 				include: APP_ROOT,
-				loaders: [ 'react-hot', 'babel?cacheDirectory', 'eslint-loader' ]
+				loaders: [ 'babel?cacheDirectory', 'eslint-loader' ]
 			},
 			{
 				test: /\.modernizrrc$/,

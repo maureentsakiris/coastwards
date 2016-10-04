@@ -39,27 +39,29 @@ const main = ( { intl, className, show, resetMain } ) => {
 
 	const { formatMessage } = intl
 
-	const s = {
+	if( !show ){
 
-		display: show ? 'block' : 'none'
+		return null
+
+	}else{
+
+		const cls = Classnames( className )
+
+		return(
+
+			<FORM id="Geolocator" action="#" className={ cls } >
+				<P>
+					<INPUT form="Geolocator" name="lat" type="number" placeholder={ formatMessage( messages.latitude ) } />
+					<BR/><BR/>
+					<INPUT form="Geolocator" name="long" type="number" placeholder={ formatMessage( messages.longitude ) } />
+				</P>
+				<BUTTON type="button" onClick={ () => {} }>{ formatMessage( messages.check_in_location ) }</BUTTON>
+				<BUTTON type="button" onClick={ resetMain }>{ formatMessage( messages.cancel_check_in ) }</BUTTON>
+			</FORM> 
+
+		)
 
 	}
-
-	const cls = Classnames( className )
-
-	return(
-
-		<FORM id="Geolocator" style={ s } action="#" className={ cls } >
-			<P>
-				<INPUT form="Geolocator" name="lat" type="number" placeholder={ formatMessage( messages.latitude ) } />
-				<BR/><BR/>
-				<INPUT form="Geolocator" name="long" type="number" placeholder={ formatMessage( messages.longitude ) } />
-			</P>
-			<BUTTON type="button" onClick={ () => {} }>{ formatMessage( messages.check_in_location ) }</BUTTON>
-			<BUTTON type="button" onClick={ resetMain }>{ formatMessage( messages.cancel_check_in ) }</BUTTON>
-		</FORM> 
-
-	)
 	
 }
 

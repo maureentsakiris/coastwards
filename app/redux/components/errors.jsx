@@ -86,23 +86,25 @@ const errors = ( { intl, className, show, error, mapboxSupported, hide } ) => {
 
 	const err = messages[ error ] ? formatMessage( messages[ error ] ) : error
 
-	const s = {
+	if( !show ){
 
-		display: show ? 'block' : 'none'
+		return null
+
+	}else{
+
+		const cls = Classnames( className )
+
+		return(
+
+			<DIV id="Errors" className={ cls } >
+				<H priority={ 2 }>{ err } 
+					{ mapboxSupported && <A href="#" onClick={ hide } title={ formatMessage( messages.close ) } ><I className="material-icons" style={ { verticalAlign: 'middle' } } >&#xE5CD;</I></A> }
+				</H>
+			</DIV>
+
+		)
 
 	}
-
-	const cls = Classnames( className )
-
-	return(
-
-		<DIV id="Errors" style={ s } className={ cls } >
-			<H priority={ 2 }>{ err } 
-				{ mapboxSupported && <A href="#" onClick={ hide } title={ formatMessage( messages.close ) } ><I className="material-icons" style={ { verticalAlign: 'middle' } } >&#xE5CD;</I></A> }
-			</H>
-		</DIV>
-
-	)
 	
 }
 

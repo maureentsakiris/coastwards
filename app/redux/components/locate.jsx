@@ -34,23 +34,25 @@ const main = ( { intl, className, show, locateCoast, resetMain } ) => {
 
 	const { formatMessage } = intl
 
-	const s = {
+	if( !show ){
 
-		display: show ? 'block' : 'none'
+		return null
+
+	}else{
+
+		const cls = Classnames( className )
+
+		return(
+
+			<DIV id="Locate" className={ cls } >
+				<H priority={ 2 }>{ formatMessage( messages.can_you_locate ) }</H>
+				<BUTTON type="button" onClick={ locateCoast }>{ formatMessage( messages.yes_location_known ) }</BUTTON>
+				<BUTTON type="button" onClick={ resetMain }>{ formatMessage( messages.no_location_unknown ) }</BUTTON>
+			</DIV> 
+
+		)
 
 	}
-
-	const cls = Classnames( className )
-
-	return(
-
-		<DIV id="Locate" style={ s } className={ cls } >
-			<H priority={ 2 }>{ formatMessage( messages.can_you_locate ) }</H>
-			<BUTTON type="button" onClick={ locateCoast }>{ formatMessage( messages.yes_location_known ) }</BUTTON>
-			<BUTTON type="button" onClick={ resetMain }>{ formatMessage( messages.no_location_unknown ) }</BUTTON>
-		</DIV> 
-
-	)
 	
 }
 

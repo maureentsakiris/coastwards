@@ -3,5 +3,7 @@
 .intro{
 
 	@extend %corset;
+	margin-top: $site-padding-top;
+	text-align: center;
 
 }

@@ -3,7 +3,7 @@
 @import 'app/styles/base';
 
 
-.padded{
+.info{
 
 	@extend %padded;
 
@@ -12,7 +12,7 @@
 .i18n{
 
 	text-align: center;
-	padding-top: $site-padding-top;
+	margin-top: $site-padding-top;
 
 }
 

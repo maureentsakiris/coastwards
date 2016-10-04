@@ -8,8 +8,7 @@ import Upload from 'containers/upload'
 import Locate from 'containers/locate'
 import Geolocator from 'containers/geolocator'
 import Form from 'containers/form'
-
-import Prompt from 'components/prompt'
+import Mapbox from 'containers/mapbox'
 
 import DIV from 'components/tags/div'
 import P from 'components/tags/p'
@@ -61,6 +60,8 @@ const main = ( { intl, uploadSupported, jazzSupported } ) => {
 		return(
 
 			<DIV id="Main" className={ style.main } >
+				<div className={ style.fringe }></div>
+				<Mapbox className={ style.mapbox } />
 				<Geolocator className={ style.screen } />
 				<Locate className={ style.screen } /> 
 				<Form />

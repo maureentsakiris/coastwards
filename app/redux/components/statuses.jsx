@@ -33,21 +33,23 @@ const statuses = ( { intl, className, show, status, progress } ) => {
 
 	const stat = messages[ status ] ? formatMessage( messages[ status ], { progress: progress } ) : status
 
-	const s = {
+	if( !show ){
 
-		display: show ? 'block' : 'none'
+		return null
+
+	}else{
+
+		const cls = Classnames( className )
+
+		return(
+
+			<DIV id="Statuses" className={ cls } >
+				<H priority={ 2 }>{ stat }</H>
+			</DIV>
+
+		)
 
 	}
-
-	const cls = Classnames( className )
-
-	return(
-
-		<DIV id="Statuses" style={ s } className={ cls } >
-			<H priority={ 2 }>{ stat }</H>
-		</DIV>
-
-	)
 	
 }
 

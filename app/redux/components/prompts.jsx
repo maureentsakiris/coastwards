@@ -42,23 +42,25 @@ const prompts = ( { intl, className, show, prompt, jazzSupported, hide } ) => {
 
 	const err = messages[ prompt ] ? formatMessage( messages[ prompt ] ) : prompt
 
-	const s = {
+	if( !show ){
 
-		display: show ? 'block' : 'none'
+		return null
+
+	}else{
+
+		const cls = Classnames( className )
+
+		return(
+
+			<DIV id="Prompts" className={ cls } >
+				<H priority={ 2 }>{ err } 
+					{ jazzSupported && <A href="#" onClick={ hide } title={ formatMessage( messages.close ) } ><I className="material-icons" style={ { verticalAlign: 'middle' } } >&#xE5CD;</I></A> }
+				</H>
+			</DIV>
+
+		)
 
 	}
-
-	const cls = Classnames( className )
-
-	return(
-
-		<DIV id="Prompts" style={ s } className={ cls } >
-			<H priority={ 2 }>{ err } 
-				{ jazzSupported && <A href="#" onClick={ hide } title={ formatMessage( messages.close ) } ><I className="material-icons" style={ { verticalAlign: 'middle' } } >&#xE5CD;</I></A> }
-			</H>
-		</DIV>
-
-	)
 	
 }
 

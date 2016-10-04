@@ -20,7 +20,6 @@ import How from 'components/how'
 import Guidelines from 'components/guidelines'
 import Team from 'components/team'
 import FAQs from 'components/faqs'
-import Prompt from 'components/prompt'
 
 import DIV from 'components/tags/div'
 
@@ -57,7 +56,7 @@ ReactDom.render(
 	<Provider store={ store } >
 		<I18nProvider>
 			<Context>
-				<DIV id="Top" className={ style.padded } >
+				<DIV id="Info" className={ style.info } >
 					<I18nLinks availableLanguages={ i18nLocales.locales } id="I18n" className={ style.i18n } />
 					<Intro />
 					<How />
