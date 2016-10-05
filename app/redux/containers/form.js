@@ -9,7 +9,8 @@ const mapStateToProps = ( state ) => {
 	return {
 
 		show: state.layers.form,
-		image: state.form.image
+		image: state.form.image,
+		jazzSupported: state.browser.jazzSupported
 
 	}
 

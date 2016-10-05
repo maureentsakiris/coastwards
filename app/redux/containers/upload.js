@@ -1,6 +1,7 @@
 import { connect } from 'react-redux'
 
 import { validateFile } from 'actions/main'
+import { setLayerVisibility } from 'actions/layers'
 import UPLOAD from 'components/upload'
 
 
@@ -23,6 +24,11 @@ const mapDispatchToProps = ( dispatch ) => {
 		validateFile: ( e ) => {
 
 			dispatch( validateFile( e ) )
+
+		},
+		setLayerVisibility: ( options ) => {
+
+			dispatch( setLayerVisibility( options ) )
 
 		}
 

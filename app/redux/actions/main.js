@@ -69,8 +69,6 @@ const _promiseSafe = ( image ) => {
 
 			let annotations = response.responses[ 0 ]
 
-			console.log( annotations )
-
 			if( annotations.faceAnnotations ){
 
 				reject( Error( "faces_detected" ) ) //YES
@@ -218,7 +216,7 @@ export const validateFile = ( e ) => {
 
 				dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'form', to: true } )
 
-			}else if ( image.manual == 1 && state.browser.mapboxSupported ){
+			}else if ( image.manual == 1 && state.browser.jazzSupported ){
 
 				dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'locate', to: true } )
 
@@ -392,7 +390,7 @@ export const resetMain = ( ) => {
 		console.log( "TOTAL RESET" );
 
 		document.getElementById( 'Upload' ).reset()
-		//document.getElementById( 'Form' ).reset()
+		document.getElementById( 'Form' ).reset()
 		dispatch( { type: types.RESET_FORM } )
 		dispatch( { type: types.RESET_LAYERS } )
 

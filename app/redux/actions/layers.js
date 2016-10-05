@@ -1,11 +1,12 @@
 import * as types from 'types'
 
-export function setVisibility ( options ){
+export function setLayerVisibility ( layer, to ){
 
 	return {
 
-		type: types.SET_VISIBILITY,
-		options: options
+		type: types.SET_LAYER_VISIBILITY,
+		layer: layer,
+		to: to
 
 	}
 

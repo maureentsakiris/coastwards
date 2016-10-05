@@ -57,18 +57,23 @@ const main = ( { intl, uploadSupported, jazzSupported } ) => {
 
 	}else if ( uploadSupported && jazzSupported ) {
 
+		/*<div className={ style.fringe }></div>
+
+		<Geolocator className={ style.geolocator } />
+				<Locate className={ style.locate } /> 
+
+
+				*/
+
 		return(
 
 			<DIV id="Main" className={ style.main } >
-				<div className={ style.fringe }></div>
 				<Mapbox className={ style.mapbox } />
-				<Geolocator className={ style.screen } />
-				<Locate className={ style.screen } /> 
-				<Form />
-				<Upload className={ style.screen } />
 				<Prompts className={ style.screen } />
 				<Statuses className={ style.screen } />
 				<Errors className={ style.screen } />
+				<Form className={ style.form } />
+				<Upload className={ style.upload } />
 			</DIV>
 
 		)

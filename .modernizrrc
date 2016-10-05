@@ -13,6 +13,8 @@
     "canvas",
     "css/flexbox",
     "css/flexwrap",
+    "css/pointerevents",
+    "css/animations",
     "forms/placeholder"
   ]
 }
