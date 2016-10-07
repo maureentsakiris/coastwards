@@ -20,6 +20,7 @@ import How from 'components/how'
 import Guidelines from 'components/guidelines'
 import Team from 'components/team'
 import FAQs from 'components/faqs'
+import Ask from 'components/ask'
 
 import DIV from 'components/tags/div'
 
@@ -63,6 +64,7 @@ ReactDom.render(
 					<Guidelines />
 					<Team />
 					<FAQs />
+					<Ask />
 				</DIV>
 				<Main />
 				<Snackbar />

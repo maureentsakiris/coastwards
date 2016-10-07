@@ -18,15 +18,16 @@
 
 	position: relative;
 	height: 100%;
-	margin-top: $site-padding-inner;
+	margin-top: 6em;
 
 }
 
 .mapbox{
 
 	height: 100%;
-	margin-top: $fringe-height;
+	//padding-top: $fringe-height;
 	top: 0;
+	background-color: #ccc;
 
 }
 
@@ -37,6 +38,7 @@
 	height: 100%;
 	top: 0;
 	left: 0;
+	//padding-top: $fringe-height;
 
 }
 
@@ -48,8 +50,17 @@
 	button{
 
 		pointer-events: all;
+		//outline: none;
 
 	}
+
+}
+
+.form{
+
+	@extend %fullscreen;
+	//background-color: rgba(255, 255, 255, 0.8);
+	background-color: rgba(0, 0, 0, 0.6);
 
 }
 
@@ -74,25 +85,6 @@
 	height: $fringe-height;
 	z-index: 1;
 	//box-shadow: 0 2px 2px 0 rgba( 0,0,0, 0.1 );
-
-}
-
-
-.form{
-
-	@extend %fullscreen;
-	position: fixed;
-    background: rgba(0, 0, 0, 0.6);
-
-    &>div{
-
-    	@extend %corset;
-    	background: #fff;
-	    height: 70%;
-	    overflow: scroll;
-	    box-shadow: 0 19px 60px rgba(0,0,0,.3),0 15px 20px rgba(0,0,0,.22);
-	    border-radius: 3px;
-
-    }
+	//border-bottom: 1px solid #f1f1f1;
 
 }

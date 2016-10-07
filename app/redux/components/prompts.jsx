@@ -4,19 +4,13 @@ import Classnames from 'classnames'
 
 import DIV from 'components/tags/div'
 import H from 'components/tags/h'
-import A from 'components/tags/a'
-import I from 'components/tags/i'
+
+import CLOSE from 'components/ui/close'
 
 //import style from './_prompts'
 
 
 const messages = defineMessages( {
-
-	close:{
-		id: "close",
-		description: "Hover title - Close",
-		defaultMessage: "Close"
-	},
 
 	select_file:{
 		id: "select_file",
@@ -33,6 +27,11 @@ const messages = defineMessages( {
 		description: "Prompt - Prompts user to upload images by clicking on the big red button",
 		defaultMessage: "Click the big red button to upload an image"
 	},
+	prompt_upload_ok:{
+		id: "prompt_upload_ok",
+		description: "Prompt - Informs user that his image was uploaded successfully",
+		defaultMessage: "WOHOO! Nice one! Your image was uploaded. Next one! :)"
+	},
 
 } )
 
@@ -40,7 +39,7 @@ const prompts = ( { intl, className, show, prompt, jazzSupported, hide } ) => {
 
 	const { formatMessage } = intl
 
-	const err = messages[ prompt ] ? formatMessage( messages[ prompt ] ) : prompt
+	const str = messages[ prompt ] ? formatMessage( messages[ prompt ] ) : prompt
 
 	if( !show ){
 
@@ -53,8 +52,8 @@ const prompts = ( { intl, className, show, prompt, jazzSupported, hide } ) => {
 		return(
 
 			<DIV id="Prompts" className={ cls } >
-				<H priority={ 2 }>{ err } 
-					{ jazzSupported && <A href="#" onClick={ hide } title={ formatMessage( messages.close ) } ><I className="material-icons" style={ { verticalAlign: 'middle' } } >&#xE5CD;</I></A> }
+				<H priority={ 2 }>{ str } 
+					{ jazzSupported && <CLOSE onClick={ hide } /> }
 				</H>
 			</DIV>
 

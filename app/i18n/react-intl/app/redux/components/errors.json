@@ -1,10 +1,5 @@
 [
   {
-    "id": "close",
-    "description": "Hover title - Close",
-    "defaultMessage": "Close"
-  },
-  {
     "id": "files_undefined",
     "description": "Error - Informs user that no files were selected",
     "defaultMessage": "No files were selected."

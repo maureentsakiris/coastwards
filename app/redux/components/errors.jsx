@@ -4,19 +4,13 @@ import Classnames from 'classnames'
 
 import DIV from 'components/tags/div'
 import H from 'components/tags/h'
-import A from 'components/tags/a'
-import I from 'components/tags/i'
+
+import CLOSE from 'components/ui/close'
 
 //import style from './_errors'
 
 
 const messages = defineMessages( {
-
-	close:{
-		id: "close",
-		description: "Hover title - Close",
-		defaultMessage: "Close"
-	},
 
 	//error messages
 	files_undefined:{
@@ -80,11 +74,11 @@ const messages = defineMessages( {
 
 } )
 
-const errors = ( { intl, className, show, error, mapboxSupported, hide } ) => {
+const errors = ( { intl, className, show, error, jazzSupported, hide } ) => {
 
 	const { formatMessage } = intl
 
-	const err = messages[ error ] ? formatMessage( messages[ error ] ) : error
+	const str = messages[ error ] ? formatMessage( messages[ error ] ) : error
 
 	if( !show ){
 
@@ -97,8 +91,8 @@ const errors = ( { intl, className, show, error, mapboxSupported, hide } ) => {
 		return(
 
 			<DIV id="Errors" className={ cls } >
-				<H priority={ 2 }>{ err } 
-					{ mapboxSupported && <A href="#" onClick={ hide } title={ formatMessage( messages.close ) } ><I className="material-icons" style={ { verticalAlign: 'middle' } } >&#xE5CD;</I></A> }
+				<H priority={ 2 }>{ str } 
+					{ jazzSupported && <CLOSE onClick={ hide } /> }
 				</H>
 			</DIV>
 
@@ -116,7 +110,7 @@ errors.propTypes = {
 
 	show: PropTypes.bool,
 	error: PropTypes.string,
-	mapboxSupported: PropTypes.bool,
+	jazzSupported: PropTypes.bool,
 
 	hide: PropTypes.func,
 

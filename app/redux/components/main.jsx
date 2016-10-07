@@ -68,6 +68,7 @@ const main = ( { intl, uploadSupported, jazzSupported } ) => {
 		return(
 
 			<DIV id="Main" className={ style.main } >
+				<div className={ style.fringe }>GO COASTWARDS</div>
 				<Mapbox className={ style.mapbox } />
 				<Prompts className={ style.screen } />
 				<Statuses className={ style.screen } />

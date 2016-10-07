@@ -362,9 +362,9 @@ export const uploadImage = ( ) => {
 		.then( ( response ) => {
 
 			dispatch( resetMain() )
-			dispatch( { type: types.SET_STATUS_MSG, to: response } )
-			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'statuses', to: true } )
-			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'prompts', to: false } )
+			dispatch( { type: types.SET_PROMPT_MSG, to: response } )
+			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'statuses', to: false } )
+			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'prompts', to: true } )
 
 			return response
 
@@ -391,6 +391,7 @@ export const resetMain = ( ) => {
 
 		document.getElementById( 'Upload' ).reset()
 		document.getElementById( 'Form' ).reset()
+		dispatch( { type: types.SET_PROMPT_MSG, to: 'select_file' } )
 		dispatch( { type: types.RESET_FORM } )
 		dispatch( { type: types.RESET_LAYERS } )
 

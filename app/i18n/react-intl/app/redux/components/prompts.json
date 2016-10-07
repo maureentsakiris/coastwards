@@ -1,10 +1,5 @@
 [
   {
-    "id": "close",
-    "description": "Hover title - Close",
-    "defaultMessage": "Close"
-  },
-  {
     "id": "select_file",
     "description": "Prompt - Prompts user to select a file through the file system",
     "defaultMessage": "Have any pictures of coasts? Why not upload them now?"
@@ -18,5 +13,10 @@
     "id": "click_button",
     "description": "Prompt - Prompts user to upload images by clicking on the big red button",
     "defaultMessage": "Click the big red button to upload an image"
+  },
+  {
+    "id": "prompt_upload_ok",
+    "description": "Prompt - Informs user that his image was uploaded successfully",
+    "defaultMessage": "WOHOO! Nice one! Your image was uploaded. Next one! :)"
   }
 ]

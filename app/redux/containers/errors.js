@@ -10,7 +10,7 @@ const mapStateToProps = ( state ) => {
 
 		error: state.error,
 		show: state.layers.errors,
-		mapboxSupported: state.browser.mapboxSupported
+		jazzSupported: state.browser.jazzSupported
 
 	}
 

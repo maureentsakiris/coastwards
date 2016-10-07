@@ -3,14 +3,7 @@ import { defineMessages, injectIntl, intlShape } from 'react-intl'
 
 import Questions from 'containers/questions'
 
-
 import TOGGLE from 'components/ui/toggle'
-import FORM from 'components/tags/form'
-
-import EMAIL from 'components/form/input/email'
-import COMMENT from 'components/form/input/comment'
-import SUBMIT from  'components/form/button/submit'
-import BR from 'components/tags/br'
 
 import style from './_faqs'
 
@@ -79,13 +72,6 @@ const faqs = ( { intl } ) => {
 
 		<TOGGLE id="Faqs" title={ formatMessage( messages.other_questions_title ) } priority={ 3 } text={ formatMessage( messages.other_questions ) } className={ style.toggle } >
 			<Questions />
-			<FORM action="#" id="Ask"  className={ style.ask } >
-				<COMMENT form="Ask" label={ formatMessage( messages.label_question ) } name="comment" placeholder={ formatMessage( messages.placeholder_question ) } />
-				<BR />
-				<EMAIL form="Ask" label={ formatMessage( messages.label_email ) } name="email" placeholder={ formatMessage( messages.placeholder_email ) } />
-				<BR />
-				<SUBMIT form="Ask" name="submit" label={ formatMessage( messages.label_submit ) } />
-			</FORM>
 		</TOGGLE>
 	)
 

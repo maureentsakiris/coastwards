@@ -12,7 +12,7 @@ import SUBMIT from  'components/form/button/submit'
 
 import BR from 'components/tags/br'
 
-/*import style from './_ask'*/
+import style from './_ask'
 
 const messages = defineMessages( {
 
@@ -65,7 +65,7 @@ const ask = ( { intl } ) => {
 
 	return(
 
-		<TOGGLE id="AskUs" title={ formatMessage( messages.one_more_question_title ) } priority={ 3 } text={ formatMessage( messages.one_more_question ) } >
+		<TOGGLE id="AskUs" title={ formatMessage( messages.one_more_question_title ) } priority={ 3 } text={ formatMessage( messages.one_more_question ) } className={ style.toggle } >
 			<FORM action="#" id="Ask" >
 				<COMMENT form="Ask" label={ formatMessage( messages.label_question ) } name="comment" placeholder={ formatMessage( messages.placeholder_question ) } />
 				<BR />

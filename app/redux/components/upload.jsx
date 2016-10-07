@@ -78,35 +78,44 @@ export default class upload extends Component{
 
 		} )
 
-		const clsDropzone = Classnames( style.dropzone, {
+		if( jazzSupported ){
 
-			[ style.dropzoneActive ]: dropzoneActive
+			const clsDropzone = Classnames( style.dropzone, {
 
-		} )
+				[ style.dropzoneActive ]: dropzoneActive
 
-		const clsInput = Classnames( {
+			} )
 
-			[ style.hidden ]: jazzSupported
+			const clsRippler = Classnames( style.rippler, {
 
-		} )
+				[ style.ripple ]: isDrop
 
-		const clsRippler = Classnames( style.rippler, {
+			} )
 
-			[ style.ripple ]: isDrop
+			return(
 
-		} )
+				<FORM id="Upload" action="#" className={ cls } >
+					<DIV className={ clsRippler } style={ { position: 'absolute', top: dropY, left: dropX } } ></DIV>
+					<DIV onDragEnter={ this._onDragEnter } onDragLeave={ this._onDragLeave } onDrop={ this._onDrop.bind( this ) } className={ clsDropzone } ></DIV>
+					<BUTTON className={ style.upload } onClick={ this._openInput }><i className="material-icons">file_upload</i></BUTTON>
+					<INPUT className={ style.hidden } id="images" name="images" onChange={ validateFile } form="Upload" type="file" multiple={ false } accept="image/*" />
+				</FORM>
 
-		return(
+			)
 
-			<FORM id="Upload" action="#" className={ cls } >
-				<BR />
-				{ jazzSupported && <DIV className={ clsRippler } style={ { position: 'absolute', top: dropY, left: dropX } } ></DIV> }
-				{ jazzSupported && <DIV onDragEnter={ this._onDragEnter } onDragLeave={ this._onDragLeave } onDrop={ this._onDrop.bind( this ) } className={ clsDropzone } ></DIV> }
-				{ jazzSupported && <BUTTON className={ style.upload } onClick={ this._openInput }><i className="material-icons">file_upload</i></BUTTON> }
-				<INPUT className={ clsInput } id="images" name="images" onChange={ validateFile } form="Upload" type="file" multiple={ false } accept="image/*" />
-			</FORM>
 
-		)
+		}else{
+
+			return(
+
+				<FORM id="Upload" action="#" className={ cls } >
+					<BR />
+					<INPUT id="images" name="images" onChange={ validateFile } form="Upload" type="file" multiple={ false } accept="image/*" />
+				</FORM>
+
+			)
+
+		}
 
 	}
 

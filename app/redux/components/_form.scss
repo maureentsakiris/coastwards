@@ -1,8 +1,31 @@
 @import 'app/styles/base';
 
-.hide{
+.form{
 
-	display: none;
+	pointer-events: none;
+	opacity: 0;
+	transition: opacity 500ms;
+
+	&>div{
+
+		position: relative;
+		top: -100%;
+		transition: top 500ms;
+
+	}
+
+}
+
+.show{
+
+	pointer-events: all;
+	opacity: 1;
+
+	&>div{
+
+		top: 0;
+
+	}
 
 }
 
@@ -11,3 +34,62 @@
 	margin-right: 1em;
 
 }
+
+.sheet{
+
+	width: $corset-width;
+	max-width: 90%;
+	margin: 0 auto;
+	background-color: white;
+	box-shadow: 0 19px 60px rgba(0,0,0,.3),0 15px 20px rgba(0,0,0,.22);
+	height: 80%;
+	overflow-y: scroll;
+
+}
+
+.image{
+
+	height: 40%;
+    width: 100%;
+    overflow: hidden;
+    background-size: cover;
+    background-position: 50%;
+
+}
+
+%inner{
+
+	padding: 1em;
+
+}
+
+.content{
+
+	@extend %inner;
+
+}
+
+.actions{
+
+	@extend %inner;
+
+}
+
+/* .form{
+
+	@extend %fullscreen;
+	position: fixed;
+    background: rgba(0, 0, 0, 0.6);
+
+    &>div{
+
+    	@extend %corset;
+    	background: #fff;
+	    height: 70%;
+	    overflow: scroll;
+	    box-shadow: 0 19px 60px rgba(0,0,0,.3),0 15px 20px rgba(0,0,0,.22);
+	    border-radius: 3px;
+
+    }
+
+} */

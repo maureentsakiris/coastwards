@@ -18,12 +18,7 @@ const messages = defineMessages( {
 		id: "status_uploading",
 		description: "Status - Informs user that his image is being uploaded",
 		defaultMessage: "Uploading... {progress}%"
-	},
-	status_upload_ok:{
-		id: "status_upload_ok",
-		description: "Status - Informs user that his image was uploaded successfully",
-		defaultMessage: "WOHOO! Nice one! Your image was uploaded. Next one! :)"
-	},
+	}
 
 } )
 

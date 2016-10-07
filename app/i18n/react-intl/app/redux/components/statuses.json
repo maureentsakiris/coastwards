@@ -8,10 +8,5 @@
     "id": "status_uploading",
     "description": "Status - Informs user that his image is being uploaded",
     "defaultMessage": "Uploading... {progress}%"
-  },
-  {
-    "id": "status_upload_ok",
-    "description": "Status - Informs user that his image was uploaded successfully",
-    "defaultMessage": "WOHOO! Nice one! Your image was uploaded. Next one! :)"
   }
 ]

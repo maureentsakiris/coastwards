@@ -300,7 +300,7 @@ router.post( '/upload', ( req, res ) => {
 	/*.then( promiseResizeFile )*/
 	.then( ( formData ) => {
 
-		res.send( 'status_upload_ok' )
+		res.send( 'prompt_upload_ok' )
 		//res.json( { status: 'OK', json: JSON.stringify( formData ) } )
 		return formData;
 

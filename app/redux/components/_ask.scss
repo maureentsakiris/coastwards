@@ -4,5 +4,7 @@
 
 	@extend %toggle;
 	border-top: 1px solid #f1f1f1;
+	//border-bottom: 1px solid #f1f1f1;
+	margin-bottom: $site-padding-top;
 
 }

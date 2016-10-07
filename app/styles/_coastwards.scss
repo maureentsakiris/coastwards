@@ -1,4 +1,4 @@
-$fringe-height: 40px;
+$fringe-height: 100px;
 
 %corset{
 
@@ -26,7 +26,7 @@ $fringe-height: 40px;
 
 	&>a{
 
-		padding: 2em 0;
+		padding: 1em 0;
 
 	}
 
@@ -40,6 +40,7 @@ $fringe-height: 40px;
 
 		position: relative;
 		font-style: italic;
+		font-weight: 400;
 
 		i{
 
