@@ -18,6 +18,11 @@ const messages = defineMessages( {
 		id: "status_uploading",
 		description: "Status - Informs user that his image is being uploaded",
 		defaultMessage: "Uploading... {progress}%"
+	},
+	here_we_go:{
+		id: "here_we_go",
+		description: "Snack - ",
+		defaultMessage: "Awesome! Here we go!"
 	}
 
 } )

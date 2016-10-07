@@ -2,9 +2,24 @@
 
 .form{
 
+	display: none;
+
+}
+
+.show{
+
+	display: block;
+
+}
+
+
+
+.formJazz{
+
 	pointer-events: none;
 	opacity: 0;
 	transition: opacity 500ms;
+	z-index: 2;
 
 	&>div{
 
@@ -12,11 +27,26 @@
 		top: -100%;
 		transition: top 500ms;
 
+		h2{
+
+			font-size: 2em;
+			font-weight: 300;
+			margin: 0;
+
+		}
+
+		label {
+
+		    margin-top: 2em;
+		    display: block;
+
+		}
+
 	}
 
 }
 
-.show{
+.showJazz{
 
 	pointer-events: all;
 	opacity: 1;

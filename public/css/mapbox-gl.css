@@ -264,6 +264,13 @@
 
 }
 
+.mapboxgl-ctrl-bottom-right .mapboxgl-ctrl { 
+
+    margin:0 15px 15px 0; 
+    float:right; 
+
+}
+
 .mapboxgl-popup {
 
     z-index: 1;

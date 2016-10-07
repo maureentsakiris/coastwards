@@ -22,7 +22,7 @@ const messages = defineMessages( {
 		description: "Warning - Warns the user that his browser does not support the image upload",
 		defaultMessage: "Oops nope ... looks like you are on an old browser that does not support some features we need to make this website work. Sorry, you'll need to upgrade or switch browsers to continue."
 	}
-
+	
 } )
 
 const main = ( { intl, uploadSupported, jazzSupported } ) => {
@@ -68,8 +68,10 @@ const main = ( { intl, uploadSupported, jazzSupported } ) => {
 		return(
 
 			<DIV id="Main" className={ style.main } >
-				<div className={ style.fringe }>GO COASTWARDS</div>
+				<div className={ style.fringe }></div>
 				<Mapbox className={ style.mapbox } />
+				<Geolocator className={ style.screen } />
+				<Locate className={ style.screen } />
 				<Prompts className={ style.screen } />
 				<Statuses className={ style.screen } />
 				<Errors className={ style.screen } />

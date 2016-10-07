@@ -8,5 +8,10 @@
     "id": "status_uploading",
     "description": "Status - Informs user that his image is being uploaded",
     "defaultMessage": "Uploading... {progress}%"
+  },
+  {
+    "id": "here_we_go",
+    "description": "Snack -",
+    "defaultMessage": "Awesome! Here we go!"
   }
 ]

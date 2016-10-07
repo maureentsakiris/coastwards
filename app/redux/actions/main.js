@@ -214,9 +214,28 @@ export const validateFile = ( e ) => {
 
 			if( image.manual == 0 ){
 
-				dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'form', to: true } )
+				if( state.browser.jazzSupported ){
 
-			}else if ( image.manual == 1 && state.browser.jazzSupported ){
+					dispatch( { type: types.SET_STATUS_MSG, to: 'here_we_go' } )
+					dispatch( { type: types.FLY_TO, center: [ image.long, image.lat ], zoom: 15 } )
+					dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'statuses', to: true } )
+					//dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'form', to: true } )
+
+					setTimeout( () => {
+
+						dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'statuses', to: false } )
+						dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'form', to: true } )
+
+					}, 5000 )
+
+				}else{
+
+					dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'statuses', to: false } )
+					dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'form', to: true } )
+
+				}
+
+			} else if ( image.manual == 1 && state.browser.jazzSupported ){
 
 				dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'locate', to: true } )
 
@@ -394,6 +413,7 @@ export const resetMain = ( ) => {
 		dispatch( { type: types.SET_PROMPT_MSG, to: 'select_file' } )
 		dispatch( { type: types.RESET_FORM } )
 		dispatch( { type: types.RESET_LAYERS } )
+		dispatch( { type: types.RESET_MAP } )
 
 	}
 

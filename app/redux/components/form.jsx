@@ -118,12 +118,6 @@ const form = ( { intl, className, show, image, jazzSupported, setMaterial, /*set
 
 	const { formatMessage } = intl
 
-	const cls = Classnames( className, style.form, {
-
-		[ style.show ]: show
-
-	} )
-
 
 	const materials = [
 
@@ -140,6 +134,12 @@ const form = ( { intl, className, show, image, jazzSupported, setMaterial, /*set
 
 	if( jazzSupported ){
 
+		const cls = Classnames( className, style.formJazz, {
+
+			[ style.showJazz ]: show
+
+		} )
+
 		return(
 
 			<FORM id="Form" action="#" className={ cls } >
@@ -147,15 +147,10 @@ const form = ( { intl, className, show, image, jazzSupported, setMaterial, /*set
 					{ image.dataURL && <DIV className={ style.image } style={ { backgroundImage: 'url(' + image.dataURL + ')' } } ></DIV> }
 					<DIV id="Content" className={ style.content } >
 						<H priority={ 2 }>{ formatMessage( messages.hurray ) }</H>
-						<BR/>
 						<RADIOGROUP form="Form" label={ formatMessage( messages.select_material ) } name="material" options={ materials } onClick={ setMaterial } preferPlaceholder={ false } />
-						<BR/>
 						<COMMENT form="Form" label={ formatMessage( messages.say_hello ) } name="comment" placeholder={ formatMessage( messages.placeholder_say_hello ) } onChange={ setComment } preferPlaceholder={ false } />
-						<BR/>
 						<HASHTAG form="Form" label={ formatMessage( messages.hashtag_your_image ) } name="hashtag" placeholder={ formatMessage( messages.placeholder_hashtag_your_image ) } onChange={ setHashtag } preferPlaceholder={ false } />
-						<BR/>
 						<FORMDATA />
-						<BR/>
 					</DIV>
 					<DIV id="Actions" className={ style.actions } >
 						<CANCEL className={ style.cancel } onClick={ resetMain } label={ formatMessage( messages.cancel_upload ) } />
@@ -167,6 +162,12 @@ const form = ( { intl, className, show, image, jazzSupported, setMaterial, /*set
 		)
 
 	}else{
+
+		const cls = Classnames( className, style.form, {
+
+			[ style.show ]: show
+
+		} )
 
 		return(
 

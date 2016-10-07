@@ -32,7 +32,7 @@ const browser = ( state = { uploadSupported: uploadSupported, jazzSupported: jaz
 
 }
 
-const config = ( state= { google: false, imageWidth: 800 }, action ) => {
+const config = ( state= { google: true, imageWidth: 800 }, action ) => {
 
 	switch ( action.type ){
 
@@ -140,7 +140,6 @@ const error = ( state = '', action ) => {
 
 }
 
-
 const form = ( state = { image: {}, material: '', uid: '', adaptation: '', comment: '', hashtag: '', progress: 0 }, action ) => {
 
 	switch ( action.type ){
@@ -181,6 +180,22 @@ const selected = ( state = [ ], action ) => {
 
 }
 
+const mapbox = ( state = { center: [ 0, 39 ], zoom: 0 }, action ) => {
+
+	switch ( action.type ){
+
+	case types.FLY_TO:
+		return _.extend( {}, state, { center: action.center, zoom: action.zoom } )
+	case types.RESET_MAP:
+		return _.extend( {}, state, { center: [ 0, 39 ], zoom: 0 } )
+	default:
+		return state
+
+	}
+
+} 
+
+
 const coastwards = combineReducers( {
 
 	browser,
@@ -193,7 +208,8 @@ const coastwards = combineReducers( {
 	status,
 	error,
 	form,
-	selected
+	selected,
+	mapbox
 
 } )
 

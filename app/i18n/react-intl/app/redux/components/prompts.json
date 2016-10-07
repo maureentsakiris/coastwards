@@ -5,6 +5,11 @@
     "defaultMessage": "Have any pictures of coasts? Why not upload them now?"
   },
   {
+    "id": "select_file_parenthesis",
+    "description": "Prompt tagline -",
+    "defaultMessage": "( Drag & drop your image onto the world map or click the big blue button )"
+  },
+  {
     "id": "drag_and_drop",
     "description": "Prompt - Prompts user to drag and drop images onto the world map (or click the big red button)",
     "defaultMessage": "Drag & drop your image onto the world map to upload (or click the big red button)"

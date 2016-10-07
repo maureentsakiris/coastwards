@@ -1,5 +1,7 @@
 @import 'app/styles/base';
 
+$screen-overlay-color: rgba(255, 255, 255, 0.7);
+
 .pad{
 
 	padding-right: $site-padding-sides;
@@ -19,6 +21,7 @@
 	position: relative;
 	height: 100%;
 	margin-top: 6em;
+	overflow: hidden;
 
 }
 
@@ -59,8 +62,7 @@
 .form{
 
 	@extend %fullscreen;
-	//background-color: rgba(255, 255, 255, 0.8);
-	background-color: rgba(0, 0, 0, 0.6);
+	background-color: $screen-overlay-color;
 
 }
 
@@ -71,9 +73,16 @@
 	justify-content: center;
 	align-items: center;
 	align-content: center;
+	flex-direction: column;
 	text-align: center;
 	padding: $fringe-height $site-padding-sides;
-	background-color: rgba(255, 255, 255, 0.45);
+	background-color: $screen-overlay-color;
+
+	h2{
+
+		font-weight: 400;
+
+	}
 
 }
 
@@ -81,10 +90,9 @@
 
 	position: absolute;
 	width: 100%;
-	background: transparent;
+	background: rgba(255, 255, 255, 0);
+	transition: background 500ms, opacity 500ms;
 	height: $fringe-height;
 	z-index: 1;
-	//box-shadow: 0 2px 2px 0 rgba( 0,0,0, 0.1 );
-	//border-bottom: 1px solid #f1f1f1;
 
 }

@@ -1,8 +1,8 @@
 [
   {
     "id": "who_are_you",
-    "description": "Section header - Who are you?",
-    "defaultMessage": "Who are you?"
+    "description": "Section header - Who is Science?",
+    "defaultMessage": "Who is 'Science'?"
   },
   {
     "id": "hi_there",

@@ -17,6 +17,11 @@ const messages = defineMessages( {
 		description: "Prompt - Prompts user to select a file through the file system",
 		defaultMessage: "Have any pictures of coasts? Why not upload them now?"
 	},
+	select_file_parenthesis:{
+		id: "select_file_parenthesis",
+		description: "Prompt tagline - ",
+		defaultMessage: "( Drag & drop your image onto the world map or click the big blue button )"
+	},
 	drag_and_drop:{
 		id: "drag_and_drop",
 		description: "Prompt - Prompts user to drag and drop images onto the world map (or click the big red button)",
