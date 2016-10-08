@@ -36,5 +36,5 @@ export const RESET_FORM = 'RESET_FORM'
 export const ADD_SELECTED = 'ADD_SELECTED'
 
 //mapbox
-export const FLY_TO = 'FLY_TO'
-export const RESET_MAP = 'RESET_MAP'
+export const SET_MAP = 'SET_MAP'
+export const ADD_CLICK_LAYER = 'ADD_CLICK_LAYER'

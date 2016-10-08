@@ -2,7 +2,8 @@ import * as types from 'types'
 import { promiseType, promiseEXIF, promiseMinimumBoxDimensions, promiseCanvasBoxResize, promiseLocation } from 'actions/util/image'
 import { addSnackbarMessage } from 'actions/ui/snackbar'
 import { promiseDataURLtoBlob } from 'actions/util/form'
-import { promiseXHR } from 'actions/util/xhr'
+import { promiseXHR } from 'actions/util/request/xhr'
+import { flyTo, resetMap } from 'actions/mapbox'
 import uuid from 'node-uuid'
 
 import _ from 'underscore'
@@ -217,7 +218,7 @@ export const validateFile = ( e ) => {
 				if( state.browser.jazzSupported ){
 
 					dispatch( { type: types.SET_STATUS_MSG, to: 'here_we_go' } )
-					dispatch( { type: types.FLY_TO, center: [ image.long, image.lat ], zoom: 15 } )
+					dispatch( flyTo( [ image.long, image.lat ], 15 ) )
 					dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'statuses', to: true } )
 					//dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'form', to: true } )
 
@@ -413,7 +414,7 @@ export const resetMain = ( ) => {
 		dispatch( { type: types.SET_PROMPT_MSG, to: 'select_file' } )
 		dispatch( { type: types.RESET_FORM } )
 		dispatch( { type: types.RESET_LAYERS } )
-		dispatch( { type: types.RESET_MAP } )
+		dispatch( resetMap() )
 
 	}
 
