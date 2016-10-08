@@ -143,16 +143,19 @@ const form = ( { intl, className, show, image, jazzSupported, setMaterial, /*set
 		return(
 
 			<FORM id="Form" action="#" className={ cls } >
-				<DIV id="Sheet" className={ style.sheet } >
-					{ image.dataURL && <DIV className={ style.image } style={ { backgroundImage: 'url(' + image.dataURL + ')' } } ></DIV> }
-					<DIV id="Content" className={ style.content } >
-						<H priority={ 2 }>{ formatMessage( messages.hurray ) }</H>
-						<RADIOGROUP form="Form" label={ formatMessage( messages.select_material ) } name="material" options={ materials } onClick={ setMaterial } preferPlaceholder={ false } />
-						<COMMENT form="Form" label={ formatMessage( messages.say_hello ) } name="comment" placeholder={ formatMessage( messages.placeholder_say_hello ) } onChange={ setComment } preferPlaceholder={ false } />
-						<HASHTAG form="Form" label={ formatMessage( messages.hashtag_your_image ) } name="hashtag" placeholder={ formatMessage( messages.placeholder_hashtag_your_image ) } onChange={ setHashtag } preferPlaceholder={ false } />
-						<FORMDATA />
+				<DIV>
+					<DIV id="Sheet" className={ style.sheet } >
+						{ image.dataURL && <DIV className={ style.image } style={ { backgroundImage: 'url(' + image.dataURL + ')' } } ></DIV> }
+						<DIV id="Content" className={ style.content } >
+							<H priority={ 2 }>{ formatMessage( messages.hurray ) }</H>
+							<RADIOGROUP form="Form" label={ formatMessage( messages.select_material ) } name="material" options={ materials } onClick={ setMaterial } preferPlaceholder={ false } />
+							<COMMENT form="Form" label={ formatMessage( messages.say_hello ) } name="comment" placeholder={ formatMessage( messages.placeholder_say_hello ) } onChange={ setComment } preferPlaceholder={ false } />
+							<HASHTAG form="Form" label={ formatMessage( messages.hashtag_your_image ) } name="hashtag" placeholder={ formatMessage( messages.placeholder_hashtag_your_image ) } onChange={ setHashtag } preferPlaceholder={ false } />
+							<BR /><BR/>
+							<FORMDATA />
+						</DIV>
 					</DIV>
-					<DIV id="Actions" className={ style.actions } >
+					<DIV className={ style.actions } >
 						<CANCEL className={ style.cancel } onClick={ resetMain } label={ formatMessage( messages.cancel_upload ) } />
 						<GO onClick={ uploadImage } label={ formatMessage( messages.upload_image ) } />
 					</DIV>

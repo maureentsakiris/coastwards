@@ -3,7 +3,6 @@ import { defineMessages, injectIntl, intlShape } from 'react-intl'
 
 import DIV from 'components/tags/div'
 import H from 'components/tags/h'
-import IMG from 'components/tags/img'
 
 import style from './_intro.scss'
 
@@ -29,7 +28,6 @@ const intro = ( { intl } ) => {
 	return(
 
 		<DIV id="Intro" className={ style.intro } >
-			<IMG src="./assets/coastwards.png" alt="Coastwards Logo: A turtle on a mission" />
 			<H priority={ 1 } >{ formatMessage( messages.help_science ) }</H>
 			<H priority={ 2 } >{ formatMessage( messages.no_account ) }</H>
 		</DIV>

@@ -154,15 +154,15 @@ export default class upload extends Component{
 
 		this.setState( { dropX: dropX, dropY: dropY, isDrop: true, dropzoneActive: false } )
 
-		this.props.validateFile( e )
+		//this.props.validateFile( e )
 
 		//let it ripple
-		/*setTimeout( function ( ){
+		setTimeout( function ( ){
 
 			console.log( e );
 			this.props.validateFile( e )
 
-		}, 500 )*/
+		}, 500 )
 
 		//this.debounce( e )
 
