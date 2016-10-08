@@ -37,4 +37,10 @@ export const ADD_SELECTED = 'ADD_SELECTED'
 
 //mapbox
 export const SET_MAP = 'SET_MAP'
-export const ADD_CLICK_LAYER = 'ADD_CLICK_LAYER'
+
+//interactiveLayers
+export const ADD_INTERACTIVE_LAYER = 'ADD_INTERACTIVE_LAYER'
+
+//uploads
+export const ADD_UPLOAD = 'ADD_UPLOAD'
+export const REMOVE_LAST = 'REMOVE_LAST'

@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react'
-
 import DIV from 'components/tags/div'
 
 export default class MapboxGL extends Component {
@@ -27,7 +26,6 @@ export default class MapboxGL extends Component {
 	constructor ( props ) {
 
 		super ( props )
-		this.map
 
 	}
 

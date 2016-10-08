@@ -57,27 +57,7 @@ const _promiseOKGeojson = ( parsed ) => {
 
 		}else{
 
-			resolve( parsed )
-
-		}
-
-	} )
-
-}
-
-const _promiseNotEmptyGeojson = ( parsed ) => {
-
-	return new Promise( ( resolve, reject ) => {
-
-		let geojson = parsed.json
-
-		if( _.isEmpty( geojson ) ){
-
-			reject( Error( 'be_the_first' ) )
-
-		}else{
-
-			resolve( geojson )
+			resolve( parsed.json )
 
 		}
 
@@ -123,9 +103,9 @@ export const displayMap = ( ) => {
 			map.on( 'mousemove', ( e ) => {
 
 				const state = getState()
-				const clickLayers = state.clickLayers
+				const interactiveLayers = state.interactiveLayers
 				
-				let features = map.queryRenderedFeatures( e.point, { layers: _.pluck( clickLayers, 'layer' ) } )
+				let features = map.queryRenderedFeatures( e.point, { layers: _.pluck( interactiveLayers, 'layer' ) } )
 				map.getCanvas().style.cursor = ( features.length ) ? 'pointer' : ''
 			
 			} )
@@ -133,9 +113,9 @@ export const displayMap = ( ) => {
 			map.on( 'click', ( e ) => {
 
 				const state = getState()
-				const clickLayers = state.clickLayers
+				const interactiveLayers = state.interactiveLayers
 
-				let features = map.queryRenderedFeatures( e.point, { layers: _.pluck( clickLayers, 'layer' ) } )
+				let features = map.queryRenderedFeatures( e.point, { layers: _.pluck( interactiveLayers, 'layer' ) } )
 
 				if( !features.length ){
 
@@ -144,8 +124,8 @@ export const displayMap = ( ) => {
 				}
 
 				let feature = features[ 0 ]
-				let layer = _.findWhere( clickLayers, { layer: feature.layer.id } )
-				let onClick = layer.onClick
+				let interactiveLayer = _.findWhere( interactiveLayers, { layer: feature.layer.id } )
+				let onClick = interactiveLayer.onClick
 
 				dispatch( onClick( features ) )
 
@@ -158,8 +138,13 @@ export const displayMap = ( ) => {
 		.then( _promiseFetchGeojson )
 		.then( JSON.parse )
 		.then( _promiseOKGeojson )
-		.then( _promiseNotEmptyGeojson )
 		.then( ( geojson ) => {
+
+			if( _.isNull( geojson ) ){
+
+				dispatch( { type: types.SET_PROMPT_MSG, to: 'be_the_first' } )
+
+			}
 
 			const state = getState()
 			const map = state.mapbox
@@ -169,8 +154,8 @@ export const displayMap = ( ) => {
 				type: 'geojson',
 				data: geojson,
 				cluster: true,
-				clusterMaxZoom: 14, // Max zoom to cluster points on
-				clusterRadius: 50 // Radius of each cluster when clustering points (defaults to 50)
+				clusterMaxZoom: 18, // Max zoom to cluster points on
+				clusterRadius: 20 // Radius of each cluster when clustering points (defaults to 50)
 				
 			} )
 
@@ -224,9 +209,38 @@ export const displayMap = ( ) => {
 
 			}, 'country_label_1' )
 
-			dispatch( { type: types.ADD_CLICK_LAYER, layer: { layer: 'markers', onClick: _onMarkerClick } } )
-			dispatch( { type: types.ADD_CLICK_LAYER, layer: { layer: 'cluster-circles', onClick: _onClusterClick } } )
-			dispatch( { type: types.ADD_CLICK_LAYER, layer: { layer: 'cluster-count', onClick: _onClusterClick } } )
+			dispatch( { type: types.ADD_INTERACTIVE_LAYER, layer: { layer: 'markers', onClick: _onMarkerClick } } )
+			dispatch( { type: types.ADD_INTERACTIVE_LAYER, layer: { layer: 'cluster-circles', onClick: _onClusterClick } } )
+			dispatch( { type: types.ADD_INTERACTIVE_LAYER, layer: { layer: 'cluster-count', onClick: _onClusterClick } } )
+
+			let data = {
+
+				"type": "FeatureCollection",
+				"features": []
+
+			}
+
+			map.addSource( 'uploads', {
+
+				type: 'geojson',
+				data: data
+				
+			} )
+
+			map.addLayer( {
+			
+				id: 'uploads',
+				type: 'symbol',
+				source: 'uploads',
+				layout: {
+
+					'icon-image': '{marker-symbol}'
+
+				}
+
+			} )
+
+			dispatch( { type: types.ADD_INTERACTIVE_LAYER, layer: { layer: 'uploads', onClick: _onMarkerClick } } )
 
 			return geojson
 
@@ -275,9 +289,6 @@ export const flyTo = ( center, zoom ) => {
 export const resetMap = ( ) => {
 
 	return function ( dispatch, getState ){
-
-		const state = getState()
-		const map = state.mapbox
 
 		dispatch( flyTo( CENTER, ZOOM ) )
 

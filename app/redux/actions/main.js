@@ -217,6 +217,39 @@ export const validateFile = ( e ) => {
 
 				if( state.browser.jazzSupported ){
 
+					const feature = {
+
+						"type": "Feature",
+						"geometry": {
+							"type": "Point",
+							"coordinates": [ image.long, image.lat ]
+						},
+						"properties": {
+							"marker-symbol": "marker-accent",
+							"image": image.dataURL
+						}
+
+					}
+
+					dispatch( { type: types.ADD_UPLOAD, upload: feature } )
+
+					const map = state.mapbox
+
+					if( map ){
+
+						let freshState = getState()
+						
+						let data = {
+
+							"type": "FeatureCollection",
+							"features": freshState.uploads
+
+						}
+
+						map.getSource( 'uploads' ).setData( data )
+
+					}
+
 					dispatch( { type: types.SET_STATUS_MSG, to: 'here_we_go' } )
 					dispatch( flyTo( [ image.long, image.lat ], 15 ) )
 					dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'statuses', to: true } )
@@ -381,7 +414,7 @@ export const uploadImage = ( ) => {
 		} )
 		.then( ( response ) => {
 
-			dispatch( resetMain() )
+			dispatch( resetMain( false ) )
 			dispatch( { type: types.SET_PROMPT_MSG, to: response } )
 			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'statuses', to: false } )
 			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'prompts', to: true } )
@@ -403,9 +436,9 @@ export const uploadImage = ( ) => {
 
 }
 
-export const resetMain = ( ) => {
+export const resetMain = ( removeLastUpload = true ) => {
 
-	return function ( dispatch ){
+	return function ( dispatch, getState ){
 
 		console.log( "TOTAL RESET" );
 
@@ -415,6 +448,26 @@ export const resetMain = ( ) => {
 		dispatch( { type: types.RESET_FORM } )
 		dispatch( { type: types.RESET_LAYERS } )
 		dispatch( resetMap() )
+
+		console.log( removeLastUpload )
+
+		if( removeLastUpload ){
+
+			dispatch( { type: types.REMOVE_LAST } )
+
+			let state = getState()
+			
+			let data = {
+
+				"type": "FeatureCollection",
+				"features": state.uploads
+
+			}
+
+			state.mapbox.getSource( 'uploads' ).setData( data )
+
+		}
+		
 
 	}
 

@@ -193,11 +193,11 @@ const mapbox = ( state = '', action ) => {
 
 }
 
-const clickLayers = ( state = [], action ) => {
+const interactiveLayers = ( state = [], action ) => {
 
 	switch ( action.type ){
 
-	case types.ADD_CLICK_LAYER:
+	case types.ADD_INTERACTIVE_LAYER:
 		return [ ...state, action.layer ]
 	default:
 		return state
@@ -206,6 +206,20 @@ const clickLayers = ( state = [], action ) => {
 
 }
 
+const uploads = ( state = [], action ) => {
+
+	switch ( action.type ){
+
+	case types.ADD_UPLOAD:
+		return [ action.upload, ...state ]
+	case types.REMOVE_LAST:
+		return state.slice( 1 )
+	default:
+		return state
+
+	}
+
+}
 
 const coastwards = combineReducers( {
 
@@ -221,7 +235,8 @@ const coastwards = combineReducers( {
 	form,
 	selected,
 	mapbox,
-	clickLayers
+	interactiveLayers,
+	uploads
 
 } )
 

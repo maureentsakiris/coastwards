@@ -7,8 +7,6 @@ const mapStateToProps = ( state ) => {
 
 	return {
 
-		center: state.mapbox.center,
-		zoom: state.mapbox.zoom
 
 	}
 

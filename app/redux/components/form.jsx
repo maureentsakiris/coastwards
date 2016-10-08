@@ -151,7 +151,7 @@ const form = ( { intl, className, show, image, jazzSupported, setMaterial, /*set
 							<RADIOGROUP form="Form" label={ formatMessage( messages.select_material ) } name="material" options={ materials } onClick={ setMaterial } preferPlaceholder={ false } />
 							<COMMENT form="Form" label={ formatMessage( messages.say_hello ) } name="comment" placeholder={ formatMessage( messages.placeholder_say_hello ) } onChange={ setComment } preferPlaceholder={ false } />
 							<HASHTAG form="Form" label={ formatMessage( messages.hashtag_your_image ) } name="hashtag" placeholder={ formatMessage( messages.placeholder_hashtag_your_image ) } onChange={ setHashtag } preferPlaceholder={ false } />
-							<BR /><BR/>
+							<BR />
 							<FORMDATA />
 						</DIV>
 					</DIV>
