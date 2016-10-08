@@ -1,6 +1,5 @@
 import { connect } from 'react-redux'
-
-//import { setMaterial, /*setAdaptation,*/ setComment, setHashtag, uploadImage, resetMain } from 'actions/main'
+import { displayMap } from 'actions/mapbox'
 import MAPBOX from 'components/mapbox'
 
 
@@ -19,6 +18,11 @@ const mapDispatchToProps = ( dispatch ) => {
 
 	return {
 
+		displayMap: ( ) => {
+
+			dispatch( displayMap() )
+
+		}
 
 	}
 

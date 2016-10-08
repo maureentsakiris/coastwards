@@ -1,6 +1,5 @@
 import EXIF from './exif'
 import _ from 'underscore'
-import xhr from './xhr'
 
 const _promiseEXIF = ( image ) => {
 
@@ -194,3 +193,4 @@ export function validateImage ( image ) {
 	} )
 
 }
+ 
