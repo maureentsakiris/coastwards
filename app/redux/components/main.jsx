@@ -13,6 +13,8 @@ import Popup from 'containers/popup'
 
 import DIV from 'components/tags/div'
 import P from 'components/tags/p'
+import A from 'components/tags/a'
+import I from 'components/tags/i'
 
 import style from './_main'
 
@@ -26,7 +28,7 @@ const messages = defineMessages( {
 	
 } )
 
-const main = ( { intl, uploadSupported, jazzSupported } ) => {
+const main = ( { intl, uploadSupported, jazzSupported, scrollUp } ) => {
 
 	const { formatMessage } = intl
 
@@ -61,7 +63,11 @@ const main = ( { intl, uploadSupported, jazzSupported } ) => {
 		return(
 
 			<DIV id="Main" className={ style.main } >
-				<div className={ style.fringe }></div>
+				<div className={ style.fringe }>
+					<A onClick={ scrollUp } className={ style.up } >
+						<I className="material-icons">keyboard_arrow_up</I>
+					</A>
+				</div>
 				<Mapbox className={ style.mapbox } />
 				<Geolocator className={ style.screen } />
 				<Locate className={ style.screen } />
@@ -84,7 +90,9 @@ main.propTypes = {
 	intl: intlShape.isRequired,
 
 	uploadSupported: PropTypes.bool,
-	jazzSupported: PropTypes.bool
+	jazzSupported: PropTypes.bool,
+
+	scrollUp: PropTypes.func
 	
 }
 

@@ -469,3 +469,15 @@ export const resetMain = ( removeLastUpload = true ) => {
 	}
 
 }
+
+export const scrollUp = ( ) => {
+
+	return function ( dispatch ) {
+
+		window.scroll( 0, 0 )
+		dispatch( { type: types.SET_PROMPT_MSG, to: 'select_file' } )
+		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'prompts', to: true } )
+
+	}
+
+}

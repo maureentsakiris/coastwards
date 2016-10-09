@@ -190,7 +190,7 @@ export const displayMap = ( ) => {
 				type: 'circle',
 				source: 'geojson',
 				paint: {
-					'circle-color': '#3a6b8e',
+					'circle-color': '#0058e6',
 					'circle-radius': 14
 				},
 				filter: [ '>', 'point_count', 1 ]

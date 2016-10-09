@@ -19,7 +19,7 @@
 .go{
 
 	@extend %button;
-	background-color: $color-accent;
+	background-color: $color-primary;
 	color: #ffffff;
 
 }
@@ -27,7 +27,7 @@
 .submit{
 
 	@extend %button;
-	background-color: $color-accent;
+	background-color: $color-primary;
 	color: #ffffff;
 
 }

@@ -90,9 +90,20 @@ $screen-overlay-color: rgba(255, 255, 255, 0.7);
 
 	position: absolute;
 	width: 100%;
-	background: rgba(255, 255, 255, 0);
-	transition: background 500ms, opacity 500ms;
-	height: $fringe-height;
+	background: transparent;
 	z-index: 1;
+	text-align: center;
+
+}
+
+.up{
+
+	display: inline-block;
+
+	i{
+
+		font-size: 66px;
+
+	}
 
 }

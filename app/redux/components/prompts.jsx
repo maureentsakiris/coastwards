@@ -4,10 +4,11 @@ import Classnames from 'classnames'
 
 import DIV from 'components/tags/div'
 import H from 'components/tags/h'
+import IMG from 'components/tags/img'
 
 import CLOSE from 'components/ui/close'
 
-//import style from './_prompts'
+import style from './_prompts'
 
 
 const messages = defineMessages( {
@@ -57,6 +58,7 @@ const prompts = ( { intl, className, show, prompt, jazzSupported, hide } ) => {
 		return(
 
 			<DIV id="Prompts" className={ cls } >
+				<IMG src="assets/coastwards-alpha.png" className={ style.logo } alt="Coastwards Logo: A turtle on a mission" />
 				<H priority={ 2 }>{ str } 
 					{ jazzSupported && <CLOSE onClick={ hide } /> }
 				</H>
