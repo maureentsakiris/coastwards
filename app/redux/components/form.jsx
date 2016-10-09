@@ -30,7 +30,7 @@ const messages = defineMessages( {
 	hurray:{
 		id: "hurray",
 		description: "Header - Informs user that his or her image has passed all the tests and is now ready for upload",
-		defaultMessage: "AWESOME! Your image passed all the tests and is ready for upload!"
+		defaultMessage: "Your image passed all the tests and is ready for upload!"
 	},
 
 

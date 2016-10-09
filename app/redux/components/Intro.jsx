@@ -3,6 +3,7 @@ import { defineMessages, injectIntl, intlShape } from 'react-intl'
 
 import DIV from 'components/tags/div'
 import H from 'components/tags/h'
+/*import IMG from 'components/tags/img'*/
 
 import style from './_intro.scss'
 
@@ -24,6 +25,8 @@ const messages = defineMessages( {
 const intro = ( { intl } ) => {
 
 	const { formatMessage } = intl
+
+	/*<IMG src="assets/coastwards-alpha.png" alt="Coastwards Logo: A turtle on a mission" />*/
 
 	return(
 

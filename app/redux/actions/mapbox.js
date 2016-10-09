@@ -24,6 +24,8 @@ const _promiseInitMap = ( ) => {
 		} )
 
 		map.addControl( new mapboxgl.Navigation( { position: 'bottom-right' } ) )
+		map.dragRotate.disable()
+		map.touchZoomRotate.disableRotation()
 
 		map.on( 'load', ( ) => {
 
@@ -67,9 +69,10 @@ const _promiseOKGeojson = ( parsed ) => {
 
 const _onMarkerClick = ( features ) => {
 
-	return function ( dispatch, getState ){
+	return function ( dispatch ){
 
-		console.log( "showing popup", features )
+		let feature = features[ 0 ]
+		dispatch( showPopup( feature ) )
 
 	}
 
@@ -98,8 +101,16 @@ export const displayMap = ( ) => {
 		_promiseInitMap( )
 		.then( ( map ) => {
 
+			//Register map
 			dispatch( { type: types.SET_MAP, to: map } )
 
+			//Init and register popup
+			const popup = new mapboxgl.Popup( { closeButton: false, closeOnClick: false, anchor: 'bottom' } )
+			const featureDOM = document.getElementById( 'Popup' )
+			popup.setDOMContent( featureDOM )
+			dispatch( { type: types.SET_POPUP, to: popup } )
+
+			//Init mouse events
 			map.on( 'mousemove', ( e ) => {
 
 				const state = getState()
@@ -220,7 +231,7 @@ export const displayMap = ( ) => {
 
 			}
 
-			map.addSource( 'uploads', {
+			map.addSource( 'drops', {
 
 				type: 'geojson',
 				data: data
@@ -229,9 +240,9 @@ export const displayMap = ( ) => {
 
 			map.addLayer( {
 			
-				id: 'uploads',
+				id: 'drops',
 				type: 'symbol',
-				source: 'uploads',
+				source: 'drops',
 				layout: {
 
 					'icon-image': '{marker-symbol}'
@@ -240,7 +251,7 @@ export const displayMap = ( ) => {
 
 			} )
 
-			dispatch( { type: types.ADD_INTERACTIVE_LAYER, layer: { layer: 'uploads', onClick: _onMarkerClick } } )
+			dispatch( { type: types.ADD_INTERACTIVE_LAYER, layer: { layer: 'drops', onClick: _onMarkerClick } } )
 
 			return geojson
 
@@ -286,14 +297,58 @@ export const flyTo = ( center, zoom ) => {
 
 }
 
+export const showPopup = ( feature ) => {
+
+	return function ( dispatch, getState ){
+
+		const state = getState()
+		const map = state.mapbox
+		let popup = state.popup.popup
+
+		if( popup._container ){
+
+			popup._container.setAttribute( 'style', '' )
+
+		}
+
+		dispatch( { type: types.SET_POPUP_FEATURE, to: feature } )
+		popup.setLngLat( feature.geometry.coordinates ).addTo( map )
+
+		let cz = map.getZoom();
+		let z = cz < 2 ? 2 : cz;
+
+		const featureDOM = document.getElementById( 'Popup' )
+		let offsetY = featureDOM.clientHeight / 2
+		map.flyTo( { speed: 0.4, center: feature.geometry.coordinates, offset: [ 0, offsetY ], zoom: z } )
+
+	}
+
+}
+
+export const hidePopup = ( ) => {
+
+	return function ( dispatch, getState ){
+
+		const state = getState()
+		const popup = state.popup.popup
+
+		popup._container.setAttribute( 'style', 'display: none' )
+
+		popup.setLngLat( [ 0, 0 ] )
+
+		/*popup.remove()
+		dispatch( { type: types.SET_POPUP, to: undefined } )*/
+
+	}
+
+}
+
 export const resetMap = ( ) => {
 
 	return function ( dispatch, getState ){
 
 		dispatch( flyTo( CENTER, ZOOM ) )
 
-
 	}
 
 }
-

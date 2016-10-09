@@ -231,7 +231,7 @@ export const validateFile = ( e ) => {
 
 					}
 
-					dispatch( { type: types.ADD_UPLOAD, upload: feature } )
+					dispatch( { type: types.ADD_DROP, drop: feature } )
 
 					const map = state.mapbox
 
@@ -242,11 +242,10 @@ export const validateFile = ( e ) => {
 						let data = {
 
 							"type": "FeatureCollection",
-							"features": freshState.uploads
-
+							"features": freshState.drops
 						}
 
-						map.getSource( 'uploads' ).setData( data )
+						map.getSource( 'drops' ).setData( data )
 
 					}
 
@@ -449,22 +448,20 @@ export const resetMain = ( removeLastUpload = true ) => {
 		dispatch( { type: types.RESET_LAYERS } )
 		dispatch( resetMap() )
 
-		console.log( removeLastUpload )
-
 		if( removeLastUpload ){
 
-			dispatch( { type: types.REMOVE_LAST } )
+			dispatch( { type: types.REMOVE_LAST_DROP } )
 
 			let state = getState()
 			
 			let data = {
 
 				"type": "FeatureCollection",
-				"features": state.uploads
+				"features": state.drops
 
 			}
 
-			state.mapbox.getSource( 'uploads' ).setData( data )
+			state.mapbox.getSource( 'drops' ).setData( data )
 
 		}
 		

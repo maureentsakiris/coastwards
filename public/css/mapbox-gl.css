@@ -271,12 +271,6 @@
 
 }
 
-.mapboxgl-popup {
-
-    z-index: 1;
-
-}
-
 .mapboxgl-popup-content {
 
     padding: 0;

@@ -86,14 +86,14 @@ const snackbar = ( state = [ ], action ) => {
 
 }
 
-const layers = ( state = { upload: true, prompts: true, statuses: false, errors: false, locate: false, geolocaterm: false, form: false }, action ) => {
+const layers = ( state = { upload: true, prompts: true, statuses: false, errors: false, locate: false, geolocater: false, form: false }, action ) => {
 
 	switch ( action.type ){
 
 	case types.SET_LAYER_VISIBILITY:
 		return _.extend( {}, state, { [ action.layer ]: action.to } )
 	case types.RESET_LAYERS:
-		return { upload: true, prompts: true, statuses: false, errors: false, locate: false, geolocaterm: false, form: false }
+		return { upload: true, prompts: true, statuses: false, errors: false, locate: false, geolocater: false, form: false }
 	default: 
 		return state
 
@@ -206,14 +206,29 @@ const interactiveLayers = ( state = [], action ) => {
 
 }
 
-const uploads = ( state = [], action ) => {
+const drops = ( state = [], action ) => {
 
 	switch ( action.type ){
 
-	case types.ADD_UPLOAD:
-		return [ action.upload, ...state ]
-	case types.REMOVE_LAST:
+	case types.ADD_DROP:
+		return [ action.drop, ...state ]
+	case types.REMOVE_LAST_DROP:
 		return state.slice( 1 )
+	default:
+		return state
+
+	}
+
+}
+
+const popup = ( state = { popup: undefined, feature: {}, coords: [], active: false }, action ) => {
+
+	switch ( action.type ){
+
+	case types.SET_POPUP:
+		return _.extend( {}, state, { popup: action.to } )
+	case types.SET_POPUP_FEATURE:
+		return _.extend( {}, state, { feature: action.to } )
 	default:
 		return state
 
@@ -236,7 +251,8 @@ const coastwards = combineReducers( {
 	selected,
 	mapbox,
 	interactiveLayers,
-	uploads
+	drops,
+	popup
 
 } )
 

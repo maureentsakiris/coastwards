@@ -22,7 +22,7 @@ const messages = defineMessages( {
 	here_we_go:{
 		id: "here_we_go",
 		description: "Snack - ",
-		defaultMessage: "Awesome! Here we go!"
+		defaultMessage: "Awesome!! Here we go!"
 	}
 
 } )

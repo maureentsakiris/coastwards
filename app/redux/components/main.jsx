@@ -9,6 +9,7 @@ import Locate from 'containers/locate'
 import Geolocator from 'containers/geolocator'
 import Form from 'containers/form'
 import Mapbox from 'containers/mapbox'
+import Popup from 'containers/popup'
 
 import DIV from 'components/tags/div'
 import P from 'components/tags/p'
@@ -57,14 +58,6 @@ const main = ( { intl, uploadSupported, jazzSupported } ) => {
 
 	}else if ( uploadSupported && jazzSupported ) {
 
-		/*<div className={ style.fringe }></div>
-
-		<Geolocator className={ style.geolocator } />
-				<Locate className={ style.locate } /> 
-
-
-				*/
-
 		return(
 
 			<DIV id="Main" className={ style.main } >
@@ -77,6 +70,7 @@ const main = ( { intl, uploadSupported, jazzSupported } ) => {
 				<Errors className={ style.screen } />
 				<Form className={ style.form } />
 				<Upload className={ style.upload } />
+				<Popup />
 			</DIV>
 
 		)
