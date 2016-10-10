@@ -439,6 +439,8 @@ export const resetMain = ( removeLastUpload = true ) => {
 
 	return function ( dispatch, getState ){
 
+		const state = getState()
+
 		console.log( "TOTAL RESET" );
 
 		document.getElementById( 'Upload' ).reset()
@@ -446,7 +448,12 @@ export const resetMain = ( removeLastUpload = true ) => {
 		dispatch( { type: types.SET_PROMPT_MSG, to: 'select_file' } )
 		dispatch( { type: types.RESET_FORM } )
 		dispatch( { type: types.RESET_LAYERS } )
-		dispatch( resetMap() )
+
+		if( state.browser.jazzSupported ){
+
+			dispatch( resetMap() )
+			
+		}
 
 		if( removeLastUpload ){
 

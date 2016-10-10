@@ -1,6 +1,7 @@
 import { connect } from 'react-redux'
 
 import { setMaterial, /*setAdaptation,*/ setComment, setHashtag, uploadImage, resetMain } from 'actions/main'
+import { showDialog } from 'actions/ui/dialog'
 import FORM from 'components/form'
 
 
@@ -48,6 +49,11 @@ const mapDispatchToProps = ( dispatch ) => {
 		resetMain: ( ) => {
 
 			dispatch( resetMain() )
+
+		},
+		showDialog: ( component ) => {
+
+			dispatch( showDialog( component ) )
 
 		}
 

@@ -160,7 +160,7 @@ export default class upload extends Component{
 		setTimeout( function ( ){
 
 			console.log( e );
-			this.props.validateFile( e )
+			//this.props.validateFile( e )
 
 		}, 500 )
 

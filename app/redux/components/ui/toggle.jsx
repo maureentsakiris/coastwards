@@ -52,14 +52,16 @@ class Toggle extends Component {
 
 		} )
 
+		const clsIcon = Classnames( "material-icons", style.icon )
+
 		return (
 
 			<DIV { ...restProps } className={ className } >
 				<A onClick={ this._toggle } title={ title } className={ style.anchor } >
 					<H priority={ priority } >
 						{ text } 		
-						{ !expanded && <I className="material-icons" style={ { verticalAlign: 'middle' } } >&#xE5CC;</I> }
-						{ expanded && <I className="material-icons" style={ { verticalAlign: 'middle' } } >&#xE5CF;</I> }
+						{ !expanded && <I className={ clsIcon } >&#xE5CC;</I> }
+						{ expanded && <I className={ clsIcon } >&#xE5CF;</I> }
 					</H>
 				</A>
 				{ expanded && <DIV className={ clsChildren } >{ children }</DIV> }
@@ -69,8 +71,9 @@ class Toggle extends Component {
 
 	}
 
-	_toggle = ( ) => {
+	_toggle = ( e ) => {
 
+		e.preventDefault()
 		const { expanded } = this.state
 		this.setState( { expanded: !expanded } )
 

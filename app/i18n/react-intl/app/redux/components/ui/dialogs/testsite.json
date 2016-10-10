@@ -1,0 +1,12 @@
+[
+  {
+    "id": "testsite_header",
+    "description": "Header -",
+    "defaultMessage": "Testing site!!!"
+  },
+  {
+    "id": "testsite_text",
+    "description": "P -",
+    "defaultMessage": "Hi there! You have reached the ALPHA version of COASTWARDS. THIS SITE IS CURRENTLY UNDER CONSTRUCTION but we are always happy to get feedback so please have a look around. We will NOT SAVE images you upload, so please keep them close for the final version!"
+  }
+]

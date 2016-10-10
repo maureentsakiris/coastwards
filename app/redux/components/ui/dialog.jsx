@@ -3,6 +3,9 @@ import { defineMessages, injectIntl, intlShape } from 'react-intl'
 
 import WHYIP from './dialogs/whyIP'
 import NOJAZZ from './dialogs/nojazz'
+import DEFINEMATERIAL from './dialogs/definematerial'
+import WHYHASHTAG from './dialogs/whyhashtag'
+import TESTSITE from './dialogs/testsite'
 
 import DIV from 'components/tags/div'
 import A from 'components/tags/a'
@@ -34,11 +37,14 @@ const dialog = ( { intl, component, active, closeDialog } ) => {
 
 		return(
 
-			<DIV className={ style.dialog } >
+			<DIV className={ style.dialog } onClick={ closeDialog } >
 				<A className={ style.close } href="#" onClick={ closeDialog } title={ formatMessage( messages.close_dialog ) } ><I className="material-icons" >&#xE5CD;</I></A>
 				<DIV className={ style.body } >
 					{ component == 'WHYIP' && <WHYIP /> }
 					{ component == 'NOJAZZ' && <NOJAZZ /> }
+					{ component == 'DEFINEMATERIAL' && <DEFINEMATERIAL /> }
+					{ component == 'WHYHASHTAG' && <WHYHASHTAG /> }
+					{ component == 'TESTSITE' && <TESTSITE /> }
 				</DIV>
 			</DIV>
 

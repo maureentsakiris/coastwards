@@ -20,8 +20,9 @@ const mapDispatchToProps = ( dispatch ) => {
 
 	return {
 
-		hide: ( ) => {
+		hide: ( e ) => {
 
+			e.preventDefault()
 			dispatch( { type: 'SET_LAYER_VISIBILITY', layer: 'prompts', to: false } )
 
 		},

@@ -16,6 +16,12 @@ const popup = ( { intl, feature, hidePopup } ) => {
 
 	const { formatMessage } = intl
 
+	const _preventDefault = ( e ) => {
+
+		e.preventDefault()
+
+	}
+
 	if( !feature.properties ){
 
 		return (
@@ -31,13 +37,13 @@ const popup = ( { intl, feature, hidePopup } ) => {
 			<DIV id="Popup" className={ style.popup } >
 				<DIV className={ style.image } style={ { backgroundImage: 'url(' + feature.properties.image +')' } } />
 				<DIV className={ style.actions }>
-					<A onClick={ hidePopup } className={ style.comment } >
+					<A onClick={ _preventDefault } className={ style.comment } >
 						<I className="material-icons">mode_comment</I>
 					</A>
-					<A onClick={ hidePopup } className={ style.send } >
+					<A onClick={ _preventDefault } className={ style.send } >
 						<I className="material-icons">send</I>
 					</A>
-					<A onClick={ hidePopup } className={ style.favorite } >
+					<A onClick={ _preventDefault } className={ style.favorite } >
 						<I className="material-icons">favorite</I>
 					</A>
 					<A onClick={ hidePopup } className={ style.clear } >

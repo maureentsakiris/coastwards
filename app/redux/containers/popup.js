@@ -17,8 +17,9 @@ const mapDispatchToProps = ( dispatch ) => {
 
 	return {
 
-		hidePopup: ( ) => {
+		hidePopup: ( e ) => {
 
+			e.preventDefault()
 			dispatch( hidePopup() )
 
 		}

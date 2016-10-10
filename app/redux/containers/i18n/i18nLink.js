@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { loadLanguage } from 'actions/i18n/i18n'
-import A from 'components/tags/a'
+import I18NLINK from 'components/i18n/i18nLink'
 
 
 const mapStateToProps = ( state, ownProps ) => {
@@ -22,8 +22,9 @@ const mapDispatchToProps = ( dispatch, ownProps ) => {
 
 	return {
 
-		onClick: () => {
+		onClick: ( e ) => {
 
+			e.preventDefault()
 			dispatch( loadLanguage( locale ) )
 
 		}
@@ -37,6 +38,6 @@ const i18nLink = connect(
 	mapStateToProps,
 	mapDispatchToProps
 
-)( A )
+)( I18NLINK )
 
 export default i18nLink

@@ -15,6 +15,11 @@
     "defaultMessage": "How would you describe the coast material?"
   },
   {
+    "id": "define_material",
+    "description": "Anchor -",
+    "defaultMessage": "(Define coast material)"
+  },
+  {
     "id": "sand",
     "description": "Material - Sand",
     "defaultMessage": "Sand"
@@ -68,6 +73,11 @@
     "id": "placeholder_hashtag_your_image",
     "description": "Placeholder -",
     "defaultMessage": "#iwashere"
+  },
+  {
+    "id": "why_hashtag",
+    "description": "Anchor -",
+    "defaultMessage": "Why?"
   },
   {
     "id": "upload_image",

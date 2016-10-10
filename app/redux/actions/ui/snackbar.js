@@ -11,7 +11,7 @@ export function addSnackbarMessage ( message ){
 
 		} )
 
-		setTimeout ( () => {
+		/*setTimeout ( () => {
 
 			dispatch( {
 
@@ -20,7 +20,7 @@ export function addSnackbarMessage ( message ){
 				
 			} )
 
-		}, 6000 )
+		}, 6000 )*/
 
 	}
 

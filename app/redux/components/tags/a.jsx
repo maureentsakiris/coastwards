@@ -5,20 +5,12 @@ import { globalAttr, aAttr } from './attributes'
 
 const a = ( { hocProps } ) => {
 
-	const { children, onClick, active, ...restProps } = hocProps
+	const { children, ...restProps } = hocProps
 	const allowedProps = _.pick( restProps, _.union( globalAttr, aAttr ) )
-
-	const _onClick = ( e ) => {
-
-		e.preventDefault()
-		onClick()
-
-	}
-	const _active = active ? { className: 'active' } : { onClick: _onClick, href: '#' }
 
 	return(
 
-		<a { ...allowedProps } { ..._active } >{ children }</a>
+		<a href="#" { ...allowedProps } >{ children }</a>
 
 	)
 

@@ -1,6 +1,6 @@
 @import 'app/styles/base';
 
-$screen-overlay-color: rgba(255, 255, 255, 0.7);
+$screen-overlay-color: rgba(255, 255, 255, 0.8);
 
 .pad{
 
@@ -62,7 +62,7 @@ $screen-overlay-color: rgba(255, 255, 255, 0.7);
 .form{
 
 	@extend %fullscreen;
-	background-color: $screen-overlay-color;
+	background-color: rgba( 0, 0, 0, 0.6 );
 
 }
 
@@ -81,6 +81,7 @@ $screen-overlay-color: rgba(255, 255, 255, 0.7);
 	h2{
 
 		font-weight: 400;
+		max-width: 700px;
 
 	}
 

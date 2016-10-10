@@ -49,6 +49,10 @@ if( !state.browser.jazzSupported ){
 
 	store.dispatch( showDialog( 'NOJAZZ' ) )
 
+}else{
+
+	//store.dispatch( showDialog( 'TESTSITE' ) )
+
 }
 
 

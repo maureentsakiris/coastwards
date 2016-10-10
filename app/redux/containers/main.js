@@ -19,8 +19,9 @@ const mapDispatchToProps = ( dispatch ) => {
 
 	return {
 
-		scrollUp: ( ) => {
+		scrollUp: ( e ) => {
 
+			e.preventDefault()
 			dispatch( scrollUp() )
 
 		}

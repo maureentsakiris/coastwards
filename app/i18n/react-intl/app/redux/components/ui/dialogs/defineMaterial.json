@@ -1,0 +1,12 @@
+[
+  {
+    "id": "definematerial_header",
+    "description": "Header - What do you mean by 'coast material'?",
+    "defaultMessage": "What do you mean by 'coast material'?"
+  },
+  {
+    "id": "definematerial_text",
+    "description": "P -",
+    "defaultMessage": "TBD ..."
+  }
+]

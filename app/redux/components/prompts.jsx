@@ -37,7 +37,7 @@ const messages = defineMessages( {
 		id: "prompt_upload_ok",
 		description: "Prompt - Informs user that his image was uploaded successfully",
 		defaultMessage: "WOHOO! Nice one! Your image was uploaded. Next one! :)"
-	},
+	}
 
 } )
 
@@ -57,8 +57,8 @@ const prompts = ( { intl, className, show, prompt, jazzSupported, hide } ) => {
 
 		return(
 
-			<DIV id="Prompts" className={ cls } >
-				<IMG src="assets/coastwards-alpha.png" className={ style.logo } alt="Coastwards Logo: A turtle on a mission" />
+			<DIV id="Prompts" className={ cls } onClick={ hide } >
+				{ jazzSupported && <IMG src="assets/coastwards-alpha.png" className={ style.logo } alt="Coastwards Logo: A turtle on a mission" /> }
 				<H priority={ 2 }>{ str } 
 					{ jazzSupported && <CLOSE onClick={ hide } /> }
 				</H>

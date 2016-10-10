@@ -16,7 +16,8 @@ const hoc = ( ComposedComponent ) => class extends Component {
 		label: PropTypes.string,
 		name: PropTypes.string.isRequired,
 		className: PropTypes.string,
-		preferPlaceholder: PropTypes.bool
+		preferPlaceholder: PropTypes.bool,
+		children: PropTypes.node
 
 	}
 
@@ -34,7 +35,7 @@ const hoc = ( ComposedComponent ) => class extends Component {
 
 	render () {
 
-		const { form, label, name, className, preferPlaceholder } = this.props
+		const { form, label, name, className, preferPlaceholder, children } = this.props
 
 		const cls = Classnames( className, style )
 
@@ -44,6 +45,7 @@ const hoc = ( ComposedComponent ) => class extends Component {
 
 			<LABEL htmlFor={ name } form={ form } className={ cls } >
 				{ showLabel && <SPAN>{ label }</SPAN> }
+				{ children }
 				<ComposedComponent hocProps={ this.props } />
 			</LABEL>
 
