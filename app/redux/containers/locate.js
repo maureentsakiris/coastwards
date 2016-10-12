@@ -20,12 +20,14 @@ const mapDispatchToProps = ( dispatch ) => {
 
 		locateCoast: ( e ) => {
 
+			e.preventDefault()
 			dispatch( locateCoast( e ) )
 
 		},
-		resetMain: ( ) => {
+		resetMain: ( e ) => {
 
-			dispatch( resetMain() )
+			e.preventDefault()
+			dispatch( resetMain( false ) )
 
 		}
 

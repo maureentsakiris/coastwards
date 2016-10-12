@@ -52,3 +52,20 @@ $fringe-height: 100px;
 	}
 
 }
+
+%screenInit{
+
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 300ms;
+	display: none;
+
+}
+
+%screenShow{
+
+	opacity: 1;
+	pointer-events: all;
+	display: block;
+
+}

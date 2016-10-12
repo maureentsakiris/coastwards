@@ -8,9 +8,9 @@ const mapStateToProps = ( state ) => {
 
 	return {
 
-		show: state.layers.statuses,
 		status: state.status,
-		progress: state.form.progress
+		progress: state.form.progress,
+		show: state.layers.statuses
 
 	}
 

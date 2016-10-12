@@ -3,7 +3,7 @@ import { promiseType, promiseEXIF, promiseMinimumBoxDimensions, promiseCanvasBox
 import { addSnackbarMessage } from 'actions/ui/snackbar'
 import { promiseDataURLtoBlob } from 'actions/util/form'
 import { promiseXHR } from 'actions/util/request/xhr'
-import { flyTo, resetMap } from 'actions/mapbox'
+import { flyTo, resetMap, hidePopup } from 'actions/mapbox'
 import uuid from 'node-uuid'
 
 import _ from 'underscore'
@@ -144,6 +144,14 @@ export const validateFile = ( e ) => {
 	return function ( dispatch, getState ){
 
 		let state = getState()
+		let map = state.mapbox
+		let jazzSupported = state.browser.jazzSupported
+
+		if( jazzSupported ) {
+
+			dispatch( hidePopup() )
+
+		}
 
 		dispatch( { type: types.SET_STATUS_MSG, to: 'status_validating' } )
 		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'statuses', to: true } )
@@ -225,15 +233,13 @@ export const validateFile = ( e ) => {
 							"coordinates": [ image.long, image.lat ]
 						},
 						"properties": {
-							"marker-symbol": "marker-accent",
+							"marker-symbol": "marker-primary-v2",
 							"image": image.dataURL
 						}
 
 					}
 
 					dispatch( { type: types.ADD_DROP, drop: feature } )
-
-					const map = state.mapbox
 
 					if( map ){
 
@@ -249,17 +255,18 @@ export const validateFile = ( e ) => {
 
 					}
 
-					dispatch( { type: types.SET_STATUS_MSG, to: 'here_we_go' } )
-					dispatch( flyTo( [ image.long, image.lat ], 15 ) )
-					dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'statuses', to: true } )
-					//dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'form', to: true } )
+					dispatch( addSnackbarMessage( 'here_we_go', 5000 ) )
+					/*dispatch( { type: types.SET_STATUS_MSG, to: 'here_we_go' } )
+					dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'statuses', to: true } )*/
 
-					setTimeout( () => {
+					dispatch( flyTo( [ image.long, image.lat ], 15 ) )
+
+					map.once( 'moveend', () => {
 
 						dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'statuses', to: false } )
 						dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'form', to: true } )
 
-					}, 5000 )
+					} )
 
 				}else{
 
@@ -415,7 +422,6 @@ export const uploadImage = ( ) => {
 
 			dispatch( resetMain( false ) )
 			dispatch( { type: types.SET_PROMPT_MSG, to: response } )
-			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'statuses', to: false } )
 			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'prompts', to: true } )
 
 			return response
@@ -452,26 +458,25 @@ export const resetMain = ( removeLastUpload = true ) => {
 		if( state.browser.jazzSupported ){
 
 			dispatch( resetMap() )
-			
-		}
 
-		if( removeLastUpload ){
+			if( removeLastUpload ){
 
-			dispatch( { type: types.REMOVE_LAST_DROP } )
+				dispatch( { type: types.REMOVE_LAST_DROP } )
 
-			let state = getState()
-			
-			let data = {
+				let state = getState()
+				
+				let data = {
 
-				"type": "FeatureCollection",
-				"features": state.drops
+					"type": "FeatureCollection",
+					"features": state.drops
+
+				}
+
+				state.mapbox.getSource( 'drops' ).setData( data )
 
 			}
 
-			state.mapbox.getSource( 'drops' ).setData( data )
-
 		}
-		
 
 	}
 

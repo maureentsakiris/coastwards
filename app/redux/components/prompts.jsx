@@ -33,40 +33,38 @@ const messages = defineMessages( {
 		description: "Prompt - Prompts user to upload images by clicking on the big red button",
 		defaultMessage: "Click the big red button to upload an image"
 	},
-	prompt_upload_ok:{
-		id: "prompt_upload_ok",
-		description: "Prompt - Informs user that his image was uploaded successfully",
+	upload_ok:{
+		id: "upload_ok",
+		description: "Status - Informs user that his image was uploaded successfully",
 		defaultMessage: "WOHOO! Nice one! Your image was uploaded. Next one! :)"
 	}
 
 } )
 
-const prompts = ( { intl, className, show, prompt, jazzSupported, hide } ) => {
+const prompts = ( { intl, className, prompt, jazzSupported, show, hide } ) => {
 
 	const { formatMessage } = intl
 
 	const str = messages[ prompt ] ? formatMessage( messages[ prompt ] ) : prompt
 
-	if( !show ){
+	const logo = jazzSupported && prompt == 'select_file'
 
-		return null
+	const cls = Classnames( className, style.prompts, {
 
-	}else{
+		[ style.show ]: show
 
-		const cls = Classnames( className )
+	} )
 
-		return(
+	return(
 
-			<DIV id="Prompts" className={ cls } onClick={ hide } >
-				{ jazzSupported && <IMG src="assets/coastwards-alpha.png" className={ style.logo } alt="Coastwards Logo: A turtle on a mission" /> }
-				<H priority={ 2 }>{ str } 
-					{ jazzSupported && <CLOSE onClick={ hide } /> }
-				</H>
-			</DIV>
+		<DIV id="Prompts" className={ cls } onClick={ hide } >
+			{ logo && <IMG src="assets/coastwards-alpha.png" className={ style.logo } alt="Coastwards Logo: A turtle on a mission" /> }
+			<H priority={ 2 }>{ str } 
+				{ jazzSupported && <CLOSE onClick={ hide } /> }
+			</H>
+		</DIV>
 
-		)
-
-	}
+	)
 	
 }
 
@@ -76,9 +74,9 @@ prompts.propTypes = {
 
 	className: PropTypes.string,
 	
-	show: PropTypes.bool,
 	prompt: PropTypes.string,
 	jazzSupported: PropTypes.bool,
+	show: PropTypes.bool,
 
 	hide: PropTypes.func
 

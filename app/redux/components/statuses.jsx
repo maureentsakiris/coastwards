@@ -5,7 +5,7 @@ import Classnames from 'classnames'
 import DIV from 'components/tags/div'
 import H from 'components/tags/h'
 
-//import style from './_statuses'
+import style from './_statuses'
 
 const messages = defineMessages( {
 
@@ -18,38 +18,29 @@ const messages = defineMessages( {
 		id: "status_uploading",
 		description: "Status - Informs user that his image is being uploaded",
 		defaultMessage: "Uploading... {progress}%"
-	},
-	here_we_go:{
-		id: "here_we_go",
-		description: "Snack - ",
-		defaultMessage: "Awesome!! Here we go!"
 	}
 
 } )
 
-const statuses = ( { intl, className, show, status, progress } ) => {
+const statuses = ( { intl, className, status, progress, show } ) => {
 
 	const { formatMessage } = intl
 
 	const stat = messages[ status ] ? formatMessage( messages[ status ], { progress: progress } ) : status
 
-	if( !show ){
+	const cls = Classnames( className, style.statuses, {
 
-		return null
+		[ style.show ]: show
 
-	}else{
+	} )
 
-		const cls = Classnames( className )
+	return(
 
-		return(
+		<DIV id="Statuses" className={ cls } >
+			<H priority={ 2 }>{ stat }</H>
+		</DIV>
 
-			<DIV id="Statuses" className={ cls } >
-				<H priority={ 2 }>{ stat }</H>
-			</DIV>
-
-		)
-
-	}
+	)
 	
 }
 
@@ -59,9 +50,9 @@ statuses.propTypes = {
 
 	className: PropTypes.string,
 
-	show: PropTypes.bool,
 	status: PropTypes.string,
 	progress: PropTypes.number,
+	show: PropTypes.bool,
 
 	resetForm: PropTypes.func
 

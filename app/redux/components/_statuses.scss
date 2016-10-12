@@ -1,1 +1,13 @@
 @import 'app/styles/base';
+
+.statuses{
+
+	@extend %screenInit;
+
+}
+
+.show{
+
+	@extend %screenShow;
+
+}

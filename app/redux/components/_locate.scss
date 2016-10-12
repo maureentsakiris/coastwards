@@ -1,1 +1,21 @@
 @import 'app/styles/base';
+
+.locate{
+
+	@extend %screenInit;
+
+}
+
+.show{
+
+	@extend %screenShow;
+
+}
+
+.option{
+
+	display: inline-block;
+	margin: 0.5em 1em;
+	text-transform: uppercase;
+
+}

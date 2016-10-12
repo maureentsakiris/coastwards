@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react'
 import { defineMessages, injectIntl, intlShape } from 'react-intl'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 import Errors from 'containers/errors'
 import Statuses from 'containers/statuses'
@@ -69,11 +70,11 @@ const main = ( { intl, uploadSupported, jazzSupported, scrollUp } ) => {
 					</A>
 				</div>
 				<Mapbox className={ style.mapbox } />
-				<Geolocator className={ style.screen } />
-				<Locate className={ style.screen } />
-				<Prompts className={ style.screen } />
-				<Statuses className={ style.screen } />
-				<Errors className={ style.screen } />
+				<Geolocator key="geolocator" className={ style.screen } />
+				<Locate key="locate" className={ style.screen } />
+				<Prompts key="prompts" className={ style.screen } />
+				<Statuses key="statuses" className={ style.screen } />
+				<Errors key="errors" className={ style.screen } />
 				<Form className={ style.form } />
 				<Upload className={ style.upload } />
 				<Popup />
@@ -92,7 +93,8 @@ main.propTypes = {
 	uploadSupported: PropTypes.bool,
 	jazzSupported: PropTypes.bool,
 
-	scrollUp: PropTypes.func
+	scrollUp: PropTypes.func,
+	showPrompts: PropTypes.bool
 	
 }
 

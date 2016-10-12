@@ -7,7 +7,7 @@ import H from 'components/tags/h'
 
 import CLOSE from 'components/ui/close'
 
-//import style from './_errors'
+import style from './_errors'
 
 
 const messages = defineMessages( {
@@ -74,31 +74,27 @@ const messages = defineMessages( {
 
 } )
 
-const errors = ( { intl, className, show, error, jazzSupported, hide } ) => {
+const errors = ( { intl, className, error, jazzSupported, show, hide } ) => {
 
 	const { formatMessage } = intl
 
 	const str = messages[ error ] ? formatMessage( messages[ error ] ) : error
 
-	if( !show ){
+	const cls = Classnames( className, style.errors, {
 
-		return null
+		[ style.show ]: show
 
-	}else{
+	} )
 
-		const cls = Classnames( className )
+	return(
 
-		return(
+		<DIV id="Errors" className={ cls } >
+			<H priority={ 2 }>{ str } 
+				{ jazzSupported && <CLOSE onClick={ hide } /> }
+			</H>
+		</DIV>
 
-			<DIV id="Errors" className={ cls } >
-				<H priority={ 2 }>{ str } 
-					{ jazzSupported && <CLOSE onClick={ hide } /> }
-				</H>
-			</DIV>
-
-		)
-
-	}
+	)
 	
 }
 
@@ -108,9 +104,9 @@ errors.propTypes = {
 
 	className: PropTypes.string,
 
-	show: PropTypes.bool,
 	error: PropTypes.string,
 	jazzSupported: PropTypes.bool,
+	show: PropTypes.bool,
 
 	hide: PropTypes.func,
 

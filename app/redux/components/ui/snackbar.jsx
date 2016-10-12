@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react'
 import { defineMessages, injectIntl, intlShape } from 'react-intl'
+import Classnames from 'classnames'
 import _ from 'underscore'
 
 import P from 'components/tags/p'
@@ -13,27 +14,33 @@ const intlMessages = defineMessages( {
 		id: "selected_truncated",
 		description: "Warning - Informs the user that more than one file have been dropped but we can only process one at a time",
 		defaultMessage: "Sorry, at the moment we can only process one image at a time!"
+	},
+	here_we_go:{
+		id: "here_we_go",
+		description: "Snack - ",
+		defaultMessage: "Awesome!! Here we go!"
 	}
 
 } )
 
 const snackbar = ( { intl, messages } ) => {
 
-	if( !messages.length ){
+	
+	const msgs = _composeMessages( intl, messages )
 
-		return null
+	const cls = Classnames( style.snackbar, {
 
-	}else{
+		[ style.show ]: messages.length > 0
 
-		const msgs = _composeMessages( intl, messages )
+	} )
 
-		return(
+	return(
 
-			<div className={ style.snackbar } >{ msgs }</div>
+		<div className={ cls } >
+			<div>{ msgs }</div>
+		</div>
 
-		)
-
-	}
+	)
 
 } 
 

@@ -1,5 +1,17 @@
 @import 'app/styles/base';
 
+.prompts{
+
+	@extend %screenInit;
+
+}
+
+.show{
+
+	@extend %screenShow;
+
+}
+
 .logo{
 
 	width: 220px;

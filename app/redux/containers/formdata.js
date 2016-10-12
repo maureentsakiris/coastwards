@@ -20,8 +20,9 @@ const mapDispatchToProps = ( dispatch ) => {
 
 	return {
 
-		showDialog: ( component ) => {
+		showDialog: ( component, e ) => {
 
+			e.preventDefault()
 			dispatch( showDialog( component ) )
 
 		}

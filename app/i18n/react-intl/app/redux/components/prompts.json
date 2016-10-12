@@ -20,8 +20,8 @@
     "defaultMessage": "Click the big red button to upload an image"
   },
   {
-    "id": "prompt_upload_ok",
-    "description": "Prompt - Informs user that his image was uploaded successfully",
+    "id": "upload_ok",
+    "description": "Status - Informs user that his image was uploaded successfully",
     "defaultMessage": "WOHOO! Nice one! Your image was uploaded. Next one! :)"
   }
 ]

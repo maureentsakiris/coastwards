@@ -2,6 +2,12 @@
 
 .errors{
 
-	@extend %corset;
+	@extend %screenInit;
+
+}
+
+.show{
+
+	@extend %screenShow; 
 
 }

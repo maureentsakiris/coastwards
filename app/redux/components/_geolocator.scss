@@ -1,1 +1,13 @@
 @import 'app/styles/base';
+
+.geolocator{
+
+	@extend %screenInit;
+
+}
+
+.show{
+
+	@extend %screenShow;
+
+}

@@ -9,8 +9,8 @@ const mapStateToProps = ( state ) => {
 	return {
 
 		error: state.error,
-		show: state.layers.errors,
-		jazzSupported: state.browser.jazzSupported
+		jazzSupported: state.browser.jazzSupported,
+		show: state.layers.errors
 
 	}
 

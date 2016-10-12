@@ -9,7 +9,12 @@ const mapStateToProps = ( state ) => {
 	return {
 
 		uploadSupported: state.browser.uploadSupported,
-		jazzSupported: state.browser.jazzSupported
+		jazzSupported: state.browser.jazzSupported,
+		prompts: state.layers.prompts,
+		errors: state.layers.errors,
+		statuses: state.layers.statuses,
+		geolocator: state.layers.geolocator,
+		locate: state.layers.locate
 
 	}
 

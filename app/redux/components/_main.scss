@@ -108,3 +108,29 @@ $screen-overlay-color: rgba(255, 255, 255, 0.8);
 	}
 
 }
+
+.enter {
+
+  opacity: 0.1;
+
+}
+
+.enterActive {
+  
+  opacity: 1;
+  transition: opacity 300ms ease-in;
+
+}
+
+.leave {
+ 
+ 	opacity: 1;
+
+}
+
+.leaveActive {
+
+  opacity: 0.1;
+  transition: opacity 300ms ease-in;
+  
+}

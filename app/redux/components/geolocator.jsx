@@ -8,7 +8,7 @@ import BUTTON from 'components/tags/button'
 import INPUT from 'components/tags/input'
 import BR from 'components/tags/br'
 
-//import style from './_geolocator'
+import style from './_geolocator'
 
 const messages = defineMessages( {
 
@@ -35,33 +35,29 @@ const messages = defineMessages( {
 
 } )
 
-const main = ( { intl, className, show, resetMain } ) => {
+const main = ( { intl, className, resetMain, show } ) => {
 
 	const { formatMessage } = intl
 
-	if( !show ){
+	const cls = Classnames( className, style.geolocator, {
 
-		return null
+		[ style.show ]: show
 
-	}else{
+	} )
 
-		const cls = Classnames( className )
+	return(
 
-		return(
+		<FORM id="Geolocator" action="#" className={ cls } >
+			<P>
+				<INPUT form="Geolocator" name="lat" type="number" placeholder={ formatMessage( messages.latitude ) } />
+				<BR/><BR/>
+				<INPUT form="Geolocator" name="long" type="number" placeholder={ formatMessage( messages.longitude ) } />
+			</P>
+			<BUTTON type="button" onClick={ () => {} }>{ formatMessage( messages.check_in_location ) }</BUTTON>
+			<BUTTON type="button" onClick={ resetMain }>{ formatMessage( messages.cancel_check_in ) }</BUTTON>
+		</FORM> 
 
-			<FORM id="Geolocator" action="#" className={ cls } >
-				<P>
-					<INPUT form="Geolocator" name="lat" type="number" placeholder={ formatMessage( messages.latitude ) } />
-					<BR/><BR/>
-					<INPUT form="Geolocator" name="long" type="number" placeholder={ formatMessage( messages.longitude ) } />
-				</P>
-				<BUTTON type="button" onClick={ () => {} }>{ formatMessage( messages.check_in_location ) }</BUTTON>
-				<BUTTON type="button" onClick={ resetMain }>{ formatMessage( messages.cancel_check_in ) }</BUTTON>
-			</FORM> 
-
-		)
-
-	}
+	)
 	
 }
 
@@ -70,7 +66,6 @@ main.propTypes = {
 	intl: intlShape.isRequired,
 
 	className: PropTypes.string,
-
 	show: PropTypes.bool,
 
 	resetMain: PropTypes.func

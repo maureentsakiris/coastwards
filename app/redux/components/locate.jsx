@@ -4,9 +4,10 @@ import Classnames from 'classnames'
 
 import H from 'components/tags/h'
 import DIV from 'components/tags/div'
-import BUTTON from 'components/tags/button'
+import A from 'components/tags/a'
+import P from 'components/tags/p'
 
-//import style from './_locate'
+import style from './_locate'
 
 
 const messages = defineMessages( {
@@ -30,29 +31,27 @@ const messages = defineMessages( {
 
 } )
 
-const main = ( { intl, className, show, locateCoast, resetMain } ) => {
+const main = ( { intl, className, locateCoast, resetMain, show } ) => {
 
 	const { formatMessage } = intl
 
-	if( !show ){
+	const cls = Classnames( className, style.locate, {
 
-		return null
+		[ style.show ]: show
 
-	}else{
+	} )
 
-		const cls = Classnames( className )
+	return(
 
-		return(
+		<DIV id="Locate" className={ cls } >
+			<H priority={ 2 }>{ formatMessage( messages.can_you_locate ) }</H>
+			<P>
+				<A onClick={ locateCoast } className={ style.option } >{ formatMessage( messages.yes_location_known ) }</A>
+				<A onClick={ resetMain }  className={ style.option } >{ formatMessage( messages.no_location_unknown ) }</A>
+			</P>
+		</DIV> 
 
-			<DIV id="Locate" className={ cls } >
-				<H priority={ 2 }>{ formatMessage( messages.can_you_locate ) }</H>
-				<BUTTON type="button" onClick={ locateCoast }>{ formatMessage( messages.yes_location_known ) }</BUTTON>
-				<BUTTON type="button" onClick={ resetMain }>{ formatMessage( messages.no_location_unknown ) }</BUTTON>
-			</DIV> 
-
-		)
-
-	}
+	)
 	
 }
 
@@ -61,7 +60,6 @@ main.propTypes = {
 	intl: intlShape.isRequired,
 
 	className: PropTypes.string,
-
 	show: PropTypes.bool,
 
 	locateCoast: PropTypes.func,

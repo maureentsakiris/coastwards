@@ -8,9 +8,9 @@ const mapStateToProps = ( state ) => {
 
 	return {
 
-		show: state.layers.prompts,
 		prompt: state.prompt,
-		jazzSupported: state.browser.jazzSupported
+		jazzSupported: state.browser.jazzSupported,
+		show: state.layers.prompts
 
 	}
 

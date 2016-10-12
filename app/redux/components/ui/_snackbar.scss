@@ -4,10 +4,11 @@
 
 	position: fixed;
 	width: 100%;
-	bottom: 0;
+	bottom: -300px;
+	transition: bottom 300ms;
 	z-index: 300;
 
-	p{
+	div{
 
 		width: 600px;
 		max-width: 90%;
@@ -16,7 +17,14 @@
 		color: #fff;
 		padding: 1em;
 		text-align: center;
+		border-radius: 2px 2px 0 0;
 
 	}
+
+}
+
+.show{
+
+	bottom: 0;
 
 }

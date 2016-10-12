@@ -5,7 +5,7 @@ import { promiseGet } from 'actions/util/request/get'
 import { resetMain } from 'actions/main'
 
 const CENTER = [ 0, 39 ]
-const ZOOM = 0
+const ZOOM = 1
 
 const _promiseInitMap = ( ) => {
 
@@ -19,13 +19,17 @@ const _promiseInitMap = ( ) => {
 			zoom: ZOOM,
 			center: CENTER,
 			maxBounds: [ [ -360, -70 ], [ 360, 84 ] ],
-			attributionControl: false
+			attributionControl: false,
+			boxZoom: false,
+			dragRotate: false,
+			dragPan: true,
+			keyboard: false,
+			doubleClickZoom: false,
+			touchZoomRotate: false
 
 		} )
 
 		map.addControl( new mapboxgl.Navigation( { position: 'bottom-right' } ) )
-		map.dragRotate.disable()
-		map.touchZoomRotate.disableRotation()
 
 		map.on( 'load', ( ) => {
 
@@ -190,7 +194,7 @@ export const displayMap = ( ) => {
 				type: 'circle',
 				source: 'geojson',
 				paint: {
-					'circle-color': '#0058e6',
+					'circle-color': '#f44336',
 					'circle-radius': 14
 				},
 				filter: [ '>', 'point_count', 1 ]
@@ -245,7 +249,10 @@ export const displayMap = ( ) => {
 				source: 'drops',
 				layout: {
 
-					'icon-image': '{marker-symbol}'
+					'icon-image': '{marker-symbol}',
+					'icon-allow-overlap': true,
+					'symbol-avoid-edges': true,
+					'icon-ignore-placement': true
 
 				}
 
@@ -281,17 +288,16 @@ export const flyTo = ( center, zoom ) => {
 
 			center: center,
 			zoom: zoom,
-			duration: 5000,
-			speed: 5, // make the flying slow
-			curve: 1, // change the speed at which it zooms out
+			//duration: 5000,
+			speed: 1.2, // make the flying slow
+			curve: 1.42, // change the speed at which it zooms out
 			easing: function ( t ) {
 
-				return t<.5 ? 16*t*t*t*t*t : 1+16*( --t ) *t*t*t*t;
+				return t<.5 ? 16*t*t*t*t*t : 1+16*( --t ) *t*t*t*t
 
 			}
 
 		} )
-
 
 	}
 
@@ -332,12 +338,11 @@ export const hidePopup = ( ) => {
 		const state = getState()
 		const popup = state.popup.popup
 
-		popup._container.setAttribute( 'style', 'display: none' )
+		if( popup._container ){
 
-		popup.setLngLat( [ 0, 0 ] )
+			popup._container.setAttribute( 'style', 'display: none' )
 
-		/*popup.remove()
-		dispatch( { type: types.SET_POPUP, to: undefined } )*/
+		}
 
 	}
 
