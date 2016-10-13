@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import { defineMessages, injectIntl, intlShape } from 'react-intl'
 
 import TOGGLE from 'components/ui/toggle'
@@ -37,6 +37,12 @@ const messages = defineMessages( {
 		description: "Team",
 		defaultMessage: "More"
 	},
+	more_title:{
+		id: "more_title",
+		description: "Title - ",
+		defaultMessage: "A bit more official ..."
+	},
+
 	nassos:{
 		id: "nassos",
 		description: "Team",
@@ -80,34 +86,22 @@ const messages = defineMessages( {
 
 } )
 
-const team = ( { intl } ) => {
+const team = ( { intl, showDialog, addSnackbarMessage } ) => {
 
 	const { formatMessage } = intl
-
-	/*<P>Nassos</P>
-			<P>Jörn</P>
-			<P>Claudia</P>
-			<P>Jan</P>
-			<P>Sara</P>
-			<P>Lena</P>
-			<P>Neli</P>
-			<P>Barbara</P>
-			<P>Mark</P>
-			<P>Maureen</P>
-			<P className={ style.toggleDiv } >Figo</P>*/
 
 	return(
 
 		<TOGGLE id="Team" title={ formatMessage( messages.who_are_you_title ) } priority={ 3 } text={ formatMessage( messages.who_are_you ) } className={ style.toggle } >
 			<P>{ formatMessage( messages.hi_there ) }</P>
 			<H priority={ 4 }>Athanasios Vafeidis</H>
-			<P>{ formatMessage( messages.nassos ) } <A>{ formatMessage( messages.more ) }</A></P>
+			<P>{ formatMessage( messages.nassos ) } <A href="#" title={ formatMessage( messages.more_title ) } onClick={ addSnackbarMessage.bind( this ) } >{ formatMessage( messages.more ) }</A></P>
 			<H priority={ 4 }>Claudia  Wolff</H>
-			<P>{ formatMessage( messages.claudia ) } <A>{ formatMessage( messages.more ) }</A></P>
+			<P>{ formatMessage( messages.claudia ) } <A href="#" title={ formatMessage( messages.more_title ) } onClick={ addSnackbarMessage.bind( this ) } >{ formatMessage( messages.more ) }</A></P>
 			<H priority={ 4 }>Jörn Schmidt</H>
-			<P>{ formatMessage( messages.joern ) } <A>{ formatMessage( messages.more ) }</A></P>
+			<P>{ formatMessage( messages.joern ) } <A href="#" title={ formatMessage( messages.more_title ) } onClick={ addSnackbarMessage.bind( this ) } >{ formatMessage( messages.more ) }</A></P>
 			<H priority={ 4 }>Maureen Tsakiris</H>
-			<P>{ formatMessage( messages.me ) } <A>{ formatMessage( messages.more ) }</A></P>
+			<P>{ formatMessage( messages.me ) } <A href="#" title={ formatMessage( messages.more_title ) } onClick={ addSnackbarMessage.bind( this ) } >{ formatMessage( messages.more ) }</A></P>
 		</TOGGLE>
 
 	)
@@ -116,7 +110,10 @@ const team = ( { intl } ) => {
 
 team.propTypes = {
 
-	intl: intlShape.isRequired
+	intl: intlShape.isRequired,
+
+	showDialog: PropTypes.func,
+	addSnackbarMessage: PropTypes.func
 
 }
 

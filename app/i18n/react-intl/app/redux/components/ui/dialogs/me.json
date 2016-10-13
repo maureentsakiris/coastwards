@@ -1,0 +1,12 @@
+[
+  {
+    "id": "me_header",
+    "description": "Header - Browser support",
+    "defaultMessage": "Maureen-Elenie Tsakiris"
+  },
+  {
+    "id": "me_text",
+    "description": "P -",
+    "defaultMessage": "(I'm on it)"
+  }
+]

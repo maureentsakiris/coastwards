@@ -27,7 +27,7 @@ const messages = defineMessages( {
 	ip_address_learn_more_href:{
 		id: "ip_address_learn_more_href",
 		description: "HREF - ",
-		defaultMessage: "somegoodwebsitethatexplainsipaddresses"
+		defaultMessage: "https://en.wikipedia.org/wiki/IP_address"
 	}
 
 } )
@@ -41,7 +41,7 @@ const whyIP = ( { intl } ) => {
 
 		<DIV>
 			<H priority={ 2 }>{ formatMessage( messages.whyIP_header ) }</H>
-			<P>{ formatMessage( messages.whyIP_text ) } <A href={ formatMessage( messages.ip_address_learn_more_href ) }>{ formatMessage( messages.ip_address_learn_more ) }</A></P>
+			<P>{ formatMessage( messages.whyIP_text ) } <A target="_blank" href={ formatMessage( messages.ip_address_learn_more_href ) }>{ formatMessage( messages.ip_address_learn_more ) }</A></P>
 		</DIV>
 
 	)

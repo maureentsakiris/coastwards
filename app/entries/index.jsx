@@ -18,7 +18,7 @@ import I18nLinks from 'components/i18n/i18nLinks'
 import Intro from 'components/intro'
 import How from 'components/how'
 import Guidelines from 'components/guidelines'
-import Team from 'components/team'
+import Team from 'containers/team'
 import FAQs from 'components/faqs'
 import Ask from 'components/ask'
 
@@ -51,7 +51,7 @@ if( !state.browser.jazzSupported ){
 
 }else{
 
-	//store.dispatch( showDialog( 'TESTSITE' ) )
+	store.dispatch( showDialog( 'TESTSITE' ) )
 
 }
 

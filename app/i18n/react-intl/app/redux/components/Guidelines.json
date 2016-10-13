@@ -22,7 +22,7 @@
   {
     "id": "guideline_original_text",
     "description": "Guideline - Original",
-    "defaultMessage": "This means: No images from Facebook, Whatsapp or other Social Media and no scans or screenshots. Images from these sources do not have any metadata and we need the metadata to figure out where the coast is located and when the image was taken."
+    "defaultMessage": "This means: No images from Facebook, Whatsapp or other Social Media and no scans or screenshots."
   },
   {
     "id": "guideline_faces_header",

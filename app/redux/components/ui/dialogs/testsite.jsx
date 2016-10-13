@@ -11,12 +11,12 @@ const messages = defineMessages( {
 	testsite_header:{
 		id: "testsite_header",
 		description: "Header - ",
-		defaultMessage: "Testing site!!!"
+		defaultMessage: "Just a short comment before you delve in ..."
 	},
 	testsite_text:{
 		id: "testsite_text",
 		description: "P - ",
-		defaultMessage: "Hi there! You have reached the ALPHA version of COASTWARDS. THIS SITE IS CURRENTLY UNDER CONSTRUCTION but we are always happy to get feedback so please have a look around. We will NOT SAVE images you upload, so please keep them close for the final version!"
+		defaultMessage: "This the 'bare bones' version of coastwards.org."
 	}
 
 } )
@@ -30,9 +30,11 @@ const testsite = ( { intl } ) => {
 
 		<DIV>
 			<H priority={ 2 }>{ formatMessage( messages.testsite_header ) }</H>
-			<P>Hi there! You have reached the ALPHA version of COASTWARDS. THIS SITE IS CURRENTLY UNDER CONSTRUCTION but we are always happy to get feedback so please have a look around. We will NOT SAVE images you upload, so please keep them close for the final version!</P>
+			<P>So, this is the 'bare bones' version of coastwards.org and it still isn't completely finished. Have a look around, try uploading an image of a coast and tell me how it worked for you. I will NOT save the images you upload, so please keep them close!</P>
 			<br />
-			<P>Thank you! Maureen <br /> <a href="mailTo:tsakiris@geographie.uni-kiel.de" >tsakiris@geographie.uni-kiel.de</a></P>
+			<P>Thanks! Maureen</P>
+			<br/>
+			<small>Ah, and I haven't adapted the site for mobile phones yet (though it works quite well already)</small>
 		</DIV>
 
 	)

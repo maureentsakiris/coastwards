@@ -4,27 +4,46 @@
 
 	position: fixed;
 	width: 100%;
-	bottom: -300px;
-	transition: bottom 300ms;
 	z-index: 300;
+	bottom: 0;
+	text-align: center;
 
-	div{
+	p{
 
-		width: 600px;
+		display: inline-block;
 		max-width: 90%;
-		margin: 0 auto;
 		background: #000;
 		color: #fff;
-		padding: 1em;
-		text-align: center;
+		padding: 1em 2em;
+		position: relative;
 		border-radius: 2px 2px 0 0;
 
 	}
 
 }
 
-.show{
+.enter{
+
+	bottom: -50px;
+
+}
+
+.enterActive{
 
 	bottom: 0;
+	transition: bottom 300ms;
+
+}
+
+.leave{
+
+	bottom: 0;
+
+}
+
+.leaveActive{
+
+	bottom: -50px;
+	transition: bottom 300ms;
 
 }

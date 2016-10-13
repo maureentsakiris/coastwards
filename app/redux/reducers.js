@@ -19,7 +19,7 @@ Modernizr.addTest( 'mapbox', function () {
 } )
 
 const uploadSupported = Modernizr.xhr2 && Modernizr.filereader && Modernizr.blobconstructor && Modernizr.canvas 
-const jazzSupported = Modernizr.mapbox && Modernizr.draganddrop && Modernizr.flexbox && Modernizr.flexwrap && Modernizr.csspointerevents && Modernizr.cssanimations && true
+const jazzSupported = Modernizr.mapbox && Modernizr.draganddrop && Modernizr.flexbox && Modernizr.flexwrap && Modernizr.csspointerevents && Modernizr.cssanimations && Modernizr.csstransitions && true
 
 const browser = ( state = { uploadSupported: uploadSupported, jazzSupported: jazzSupported }, action ) => {
 

@@ -15,6 +15,7 @@
     "css/flexwrap",
     "css/pointerevents",
     "css/animations",
+    "css/transitions",
     "forms/placeholder"
   ]
 }

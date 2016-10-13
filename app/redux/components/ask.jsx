@@ -71,7 +71,7 @@ const ask = ( { intl } ) => {
 				<BR />
 				<EMAIL form="Ask" label={ formatMessage( messages.label_email ) } name="email" placeholder={ formatMessage( messages.placeholder_email ) } />
 				<BR />
-				<SUBMIT form="Ask" name="submit" label={ formatMessage( messages.label_submit ) } />
+				<SUBMIT form="Ask" name="submit" label={ formatMessage( messages.label_submit ) } /> <small>Sorry, doesn't work yet</small>
 			</FORM>
 		</TOGGLE>
 

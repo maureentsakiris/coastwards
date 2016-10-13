@@ -27,8 +27,8 @@ const messages = defineMessages( {
 	},
 	a1:{
 		id: "a1",
-		description: "...",
-		defaultMessage: "..."
+		description: "Satellite images ...",
+		defaultMessage: "Satellite images ..."
 	},
 	q2:{
 		id: "q2",
@@ -37,8 +37,8 @@ const messages = defineMessages( {
 	},
 	a2:{
 		id: "a2",
-		description: "Short answer: No. We have to save an IP address it only gives us a rough location (at best) and absolutely no personal information. In an effort to be as transparent as possible you can view the entire information we send to our server before you decide to upload the image.",
-		defaultMessage: "Short answer: No. We have to save an IP address it only gives us a rough location (at best) and absolutely no personal information. In an effort to be as transparent as possible you can view the entire information we send to our server before you decide to upload the image."
+		description: "Short answer: No. We have to save your IP address but it only gives us a rough location (at best) and absolutely no personal information. In an effort to be as transparent as possible you can view the entire information we send to our server before you decide to upload the image.",
+		defaultMessage: "Short answer: No. We have to save your IP address but it only gives us a rough location (at best) and absolutely no personal information. In an effort to be as transparent as possible you can view the entire information we send to our server before you decide to upload the image."
 	},
 	a2_why:{
 		id: "a2_why",
@@ -82,8 +82,8 @@ const messages = defineMessages( {
 	},
 	a6:{
 		id: "a6",
-		description: "Short: The more, the better. There is not starting point or finishing line with this project. The more images we collect and analyse, the sharper becomes our picture of what types of coasts exist and where. This helps us ...",
-		defaultMessage: "Short: The more, the better. There is not starting point or finishing line with this project. The more images we collect and analyse, the sharper becomes our picture of what types of coasts exist and where. This helps us ..."
+		description: "Short: The more, the better. There is not starting point or finishing line with this project. The more images we collect and analyse, the sharper becomes our picture of what types of coasts exist and where.",
+		defaultMessage: "Short: The more, the better. There is not starting point or finishing line with this project. The more images we collect and analyse, the sharper becomes our picture of what types of coasts exist and where."
 	}
 
 } )
@@ -92,23 +92,24 @@ const questions = ( { intl, showDialog } ) => {
 
 	const { formatMessage } = intl
 
+	/*<TOGGLE priority={ 4 } text={ formatMessage( messages.q1 ) } className={ style.toggle } >
+				<DIV>{ formatMessage( messages.a1 ) }</DIV>
+			</TOGGLE>
+			<TOGGLE priority={ 4 } text={ formatMessage( messages.q4 ) } className={ style.toggle } >
+				<DIV>{ formatMessage( messages.a4 ) }</DIV>
+			</TOGGLE><TOGGLE priority={ 4 } text={ formatMessage( messages.q5 ) } className={ style.toggle } >
+				<DIV>{ formatMessage( messages.a5 ) }</DIV>
+			</TOGGLE>*/
+
 	return(
 
 		<DIV id="Questions" >
-			<TOGGLE priority={ 4 } text={ formatMessage( messages.q1 ) } className={ style.toggle } >
-				<DIV>{ formatMessage( messages.a1 ) }</DIV>
-			</TOGGLE>
+			
 			<TOGGLE priority={ 4 } text={ formatMessage( messages.q2 ) } className={ style.toggle } >
 				<DIV>{ formatMessage( messages.a2 ) } <A onClick={ showDialog.bind( this, 'WHYIP' ) }>{ formatMessage( messages.a2_why ) }</A></DIV>
 			</TOGGLE>
 			<TOGGLE priority={ 4 } text={ formatMessage( messages.q3 ) } className={ style.toggle } >
 				<DIV>{ formatMessage( messages.a3 ) }</DIV>
-			</TOGGLE>
-			<TOGGLE priority={ 4 } text={ formatMessage( messages.q4 ) } className={ style.toggle } >
-				<DIV>{ formatMessage( messages.a4 ) }</DIV>
-			</TOGGLE>
-			<TOGGLE priority={ 4 } text={ formatMessage( messages.q5 ) } className={ style.toggle } >
-				<DIV>{ formatMessage( messages.a5 ) }</DIV>
 			</TOGGLE>
 			<TOGGLE priority={ 4 } text={ formatMessage( messages.q6 ) } className={ style.toggle } >
 				<DIV>{ formatMessage( messages.a6 ) }</DIV>

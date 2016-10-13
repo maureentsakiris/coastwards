@@ -1,5 +1,7 @@
 import * as types from 'types'
 
+let timer
+
 export function addSnackbarMessage ( message, timeout=6000 ){
 
 	return function ( dispatch ){
@@ -11,7 +13,9 @@ export function addSnackbarMessage ( message, timeout=6000 ){
 
 		} )
 
-		setTimeout ( () => {
+		clearTimeout( timer )
+
+		timer = setTimeout ( () => {
 
 			dispatch( {
 

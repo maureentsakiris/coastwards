@@ -7,6 +7,11 @@ import DEFINEMATERIAL from './dialogs/definematerial'
 import WHYHASHTAG from './dialogs/whyhashtag'
 import TESTSITE from './dialogs/testsite'
 
+import NASSOS from './dialogs/nassos'
+import CLAUDIA from './dialogs/claudia'
+import JOERN from './dialogs/joern'
+import ME from './dialogs/me'
+
 import DIV from 'components/tags/div'
 import A from 'components/tags/a'
 import I from 'components/tags/i' 
@@ -37,7 +42,7 @@ const dialog = ( { intl, component, active, closeDialog } ) => {
 
 		return(
 
-			<DIV className={ style.dialog } onClick={ closeDialog } >
+			<DIV className={ style.dialog } >
 				<A className={ style.close } href="#" onClick={ closeDialog } title={ formatMessage( messages.close_dialog ) } ><I className="material-icons" >&#xE5CD;</I></A>
 				<DIV className={ style.body } >
 					{ component == 'WHYIP' && <WHYIP /> }
@@ -45,6 +50,11 @@ const dialog = ( { intl, component, active, closeDialog } ) => {
 					{ component == 'DEFINEMATERIAL' && <DEFINEMATERIAL /> }
 					{ component == 'WHYHASHTAG' && <WHYHASHTAG /> }
 					{ component == 'TESTSITE' && <TESTSITE /> }
+
+					{ component == 'NASSOS' && <NASSOS /> }
+					{ component == 'CLAUDIA' && <CLAUDIA /> }
+					{ component == 'JOERN' && <JOERN /> }
+					{ component == 'ME' && <ME /> }
 				</DIV>
 			</DIV>
 

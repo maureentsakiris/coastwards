@@ -6,8 +6,8 @@
   },
   {
     "id": "a1",
-    "description": "...",
-    "defaultMessage": "..."
+    "description": "Satellite images ...",
+    "defaultMessage": "Satellite images ..."
   },
   {
     "id": "q2",
@@ -16,8 +16,8 @@
   },
   {
     "id": "a2",
-    "description": "Short answer: No. We have to save an IP address it only gives us a rough location (at best) and absolutely no personal information. In an effort to be as transparent as possible you can view the entire information we send to our server before you decide to upload the image.",
-    "defaultMessage": "Short answer: No. We have to save an IP address it only gives us a rough location (at best) and absolutely no personal information. In an effort to be as transparent as possible you can view the entire information we send to our server before you decide to upload the image."
+    "description": "Short answer: No. We have to save your IP address but it only gives us a rough location (at best) and absolutely no personal information. In an effort to be as transparent as possible you can view the entire information we send to our server before you decide to upload the image.",
+    "defaultMessage": "Short answer: No. We have to save your IP address but it only gives us a rough location (at best) and absolutely no personal information. In an effort to be as transparent as possible you can view the entire information we send to our server before you decide to upload the image."
   },
   {
     "id": "a2_why",
@@ -61,7 +61,7 @@
   },
   {
     "id": "a6",
-    "description": "Short: The more, the better. There is not starting point or finishing line with this project. The more images we collect and analyse, the sharper becomes our picture of what types of coasts exist and where. This helps us ...",
-    "defaultMessage": "Short: The more, the better. There is not starting point or finishing line with this project. The more images we collect and analyse, the sharper becomes our picture of what types of coasts exist and where. This helps us ..."
+    "description": "Short: The more, the better. There is not starting point or finishing line with this project. The more images we collect and analyse, the sharper becomes our picture of what types of coasts exist and where.",
+    "defaultMessage": "Short: The more, the better. There is not starting point or finishing line with this project. The more images we collect and analyse, the sharper becomes our picture of what types of coasts exist and where."
   }
 ]

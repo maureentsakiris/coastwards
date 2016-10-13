@@ -8,14 +8,21 @@
 	top: 0;
 	bottom: 0;
 	background-color: $overlay-color;
-	padding: 44px $site-padding-top;
+	padding: 44px 2em;
 	z-index: 300;
+	overflow-y: scroll;
+
+	p{
+
+		margin: 0.5em 0;
+
+	}
 
 }
 
 .close{
 
-	position: absolute;
+	position: fixed;
 	top: $gutter-width;
 	right: $gutter-width;
 

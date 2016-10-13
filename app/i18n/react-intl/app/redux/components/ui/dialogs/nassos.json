@@ -1,0 +1,32 @@
+[
+  {
+    "id": "nassos_header",
+    "description": "Header",
+    "defaultMessage": "Athanasios (Nassos) Vafeidis"
+  },
+  {
+    "id": "nassos_p1",
+    "description": "P -",
+    "defaultMessage": "Nassos Vafeidis studied Surveying and Rural Engineering at the National Technical University of Athens. He went on to carry out a MSc degree in Physical at the University of London (King’s College) where he also earned his PhD in Physical Geography in 2001. After 7 years of research in the UK and Greece he joined the Christian-Albrechts-Universität zu Kiel in 2008 as a Junior Professor in coastal risk management in the Cluster of Excellence 'Future Ocean'."
+  },
+  {
+    "id": "nassos_p2",
+    "description": "P -",
+    "defaultMessage": "Since 2011 he is Professor in Coastal Systems and Hazards, leading the Coastal Risks and Sea-Level Rise research group in the Institute of Geography."
+  },
+  {
+    "id": "research",
+    "description": "Header -",
+    "defaultMessage": "Research"
+  },
+  {
+    "id": "research_text",
+    "description": "P -",
+    "defaultMessage": "Nassos's main research focus is the assessment of impacts of coastal hazards, with particular emphasis on how these impacts will be exacerbated by rising sea levels and increasing human pressure in coastal regions. His research to date includes the compilation of global spatial databases for coastal vulnerability analysis and the development of models for assessing the impacts of coastal hazards and accelerated sea-level rise on coastal land use. He is also involved in the development and application of the DIVA integrated assessment model."
+  },
+  {
+    "id": "publications",
+    "description": "Header",
+    "defaultMessage": "Publications"
+  }
+]

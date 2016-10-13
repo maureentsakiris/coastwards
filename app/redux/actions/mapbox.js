@@ -31,13 +31,13 @@ const _promiseInitMap = ( ) => {
 
 		map.addControl( new mapboxgl.Navigation( { position: 'bottom-right' } ) )
 
-		map.addControl( new mapboxgl.Scale ( {
+		/*map.addControl( new mapboxgl.Scale ( {
 			
 			position: 'top-left',
 			maxWidth: 80,
 			unit: 'metric'
 		
-		} ) )
+		} ) )*/
 
 		//map.addControl( new mapboxgl.Geolocate( { position: 'bottom-left' } ) )
 

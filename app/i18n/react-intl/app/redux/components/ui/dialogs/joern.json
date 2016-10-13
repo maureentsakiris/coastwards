@@ -1,0 +1,12 @@
+[
+  {
+    "id": "joern_header",
+    "description": "Header",
+    "defaultMessage": "Jörn Schmidt"
+  },
+  {
+    "id": "joern_text",
+    "description": "P -",
+    "defaultMessage": "The overarching goal of my current personal project is the use of interdisciplinary approaches, integrating natural science, social science and arts, and transdicsciplinary approaches, expanding the peer review group to stakeholders and the general public, to improve the understanding of maritime systems, with a focus on fisheries. This includes integrated ecological-economic modelling, social network analysis and exploring the possibilities of games for education and stakeholder participation. I already co-developed a game on the common pool problem in fisheries, the ecoOcean game (http://www.ecoocean.de and http://game.ecoocean.de/game/)."
+  }
+]

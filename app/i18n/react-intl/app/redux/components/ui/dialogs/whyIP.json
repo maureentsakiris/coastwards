@@ -17,6 +17,6 @@
   {
     "id": "ip_address_learn_more_href",
     "description": "HREF -",
-    "defaultMessage": "somegoodwebsitethatexplainsipaddresses"
+    "defaultMessage": "https://en.wikipedia.org/wiki/IP_address"
   }
 ]

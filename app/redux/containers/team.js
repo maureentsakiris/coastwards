@@ -1,14 +1,14 @@
 import { connect } from 'react-redux'
-import { hidePopup } from 'actions/mapbox'
+import { showDialog } from 'actions/ui/dialog'
 import { addSnackbarMessage } from 'actions/ui/snackbar'
-import POPUP from 'components/popup'
+
+import TEAM from 'components/team'
+
 
 
 const mapStateToProps = ( state ) => {
 
 	return {
-
-		feature: state.popup.feature
 
 	}
 
@@ -18,30 +18,29 @@ const mapDispatchToProps = ( dispatch ) => {
 
 	return {
 
-		hidePopup: ( e ) => {
+		showDialog: ( component, e ) => {
 
 			e.preventDefault()
-			dispatch( hidePopup() )
+			dispatch( showDialog( component ) )
 
 		},
-		addSnackbarMessage: ( message, e ) => {
+		addSnackbarMessage: ( e ) => {
 
 			e.preventDefault()
-			dispatch( addSnackbarMessage( message, 1000 ) )
+			dispatch( addSnackbarMessage( 'there_will_be_more', 1000 ) )
 
 		}
-
 
 	}
 
 }
 
 
-const popup = connect(
+const team = connect(
 
 	mapStateToProps,
 	mapDispatchToProps
 
-)( POPUP )
+)( TEAM )
 
-export default popup
+export default team
