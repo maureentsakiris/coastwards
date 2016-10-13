@@ -18,8 +18,9 @@ const mapDispatchToProps = ( dispatch ) => {
 
 	return {
 
-		resetMain: ( ) => {
+		resetMain: ( e ) => {
 
+			e.preventDefault()
 			dispatch( resetMain() )
 
 		}

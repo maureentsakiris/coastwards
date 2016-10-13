@@ -52,7 +52,7 @@ const main = ( { intl, className, resetMain, show } ) => {
 	return(
 
 		<FORM id="Geolocator" action="#" className={ cls } >
-			<H priority={ 2 }>{ formatMessage( messages.can_you_locate ) }</H>
+			<H priority={ 2 }>{ formatMessage( messages.take_you_there ) }</H>
 			<small>Sorry, this is not quite finished yet</small>   
 			<P>
 				<A onClick={ resetMain }  className={ style.option } >OK, cancel then</A>
