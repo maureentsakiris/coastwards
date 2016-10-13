@@ -20,7 +20,7 @@ const _promiseInitMap = ( ) => {
 			center: CENTER,
 			maxBounds: [ [ -360, -70 ], [ 360, 84 ] ],
 			attributionControl: false,
-			boxZoom: false,
+			boxZoom: true,
 			dragRotate: false,
 			dragPan: true,
 			keyboard: false,
