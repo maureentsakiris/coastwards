@@ -31,6 +31,16 @@ const _promiseInitMap = ( ) => {
 
 		map.addControl( new mapboxgl.Navigation( { position: 'bottom-right' } ) )
 
+		map.addControl( new mapboxgl.Scale ( {
+			
+			position: 'top-left',
+			maxWidth: 80,
+			unit: 'metric'
+		
+		} ) )
+
+		//map.addControl( new mapboxgl.Geolocate( { position: 'bottom-left' } ) )
+
 		map.on( 'load', ( ) => {
 
 			resolve( map ) 
@@ -169,7 +179,7 @@ export const displayMap = ( ) => {
 				type: 'geojson',
 				data: geojson,
 				cluster: true,
-				clusterMaxZoom: 18, // Max zoom to cluster points on
+				clusterMaxZoom: 15, // Max zoom to cluster points on
 				clusterRadius: 20 // Radius of each cluster when clustering points (defaults to 50)
 				
 			} )
@@ -177,12 +187,33 @@ export const displayMap = ( ) => {
 			map.addLayer( {
 			
 				id: 'markers',
-				type: 'symbol',
+				type: 'circle',
 				source: 'geojson',
 				filter: [ '!has', 'point_count' ],
-				layout: {
+				/*layout: {
 
 					'icon-image': '{marker-symbol}'
+
+				},*/
+				paint: {
+					// make circles larger as the user zooms from z12 to z22
+					'circle-radius': {
+						'base': 1.75,
+						'stops': [ [ 0, 4 ], [ 10, 15 ], [ 22, 50 ] ]
+					},
+					// color circles by ethnicity, using data-driven styles
+					'circle-color': {
+						property: 'material',
+						type: 'categorical',
+						stops: [
+							[ 'sand', '#fbb03b' ],
+							[ 'pebble', '#223b53' ],
+							[ 'rock', '#e55e5e' ],
+							[ 'mud', '#3bb2d0' ],
+							[ 'notsure', '#3bb2d0' ],
+							[ 'manmade', '#ccc' ] 
+						] 
+					}
 
 				}
 
@@ -194,8 +225,11 @@ export const displayMap = ( ) => {
 				type: 'circle',
 				source: 'geojson',
 				paint: {
-					'circle-color': '#f44336',
-					'circle-radius': 14
+					'circle-radius': {
+						'base': 1.75,
+						'stops': [ [ 0, 12 ], [ 18, 100 ] ]
+					},
+					'circle-color': '#396dc1'
 				},
 				filter: [ '>', 'point_count', 1 ]
 
@@ -213,7 +247,7 @@ export const displayMap = ( ) => {
 						'DIN Offc Pro Medium',
 						'Arial Unicode MS Bold'
 					],
-					'text-size': 12
+					'text-size': 10
 
 				},
 				paint: {

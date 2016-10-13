@@ -233,7 +233,7 @@ export const validateFile = ( e ) => {
 							"coordinates": [ image.long, image.lat ]
 						},
 						"properties": {
-							"marker-symbol": "marker-primary-v2",
+							"marker-symbol": "marker-accent",
 							"image": image.dataURL
 						}
 

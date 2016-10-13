@@ -1,5 +1,10 @@
 [
   {
+    "id": "take_you_there",
+    "description": "Header",
+    "defaultMessage": "Great, so let's get you as close as possible. Type the address, nearest city or country and we will take you there."
+  },
+  {
     "id": "check_in_location",
     "description": "Label - Check in given location",
     "defaultMessage": "Check in"

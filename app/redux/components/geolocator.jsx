@@ -7,11 +7,17 @@ import P from 'components/tags/p'
 import BUTTON from 'components/tags/button'
 import INPUT from 'components/tags/input'
 import BR from 'components/tags/br'
+import H from 'components/tags/h'
 
 import style from './_geolocator'
 
 const messages = defineMessages( {
 
+	take_you_there:{
+		id: "take_you_there",
+		description: "Header",
+		defaultMessage: "Great, so let's get you as close as possible. Type the address, nearest city or country and we will take you there."
+	},
 	check_in_location:{
 		id: "check_in_location",
 		description: "Label - Check in given location",
@@ -48,6 +54,7 @@ const main = ( { intl, className, resetMain, show } ) => {
 	return(
 
 		<FORM id="Geolocator" action="#" className={ cls } >
+			<H priority={ 2 }>{ formatMessage( messages.take_you_there ) }</H>
 			<P>
 				<INPUT form="Geolocator" name="lat" type="number" placeholder={ formatMessage( messages.latitude ) } />
 				<BR/><BR/>
