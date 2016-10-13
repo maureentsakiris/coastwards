@@ -25,7 +25,7 @@ const _promiseInitMap = ( ) => {
 			dragPan: true,
 			keyboard: false,
 			doubleClickZoom: false,
-			touchZoomRotate: false
+			touchZoomRotate: true
 
 		} )
 

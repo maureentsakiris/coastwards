@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react'
 import { defineMessages, injectIntl, intlShape } from 'react-intl'
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 import Errors from 'containers/errors'
 import Statuses from 'containers/statuses'

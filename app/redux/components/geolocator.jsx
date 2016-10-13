@@ -4,10 +4,8 @@ import Classnames from 'classnames'
 
 import FORM from 'components/tags/form'
 import P from 'components/tags/p'
-import BUTTON from 'components/tags/button'
-import INPUT from 'components/tags/input'
-import BR from 'components/tags/br'
 import H from 'components/tags/h'
+import A from 'components/tags/a'
 
 import style from './_geolocator'
 
@@ -54,14 +52,11 @@ const main = ( { intl, className, resetMain, show } ) => {
 	return(
 
 		<FORM id="Geolocator" action="#" className={ cls } >
-			<H priority={ 2 }>{ formatMessage( messages.take_you_there ) }</H>
+			<H priority={ 2 }>{ formatMessage( messages.can_you_locate ) }</H>
+			<small>Sorry, this is not quite finished yet</small>   
 			<P>
-				<INPUT form="Geolocator" name="lat" type="number" placeholder={ formatMessage( messages.latitude ) } />
-				<BR/><BR/>
-				<INPUT form="Geolocator" name="long" type="number" placeholder={ formatMessage( messages.longitude ) } />
+				<A onClick={ resetMain }  className={ style.option } >OK, cancel then</A>
 			</P>
-			<BUTTON type="button" onClick={ () => {} }>{ formatMessage( messages.check_in_location ) }</BUTTON>
-			<BUTTON type="button" onClick={ resetMain }>{ formatMessage( messages.cancel_check_in ) }</BUTTON>
 		</FORM> 
 
 	)
