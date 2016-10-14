@@ -31,7 +31,7 @@ const messages = defineMessages( {
 	exifdata_empty:{
 		id: "exifdata_empty",
 		description: "Error - Informs user that exifdata is missing and why that could be",
-		defaultMessage: "We couldn't find any metadata in your image. Our best guess is that it was sent through social media, like Facebook or Whatsapp, because they strip the metadata. Or, it might be a scan or a screenshot. Do you have the original image? Try that one!"
+		defaultMessage: "We couldn't find any metadata in your image. Our best guess is that it was sent through social media, like Facebook or Whatsapp, or, it might be a scan or a screenshot. Do you have the original image? Try that one!"
 	},
 	image_too_small:{
 		id: "image_too_small",
@@ -46,7 +46,7 @@ const messages = defineMessages( {
 	faces_detected:{
 		id: "faces_detected",
 		description: "Error - Informs user that faces were detected in image",
-		defaultMessage: "Sorry, for privacy concerns we have to reject images with faces..."
+		defaultMessage: "Sorry, for privacy concerns we have to reject images with faces"
 	},
 	spam_detected:{
 		id: "spam_detected",
@@ -56,8 +56,8 @@ const messages = defineMessages( {
 	not_a_coast:{
 		id: "not_a_coast",
 		description: "Error - Informs user that image probably does not depict a coast",
-		defaultMessage: "So, we run an image recognition software that tells us with what probability your images depict a coast. It could be wrong but we have to set some filters to ensure the image's relevance to our research. Try another one!"
-	},
+		defaultMessage: "Image annotation software can recognize coasts, beaches, shores and the like in images but not in this one. Sorry, we have to set some filters to avoid spam. Try another one!"
+	}, 
 	location_undefined:{
 		id: "location_undefined",
 		description: "Error - Informs user that we couldn't extract the location from the metadata",

@@ -18,7 +18,7 @@ const messages = defineMessages( {
 	how_title:{
 		id:"how_title",
 		description: "Section header title - Watch a video (2min)",
-		defaultMessage: "Watch a video (2min)"
+		defaultMessage: "Watch a video (1min)"
 	},
 
 	//script

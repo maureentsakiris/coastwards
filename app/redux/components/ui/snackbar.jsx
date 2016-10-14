@@ -84,6 +84,7 @@ const _composeMessages = ( intl, messages ) => {
 
 		return React.createElement( P, {
 
+			className: style.msg,
 			key: index,
 			children: m
 

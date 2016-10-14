@@ -47,7 +47,7 @@ const prompts = ( { intl, className, prompt, jazzSupported, show, hide } ) => {
 
 	const str = messages[ prompt ] ? formatMessage( messages[ prompt ] ) : prompt
 
-	const logo = jazzSupported && prompt == 'select_file'
+	const logo = jazzSupported && prompt == 'select_file' && false
 
 	const cls = Classnames( className, style.prompts, {
 

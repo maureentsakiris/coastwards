@@ -13,5 +13,16 @@
 
 	text-align: center;
 	margin-top: $site-padding-top;
+	display: none;
+
+}
+
+@media ( min-width: #{ $tablet } ) {
+
+  .i18n{
+
+  	display: block;
+
+  }
 
 }

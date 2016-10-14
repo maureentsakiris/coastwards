@@ -8,17 +8,29 @@
 	bottom: 0;
 	text-align: center;
 
-	p{
+}
 
-		display: inline-block;
-		max-width: 90%;
-		background: #000;
-		color: #fff;
-		padding: 1em 2em;
-		position: relative;
-		border-radius: 2px 2px 0 0;
+.msg{
 
-	}
+	display: inline-block;
+	width: 100%;
+	background: #000;
+	color: #fff;
+	padding: 1em 2em;
+	position: relative;
+	box-shadow: 3px -4px 10px -4px rgba(0, 0, 0, 0.3), -3px 4px 10px -4px rgba(0, 0, 0, 0.3);
+
+}
+
+@media ( min-width: #{ $tablet } ) {
+
+  .msg{
+
+  	width: auto;
+  	max-width: 600px;
+  	border-radius: 2px 2px 0 0;
+
+  }
 
 }
 

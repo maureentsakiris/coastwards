@@ -13,7 +13,7 @@ const messages = defineMessages( {
 	who_are_you:{
 		id: "who_are_you",
 		description: "Section header - Who is Science?",
-		defaultMessage: "Who is 'Science'?"
+		defaultMessage: "Who's Science?"
 	},
 	hi_there:{
 		id: "hi_there",

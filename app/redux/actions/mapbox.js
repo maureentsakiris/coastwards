@@ -20,7 +20,7 @@ const _promiseInitMap = ( ) => {
 			center: CENTER,
 			maxBounds: [ [ -360, -70 ], [ 360, 84 ] ],
 			attributionControl: false,
-			boxZoom: true,
+			boxZoom: false,
 			dragRotate: false,
 			dragPan: true,
 			keyboard: false,
@@ -178,9 +178,9 @@ export const displayMap = ( ) => {
 
 				type: 'geojson',
 				data: geojson,
-				cluster: true,
-				clusterMaxZoom: 15, // Max zoom to cluster points on
-				clusterRadius: 20 // Radius of each cluster when clustering points (defaults to 50)
+				//cluster: true,
+				//clusterMaxZoom: 15, // Max zoom to cluster points on
+				//clusterRadius: 20 // Radius of each cluster when clustering points (defaults to 50)
 				
 			} )
 
@@ -199,7 +199,7 @@ export const displayMap = ( ) => {
 					// make circles larger as the user zooms from z12 to z22
 					'circle-radius': {
 						'base': 1.75,
-						'stops': [ [ 0, 4 ], [ 10, 15 ], [ 22, 50 ] ]
+						'stops': [ [ 0, 5 ], [ 10, 15 ], [ 22, 50 ] ]
 					},
 					// color circles by ethnicity, using data-driven styles
 					'circle-color': {
@@ -208,10 +208,11 @@ export const displayMap = ( ) => {
 						stops: [
 							[ 'sand', '#fbb03b' ],
 							[ 'pebble', '#223b53' ],
-							[ 'rock', '#e55e5e' ],
-							[ 'mud', '#3bb2d0' ],
-							[ 'notsure', '#3bb2d0' ],
-							[ 'manmade', '#ccc' ] 
+							[ 'rock', '#7e3096' ],
+							[ 'mud', '#8a5707' ],
+							[ 'ice', '#ef25db' ],
+							[ 'notsure', '#ccc' ],
+							[ 'manmade', '#000' ] 
 						] 
 					}
 
@@ -227,7 +228,7 @@ export const displayMap = ( ) => {
 				paint: {
 					'circle-radius': {
 						'base': 1.75,
-						'stops': [ [ 0, 12 ], [ 18, 100 ] ]
+						'stops': [ [ 0, 14 ], [ 18, 100 ] ]
 					},
 					'circle-color': '#396dc1'
 				},
@@ -247,7 +248,7 @@ export const displayMap = ( ) => {
 						'DIN Offc Pro Medium',
 						'Arial Unicode MS Bold'
 					],
-					'text-size': 10
+					'text-size': 12
 
 				},
 				paint: {
@@ -259,8 +260,8 @@ export const displayMap = ( ) => {
 			}, 'country_label_1' )
 
 			dispatch( { type: types.ADD_INTERACTIVE_LAYER, layer: { layer: 'markers', onClick: _onMarkerClick } } )
-			dispatch( { type: types.ADD_INTERACTIVE_LAYER, layer: { layer: 'cluster-circles', onClick: _onClusterClick } } )
-			dispatch( { type: types.ADD_INTERACTIVE_LAYER, layer: { layer: 'cluster-count', onClick: _onClusterClick } } )
+			//dispatch( { type: types.ADD_INTERACTIVE_LAYER, layer: { layer: 'cluster-circles', onClick: _onClusterClick } } )
+			//dispatch( { type: types.ADD_INTERACTIVE_LAYER, layer: { layer: 'cluster-count', onClick: _onClusterClick } } )
 
 			let data = {
 

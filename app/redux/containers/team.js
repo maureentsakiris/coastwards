@@ -27,7 +27,7 @@ const mapDispatchToProps = ( dispatch ) => {
 		addSnackbarMessage: ( e ) => {
 
 			e.preventDefault()
-			dispatch( addSnackbarMessage( 'there_will_be_more', 1000 ) )
+			dispatch( addSnackbarMessage( 'there_will_be_more', 1500 ) )
 
 		}
 
