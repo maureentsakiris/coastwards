@@ -1,30 +1,15 @@
 @import 'app/styles/base';
 
-.intro{
+.headline{
 
-	@extend %corset;
-	margin-top: $site-padding-inner;
+	text-transform: uppercase;
+	font-weight: 300;
+	font-size: 2em;
 
-	h1{
+}
 
-		text-transform: uppercase;
-		font-weight: 300;
-		font-size: 2em;
+.tagline{
 
-	}
-
-	h2{
-
-		font-weight: 500;
-
-	}
-
-	img{
-
-		margin: 0 auto;
-		display: block;
-		width: 200px;
-
-	}
+	font-weight: 500;
 
 }

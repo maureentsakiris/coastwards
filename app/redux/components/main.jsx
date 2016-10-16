@@ -36,7 +36,7 @@ const main = ( { intl, uploadSupported, jazzSupported, scrollUp } ) => {
 
 		return(
 
-			<DIV id="Main" className={ style.pad } >
+			<DIV id="Main" className={ style.main } >
 				<Prompts className={ style.corset } />
 				<P className={ style.corset } >{ formatMessage( messages.unsupported ) }</P>
 			</DIV>
@@ -47,7 +47,7 @@ const main = ( { intl, uploadSupported, jazzSupported, scrollUp } ) => {
 
 		return(
 
-			<DIV id="Main" className={ style.pad } >
+			<DIV id="Main" className={ style.mainJazz } >
 				<Prompts className={ style.corset } />
 				<Errors className={ style.corset } /> 
 				<Statuses className={ style.corset } />
@@ -62,12 +62,10 @@ const main = ( { intl, uploadSupported, jazzSupported, scrollUp } ) => {
 
 		return(
 
-			<DIV id="Main" className={ style.main } >
-				<div className={ style.fringe }>
-					<A onClick={ scrollUp } className={ style.up } >
-						<I className="material-icons">keyboard_arrow_up</I>
-					</A>
-				</div>
+			<DIV id="Main" className={ style.mainJazz } >
+				<A onClick={ scrollUp } className={ style.up } >
+					<I className="material-icons">keyboard_arrow_up</I>
+				</A>
 				<Mapbox className={ style.mapbox } />
 				<Geolocator key="geolocator" className={ style.screen } />
 				<Locate key="locate" className={ style.screen } />

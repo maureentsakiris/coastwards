@@ -1,4 +1,5 @@
 $fringe-height: 100px;
+$screen-overlay-color: rgba(255, 255, 255, 0.8);
 
 %corset{
 
@@ -7,7 +8,7 @@ $fringe-height: 100px;
 
 }
 
-%padded{
+%pad{
 
 	padding-right: $site-padding-sides;
 	padding-left: $site-padding-sides;
@@ -21,8 +22,6 @@ $fringe-height: 100px;
 } */
 
 %toggle{
-
-	@extend %corset;
 
 	&>a{
 

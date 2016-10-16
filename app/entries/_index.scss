@@ -1,11 +1,11 @@
 @import 'app/styles/reset';
 @import 'app/styles/tags';
-@import 'app/styles/base';
+//base is already imported in tags
 
 
-.info{
+.top{
 
-	@extend %padded;
+	@extend %pad;
 
 }
 
@@ -17,12 +17,26 @@
 
 }
 
-@media ( min-width: #{ $tablet } ) {
+@media ( min-width: #{ $column-width } ) {
 
   .i18n{
 
   	display: block;
 
   }
+
+}
+
+.intro{
+
+	@extend %corset;
+	margin-top: $site-padding-inner;
+
+}
+
+.info{
+
+	@extend %corset;
+	margin-top: $site-padding-top;
 
 }

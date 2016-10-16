@@ -44,8 +44,9 @@ let negotiatedLocale = document.documentElement.getAttribute( 'lang' );
 store.dispatch( loadLanguage( negotiatedLocale ) )
 
 const state = store.getState()
+const { jazzSupported, uploadSupported } = state.browser
 
-if( !state.browser.jazzSupported ){
+if( !jazzSupported ){
 
 	store.dispatch( showDialog( 'NOJAZZ' ) )
 
@@ -61,16 +62,21 @@ ReactDom.render(
 	<Provider store={ store } >
 		<I18nProvider>
 			<Context>
-				<DIV id="Info" className={ style.info } >
-					<I18nLinks availableLanguages={ i18nLocales.locales } id="I18n" className={ style.i18n } />
-					<Intro />
-					<How />
-					<Guidelines />
-					<Team />
-					<FAQs />
-					<Ask />
+				<DIV className={ style.top } >
+					<I18nLinks availableLanguages={ i18nLocales.locales } className={ style.i18n } />
+					<Intro className={ style.intro } />
+					<DIV className={ style.info } >
+						<How />
+						<Guidelines />
+						<Team />
+						<FAQs />
+						<Ask />
+					</DIV>
 				</DIV>
-				<Main />
+				{ !uploadSupported && <p>ooops</p> }
+				{ ( uploadSupported && !jazzSupported ) && <p>barebones</p> }
+				{ ( uploadSupported && jazzSupported ) && <p>jazz</p> }
+				<Main className={ style.main } />
 				<Snackbar />
 				<Dialog />
 			</Context>

@@ -21,6 +21,9 @@ export function loadLanguage ( locale ) {
 
 				const { locale, dir, messages } = i18nLocales
 
+				document.getElementsByTagName( 'html' )[ 0 ].setAttribute( 'lang', locale )
+				document.getElementsByTagName( 'html' )[ 0 ].setAttribute( 'dir', dir )
+
 				dispatch( {
 
 					type: types.LOAD_LANGUAGE,

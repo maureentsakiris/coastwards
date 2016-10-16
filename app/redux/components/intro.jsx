@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import { defineMessages, injectIntl, intlShape } from 'react-intl'
 
 import DIV from 'components/tags/div'
@@ -21,17 +21,15 @@ const messages = defineMessages( {
 
 } )
 
-const intro = ( { intl } ) => {
+const intro = ( { intl, className } ) => {
 
 	const { formatMessage } = intl
 
-	/*<IMG src="assets/coastwards-alpha.png" alt="Coastwards Logo: A turtle on a mission" />*/
-
 	return(
 
-		<DIV id="Intro" className={ style.intro } >
-			<H priority={ 1 } >{ formatMessage( messages.help_science ) }</H>
-			<H priority={ 2 } >{ formatMessage( messages.no_account ) }</H>
+		<DIV className={ className } >
+			<H priority={ 1 } className={ style.headline } >{ formatMessage( messages.help_science ) }</H>
+			<H priority={ 2 } className={ style.tagline } >{ formatMessage( messages.no_account ) }</H>
 		</DIV>
 
 	)
@@ -40,7 +38,8 @@ const intro = ( { intl } ) => {
 
 intro.propTypes = {
 
-	intl: intlShape.isRequired
+	intl: intlShape.isRequired,
+	className: PropTypes.string
 
 }
 

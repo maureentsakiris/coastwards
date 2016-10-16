@@ -1,8 +1,8 @@
 @import 'app/styles/base';
 
-$screen-overlay-color: rgba(255, 255, 255, 0.8);
 
-.pad{
+
+.main{
 
 	padding-right: $site-padding-sides;
 	padding-left: $site-padding-sides;
@@ -10,27 +10,24 @@ $screen-overlay-color: rgba(255, 255, 255, 0.8);
 
 }
 
-.corset{
-
-	@extend %corset;
-
-}
-
-.main{
+.mainJazz{
 
 	position: relative;
 	height: 100%;
-	margin-top: 5%;
 	overflow: hidden;
+
+}
+
+.prompts{
+
+	@extend %corset;
 
 }
 
 .mapbox{
 
 	height: 100%;
-	//padding-top: $fringe-height;
 	top: 0;
-	background-color: #ccc;
 
 }
 
@@ -87,19 +84,13 @@ $screen-overlay-color: rgba(255, 255, 255, 0.8);
 
 }
 
-.fringe{
-
-	position: absolute;
-	width: 100%;
-	background: transparent;
-	z-index: 1;
-	text-align: center;
-
-}
-
 .up{
 
-	display: inline-block;
+	position: absolute;
+    top: 0;
+    left: 50%;
+    margin-left: -33px;
+    z-index: 1;
 
 	i{
 

@@ -2,7 +2,6 @@ import React from 'react'
 import { defineMessages, injectIntl, intlShape } from 'react-intl'
 
 import TOGGLE from 'components/ui/toggle'
-import DIV from 'components/tags/div'
 import P from 'components/tags/p'
 import BR from 'components/tags/br'
 
@@ -114,38 +113,25 @@ const how = ( { intl } ) => {
 
 	const { formatMessage } = intl
 
-	/*<P>{ formatMessage( messages.best_advice ) }</P>
-				<P>{ formatMessage( messages.sea_levels_rise_because ) }</P>
-				<P>{ formatMessage( messages.only ) }</P>
-				<P>{ formatMessage( messages.sea_levels_rise_vary_drastically ) }</P>
-				<P>{ formatMessage( messages.forget_bathtub ) }</P>
-
-<H priority={ 4 }><SMALL>{ formatMessage( messages.seriously ) }</SMALL></H>
-
-<H priority={ 4 }>{ formatMessage( messages.together ) }</H>
-*/
-
 	return(
 
-		<TOGGLE id="How" title={ formatMessage( messages.how_title ) } priority={ 3 } text={ formatMessage( messages.how ) } className={ style.toggle } >
-			<DIV>
-				<P>{ formatMessage( messages.in_a_nutshell ) }</P>
-				<BR/>
-				<P>{ formatMessage( messages.how_it_works ) }</P>
-				<BR/>
-				<P>{ formatMessage( messages.place_on_map ) }</P>
-				<BR/>
-				<P>
-					{ formatMessage( messages.determine_coastal_type ) } { " " }
-					{ formatMessage( messages.the_more_the_better ) }
-				</P>
-				<BR/>
-				<P>{ formatMessage( messages.computer_programs ) }</P>
-				<BR/>
-				<P>{ formatMessage( messages.policy_makers ) }</P>
-				<BR/>
-				<P>{ formatMessage( messages.best_advice ) }</P>
-			</DIV>
+		<TOGGLE className={ style.how } priority={ 3 } title={ formatMessage( messages.how_title ) } text={ formatMessage( messages.how ) }  >
+			<P>{ formatMessage( messages.in_a_nutshell ) }</P>
+			<BR/>
+			<P>{ formatMessage( messages.how_it_works ) }</P>
+			<BR/>
+			<P>{ formatMessage( messages.place_on_map ) }</P>
+			<BR/>
+			<P>
+				{ formatMessage( messages.determine_coastal_type ) } { " " }
+				{ formatMessage( messages.the_more_the_better ) }
+			</P>
+			<BR/>
+			<P>{ formatMessage( messages.computer_programs ) }</P>
+			<BR/>
+			<P>{ formatMessage( messages.policy_makers ) }</P>
+			<BR/>
+			<P>{ formatMessage( messages.best_advice ) }</P>
 		</TOGGLE>
 
 	)

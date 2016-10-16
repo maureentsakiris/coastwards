@@ -25,7 +25,8 @@ const _promiseInitMap = ( ) => {
 			dragPan: true,
 			keyboard: false,
 			doubleClickZoom: false,
-			touchZoomRotate: true
+			touchZoomRotate: true,
+			failIfMajorPerformanceCaveat: true
 
 		} )
 
@@ -178,9 +179,9 @@ export const displayMap = ( ) => {
 
 				type: 'geojson',
 				data: geojson,
-				//cluster: true,
-				//clusterMaxZoom: 15, // Max zoom to cluster points on
-				//clusterRadius: 20 // Radius of each cluster when clustering points (defaults to 50)
+				cluster: true,
+				clusterMaxZoom: 15, // Max zoom to cluster points on
+				clusterRadius: 20 // Radius of each cluster when clustering points (defaults to 50)
 				
 			} )
 
@@ -260,8 +261,8 @@ export const displayMap = ( ) => {
 			}, 'country_label_1' )
 
 			dispatch( { type: types.ADD_INTERACTIVE_LAYER, layer: { layer: 'markers', onClick: _onMarkerClick } } )
-			//dispatch( { type: types.ADD_INTERACTIVE_LAYER, layer: { layer: 'cluster-circles', onClick: _onClusterClick } } )
-			//dispatch( { type: types.ADD_INTERACTIVE_LAYER, layer: { layer: 'cluster-count', onClick: _onClusterClick } } )
+			dispatch( { type: types.ADD_INTERACTIVE_LAYER, layer: { layer: 'cluster-circles', onClick: _onClusterClick } } )
+			dispatch( { type: types.ADD_INTERACTIVE_LAYER, layer: { layer: 'cluster-count', onClick: _onClusterClick } } )
 
 			let data = {
 
@@ -284,10 +285,7 @@ export const displayMap = ( ) => {
 				source: 'drops',
 				layout: {
 
-					'icon-image': '{marker-symbol}',
-					'icon-allow-overlap': true,
-					'symbol-avoid-edges': true,
-					'icon-ignore-placement': true
+					'icon-image': '{marker-symbol}'
 
 				}
 
