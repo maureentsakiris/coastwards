@@ -159,7 +159,6 @@ export default class upload extends Component{
 		//let it ripple
 		setTimeout( function ( ){
 
-			console.log( e );
 			//this.props.validateFile( e )
 
 		}, 500 )

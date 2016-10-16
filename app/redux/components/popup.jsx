@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import { defineMessages, injectIntl, intlShape } from 'react-intl'
+import { /*defineMessages,*/ injectIntl, intlShape } from 'react-intl'
 
 import DIV from 'components/tags/div'
 import A from 'components/tags/a'
@@ -7,14 +7,14 @@ import I from 'components/tags/i'
 
 import style from './_popup'
 
-const messages = defineMessages( {
+/*const messages = defineMessages( {
 
 
-} )
+} )*/
 
-const popup = ( { intl, feature, hidePopup, addSnackbarMessage } ) => {
+const popup = ( { /*intl,*/ feature, hidePopup, addSnackbarMessage } ) => {
 
-	const { formatMessage } = intl
+	/*const { formatMessage } = intl*/
 
 	const _oops = ( e ) => {
 

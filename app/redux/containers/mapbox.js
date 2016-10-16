@@ -3,15 +3,6 @@ import { displayMap } from 'actions/mapbox'
 import MAPBOX from 'components/mapbox'
 
 
-const mapStateToProps = ( state ) => {
-
-	return {
-
-
-	}
-
-}
-
 const mapDispatchToProps = ( dispatch ) => {
 
 	return {
@@ -29,7 +20,7 @@ const mapDispatchToProps = ( dispatch ) => {
 
 const mapbox = connect(
 
-	mapStateToProps,
+	null,
 	mapDispatchToProps
 
 )( MAPBOX )

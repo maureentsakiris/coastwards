@@ -5,15 +5,6 @@ import { addSnackbarMessage } from 'actions/ui/snackbar'
 import TEAM from 'components/team'
 
 
-
-const mapStateToProps = ( state ) => {
-
-	return {
-
-	}
-
-}
-
 const mapDispatchToProps = ( dispatch ) => {
 
 	return {
@@ -38,7 +29,7 @@ const mapDispatchToProps = ( dispatch ) => {
 
 const team = connect(
 
-	mapStateToProps,
+	null,
 	mapDispatchToProps
 
 )( TEAM )

@@ -86,7 +86,7 @@ const messages = defineMessages( {
 
 } )
 
-const team = ( { intl, showDialog, addSnackbarMessage } ) => {
+const team = ( { intl/*, showDialog*/, addSnackbarMessage } ) => {
 
 	const { formatMessage } = intl
 
@@ -112,7 +112,7 @@ team.propTypes = {
 
 	intl: intlShape.isRequired,
 
-	showDialog: PropTypes.func,
+	/*showDialog: PropTypes.func,*/
 	addSnackbarMessage: PropTypes.func
 
 }

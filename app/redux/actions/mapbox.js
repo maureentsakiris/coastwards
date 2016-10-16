@@ -30,7 +30,6 @@ const _promiseInitMap = ( ) => {
 
 		} )
 
-		map.addControl( new mapboxgl.Navigation( { position: 'bottom-right' } ) )
 
 		/*map.addControl( new mapboxgl.Scale ( {
 			
@@ -44,6 +43,9 @@ const _promiseInitMap = ( ) => {
 
 		map.on( 'load', ( ) => {
 
+			map.addControl( new mapboxgl.NavigationControl( { position: 'bottom-right' } ) )
+			map.dragRotate.disable()
+			map.touchZoomRotate.disableRotation()
 			resolve( map ) 
 
 		} )
@@ -53,6 +55,13 @@ const _promiseInitMap = ( ) => {
 			reject( e ) 
 
 		} )
+
+		/*map.on( 'resize', ( e ) => {
+
+			map.touchZoomRotate.enable()
+			map.touchZoomRotate.disableRotation()
+
+		} )*/
 
 	} )
 
@@ -310,7 +319,7 @@ export const displayMap = ( ) => {
 
 }
 
-export const flyTo = ( center, zoom ) => {
+export const fly = ( center, zoom ) => {
 
 	return function ( dispatch, getState ){
 
@@ -321,7 +330,7 @@ export const flyTo = ( center, zoom ) => {
 
 			center: center,
 			zoom: zoom,
-			//duration: 5000,
+			duration: 5000,
 			speed: 1.2, // make the flying slow
 			curve: 1.42, // change the speed at which it zooms out
 			easing: function ( t ) {
@@ -344,7 +353,7 @@ export const showPopup = ( feature ) => {
 		const map = state.mapbox
 		let popup = state.popup.popup
 
-		if( popup._container ){
+		if( popup && popup._container ){
 
 			popup._container.setAttribute( 'style', '' )
 
@@ -371,7 +380,7 @@ export const hidePopup = ( ) => {
 		const state = getState()
 		const popup = state.popup.popup
 
-		if( popup._container ){
+		if( popup && popup._container ){
 
 			popup._container.setAttribute( 'style', 'display: none' )
 
@@ -383,9 +392,9 @@ export const hidePopup = ( ) => {
 
 export const resetMap = ( ) => {
 
-	return function ( dispatch, getState ){
+	return function ( dispatch ){
 
-		dispatch( flyTo( CENTER, ZOOM ) )
+		dispatch( fly( CENTER, ZOOM ) )
 
 	}
 

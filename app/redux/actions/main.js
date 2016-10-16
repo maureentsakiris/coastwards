@@ -3,7 +3,7 @@ import { promiseType, promiseEXIF, promiseMinimumBoxDimensions, promiseCanvasBox
 import { addSnackbarMessage } from 'actions/ui/snackbar'
 import { promiseDataURLtoBlob } from 'actions/util/form'
 import { promiseXHR } from 'actions/util/request/xhr'
-import { flyTo, resetMap, hidePopup } from 'actions/mapbox'
+import { fly, resetMap, hidePopup } from 'actions/mapbox'
 import uuid from 'node-uuid'
 
 import _ from 'underscore'
@@ -259,17 +259,14 @@ export const validateFile = ( e ) => {
 					/*dispatch( { type: types.SET_STATUS_MSG, to: 'here_we_go' } )
 					dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'statuses', to: true } )*/
 
-					//dispatch( flyTo( [ image.long, image.lat ], 15 ) )
+					dispatch( fly( [ image.long, image.lat ], 15 ) )
 
-					/*map.once( 'moveend', () => {
+					map.once( 'moveend', () => {
 
 						dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'statuses', to: false } )
 						dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'form', to: true } )
 
-					} )*/
-
-					dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'statuses', to: false } )
-					dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'form', to: true } )
+					} )
 
 				}else{
 
