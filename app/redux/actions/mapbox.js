@@ -189,7 +189,7 @@ export const displayMap = ( ) => {
 				type: 'geojson',
 				data: geojson,
 				cluster: true,
-				clusterMaxZoom: 15, // Max zoom to cluster points on
+				clusterMaxZoom: 9, // Max zoom to cluster points on
 				clusterRadius: 20 // Radius of each cluster when clustering points (defaults to 50)
 				
 			} )
@@ -222,7 +222,8 @@ export const displayMap = ( ) => {
 							[ 'mud', '#8a5707' ],
 							[ 'ice', '#ef25db' ],
 							[ 'notsure', '#ccc' ],
-							[ 'manmade', '#000' ] 
+							[ 'manmade', '#000' ],
+							[ '', '#396dc1' ]
 						] 
 					}
 
@@ -236,10 +237,7 @@ export const displayMap = ( ) => {
 				type: 'circle',
 				source: 'geojson',
 				paint: {
-					'circle-radius': {
-						'base': 1.75,
-						'stops': [ [ 0, 14 ], [ 18, 100 ] ]
-					},
+					'circle-radius': 15,
 					'circle-color': '#396dc1'
 				},
 				filter: [ '>', 'point_count', 1 ]

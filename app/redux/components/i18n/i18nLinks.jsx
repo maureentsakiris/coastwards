@@ -12,13 +12,15 @@ const i18nLinks = ( { availableLanguages, id, className } ) => {
 	return (
 
 		<UL id={ id } className={ className } >
+
 			{ availableLanguages.map( ( language, key ) => 
 
-				<LI key={ key }  className={ style.i18nLink } >
+				<LI key={ key } className={ style.i18nLink } >
 					<I18nLink locale={ language.locale } title={ language.en } >{ language.name }</I18nLink>
 				</LI>
 
 			) }
+			
 		</UL>
 
 	)	

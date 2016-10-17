@@ -36,7 +36,7 @@ const main = ( { intl, uploadSupported, jazzSupported, scrollUp } ) => {
 
 		return(
 
-			<DIV id="Main" className={ style.main } >
+			<DIV className={ style.noupload } >
 				<Prompts className={ style.corset } />
 				<P className={ style.corset } >{ formatMessage( messages.unsupported ) }</P>
 			</DIV>
@@ -47,7 +47,7 @@ const main = ( { intl, uploadSupported, jazzSupported, scrollUp } ) => {
 
 		return(
 
-			<DIV id="Main" className={ style.mainJazz } >
+			<DIV className={ style.barebones } >
 				<Prompts className={ style.corset } />
 				<Errors className={ style.corset } /> 
 				<Statuses className={ style.corset } />
@@ -62,7 +62,7 @@ const main = ( { intl, uploadSupported, jazzSupported, scrollUp } ) => {
 
 		return(
 
-			<DIV id="Main" className={ style.mainJazz } >
+			<DIV className={ style.jazz } >
 				<A onClick={ scrollUp } className={ style.up } >
 					<I className="material-icons">keyboard_arrow_up</I>
 				</A>

@@ -40,3 +40,10 @@
 	margin-top: $site-padding-top;
 
 }
+
+.noupload{
+
+	@extend %pad;
+	padding-bottom: $site-padding-bottom;
+
+}

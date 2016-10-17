@@ -4,7 +4,8 @@ $screen-overlay-color: rgba(255, 255, 255, 0.8);
 %corset{
 
 	max-width: $corset-width;
-	margin: 0 auto;
+	margin-left: auto;
+	margin-right: auto;
 
 }
 

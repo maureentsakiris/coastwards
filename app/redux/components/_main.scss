@@ -1,8 +1,6 @@
 @import 'app/styles/base';
 
-
-
-.main{
+.noupload, .barebones{
 
 	padding-right: $site-padding-sides;
 	padding-left: $site-padding-sides;
@@ -10,15 +8,16 @@
 
 }
 
-.mainJazz{
+.jazz{
 
 	position: relative;
 	height: 100%;
 	overflow: hidden;
+	margin-top: $site-padding-inner;
 
 }
 
-.prompts{
+.corset{
 
 	@extend %corset;
 

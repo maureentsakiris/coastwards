@@ -44,7 +44,7 @@ let negotiatedLocale = document.documentElement.getAttribute( 'lang' );
 store.dispatch( loadLanguage( negotiatedLocale ) )
 
 const state = store.getState()
-const { jazzSupported/*, uploadSupported*/ } = state.browser
+const { jazzSupported } = state.browser
 
 if( !jazzSupported ){
 
@@ -56,9 +56,6 @@ if( !jazzSupported ){
 
 }
 
-/*{ !uploadSupported && <p>ooops</p> }
-				{ ( uploadSupported && !jazzSupported ) && <p>barebones</p> }
-				{ ( uploadSupported && jazzSupported ) && <p>jazz</p> }*/
 
 ReactDom.render( 
 
