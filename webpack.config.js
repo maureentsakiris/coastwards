@@ -60,7 +60,7 @@ const config = {
 			{
 				test: /\.scss$/,
 				include: APP_ROOT,
-				loader: extractStyles.extract( 'style', 'css?modules&importLoaders=1&localIdentName=[local]!postcss!sass' )
+				loader: extractStyles.extract( 'style', 'css?modules&importLoaders=1&localIdentName=[name]_[local]!postcss!sass' )
 			}
 		]
 	},
