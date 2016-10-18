@@ -6,13 +6,12 @@
 .top{
 
 	@extend %pad;
-	margin-top: $site-padding-top;
 
 }
 
 .i18n{
 
-	@extend %corset;
+	margin-top: $site-padding-top; // DO NOT DELETE EIIIIIIGHHHHH?????????
 	display: none;
 
 }
