@@ -11,6 +11,7 @@
 
 .i18n{
 
+	@extend %corset;
 	margin-top: $site-padding-top; // DO NOT DELETE EIIIIIIGHHHHH?????????
 	display: none;
 
