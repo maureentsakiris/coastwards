@@ -31,7 +31,7 @@ import i18nLocales from 'actions/i18n/i18nLocales'
 import style from './_index'
 
 
-let store = createStore( coastwards, compose(
+const store = createStore( coastwards, compose(
 
 	applyMiddleware( thunk ),
 	window.devToolsExtension ? window.devToolsExtension() : ( f ) => f
@@ -40,8 +40,9 @@ let store = createStore( coastwards, compose(
 
 
 //load negotiated language
-let negotiatedLocale = document.documentElement.getAttribute( 'lang' );
-store.dispatch( loadLanguage( negotiatedLocale ) )
+const [ navigatorLocale ] = window.navigator.language.split ( '-' )
+const negotiatedLocale = document.documentElement.getAttribute( 'lang' )
+store.dispatch( loadLanguage( negotiatedLocale || navigatorLocale ) )
 
 const state = store.getState()
 const { jazzSupported } = state.browser

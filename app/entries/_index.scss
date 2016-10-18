@@ -6,13 +6,13 @@
 .top{
 
 	@extend %pad;
+	margin-top: $site-padding-top;
 
 }
 
 .i18n{
 
-	text-align: center;
-	margin-top: $site-padding-top;
+	@extend %corset;
 	display: none;
 
 }
