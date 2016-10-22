@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import { defineMessages, injectIntl, intlShape } from 'react-intl'
 
 import TOGGLE from 'components/ui/toggle'
@@ -59,7 +59,7 @@ const messages = defineMessages( {
 
 } )
 
-const ask = ( { intl } ) => {
+const ask = ( { intl, error, submit } ) => {
 
 	const { formatMessage } = intl
 
@@ -71,7 +71,7 @@ const ask = ( { intl } ) => {
 				<BR />
 				<EMAIL form="Ask" label={ formatMessage( messages.label_email ) } name="email" placeholder={ formatMessage( messages.placeholder_email ) } />
 				<BR />
-				<SUBMIT form="Ask" name="submit" label={ formatMessage( messages.label_submit ) } /> <small>Sorry, doesn't work yet</small>
+				<SUBMIT onClick={ submit } form="Ask" name="submit" label={ formatMessage( messages.label_submit ) } /> <small>Sorry, doesn't work yet</small>
 			</FORM>
 		</TOGGLE>
 
@@ -81,7 +81,11 @@ const ask = ( { intl } ) => {
 
 ask.propTypes = {
 
-	intl: intlShape.isRequired
+	intl: intlShape.isRequired,
+
+	error: PropTypes.string,
+
+	submit: PropTypes.func
 
 }
 

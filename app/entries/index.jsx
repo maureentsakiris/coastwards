@@ -20,7 +20,7 @@ import How from 'components/how'
 import Guidelines from 'components/guidelines'
 import Team from 'containers/team'
 import FAQs from 'components/faqs'
-import Ask from 'components/ask'
+import Ask from 'containers/ask'
 
 import DIV from 'components/tags/div'
 

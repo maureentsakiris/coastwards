@@ -48,3 +48,7 @@ export const REMOVE_LAST_DROP = 'REMOVE_LAST_DROP'
 //popup
 export const SET_POPUP = 'SET_POPUP'
 export const SET_POPUP_FEATURE = 'SET_POPUP_FEATURE'
+
+//ask
+export const SET_ASK_ERROR = 'SET_ASK_ERROR'
+export const SET_ASK_SUBMITTED = 'SET_ASK_SUBMITTED'

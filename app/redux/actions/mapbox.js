@@ -189,7 +189,7 @@ export const displayMap = ( ) => {
 				type: 'geojson',
 				data: geojson,
 				cluster: true,
-				clusterMaxZoom: 9, // Max zoom to cluster points on
+				clusterMaxZoom: 10, // Max zoom to cluster points on
 				clusterRadius: 20 // Radius of each cluster when clustering points (defaults to 50)
 				
 			} )
@@ -209,7 +209,7 @@ export const displayMap = ( ) => {
 					// make circles larger as the user zooms from z12 to z22
 					'circle-radius': {
 						'base': 1.75,
-						'stops': [ [ 0, 5 ], [ 10, 15 ], [ 22, 50 ] ]
+						'stops': [ [ 0, 7 ], [ 10, 15 ], [ 22, 50 ] ]
 					},
 					// color circles by ethnicity, using data-driven styles
 					'circle-color': {

@@ -29,6 +29,23 @@
 
 }
 
+@media ( min-width: #{ $column-width } ) {
+
+  .popup{
+
+  	width: 500px;
+	height: 500px;
+
+  }
+
+  .image{
+
+  	height: 460px;
+
+  }
+
+}
+
 .clear{
 
 	float: right;

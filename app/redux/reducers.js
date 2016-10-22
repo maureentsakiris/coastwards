@@ -236,6 +236,21 @@ const popup = ( state = { popup: undefined, feature: {}, coords: [], active: fal
 
 }
 
+const ask = ( state = { error: '', submitted: false }, action ) => {
+
+	switch ( action.type ){
+
+	case types.SET_ASK_ERROR:
+		return _.extend( {}, state, { error: action.to } )
+	case types.SET_ASK_SUBMITTED:
+		return _.extend( {}, state, { submitted: action.to } )
+	default:
+		return state
+
+	}
+
+}
+
 const coastwards = combineReducers( {
 
 	browser,
@@ -252,7 +267,8 @@ const coastwards = combineReducers( {
 	mapbox,
 	interactiveLayers,
 	drops,
-	popup
+	popup,
+	ask
 
 } )
 
