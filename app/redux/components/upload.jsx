@@ -124,7 +124,8 @@ export default class upload extends Component{
 
 		e.preventDefault()
 		let input = document.getElementById( "images" )
-		input.click();
+		input.click()
+		window.scrollTo( 0, document.body.scrollHeight )
 
 	}
 

@@ -5,6 +5,11 @@
     "defaultMessage": "Great, so let's get you as close as possible. Type the address, nearest city or country and we will take you there."
   },
   {
+    "id": "zoom",
+    "description": "Header",
+    "defaultMessage": "Perfect! Click on the map to place a marker (but make sure you've zoomed in all the way first)"
+  },
+  {
     "id": "check_in_location",
     "description": "Label - Check in given location",
     "defaultMessage": "Check in"

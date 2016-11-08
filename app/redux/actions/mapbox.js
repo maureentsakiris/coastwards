@@ -343,6 +343,34 @@ export const fly = ( center, zoom ) => {
 
 }
 
+export const switchModus = ( modus ) => {
+
+	return function ( dispatch, getState ){
+
+		const state = getState()
+		const map = state.mapbox
+
+		if( modus === 'locate' ){
+
+			map.setLayoutProperty( 'markers', 'visibility', 'none' );
+			map.setLayoutProperty( 'cluster-circles', 'visibility', 'none' );
+			map.setLayoutProperty( 'cluster-count', 'visibility', 'none' );
+			map.setLayoutProperty( 'drops', 'visibility', 'none' );
+
+		}else{
+
+			map.setLayoutProperty( 'markers', 'visibility', 'visible' );
+			map.setLayoutProperty( 'cluster-circles', 'visibility', 'visible' );
+			map.setLayoutProperty( 'cluster-count', 'visibility', 'visible' );
+			map.setLayoutProperty( 'drops', 'visibility', 'visible' );
+
+		}
+
+
+	}
+
+}
+
 export const showPopup = ( feature ) => {
 
 	return function ( dispatch, getState ){
@@ -393,6 +421,7 @@ export const resetMap = ( ) => {
 	return function ( dispatch ){
 
 		dispatch( fly( CENTER, ZOOM ) )
+		dispatch( switchModus() )
 
 	}
 

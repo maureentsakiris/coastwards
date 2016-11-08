@@ -16,6 +16,11 @@ const messages = defineMessages( {
 		description: "Header",
 		defaultMessage: "Great, so let's get you as close as possible. Type the address, nearest city or country and we will take you there."
 	},
+	zoom:{
+		id: "zoom",
+		description: "Header",
+		defaultMessage: "Perfect! Click on the map to place a marker (but make sure you've zoomed in all the way first)"
+	},
 	check_in_location:{
 		id: "check_in_location",
 		description: "Label - Check in given location",
@@ -52,10 +57,10 @@ const main = ( { intl, className, resetMain, show } ) => {
 	return(
 
 		<FORM id="Geolocator" action="#" className={ cls } >
-			<H priority={ 2 }>{ formatMessage( messages.take_you_there ) }</H>
-			<small>Sorry, this is not quite finished yet</small>   
+			<H priority={ 2 }>{ formatMessage( messages.zoom ) }</H>
 			<P>
-				<A onClick={ resetMain }  className={ style.option } >OK, cancel then</A>
+				<A onClick={ close }  className={ style.option } >!Got it</A>
+				<A onClick={ resetMain }  className={ style.option } >!Nah, too much work</A>
 			</P>
 		</FORM> 
 

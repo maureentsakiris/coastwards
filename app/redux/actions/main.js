@@ -3,7 +3,7 @@ import { promiseType, promiseEXIF, promiseMinimumBoxDimensions, promiseCanvasBox
 import { addSnackbarMessage } from 'actions/ui/snackbar'
 import { promiseDataURLtoBlob } from 'actions/util/form'
 import { promiseXHR } from 'actions/util/request/xhr'
-import { fly, resetMap, hidePopup } from 'actions/mapbox'
+import { fly, resetMap, hidePopup, switchModus } from 'actions/mapbox'
 import uuid from 'node-uuid'
 
 import _ from 'underscore'
@@ -307,7 +307,9 @@ export const locateCoast = ( ) => {
 	return function ( dispatch ){
 
 		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'locate', to: false } )
-		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'geolocator', to: true } )
+		//dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'geolocator', to: true } )
+		dispatch( addSnackbarMessage( 'place_marker', 5000 ) )
+		dispatch( switchModus( 'locate' ) )
 
 	}
 
