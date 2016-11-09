@@ -3,7 +3,7 @@ import { promiseType, promiseEXIF, promiseMinimumBoxDimensions, promiseCanvasBox
 import { addSnackbarMessage } from 'actions/ui/snackbar'
 import { promiseDataURLtoBlob } from 'actions/util/form'
 import { promiseXHR } from 'actions/util/request/xhr'
-import { fly, resetMap, hidePopup, switchModus } from 'actions/mapbox'
+import { fly, resetMap, hidePopup, switchModus, dropMarker } from 'actions/mapbox'
 import uuid from 'node-uuid'
 
 import _ from 'underscore'
@@ -144,7 +144,7 @@ export const validateFile = ( e ) => {
 	return function ( dispatch, getState ){
 
 		let state = getState()
-		let map = state.mapbox
+		let map = state.mapbox.map
 		let jazzSupported = state.browser.jazzSupported
 
 		if( jazzSupported ) {
@@ -225,35 +225,7 @@ export const validateFile = ( e ) => {
 
 				if( state.browser.jazzSupported ){
 
-					const feature = {
-
-						"type": "Feature",
-						"geometry": {
-							"type": "Point",
-							"coordinates": [ image.long, image.lat ]
-						},
-						"properties": {
-							"marker-symbol": "marker-accent",
-							"image": image.dataURL
-						}
-
-					}
-
-					dispatch( { type: types.ADD_DROP, drop: feature } )
-
-					if( map ){
-
-						let freshState = getState()
-						
-						let data = {
-
-							"type": "FeatureCollection",
-							"features": freshState.drops
-						}
-
-						map.getSource( 'drops' ).setData( data )
-
-					}
+					dispatch( dropMarker( image ) )
 
 					dispatch( addSnackbarMessage( 'here_we_go', 5000 ) )
 					/*dispatch( { type: types.SET_STATUS_MSG, to: 'here_we_go' } )
@@ -307,9 +279,31 @@ export const locateCoast = ( ) => {
 	return function ( dispatch ){
 
 		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'locate', to: false } )
-		//dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'geolocator', to: true } )
-		dispatch( addSnackbarMessage( 'place_marker', 5000 ) )
+		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'geolocator', to: true } )
+		//dispatch( addSnackbarMessage( 'place_marker', 10000 ) )
 		dispatch( switchModus( 'locate' ) )
+
+	}
+
+}
+
+export const setLocation = ( ) => {
+
+	return function ( dispatch, getState ){
+
+		let state = getState()
+		let map = state.mapbox.map
+		let image = state.form.image
+		let center = map.getCenter()
+
+		image.lat = center.lat
+		image.long = center.lng
+
+		dispatch( dropMarker( image ) )
+		dispatch( { type: types.SET_IMAGE_TO_UPLOAD, to: {} } )
+		dispatch( { type: types.SET_IMAGE_TO_UPLOAD, to: image } )
+		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'geolocator', to: false } )
+		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'form', to: true } )
 
 	}
 
@@ -476,7 +470,7 @@ export const resetMain = ( removeLastUpload = true ) => {
 
 				}
 
-				state.mapbox.getSource( 'drops' ).setData( data )
+				state.mapbox.map.getSource( 'drops' ).setData( data )
 
 			}
 

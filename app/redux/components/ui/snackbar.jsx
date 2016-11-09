@@ -15,6 +15,11 @@ const intlMessages = defineMessages( {
 		description: "Warning - Informs the user that more than one file have been dropped but we can only process one at a time",
 		defaultMessage: "Sorry, at the moment we can only process one image at a time!"
 	},
+	place_marker:{
+		id: "place_marker",
+		description: "Help",
+		defaultMessage: "Move/Zoom the map so the marker points at the location"
+	},
 	here_we_go:{
 		id: "here_we_go",
 		description: "Snack - ",

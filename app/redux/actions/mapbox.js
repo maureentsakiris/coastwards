@@ -1,11 +1,14 @@
 import * as types from 'types'
-import mapboxgl from 'mapbox-gl/dist/mapbox-gl.js'
+import mapboxgl from './mapbox-helper.js'
+import mapboxglgeocoder from 'mapbox-gl-geocoder/dist/mapbox-gl-geocoder.js'
 import _ from 'underscore'
 import { promiseGet } from 'actions/util/request/get'
 import { resetMain } from 'actions/main'
 
 const CENTER = [ 0, 39 ]
 const ZOOM = 1
+
+const locateLayers = [ 'country_label_1', 'country_label_2', 'country_label_3', 'country_label_4', 'marine_label_point_1', 'marine_label_line_1', 'marine_label_point_2', 'marine_label_line_2', 'marine_label_point_3', 'marine_label_line_3', 'marine_label_4', 'marine_label_line_4', 'place_label_city', 'place_label_town', 'place_label_village', 'place_label_other', 'road_label_highway_shield', 'road_label', 'airport_label', 'poi_label_1', 'rail_station_label', 'poi_label_2', 'poi_label_3', 'poi_label_4', 'water_label'/*, 'admin_level_2_maritime', 'admin_level_3_maritime', 'admin_level_2_disputed', 'admin_level_2', 'admin_level_3'*/, 'bridge_major_rail_hatching', 'bridge_major_rail', 'bridge_motorway', 'bridge_trunk_primary', 'bridge_secondary_tertiary', 'bridge_street', 'bridge_link', 'bridge_service_track', 'bridge_motorway_link', 'bridge_path_pedestrian', 'bridge_motorway_casing', 'bridge_trunk_primary_casing', 'bridge_secondary_tertiary_casing', 'bridge_motorway_link_casing', 'road_major_rail_hatching', 'road_major_rail', 'road_motorway', 'road_trunk_primary', 'road_secondary_tertiary', 'road_street', 'road_link', 'road_service_track', 'road_motorway_link', 'road_path_pedestrian', 'road_motorway_casing', 'road_trunk_primary_casing', 'road_secondary_tertiary_casing', 'road_street_casing', 'road_link_casing', 'road_service_track_casing', 'road_motorway_link_casing', 'tunnel_major_rail_hatching', 'tunnel_major_rail', 'tunnel_motorway', 'tunnel_trunk_primary', 'tunnel_secondary_tertiary', 'tunnel_street', 'tunnel_link', 'tunnel_service_track', 'tunnel_motorway_link', 'tunnel_path_pedestrian', 'tunnel_motorway_casing', 'tunnel_trunk_primary_casing', 'tunnel_secondary_tertiary_casing', 'tunnel_street_casing', 'tunnel_link_casing', 'tunnel_service_track_casing', 'tunnel_motorway_link_casing', 'building_top', 'building', 'aeroway_taxiway', 'aeroway_runway', 'aeroway_fill', 'landuse_wood', 'landuse_school', 'landuse_hospital', 'landuse_cemetery', 'landuse_park', 'landuse_overlay_national_park' ]
 
 const _promiseInitMap = ( ) => {
 
@@ -24,7 +27,7 @@ const _promiseInitMap = ( ) => {
 			dragRotate: false,
 			dragPan: true,
 			keyboard: false,
-			doubleClickZoom: false,
+			doubleClickZoom: true,
 			touchZoomRotate: true,
 			failIfMajorPerformanceCaveat: true
 
@@ -55,6 +58,7 @@ const _promiseInitMap = ( ) => {
 			reject( e ) 
 
 		} )
+
 
 		/*map.on( 'resize', ( e ) => {
 
@@ -107,7 +111,7 @@ const _onClusterClick = ( features ) => {
 	return function ( dispatch, getState ){
 
 		const state = getState()
-		const map = state.mapbox
+		const map = state.mapbox.map
 
 		let point = features[ 0 ].geometry.coordinates
 		let z = map.getZoom()
@@ -127,6 +131,21 @@ export const displayMap = ( ) => {
 
 			//Register map
 			dispatch( { type: types.SET_MAP, to: map } )
+
+			//Track zoom
+			map.on( 'zoom', () => {
+
+				dispatch( { type: types.SET_ZOOM, to: map.getZoom() } )
+
+			} )
+
+			//Track center
+			map.on( 'move', () => {
+
+				dispatch( { type: types.SET_CENTER, to: map.getCenter() } )
+
+			} )
+
 
 			//Init and register popup
 			const popup = new mapboxgl.Popup( { closeButton: false, closeOnClick: false, anchor: 'bottom' } )
@@ -182,7 +201,7 @@ export const displayMap = ( ) => {
 			}
 
 			const state = getState()
-			const map = state.mapbox
+			const map = state.mapbox.map
 
 			map.addSource( 'geojson', {
 
@@ -322,7 +341,7 @@ export const fly = ( center, zoom ) => {
 	return function ( dispatch, getState ){
 
 		const state = getState()
-		const map = state.mapbox
+		const map = state.mapbox.map
 
 		map.flyTo( {
 
@@ -343,26 +362,81 @@ export const fly = ( center, zoom ) => {
 
 }
 
+export const dropMarker = ( image ) => {
+
+	return function ( dispatch, getState ){
+
+		const state = getState()
+		const map = state.mapbox.map
+
+		const feature = {
+
+			"type": "Feature",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [ image.long, image.lat ]
+			},
+			"properties": {
+				"marker-symbol": "marker-accent",
+				"image": image.dataURL
+			}
+
+		}
+
+		dispatch( { type: types.ADD_DROP, drop: feature } )
+
+		if( map ){
+
+			let freshState = getState()
+			
+			let data = {
+
+				"type": "FeatureCollection",
+				"features": freshState.drops
+			}
+
+			map.getSource( 'drops' ).setData( data )
+
+		}
+
+	}
+
+}
+
 export const switchModus = ( modus ) => {
 
 	return function ( dispatch, getState ){
 
 		const state = getState()
-		const map = state.mapbox
+		const map = state.mapbox.map
 
 		if( modus === 'locate' ){
 
-			map.setLayoutProperty( 'markers', 'visibility', 'none' );
-			map.setLayoutProperty( 'cluster-circles', 'visibility', 'none' );
-			map.setLayoutProperty( 'cluster-count', 'visibility', 'none' );
-			map.setLayoutProperty( 'drops', 'visibility', 'none' );
+			map.setLayoutProperty( 'markers', 'visibility', 'none' )
+			map.setLayoutProperty( 'cluster-circles', 'visibility', 'none' )
+			map.setLayoutProperty( 'cluster-count', 'visibility', 'none' )
+			map.setLayoutProperty( 'drops', 'visibility', 'none' )
+
+			_.each( locateLayers, ( layer ) => {
+
+				map.setLayoutProperty( layer, 'visibility', 'visible' )
+
+			} )
+
+			map.addControl( new mapboxgl.Geocoder() )
 
 		}else{
 
-			map.setLayoutProperty( 'markers', 'visibility', 'visible' );
-			map.setLayoutProperty( 'cluster-circles', 'visibility', 'visible' );
-			map.setLayoutProperty( 'cluster-count', 'visibility', 'visible' );
-			map.setLayoutProperty( 'drops', 'visibility', 'visible' );
+			map.setLayoutProperty( 'markers', 'visibility', 'visible' )
+			map.setLayoutProperty( 'cluster-circles', 'visibility', 'visible' )
+			map.setLayoutProperty( 'cluster-count', 'visibility', 'visible' )
+			map.setLayoutProperty( 'drops', 'visibility', 'visible' )
+
+			_.each( locateLayers, ( layer ) => {
+
+				map.setLayoutProperty( layer, 'visibility', 'none' )
+
+			} )
 
 		}
 
@@ -376,7 +450,7 @@ export const showPopup = ( feature ) => {
 	return function ( dispatch, getState ){
 
 		const state = getState()
-		const map = state.mapbox
+		const map = state.mapbox.map
 		let popup = state.popup.popup
 
 		if( popup && popup._container ){

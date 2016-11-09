@@ -4,47 +4,35 @@ import Classnames from 'classnames'
 
 import FORM from 'components/tags/form'
 import P from 'components/tags/p'
-import H from 'components/tags/h'
+import DIV from 'components/tags/div'
 import A from 'components/tags/a'
+import IMG from 'components/tags/img'
 
 import style from './_geolocator'
 
+
 const messages = defineMessages( {
 
-	take_you_there:{
-		id: "take_you_there",
-		description: "Header",
-		defaultMessage: "Great, so let's get you as close as possible. Type the address, nearest city or country and we will take you there."
+	set_location:{
+		id: "set_location",
+		description: "Button - ",
+		defaultMessage: "Use this location"
 	},
-	zoom:{
-		id: "zoom",
-		description: "Header",
-		defaultMessage: "Perfect! Click on the map to place a marker (but make sure you've zoomed in all the way first)"
+	cancel:{
+		id: "cancel",
+		description: "Button - ",
+		defaultMessage: "cancel"
 	},
-	check_in_location:{
-		id: "check_in_location",
-		description: "Label - Check in given location",
-		defaultMessage: "Check in"
-	},
-	cancel_check_in:{
-		id: "cancel_check_in",
-		description: "Label - Cancel check in",
-		defaultMessage: "Cancel check in"
-	},
-	latitude:{
-		id: "latitude",
-		description: "Placeholder - Latitude",
-		defaultMessage: "Latitude"
-	},
-	longitude:{
-		id: "longitude",
-		description: "Placeholder - Longitude",
-		defaultMessage: "Longitude"
+	keep_zooming:{
+		id: "keep_zooming",
+		description: "Help - ",
+		defaultMessage: "Zoom into the map until the marker turns green"
 	}
+	
 
 } )
 
-const main = ( { intl, className, resetMain, show } ) => {
+const main = ( { intl, className, resetMain, setLocation, show, zoom, center } ) => {
 
 	const { formatMessage } = intl
 
@@ -54,14 +42,18 @@ const main = ( { intl, className, resetMain, show } ) => {
 
 	} )
 
+	/*<P>
+				<A onClick={ close }  className={ style.option } >{ formatMessage( messages.set_location ) }</A>
+				<A onClick={ resetMain }  className={ style.option } >{ formatMessage( messages.cancel ) }</A>
+			</P>
+<P>[ { center.lng }, { center.lat } ]</P>
+			*/
+
 	return(
 
 		<FORM id="Geolocator" action="#" className={ cls } >
-			<H priority={ 2 }>{ formatMessage( messages.zoom ) }</H>
-			<P>
-				<A onClick={ close }  className={ style.option } >!Got it</A>
-				<A onClick={ resetMain }  className={ style.option } >!Nah, too much work</A>
-			</P>
+			<IMG src="./assets/marker-red.png" alt="Location marker" className={ style.marker } /> 
+			<P><A onClick={ setLocation }  className={ style.option } >{ formatMessage( messages.set_location ) }</A></P>
 		</FORM> 
 
 	)
@@ -74,8 +66,11 @@ main.propTypes = {
 
 	className: PropTypes.string,
 	show: PropTypes.bool,
+	zoom: PropTypes.number,
+	center: PropTypes.object,
 
-	resetMain: PropTypes.func
+	resetMain: PropTypes.func,
+	setLocation: PropTypes.func
 
 }
 

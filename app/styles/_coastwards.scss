@@ -57,7 +57,7 @@ $screen-overlay-color: rgba(255, 255, 255, 0.8);
 
 	opacity: 0;
 	pointer-events: none;
-	transition: opacity 200ms;
+	//transition: opacity 200ms;
 	display: none;
 
 }
@@ -67,5 +67,13 @@ $screen-overlay-color: rgba(255, 255, 255, 0.8);
 	opacity: 1;
 	pointer-events: all;
 	display: block;
+
+}
+
+%screenOption{
+
+	display: inline-block;
+	margin: 0.5em 1em;
+	text-transform: uppercase;
 
 }

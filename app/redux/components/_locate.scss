@@ -14,8 +14,6 @@
 
 .option{
 
-	display: inline-block;
-	margin: 0.5em 1em;
-	text-transform: uppercase;
+	@extend %screenOption;
 
 }

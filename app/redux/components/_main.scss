@@ -62,6 +62,18 @@
 
 }
 
+.geolocator{
+
+	@extend %fullscreen;
+	@extend %flexcontainer;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+	flex-direction: column;
+	text-align: center;
+
+}
+
 .screen{
 
 	@extend %fullscreen;

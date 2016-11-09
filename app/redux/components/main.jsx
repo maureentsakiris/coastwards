@@ -67,7 +67,7 @@ const main = ( { intl, uploadSupported, jazzSupported, scrollUp } ) => {
 					<I className="material-icons">keyboard_arrow_up</I>
 				</A>
 				<Mapbox className={ style.mapbox } />
-				<Geolocator key="geolocator" className={ style.screen } />
+				<Geolocator key="geolocator" className={ style.geolocator } />
 				<Locate key="locate" className={ style.screen } />
 				<Prompts key="prompts" className={ style.screen } />
 				<Statuses key="statuses" className={ style.screen } />

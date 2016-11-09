@@ -180,12 +180,16 @@ const selected = ( state = [ ], action ) => {
 
 }
 
-const mapbox = ( state = '', action ) => {
+const mapbox = ( state = { map: '', zoom: 0, center: {} }, action ) => {
 
 	switch ( action.type ){
 
 	case types.SET_MAP:
-		return action.to
+		return _.extend( {}, state, { map: action.to } )
+	case types.SET_ZOOM:
+		return _.extend( {}, state, { zoom: action.to } )
+	case types.SET_CENTER:
+		return _.extend( {}, state, { center: action.to } )
 	default:
 		return state
 

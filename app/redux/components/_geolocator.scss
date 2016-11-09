@@ -9,5 +9,24 @@
 .show{
 
 	@extend %screenShow;
+	pointer-events: none;
+
+	.option{
+
+		pointer-events: all;
+
+	}
+
+}
+
+.option{
+
+	@extend %screenOption;
+
+}
+
+.marker{
+
+	width: 40px;
 
 }
