@@ -32,12 +32,25 @@
 	@extend %corset;
 	margin-top: $site-padding-inner;
 
+	margin-top: 0;
+	height: 100vh;
+	@extend %flexcontainer;
+	justify-content: center;
+	flex-direction: column;
+	text-align: center; // !!! non flex??
+
 }
 
 .info{
 
 	@extend %corset;
 	margin-top: $site-padding-top;
+
+	min-height: 90vh;
+	margin-top: 10vh;
+	@extend %flexcontainer;
+	justify-content: top;
+	flex-direction: column;
 
 }
 

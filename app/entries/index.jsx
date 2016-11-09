@@ -57,6 +57,8 @@ if( !jazzSupported ){
 
 }
 
+// <I18nLinks availableLanguages={ i18nLocales.locales } className={ style.i18n } />
+
 
 ReactDom.render( 
 
@@ -64,7 +66,6 @@ ReactDom.render(
 		<I18nProvider>
 			<Context>
 				<DIV className={ style.top } >
-					<I18nLinks availableLanguages={ i18nLocales.locales } className={ style.i18n } />
 					<Intro className={ style.intro } />
 					<DIV className={ style.info } >
 						<How />
