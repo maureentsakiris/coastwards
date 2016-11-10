@@ -1,0 +1,51 @@
+@import 'app/styles/base';
+
+.marker{
+
+	@extend %screenInit;
+
+}
+
+.show{
+
+	@extend %screenShow;
+	pointer-events: none;
+
+	.doneBtn, .cancelBtn{
+
+		pointer-events: all;
+
+	}
+
+}
+
+.img{
+
+	height: 70px;
+	position: relative;
+	top: -35px;
+
+}
+
+.cancelBtn{
+
+	background: $color-signal;
+    @extend %roundBtn;
+    right: 95px;
+
+}
+
+
+.doneBtn{
+
+	background: $color-primary;
+    @extend %roundBtn;
+
+}
+
+.disabled{
+
+	pointer-events: none;
+	opacity: 0.5;
+
+}

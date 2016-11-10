@@ -32,7 +32,7 @@ const browser = ( state = { uploadSupported: uploadSupported, jazzSupported: jaz
 
 }
 
-const config = ( state= { google: true, imageWidth: 800 }, action ) => {
+const config = ( state= { google: false, imageWidth: 800 }, action ) => {
 
 	switch ( action.type ){
 
@@ -86,7 +86,9 @@ const snackbar = ( state = [ ], action ) => {
 
 }
 
-const layers = ( state = { upload: true, prompts: true, statuses: false, errors: false, locate: false, geolocater: false, form: false }, action ) => {
+
+// IF YOU ADD A LAYER HERE YOU MIGHT HAVE TO CHANGE main.js/scrollUp
+const layers = ( state = { upload: true, prompts: true, statuses: false, errors: false, locate: false, geolocater: false, form: false, marker: false }, action ) => {
 
 	switch ( action.type ){
 

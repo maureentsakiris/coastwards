@@ -9,19 +9,13 @@
 .show{
 
 	@extend %screenShow;
-	pointer-events: none;
-
-	.option{
-
-		pointer-events: all;
-
-	}
 
 }
 
 .option{
 
 	@extend %screenOption;
+	margin-bottom: 90px;
 
 }
 

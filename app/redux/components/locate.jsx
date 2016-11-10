@@ -43,7 +43,7 @@ const main = ( { intl, className, locateCoast, resetMain, show } ) => {
 
 	return(
 
-		<DIV id="Locate" className={ cls } >
+		<DIV className={ cls } >
 			<H priority={ 2 }>{ formatMessage( messages.can_you_locate ) }</H>
 			<P>
 				<A onClick={ locateCoast } className={ style.option } >{ formatMessage( messages.yes_location_known ) }</A>

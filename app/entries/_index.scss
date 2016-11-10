@@ -30,11 +30,13 @@
 .intro{
 
 	@extend %corset;
-	margin-top: $site-padding-inner;
+	padding-top: $site-padding-top;
+	text-align: center;
+
 
 }
 
-.introJazz{
+/* .introJazz{
 
 	margin-top: 0;
 	padding-top: 10vh;
@@ -44,18 +46,16 @@
 	justify-content: center;
 	flex-direction: column;
 	align-items: center;
-	text-align: center;
-
-}
+} */
 
 .info{
 
 	@extend %corset;
-	margin-top: $site-padding-top;
+	padding-top: $site-padding-inner;
 
 }
 
-.infoJazz{
+/* .infoJazz{
 
 	margin-top: 0;
 	padding-top: 10vh;
@@ -65,7 +65,7 @@
 	justify-content: top;
 	flex-direction: column;
 
-}
+} */
 
 .noupload{
 

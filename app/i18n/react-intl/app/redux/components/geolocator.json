@@ -1,17 +1,12 @@
 [
   {
-    "id": "set_location",
-    "description": "Button -",
-    "defaultMessage": "Use this location"
+    "id": "get_closer",
+    "description": "Header",
+    "defaultMessage": "Great, so let's get you as close as possible:"
   },
   {
     "id": "cancel",
     "description": "Button -",
     "defaultMessage": "cancel"
-  },
-  {
-    "id": "keep_zooming",
-    "description": "Help -",
-    "defaultMessage": "Zoom into the map until the marker turns green"
   }
 ]

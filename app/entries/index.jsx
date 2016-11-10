@@ -25,6 +25,7 @@ import FAQs from 'components/faqs'
 import Ask from 'containers/ask'
 
 import DIV from 'components/tags/div'
+import A from 'components/tags/a'
 
 
 //TODO: i18nLinks should handle that itself?
@@ -61,7 +62,7 @@ if( !jazzSupported ){
 
 // <I18nLinks availableLanguages={ i18nLocales.locales } className={ style.i18n } />
 
-let clsIntro = Classnames( style.intro, {
+/*let clsIntro = Classnames( style.intro, {
 
 	[ style.introJazz ]: jazzSupported
 
@@ -71,7 +72,7 @@ let clsInfo = Classnames( style.info, {
 
 	[ style.infoJazz ]: jazzSupported
 
-} )
+} )*/
 
 ReactDom.render( 
 
@@ -79,8 +80,8 @@ ReactDom.render(
 		<I18nProvider>
 			<Context>
 				<DIV className={ style.top } >
-					<Intro className={ clsIntro } />
-					<DIV className={ clsInfo } >
+					<Intro className={ style.intro } />
+					<DIV className={ style.info } >
 						<How />
 						<Guidelines />
 						<Team />

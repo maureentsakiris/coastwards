@@ -15,15 +15,10 @@ const intlMessages = defineMessages( {
 		description: "Warning - Informs the user that more than one file have been dropped but we can only process one at a time",
 		defaultMessage: "Sorry, at the moment we can only process one image at a time!"
 	},
-	place_marker:{
-		id: "place_marker",
-		description: "Help",
-		defaultMessage: "Move/Zoom the map so the marker points at the location"
-	},
 	here_we_go:{
 		id: "here_we_go",
 		description: "Snack - ",
-		defaultMessage: "Awesome!! Here we go!"
+		defaultMessage: "Found the location!! Here we go!"
 	},
 	help_translate:{
 		id: "help_translate",
@@ -39,6 +34,11 @@ const intlMessages = defineMessages( {
 		id: "there_will_be_more",
 		description: " - ",
 		defaultMessage: "There will be more .. and more official"
+	},
+	zoom_until:{
+		id: "zoom_until",
+		description: "Snack - ",
+		defaultMessage: "Zoom until the marker turns green and points at the location your image was taken!"
 	}
 
 } )

@@ -7,6 +7,7 @@ import Prompts from 'containers/prompts'
 import Upload from 'containers/upload'
 import Locate from 'containers/locate'
 import Geolocator from 'containers/geolocator'
+import Marker from 'containers/marker'
 import Form from 'containers/form'
 import Mapbox from 'containers/mapbox'
 import Popup from 'containers/popup'
@@ -67,8 +68,9 @@ const main = ( { intl, uploadSupported, jazzSupported, scrollUp } ) => {
 					<I className="material-icons">keyboard_arrow_up</I>
 				</A>
 				<Mapbox className={ style.mapbox } />
-				<Geolocator key="geolocator" className={ style.geolocator } />
 				<Locate key="locate" className={ style.screen } />
+				<Geolocator key="geolocator" className={ style.screen } />
+				<Marker key="marker" className={ style.marker } />
 				<Prompts key="prompts" className={ style.screen } />
 				<Statuses key="statuses" className={ style.screen } />
 				<Errors key="errors" className={ style.screen } />

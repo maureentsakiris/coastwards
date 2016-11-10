@@ -9,6 +9,7 @@ import BR from 'components/tags/br'
 import BUTTON from 'components/tags/button'
 import I from 'components/tags/i'
 
+
 import style from './_upload'
 
 export default class upload extends Component{

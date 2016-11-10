@@ -146,6 +146,13 @@ export const displayMap = ( ) => {
 
 			} )
 
+			//Add Geolocator
+			map.addControl( new mapboxgl.Geocoder( {
+
+				container: 'Geolocator'
+
+			} ) )
+
 
 			//Init and register popup
 			const popup = new mapboxgl.Popup( { closeButton: false, closeOnClick: false, anchor: 'bottom' } )
@@ -423,8 +430,6 @@ export const switchModus = ( modus ) => {
 
 			} )
 
-			map.addControl( new mapboxgl.Geocoder() )
-
 		}else{
 
 			map.setLayoutProperty( 'markers', 'visibility', 'visible' )
@@ -434,7 +439,7 @@ export const switchModus = ( modus ) => {
 
 			_.each( locateLayers, ( layer ) => {
 
-				map.setLayoutProperty( layer, 'visibility', 'none' )
+				//map.setLayoutProperty( layer, 'visibility', 'none' )
 
 			} )
 

@@ -276,12 +276,32 @@ export const validateFile = ( e ) => {
 
 export const locateCoast = ( ) => {
 
-	return function ( dispatch ){
+	return function ( dispatch, getState ){
+
+		let state = getState()
+		let map = state.mapbox.map
+
+		let input = document.querySelectorAll( '.mapboxgl-ctrl-geocoder input' )[ 0 ]
+
+		input.placeholder = 'Country, City, ...'
+		
 
 		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'locate', to: false } )
 		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'geolocator', to: true } )
-		//dispatch( addSnackbarMessage( 'place_marker', 10000 ) )
 		dispatch( switchModus( 'locate' ) )
+
+		map.once( 'movestart', ( ) => {
+
+			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'geolocator', to: false } )
+			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'marker', to: true } )
+
+		} )
+
+		map.once( 'moveend', ( ) => {
+
+			dispatch( addSnackbarMessage( 'zoom_until', 5000 ) )
+
+		} )
 
 	}
 
@@ -302,7 +322,7 @@ export const setLocation = ( ) => {
 		dispatch( dropMarker( image ) )
 		dispatch( { type: types.SET_IMAGE_TO_UPLOAD, to: {} } )
 		dispatch( { type: types.SET_IMAGE_TO_UPLOAD, to: image } )
-		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'geolocator', to: false } )
+		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'marker', to: false } )
 		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'form', to: true } )
 
 	}
@@ -484,11 +504,19 @@ export const resetMain = ( removeLastUpload = true ) => {
 
 export const scrollUp = ( ) => {
 
-	return function ( dispatch ) {
+	return function ( dispatch, getState ) {
+
+		let state = getState()
+		let { errors, form, geolocator, locate, prompts, statuses, marker } = state.layers
 
 		window.scroll( 0, 0 )
-		dispatch( { type: types.SET_PROMPT_MSG, to: 'select_file' } )
-		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'prompts', to: true } )
+
+		if( !errors && !form && !geolocator && !locate && !prompts && !statuses ){
+	
+			dispatch( { type: types.SET_PROMPT_MSG, to: 'select_file' } )
+			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'prompts', to: true } )
+
+		}
 
 	}
 

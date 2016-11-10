@@ -5,6 +5,7 @@
 	padding-right: $site-padding-sides;
 	padding-left: $site-padding-sides;
 	padding-bottom: $site-padding-bottom;
+	margin-top: $site-padding-inner;
 
 }
 
@@ -14,6 +15,7 @@
 	height: 100%;
 	height: 100vh;
 	overflow: hidden;
+	margin-top: $site-padding-inner;
 
 }
 
@@ -61,7 +63,7 @@
 
 }
 
-.geolocator{
+.marker{
 
 	@extend %fullscreen;
 	@extend %flexcontainer;
@@ -70,6 +72,7 @@
 	align-content: center;
 	flex-direction: column;
 	text-align: center;
+	padding: $fringe-height $site-padding-sides;
 
 }
 

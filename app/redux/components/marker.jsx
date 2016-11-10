@@ -8,32 +8,30 @@ import P from 'components/tags/p'
 import DIV from 'components/tags/div'
 import A from 'components/tags/a'
 import IMG from 'components/tags/img'
+import I from 'components/tags/i'
+import BUTTON from 'components/tags/button'
 
-import style from './_geolocator'
+import style from './_marker'
 
 
 const messages = defineMessages( {
 
-	get_closer:{
-		id: "get_closer",
-		description: "Header",
-		defaultMessage: "Great, so let's get you as close as possible:"
-	},
-	cancel:{
-		id: "cancel",
-		description: "Button - ",
-		defaultMessage: "cancel"
-	}
 
 } )
 
-const main = ( { intl, className, resetMain, setLocation, show, zoom, center } ) => {
+const marker = ( { intl, className, resetMain, setLocation, show, zoom, center } ) => {
 
 	const { formatMessage } = intl
 
-	const cls = Classnames( className, style.geolocator, {
+	const cls = Classnames( className, style.marker, {
 
 		[ style.show ]: show
+
+	} )
+
+	const clsDone = Classnames( style.doneBtn, {
+
+		[ style.disabled ]: zoom < 14
 
 	} )
 
@@ -48,16 +46,17 @@ const main = ( { intl, className, resetMain, setLocation, show, zoom, center } )
 	return(
 
 		<DIV className={ cls } >
-			<H priority={ 2 }>{ formatMessage( messages.get_closer ) }</H>
-			<DIV id="Geolocator" ></DIV>
-			<P><A onClick={ resetMain } className={ style.option } >{ formatMessage( messages.cancel ) }</A></P>
+			{ zoom >= 14 && <IMG src="./assets/marker-green.png" alt="Location marker" className={ style.img }  /> }
+			{ zoom < 14 && <IMG src="./assets/marker-red.png" alt="Location marker" className={ style.img } /> }
+			<BUTTON className={ style.cancelBtn } onClick={ resetMain }><I className="material-icons">close</I></BUTTON>
+			<BUTTON className={ clsDone } onClick={ setLocation }><I className="material-icons">done</I></BUTTON>
 		</DIV> 
 
 	)
 	
 }
 
-main.propTypes = {
+marker.propTypes = {
 
 	intl: intlShape.isRequired,
 
@@ -71,4 +70,4 @@ main.propTypes = {
 
 }
 
-export default injectIntl( main )
+export default injectIntl( marker )
