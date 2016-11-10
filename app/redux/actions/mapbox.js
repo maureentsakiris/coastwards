@@ -439,7 +439,7 @@ export const switchModus = ( modus ) => {
 
 			_.each( locateLayers, ( layer ) => {
 
-				//map.setLayoutProperty( layer, 'visibility', 'none' )
+				map.setLayoutProperty( layer, 'visibility', 'none' )
 
 			} )
 

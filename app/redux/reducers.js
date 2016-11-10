@@ -32,7 +32,7 @@ const browser = ( state = { uploadSupported: uploadSupported, jazzSupported: jaz
 
 }
 
-const config = ( state= { google: true, imageWidth: 800 }, action ) => {
+const config = ( state= { google: false, imageWidth: 800 }, action ) => {
 
 	switch ( action.type ){
 
@@ -95,7 +95,7 @@ const layers = ( state = { upload: true, prompts: true, statuses: false, errors:
 	case types.SET_LAYER_VISIBILITY:
 		return _.extend( {}, state, { [ action.layer ]: action.to } )
 	case types.RESET_LAYERS:
-		return { upload: true, prompts: true, statuses: false, errors: false, locate: false, geolocater: false, form: false }
+		return { upload: true, prompts: true, statuses: false, errors: false, locate: false, geolocater: false, form: false, marker: false }
 	default: 
 		return state
 

@@ -219,7 +219,10 @@ export const validateFile = ( e ) => {
 			const uid = uuid.v1()
 			dispatch( { type: types.SET_UID, to: uid } )
 			dispatch( { type: types.SET_IMAGE_TO_UPLOAD, to: image } )
+			//console.log( "H§REEER!", image );
 			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'statuses', to: false } )
+
+			
 
 			if( image.manual == 0 ){
 
