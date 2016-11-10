@@ -56,7 +56,7 @@ if( !jazzSupported ){
 
 }else{
 
-	//store.dispatch( showDialog( 'TESTSITE' ) )
+	store.dispatch( showDialog( 'TESTSITE' ) )
 
 }
 
