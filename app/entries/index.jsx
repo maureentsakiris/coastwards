@@ -4,6 +4,8 @@ import { createStore, applyMiddleware, compose } from 'redux'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 
+import Classnames from 'classnames'
+
 import coastwards from 'reducers'
 import { loadLanguage } from 'actions/i18n/i18n'
 import { showDialog } from 'actions/ui/dialog'
@@ -59,6 +61,17 @@ if( !jazzSupported ){
 
 // <I18nLinks availableLanguages={ i18nLocales.locales } className={ style.i18n } />
 
+let clsIntro = Classnames( style.intro, {
+
+	[ style.introJazz ]: jazzSupported
+
+} )
+
+let clsInfo = Classnames( style.info, {
+
+	[ style.infoJazz ]: jazzSupported
+
+} )
 
 ReactDom.render( 
 
@@ -66,8 +79,8 @@ ReactDom.render(
 		<I18nProvider>
 			<Context>
 				<DIV className={ style.top } >
-					<Intro className={ style.intro } />
-					<DIV className={ style.info } >
+					<Intro className={ clsIntro } />
+					<DIV className={ clsInfo } >
 						<How />
 						<Guidelines />
 						<Team />

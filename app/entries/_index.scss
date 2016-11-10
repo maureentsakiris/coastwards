@@ -32,13 +32,19 @@
 	@extend %corset;
 	margin-top: $site-padding-inner;
 
+}
 
-	margin-bottom: $site-padding-inner;
+.introJazz{
+
+	margin-top: 0;
+	padding-top: 10vh;
+	padding-bottom: 10vh;
 	min-height: 100vh;
 	@extend %flexcontainer;
 	justify-content: center;
 	flex-direction: column;
-	text-align: center; // !!! non flex??
+	align-items: center;
+	text-align: center;
 
 }
 
@@ -47,8 +53,14 @@
 	@extend %corset;
 	margin-top: $site-padding-top;
 
-	min-height: 90vh;
-	margin-top: 10vh;
+}
+
+.infoJazz{
+
+	margin-top: 0;
+	padding-top: 10vh;
+	padding-bottom: 10vh;
+	min-height: 100vh;
 	@extend %flexcontainer;
 	justify-content: top;
 	flex-direction: column;

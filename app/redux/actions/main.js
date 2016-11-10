@@ -447,13 +447,15 @@ export const resetMain = ( removeLastUpload = true ) => {
 
 		document.getElementById( 'Upload' ).reset()
 		document.getElementById( 'Form' ).reset()
-		document.getElementById( 'Sheet' ).scrollTop = 0
+		
 		//close what else toggle 
 		dispatch( { type: types.SET_PROMPT_MSG, to: 'select_file' } )
 		dispatch( { type: types.RESET_FORM } )
 		dispatch( { type: types.RESET_LAYERS } )
 
 		if( state.browser.jazzSupported ){
+
+			document.getElementById( 'Sheet' ).scrollTop = 0
 
 			dispatch( resetMap() )
 
