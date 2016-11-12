@@ -482,7 +482,7 @@ export const resetMain = ( removeLastUpload = true ) => {
 
 			dispatch( resetMap() )
 
-			if( removeLastUpload ){
+			if( removeLastUpload ){ // shouldn't remove when error is duplicate_file
 
 				dispatch( { type: types.REMOVE_LAST_DROP } )
 

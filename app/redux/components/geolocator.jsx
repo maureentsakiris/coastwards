@@ -17,7 +17,7 @@ const messages = defineMessages( {
 	get_closer:{
 		id: "get_closer",
 		description: "Header",
-		defaultMessage: "Great, so let's get you as close as possible:"
+		defaultMessage: "Great, let's get you as close as possible"
 	},
 	cancel:{
 		id: "cancel",

@@ -472,7 +472,7 @@ export const showPopup = ( feature ) => {
 
 		const featureDOM = document.getElementById( 'Popup' )
 		let offsetY = featureDOM.clientHeight / 2
-		map.flyTo( { speed: 0.4, center: feature.geometry.coordinates, offset: [ 0, offsetY ], zoom: z } )
+		map.flyTo( { speed: 0.4, center: feature.geometry.coordinates, offset: [ 0, offsetY ], zoom: z } ) // behaves weird when you click on the wrong hawaii, and then on the wrong russia. first it flies to the right hawaii, but once there, it wont't fly to the right Russia. You can interchange hawaii and russia
 
 	}
 

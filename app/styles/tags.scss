@@ -131,7 +131,7 @@ table{
 
 td,th{
 
-	padding: 0.5em;
+	padding: 0.5em 0;
 	overflow: scroll;
 
 }
@@ -139,6 +139,10 @@ td,th{
 th{
 
 	text-align: left;
-	background-color: #e5e5e5;
+	border-bottom: 2px solid #000;
+	padding-top: 2em;
+	text-transform: uppercase;
+	font-weight: bold;
+
 
 }
