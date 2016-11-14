@@ -4,7 +4,6 @@ const mysql = require( 'mysql' )
 const formidable = require( 'formidable' )
 const path = require( 'path' )
 const fs = require( 'fs' )
-const jimp = require( 'jimp' )
 const _ = require( 'underscore' )
 const util = require( 'util' )
 

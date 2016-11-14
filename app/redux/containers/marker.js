@@ -9,8 +9,7 @@ const mapStateToProps = ( state ) => {
 	return {
 
 		show: state.layers.marker,
-		zoom: state.mapbox.zoom,
-		center: state.mapbox.center
+		zoom: state.mapbox.zoom
 
 	}
 

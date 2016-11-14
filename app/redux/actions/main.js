@@ -466,7 +466,7 @@ export const resetMain = ( removeLastUpload = true ) => {
 
 		const state = getState()
 
-		console.log( "TOTAL RESET" );
+		//console.log( "TOTAL RESET" );
 
 		document.getElementById( 'Upload' ).reset()
 		document.getElementById( 'Form' ).reset()
@@ -510,9 +510,15 @@ export const scrollUp = ( ) => {
 	return function ( dispatch, getState ) {
 
 		let state = getState()
-		let { errors, form, geolocator, locate, prompts, statuses, marker } = state.layers
+		let { errors, form, geolocator, locate, prompts, statuses } = state.layers
 
-		window.scroll( 0, 0 )
+		window.scroll( {
+
+			top: 0, 
+			left: 0, 
+			behavior: 'smooth' 
+
+		} )
 
 		if( !errors && !form && !geolocator && !locate && !prompts && !statuses ){
 	

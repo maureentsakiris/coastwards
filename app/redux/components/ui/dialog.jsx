@@ -13,8 +13,7 @@ import JOERN from './dialogs/joern'
 import ME from './dialogs/me'
 
 import DIV from 'components/tags/div'
-import A from 'components/tags/a'
-import I from 'components/tags/i' 
+import CLOSE from 'components/ui/close'
 
 import style from './_dialog.scss'
 
@@ -34,6 +33,8 @@ const dialog = ( { intl, component, active, closeDialog } ) => {
 
 	const { formatMessage } = intl
 
+	
+
 	if( !active ){
 
 		return null
@@ -43,7 +44,7 @@ const dialog = ( { intl, component, active, closeDialog } ) => {
 		return(
 
 			<DIV className={ style.dialog } >
-				<A className={ style.close } href="#" onClick={ closeDialog } title={ formatMessage( messages.close_dialog ) } ><I className="material-icons" >&#xE5CD;</I></A>
+				<CLOSE className={ style.close } onClick={ closeDialog } title={ formatMessage( messages.close_dialog ) } />
 				<DIV className={ style.body } >
 					{ component == 'WHYIP' && <WHYIP /> }
 					{ component == 'NOJAZZ' && <NOJAZZ /> }

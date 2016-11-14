@@ -8,7 +8,8 @@
 	top: 0;
 	bottom: 0;
 	background-color: $overlay-color;
-	padding: 44px 2em;
+	padding: 56px 56px 56px 46px;
+	//padding: 2em;
 	z-index: 300;
 	overflow-y: scroll;
 
@@ -23,14 +24,22 @@
 .close{
 
 	position: fixed;
-	top: $gutter-width;
-	right: $gutter-width;
+	top: 20px;
+	right: 15px;
+	/* width: 100%;
+    text-align: right;
+    display: block; */
+
+	i{
+
+		font-size: 36px;
+
+	}
 
 }
 
 .body{
 
-	max-width: $corset-width;
-	margin: 0 auto;
+	@extend %corset;
 
 }

@@ -46,12 +46,6 @@ class Toggle extends Component {
 		const { children, priority, text, title, className, ...restProps } = this.props
 		const { expanded } = this.state
 
-		const clsChildren = Classnames( {
-
-			[ style.children ]: expanded
-
-		} )
-
 		const clsIcon = Classnames( "material-icons", style.icon )
 
 		const dir = document.getElementsByTagName( 'html' )[ 0 ].getAttribute( 'dir' ) 
@@ -67,7 +61,7 @@ class Toggle extends Component {
 						{ expanded && <I className={ clsIcon } >expand_more</I> }
 					</H>
 				</A>
-				{ expanded && <DIV className={ clsChildren } >{ children }</DIV> }
+				{ expanded && <DIV>{ children }</DIV> }
 			</DIV>
 
 		)

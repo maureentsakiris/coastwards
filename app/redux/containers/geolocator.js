@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 
-import { resetMain, setLocation } from 'actions/main'
+import { resetMain } from 'actions/main'
 import GEOLOCATOR from 'components/geolocator'
 
 
@@ -8,9 +8,7 @@ const mapStateToProps = ( state ) => {
 
 	return {
 
-		show: state.layers.geolocator,
-		zoom: state.mapbox.zoom,
-		center: state.mapbox.center
+		show: state.layers.geolocator
 
 	}
 
@@ -24,12 +22,6 @@ const mapDispatchToProps = ( dispatch ) => {
 
 			e.preventDefault()
 			dispatch( resetMain() )
-
-		},
-		setLocation: ( e ) => {
-
-			e.preventDefault()
-			dispatch( setLocation() )
 
 		}
 

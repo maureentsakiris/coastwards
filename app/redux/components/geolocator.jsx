@@ -2,12 +2,10 @@ import React, { PropTypes } from 'react'
 import { defineMessages, injectIntl, intlShape } from 'react-intl'
 import Classnames from 'classnames'
 
-import FORM from 'components/tags/form'
 import H from 'components/tags/h'
 import P from 'components/tags/p'
 import DIV from 'components/tags/div'
 import A from 'components/tags/a'
-import IMG from 'components/tags/img'
 
 import style from './_geolocator'
 
@@ -27,7 +25,7 @@ const messages = defineMessages( {
 
 } )
 
-const main = ( { intl, className, resetMain, setLocation, show, zoom, center } ) => {
+const main = ( { intl, className, resetMain, show } ) => {
 
 	const { formatMessage } = intl
 
@@ -63,11 +61,8 @@ main.propTypes = {
 
 	className: PropTypes.string,
 	show: PropTypes.bool,
-	zoom: PropTypes.number,
-	center: PropTypes.object,
 
-	resetMain: PropTypes.func,
-	setLocation: PropTypes.func
+	resetMain: PropTypes.func
 
 }
 

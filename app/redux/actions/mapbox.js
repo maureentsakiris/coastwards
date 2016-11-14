@@ -1,6 +1,6 @@
 import * as types from 'types'
 import mapboxgl from './mapbox-helper.js'
-import mapboxglgeocoder from 'mapbox-gl-geocoder/dist/mapbox-gl-geocoder.js'
+require( 'mapbox-gl-geocoder/dist/mapbox-gl-geocoder.js' )
 import _ from 'underscore'
 import { promiseGet } from 'actions/util/request/get'
 import { resetMain } from 'actions/main'
@@ -185,6 +185,7 @@ export const displayMap = ( ) => {
 				}
 
 				let feature = features[ 0 ]
+				feature.point = e.point
 				let interactiveLayer = _.findWhere( interactiveLayers, { layer: feature.layer.id } )
 				let onClick = interactiveLayer.onClick
 
@@ -235,7 +236,7 @@ export const displayMap = ( ) => {
 					// make circles larger as the user zooms from z12 to z22
 					'circle-radius': {
 						'base': 1.75,
-						'stops': [ [ 0, 7 ], [ 10, 15 ], [ 22, 50 ] ]
+						'stops': [ [ 0, 8 ], [ 10, 15 ], [ 22, 50 ] ]
 					},
 					// color circles by ethnicity, using data-driven styles
 					'circle-color': {
@@ -464,15 +465,22 @@ export const showPopup = ( feature ) => {
 
 		}
 
+		let ll = new mapboxgl.LngLat.convert( feature.geometry.coordinates )
+		let wrapped = ll.wrap()
+
 		dispatch( { type: types.SET_POPUP_FEATURE, to: feature } )
-		popup.setLngLat( feature.geometry.coordinates ).addTo( map )
+		popup.setLngLat( wrapped ).addTo( map )
 
 		let cz = map.getZoom();
 		let z = cz < 2 ? 2 : cz;
 
+
 		const featureDOM = document.getElementById( 'Popup' )
 		let offsetY = featureDOM.clientHeight / 2
-		map.flyTo( { speed: 0.4, center: feature.geometry.coordinates, offset: [ 0, offsetY ], zoom: z } ) // behaves weird when you click on the wrong hawaii, and then on the wrong russia. first it flies to the right hawaii, but once there, it wont't fly to the right Russia. You can interchange hawaii and russia
+
+		//map.panTo( feature.geometry.coordinates )
+		//map.setCenter( feature.geometry.coordinates )
+		map.flyTo( { speed: 0.4, center: wrapped, offset: [ 0, offsetY ], zoom: z } ) // behaves weird when you click on the wrong hawaii, and then on the wrong russia. first it flies to the right hawaii, but once there, it wont't fly to the right Russia. You can interchange hawaii and russia
 
 	}
 

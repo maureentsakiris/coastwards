@@ -64,6 +64,7 @@
     "redux-promise": "^0.5.3",
     "redux-thunk": "^2.1.0",
     "sass-loader": "^4.0.2",
+    "smoothscroll-polyfill": "^0.3.4",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
     "validator": "^6.1.0",

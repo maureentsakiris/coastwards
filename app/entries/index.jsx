@@ -4,7 +4,9 @@ import { createStore, applyMiddleware, compose } from 'redux'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 
-import Classnames from 'classnames'
+require( 'smoothscroll-polyfill' ).polyfill()
+
+/*import Classnames from 'classnames'*/
 
 import coastwards from 'reducers'
 import { loadLanguage } from 'actions/i18n/i18n'
@@ -16,20 +18,20 @@ import Main from 'containers/main'
 import Snackbar from 'containers/ui/snackbar'
 import Dialog from 'containers/ui/dialog'
 
-import I18nLinks from 'components/i18n/i18nLinks'
+/*import I18nLinks from 'components/i18n/i18nLinks'*/
 import Intro from 'components/intro'
 import How from 'components/how'
 import Guidelines from 'components/guidelines'
 import Team from 'containers/team'
 import FAQs from 'components/faqs'
-import Ask from 'containers/ask'
+import Ask from 'components/ask'
 
 import DIV from 'components/tags/div'
-import A from 'components/tags/a'
+/*import A from 'components/tags/a'*/
 
 
 //TODO: i18nLinks should handle that itself?
-import i18nLocales from 'actions/i18n/i18nLocales'
+/*import i18nLocales from 'actions/i18n/i18nLocales'*/
 
 import style from './_index'
 
@@ -80,6 +82,7 @@ ReactDom.render(
 		<I18nProvider>
 			<Context>
 				<DIV className={ style.top } >
+					<DIV className={ style.padder } ></DIV>
 					<Intro className={ style.intro } />
 					<DIV className={ style.info } >
 						<How />

@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 import { defineMessages, injectIntl, intlShape } from 'react-intl'
 
 import TOGGLE from 'components/ui/toggle'
@@ -59,7 +59,7 @@ const messages = defineMessages( {
 
 } )
 
-const ask = ( { intl, error, submit } ) => {
+const ask = ( { intl } ) => {
 
 	const { formatMessage } = intl
 
@@ -79,13 +79,15 @@ const ask = ( { intl, error, submit } ) => {
 
 }
 
+const submit = ( e ) => {
+
+	e.preventDefault()
+
+}
+
 ask.propTypes = {
 
-	intl: intlShape.isRequired,
-
-	error: PropTypes.string,
-
-	submit: PropTypes.func
+	intl: intlShape.isRequired
 
 }
 

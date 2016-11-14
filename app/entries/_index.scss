@@ -9,11 +9,18 @@
 
 }
 
-.i18n{
+.padder{ //Weird zoom bug. if no margin or margin is set 1%, mapbox doesn't zoom (the entire page does)
+
+	//@extend %corset;
+	margin-top: 2%;
+
+}
+
+
+/* .i18n{
 
 	@extend %corset;
-	margin-top: $site-padding-top; // DO NOT DELETE EIIIIIIGHHHHH?????????
-	display: none;
+	margin-top: $site-padding-top;
 
 }
 
@@ -25,7 +32,7 @@
 
   }
 
-}
+} */
 
 .intro{
 

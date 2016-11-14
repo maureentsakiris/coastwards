@@ -1,10 +1,11 @@
 import React, { PropTypes } from 'react'
 import { defineMessages, injectIntl, intlShape } from 'react-intl'
+import Classnames from 'classnames'
 
 import A from 'components/tags/a'
 import I from 'components/tags/i'
 
-//import style from './_close'
+import style from './_close'
 
 
 const messages = defineMessages( {
@@ -17,13 +18,15 @@ const messages = defineMessages( {
 
 } )
 
-const close = ( { intl, onClick } ) => {
+const close = ( { intl, className, onClick } ) => {
 
 	const { formatMessage } = intl
 
+	const clsIcon = Classnames( 'material-icons', style.icon )
+
 	return(
 
-		<A href="#" onClick={ onClick } title={ formatMessage( messages.close ) } ><I className="material-icons" style={ { verticalAlign: 'middle' } } >&#xE5CD;</I></A>
+		<A href="#" className={ className } onClick={ onClick } title={ formatMessage( messages.close ) } ><I className={ clsIcon } >&#xE5CD;</I></A>
 
 	)
 	

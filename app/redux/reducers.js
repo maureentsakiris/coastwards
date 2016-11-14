@@ -32,7 +32,7 @@ const browser = ( state = { uploadSupported: uploadSupported, jazzSupported: jaz
 
 }
 
-const config = ( state= { google: false, imageWidth: 800 }, action ) => {
+const config = ( state= { google: true, imageWidth: 800 }, action ) => {
 
 	switch ( action.type ){
 
@@ -242,20 +242,6 @@ const popup = ( state = { popup: undefined, feature: {}, coords: [], active: fal
 
 }
 
-const ask = ( state = { error: '', submitted: false }, action ) => {
-
-	switch ( action.type ){
-
-	case types.SET_ASK_ERROR:
-		return _.extend( {}, state, { error: action.to } )
-	case types.SET_ASK_SUBMITTED:
-		return _.extend( {}, state, { submitted: action.to } )
-	default:
-		return state
-
-	}
-
-}
 
 const coastwards = combineReducers( {
 
@@ -273,8 +259,7 @@ const coastwards = combineReducers( {
 	mapbox,
 	interactiveLayers,
 	drops,
-	popup,
-	ask
+	popup
 
 } )
 
