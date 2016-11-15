@@ -182,7 +182,7 @@ const selected = ( state = [ ], action ) => {
 
 }
 
-const mapbox = ( state = { map: '', zoom: 0, center: {} }, action ) => {
+const mapbox = ( state = { map: '', zoom: 0, center: {}, geocoder: '' }, action ) => {
 
 	switch ( action.type ){
 
@@ -192,6 +192,8 @@ const mapbox = ( state = { map: '', zoom: 0, center: {} }, action ) => {
 		return _.extend( {}, state, { zoom: action.to } )
 	case types.SET_CENTER:
 		return _.extend( {}, state, { center: action.to } )
+	case types.SET_GEOCODER:
+		return _.extend( {}, state, { geocoder: action.to } )
 	default:
 		return state
 

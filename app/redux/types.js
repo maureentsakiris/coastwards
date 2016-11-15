@@ -39,6 +39,7 @@ export const ADD_SELECTED = 'ADD_SELECTED'
 export const SET_MAP = 'SET_MAP'
 export const SET_ZOOM = 'SET_ZOOM'
 export const SET_CENTER = 'SET_CENTER'
+export const SET_GEOCODER = 'SET_GEOCODER'
 
 //interactiveLayers
 export const ADD_INTERACTIVE_LAYER = 'ADD_INTERACTIVE_LAYER'

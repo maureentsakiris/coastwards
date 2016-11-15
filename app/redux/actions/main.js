@@ -277,12 +277,12 @@ export const validateFile = ( e ) => {
 
 }
 
-export const locateCoast = ( ) => {
+export const showGeolocator = ( ) => {
 
 	return function ( dispatch, getState ){
 
 		let state = getState()
-		let map = state.mapbox.map
+		let geocoder = state.mapbox.geocoder
 
 		let input = document.querySelectorAll( '.mapboxgl-ctrl-geocoder input' )[ 0 ]
 
@@ -293,12 +293,38 @@ export const locateCoast = ( ) => {
 		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'geolocator', to: true } )
 		dispatch( switchModus( 'locate' ) )
 
-		map.once( 'movestart', ( ) => {
+		geocoder.on( 'result', ( ) => {
+
+			dispatch( showMarker() )
+
+		} )
+
+		/*map.once( 'movestart', ( ) => {
 
 			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'geolocator', to: false } )
 			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'marker', to: true } )
 
 		} )
+
+		map.once( 'moveend', ( ) => {
+
+			dispatch( addSnackbarMessage( 'zoom_until', 5000 ) )
+
+		} )*/
+
+	}
+
+}
+
+export const showMarker = ( ) => {
+
+	return function ( dispatch, getState ){
+
+		let state = getState()
+		let map = state.mapbox.map
+
+		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'geolocator', to: false } )
+		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'marker', to: true } )
 
 		map.once( 'moveend', ( ) => {
 

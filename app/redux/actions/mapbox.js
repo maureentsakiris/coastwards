@@ -147,11 +147,14 @@ export const displayMap = ( ) => {
 			} )
 
 			//Add Geolocator
-			map.addControl( new mapboxgl.Geocoder( {
+			let geocoder = new mapboxgl.Geocoder( {
 
 				container: 'Geolocator'
 
-			} ) )
+			} )
+			
+			dispatch( { type: types.SET_GEOCODER, to: geocoder } )
+			map.addControl( geocoder )
 
 
 			//Init and register popup

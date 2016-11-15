@@ -1,0 +1,12 @@
+[
+  {
+    "id": "cancel_title",
+    "description": "Title -",
+    "defaultMessage": "Cancel upload"
+  },
+  {
+    "id": "done_title",
+    "description": "Title -",
+    "defaultMessage": "Continue with this location"
+  }
+]

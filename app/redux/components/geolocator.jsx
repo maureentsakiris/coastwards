@@ -20,12 +20,17 @@ const messages = defineMessages( {
 	cancel:{
 		id: "cancel",
 		description: "Button - ",
-		defaultMessage: "cancel"
+		defaultMessage: "cancel upload"
+	},
+	no_need:{
+		id: "no_need",
+		description: "Button - ",
+		defaultMessage: "I'll find it myself"
 	}
 
 } )
 
-const main = ( { intl, className, resetMain, show } ) => {
+const main = ( { intl, className, resetMain, showMarker, show } ) => {
 
 	const { formatMessage } = intl
 
@@ -43,12 +48,16 @@ const main = ( { intl, className, resetMain, show } ) => {
 			<IMG src="./assets/marker-red.png" alt="Location marker" className={ style.marker } /> 
 			<P><A onClick={ setLocation }  className={ style.option } >{ formatMessage( messages.set_location ) }</A></P>*/
 
+		/*<A onClick={ showMarker } className={ style.option } >{ formatMessage( messages.no_need ) }</A>*/
+
 	return(
 
 		<DIV className={ cls } >
 			<H priority={ 2 }>{ formatMessage( messages.get_closer ) }</H>
 			<DIV id="Geolocator" ></DIV>
-			<P><A onClick={ resetMain } className={ style.option } >{ formatMessage( messages.cancel ) }</A></P>
+			<P>
+				<A onClick={ resetMain } className={ style.option } >{ formatMessage( messages.cancel ) }</A>
+			</P>
 		</DIV> 
 
 	)
@@ -62,7 +71,8 @@ main.propTypes = {
 	className: PropTypes.string,
 	show: PropTypes.bool,
 
-	resetMain: PropTypes.func
+	resetMain: PropTypes.func,
+	showMarker: PropTypes.func
 
 }
 

@@ -7,6 +7,11 @@
   {
     "id": "cancel",
     "description": "Button -",
-    "defaultMessage": "cancel"
+    "defaultMessage": "cancel upload"
+  },
+  {
+    "id": "no_need",
+    "description": "Button -",
+    "defaultMessage": "I'll find it myself"
   }
 ]
