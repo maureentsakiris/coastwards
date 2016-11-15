@@ -1,5 +1,10 @@
-import React from 'react'
+import React, { Component } from 'react'
+import PureRenderMixin from 'react-addons-pure-render-mixin'
 import { defineMessages, injectIntl, intlShape } from 'react-intl'
+import { promiseXHR } from 'actions/util/request/xhr'
+
+import isEmail from 'validator/lib/isEmail'
+import isEmpty from 'validator/lib/isEmpty'
 
 import TOGGLE from 'components/ui/toggle'
 
@@ -11,6 +16,7 @@ import SUBMIT from  'components/form/button/submit'
 
 
 import BR from 'components/tags/br'
+import P from 'components/tags/p'
 
 import style from './_ask'
 
@@ -55,40 +61,126 @@ const messages = defineMessages( {
 		id: "label_submit",
 		description: "Label - Submit",
 		defaultMessage: "Submit"
+	},
+
+	//mail status
+	sending_mail:{
+		id: "sending_mail",
+		description: "Status - ",
+		defaultMessage: "Just a sec ... sending mail"
+	},
+	mail_ok:{
+		id: "mail_ok",
+		description: "Status - ",
+		defaultMessage: "Email sent, thanks for asking!"
+	},
+	mail_ko:{
+		id: "mail_ko",
+		description: "Status - ",
+		defaultMessage: "Sorry, there was a problem sending the email. Please try again"
 	}
 
 } )
 
-const ask = ( { intl } ) => {
+class ask extends Component {
 
-	const { formatMessage } = intl
+	static propTypes = {
 
-	return(
+		intl: intlShape.isRequired
 
-		<TOGGLE id="AskUs" title={ formatMessage( messages.one_more_question_title ) } priority={ 3 } text={ formatMessage( messages.one_more_question ) } className={ style.toggle } >
-			<FORM action="#" id="Ask" >
-				<COMMENT form="Ask" label={ formatMessage( messages.label_question ) } name="comment" placeholder={ formatMessage( messages.placeholder_question ) } />
-				<BR />
-				<EMAIL form="Ask" label={ formatMessage( messages.label_email ) } name="email" placeholder={ formatMessage( messages.placeholder_email ) } />
-				<BR />
-				<SUBMIT onClick={ submit } form="Ask" name="submit" label={ formatMessage( messages.label_submit ) } /> <small>Sorry, doesn't work yet</small>
-			</FORM>
-		</TOGGLE>
+	}
 
-	)
+	constructor ( props ) {
+
+		super ( props )
+		this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind( this )
+
+		this.state = {
+
+			sending: false,
+			status: '',
+			validated: false
+
+		}
+
+	}
+
+	render () {
+
+		const { formatMessage } = this.props.intl
+		const { sending, status, validated } = this.state
+
+		const disabled = sending || !validated
+
+		return(
+
+			<TOGGLE id="AskUs" title={ formatMessage( messages.one_more_question_title ) } priority={ 3 } text={ formatMessage( messages.one_more_question ) } className={ style.toggle } >
+				<FORM action="#" id="Ask" >
+					<COMMENT id="Comment" onChange={ this._validateForm } form="Ask" label={ formatMessage( messages.label_question ) } name="comment" placeholder={ formatMessage( messages.placeholder_question ) } />
+					<BR />
+					<EMAIL id="Email" onChange={ this._validateForm } form="Ask" label={ formatMessage( messages.label_email ) } name="email" placeholder={ formatMessage( messages.placeholder_email ) } />
+					<BR />
+					<SUBMIT onClick={ this._submit } form="Ask" name="submit" label={ formatMessage( messages.label_submit ) } disabled={ disabled } />
+					<P className={ style.status } >{ status && formatMessage( messages[ status ] ) }</P>
+				</FORM>
+			</TOGGLE>
+
+		)
+
+	}
+
+	_validateForm = ( ) => {
+
+		let validEmail = isEmail( document.getElementsByName( 'email' )[ 0 ].value )
+		let validComment = !isEmpty( document.getElementsByName( 'comment' )[ 0 ].value )
+
+		let valid = validEmail && validComment
+
+		this.setState( { validated: valid, status: '' } )
+
+	}
+
+	_submit = ( e ) => {
+
+		e.preventDefault()
+
+		let formData = new FormData( document.getElementById( 'Ask' ) )
+
+		let options = { 
+
+			url: '/contact/ask',
+			data: formData
+
+		}
+
+		this.setState( { sending: true, status: 'sending_mail' } )
+
+		promiseXHR( options )
+		.then( ( response ) => {
+
+			document.getElementById( 'Ask' ).reset()
+
+			if( response == 'OK' ){
+
+				this.setState( { status: 'mail_ok', sending: false } )
+
+			}else{
+
+				this.setState( { status: 'mail_ko', sending: false } )
+
+			}
+
+			return response
+
+		} )
+		.catch( ( error ) => {
+
+			console.log( error );
+
+		} )
+
+	}
 
 }
 
-const submit = ( e ) => {
-
-	e.preventDefault()
-
-}
-
-ask.propTypes = {
-
-	intl: intlShape.isRequired
-
-}
-
-export default injectIntl( ask ) 
+export default injectIntl( ask )

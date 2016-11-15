@@ -13,6 +13,7 @@ const portToListen = isProduction ? server.port : 8888;
 const validate = require( './server/validate' );
 const contribute = require( './server/contribute' );
 const translate = require( './server/translate' );
+const contact = require( './server/contact' );
 
 
 const publicPath = path.resolve( __dirname, 'public' );
@@ -37,6 +38,7 @@ app.get( '/', function ( req, res ) {
 app.use( '/validate', validate );
 app.use( '/contribute', contribute );
 app.use( '/translate', translate );
+app.use( '/contact', contact );
 
 if ( !isProduction ) {
 

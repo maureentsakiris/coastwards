@@ -38,5 +38,20 @@
     "id": "label_submit",
     "description": "Label - Submit",
     "defaultMessage": "Submit"
+  },
+  {
+    "id": "sending_mail",
+    "description": "Status -",
+    "defaultMessage": "Just a sec ... sending mail"
+  },
+  {
+    "id": "mail_ok",
+    "description": "Status -",
+    "defaultMessage": "Email sent, thanks for asking!"
+  },
+  {
+    "id": "mail_ko",
+    "description": "Status -",
+    "defaultMessage": "Sorry, there was a problem sending the email. Please try again"
   }
 ]

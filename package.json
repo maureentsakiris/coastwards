@@ -24,7 +24,8 @@
     "mysql": "^2.12.0",
     "node-uuid": "^1.4.7",
     "pug": "^2.0.0-beta6",
-    "underscore": "^1.8.3"
+    "underscore": "^1.8.3",
+    "nodemailer": "^2.6.4"
   },
   "devDependencies": {
     "attr-accept": "^1.1.0",
@@ -51,7 +52,6 @@
     "modernizr": "^3.3.1",
     "modernizr-loader": "0.0.5",
     "node-sass": "^3.11.2",
-    "nodemailer": "^2.6.4",
     "postcss-loader": "^1.1.0",
     "react": "^15.3.2",
     "react-addons-css-transition-group": "^15.3.2",

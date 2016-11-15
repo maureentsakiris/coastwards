@@ -31,3 +31,10 @@
 	color: #ffffff;
 
 }
+
+.cancel:disabled, .go:disabled, .submit:disabled{
+
+	opacity: 0.5;
+	cursor: default;
+
+}
