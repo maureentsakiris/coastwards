@@ -218,7 +218,7 @@ export const displayMap = ( ) => {
 
 				type: 'geojson',
 				data: geojson,
-				cluster: true,
+				cluster: false,
 				clusterMaxZoom: 10, // Max zoom to cluster points on
 				clusterRadius: 20 // Radius of each cluster when clustering points (defaults to 50)
 				

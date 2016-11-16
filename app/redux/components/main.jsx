@@ -25,7 +25,13 @@ const messages = defineMessages( {
 		id: "unsupported",
 		description: "Warning - Warns the user that his browser does not support the image upload",
 		defaultMessage: "Oops nope ... looks like you are on an old browser that does not support some features we need to make this website work. Sorry, you'll need to upgrade or switch browsers to continue."
+	},
+	too_many:{
+		id: "too_many",
+		description: "Link - ",
+		defaultMessage: "I have too many to upload one by one!"
 	}
+	
 	
 } )
 
@@ -91,9 +97,9 @@ main.propTypes = {
 
 	uploadSupported: PropTypes.bool,
 	jazzSupported: PropTypes.bool,
+	showPrompts: PropTypes.bool,
 
-	scrollUp: PropTypes.func,
-	showPrompts: PropTypes.bool
+	scrollUp: PropTypes.func
 	
 }
 

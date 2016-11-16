@@ -24,7 +24,24 @@
 
 .option{
 
-	text-transform: uppercase;
-	margin: 0 0.5em;
+	@extend %screenOption;
+}
+
+.toomany{
+
+	position: absolute;
+	bottom: $gutter-width;
+
+}
+
+.selecthelp{
+
+	margin-bottom: 1em;
+
+}
+
+.header{
+
+	margin-bottom: 0.3em;
 
 }

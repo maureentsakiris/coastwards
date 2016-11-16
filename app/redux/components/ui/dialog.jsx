@@ -12,6 +12,8 @@ import CLAUDIA from './dialogs/claudia'
 import JOERN from './dialogs/joern'
 import ME from './dialogs/me'
 
+import TOOMANY from './dialogs/toomany'
+
 import DIV from 'components/tags/div'
 import CLOSE from 'components/ui/close'
 
@@ -44,8 +46,8 @@ const dialog = ( { intl, component, active, closeDialog } ) => {
 		return(
 
 			<DIV className={ style.dialog } >
-				<CLOSE className={ style.close } onClick={ closeDialog } title={ formatMessage( messages.close_dialog ) } />
 				<DIV className={ style.body } >
+					<CLOSE className={ style.close } onClick={ closeDialog } title={ formatMessage( messages.close_dialog ) } />
 					{ component == 'WHYIP' && <WHYIP /> }
 					{ component == 'NOJAZZ' && <NOJAZZ /> }
 					{ component == 'DEFINEMATERIAL' && <DEFINEMATERIAL /> }
@@ -56,6 +58,9 @@ const dialog = ( { intl, component, active, closeDialog } ) => {
 					{ component == 'CLAUDIA' && <CLAUDIA /> }
 					{ component == 'JOERN' && <JOERN /> }
 					{ component == 'ME' && <ME /> }
+
+					{ component == 'TOOMANY' && <TOOMANY /> }
+					
 				</DIV>
 			</DIV>
 

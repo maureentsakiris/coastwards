@@ -101,6 +101,53 @@ router.post( '/ask', function ( req, res ) {
 
 	} )
 
+} )
+
+const _requestBatchUpload = ( fields ) => {
+
+	return new Promise( ( resolve, reject ) => { 
+
+		let mailOptions = {
+
+			from: '"' + fields.email + '" <' + fields.email + '>',
+			to: 'go@coastwards.org',
+			subject: 'Request Batch Upload',
+			text: fields.comment
+
+		}
+
+		transporter.sendMail( mailOptions, function ( error, info ){
+ 
+			if( error ){
+
+				reject( Error( error ) )
+
+			}
+
+			resolve( info.response )
+
+		} );
+
+	} )
+
+}
+
+router.post( '/requestBatchUpload', function ( req, res ) {
+
+	_promiseFetchForm( req )
+	.then( _requestBatchUpload )
+	.then( ( response ) => {
+
+		res.send( 'OK' )
+		return response
+
+	} )
+	.catch( ( error ) => {
+
+		res.send( error.message )
+
+	} )
+
 } );
 
 module.exports = router

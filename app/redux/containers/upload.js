@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 
-import { validateFile } from 'actions/main'
+import { validateFile, openInput } from 'actions/main'
 import { setLayerVisibility } from 'actions/layers'
 import UPLOAD from 'components/upload'
 
@@ -29,6 +29,12 @@ const mapDispatchToProps = ( dispatch ) => {
 		setLayerVisibility: ( options ) => {
 
 			dispatch( setLayerVisibility( options ) )
+
+		},
+		openInput: ( e ) => {
+
+			e.preventDefault()
+			dispatch( openInput( ) )
 
 		}
 

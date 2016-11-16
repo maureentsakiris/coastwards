@@ -21,7 +21,8 @@ export default class upload extends Component{
 		className: PropTypes.string,
 
 		validateFile: PropTypes.func,
-		setLayerVisibility: PropTypes.func
+		setLayerVisibility: PropTypes.func,
+		openInput: PropTypes.func
 
 	}
 
@@ -71,7 +72,7 @@ export default class upload extends Component{
 
 	render () {
 
-		const { jazzSupported, className, show, validateFile } = this.props
+		const { jazzSupported, className, show, validateFile, openInput } = this.props
 		const { dropzoneActive, dropX, dropY, isDrop } = this.state
 
 		const cls = Classnames( className, {
@@ -99,7 +100,7 @@ export default class upload extends Component{
 				<FORM id="Upload" action="#" className={ cls } >
 					<DIV className={ clsRippler } style={ { position: 'absolute', top: dropY, left: dropX } } ></DIV>
 					<DIV onDragEnter={ this._onDragEnter } onDragLeave={ this._onDragLeave } onDrop={ this._onDrop.bind( this ) } className={ clsDropzone } ></DIV>
-					<BUTTON className={ style.uploadBtn } onClick={ this._openInput }><I className="material-icons">add_a_photo</I></BUTTON>
+					<BUTTON className={ style.uploadBtn } onClick={ openInput }><I className="material-icons">add_a_photo</I></BUTTON>
 					<INPUT className={ style.hidden } id="images" name="images" onChange={ validateFile } form="Upload" type="file" multiple={ false } accept="image/*" />
 				</FORM>
 
@@ -118,22 +119,6 @@ export default class upload extends Component{
 			)
 
 		}
-
-	}
-
-	_openInput = ( e ) => {
-
-		e.preventDefault()
-		let input = document.getElementById( "images" )
-		input.click()
-		/*window.scroll( {
-
-			top: document.body.scrollHeight, 
-			left: 0, 
-			behavior: 'auto' 
-
-		} )*/
-		window.scrollTo( 0, document.body.scrollHeight )
 
 	}
 

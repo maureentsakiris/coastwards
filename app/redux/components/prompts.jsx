@@ -4,9 +4,8 @@ import Classnames from 'classnames'
 
 import DIV from 'components/tags/div'
 import H from 'components/tags/h'
-import IMG from 'components/tags/img'
-
-import CLOSE from 'components/ui/close'
+import A from 'components/tags/a'
+import P from 'components/tags/p'
 
 import style from './_prompts'
 
@@ -18,36 +17,60 @@ const messages = defineMessages( {
 		description: "Prompt - Prompts user to select a file through the file system",
 		defaultMessage: "Have any pictures of coasts? Why not upload them now?"
 	},
-	select_file_parenthesis:{
-		id: "select_file_parenthesis",
-		description: "Prompt tagline - ",
-		defaultMessage: "( Drag & drop your image onto the world map or click the big blue button )"
-	},
-	drag_and_drop:{
-		id: "drag_and_drop",
-		description: "Prompt - Prompts user to drag and drop images onto the world map (or click the big red button)",
-		defaultMessage: "Drag & drop your image onto the world map to upload (or click the big red button)"
-	},
-	click_button:{
-		id: "click_button",
-		description: "Prompt - Prompts user to upload images by clicking on the big red button",
-		defaultMessage: "Click the big red button to upload an image"
+	select_help:{
+		id: "select_help",
+		description: "	 - ",
+		defaultMessage: "Click the big blue button or drag and drop your images anywhere onto the world map"
 	},
 	upload_ok:{
 		id: "upload_ok",
 		description: "Status - Informs user that his image was uploaded successfully",
 		defaultMessage: "WOHOO! Nice one! Your image was uploaded. Next one! :)"
+	},
+	too_many:{
+		id: "too_many",
+		description: "Link - ",
+		defaultMessage: "(I have too many to upload one by one!)"
+	},
+	browse_map:{
+		id: "browse_map",
+		description: "Button - ",
+		defaultMessage: "Browse map"
+	},
+	upload_image:{
+		id: "upload_image",
+		description: " - ",
+		defaultMessage: "Upload image"
+	},
+	read_guidelines:{
+		id: "read_guidelines",
+		description: " - ",
+		defaultMessage: "Read guidelines"
 	}
+	
+
+	/*,
+	how:{
+		id: "how",
+		description: " - ",
+		defaultMessage: "How do I upload an image?"
+	},
+	what_again:{
+		id: "what_again",
+		description: " - ",
+		defaultMessage: "What kind of pictures?"
+	}*/
+
 
 } )
 
-const prompts = ( { intl, className, prompt, jazzSupported, show, hide } ) => {
+const prompts = ( { intl, className, prompt, jazzSupported, show, hide, showDialog, openInput } ) => {
 
 	const { formatMessage } = intl
 
 	const str = messages[ prompt ] ? formatMessage( messages[ prompt ] ) : prompt
 
-	const logo = jazzSupported && prompt == 'select_file' && false
+	const init = prompt == 'select_file' && jazzSupported
 
 	const cls = Classnames( className, style.prompts, {
 
@@ -55,13 +78,37 @@ const prompts = ( { intl, className, prompt, jazzSupported, show, hide } ) => {
 
 	} )
 
+	const clsHeader = Classnames( {
+
+		[ style.header ]: jazzSupported
+
+	} )
+
+	const clsToomany = Classnames( {
+
+		[ style.toomany ]: jazzSupported
+
+	} )
+
+	/*<A onClick={ () => {} } className={ style.toomany } >{ formatMessage( messages.what_again ) }</A>
+			<A onClick={ () => {} } className={ style.toomany } >{ formatMessage( messages.how ) }</A>
+			<A onClick={ () => {} } className={ style.toomany } >{ formatMessage( messages.too_many ) }</A>
+
+
+			<A onClick={ openInput } className={ style.option } >{ formatMessage( messages.upload_image ) }</A>
+				<A onClick={ openInput } className={ style.option } >{ formatMessage( messages.read_guidelines ) }</A>*/
+
 	return(
 
-		<DIV id="Prompts" className={ cls } onClick={ hide } >
-			{ logo && <IMG src="assets/coastwards-alpha.png" className={ style.logo } alt="Coastwards Logo: A turtle on a mission" /> }
-			<H priority={ 2 }>{ str } 
-				{ jazzSupported && <CLOSE onClick={ hide } /> }
-			</H>
+		<DIV id="Prompts" className={ cls } >
+			<H className={ clsHeader } priority={ 2 }>{ str }</H>
+		
+			{ jazzSupported && <DIV>
+				{ init && <P className={ style.selecthelp } ><small>({ formatMessage( messages.select_help ) })</small></P> }
+				<A onClick={ hide } className={ style.option } >{ formatMessage( messages.browse_map ) }</A> 
+			</DIV> }
+
+			<A className={ clsToomany } onClick={ showDialog.bind( this, 'TOOMANY' ) }  ><small>{ formatMessage( messages.too_many ) }</small></A>
 		</DIV>
 
 	)
@@ -78,7 +125,9 @@ prompts.propTypes = {
 	jazzSupported: PropTypes.bool,
 	show: PropTypes.bool,
 
-	hide: PropTypes.func
+	hide: PropTypes.func,
+	showDialog: PropTypes.func,
+	openInput: PropTypes.func
 
 }
 

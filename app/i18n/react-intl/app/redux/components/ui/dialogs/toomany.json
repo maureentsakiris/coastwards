@@ -1,0 +1,57 @@
+[
+  {
+    "id": "toomany_header",
+    "description": "Header",
+    "defaultMessage": "Cool, tell us more!"
+  },
+  {
+    "id": "toomany_text",
+    "description": "P -",
+    "defaultMessage": "Let us know how many pictures you have and we will get back to you with an alternative to uploading them one by one."
+  },
+  {
+    "id": "one_thing_though",
+    "description": "-",
+    "defaultMessage": "KEEP IN MIND THOUGH, your images must have the location embedded in the metadata, otherwise we cannot place them on the map."
+  },
+  {
+    "id": "label_email",
+    "description": "Lable - Email",
+    "defaultMessage": "Your email"
+  },
+  {
+    "id": "placeholder_email",
+    "description": "Placeholder - Email",
+    "defaultMessage": "Your email"
+  },
+  {
+    "id": "label_question",
+    "description": "Label",
+    "defaultMessage": "How many pictures do you have? From where?"
+  },
+  {
+    "id": "placeholder_question",
+    "description": "Placeholder",
+    "defaultMessage": "How many pictures do you have? From where?"
+  },
+  {
+    "id": "label_submit",
+    "description": "Label - Submit",
+    "defaultMessage": "Submit"
+  },
+  {
+    "id": "sending_mail",
+    "description": "Status -",
+    "defaultMessage": "Just a sec ... sending mail"
+  },
+  {
+    "id": "mail_ok",
+    "description": "Status -",
+    "defaultMessage": "Email sent, thanks for contacting us!"
+  },
+  {
+    "id": "mail_ko",
+    "description": "Status -",
+    "defaultMessage": "Sorry, there was a problem sending the email. Please try again"
+  }
+]
