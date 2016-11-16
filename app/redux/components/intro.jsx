@@ -29,7 +29,7 @@ const intro = ( { intl, className } ) => {
 	return(
 
 		<DIV className={ className } >
-			<IMG src="./assets/coastwards-wide.png" alt="Logo coastwards: A turtle on a mission" />
+			<IMG src="./assets/coastwards-exclamation.png" alt="Logo coastwards: A turtle on a mission" className={ style.logo } />
 			<H priority={ 1 } className={ style.headline } >{ formatMessage( messages.help_science ) }</H>
 			<H priority={ 2 } className={ style.tagline } >{ formatMessage( messages.no_account ) }</H>
 		</DIV>
