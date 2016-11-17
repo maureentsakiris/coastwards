@@ -8,6 +8,9 @@
 
 .popup{
 
+	@extend %flexcontainer;
+	flex-direction: column;
+	overflow-y: scroll;
 	width: 300px;
 	height: 300px;
 
@@ -15,46 +18,100 @@
 
 .image{
 
+	@extend %flexitem;
+	flex-grow: 1;
 	width: 100%;
 	overflow: hidden;
 	background-size: cover;
-	background-position: 50%;
-	height: 260px;
+	background-position: center;
 
 }
 
 .actions{
 
-	padding: 8px;
+	@extend %flexitem;
+	flex-grow: 0;
+	width: 100%;
+	padding: 10px;
 
 }
 
-/* @media ( min-width: #{ $column-width } ) {
+.comment{
 
-  .popup{
+	margin: 1em 0;
+	display: none;
 
-  	width: 500px;
-	height: 500px;
+}
 
-  }
+.show{
 
-  .image{
+	display: block;
 
-  	height: 460px;
+}
 
-  }
+@media all and (orientation:landscape) {
 
-} */
+	.popup{
+
+		width: 60vh;
+		height: 60vh;
+
+	}
+
+	.image{
+
+		min-height: 20vh;
+
+	}
+
+}
+
+@media all and (orientation:portrait) {
+
+	.popup{
+
+		width: 60vw;
+		height: 60vw;
+
+	}
+
+	.image{
+
+		min-height: 20vw;
+
+	}
+
+}
 
 .clear{
 
 	float: right;
 
+	i{
+
+		font-weight: bold;
+
+	}
+
 }
 
-.comment, .send{
+.commentIcon, .send{
 
 	@extend %action;
+
+}
+
+.disabled{
+
+	opacity: 0.2;
+	pointer-events: none;
+	cursor: default;
+
+}
+
+.active{
+
+	color: $color-text;
 
 }
 

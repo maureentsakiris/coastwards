@@ -11,8 +11,13 @@ const messages = defineMessages( {
 
 	help_science:{
 		id: "help_science",
-		description: "Main Header. Summarizes project in one sentence",
-		defaultMessage: "Help Science study the risks of sea-level rise by uploading pictures of coasts"
+		description: "Main Header. Line one",
+		defaultMessage: "Help Science study the risks of sea-level rise"
+	},
+	by:{
+		id: "by",
+		description: "Main Header. Line two",
+		defaultMessage: "by uploading pictures of coasts"
 	},
 	no_account:{
 		id: "no_account",
@@ -29,8 +34,8 @@ const intro = ( { intl, className } ) => {
 	return(
 
 		<DIV className={ className } >
-			<IMG src="./assets/coastwards-wide.png" alt="Logo coastwards: A turtle on a mission" />
-			<H priority={ 1 } className={ style.headline } >{ formatMessage( messages.help_science ) }</H>
+			<IMG src="./assets/turtle.svg" alt="Logo coastwards: A turtle on a mission" className={ style.logo } />
+			<H priority={ 1 } className={ style.headline } ><span>{ formatMessage( messages.help_science ) }</span> <span>{ formatMessage( messages.by ) }</span></H>
 			<H priority={ 2 } className={ style.tagline } >{ formatMessage( messages.no_account ) }</H>
 		</DIV>
 

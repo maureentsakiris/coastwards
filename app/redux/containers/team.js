@@ -15,10 +15,10 @@ const mapDispatchToProps = ( dispatch ) => {
 			dispatch( showDialog( component ) )
 
 		},
-		addSnackbarMessage: ( e ) => {
+		addSnackbarMessage: ( msg, e ) => {
 
 			e.preventDefault()
-			dispatch( addSnackbarMessage( 'there_will_be_more', 1500 ) )
+			dispatch( addSnackbarMessage( msg, 1500 ) )
 
 		}
 

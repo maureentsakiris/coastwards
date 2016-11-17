@@ -4,6 +4,7 @@ import { defineMessages, injectIntl, intlShape } from 'react-intl'
 import Questions from 'containers/questions'
 
 import TOGGLE from 'components/ui/toggle'
+import P from 'components/tags/p'
 
 import style from './_faqs'
 
@@ -68,10 +69,12 @@ const faqs = ( { intl } ) => {
 
 	const { formatMessage } = intl
 
+	/*<Questions />*/
+
 	return(
 
 		<TOGGLE id="Faqs" title={ formatMessage( messages.other_questions_title ) } priority={ 3 } text={ formatMessage( messages.other_questions ) } className={ style.toggle } >
-			<Questions />
+			<P><strong>Ok, this is the part where I need your help. Please tell me your questions so I can put together this FAQs section. Click on "Still have a question!" and send me yours. Thank you so much!</strong></P>
 		</TOGGLE>
 	)
 

@@ -95,13 +95,13 @@ const team = ( { intl/*, showDialog*/, addSnackbarMessage } ) => {
 		<TOGGLE id="Team" title={ formatMessage( messages.who_are_you_title ) } priority={ 3 } text={ formatMessage( messages.who_are_you ) } className={ style.toggle } >
 			<P>{ formatMessage( messages.hi_there ) }</P>
 			<H priority={ 4 }>Athanasios Vafeidis</H>
-			<P>{ formatMessage( messages.nassos ) } <A href="#" title={ formatMessage( messages.more_title ) } onClick={ addSnackbarMessage.bind( this ) } >{ formatMessage( messages.more ) }</A></P>
+			<P>{ formatMessage( messages.nassos ) } <A href="#" title={ formatMessage( messages.more_title ) } onClick={ addSnackbarMessage.bind( this, 'there_will_be_more' ) } >{ formatMessage( messages.more ) }</A></P>
 			<H priority={ 4 }>Claudia  Wolff</H>
-			<P>{ formatMessage( messages.claudia ) } <A href="#" title={ formatMessage( messages.more_title ) } onClick={ addSnackbarMessage.bind( this ) } >{ formatMessage( messages.more ) }</A></P>
+			<P>{ formatMessage( messages.claudia ) } <A href="#" title={ formatMessage( messages.more_title ) } onClick={ addSnackbarMessage.bind( this, 'there_will_be_more' ) } >{ formatMessage( messages.more ) }</A></P>
 			<H priority={ 4 }>Jörn Schmidt</H>
-			<P>{ formatMessage( messages.joern ) } <A href="#" title={ formatMessage( messages.more_title ) } onClick={ addSnackbarMessage.bind( this ) } >{ formatMessage( messages.more ) }</A></P>
+			<P>{ formatMessage( messages.joern ) } <A href="#" title={ formatMessage( messages.more_title ) } onClick={ addSnackbarMessage.bind( this, 'there_will_be_more' ) } >{ formatMessage( messages.more ) }</A></P>
 			<H priority={ 4 }>Maureen Tsakiris</H>
-			<P>{ formatMessage( messages.me ) } <A href="#" title={ formatMessage( messages.more_title ) } onClick={ addSnackbarMessage.bind( this ) } >{ formatMessage( messages.more ) }</A></P>
+			<P>{ formatMessage( messages.me ) } <A href="#" title={ formatMessage( messages.more_title ) } onClick={ addSnackbarMessage.bind( this, 'there_will_be_more_maybe' ) } >{ formatMessage( messages.more ) }</A></P>
 		</TOGGLE>
 
 	)

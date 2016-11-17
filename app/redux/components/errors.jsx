@@ -88,7 +88,7 @@ const errors = ( { intl, className, error, jazzSupported, show, hide } ) => {
 
 	return(
 
-		<DIV id="Errors" className={ cls } >
+		<DIV id="Errors" className={ cls } onClick={ hide } >
 			<H priority={ 2 }>{ str } 
 				{ jazzSupported && <CLOSE onClick={ hide } /> }
 			</H>

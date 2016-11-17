@@ -13,25 +13,5 @@
     "id": "upload_ok",
     "description": "Status - Informs user that his image was uploaded successfully",
     "defaultMessage": "WOHOO! Nice one! Your image was uploaded. Next one! :)"
-  },
-  {
-    "id": "too_many",
-    "description": "Link -",
-    "defaultMessage": "(I have too many to upload one by one!)"
-  },
-  {
-    "id": "browse_map",
-    "description": "Button -",
-    "defaultMessage": "Browse map"
-  },
-  {
-    "id": "upload_image",
-    "description": "-",
-    "defaultMessage": "Upload image"
-  },
-  {
-    "id": "read_guidelines",
-    "description": "-",
-    "defaultMessage": "Read guidelines"
   }
 ]

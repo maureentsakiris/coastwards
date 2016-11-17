@@ -1,6 +1,5 @@
 import { connect } from 'react-redux'
-import { showDialog } from 'actions/ui/dialog'
-import { resetForm, openInput } from 'actions/main'
+import { resetForm } from 'actions/main'
 import PROMPTS from 'components/prompts'
 
 
@@ -29,18 +28,6 @@ const mapDispatchToProps = ( dispatch ) => {
 		resetForm: ( ) => {
 
 			dispatch( resetForm() )
-
-		},
-		showDialog: ( component, e ) => {
-
-			e.preventDefault()
-			dispatch( showDialog( component ) )
-
-		},
-		openInput: ( e ) => {
-
-			e.preventDefault()
-			dispatch( openInput( ) )
 
 		}
 

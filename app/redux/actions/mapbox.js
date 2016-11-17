@@ -354,7 +354,7 @@ export const fly = ( center, zoom ) => {
 		const state = getState()
 		const map = state.mapbox.map
 
-		map.flyTo( {
+		/*map.flyTo( {
 
 			center: center,
 			zoom: zoom,
@@ -366,6 +366,13 @@ export const fly = ( center, zoom ) => {
 				return t<.5 ? 16*t*t*t*t*t : 1+16*( --t ) *t*t*t*t
 
 			}
+
+		} )*/
+
+		map.jumpTo( {
+
+			center: center,
+			zoom: zoom
 
 		} )
 
@@ -475,7 +482,7 @@ export const showPopup = ( feature ) => {
 		popup.setLngLat( wrapped ).addTo( map )
 
 		let cz = map.getZoom();
-		let z = cz < 2 ? 2 : cz;
+		let z = cz < 2.5 ? 2.5 : cz;
 
 
 		const featureDOM = document.getElementById( 'Popup' )
