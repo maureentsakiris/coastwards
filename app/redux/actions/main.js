@@ -281,8 +281,18 @@ export const showGeolocator = ( ) => {
 
 	return function ( dispatch, getState ){
 
-		let state = getState()
+		/*let state = getState()
 		let geocoder = state.mapbox.geocoder
+
+		let geocoder = new MapboxGeocoder( {
+
+			container: 'Geolocator',
+			accessToken: 'pk.eyJ1IjoibWF1cmVlbnRzYWtpcmlzIiwiYSI6ImNpbXM1N2Z2MTAwNXF3ZW0ydXI3eXZyOTAifQ.ATjSaskEecYMiEG36I_viw'
+
+		} )
+		
+		dispatch( { type: types.SET_GEOCODER, to: geocoder } )
+		map.addControl( geocoder )
 
 		let input = document.querySelectorAll( '.mapboxgl-ctrl-geocoder input' )[ 0 ]
 
@@ -297,20 +307,11 @@ export const showGeolocator = ( ) => {
 
 			dispatch( showMarker() )
 
-		} )
-
-		/*map.once( 'movestart', ( ) => {
-
-			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'geolocator', to: false } )
-			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'marker', to: true } )
-
-		} )
-
-		map.once( 'moveend', ( ) => {
-
-			dispatch( addSnackbarMessage( 'zoom_until', 5000 ) )
-
 		} )*/
+
+		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'locate', to: false } )
+		dispatch( switchModus( 'locate' ) )
+		dispatch( showMarker() )
 
 	}
 

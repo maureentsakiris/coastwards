@@ -1,6 +1,6 @@
 import * as types from 'types'
-import mapboxgl from './mapbox-helper.js'
-require( 'mapbox-gl-geocoder/dist/mapbox-gl-geocoder.js' )
+import mapboxgl from 'mapbox-gl/dist/mapbox-gl.js'
+/*import MapboxGeocoder from 'mapbox-gl-geocoder'*/
 import _ from 'underscore'
 import { promiseGet } from 'actions/util/request/get'
 import { resetMain } from 'actions/main'
@@ -28,8 +28,7 @@ const _promiseInitMap = ( ) => {
 			dragPan: true,
 			keyboard: false,
 			doubleClickZoom: true,
-			touchZoomRotate: true,
-			failIfMajorPerformanceCaveat: true
+			touchZoomRotate: true
 
 		} )
 
@@ -46,7 +45,7 @@ const _promiseInitMap = ( ) => {
 
 		map.on( 'load', ( ) => {
 
-			map.addControl( new mapboxgl.NavigationControl( { position: 'bottom-right' } ) )
+			map.addControl( new mapboxgl.NavigationControl(), 'bottom-right' )
 			map.dragRotate.disable()
 			map.touchZoomRotate.disableRotation()
 			resolve( map ) 
@@ -106,7 +105,7 @@ const _onMarkerClick = ( features ) => {
 
 }
 
-const _onClusterClick = ( features ) => {
+/*const _onClusterClick = ( features ) => {
 
 	return function ( dispatch, getState ){
 
@@ -120,7 +119,7 @@ const _onClusterClick = ( features ) => {
 
 	}
 
-}
+}*/
 
 export const displayMap = ( ) => {
 
@@ -147,14 +146,15 @@ export const displayMap = ( ) => {
 			} )
 
 			//Add Geolocator
-			let geocoder = new mapboxgl.Geocoder( {
+			/*let geocoder = new MapboxGeocoder( {
 
-				container: 'Geolocator'
+				container: 'Geolocator',
+				accessToken: 'pk.eyJ1IjoibWF1cmVlbnRzYWtpcmlzIiwiYSI6ImNpbXM1N2Z2MTAwNXF3ZW0ydXI3eXZyOTAifQ.ATjSaskEecYMiEG36I_viw'
 
 			} )
 			
 			dispatch( { type: types.SET_GEOCODER, to: geocoder } )
-			map.addControl( geocoder )
+			map.addControl( geocoder, 'top-left' )*/
 
 
 			//Init and register popup
@@ -261,7 +261,7 @@ export const displayMap = ( ) => {
 
 			}, 'country_label_1' )
 
-			map.addLayer( {
+			/*map.addLayer( {
 			
 				id: 'cluster-circles',
 				type: 'circle',
@@ -295,11 +295,11 @@ export const displayMap = ( ) => {
 
 				}
 
-			}, 'country_label_1' )
+			}, 'country_label_1' )*/
 
 			dispatch( { type: types.ADD_INTERACTIVE_LAYER, layer: { layer: 'markers', onClick: _onMarkerClick } } )
-			dispatch( { type: types.ADD_INTERACTIVE_LAYER, layer: { layer: 'cluster-circles', onClick: _onClusterClick } } )
-			dispatch( { type: types.ADD_INTERACTIVE_LAYER, layer: { layer: 'cluster-count', onClick: _onClusterClick } } )
+			/*dispatch( { type: types.ADD_INTERACTIVE_LAYER, layer: { layer: 'cluster-circles', onClick: _onClusterClick } } )
+			dispatch( { type: types.ADD_INTERACTIVE_LAYER, layer: { layer: 'cluster-count', onClick: _onClusterClick } } )*/
 
 			let data = {
 
@@ -431,8 +431,8 @@ export const switchModus = ( modus ) => {
 		if( modus === 'locate' ){
 
 			map.setLayoutProperty( 'markers', 'visibility', 'none' )
-			map.setLayoutProperty( 'cluster-circles', 'visibility', 'none' )
-			map.setLayoutProperty( 'cluster-count', 'visibility', 'none' )
+			/*map.setLayoutProperty( 'cluster-circles', 'visibility', 'none' )
+			map.setLayoutProperty( 'cluster-count', 'visibility', 'none' )*/
 			map.setLayoutProperty( 'drops', 'visibility', 'none' )
 
 			_.each( locateLayers, ( layer ) => {
@@ -444,8 +444,8 @@ export const switchModus = ( modus ) => {
 		}else{
 
 			map.setLayoutProperty( 'markers', 'visibility', 'visible' )
-			map.setLayoutProperty( 'cluster-circles', 'visibility', 'visible' )
-			map.setLayoutProperty( 'cluster-count', 'visibility', 'visible' )
+			/*map.setLayoutProperty( 'cluster-circles', 'visibility', 'visible' )
+			map.setLayoutProperty( 'cluster-count', 'visibility', 'visible' )*/
 			map.setLayoutProperty( 'drops', 'visibility', 'visible' )
 
 			_.each( locateLayers, ( layer ) => {

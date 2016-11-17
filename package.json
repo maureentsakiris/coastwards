@@ -26,7 +26,7 @@
     "pug": "^2.0.0-beta6",
     "underscore": "^1.8.3",
     "nodemailer": "^2.6.4"
-  },
+  }, 
   "devDependencies": {
     "attr-accept": "^1.1.0",
     "autoprefixer": "^6.5.2",
