@@ -354,7 +354,7 @@ export const fly = ( center, zoom ) => {
 		const state = getState()
 		const map = state.mapbox.map
 
-		/*map.flyTo( {
+		map.flyTo( {
 
 			center: center,
 			zoom: zoom,
@@ -367,14 +367,14 @@ export const fly = ( center, zoom ) => {
 
 			}
 
-		} )*/
+		} )
 
-		map.jumpTo( {
+		/*map.jumpTo( {
 
 			center: center,
 			zoom: zoom
 
-		} )
+		} )*/
 
 	}
 
