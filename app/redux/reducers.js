@@ -77,6 +77,8 @@ const snackbar = ( state = [ ], action ) => {
 
 	case types.ADD_SNACKBAR_MESSAGE:
 		return [ ...state, action.message ]
+	case types.REMOVE_SNACKBAR_MESSAGES:
+		return []
 	case types.REMOVE_SNACKBAR_MESSAGE:
 		return _.without( state, action.message )
 	default:

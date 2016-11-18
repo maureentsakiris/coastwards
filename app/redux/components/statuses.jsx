@@ -4,6 +4,7 @@ import Classnames from 'classnames'
 
 import DIV from 'components/tags/div'
 import H from 'components/tags/h'
+import IMG from 'components/tags/img'
 
 import style from './_statuses'
 
@@ -37,6 +38,7 @@ const statuses = ( { intl, className, status, progress, show } ) => {
 	return(
 
 		<DIV id="Statuses" className={ cls } >
+			<IMG src="assets/tail-spin.svg" alt="Loading..." />
 			<H priority={ 2 }>{ stat }</H>
 		</DIV>
 

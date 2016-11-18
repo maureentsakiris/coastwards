@@ -9,6 +9,9 @@ import TH from 'components/tags/th'
 import TR from 'components/tags/tr'
 import TD from 'components/tags/td'
 import A from 'components/tags/a'
+import P from 'components/tags/p'
+import STRONG from 'components/tags/strong'
+import BR from 'components/tags/br'
 
 import TOGGLE from 'components/ui/toggle'
 
@@ -21,6 +24,11 @@ const messages = defineMessages( {
 		id: "data_privacy",
 		description: "Header - Gives user the opportunity to see exactly what information is beind sent to our servers",
 		defaultMessage: "See what else will be sent to our servers"
+	},
+	thats_it:{
+		id: "thats_it",
+		description: "Note",
+		defaultMessage: "That's it"
 	}
 
 
@@ -135,6 +143,9 @@ const formdata = ( { intl, image, uid, imageWidth, showDialog } ) => {
 					{ exifTable }
 				</TBODY>
 			</TABLE>
+			<BR/><BR/>
+			<P><STRONG>{ formatMessage( messages.thats_it ) }</STRONG></P>
+			<BR/>
 		</TOGGLE>
 
 	)

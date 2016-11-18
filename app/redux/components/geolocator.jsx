@@ -30,7 +30,7 @@ const messages = defineMessages( {
 
 } )
 
-const main = ( { intl, className, resetMain, showMarker, show } ) => {
+const main = ( { intl, className, resetMain, show } ) => {
 
 	const { formatMessage } = intl
 

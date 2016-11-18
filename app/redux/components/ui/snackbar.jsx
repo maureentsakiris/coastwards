@@ -43,7 +43,7 @@ const intlMessages = defineMessages( {
 	zoom_until:{
 		id: "zoom_until",
 		description: "Snack - ",
-		defaultMessage: "Zoom until the marker turns green and points at the location your image was taken!"
+		defaultMessage: "Zoom until the marker turns green and points to the location you took this picture!"
 	}
 
 } )

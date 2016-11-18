@@ -31,7 +31,7 @@ const messages = defineMessages( {
 	hurray:{
 		id: "hurray",
 		description: "Header - Informs user that his or her image has passed all the tests and is now ready for upload",
-		defaultMessage: "Just one more question (or two)"
+		defaultMessage: "Just one more question (two for experts)"
 	},
 
 
@@ -80,6 +80,12 @@ const messages = defineMessages( {
 		id: "notsure",
 		description: "Material - Not sure",
 		defaultMessage: "Not sure"
+	},
+
+	also:{
+		id: "also",
+		description: "Header",
+		defaultMessage: "and if you like"
 	},
 
 	//comment
@@ -162,6 +168,7 @@ const form = ( { intl, className, show, image, jazzSupported, setMaterial, /*set
 							<RADIOGROUP form="Form" label={ formatMessage( messages.select_material ) } name="material" options={ materials } onClick={ setMaterial } preferPlaceholder={ false } >
 								{ " " }<A onClick={ showDialog.bind( this, 'DEFINEMATERIAL' ) }>{ formatMessage( messages.define_material ) }</A>
 							</RADIOGROUP>
+							<H priority={ 2 }>{ formatMessage( messages.also ) }</H>
 							<COMMENT form="Form" label={ formatMessage( messages.say_hello ) } name="comment" placeholder={ formatMessage( messages.placeholder_say_hello ) } onChange={ setComment } preferPlaceholder={ false } />
 							<HASHTAG form="Form" label={ formatMessage( messages.hashtag_your_image ) } name="hashtag" placeholder={ formatMessage( messages.placeholder_hashtag_your_image ) } onChange={ setHashtag } preferPlaceholder={ false } >
 								{ " " }<A onClick={ showDialog.bind( this, 'WHYHASHTAG' ) }>{ formatMessage( messages.why_hashtag ) }</A>

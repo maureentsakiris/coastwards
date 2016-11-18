@@ -56,7 +56,7 @@ const messages = defineMessages( {
 	not_a_coast:{
 		id: "not_a_coast",
 		description: "Error - Informs user that image probably does not depict a coast",
-		defaultMessage: "Image annotation software can recognize coasts, beaches, shores and the like in images but not in this one. Sorry, we have to set some filters to avoid spam. Try another one!"
+		defaultMessage: "This doesn't look like a coast. Or at least the image annotation software doesn't think so. Sorry, try another one!"
 	}, 
 	location_undefined:{
 		id: "location_undefined",

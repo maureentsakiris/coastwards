@@ -7,7 +7,7 @@
   {
     "id": "hurray",
     "description": "Header - Informs user that his or her image has passed all the tests and is now ready for upload",
-    "defaultMessage": "Just one more question (or two)"
+    "defaultMessage": "Just one more question (two for experts)"
   },
   {
     "id": "select_material",
@@ -53,6 +53,11 @@
     "id": "notsure",
     "description": "Material - Not sure",
     "defaultMessage": "Not sure"
+  },
+  {
+    "id": "also",
+    "description": "Header",
+    "defaultMessage": "and if you like"
   },
   {
     "id": "say_hello",

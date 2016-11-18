@@ -15,7 +15,7 @@ const messages = defineMessages( {
 	can_you_locate:{
 		id: "can_you_locate",
 		description: "Status - Informs user that we couldn't extract the location from the metadata and prompts user to locate the image for us",
-		defaultMessage: "Sorry, couldn't find the location in the metadata. Do you remember exactly where you took this image?"
+		defaultMessage: "We couldn't find the location in the metadata. Do you remember exactly where you took this picture?"
 	},
 
 	yes_location_known:{

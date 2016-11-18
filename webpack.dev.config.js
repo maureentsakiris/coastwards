@@ -72,8 +72,8 @@ const config = {
 	plugins: [
 		extractStyles,
 		new webpack.HotModuleReplacementPlugin(),
-		new webpack.NoErrorsPlugin(),
-		new webpack.optimize.DedupePlugin()
+		new webpack.NoErrorsPlugin()/*,
+		new webpack.optimize.DedupePlugin()*/
 	]
 	
 }

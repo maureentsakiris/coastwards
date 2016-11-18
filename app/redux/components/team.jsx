@@ -5,6 +5,8 @@ import TOGGLE from 'components/ui/toggle'
 import P from 'components/tags/p'
 import H from 'components/tags/h'
 import A from 'components/tags/a'
+import STRONG from 'components/tags/strong'
+import BR from 'components/tags/br'
 
 import style from './_team'
 
@@ -79,9 +81,16 @@ const messages = defineMessages( {
 		defaultMessage: "That's me. I'm not a scientist and I'm responsible for any typos or anything else that's wrong about this website. And I am crazy enough to believe that people will upload pictures to protect their coasts from sea-level rise. Don't make me turn my back on society and go live in a cabin in the woods!"
 	},
 	me_official:{
-		id: "nassos_official",
+		id: "me_official",
 		description: "Team",
 		defaultMessage: 'Nassos has participated as a principal investigator in a number of collaborative research projects. He has co-authored peer-reviewed articles, book chapters and scientific reports and has also contributed to the Stern Review on the Economics of Climate Change and to the Fifth Assessment Report of the IPCC WGII. His teaching includes modules on “Climate Change”, “Coastal Zone Dynamics”, “Applications of GIS in coastal regions” and “Coasts of the World".'
+	},
+
+	//and
+	contact_here:{
+		id: "contact_here",
+		description: "Contact",
+		defaultMessage: "Contact us here"
 	}
 
 } )
@@ -102,6 +111,8 @@ const team = ( { intl/*, showDialog*/, addSnackbarMessage } ) => {
 			<P>{ formatMessage( messages.joern ) } <A href="#" title={ formatMessage( messages.more_title ) } onClick={ addSnackbarMessage.bind( this, 'there_will_be_more' ) } >{ formatMessage( messages.more ) }</A></P>
 			<H priority={ 4 }>Maureen Tsakiris</H>
 			<P>{ formatMessage( messages.me ) } <A href="#" title={ formatMessage( messages.more_title ) } onClick={ addSnackbarMessage.bind( this, 'there_will_be_more_maybe' ) } >{ formatMessage( messages.more ) }</A></P>
+			<BR/>
+			<P><STRONG>{ formatMessage( messages.contact_here ) }:</STRONG> <A href="mailTo:go@coastwards.org" >go@coastwards.org</A></P> 
 		</TOGGLE>
 
 	)

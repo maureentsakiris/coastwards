@@ -145,7 +145,16 @@ export const promiseCanvasBoxResize = ( image, boxlength ) => {
 
 			img.onload = () => {
 
-				let canvas = document.createElement( 'canvas' )
+				let canvas 
+				canvas = document.getElementById( 'promiseCanvasBoxResize' )
+
+				if( !canvas ){
+
+					canvas = document.createElement( 'canvas' )
+
+				}
+				
+				canvas.setAttribute( "id", "promiseCanvasBoxResize" )
 				canvas.setAttribute( "style", "display:none" )
 				document.body.appendChild( canvas )
 

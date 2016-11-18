@@ -19,7 +19,7 @@ export function addSnackbarMessage ( message, timeout=6000 ){
 
 			dispatch( {
 
-				type: types.REMOVE_SNACKBAR_MESSAGE,
+				type: types.REMOVE_SNACKBAR_MESSAGES,
 				message: message
 				
 			} )

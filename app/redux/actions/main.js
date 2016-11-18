@@ -319,19 +319,11 @@ export const showGeolocator = ( ) => {
 
 export const showMarker = ( ) => {
 
-	return function ( dispatch, getState ){
-
-		let state = getState()
-		let map = state.mapbox.map
+	return function ( dispatch ){
 
 		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'geolocator', to: false } )
 		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'marker', to: true } )
-
-		map.once( 'moveend', ( ) => {
-
-			dispatch( addSnackbarMessage( 'zoom_until', 5000 ) )
-
-		} )
+		dispatch( addSnackbarMessage( 'zoom_until', 5000 ) )
 
 	}
 

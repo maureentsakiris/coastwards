@@ -53,5 +53,15 @@
     "id": "me",
     "description": "Team",
     "defaultMessage": "That's me. I'm not a scientist and I'm responsible for any typos or anything else that's wrong about this website. And I am crazy enough to believe that people will upload pictures to protect their coasts from sea-level rise. Don't make me turn my back on society and go live in a cabin in the woods!"
+  },
+  {
+    "id": "me_official",
+    "description": "Team",
+    "defaultMessage": "Nassos has participated as a principal investigator in a number of collaborative research projects. He has co-authored peer-reviewed articles, book chapters and scientific reports and has also contributed to the Stern Review on the Economics of Climate Change and to the Fifth Assessment Report of the IPCC WGII. His teaching includes modules on “Climate Change”, “Coastal Zone Dynamics”, “Applications of GIS in coastal regions” and “Coasts of the World\"."
+  },
+  {
+    "id": "contact_here",
+    "description": "Contact",
+    "defaultMessage": "Contact us here"
   }
 ]
