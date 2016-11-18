@@ -339,7 +339,7 @@ export const displayMap = ( ) => {
 			dispatch( { type: types.SET_ERROR_MSG, to: error.message } )
 			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'errors', to: true } )
 			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'prompts', to: false } )
-			console.log( error )
+			//console.log( error )
 
 		} )
 
@@ -437,7 +437,11 @@ export const switchModus = ( modus ) => {
 
 			_.each( locateLayers, ( layer ) => {
 
-				map.setLayoutProperty( layer, 'visibility', 'visible' )
+				if( map.getLayer( layer ) ){
+
+					map.setLayoutProperty( layer, 'visibility', 'visible' )
+
+				}
 
 			} )
 
@@ -449,8 +453,12 @@ export const switchModus = ( modus ) => {
 			map.setLayoutProperty( 'drops', 'visibility', 'visible' )
 
 			_.each( locateLayers, ( layer ) => {
+				
+				if( map.getLayer( layer ) ){
 
-				map.setLayoutProperty( layer, 'visibility', 'none' )
+					map.setLayoutProperty( layer, 'visibility', 'none' )
+					
+				}
 
 			} )
 

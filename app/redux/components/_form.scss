@@ -80,8 +80,7 @@ $actions-height: 60px;
 	background: #fff;
 	position: relative;
 	top: -$actions-height;
-	border-top: #e1e1e1 1px solid;
-	box-shadow:  0 -2px 2px 0 rgba(0,0,0,.14);
+	@extend %drawershadow;
 
 }
 
@@ -118,6 +117,7 @@ $actions-height: 60px;
 
 	@extend %inner;
 	margin-bottom: $actions-height;
+	padding-bottom: 3em;
 
 }
 

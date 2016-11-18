@@ -1,7 +1,7 @@
 import React from 'react'
 import { defineMessages, injectIntl, intlShape } from 'react-intl'
 
-import Questions from 'containers/questions'
+/*import Questions from 'containers/questions'*/
 
 import TOGGLE from 'components/ui/toggle'
 import P from 'components/tags/p'

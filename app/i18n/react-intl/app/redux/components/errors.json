@@ -50,6 +50,11 @@
     "defaultMessage": "That's too bad. We need to know where the coast is located but we couldn't find that information in the metadata. Switch to a modern browser to locate the coast for us (unfortunately your browser doesn't support some of the features necessary to do that) or try uploading an image that was taken with a mobile or digital camera."
   },
   {
+    "id": "no_datetime",
+    "description": "Error -",
+    "defaultMessage": "We couldn't find the date and time you took this picture. Do you have the original? Try that one!"
+  },
+  {
     "id": "upload_error",
     "description": "Error - Informs user that an error ocurred during upload",
     "defaultMessage": "Crap, something went wrong during upload. I'm sure this is my fault (or maybe your connection is bad). Try again?"

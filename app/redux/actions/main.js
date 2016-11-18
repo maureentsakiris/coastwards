@@ -1,5 +1,5 @@
 import * as types from 'types'
-import { promiseType, promiseEXIF, promiseMinimumBoxDimensions, promiseCanvasBoxResize, promiseLocation } from 'actions/util/image'
+import { promiseType, promiseEXIF, promiseMinimumBoxDimensions, promiseCanvasBoxResize, promiseLocation, promiseDateTime } from 'actions/util/image'
 import { addSnackbarMessage } from 'actions/ui/snackbar'
 import { promiseDataURLtoBlob } from 'actions/util/form'
 import { promiseXHR } from 'actions/util/request/xhr'
@@ -197,6 +197,11 @@ export const validateFile = ( e ) => {
 		} )
 		.then( ( image ) => {
 
+			return promiseDateTime( image )
+
+		} )
+		.then( ( image ) => {
+
 			return promiseCanvasBoxResize( image, state.config.imageWidth )
 
 		} )
@@ -269,7 +274,7 @@ export const validateFile = ( e ) => {
 			dispatch( { type: types.SET_ERROR_MSG, to: error.message } )
 			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'errors', to: true } )
 			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'prompts', to: false } )
-			console.log( error )
+			//console.log( error )
 
 		} )
 
@@ -279,7 +284,7 @@ export const validateFile = ( e ) => {
 
 export const showGeolocator = ( ) => {
 
-	return function ( dispatch, getState ){
+	return function ( dispatch/*, getState*/ ){
 
 		/*let state = getState()
 		let geocoder = state.mapbox.geocoder
@@ -465,13 +470,13 @@ export const uploadImage = ( ) => {
 			return response
 
 		} )
-		.catch( ( error ) => {
+		.catch( ( /*error*/ ) => {
 
 			dispatch( resetMain() )
 			dispatch( { type: types.SET_ERROR_MSG, to: 'upload_error' } )
 			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'errors', to: true } )
 			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'prompts', to: false } )
-			console.log( error )
+			//console.log( error )
 
 		} )
 

@@ -23,7 +23,7 @@ const messages = defineMessages( {
 	data_privacy:{
 		id: "data_privacy",
 		description: "Header - Gives user the opportunity to see exactly what information is beind sent to our servers",
-		defaultMessage: "See what else will be sent to our servers"
+		defaultMessage: "What other information do you collect?"
 	},
 	thats_it:{
 		id: "thats_it",
@@ -78,12 +78,12 @@ const formdata = ( { intl, image, uid, imageWidth, showDialog } ) => {
 
 	return(
 
-		<TOGGLE priority={ 6 } text={ formatMessage( messages.data_privacy ).toUpperCase() } >
+		<TOGGLE priority={ 4 } text={ formatMessage( messages.data_privacy ) } >
 			<TABLE className={ cls.table } >
 				<THEAD>
 					<TR>
-						<TH>IP Address</TH>
-						<TH></TH>
+						<TH style={ { width: '160px', paddingTop: '0' } } >IP Address</TH>
+						<TH style={ { paddingTop: '0' } }></TH>
 					</TR>
 				</THEAD>
 				<TBODY>

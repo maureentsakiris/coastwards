@@ -299,3 +299,29 @@ export const promiseLocation = ( image ) => {
 	} )
 
 }
+
+export const promiseDateTime = ( image ) => {
+
+	return new Promise( ( resolve, reject ) => {
+
+		if( !image.exifdata ){ //empty exif is dealt with in promiseEXIF
+
+			reject( Error( 'You need to promiseEXIF before you can promiseLocation' ) )
+
+		}
+
+		let exif = image.exifdata
+
+		if( !exif.DateTimeOriginal || !exif.DateTimeDigitized || !exif.DateTime ){
+
+			reject( Error( 'no_datetime' ) )
+
+		}else{
+
+			resolve( image )
+
+		}
+
+	} )
+
+}

@@ -142,17 +142,16 @@ table{
 td,th{
 
 	padding: 0.5em 0;
-	overflow: scroll;
+	word-wrap: break-word;
 
 }
 
 th{
 
 	text-align: left;
-	border-bottom: 2px solid #000;
 	padding-top: 2em;
-	text-transform: uppercase;
-	font-weight: bold;
-
+    font-size: 1.3em;
+    text-transform: uppercase;
+    border-bottom: 2px dotted #fff;
 
 }

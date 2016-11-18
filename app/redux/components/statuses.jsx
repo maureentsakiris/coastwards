@@ -38,8 +38,8 @@ const statuses = ( { intl, className, status, progress, show } ) => {
 	return(
 
 		<DIV id="Statuses" className={ cls } >
-			<IMG src="assets/tail-spin.svg" alt="Loading..." />
 			<H priority={ 2 }>{ stat }</H>
+			<IMG src="assets/tail-spin.svg" alt="Loading..." />
 		</DIV>
 
 	)

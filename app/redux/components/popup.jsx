@@ -36,7 +36,7 @@ class popup extends Component {
 
 		this.state = {
 
-			comment: false
+			active: 'image'
 
 		}
 
@@ -45,7 +45,7 @@ class popup extends Component {
 	render () {
 
 		const { feature } = this.props
-		const { comment } = this.state
+		const { active } = this.state
 
 		if( !feature.properties ){
 
@@ -66,31 +66,43 @@ class popup extends Component {
 
 			const hasComment = feature.properties.comment !== "" ? true : false
 
-			const clsCommentIcon = Classnames( style.commentIcon, {
+			const clsImageIcon = Classnames( style.icon, {
 
-				[ style.disabled ]: !hasComment,
-				[ style.active ]: comment
+				[ style.active ]: active == 'image'
+
+			} )
+
+			const clsCommentIcon = Classnames( style.icon, {
+
+				[ style.hide ]: !hasComment,
+				[ style.active ]: active == 'comment'
 
 			} )
 
 			const clsComment = Classnames( style.comment, {
 
-				[ style.show ]: comment && hasComment
+				[ style.show ]: active == 'comment' && hasComment
 
 			} )
 
 			return(
 
 				<DIV id="Popup" className={ style.popup } >
-					<DIV className={ style.image } style={ { backgroundImage: 'url(' + feature.properties.image +')' } } />
+					{ active == 'image' && <DIV className={ style.top } style={ { backgroundImage: 'url(' + feature.properties.image +')' } } /> }
+					{ active == 'comment' && <DIV className={ style.top } >
+						<P className={ clsComment }>{ feature.properties.comment }</P>
+					</DIV> }
 					<DIV className={ style.actions }>
-						<A onClick={ this._toggleComment } className={ clsCommentIcon } >
+						<A onClick={ this._setActive.bind( this, 'image' ) } className={ clsImageIcon } >
+							<I className="material-icons">image</I>
+						</A>
+						<A onClick={ this._setActive.bind( this, 'comment' ) } className={ clsCommentIcon } >
 							<I className="material-icons">mode_comment</I>
 						</A>
 						<A onClick={ this._hidePopup } className={ style.clear } >
 							<I className="material-icons">clear</I>
 						</A>
-						<P className={ clsComment }>{ feature.properties.comment }</P>
+						
 					</DIV>
 				</DIV>
 
@@ -100,11 +112,10 @@ class popup extends Component {
 
 	}
 
-	_toggleComment = ( e ) => {
+	_setActive = ( comp, e ) => {
 
 		e.preventDefault()
-		const { comment } = this.state
-		this.setState( { comment: !comment } )
+		this.setState( { active: comp } )
 
 	}
 

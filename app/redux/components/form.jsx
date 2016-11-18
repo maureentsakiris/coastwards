@@ -12,7 +12,7 @@ import A from 'components/tags/a'
 
 import RADIOGROUP from 'components/form/radiogroup/radiogroup'
 import COMMENT from 'components/form/input/comment'
-import HASHTAG from 'components/form/input/hashtag'
+/*import HASHTAG from 'components/form/input/hashtag'*/
 import CANCEL from 'components/form/button/cancel'
 import GO from 'components/form/button/go'
 
@@ -131,7 +131,7 @@ const messages = defineMessages( {
 
 } )
 
-const form = ( { intl, className, show, image, jazzSupported, setMaterial, /*setAdaptation,*/ setComment, setHashtag, uploadImage, resetMain, showDialog } ) => {
+const form = ( { intl, className, show, image, jazzSupported, setMaterial, /*setAdaptation,*/ setComment/*, setHashtag*/, uploadImage, resetMain, showDialog } ) => {
 
 	const { formatMessage } = intl
 
@@ -157,6 +157,11 @@ const form = ( { intl, className, show, image, jazzSupported, setMaterial, /*set
 
 		} )
 
+		/*<HASHTAG form="Form" label={ formatMessage( messages.hashtag_your_image ) } name="hashtag" placeholder={ formatMessage( messages.placeholder_hashtag_your_image ) } onChange={ setHashtag } preferPlaceholder={ false } >
+								{ " " }<A onClick={ showDialog.bind( this, 'WHYHASHTAG' ) }>{ formatMessage( messages.why_hashtag ) }</A>
+							</HASHTAG>
+							<BR />*/
+
 		return(
 
 			<FORM id="Form" action="#" className={ cls } >
@@ -170,10 +175,7 @@ const form = ( { intl, className, show, image, jazzSupported, setMaterial, /*set
 							</RADIOGROUP>
 							<H priority={ 2 }>{ formatMessage( messages.also ) }</H>
 							<COMMENT form="Form" label={ formatMessage( messages.say_hello ) } name="comment" placeholder={ formatMessage( messages.placeholder_say_hello ) } onChange={ setComment } preferPlaceholder={ false } />
-							<HASHTAG form="Form" label={ formatMessage( messages.hashtag_your_image ) } name="hashtag" placeholder={ formatMessage( messages.placeholder_hashtag_your_image ) } onChange={ setHashtag } preferPlaceholder={ false } >
-								{ " " }<A onClick={ showDialog.bind( this, 'WHYHASHTAG' ) }>{ formatMessage( messages.why_hashtag ) }</A>
-							</HASHTAG>
-							<BR />
+							
 							<FORMDATA />
 						</DIV>
 					</DIV>
@@ -194,6 +196,11 @@ const form = ( { intl, className, show, image, jazzSupported, setMaterial, /*set
 
 		} )
 
+		/*<BR/>
+				<HASHTAG form="Form" label={ formatMessage( messages.hashtag_your_image ) } name="hashtag" placeholder={ formatMessage( messages.placeholder_hashtag_your_image ) } onChange={ setHashtag } preferPlaceholder={ false } >
+					{ " " }<A onClick={ showDialog.bind( this, 'WHYHASHTAG' ) }>{ formatMessage( messages.why_hashtag ) }</A>
+				</HASHTAG>*/
+
 		return(
 
 			<FORM id="Form" action="#" className={ cls } >
@@ -205,10 +212,7 @@ const form = ( { intl, className, show, image, jazzSupported, setMaterial, /*set
 				</RADIOGROUP>
 				<BR/>
 				<COMMENT form="Form" label={ formatMessage( messages.say_hello ) } name="comment" placeholder={ formatMessage( messages.placeholder_say_hello ) } onChange={ setComment } preferPlaceholder={ false } />
-				<BR/>
-				<HASHTAG form="Form" label={ formatMessage( messages.hashtag_your_image ) } name="hashtag" placeholder={ formatMessage( messages.placeholder_hashtag_your_image ) } onChange={ setHashtag } preferPlaceholder={ false } >
-					{ " " }<A onClick={ showDialog.bind( this, 'WHYHASHTAG' ) }>{ formatMessage( messages.why_hashtag ) }</A>
-				</HASHTAG>
+				
 				<BR/><BR/>
 				<FORMDATA />
 				<BR/><BR/>

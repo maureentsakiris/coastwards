@@ -120,6 +120,9 @@ class toomany extends Component {
 
 		const disabled = sending || !validated
 
+		const mess = typeof status === 'object' ? status.message : status //if error object
+		const m = messages[ mess ] ? formatMessage( messages[ mess ] ) : mess //if translation 
+
 		return(
 
 			<DIV>
@@ -132,7 +135,7 @@ class toomany extends Component {
 					<COMMENT onChange={ this._validateForm } form="RequestBatch" label={ formatMessage( messages.label_question ) } name="comment" placeholder={ formatMessage( messages.placeholder_question ) } />
 					<BR />
 					<SUBMIT onClick={ this._submit } form="RequestBatch" name="submit" label={ formatMessage( messages.label_submit ) } disabled={ disabled } />
-					<DIV className={ style.status } >{ status && formatMessage( messages[ status ] ) }</DIV>
+					<DIV className={ style.status } >{ status && m }</DIV>
 				</FORM>
 			</DIV>
 
@@ -186,7 +189,7 @@ class toomany extends Component {
 		} )
 		.catch( ( error ) => {
 
-			console.log( error );
+			this.setState( { status: error, sending: false } )
 
 		} )
 

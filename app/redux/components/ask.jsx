@@ -112,6 +112,9 @@ class ask extends Component {
 
 		const disabled = sending || !validated
 
+		const mess = typeof status === 'object' ? status.message : status //if error object
+		const m = messages[ mess ] ? formatMessage( messages[ mess ] ) : mess //if translation 
+
 		return(
 
 			<TOGGLE id="AskUs" title={ formatMessage( messages.one_more_question_title ) } priority={ 3 } text={ formatMessage( messages.one_more_question ) } className={ style.toggle } >
@@ -121,7 +124,7 @@ class ask extends Component {
 					<EMAIL id="Email" onChange={ this._validateForm } form="Ask" label={ formatMessage( messages.label_email ) } name="email" placeholder={ formatMessage( messages.placeholder_email ) } />
 					<BR />
 					<SUBMIT onClick={ this._submit } form="Ask" name="submit" label={ formatMessage( messages.label_submit ) } disabled={ disabled } />
-					<DIV className={ style.status } >{ status && formatMessage( messages[ status ] ) }</DIV>
+					<DIV className={ style.status } >{ status && m }</DIV>
 				</FORM>
 			</TOGGLE>
 
@@ -175,7 +178,7 @@ class ask extends Component {
 		} )
 		.catch( ( error ) => {
 
-			console.log( error );
+			this.setState( { status: error, sending: false } )
 
 		} )
 
