@@ -224,7 +224,6 @@ export const validateFile = ( e ) => {
 			const uid = uuid.v1()
 			dispatch( { type: types.SET_UID, to: uid } )
 			dispatch( { type: types.SET_IMAGE_TO_UPLOAD, to: image } )
-			//console.log( "H§REEER!", image );
 			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'statuses', to: false } )
 
 			
@@ -274,7 +273,7 @@ export const validateFile = ( e ) => {
 			dispatch( { type: types.SET_ERROR_MSG, to: error.message } )
 			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'errors', to: true } )
 			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'prompts', to: false } )
-			//console.log( error )
+			console.log( error )
 
 		} )
 
@@ -470,13 +469,13 @@ export const uploadImage = ( ) => {
 			return response
 
 		} )
-		.catch( ( /*error*/ ) => {
+		.catch( ( error ) => {
 
 			dispatch( resetMain() )
 			dispatch( { type: types.SET_ERROR_MSG, to: 'upload_error' } )
 			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'errors', to: true } )
 			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'prompts', to: false } )
-			//console.log( error )
+			console.log( error )
 
 		} )
 

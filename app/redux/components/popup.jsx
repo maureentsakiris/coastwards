@@ -131,7 +131,7 @@ class popup extends Component {
 
 	_reset = ( ) => {
 
-		this.setState( { comment: false } )
+		this.setState( { active: 'image' } )
 
 	}
 

@@ -339,7 +339,7 @@ export const displayMap = ( ) => {
 			dispatch( { type: types.SET_ERROR_MSG, to: error.message } )
 			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'errors', to: true } )
 			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'prompts', to: false } )
-			//console.log( error )
+			console.log( error )
 
 		} )
 
