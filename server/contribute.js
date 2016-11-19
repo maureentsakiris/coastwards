@@ -6,6 +6,21 @@ const path = require( 'path' )
 const fs = require( 'fs' )
 const _ = require( 'underscore' )
 const util = require( 'util' )
+const validator = require( 'validator' )
+
+const createDOMPurify = require( 'dompurify' )
+const jsdom = require( 'jsdom' )
+const window = jsdom.jsdom( '', {
+	features: {
+
+		FetchExternalResources: false, // disables resource loading over HTTP / filesystem
+		ProcessExternalResources: false // do not execute JS within script blocks
+
+	}
+} ).defaultView
+const DOMPurify = createDOMPurify( window )
+
+
 
 const globalConfigs = require ( '../config/' )
 const config = globalConfigs.mysql;
@@ -99,6 +114,10 @@ const _promiseInsertFile = ( formData ) => {
 		const { long, lat, manual, uid, datetime, labels, exifdata, material, adaptation, comment, hashtag } = fields
 		const point = util.format( 'POINT(%s %s)', long, lat )
 
+		const sanitizedComment = DOMPurify.sanitize( comment )
+		const trimmedComment = validator.trim( sanitizedComment )
+		const lowComment = validator.stripLow( trimmedComment )
+		const escapedComment = validator.escape( lowComment )
 		
 
 		// Truncate table coastwards.contributions
@@ -130,7 +149,7 @@ const _promiseInsertFile = ( formData ) => {
 			ip,
 			material,
 			adaptation,
-			comment,
+			escapedComment,
 			hashtag
 
 		]
@@ -168,135 +187,13 @@ const _promiseInsertFile = ( formData ) => {
 
 	} )
 
-	// Maybe later we can iterate through multiple drops
-	/*var drop = 'dropzone[0]';
-
-	var ip = formData.ip;
-	var long = formData.fields[ drop + '.validations.imageHasLocation.result.specs.long' ];
-	var lat = formData.fields[ drop + '.validations.imageHasLocation.result.specs.lat' ];
-	var validationsJSON = formData.fields[ drop + '.validationsJSON' ];
-	var exifJSON = formData.fields[ drop + '.exifJSON' ];
-	var manual = formData.fields[ drop + '.manual' ];
-	var exifDateTime = formData.fields[ drop + '.exifDateTime' ];
-	var filename = formData.files[ drop + '.file' ].filename;
-	var uid = formData.files[ drop + '.file' ].uid;
-	var comment = formData.fields[ drop + '.comment' ];
-	var material = formData.fields[ drop + '.material' ];
-	var adaptation = formData.fields[ drop + '.adaptation' ];
-
-	var point = util.format( 'POINT(%s %s)', long, lat )
-
-	return new Promise( function ( resolve, reject ) {
-
-		// Truncate table coastwards.contributions
-		var sql = 'INSERT INTO ??.?? ( ??, ??, ??, ??, ??, ??, ??, ??, ??, ??, ?? ) VALUES ( (ST_PointFromText(?)), ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )';
-		var inserts = [ 
-			'coastwards', 
-			'contributions',
-
-			'contribution_point',
-			'contribution_point_manual',
-			'contribution_filename',
-			'contribution_uid',
-			'contribution_exif_datetime',
-			'contribution_validations',
-			'contribution_exif',
-			'contribution_ip',
-			'contribution_comment',
-			'contribution_material',
-			'contribution_adaptation',
-
-			point,
-			manual,
-			filename,
-			uid,
-			exifDateTime,
-			validationsJSON,
-			exifJSON,
-			ip,
-			comment,
-			material,
-			adaptation
-
-		]
-
-		var query = mysql.format( sql, inserts )
-
-		pool.getConnection( function ( error, connection ) {
-
-			if( error ){
-
-				reject( error )
-
-			}else{
-
-				connection.query( query, function ( error, rows ) {
-
-					if( error ){
-
-						reject( error )
-
-					}else{
-
-						formData.insertId = rows.insertId;
-						resolve( formData )
-
-					}
-
-					connection.release()
-
-				} )
-
-			}
-
-		} )
-
-	} )*/
-
 }
-
-/*function promiseResizeFile ( formData ){
-
-	var drop = 'dropzone[0]';
-
-	return new Promise( function ( resolve, reject ) {
-
-		var file = formData.files[ drop + '.file' ];
-
-		jimp.read( file.path, function ( error, jimpFile ){
-
-			if( error ){
-
-				reject( Error( 'contributions/promiseResizeFile/readError/' + error ) )
-
-			}else{
-
-				var dirname = path.dirname( file.path )
-				var extension = path.extname( file.path )
-				var basename = path.basename( file.path, extension )
-				var fileSmall = path.join( dirname, basename + '-small.jpg' )
-
-				jimpFile.scaleToFit( 800, 800 ).quality( 80 ).write( fileSmall, function ( ){
-
-					file.fileSmall = fileSmall;
-					resolve( formData ) // <-- WHAT IF THIS FAILS TO BE CALLED????
-
-				} )
-
-			}
-
-		} )
-
-	} )
-
-}*/
 
 
 router.post( '/upload', ( req, res ) => {
 
 	_promiseFetchForm( req )
 	.then( _promiseInsertFile )
-	/*.then( promiseResizeFile )*/
 	.then( ( formData ) => {
 
 		res.send( 'upload_ok' )

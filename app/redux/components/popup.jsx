@@ -1,12 +1,13 @@
 import React, { PropTypes, Component } from 'react'
 import PureRenderMixin from 'react-addons-pure-render-mixin'
 import { /*defineMessages,*/ injectIntl, intlShape } from 'react-intl'
-import Classnames from 'classnames'
+/*import Classnames from 'classnames'
+import unescape from 'validator/lib/unescape'*/
 
 import DIV from 'components/tags/div'
 import A from 'components/tags/a'
 import I from 'components/tags/i'
-import P from 'components/tags/p'
+/*import P from 'components/tags/p'*/
 
 import style from './_popup'
 
@@ -44,8 +45,8 @@ class popup extends Component {
 
 	render () {
 
-		const { feature } = this.props
-		const { active } = this.state
+		const { feature, hidePopup } = this.props
+		/*const { active } = this.state*/
 
 		if( !feature.properties ){
 
@@ -64,7 +65,7 @@ class popup extends Component {
 							<I className="material-icons">favorite</I>
 						</A>*/
 
-			const hasComment = feature.properties.comment !== "" ? true : false
+			/*const hasComment = feature.properties.comment ? true : false
 
 			const clsImageIcon = Classnames( style.icon, {
 
@@ -85,24 +86,25 @@ class popup extends Component {
 
 			} )
 
+			const comment = hasComment ? unescape( feature.properties.comment ) : ''*/
+
 			return(
 
 				<DIV id="Popup" className={ style.popup } >
-					{ active == 'image' && <DIV className={ style.top } style={ { backgroundImage: 'url(' + feature.properties.image +')' } } /> }
-					{ active == 'comment' && <DIV className={ style.top } >
-						<P className={ clsComment }>{ feature.properties.comment }</P>
-					</DIV> }
+					<DIV className={ style.top } style={ { backgroundImage: 'url(' + feature.properties.image +')' } } />
 					<DIV className={ style.actions }>
-						<A onClick={ this._setActive.bind( this, 'image' ) } className={ clsImageIcon } >
-							<I className="material-icons">image</I>
-						</A>
-						<A onClick={ this._setActive.bind( this, 'comment' ) } className={ clsCommentIcon } >
+						<A onClick={ this._oops } className={ style.comment } >
 							<I className="material-icons">mode_comment</I>
 						</A>
-						<A onClick={ this._hidePopup } className={ style.clear } >
+						<A onClick={ this._oops } className={ style.send } >
+							<I className="material-icons">send</I>
+						</A>
+						<A onClick={ this._oops } className={ style.favorite } >
+							<I className="material-icons">favorite</I>
+						</A>
+						<A onClick={ hidePopup } className={ style.clear } >
 							<I className="material-icons">clear</I>
 						</A>
-						
 					</DIV>
 				</DIV>
 
@@ -112,7 +114,7 @@ class popup extends Component {
 
 	}
 
-	_setActive = ( comp, e ) => {
+	/*_setActive = ( comp, e ) => {
 
 		e.preventDefault()
 		this.setState( { active: comp } )
@@ -133,7 +135,7 @@ class popup extends Component {
 
 		this.setState( { active: 'image' } )
 
-	}
+	}*/
 
 	_oops = ( e ) => {
 

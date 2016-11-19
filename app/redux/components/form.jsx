@@ -11,12 +11,13 @@ import DIV from 'components/tags/div'
 import A from 'components/tags/a'
 
 import RADIOGROUP from 'components/form/radiogroup/radiogroup'
-import COMMENT from 'components/form/input/comment'
-/*import HASHTAG from 'components/form/input/hashtag'*/
+/*import COMMENT from 'components/form/input/comment'
+import HASHTAG from 'components/form/input/hashtag'*/
 import CANCEL from 'components/form/button/cancel'
 import GO from 'components/form/button/go'
 
 import BR from 'components/tags/br'
+import SMALL from 'components/tags/small'
 
 import style from './_form'
 
@@ -31,7 +32,7 @@ const messages = defineMessages( {
 	hurray:{
 		id: "hurray",
 		description: "Header - Informs user that his or her image has passed all the tests and is now ready for upload",
-		defaultMessage: "Just one more question (two for experts)"
+		defaultMessage: "Your image is ready for upload! Just one more question ..."
 	},
 
 
@@ -131,7 +132,7 @@ const messages = defineMessages( {
 
 } )
 
-const form = ( { intl, className, show, image, jazzSupported, setMaterial, /*setAdaptation,*/ setComment/*, setHashtag*/, uploadImage, resetMain, showDialog } ) => {
+const form = ( { intl, className, show, image, jazzSupported, setMaterial, /*setAdaptation, setComment, setHashtag,*/ uploadImage, resetMain, showDialog } ) => {
 
 	const { formatMessage } = intl
 
@@ -157,7 +158,9 @@ const form = ( { intl, className, show, image, jazzSupported, setMaterial, /*set
 
 		} )
 
-		/*<HASHTAG form="Form" label={ formatMessage( messages.hashtag_your_image ) } name="hashtag" placeholder={ formatMessage( messages.placeholder_hashtag_your_image ) } onChange={ setHashtag } preferPlaceholder={ false } >
+		/*<H priority={ 2 }>{ formatMessage( messages.also ) }</H>
+							<COMMENT form="Form" label={ formatMessage( messages.say_hello ) } name="comment" placeholder={ formatMessage( messages.placeholder_say_hello ) } onChange={ setComment } preferPlaceholder={ false } />
+							<HASHTAG form="Form" label={ formatMessage( messages.hashtag_your_image ) } name="hashtag" placeholder={ formatMessage( messages.placeholder_hashtag_your_image ) } onChange={ setHashtag } preferPlaceholder={ false } >
 								{ " " }<A onClick={ showDialog.bind( this, 'WHYHASHTAG' ) }>{ formatMessage( messages.why_hashtag ) }</A>
 							</HASHTAG>
 							<BR />*/
@@ -171,11 +174,8 @@ const form = ( { intl, className, show, image, jazzSupported, setMaterial, /*set
 						<DIV id="Content" className={ style.content } >
 							<H priority={ 2 }>{ formatMessage( messages.hurray ) }</H>
 							<RADIOGROUP form="Form" label={ formatMessage( messages.select_material ) } name="material" options={ materials } onClick={ setMaterial } preferPlaceholder={ false } >
-								{ " " }<A onClick={ showDialog.bind( this, 'DEFINEMATERIAL' ) }>{ formatMessage( messages.define_material ) }</A>
+								{ " " }<SMALL><A onClick={ showDialog.bind( this, 'DEFINEMATERIAL' ) }>{ formatMessage( messages.define_material ) }</A></SMALL>
 							</RADIOGROUP>
-							<H priority={ 2 }>{ formatMessage( messages.also ) }</H>
-							<COMMENT form="Form" label={ formatMessage( messages.say_hello ) } name="comment" placeholder={ formatMessage( messages.placeholder_say_hello ) } onChange={ setComment } preferPlaceholder={ false } />
-							
 							<FORMDATA />
 						</DIV>
 					</DIV>
@@ -197,6 +197,7 @@ const form = ( { intl, className, show, image, jazzSupported, setMaterial, /*set
 		} )
 
 		/*<BR/>
+				<COMMENT form="Form" label={ formatMessage( messages.say_hello ) } name="comment" placeholder={ formatMessage( messages.placeholder_say_hello ) } onChange={ setComment } preferPlaceholder={ false } /><BR/>
 				<HASHTAG form="Form" label={ formatMessage( messages.hashtag_your_image ) } name="hashtag" placeholder={ formatMessage( messages.placeholder_hashtag_your_image ) } onChange={ setHashtag } preferPlaceholder={ false } >
 					{ " " }<A onClick={ showDialog.bind( this, 'WHYHASHTAG' ) }>{ formatMessage( messages.why_hashtag ) }</A>
 				</HASHTAG>*/
@@ -208,11 +209,8 @@ const form = ( { intl, className, show, image, jazzSupported, setMaterial, /*set
 				{ image.dataURL && <IMG src={ image.dataURL } alt="your image" /> }
 				<BR/><BR/>
 				<RADIOGROUP form="Form" label={ formatMessage( messages.select_material ) } name="material" options={ materials } onClick={ setMaterial } preferPlaceholder={ false } >
-					{ " " }<A onClick={ showDialog.bind( this, 'DEFINEMATERIAL' ) }>{ formatMessage( messages.define_material ) }</A>
+					{ " " }<SMALL><A onClick={ showDialog.bind( this, 'DEFINEMATERIAL' ) }>{ formatMessage( messages.define_material ) }</A></SMALL>
 				</RADIOGROUP>
-				<BR/>
-				<COMMENT form="Form" label={ formatMessage( messages.say_hello ) } name="comment" placeholder={ formatMessage( messages.placeholder_say_hello ) } onChange={ setComment } preferPlaceholder={ false } />
-				
 				<BR/><BR/>
 				<FORMDATA />
 				<BR/><BR/>

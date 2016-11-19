@@ -51,20 +51,6 @@ $action-height: 45px;
 
 }
 
-.comment{
-
-	margin: 13px;
-	display: none;
-	background-color: rgba( 255, 255, 255, 0.5 );
-
-}
-
-.show{
-
-	display: block;
-
-}
-
 @media all and (orientation:landscape) {
 
 	.popup{
@@ -111,21 +97,9 @@ $action-height: 45px;
 
 }
 
-.icon, .send{
+.comment, .send{
 
 	@extend %action;
-
-}
-
-.hide{
-
-	display: none;
-
-}
-
-.active{
-
-	color: $color-text;
 
 }
 

@@ -5,7 +5,6 @@ import { promiseDataURLtoBlob } from 'actions/util/form'
 import { promiseXHR } from 'actions/util/request/xhr'
 import { fly, resetMap, hidePopup, switchModus, dropMarker } from 'actions/mapbox'
 import uuid from 'node-uuid'
-
 import _ from 'underscore'
 
 
@@ -327,7 +326,7 @@ export const showMarker = ( ) => {
 
 		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'geolocator', to: false } )
 		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'marker', to: true } )
-		dispatch( addSnackbarMessage( 'zoom_until', 5000 ) )
+		dispatch( addSnackbarMessage( 'zoom_until', 7000 ) )
 
 	}
 
@@ -426,7 +425,7 @@ export const uploadImage = ( ) => {
 			formData.append( 'comment', comment )
 			formData.append( 'hashtag', hashtag )
 
-			//UPDATE the table in form.jsx if something changes here!!!!
+			//UPDATE the table in formdata.jsx if something changes here!!!!
 			
 
 			return formData

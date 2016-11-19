@@ -7,7 +7,7 @@
   {
     "id": "hurray",
     "description": "Header - Informs user that his or her image has passed all the tests and is now ready for upload",
-    "defaultMessage": "Just one more question (two for experts)"
+    "defaultMessage": "Your image is ready for upload! Just one more question ..."
   },
   {
     "id": "select_material",

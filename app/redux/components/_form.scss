@@ -47,6 +47,7 @@ $actions-height: 60px;
 
 			font-size: 1.7em;
 			font-weight: 300;
+			margin-top: 0.5em;
 
 		}
 
@@ -66,8 +67,9 @@ $actions-height: 60px;
 	@extend %sheetCorset;
 	background-color: white;
 	box-shadow: 0 19px 60px rgba(0,0,0,.3),0 15px 20px rgba(0,0,0,.22);
-	height: 80%;
+	max-height: 80%;
 	overflow-y: scroll;
+	-webkit-overflow-scrolling: touch;
 
 }
 
@@ -117,32 +119,6 @@ $actions-height: 60px;
 
 	@extend %inner;
 	margin-bottom: $actions-height;
-	padding-bottom: 3em;
+	padding-bottom: 2em;
 
 }
-
-/* .actions{
-
-	@extend %inner;
-	height: $actions-height;
-
-} */
-
-/* .form{
-
-	@extend %fullscreen;
-	position: fixed;
-    background: rgba(0, 0, 0, 0.6);
-
-    &>div{
-
-    	@extend %corset;
-    	background: #fff;
-	    height: 70%;
-	    overflow: scroll;
-	    box-shadow: 0 19px 60px rgba(0,0,0,.3),0 15px 20px rgba(0,0,0,.22);
-	    border-radius: 3px;
-
-    }
-
-} */

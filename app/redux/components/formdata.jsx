@@ -15,7 +15,7 @@ import BR from 'components/tags/br'
 
 import TOGGLE from 'components/ui/toggle'
 
-import cls from './_formdata.scss'
+import style from './_formdata.scss'
 
 const messages = defineMessages( {
 	
@@ -78,12 +78,12 @@ const formdata = ( { intl, image, uid, imageWidth, showDialog } ) => {
 
 	return(
 
-		<TOGGLE priority={ 4 } text={ formatMessage( messages.data_privacy ) } >
-			<TABLE className={ cls.table } >
+		<TOGGLE priority={ 6 } text={ formatMessage( messages.data_privacy ) } className={ style.toggle } >
+			<TABLE className={ style.table } >
 				<THEAD>
 					<TR>
-						<TH style={ { width: '160px', paddingTop: '0' } } >IP Address</TH>
-						<TH style={ { paddingTop: '0' } }></TH>
+						<TH style={ { width: '160px' } } >IP Address</TH>
+						<TH></TH>
 					</TR>
 				</THEAD>
 				<TBODY>
