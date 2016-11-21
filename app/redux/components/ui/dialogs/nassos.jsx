@@ -42,13 +42,13 @@ const messages = defineMessages( {
 } )
 
 
-const nassos = ( { intl } ) => {
+const nassos = ( { intl, className } ) => {
 
 	const { formatMessage } = intl
 
 	return(
 
-		<DIV>
+		<DIV className={ className } >
 			<H priority={ 2 }>{ formatMessage( messages.nassos_header ) }</H>
 			<P>{ formatMessage( messages.nassos_p1 ) }</P>
 			<P>{ formatMessage( messages.nassos_p2 ) }</P>
@@ -87,9 +87,7 @@ const nassos = ( { intl } ) => {
 nassos.propTypes = {
 
 	intl: intlShape,
-	component: PropTypes.node,
-	active: PropTypes.bool,
-	closeDialog: PropTypes.func
+	className: PropTypes.string
 
 }
 

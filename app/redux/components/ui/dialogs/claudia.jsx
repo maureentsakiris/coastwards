@@ -28,13 +28,13 @@ const messages = defineMessages( {
 } )
 
 
-const claudia = ( { intl } ) => {
+const claudia = ( { intl, className } ) => {
 
 	const { formatMessage } = intl
 
 	return(
 
-		<DIV>
+		<DIV className={ className } >
 			<H priority={ 2 }>{ formatMessage( messages.claudia_header ) }</H>
 			<P>{ formatMessage( messages.claudia_text ) }</P>
 			<H priority={ 3 }>{ formatMessage( messages.publications ) }</H>
@@ -48,9 +48,7 @@ const claudia = ( { intl } ) => {
 claudia.propTypes = {
 
 	intl: intlShape,
-	component: PropTypes.node,
-	active: PropTypes.bool,
-	closeDialog: PropTypes.func
+	className: PropTypes.className
 
 }
 

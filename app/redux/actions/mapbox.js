@@ -134,14 +134,14 @@ export const displayMap = ( ) => {
 			//Track zoom
 			map.on( 'zoom', () => {
 
-				dispatch( { type: types.SET_ZOOM, to: map.getZoom() } )
+				//dispatch( { type: types.SET_ZOOM, to: map.getZoom() } )
 
 			} )
 
 			//Track center
 			map.on( 'move', () => {
 
-				dispatch( { type: types.SET_CENTER, to: map.getCenter() } )
+				//dispatch( { type: types.SET_CENTER, to: map.getCenter() } )
 
 			} )
 

@@ -22,13 +22,13 @@ const messages = defineMessages( {
 } )
 
 
-const me = ( { intl } ) => {
+const me = ( { intl, className } ) => {
 
 	const { formatMessage } = intl
 
 	return(
 
-		<DIV>
+		<DIV className={ className } >
 			<H priority={ 2 }>{ formatMessage( messages.me_header ) }</H>
 			<P>{ formatMessage( messages.me_text ) }</P>
 		</DIV>
@@ -40,9 +40,7 @@ const me = ( { intl } ) => {
 me.propTypes = {
 
 	intl: intlShape,
-	component: PropTypes.node,
-	active: PropTypes.bool,
-	closeDialog: PropTypes.func
+	className: PropTypes.string
 
 }
 

@@ -48,18 +48,18 @@ const dialog = ( { intl, component, active, closeDialog } ) => {
 			<DIV className={ style.dialog } >
 				<DIV className={ style.body } >
 					<CLOSE className={ style.close } onClick={ closeDialog } title={ formatMessage( messages.close_dialog ) } />
-					{ component == 'WHYIP' && <WHYIP /> }
-					{ component == 'NOJAZZ' && <NOJAZZ /> }
-					{ component == 'DEFINEMATERIAL' && <DEFINEMATERIAL /> }
-					{ component == 'WHYHASHTAG' && <WHYHASHTAG /> }
-					{ component == 'TESTSITE' && <TESTSITE /> }
+					{ component == 'WHYIP' && <WHYIP className={ style.scroll } /> }
+					{ component == 'NOJAZZ' && <NOJAZZ className={ style.scroll } /> }
+					{ component == 'DEFINEMATERIAL' && <DEFINEMATERIAL className={ style.scroll } /> }
+					{ component == 'WHYHASHTAG' && <WHYHASHTAG className={ style.scroll } /> }
+					{ component == 'TESTSITE' && <TESTSITE className={ style.scroll } /> }
 
-					{ component == 'NASSOS' && <NASSOS /> }
-					{ component == 'CLAUDIA' && <CLAUDIA /> }
-					{ component == 'JOERN' && <JOERN /> }
-					{ component == 'ME' && <ME /> }
+					{ component == 'NASSOS' && <NASSOS className={ style.scroll } /> }
+					{ component == 'CLAUDIA' && <CLAUDIA className={ style.scroll } /> }
+					{ component == 'JOERN' && <JOERN className={ style.scroll } /> }
+					{ component == 'ME' && <ME className={ style.scroll } /> }
 
-					{ component == 'TOOMANY' && <TOOMANY /> }
+					{ component == 'TOOMANY' && <TOOMANY className={ style.scroll } /> }
 					
 				</DIV>
 			</DIV>

@@ -33,13 +33,13 @@ const messages = defineMessages( {
 } )
 
 
-const whyIP = ( { intl } ) => {
+const whyIP = ( { intl, className } ) => {
 
 	const { formatMessage } = intl
 
 	return(
 
-		<DIV>
+		<DIV className={ className } >
 			<H priority={ 2 }>{ formatMessage( messages.whyIP_header ) }</H>
 			<P>{ formatMessage( messages.whyIP_text ) } <A target="_blank" href={ formatMessage( messages.ip_address_learn_more_href ) }>{ formatMessage( messages.ip_address_learn_more ) }</A></P>
 		</DIV>
@@ -51,9 +51,7 @@ const whyIP = ( { intl } ) => {
 whyIP.propTypes = {
 
 	intl: intlShape,
-	component: PropTypes.node,
-	active: PropTypes.bool,
-	closeDialog: PropTypes.func
+	className: PropTypes.string
 
 }
 

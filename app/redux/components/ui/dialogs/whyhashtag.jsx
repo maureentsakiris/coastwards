@@ -22,13 +22,13 @@ const messages = defineMessages( {
 } )
 
 
-const whyhashtag = ( { intl } ) => {
+const whyhashtag = ( { intl, className } ) => {
 
 	const { formatMessage } = intl
 
 	return(
 
-		<DIV>
+		<DIV className={ className } >
 			<H priority={ 2 }>{ formatMessage( messages.whyhashtag_header ) }</H>
 			<P>{ formatMessage( messages.whyhashtag_text ) }</P>
 		</DIV>
@@ -40,9 +40,7 @@ const whyhashtag = ( { intl } ) => {
 whyhashtag.propTypes = {
 
 	intl: intlShape,
-	component: PropTypes.node,
-	active: PropTypes.bool,
-	closeDialog: PropTypes.func
+	className: PropTypes.string
 
 }
 

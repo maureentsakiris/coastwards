@@ -71,7 +71,7 @@ const dialog = ( state = { component: '', active: false }, action ) => {
 
 }
 
-const snackbar = ( state = [ ], action ) => {
+const snackbar = ( state = [], action ) => {
 
 	switch ( action.type ){
 

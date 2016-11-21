@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react'
 import Classnames from 'classnames'
-//import _ from 'underscore'
 
 import FORM from 'components/tags/form'
 import DIV from 'components/tags/div'
@@ -22,7 +21,8 @@ export default class upload extends Component{
 
 		validateFile: PropTypes.func,
 		setLayerVisibility: PropTypes.func,
-		openInput: PropTypes.func
+		openInput: PropTypes.func,
+		addDropEvent: PropTypes.func
 
 	}
 
@@ -57,8 +57,6 @@ export default class upload extends Component{
 
 		super ( props )
 
-		//this.debounce = _.debounce( this.props.validateFile, 500 )
-
 		this.state = {
 
 			dropzoneActive: false,
@@ -73,7 +71,7 @@ export default class upload extends Component{
 	render () {
 
 		const { jazzSupported, className, show, validateFile, openInput } = this.props
-		const { dropzoneActive, dropX, dropY, isDrop } = this.state
+		const { dropzoneActive/*, dropX, dropY, isDrop*/ } = this.state
 
 		const cls = Classnames( className, {
 
@@ -89,16 +87,17 @@ export default class upload extends Component{
 
 			} )
 
-			const clsRippler = Classnames( style.rippler, {
+			/*const clsRippler = Classnames( style.rippler, {
 
 				[ style.ripple ]: isDrop
 
 			} )
+			<DIV className={ style.rippler } style={ { position: 'absolute', top: dropY, left: dropX } } ></DIV>
+			*/
 
 			return(
 
 				<FORM id="Upload" action="#" className={ cls } >
-					<DIV className={ clsRippler } style={ { position: 'absolute', top: dropY, left: dropX } } ></DIV>
 					<DIV onDragEnter={ this._onDragEnter } onDragLeave={ this._onDragLeave } onDrop={ this._onDrop.bind( this ) } className={ clsDropzone } ></DIV>
 					<BUTTON className={ style.uploadBtn } onClick={ openInput }><I className="material-icons">add_a_photo</I></BUTTON>
 					<INPUT className={ style.hidden } id="images" name="images" onChange={ validateFile } form="Upload" type="file" multiple={ false } accept="image/*" />
@@ -148,17 +147,7 @@ export default class upload extends Component{
 
 		this.setState( { dropX: dropX, dropY: dropY, isDrop: true, dropzoneActive: false } )
 
-		//this.props.validateFile( e )
-
-		//let it ripple
-		setTimeout( function ( ){
-
-			//this.props.validateFile( e )
-
-		}, 500 )
-
-		//this.debounce( e )
-
+		this.props.validateFile( e )
 
 	}
 

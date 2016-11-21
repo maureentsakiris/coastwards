@@ -1,10 +1,8 @@
 import * as types from 'types'
-import { lockWindowScroll, unlockWindowScroll } from 'actions/util/misc'
 
 export function showDialog ( component ){
 
-
-	lockWindowScroll()
+	document.body.style.overflow = 'hidden'
 	return {
 
 		type: types.SHOW_DIALOG,
@@ -16,7 +14,7 @@ export function showDialog ( component ){
 
 export function hideDialog ( ){
 
-	unlockWindowScroll()
+	document.body.style.overflow = 'auto'
 	return {
 
 		type: types.HIDE_DIALOG

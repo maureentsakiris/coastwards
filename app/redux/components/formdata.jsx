@@ -38,7 +38,10 @@ const formdata = ( { intl, image, uid, imageWidth, showDialog } ) => {
 
 	const { formatMessage } = intl
 
-	const exifTable = _.map( image.exifdata, ( exif, key ) => {
+	//UPDATE ALSO IN MAIN.JS (uploadImage)
+	const cleanExif = _.omit( image.exifdata, [ 'MakerNote', 'undefined' ] )
+
+	const exifTable = _.map( cleanExif, ( exif, key ) => {
 
 		const data = exif.toString()
 

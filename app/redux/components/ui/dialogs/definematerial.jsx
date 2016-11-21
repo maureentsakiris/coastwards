@@ -22,13 +22,13 @@ const messages = defineMessages( {
 } )
 
 
-const definematerial = ( { intl } ) => {
+const definematerial = ( { intl, className } ) => {
 
 	const { formatMessage } = intl
 
 	return(
 
-		<DIV>
+		<DIV className={ className } >
 			<H priority={ 2 }>{ formatMessage( messages.definematerial_header ) }</H>
 			<P>{ formatMessage( messages.definematerial_text ) }</P>
 		</DIV>
@@ -40,9 +40,7 @@ const definematerial = ( { intl } ) => {
 definematerial.propTypes = {
 
 	intl: intlShape,
-	component: PropTypes.node,
-	active: PropTypes.bool,
-	closeDialog: PropTypes.func
+	className: PropTypes.string
 
 }
 

@@ -92,9 +92,7 @@ class toomany extends Component {
 	static propTypes = {
 
 		intl: intlShape,
-		component: PropTypes.node,
-		active: PropTypes.bool,
-		closeDialog: PropTypes.func
+		className: PropTypes.string
 
 	}
 
@@ -116,6 +114,7 @@ class toomany extends Component {
 	render () {
 
 		const { formatMessage } = this.props.intl
+		const { className } = this.props
 		const { sending, status, validated } = this.state
 
 		const disabled = sending || !validated
@@ -125,7 +124,7 @@ class toomany extends Component {
 
 		return(
 
-			<DIV>
+			<DIV className={ className } >
 				<H priority={ 2 }>{ formatMessage( messages.toomany_header ) }</H>
 				<P>{ formatMessage( messages.toomany_text ) }</P>
 				<BR/>

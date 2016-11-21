@@ -22,13 +22,13 @@ const messages = defineMessages( {
 } )
 
 
-const nojazz = ( { intl } ) => {
+const nojazz = ( { intl, className } ) => {
 
 	const { formatMessage } = intl
 
 	return(
 
-		<DIV>
+		<DIV className={ className } >
 			<H priority={ 2 }>{ formatMessage( messages.nojazz_header ) }</H>
 			<P>{ formatMessage( messages.nojazz_text ) }</P>
 		</DIV>
@@ -40,9 +40,7 @@ const nojazz = ( { intl } ) => {
 nojazz.propTypes = {
 
 	intl: intlShape,
-	component: PropTypes.node,
-	active: PropTypes.bool,
-	closeDialog: PropTypes.func
+	className: PropTypes.string
 
 }
 

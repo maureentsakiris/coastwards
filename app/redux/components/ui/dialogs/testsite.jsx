@@ -22,13 +22,13 @@ const messages = defineMessages( {
 } )
 
 
-const testsite = ( { intl } ) => {
+const testsite = ( { intl, className } ) => {
 
 	const { formatMessage } = intl
 
 	return(
 
-		<DIV>
+		<DIV className={ className } >
 			<H priority={ 2 }>{ formatMessage( messages.testsite_header ) }</H>
 			<P>So, this is the 'bare bones' version of coastwards.org and it still isn't completely finished. Have a look around, try uploading an image of a coast and tell me how it worked for you. I will NOT save the images you upload, so please keep them close!</P>
 			<br />
@@ -44,9 +44,7 @@ const testsite = ( { intl } ) => {
 testsite.propTypes = {
 
 	intl: intlShape,
-	component: PropTypes.node,
-	active: PropTypes.bool,
-	closeDialog: PropTypes.func
+	className: PropTypes.string
 
 }
 

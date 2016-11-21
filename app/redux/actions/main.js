@@ -137,7 +137,6 @@ const _promiseLocation = ( image ) => {
 
 }
 
-
 export const validateFile = ( e ) => {
 
 	return function ( dispatch, getState ){
@@ -157,6 +156,8 @@ export const validateFile = ( e ) => {
 		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'prompts', to: false } )
 		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'errors', to: false } )
 		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'upload', to: false } )
+
+
 
 		_promiseFiles( e ) //eslint-disable-line promise/always-return
 		.then( ( selected ) => {
@@ -234,9 +235,6 @@ export const validateFile = ( e ) => {
 					dispatch( dropMarker( image ) )
 
 					dispatch( addSnackbarMessage( 'here_we_go', 5000 ) )
-					/*dispatch( { type: types.SET_STATUS_MSG, to: 'here_we_go' } )
-					dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'statuses', to: true } )*/
-
 					dispatch( fly( [ image.long, image.lat ], 15 ) )
 
 					map.once( 'moveend', () => {
@@ -407,13 +405,17 @@ export const uploadImage = ( ) => {
 			const { image, material, adaptation, comment, hashtag, uid } = state.form
 
 			const { exifdata, lat, long, manual, labels } = image
+
+			//UPDATE ALSO IN FORMDATA.JSX
+			const cleanExif = _.omit( image.exifdata, [ 'MakerNote', 'undefined' ] )
+
 			const devLabels = labels ? labels : {}
 			const datetime = exifdata.DateTimeOriginal || exifdata.DateTimeDigitized || exifdata.DateTime
 
 			let formData = new FormData()
 
 			formData.append( 'file', blob, uid + '.jpg' )
-			formData.append( 'exifdata', JSON.stringify( exifdata ) )
+			formData.append( 'exifdata', JSON.stringify( cleanExif ) )
 			formData.append( 'lat', lat )
 			formData.append( 'long', long )
 			formData.append( 'manual', manual )

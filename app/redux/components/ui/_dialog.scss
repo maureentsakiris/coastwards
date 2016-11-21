@@ -6,10 +6,8 @@
 	width: 100%;
 	height: 100%;
 	top: 0;
-	bottom: 0;
+	left: 0;
 	background-color: $overlay-color;
-	padding: 56px 56px 56px 46px;
-	//padding: 2em;
 	z-index: 300;
 	overflow-y: scroll;
 	-webkit-overflow-scrolling: touch;
@@ -24,12 +22,13 @@
 
 .close{
 
-	position: fixed;
-	top: 20px;
-	right: 15px;
-	/* width: 100%;
-    text-align: right;
-    display: block; */
+	display: block;
+	text-align: right;
+	margin-bottom: 1em;
+    /* z-index: 1;
+    position: absolute;
+    top: 10px;
+    right: 10px; */
 
 	i{
 
@@ -42,5 +41,32 @@
 .body{
 
 	@extend %corset;
+	margin-top: $site-padding-top;
+    margin-bottom: $site-padding-bottom;
+    padding: 15px;
+
+	/* @extend %corset;
+	height: 100%;
+    position: relative; */
+
+}
+
+.scroll{
+
+	/* position: absolute;
+    top: 0;
+    height: 100%;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    padding: 56px 56px 56px 20px;
+    left: 0;
+*/
+
+    &>*:first-child{
+
+    	margin-top: 0;
+    	padding-top: 0;
+
+    }
 
 }
