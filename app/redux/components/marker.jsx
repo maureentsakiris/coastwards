@@ -7,6 +7,7 @@ import DIV from 'components/tags/div'
 import IMG from 'components/tags/img'
 import I from 'components/tags/i'
 import BUTTON from 'components/tags/button'
+import A from 'components/tags/a'
 
 import style from './_marker'
 
@@ -22,13 +23,18 @@ const messages = defineMessages( {
 		id: "done_title",
 		description: "Title - ",
 		defaultMessage: "Continue with this location"
+	},
+	switch_to_satellite:{
+		id: "switch_to_satellite",
+		description: "Alt - ",
+		defaultMessage: "Switch to satellite view"
 	}
 	
 
 } )
 
 
-const marker = ( { intl, className, resetMain, setLocation, show, zoom } ) => {
+const marker = ( { intl, className, resetMain, setLocation, toggleSatellite, show, zoom } ) => {
 
 	const { formatMessage } = intl
 
@@ -46,13 +52,17 @@ const marker = ( { intl, className, resetMain, setLocation, show, zoom } ) => {
 
 	} )
 
+	/*<BUTTON className={ style.cancelBtn } onClick={ resetMain } title={ formatMessage( messages.cancel_title ) } ><I className="material-icons">close</I></BUTTON>
+			<BUTTON className={ clsDone } onClick={ setLocation } disabled={ disabled } title={ formatMessage( messages.done_title ) } ><I className="material-icons">done</I></BUTTON>
+			<A href="#" onClick={ toggleSatellite } className={ style.toggleSatellite } >satellite</A>*/
+
 	return(
 
 		<DIV className={ cls } >
 			{ !disabled && <IMG src="./assets/marker-green.png" alt="Location marker" className={ style.img }  /> }
 			{ disabled && <IMG src="./assets/marker-red.png" alt="Location marker" className={ style.img } /> }
-			<BUTTON className={ style.cancelBtn } onClick={ resetMain } title={ formatMessage( messages.cancel_title ) } ><I className="material-icons">close</I></BUTTON>
-			<BUTTON className={ clsDone } onClick={ setLocation } disabled={ disabled } title={ formatMessage( messages.done_title ) } ><I className="material-icons">done</I></BUTTON>
+			<IMG src="assets/satellite.png" alt={ formatMessage( messages.switch_to_satellite ) } onClick={ toggleSatellite } className={ style.toggle } />
+			
 		</DIV> 
 
 	)
@@ -69,7 +79,8 @@ marker.propTypes = {
 	center: PropTypes.object,
 
 	resetMain: PropTypes.func,
-	setLocation: PropTypes.func
+	setLocation: PropTypes.func,
+	toggleSatellite: PropTypes.func
 
 }
 

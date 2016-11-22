@@ -278,53 +278,25 @@ export const validateFile = ( e ) => {
 
 }
 
-export const showGeolocator = ( ) => {
-
-	return function ( dispatch/*, getState*/ ){
-
-		/*let state = getState()
-		let geocoder = state.mapbox.geocoder
-
-		let geocoder = new MapboxGeocoder( {
-
-			container: 'Geolocator',
-			accessToken: 'pk.eyJ1IjoibWF1cmVlbnRzYWtpcmlzIiwiYSI6ImNpbXM1N2Z2MTAwNXF3ZW0ydXI3eXZyOTAifQ.ATjSaskEecYMiEG36I_viw'
-
-		} )
-		
-		dispatch( { type: types.SET_GEOCODER, to: geocoder } )
-		map.addControl( geocoder )
-
-		let input = document.querySelectorAll( '.mapboxgl-ctrl-geocoder input' )[ 0 ]
-
-		input.placeholder = 'Country, City, ...'
-		
-
-		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'locate', to: false } )
-		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'geolocator', to: true } )
-		dispatch( switchModus( 'locate' ) )
-
-		geocoder.on( 'result', ( ) => {
-
-			dispatch( showMarker() )
-
-		} )*/
-
-		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'locate', to: false } )
-		dispatch( switchModus( 'locate' ) )
-		dispatch( showMarker() )
-
-	}
-
-}
 
 export const showMarker = ( ) => {
 
-	return function ( dispatch ){
+	return function ( dispatch, getState ){
 
-		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'geolocator', to: false } )
+		let state = getState()
+		let map = state.mapbox.map
+
+		map.on( 'zoom', () => {
+
+			dispatch( { type: types.SET_ZOOM, to: map.getZoom() } )
+
+		} )
+
+		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'locate', to: false } )
+		dispatch( switchModus( 'locate' ) )
 		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'marker', to: true } )
 		dispatch( addSnackbarMessage( 'zoom_until', 7000 ) )
+
 
 	}
 
@@ -342,6 +314,11 @@ export const setLocation = ( ) => {
 		image.lat = center.lat
 		image.long = center.lng
 
+		map.off( 'zoom', () => {
+
+			dispatch( { type: types.SET_ZOOM, to: map.getZoom() } )
+			
+		} )
 		dispatch( dropMarker( image ) )
 		dispatch( { type: types.SET_IMAGE_TO_UPLOAD, to: {} } )
 		dispatch( { type: types.SET_IMAGE_TO_UPLOAD, to: image } )

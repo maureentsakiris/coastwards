@@ -8,5 +8,10 @@
     "id": "done_title",
     "description": "Title -",
     "defaultMessage": "Continue with this location"
+  },
+  {
+    "id": "switch_to_satellite",
+    "description": "Alt -",
+    "defaultMessage": "Switch to satellite view"
   }
 ]

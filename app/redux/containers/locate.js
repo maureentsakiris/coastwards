@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 
-import { showGeolocator, resetMain } from 'actions/main'
+import { showMarker, resetMain } from 'actions/main'
 import LOCATE from 'components/locate'
 
 
@@ -18,10 +18,10 @@ const mapDispatchToProps = ( dispatch ) => {
 
 	return {
 
-		showGeolocator: ( e ) => {
+		showMarker: ( e ) => {
 
 			e.preventDefault()
-			dispatch( showGeolocator( e ) )
+			dispatch( showMarker( e ) )
 
 		},
 		resetMain: ( e ) => {

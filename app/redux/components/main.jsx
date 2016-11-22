@@ -6,7 +6,6 @@ import Statuses from 'containers/statuses'
 import Prompts from 'containers/prompts'
 import Upload from 'containers/upload'
 import Locate from 'containers/locate'
-import Geolocator from 'containers/geolocator'
 import Marker from 'containers/marker'
 import Form from 'containers/form'
 import Mapbox from 'containers/mapbox'
@@ -75,7 +74,6 @@ const main = ( { intl, uploadSupported, jazzSupported, scrollUp } ) => {
 				</A>
 				<Mapbox className={ style.mapbox } />
 				<Locate key="locate" className={ style.screen } />
-				<Geolocator key="geolocator" className={ style.screen } />
 				<Marker key="marker" className={ style.marker } />
 				<Prompts key="prompts" className={ style.screen } />
 				<Statuses key="statuses" className={ style.screen } />

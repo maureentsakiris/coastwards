@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-
+import { toggleSatellite } from 'actions/mapbox'
 import { resetMain, setLocation } from 'actions/main'
 import MARKER from 'components/marker'
 
@@ -29,6 +29,12 @@ const mapDispatchToProps = ( dispatch ) => {
 
 			e.preventDefault()
 			dispatch( setLocation() )
+
+		},
+		toggleSatellite: ( e ) => {
+
+			e.preventDefault()
+			dispatch( toggleSatellite() )
 
 		}
 

@@ -31,7 +31,7 @@ const messages = defineMessages( {
 
 } )
 
-const main = ( { intl, className, showGeolocator, resetMain, show } ) => {
+const main = ( { intl, className, showMarker, resetMain, show } ) => {
 
 	const { formatMessage } = intl
 
@@ -46,7 +46,7 @@ const main = ( { intl, className, showGeolocator, resetMain, show } ) => {
 		<DIV className={ cls } >
 			<H priority={ 2 }>{ formatMessage( messages.can_you_locate ) }</H>
 			<P>
-				<A onClick={ showGeolocator } className={ style.option } >{ formatMessage( messages.yes_location_known ) }</A>
+				<A onClick={ showMarker } className={ style.option } >{ formatMessage( messages.yes_location_known ) }</A>
 				<A onClick={ resetMain }  className={ style.option } >{ formatMessage( messages.no_location_unknown ) }</A>
 			</P>
 		</DIV> 
@@ -62,7 +62,7 @@ main.propTypes = {
 	className: PropTypes.string,
 	show: PropTypes.bool,
 
-	showGeolocator: PropTypes.func,
+	showMarker: PropTypes.func,
 	resetMain: PropTypes.func
 
 }

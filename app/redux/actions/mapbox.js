@@ -1,20 +1,20 @@
 import * as types from 'types'
 import mapboxgl from 'mapbox-gl/dist/mapbox-gl.js'
-/*import MapboxGeocoder from 'mapbox-gl-geocoder'*/
+import MapboxGeocoder from 'mapbox-gl-geocoder'
 import _ from 'underscore'
 import { promiseGet } from 'actions/util/request/get'
 import { resetMain } from 'actions/main'
 
 const CENTER = [ 0, 39 ]
 const ZOOM = 1
-
+const ACCESSTOKEN = 'pk.eyJ1IjoibWF1cmVlbnRzYWtpcmlzIiwiYSI6ImNpbXM1N2Z2MTAwNXF3ZW0ydXI3eXZyOTAifQ.ATjSaskEecYMiEG36I_viw'
 const locateLayers = [ 'country_label_1', 'country_label_2', 'country_label_3', 'country_label_4', 'marine_label_point_1', 'marine_label_line_1', 'marine_label_point_2', 'marine_label_line_2', 'marine_label_point_3', 'marine_label_line_3', 'marine_label_4', 'marine_label_line_4', 'place_label_city', 'place_label_town', 'place_label_village', 'place_label_other', 'road_label_highway_shield', 'road_label', 'airport_label', 'poi_label_1', 'rail_station_label', 'poi_label_2', 'poi_label_3', 'poi_label_4', 'water_label'/*, 'admin_level_2_maritime', 'admin_level_3_maritime', 'admin_level_2_disputed', 'admin_level_2', 'admin_level_3'*/, 'bridge_major_rail_hatching', 'bridge_major_rail', 'bridge_motorway', 'bridge_trunk_primary', 'bridge_secondary_tertiary', 'bridge_street', 'bridge_link', 'bridge_service_track', 'bridge_motorway_link', 'bridge_path_pedestrian', 'bridge_motorway_casing', 'bridge_trunk_primary_casing', 'bridge_secondary_tertiary_casing', 'bridge_motorway_link_casing', 'road_major_rail_hatching', 'road_major_rail', 'road_motorway', 'road_trunk_primary', 'road_secondary_tertiary', 'road_street', 'road_link', 'road_service_track', 'road_motorway_link', 'road_path_pedestrian', 'road_motorway_casing', 'road_trunk_primary_casing', 'road_secondary_tertiary_casing', 'road_street_casing', 'road_link_casing', 'road_service_track_casing', 'road_motorway_link_casing', 'tunnel_major_rail_hatching', 'tunnel_major_rail', 'tunnel_motorway', 'tunnel_trunk_primary', 'tunnel_secondary_tertiary', 'tunnel_street', 'tunnel_link', 'tunnel_service_track', 'tunnel_motorway_link', 'tunnel_path_pedestrian', 'tunnel_motorway_casing', 'tunnel_trunk_primary_casing', 'tunnel_secondary_tertiary_casing', 'tunnel_street_casing', 'tunnel_link_casing', 'tunnel_service_track_casing', 'tunnel_motorway_link_casing', 'building_top', 'building', 'aeroway_taxiway', 'aeroway_runway', 'aeroway_fill', 'landuse_wood', 'landuse_school', 'landuse_hospital', 'landuse_cemetery', 'landuse_park', 'landuse_overlay_national_park' ]
 
 const _promiseInitMap = ( ) => {
 
 	return new Promise( ( resolve, reject ) => {
 
-		mapboxgl.accessToken = 'pk.eyJ1IjoibWF1cmVlbnRzYWtpcmlzIiwiYSI6ImNpbXM1N2Z2MTAwNXF3ZW0ydXI3eXZyOTAifQ.ATjSaskEecYMiEG36I_viw' 
+		mapboxgl.accessToken = ACCESSTOKEN 
 		const map = new mapboxgl.Map( {
 
 			container: 'Mapbox',
@@ -45,7 +45,7 @@ const _promiseInitMap = ( ) => {
 
 		map.on( 'load', ( ) => {
 
-			map.addControl( new mapboxgl.NavigationControl(), 'bottom-right' )
+			//map.addControl( new mapboxgl.NavigationControl(), 'bottom-right' )
 			map.dragRotate.disable()
 			map.touchZoomRotate.disableRotation()
 			resolve( map ) 
@@ -130,32 +130,6 @@ export const displayMap = ( ) => {
 
 			//Register map
 			dispatch( { type: types.SET_MAP, to: map } )
-
-			//Track zoom
-			map.on( 'zoom', () => {
-
-				//dispatch( { type: types.SET_ZOOM, to: map.getZoom() } )
-
-			} )
-
-			//Track center
-			map.on( 'move', () => {
-
-				//dispatch( { type: types.SET_CENTER, to: map.getCenter() } )
-
-			} )
-
-			//Add Geolocator
-			/*let geocoder = new MapboxGeocoder( {
-
-				container: 'Geolocator',
-				accessToken: 'pk.eyJ1IjoibWF1cmVlbnRzYWtpcmlzIiwiYSI6ImNpbXM1N2Z2MTAwNXF3ZW0ydXI3eXZyOTAifQ.ATjSaskEecYMiEG36I_viw'
-
-			} )
-			
-			dispatch( { type: types.SET_GEOCODER, to: geocoder } )
-			map.addControl( geocoder, 'top-left' )*/
-
 
 			//Init and register popup
 			const popup = new mapboxgl.Popup( { closeButton: false, closeOnClick: false, anchor: 'bottom' } )
@@ -347,7 +321,7 @@ export const displayMap = ( ) => {
 
 }
 
-export const fly = ( center, zoom ) => {
+export const fly = ( center, zoom, offset = [ 0, 0 ] ) => {
 
 	return function ( dispatch, getState ){
 
@@ -357,7 +331,8 @@ export const fly = ( center, zoom ) => {
 		map.flyTo( {
 
 			center: center,
-			zoom: zoom,
+			zoom: zoom, 
+			offset: offset/*,
 			duration: 5000,
 			speed: 1.2, // make the flying slow
 			curve: 1.42, // change the speed at which it zooms out
@@ -365,16 +340,9 @@ export const fly = ( center, zoom ) => {
 
 				return t<.5 ? 16*t*t*t*t*t : 1+16*( --t ) *t*t*t*t
 
-			}
+			}*/
 
 		} )
-
-		/*map.jumpTo( {
-
-			center: center,
-			zoom: zoom
-
-		} )*/
 
 	}
 
@@ -435,6 +403,21 @@ export const switchModus = ( modus ) => {
 			map.setLayoutProperty( 'cluster-count', 'visibility', 'none' )*/
 			map.setLayoutProperty( 'drops', 'visibility', 'none' )
 
+			let geocoder = new MapboxGeocoder( {
+
+				accessToken: ACCESSTOKEN,
+				container: 'Geolocator'
+
+			} )
+
+			geocoder.on( 'result', ( ) => {
+
+				window.scrollTo( 0, document.body.scrollHeight )
+
+			} )
+
+			map.addControl( geocoder, 'top-left' )
+
 			_.each( locateLayers, ( layer ) => {
 
 				if( map.getLayer( layer ) ){
@@ -469,6 +452,28 @@ export const switchModus = ( modus ) => {
 
 }
 
+export const toggleSatellite = ( ) => {
+
+	return function ( dispatch, getState ){
+
+		const state = getState()
+		const map = state.mapbox.map
+
+		if( map.getLayoutProperty( 'mapbox-mapbox-satellite', 'visibility' ) == 'none' ){
+
+			map.setLayoutProperty( 'mapbox-mapbox-satellite', 'visibility', 'visible' )
+
+		}else{
+
+			map.setLayoutProperty( 'mapbox-mapbox-satellite', 'visibility', 'none' )
+
+		}
+
+	}
+
+}
+
+
 export const showPopup = ( feature ) => {
 
 	return function ( dispatch, getState ){
@@ -498,7 +503,8 @@ export const showPopup = ( feature ) => {
 
 		//map.panTo( feature.geometry.coordinates )
 		//map.setCenter( feature.geometry.coordinates )
-		map.flyTo( { speed: 0.4, center: wrapped, offset: [ 0, offsetY ], zoom: z } ) // behaves weird when you click on the wrong hawaii, and then on the wrong russia. first it flies to the right hawaii, but once there, it wont't fly to the right Russia. You can interchange hawaii and russia
+		//dispatch( fly( wrapped, z, [ 0, offsetY ] ) )
+		map.flyTo( { speed: 0.4, center: wrapped, offset: [ 0, offsetY ], zoom: z } ) 
 
 	}
 

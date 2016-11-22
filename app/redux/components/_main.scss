@@ -87,6 +87,7 @@
 	text-align: center;
 	padding: $fringe-height $site-padding-sides;
 	background-color: $screen-overlay-color;
+	z-index: 1;
 
 	h2{
 
