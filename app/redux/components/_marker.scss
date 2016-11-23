@@ -11,7 +11,7 @@
 	@extend %screenShow;
 	pointer-events: none;
 
-	.doneBtn, .cancelBtn, .toggleSatellite{
+	.cancel, .continue, .toggle{
 
 		pointer-events: all;
 
@@ -27,19 +27,28 @@
 
 }
 
-.cancelBtn{
+.cancel, .continue{
 
-	background: $color-signal;
-    @extend %roundBtn;
-    right: 95px;
+	@extend %roundBtn;
+	position: absolute;
+    top: 10px;
+    width: 40px;
+    height: 40px;
+
+}
+
+.cancel{
+
+	right: 60px;
+	background-color: $color-signal;
 
 }
 
 
-.doneBtn{
+.continue{
 
-	background: $color-primary;
-    @extend %roundBtn;
+	right: 10px;
+    background: $color-primary;
 
 }
 

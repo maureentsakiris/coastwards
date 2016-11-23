@@ -28,6 +28,16 @@ const messages = defineMessages( {
 		id: "switch_to_satellite",
 		description: "Alt - ",
 		defaultMessage: "Switch to satellite view"
+	},
+	cancel:{
+		id: "cancel",
+		description: "Button",
+		defaultMessage: "cancel"
+	},
+	continue:{
+		id: "continue",
+		description: "Button",
+		defaultMessage: "continue"
 	}
 	
 
@@ -46,7 +56,7 @@ const marker = ( { intl, className, resetMain, setLocation, toggleSatellite, sho
 
 	const disabled = zoom < 14
 
-	const clsDone = Classnames( style.doneBtn, {
+	const clsContinue = Classnames( style.continue, {
 
 		[ style.disabled ]: disabled
 
@@ -61,8 +71,9 @@ const marker = ( { intl, className, resetMain, setLocation, toggleSatellite, sho
 		<DIV className={ cls } >
 			{ !disabled && <IMG src="./assets/marker-green.png" alt="Location marker" className={ style.img }  /> }
 			{ disabled && <IMG src="./assets/marker-red.png" alt="Location marker" className={ style.img } /> }
-			<IMG src="assets/satellite.png" alt={ formatMessage( messages.switch_to_satellite ) } onClick={ toggleSatellite } className={ style.toggle } />
-			
+			<A href="#" onClick={ toggleSatellite } className={ style.toggle } ><IMG src="assets/satellite.png" alt={ formatMessage( messages.switch_to_satellite ) } /></A>
+			<BUTTON href="#" onClick={ resetMain } className={ style.cancel } ><I className="material-icons">close</I></BUTTON>
+			<BUTTON href="#" onClick={ setLocation } className={ clsContinue } disabled={ disabled } ><I className="material-icons">done</I></BUTTON>
 		</DIV> 
 
 	)

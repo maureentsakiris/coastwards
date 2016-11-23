@@ -289,11 +289,12 @@
 
 .mapboxgl-ctrl-top-left .mapboxgl-ctrl-geocoder{
 
-    margin: 10px auto;
     float: none;
-    min-width: 200px;
+    min-width: auto;
+    max-width: 190px;
     box-shadow: 0 1px 1.5px 0 rgba(0, 0, 0, 0.12), 0 1px 1px 0 rgba(0, 0, 0, 0.24);
     border-radius: 0;
+    width: auto;
 
 }
 
@@ -314,6 +315,12 @@
 .mapboxgl-ctrl-top-left .mapboxgl-ctrl-geocoder input[type='text']{
 
     font-size: 16px;
+
+}
+
+.mapboxgl-ctrl-top-left .mapboxgl-ctrl {
+
+    margin: 15px 0 0 15px;
 
 }
 

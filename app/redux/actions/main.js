@@ -480,7 +480,6 @@ export const resetMain = ( removeLastUpload = true ) => {
 		if( state.browser.jazzSupported ){
 
 			document.getElementById( 'Sheet' ).scrollTop = 0
-
 			dispatch( resetMap() )
 
 			if( removeLastUpload ){ // shouldn't remove when error is duplicate_file

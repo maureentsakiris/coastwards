@@ -19,6 +19,7 @@ const _promiseInitMap = ( ) => {
 
 			container: 'Mapbox',
 			style: 'mapbox://styles/maureentsakiris/cinxhoec70043b4nmx0rkoc02',
+			//style: 'mapbox://styles/mapbox/satellite-v9',
 			zoom: ZOOM,
 			center: CENTER,
 			maxBounds: [ [ -360, -70 ], [ 360, 84 ] ],
@@ -41,7 +42,21 @@ const _promiseInitMap = ( ) => {
 		
 		} ) )*/
 
-		//map.addControl( new mapboxgl.Geolocate( { position: 'bottom-left' } ) )
+		let geocoder = new MapboxGeocoder( {
+
+			accessToken: ACCESSTOKEN,
+			container: 'Geolocator',
+			placeholder: '!search'
+
+		} )
+
+		map.addControl( geocoder, 'top-left' )
+
+		geocoder.on( 'result', ( ) => {
+
+			window.scrollTo( 0, document.body.scrollHeight )
+
+		} )
 
 		map.on( 'load', ( ) => {
 
@@ -396,27 +411,14 @@ export const switchModus = ( modus ) => {
 		const state = getState()
 		const map = state.mapbox.map
 
+		
+
 		if( modus === 'locate' ){
 
 			map.setLayoutProperty( 'markers', 'visibility', 'none' )
 			/*map.setLayoutProperty( 'cluster-circles', 'visibility', 'none' )
 			map.setLayoutProperty( 'cluster-count', 'visibility', 'none' )*/
 			map.setLayoutProperty( 'drops', 'visibility', 'none' )
-
-			let geocoder = new MapboxGeocoder( {
-
-				accessToken: ACCESSTOKEN,
-				container: 'Geolocator'
-
-			} )
-
-			geocoder.on( 'result', ( ) => {
-
-				window.scrollTo( 0, document.body.scrollHeight )
-
-			} )
-
-			map.addControl( geocoder, 'top-left' )
 
 			_.each( locateLayers, ( layer ) => {
 
@@ -468,6 +470,18 @@ export const toggleSatellite = ( ) => {
 			map.setLayoutProperty( 'mapbox-mapbox-satellite', 'visibility', 'none' )
 
 		}
+
+	}
+
+}
+
+export const hideSatellite = ( ) => {
+
+	return function ( dispatch, getState ){
+
+		const state = getState()
+		const map = state.mapbox.map
+		map.setLayoutProperty( 'mapbox-mapbox-satellite', 'visibility', 'none' )
 
 	}
 
@@ -533,6 +547,7 @@ export const resetMap = ( ) => {
 
 		dispatch( fly( CENTER, ZOOM ) )
 		dispatch( switchModus() )
+		dispatch( hideSatellite() )
 
 	}
 

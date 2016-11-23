@@ -13,5 +13,15 @@
     "id": "switch_to_satellite",
     "description": "Alt -",
     "defaultMessage": "Switch to satellite view"
+  },
+  {
+    "id": "cancel",
+    "description": "Button",
+    "defaultMessage": "cancel"
+  },
+  {
+    "id": "continue",
+    "description": "Button",
+    "defaultMessage": "continue"
   }
 ]
