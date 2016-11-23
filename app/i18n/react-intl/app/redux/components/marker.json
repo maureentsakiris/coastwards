@@ -15,13 +15,18 @@
     "defaultMessage": "Switch to satellite view"
   },
   {
+    "id": "switch_to_vector",
+    "description": "-",
+    "defaultMessage": "Switch to vector view"
+  },
+  {
     "id": "cancel",
     "description": "Button",
-    "defaultMessage": "cancel"
+    "defaultMessage": "Cancel upload"
   },
   {
     "id": "continue",
     "description": "Button",
-    "defaultMessage": "continue"
+    "defaultMessage": "Continue"
   }
 ]

@@ -46,7 +46,7 @@ const _promiseInitMap = ( ) => {
 
 			accessToken: ACCESSTOKEN,
 			container: 'Geolocator',
-			placeholder: '!search'
+			placeholder: '!Country, City ...'
 
 		} )
 
@@ -317,7 +317,7 @@ export const displayMap = ( ) => {
 
 			} )
 
-			dispatch( { type: types.ADD_INTERACTIVE_LAYER, layer: { layer: 'drops', onClick: _onMarkerClick } } )
+			//dispatch( { type: types.ADD_INTERACTIVE_LAYER, layer: { layer: 'drops', onClick: _onMarkerClick } } )
 
 			return geojson
 
@@ -347,7 +347,7 @@ export const fly = ( center, zoom, offset = [ 0, 0 ] ) => {
 
 			center: center,
 			zoom: zoom, 
-			offset: offset/*,
+			offset: offset,
 			duration: 5000,
 			speed: 1.2, // make the flying slow
 			curve: 1.42, // change the speed at which it zooms out
@@ -355,7 +355,7 @@ export const fly = ( center, zoom, offset = [ 0, 0 ] ) => {
 
 				return t<.5 ? 16*t*t*t*t*t : 1+16*( --t ) *t*t*t*t
 
-			}*/
+			}
 
 		} )
 
@@ -378,8 +378,7 @@ export const dropMarker = ( image ) => {
 				"coordinates": [ image.long, image.lat ]
 			},
 			"properties": {
-				"marker-symbol": "marker-accent",
-				"image": image.dataURL
+				"marker-symbol": "marker-accent"
 			}
 
 		}
@@ -464,10 +463,12 @@ export const toggleSatellite = ( ) => {
 		if( map.getLayoutProperty( 'mapbox-mapbox-satellite', 'visibility' ) == 'none' ){
 
 			map.setLayoutProperty( 'mapbox-mapbox-satellite', 'visibility', 'visible' )
+			dispatch( { type: types.SET_MODUS, to: 'satellite' } )
 
 		}else{
 
 			map.setLayoutProperty( 'mapbox-mapbox-satellite', 'visibility', 'none' )
+			dispatch( { type: types.SET_MODUS, to: 'vector' } )
 
 		}
 
@@ -482,6 +483,7 @@ export const hideSatellite = ( ) => {
 		const state = getState()
 		const map = state.mapbox.map
 		map.setLayoutProperty( 'mapbox-mapbox-satellite', 'visibility', 'none' )
+		dispatch( { type: types.SET_MODUS, to: 'vector' } )
 
 	}
 

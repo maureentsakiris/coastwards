@@ -39,7 +39,7 @@ const statuses = ( { intl, className, status, progress, show } ) => {
 
 		<DIV id="Statuses" className={ cls } >
 			<H priority={ 2 }>{ stat }</H>
-			<IMG src="assets/loader.gif" alt="Loading..." />
+			<DIV className={ style.loader }></DIV>
 		</DIV>
 
 	)

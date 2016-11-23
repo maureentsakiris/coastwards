@@ -29,22 +29,27 @@ const messages = defineMessages( {
 		description: "Alt - ",
 		defaultMessage: "Switch to satellite view"
 	},
+	switch_to_vector:{
+		id: "switch_to_vector",
+		description: " - ",
+		defaultMessage: "Switch to vector view"
+	},
 	cancel:{
 		id: "cancel",
 		description: "Button",
-		defaultMessage: "cancel"
+		defaultMessage: "Cancel upload"
 	},
 	continue:{
 		id: "continue",
 		description: "Button",
-		defaultMessage: "continue"
+		defaultMessage: "Continue"
 	}
 	
 
 } )
 
 
-const marker = ( { intl, className, resetMain, setLocation, toggleSatellite, show, zoom } ) => {
+const marker = ( { intl, className, resetMain, setLocation, toggleSatellite, addSnackbarMessage, show, zoom, modus } ) => {
 
 	const { formatMessage } = intl
 
@@ -54,31 +59,31 @@ const marker = ( { intl, className, resetMain, setLocation, toggleSatellite, sho
 
 	} )
 
-	const disabled = zoom < 14
-
-	const clsContinue = Classnames( style.continue, {
-
-		[ style.disabled ]: disabled
-
-	} )
+	const locked = zoom < 14
 
 	/*<BUTTON className={ style.cancelBtn } onClick={ resetMain } title={ formatMessage( messages.cancel_title ) } ><I className="material-icons">close</I></BUTTON>
-			<BUTTON className={ clsDone } onClick={ setLocation } disabled={ disabled } title={ formatMessage( messages.done_title ) } ><I className="material-icons">done</I></BUTTON>
+			<BUTTON className={ clsDone } onClick={ setLocation } locked={ locked } title={ formatMessage( messages.done_title ) } ><I className="material-icons">done</I></BUTTON>
 			<A href="#" onClick={ toggleSatellite } className={ style.toggleSatellite } >satellite</A>*/
+
+	const img = modus == 'vector' ? 'assets/satellite.png' : 'assets/vector.png'
+	const title = modus == 'vector' ? formatMessage( messages.switch_to_satellite ) : formatMessage( messages.switch_to_vector )
+
+	const doneClick = locked ? addSnackbarMessage.bind( this, 'zoom_closer' ) : setLocation
 
 	return(
 
 		<DIV className={ cls } >
-			{ !disabled && <IMG src="./assets/marker-green.png" alt="Location marker" className={ style.img }  /> }
-			{ disabled && <IMG src="./assets/marker-red.png" alt="Location marker" className={ style.img } /> }
-			<A href="#" onClick={ toggleSatellite } className={ style.toggle } ><IMG src="assets/satellite.png" alt={ formatMessage( messages.switch_to_satellite ) } /></A>
-			<BUTTON href="#" onClick={ resetMain } className={ style.cancel } ><I className="material-icons">close</I></BUTTON>
-			<BUTTON href="#" onClick={ setLocation } className={ clsContinue } disabled={ disabled } ><I className="material-icons">done</I></BUTTON>
+			{ !locked && <IMG src="./assets/marker-green.png" alt="Location marker" className={ style.img }  /> }
+			{ locked && <IMG src="./assets/marker-red.png" alt="Location marker" className={ style.img } /> }
+			<A href="#" onClick={ toggleSatellite } className={ style.toggle } title={ title } ><IMG src={ img } alt={ title } /></A>
+			<BUTTON href="#" onClick={ resetMain } className={ style.cancel } title={ formatMessage( messages.cancel ) } ><I className="material-icons">close</I></BUTTON>
+			<BUTTON href="#" onClick={ doneClick } className={ style.continue } title={ formatMessage( messages.continue ) } ><I className="material-icons">done</I></BUTTON>
 		</DIV> 
 
 	)
 	
 }
+
 
 marker.propTypes = {
 
@@ -87,11 +92,12 @@ marker.propTypes = {
 	className: PropTypes.string,
 	show: PropTypes.bool,
 	zoom: PropTypes.number,
-	center: PropTypes.object,
+	modus: PropTypes.string,
 
 	resetMain: PropTypes.func,
 	setLocation: PropTypes.func,
-	toggleSatellite: PropTypes.func
+	toggleSatellite: PropTypes.func,
+	addSnackbarMessage: PropTypes.func
 
 }
 

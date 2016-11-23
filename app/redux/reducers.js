@@ -184,7 +184,7 @@ const selected = ( state = [ ], action ) => {
 
 }
 
-const mapbox = ( state = { map: '', zoom: 0 }, action ) => {
+const mapbox = ( state = { map: '', zoom: 0, modus: 'vector' }, action ) => {
 
 	switch ( action.type ){
 
@@ -192,6 +192,8 @@ const mapbox = ( state = { map: '', zoom: 0 }, action ) => {
 		return _.extend( {}, state, { map: action.to } )
 	case types.SET_ZOOM:
 		return _.extend( {}, state, { zoom: action.to } )
+	case types.SET_MODUS:
+		return _.extend( {}, state, { modus: action.to } )
 	default:
 		return state
 

@@ -75,6 +75,8 @@ const _promiseSafe = ( image ) => {
 
 			}
 
+			console.log( annotations );
+
 			if( _.contains( annotations.safeSearchAnnotation, 'LIKELY' ) || _.contains( annotations.safeSearchAnnotation, 'VERY_LIKELY' ) ){
  
 				reject( Error( "spam_detected" ) ) //YES
@@ -84,8 +86,9 @@ const _promiseSafe = ( image ) => {
 			let coast = _.filter( annotations.labelAnnotations, { description: 'coast' } )
 			let shore = _.filter( annotations.labelAnnotations, { description: 'shore' } )
 			let harbor = _.filter( annotations.labelAnnotations, { description: 'harbor' } )
+			let natural_environment = _.filter( annotations.labelAnnotations, { description: 'natural environment' } )
 
-			if( !coast.length && !shore.length && !harbor.length ){
+			if( !coast.length && !shore.length && !harbor.length && !natural_environment.length ){
 
 				reject( Error( "not_a_coast" ) ) //YES
 
@@ -175,7 +178,7 @@ export const validateFile = ( e ) => {
 		.then( ( file ) => {
 
 			//MATTHIAS
-			let index = state.selected.indexOf( file.name )
+			/*let index = state.selected.indexOf( file.name )
 
 			if( index == -1 ){
 
@@ -186,7 +189,9 @@ export const validateFile = ( e ) => {
 
 				throw Error( 'duplicate_file' ) //YES
 
-			}
+			}*/
+
+			return file
 
 		} )
 		.then( promiseEXIF )

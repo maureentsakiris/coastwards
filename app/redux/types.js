@@ -39,6 +39,7 @@ export const ADD_SELECTED = 'ADD_SELECTED'
 //mapbox
 export const SET_MAP = 'SET_MAP'
 export const SET_ZOOM = 'SET_ZOOM'
+export const SET_MODUS = 'SET_MODUS'
 
 //interactiveLayers
 export const ADD_INTERACTIVE_LAYER = 'ADD_INTERACTIVE_LAYER'

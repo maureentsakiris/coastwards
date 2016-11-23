@@ -31,9 +31,15 @@
 
 	@extend %roundBtn;
 	position: absolute;
-    top: 10px;
-    width: 40px;
-    height: 40px;
+    top: 15px;
+    width: 4em;
+    height: 4em;
+
+    i{
+
+    	font-weight: 800;
+
+    }
 
 }
 
@@ -48,7 +54,7 @@
 .continue{
 
 	right: 10px;
-    background: $color-primary;
+    background-color: $color-primary;
 
 }
 
@@ -68,5 +74,23 @@
     height: 40px;
     border: 1px solid #fff;
     box-shadow: 0 1px 1.5px 0 rgba(0, 0, 0, 0.12), 0 1px 1px 0 rgba(0, 0, 0, 0.24);
+
+}
+
+
+@media ( min-width: #{ $column-width } ) {
+
+	.cancel, .continue{
+
+	    width: 6em;
+	    height: 6em;
+
+	}
+
+	.cancel{
+
+		right: 85px;
+
+	}
 
 }
