@@ -10,9 +10,9 @@ $action-height: 45px;
 
 .popup{
 
-	@extend %flexcontainer;
+	/* @extend %flexcontainer;
 	flex-direction: column;
-	overflow-y: scroll;
+	overflow-y: scroll; */
 	width: 300px;
 	height: 300px;
 	padding-bottom: $action-height;
@@ -31,7 +31,6 @@ $action-height: 45px;
 	background-size: cover;
 	background-position: center;
 	height: 100%;
-	overflow-y: scroll;
 
 }
 

@@ -317,7 +317,7 @@ export const displayMap = ( ) => {
 
 			} )
 
-			//dispatch( { type: types.ADD_INTERACTIVE_LAYER, layer: { layer: 'drops', onClick: _onMarkerClick } } )
+			dispatch( { type: types.ADD_INTERACTIVE_LAYER, layer: { layer: 'drops', onClick: _onMarkerClick } } )
 
 			return geojson
 
@@ -378,7 +378,8 @@ export const dropMarker = ( image ) => {
 				"coordinates": [ image.long, image.lat ]
 			},
 			"properties": {
-				"marker-symbol": "marker-accent"
+				"marker-symbol": "marker-accent",
+				"image": image.dataURL
 			}
 
 		}
