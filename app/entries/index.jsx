@@ -78,8 +78,9 @@ let clsInfo = Classnames( style.info, {
 
 } )*/
 
-const _scrollToMap = () => {
+const _scrollToMap = ( e ) => {
 
+	e.preventDefault()
 	store.dispatch( scrollToMap() )
 
 }

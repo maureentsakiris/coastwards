@@ -67,7 +67,7 @@ $actions-height: 60px;
 	@extend %sheetCorset;
 	background-color: white;
 	box-shadow: 0 19px 60px rgba(0,0,0,.3),0 15px 20px rgba(0,0,0,.22);
-	height: 80%;
+	height: 80vh;
 	overflow-y: scroll;
 	-webkit-overflow-scrolling: touch;
 
@@ -107,7 +107,7 @@ $actions-height: 60px;
 
 .image{
 
-	height: 40%;
+	height: 40vh;
     width: 100%;
     overflow: hidden;
     background-size: cover;
