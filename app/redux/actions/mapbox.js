@@ -464,8 +464,6 @@ export const toggleSatellite = ( ) => {
 		const state = getState()
 		const map = state.mapbox.map
 
-		console.log( map.getLayoutProperty( 'mapbox-mapbox-satellite', 'visibility' ) )
-
 		if( map.getLayoutProperty( 'mapbox-mapbox-satellite', 'visibility' ) == 'none' ){
 
 			map.setLayoutProperty( 'mapbox-mapbox-satellite', 'visibility', 'visible' )
