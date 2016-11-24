@@ -2,7 +2,7 @@ import * as types from 'types'
 
 export function showDialog ( component ){
 
-	document.body.style.overflow = 'hidden'
+	//document.body.style.overflow = 'hidden'
 	return {
 
 		type: types.SHOW_DIALOG,
@@ -14,7 +14,7 @@ export function showDialog ( component ){
 
 export function hideDialog ( ){
 
-	document.body.style.overflow = 'auto'
+	//document.body.style.overflow = 'auto'
 	return {
 
 		type: types.HIDE_DIALOG

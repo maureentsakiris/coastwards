@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { resetForm } from 'actions/main'
+import { resetForm, scrollToMap } from 'actions/main'
 import PROMPTS from 'components/prompts'
 
 
@@ -22,6 +22,7 @@ const mapDispatchToProps = ( dispatch ) => {
 		hide: ( e ) => {
 
 			e.preventDefault()
+			dispatch( scrollToMap() )
 			dispatch( { type: 'SET_LAYER_VISIBILITY', layer: 'prompts', to: false } )
 
 		},

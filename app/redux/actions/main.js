@@ -324,11 +324,13 @@ export const setLocation = ( ) => {
 			dispatch( { type: types.SET_ZOOM, to: map.getZoom() } )
 			
 		} )
+
 		dispatch( dropMarker( image ) )
 		dispatch( { type: types.SET_IMAGE_TO_UPLOAD, to: {} } )
 		dispatch( { type: types.SET_IMAGE_TO_UPLOAD, to: image } )
 		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'marker', to: false } )
 		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'form', to: true } )
+		dispatch( scrollToMap() )
 
 	}
 
@@ -536,12 +538,30 @@ export const scrollUp = ( ) => {
 
 }
 
+export const scrollToMap = ( ) => {
+
+	return function () {
+
+		//window.scrollTo( 0, document.body.scrollHeight )
+		window.scroll( {
+
+			top: document.body.scrollHeight, 
+			left: 0, 
+			behavior: 'smooth' 
+
+		} )
+
+	}
+
+}
+
 export const openInput = ( ) => {
 
-	return function ( ) {
+	return function ( dispatch ) {
 
 		let input = document.getElementById( "images" )
 		input.click()
+		dispatch( scrollToMap() )
 		/*window.scroll( {
 
 			top: document.body.scrollHeight, 
@@ -549,7 +569,7 @@ export const openInput = ( ) => {
 			behavior: 'auto' 
 
 		} )*/
-		window.scrollTo( 0, document.body.scrollHeight )
+		//window.scrollTo( 0, document.body.scrollHeight )
 
 	}
 

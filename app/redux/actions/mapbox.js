@@ -378,8 +378,8 @@ export const dropMarker = ( image ) => {
 				"coordinates": [ image.long, image.lat ]
 			},
 			"properties": {
-				"marker-symbol": "marker-accent",
-				"image": image.dataURL
+				"marker-symbol": "marker-accent"/*,
+				"image": image.dataURL*/
 			}
 
 		}
@@ -419,6 +419,8 @@ export const switchModus = ( modus ) => {
 			/*map.setLayoutProperty( 'cluster-circles', 'visibility', 'none' )
 			map.setLayoutProperty( 'cluster-count', 'visibility', 'none' )*/
 			map.setLayoutProperty( 'drops', 'visibility', 'none' )
+			/*map.setLayoutProperty( 'mapbox-mapbox-satellite', 'visibility', 'visible' )
+			map.setLayerZoomRange( 'mapbox-mapbox-satellite', 14, 20 )*/
 
 			_.each( locateLayers, ( layer ) => {
 
@@ -436,6 +438,7 @@ export const switchModus = ( modus ) => {
 			/*map.setLayoutProperty( 'cluster-circles', 'visibility', 'visible' )
 			map.setLayoutProperty( 'cluster-count', 'visibility', 'visible' )*/
 			map.setLayoutProperty( 'drops', 'visibility', 'visible' )
+			/*map.setLayoutProperty( 'mapbox-mapbox-satellite', 'visibility', 'none' )*/
 
 			_.each( locateLayers, ( layer ) => {
 				
@@ -460,6 +463,8 @@ export const toggleSatellite = ( ) => {
 
 		const state = getState()
 		const map = state.mapbox.map
+
+		console.log( map.getLayoutProperty( 'mapbox-mapbox-satellite', 'visibility' ) )
 
 		if( map.getLayoutProperty( 'mapbox-mapbox-satellite', 'visibility' ) == 'none' ){
 

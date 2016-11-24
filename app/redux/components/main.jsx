@@ -34,7 +34,7 @@ const messages = defineMessages( {
 	
 } )
 
-const main = ( { intl, uploadSupported, jazzSupported, scrollUp } ) => {
+const main = ( { intl, uploadSupported, jazzSupported, marker, scrollUp, scrollToMap } ) => {
 
 	const { formatMessage } = intl
 
@@ -66,12 +66,13 @@ const main = ( { intl, uploadSupported, jazzSupported, scrollUp } ) => {
 
 	}else if ( uploadSupported && jazzSupported ) {
 
+		/*{ !marker && <A onClick={ scrollUp } className={ style.up } >
+					<I className="material-icons">keyboard_arrow_up</I>
+				</A> }*/
+
 		return(
 
 			<DIV className={ style.jazz } >
-				<A onClick={ scrollUp } className={ style.up } >
-					<I className="material-icons">keyboard_arrow_up</I>
-				</A>
 				<Mapbox className={ style.mapbox } />
 				<Locate key="locate" className={ style.screen } />
 				<Marker key="marker" className={ style.marker } />
@@ -95,9 +96,10 @@ main.propTypes = {
 
 	uploadSupported: PropTypes.bool,
 	jazzSupported: PropTypes.bool,
-	showPrompts: PropTypes.bool,
+	marker: PropTypes.bool,
 
-	scrollUp: PropTypes.func
+	scrollUp: PropTypes.func,
+	scrollToMap: PropTypes.func
 	
 }
 

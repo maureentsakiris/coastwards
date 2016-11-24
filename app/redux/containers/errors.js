@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 
-import { resetForm } from 'actions/main'
+import { resetForm, scrollToMap } from 'actions/main'
 import ERRORS from 'components/errors'
 
 
@@ -23,6 +23,7 @@ const mapDispatchToProps = ( dispatch ) => {
 		hide: ( e ) => {
 
 			e.preventDefault()
+			dispatch( scrollToMap() )
 			dispatch( { type: 'SET_LAYER_VISIBILITY', layer: 'errors', to: false } )
 			dispatch( { type: 'SET_LAYER_VISIBILITY', layer: 'upload', to: true } )
 

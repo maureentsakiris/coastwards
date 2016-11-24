@@ -24,17 +24,10 @@
 	height: 70px;
 	position: relative;
 	top: -35px;
-	pointer-events: all;
 
 }
 
 .cancel, .continue{
-
-	@extend %roundBtn;
-	position: absolute;
-    top: 15px;
-    width: 4em;
-    height: 4em;
 
     i{
 
@@ -46,7 +39,11 @@
 
 .cancel{
 
-	right: 60px;
+	@extend %roundBtn;
+	width: 46px;
+	height: 46px;
+	top: 12px;
+	right: 65px;
 	background-color: $color-signal;
 
 }
@@ -54,8 +51,12 @@
 
 .continue{
 
+	@extend %roundBtn;
+	width: 46px;
+	height: 46px;
+	top: 12px;
 	right: 10px;
-    background-color: $color-primary;
+    background-color: #24bb2a;
 
 }
 
@@ -69,11 +70,10 @@
 .toggle{
 
 	position: absolute;
-    right: 15px;
-    bottom: 15px;
-    width: 40px;
-    height: 40px;
-    border: 1px solid #fff;
+    bottom: 10px;
+    right: 10px;
+    width: 50px;
+    height: 50px;
     box-shadow: 0 1px 1.5px 0 rgba(0, 0, 0, 0.12), 0 1px 1px 0 rgba(0, 0, 0, 0.24);
 
 }
@@ -83,14 +83,21 @@
 
 	.cancel, .continue{
 
-	    width: 6em;
-	    height: 6em;
+	    width: 66px;
+	    height: 66px;
 
 	}
 
 	.cancel{
 
 		right: 85px;
+
+	}
+
+	.toggle{
+
+		width: 70px;
+		height: 70px;
 
 	}
 
