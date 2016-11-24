@@ -1,6 +1,7 @@
 import { connect } from 'react-redux'
 import MAIN from 'components/main'
 import { scrollUp } from 'actions/main'
+import { setGeocoderPlaceholder } from 'actions/mapbox'
 
 
 const mapStateToProps = ( state ) => {
@@ -9,8 +10,7 @@ const mapStateToProps = ( state ) => {
 	return {
 
 		uploadSupported: state.browser.uploadSupported,
-		jazzSupported: state.browser.jazzSupported,
-		marker: state.layers.marker
+		jazzSupported: state.browser.jazzSupported
 
 	}
 
@@ -24,6 +24,11 @@ const mapDispatchToProps = ( dispatch ) => {
 
 			e.preventDefault()
 			dispatch( scrollUp() )
+
+		},
+		setGeocoderPlaceholder: ( placeholder ) => {
+
+			dispatch( setGeocoderPlaceholder( placeholder ) )
 
 		}
 

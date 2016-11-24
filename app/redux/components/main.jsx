@@ -29,14 +29,25 @@ const messages = defineMessages( {
 		id: "too_many",
 		description: "Link - ",
 		defaultMessage: "I have too many to upload one by one!"
+	},
+	top:{
+		id: "top",
+		description: "Button",
+		defaultMessage: "top"
+	},
+	geocoder_placeholder:{
+		id: "geocoder_placeholder",
+		description: " - ",
+		defaultMessage: "Country, City ..."
 	}
-	
 	
 } )
 
-const main = ( { intl, uploadSupported, jazzSupported, marker, scrollUp, scrollToMap } ) => {
+const main = ( { intl, uploadSupported, jazzSupported, scrollUp, setGeocoderPlaceholder } ) => {
 
 	const { formatMessage } = intl
+
+	setGeocoderPlaceholder( formatMessage( messages.geocoder_placeholder ) )
 
 	if( !uploadSupported ){
 
@@ -66,10 +77,6 @@ const main = ( { intl, uploadSupported, jazzSupported, marker, scrollUp, scrollT
 
 	}else if ( uploadSupported && jazzSupported ) {
 
-		/*{ !marker && <A onClick={ scrollUp } className={ style.up } >
-					<I className="material-icons">keyboard_arrow_up</I>
-				</A> }*/
-
 		return(
 
 			<DIV className={ style.jazz } >
@@ -82,6 +89,9 @@ const main = ( { intl, uploadSupported, jazzSupported, marker, scrollUp, scrollT
 				<Form className={ style.form } />
 				<Upload className={ style.upload } />
 				<Popup />
+				<A onClick={ scrollUp } className={ style.up } >
+					<I className="material-icons">keyboard_arrow_up</I>{ formatMessage( messages.top ) }
+				</A>
 			</DIV>
 
 		)
@@ -96,10 +106,10 @@ main.propTypes = {
 
 	uploadSupported: PropTypes.bool,
 	jazzSupported: PropTypes.bool,
-	marker: PropTypes.bool,
 
 	scrollUp: PropTypes.func,
-	scrollToMap: PropTypes.func
+	scrollToMap: PropTypes.func,
+	setGeocoderPlaceholder: PropTypes.func
 	
 }
 

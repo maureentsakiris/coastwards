@@ -8,5 +8,15 @@
     "id": "too_many",
     "description": "Link -",
     "defaultMessage": "I have too many to upload one by one!"
+  },
+  {
+    "id": "top",
+    "description": "Button",
+    "defaultMessage": "top"
+  },
+  {
+    "id": "geocoder_placeholder",
+    "description": "-",
+    "defaultMessage": "Country, City ..."
   }
 ]

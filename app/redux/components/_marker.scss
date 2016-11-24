@@ -42,7 +42,7 @@
 	@extend %roundBtn;
 	width: 46px;
 	height: 46px;
-	top: 12px;
+	top: 20px;
 	right: 65px;
 	background-color: $color-signal;
 
@@ -54,7 +54,7 @@
 	@extend %roundBtn;
 	width: 46px;
 	height: 46px;
-	top: 12px;
+	top: 20px;
 	right: 10px;
     background-color: #24bb2a;
 
@@ -70,8 +70,8 @@
 .toggle{
 
 	position: absolute;
-    bottom: 10px;
-    right: 10px;
+    bottom: 20px;
+    right: 20px;
     width: 50px;
     height: 50px;
     box-shadow: 0 1px 1.5px 0 rgba(0, 0, 0, 0.12), 0 1px 1px 0 rgba(0, 0, 0, 0.24);
@@ -79,7 +79,7 @@
 }
 
 
-@media ( min-width: #{ $column-width } ) {
+@media ( min-width: #{ $tablet } ) {
 
 	.cancel, .continue{
 

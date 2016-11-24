@@ -11,6 +11,7 @@ require( 'smoothscroll-polyfill' ).polyfill()
 import coastwards from 'reducers'
 import { loadLanguage } from 'actions/i18n/i18n'
 import { showDialog } from 'actions/ui/dialog'
+import { scrollToMap } from 'actions/main'
 
 import I18nProvider from 'containers/i18n/i18nProvider'
 import Context from 'containers/context/context'
@@ -27,7 +28,8 @@ import FAQs from 'components/faqs'
 import Ask from 'components/ask'
 
 import DIV from 'components/tags/div'
-/*import A from 'components/tags/a'*/
+import A from 'components/tags/a'
+import I from 'components/tags/i'
 
 
 //TODO: i18nLinks should handle that itself?
@@ -76,6 +78,12 @@ let clsInfo = Classnames( style.info, {
 
 } )*/
 
+const _scrollToMap = () => {
+
+	store.dispatch( scrollToMap() )
+
+}
+
 ReactDom.render( 
 
 	<Provider store={ store } >
@@ -92,6 +100,9 @@ ReactDom.render(
 						<Ask />
 					</DIV>
 				</DIV>
+				<A onClick={ _scrollToMap } className={ style.down } >
+					<I className="material-icons">keyboard_arrow_down</I>
+				</A>
 				<Main className={ style.main } />
 				<Snackbar />
 				<Dialog />

@@ -15,7 +15,6 @@
 	height: 100%;
 	height: 100vh;
 	overflow: hidden;
-	margin-top: $site-padding-inner;
 
 }
 
@@ -98,21 +97,21 @@
 
 }
 
-/* .up{
+.up{
 
 	position: absolute;
-    top: 0px;
-    left: 50%;
-    margin-left: -33px;
+    bottom: $gutter-width;
+    left: $gutter-width;
     z-index: 1;
+    text-transform: uppercase;
 
-	i{
+    i{
 
-		font-size: 66px;
+    	vertical-align: text-bottom;
 
-	}
+    }
 
-} */
+}
 
 /* .toomany{
 

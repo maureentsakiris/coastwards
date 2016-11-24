@@ -7,10 +7,11 @@ import { resetMain } from 'actions/main'
 
 const CENTER = [ 0, 39 ]
 const ZOOM = 1
+const MAXZOOM = 20
 const ACCESSTOKEN = 'pk.eyJ1IjoibWF1cmVlbnRzYWtpcmlzIiwiYSI6ImNpbXM1N2Z2MTAwNXF3ZW0ydXI3eXZyOTAifQ.ATjSaskEecYMiEG36I_viw'
 const locateLayers = [ 'country_label_1', 'country_label_2', 'country_label_3', 'country_label_4', 'marine_label_point_1', 'marine_label_line_1', 'marine_label_point_2', 'marine_label_line_2', 'marine_label_point_3', 'marine_label_line_3', 'marine_label_4', 'marine_label_line_4', 'place_label_city', 'place_label_town', 'place_label_village', 'place_label_other', 'road_label_highway_shield', 'road_label', 'airport_label', 'poi_label_1', 'rail_station_label', 'poi_label_2', 'poi_label_3', 'poi_label_4', 'water_label'/*, 'admin_level_2_maritime', 'admin_level_3_maritime', 'admin_level_2_disputed', 'admin_level_2', 'admin_level_3'*/, 'bridge_major_rail_hatching', 'bridge_major_rail', 'bridge_motorway', 'bridge_trunk_primary', 'bridge_secondary_tertiary', 'bridge_street', 'bridge_link', 'bridge_service_track', 'bridge_motorway_link', 'bridge_path_pedestrian', 'bridge_motorway_casing', 'bridge_trunk_primary_casing', 'bridge_secondary_tertiary_casing', 'bridge_motorway_link_casing', 'road_major_rail_hatching', 'road_major_rail', 'road_motorway', 'road_trunk_primary', 'road_secondary_tertiary', 'road_street', 'road_link', 'road_service_track', 'road_motorway_link', 'road_path_pedestrian', 'road_motorway_casing', 'road_trunk_primary_casing', 'road_secondary_tertiary_casing', 'road_street_casing', 'road_link_casing', 'road_service_track_casing', 'road_motorway_link_casing', 'tunnel_major_rail_hatching', 'tunnel_major_rail', 'tunnel_motorway', 'tunnel_trunk_primary', 'tunnel_secondary_tertiary', 'tunnel_street', 'tunnel_link', 'tunnel_service_track', 'tunnel_motorway_link', 'tunnel_path_pedestrian', 'tunnel_motorway_casing', 'tunnel_trunk_primary_casing', 'tunnel_secondary_tertiary_casing', 'tunnel_street_casing', 'tunnel_link_casing', 'tunnel_service_track_casing', 'tunnel_motorway_link_casing', 'building_top', 'building', 'aeroway_taxiway', 'aeroway_runway', 'aeroway_fill', 'landuse_wood', 'landuse_school', 'landuse_hospital', 'landuse_cemetery', 'landuse_park', 'landuse_overlay_national_park' ]
 
-const _promiseInitMap = ( ) => {
+const _promiseInitMap = ( placeholder ) => {
 
 	return new Promise( ( resolve, reject ) => {
 
@@ -19,8 +20,8 @@ const _promiseInitMap = ( ) => {
 
 			container: 'Mapbox',
 			style: 'mapbox://styles/maureentsakiris/cinxhoec70043b4nmx0rkoc02',
-			//style: 'mapbox://styles/mapbox/satellite-v9',
 			zoom: ZOOM,
+			maxZoom: MAXZOOM,
 			center: CENTER,
 			maxBounds: [ [ -360, -70 ], [ 360, 84 ] ],
 			attributionControl: false,
@@ -33,20 +34,11 @@ const _promiseInitMap = ( ) => {
 
 		} )
 
-
-		/*map.addControl( new mapboxgl.Scale ( {
-			
-			position: 'top-left',
-			maxWidth: 80,
-			unit: 'metric'
-		
-		} ) )*/
-
 		let geocoder = new MapboxGeocoder( {
 
 			accessToken: ACCESSTOKEN,
 			container: 'Geolocator',
-			placeholder: '!Country, City ...'
+			placeholder: placeholder
 
 		} )
 
@@ -60,7 +52,6 @@ const _promiseInitMap = ( ) => {
 
 		map.on( 'load', ( ) => {
 
-			//map.addControl( new mapboxgl.NavigationControl(), 'bottom-right' )
 			map.dragRotate.disable()
 			map.touchZoomRotate.disableRotation()
 			resolve( map ) 
@@ -72,14 +63,6 @@ const _promiseInitMap = ( ) => {
 			reject( e ) 
 
 		} )
-
-
-		/*map.on( 'resize', ( e ) => {
-
-			map.touchZoomRotate.enable()
-			map.touchZoomRotate.disableRotation()
-
-		} )*/
 
 	} )
 
@@ -140,7 +123,9 @@ export const displayMap = ( ) => {
 
 	return function ( dispatch, getState ){
 
-		_promiseInitMap( )
+		const state = getState()
+
+		_promiseInitMap( state.mapbox.geocoder_placeholder )
 		.then( ( map ) => {
 
 			//Register map
@@ -219,11 +204,6 @@ export const displayMap = ( ) => {
 				type: 'circle',
 				source: 'geojson',
 				filter: [ '!has', 'point_count' ],
-				/*layout: {
-
-					'icon-image': '{marker-symbol}'
-
-				},*/
 				paint: {
 					// make circles larger as the user zooms from z12 to z22
 					'circle-radius': {
@@ -317,7 +297,7 @@ export const displayMap = ( ) => {
 
 			} )
 
-			dispatch( { type: types.ADD_INTERACTIVE_LAYER, layer: { layer: 'drops', onClick: _onMarkerClick } } )
+			//dispatch( { type: types.ADD_INTERACTIVE_LAYER, layer: { layer: 'drops', onClick: _onMarkerClick } } )
 
 			return geojson
 
@@ -493,7 +473,6 @@ export const hideSatellite = ( ) => {
 
 }
 
-
 export const showPopup = ( feature ) => {
 
 	return function ( dispatch, getState ){
@@ -542,6 +521,17 @@ export const hidePopup = ( ) => {
 			popup._container.setAttribute( 'style', 'display: none' )
 
 		}
+
+	}
+
+}
+
+export const setGeocoderPlaceholder = ( placeholder ) => {
+
+	return {
+
+		type: types.SET_GEOCODER_PLACEHOLDER,
+		to: placeholder
 
 	}
 

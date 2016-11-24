@@ -542,7 +542,6 @@ export const scrollToMap = ( ) => {
 
 	return function () {
 
-		//window.scrollTo( 0, document.body.scrollHeight )
 		window.scroll( {
 
 			top: document.body.scrollHeight, 
@@ -562,14 +561,6 @@ export const openInput = ( ) => {
 		let input = document.getElementById( "images" )
 		input.click()
 		dispatch( scrollToMap() )
-		/*window.scroll( {
-
-			top: document.body.scrollHeight, 
-			left: 0, 
-			behavior: 'auto' 
-
-		} )*/
-		//window.scrollTo( 0, document.body.scrollHeight )
 
 	}
 
