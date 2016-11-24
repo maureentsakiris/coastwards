@@ -173,7 +173,7 @@ const form = ( { intl, className, show, image, jazzSupported, setMaterial, /*set
 						{ image.dataURL && <DIV className={ style.image } style={ { backgroundImage: 'url(' + image.dataURL + ')' } } ></DIV> }
 						<DIV id="Content" className={ style.content } >
 							<H priority={ 2 }>{ formatMessage( messages.hurray ) }</H>
-							<RADIOGROUP form="Form" label={ formatMessage( messages.select_material ) } name="material" options={ materials } onClick={ setMaterial } preferPlaceholder={ false } >
+							<RADIOGROUP form="Form" label={ formatMessage( messages.select_material ) } name="material" options={ materials } onClick={ setMaterial } preferPlaceholder={ false } className={ style.radiogroup } >
 								{ " " }<SMALL><A onClick={ showDialog.bind( this, 'DEFINEMATERIAL' ) }>{ formatMessage( messages.define_material ) }</A></SMALL>
 							</RADIOGROUP>
 							<FORMDATA />

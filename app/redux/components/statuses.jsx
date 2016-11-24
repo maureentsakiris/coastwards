@@ -4,7 +4,6 @@ import Classnames from 'classnames'
 
 import DIV from 'components/tags/div'
 import H from 'components/tags/h'
-import IMG from 'components/tags/img'
 
 import style from './_statuses'
 

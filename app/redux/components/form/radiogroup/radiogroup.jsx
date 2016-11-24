@@ -8,13 +8,13 @@ import RADIO from 'components/form/radiogroup/radio'
 
 const radiogroup = ( { hocProps } ) => {
 
-	const { form, name, options, onClick } = hocProps
+	const { form, name, options, onClick, className } = hocProps
 
 	const radios = _renderOptions( form, name, options, onClick )
 
 	return(
 
-		<DIV>
+		<DIV className={ className } >
 			{ radios }
 		</DIV>
 
@@ -48,7 +48,8 @@ radiogroup.propTypes = {
 	hocProps: PropTypes.shape( {
 
 		onClick: PropTypes.func,
-		options: PropTypes.array.isRequired
+		options: PropTypes.array.isRequired,
+		className: PropTypes.string
 
 	} )
 
