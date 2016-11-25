@@ -151,6 +151,7 @@ export const validateFile = ( e ) => {
 		if( jazzSupported ) {
 
 			dispatch( hidePopup() )
+			dispatch( clipPage() )
 
 		}
 
@@ -516,6 +517,8 @@ export const scrollUp = ( ) => {
 
 	return function ( dispatch, getState ) {
 
+		dispatch( unclipPage() )
+
 		let state = getState()
 		let { errors, form, geolocator, locate, prompts, statuses } = state.layers
 
@@ -556,11 +559,34 @@ export const scrollToMap = ( ) => {
 
 export const openInput = ( ) => {
 
-	return function ( dispatch ) {
+	return function ( ) {
 
 		let input = document.getElementById( "images" )
 		input.click()
+
+	}
+
+}
+
+export const clipPage = ( ) => {
+
+	return function ( dispatch ){
+
+		/*window.dispatchEvent( new Event( 'resize' ) )
+		window.scroll( 0, 1 )
+		dispatch( { type: types.CLIP_PAGE } )*/
+
 		dispatch( scrollToMap() )
+
+	}
+
+}
+
+export const unclipPage = ( ) => {
+
+	return {
+
+		type: types.UNCLIP_PAGE
 
 	}
 

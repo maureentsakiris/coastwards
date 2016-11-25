@@ -37,12 +37,33 @@ const _promiseInitMap = ( placeholder ) => {
 		let geocoder = new MapboxGeocoder( {
 
 			accessToken: ACCESSTOKEN,
-			container: 'Geolocator',
 			placeholder: placeholder
 
 		} )
 
 		map.addControl( geocoder, 'top-left' )
+
+		/*geocoder._inputEl.addEventListener( 'focus', ( e ) => {
+
+			//window.scrollTo( 0, 0 )
+			//e.target.parentNode.style.position = 'fixed'
+			//e.target.parentNode.style.top = '20px'
+			let down = document.getElementsByClassName( '_index_down' )[ 0 ]
+			let top = document.getElementsByClassName( '_index_top' )[ 0 ]
+
+			down.style.display = 'none'
+			top.style.display = 'none'
+
+			let map = document.getElementsByClassName( '_main_jazz' )[ 0 ]
+			map.style.marginTop = '40px'
+
+		} )*/
+
+		/*geocoder._inputEl.parentNode.addEventListener( 'focus', ( e ) => {
+
+			e.preventDefault()
+
+		} )*/
 
 		geocoder.on( 'result', ( ) => {
 

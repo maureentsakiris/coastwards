@@ -48,7 +48,7 @@ const intlMessages = defineMessages( {
 	zoom_closer:{
 		id: "zoom_closer",
 		description: " - ",
-		defaultMessage: "You gotta get a bit closer! Zoom until the marker turns green to continue."
+		defaultMessage: "You gotta zoom until the marker turns green!"
 	}
 
 } )

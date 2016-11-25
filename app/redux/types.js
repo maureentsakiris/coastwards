@@ -1,6 +1,10 @@
 //language
 export const LOAD_LANGUAGE = 'LOAD_LANGUAGE'
 
+//page
+export const CLIP_PAGE = 'CLIP_PAGE'
+export const UNCLIP_PAGE = 'UNCLIP_PAGE'
+
 //dialog
 export const SHOW_DIALOG = 'SHOW_DIALOG'
 export const HIDE_DIALOG = 'HIDE_DIALOG'
