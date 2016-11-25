@@ -88,11 +88,11 @@ const _promiseSafe = ( image ) => {
 			let harbor = _.filter( annotations.labelAnnotations, { description: 'harbor' } )
 			let natural_environment = _.filter( annotations.labelAnnotations, { description: 'natural environment' } )
 
-			if( !coast.length && !shore.length && !harbor.length && !natural_environment.length ){
+			/*if( !coast.length && !shore.length && !harbor.length && !natural_environment.length ){
 
 				reject( Error( "not_a_coast" ) ) //YES
 
-			}
+			}*/
 			
 			image.labels = annotations.labelAnnotations
 			resolve( image )
