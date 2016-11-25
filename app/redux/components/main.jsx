@@ -43,11 +43,9 @@ const messages = defineMessages( {
 	
 } )
 
-const main = ( { intl, uploadSupported, jazzSupported, scrollUp, setGeocoderPlaceholder } ) => {
+const main = ( { intl, uploadSupported, jazzSupported, scrollUp } ) => {
 
 	const { formatMessage } = intl
-
-	setGeocoderPlaceholder( formatMessage( messages.geocoder_placeholder ) )
 
 	if( !uploadSupported ){
 
@@ -79,7 +77,7 @@ const main = ( { intl, uploadSupported, jazzSupported, scrollUp, setGeocoderPlac
 
 		return(
 
-			<DIV className={ style.jazz } >
+			<DIV id="Main" className={ style.jazz } >
 				<Mapbox className={ style.mapbox } />
 				<Locate key="locate" className={ style.screen } />
 				<Marker key="marker" className={ style.marker } />
@@ -108,8 +106,7 @@ main.propTypes = {
 	jazzSupported: PropTypes.bool,
 
 	scrollUp: PropTypes.func,
-	scrollToMap: PropTypes.func,
-	setGeocoderPlaceholder: PropTypes.func
+	scrollToMap: PropTypes.func
 	
 }
 

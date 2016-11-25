@@ -11,7 +11,8 @@ const mapStateToProps = ( state ) => {
 
 		show: state.layers.marker,
 		zoom: state.mapbox.zoom,
-		modus: state.mapbox.modus
+		modus: state.mapbox.modus,
+		image: state.form.image
 
 	}
 

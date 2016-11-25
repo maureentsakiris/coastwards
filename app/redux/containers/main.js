@@ -1,7 +1,6 @@
 import { connect } from 'react-redux'
 import MAIN from 'components/main'
 import { scrollUp } from 'actions/main'
-import { setGeocoderPlaceholder } from 'actions/mapbox'
 
 
 const mapStateToProps = ( state ) => {
@@ -24,11 +23,6 @@ const mapDispatchToProps = ( dispatch ) => {
 
 			e.preventDefault()
 			dispatch( scrollUp() )
-
-		},
-		setGeocoderPlaceholder: ( placeholder ) => {
-
-			dispatch( setGeocoderPlaceholder( placeholder ) )
 
 		}
 

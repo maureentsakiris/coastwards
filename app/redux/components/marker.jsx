@@ -49,7 +49,7 @@ const messages = defineMessages( {
 } )
 
 
-const marker = ( { intl, className, resetMain, setLocation, toggleSatellite, addSnackbarMessage, show, zoom, modus } ) => {
+const marker = ( { intl, className, resetMain, setLocation, toggleSatellite, addSnackbarMessage, show, zoom, modus, image } ) => {
 
 	const { formatMessage } = intl
 
@@ -70,11 +70,15 @@ const marker = ( { intl, className, resetMain, setLocation, toggleSatellite, add
 
 	const doneClick = locked ? addSnackbarMessage.bind( this, 'zoom_closer' ) : setLocation
 
+
 	return(
 
 		<DIV className={ cls } >
-			{ !locked && <IMG src="./assets/marker-green.png" alt="Location marker" className={ style.img }  /> }
-			{ locked && <IMG src="./assets/marker-red.png" alt="Location marker" className={ style.img } /> }
+			<DIV className={ style.pointer }>
+				{ image.dataURL && <DIV style={ { backgroundImage: 'url(' + image.dataURL + ')' } } className={ style.img } ></DIV> }
+				{ !locked && <IMG src="./assets/marker-green.png" alt="Location marker" className={ style.tip }  /> }
+				{ locked && <IMG src="./assets/marker-red.png" alt="Location marker" className={ style.tip } /> }
+			</DIV>
 			<A href="#" onClick={ toggleSatellite } className={ style.toggle } title={ title } ><IMG src={ img } alt={ title } /></A>
 			<BUTTON href="#" onClick={ resetMain } className={ style.cancel } title={ formatMessage( messages.cancel ) } ><I className="material-icons">close</I></BUTTON>
 			<BUTTON href="#" onClick={ doneClick } className={ style.continue } title={ formatMessage( messages.continue ) } ><I className="material-icons">done</I></BUTTON>
@@ -93,6 +97,7 @@ marker.propTypes = {
 	show: PropTypes.bool,
 	zoom: PropTypes.number,
 	modus: PropTypes.string,
+	image: PropTypes.object,
 
 	resetMain: PropTypes.func,
 	setLocation: PropTypes.func,

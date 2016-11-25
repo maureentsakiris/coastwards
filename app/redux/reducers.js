@@ -199,7 +199,7 @@ const selected = ( state = [ ], action ) => {
 
 }
 
-const mapbox = ( state = { map: '', zoom: 0, modus: 'vector', geocoder_placeholder: '' }, action ) => {
+const mapbox = ( state = { map: '', zoom: 0, modus: 'vector' }, action ) => {
 
 	switch ( action.type ){
 
@@ -209,8 +209,6 @@ const mapbox = ( state = { map: '', zoom: 0, modus: 'vector', geocoder_placehold
 		return _.extend( {}, state, { zoom: action.to } )
 	case types.SET_MODUS:
 		return _.extend( {}, state, { modus: action.to } )
-	case types.SET_GEOCODER_PLACEHOLDER:
-		return _.extend( {}, state, { geocoder_placeholder: action.to } )
 	default:
 		return state
 

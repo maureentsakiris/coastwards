@@ -6,6 +6,7 @@ import { promiseXHR } from 'actions/util/request/xhr'
 import { fly, resetMap, hidePopup, switchModus, dropMarker } from 'actions/mapbox'
 import uuid from 'node-uuid'
 import _ from 'underscore'
+/*import Hammer from 'hammerjs'*/
 
 
 const _promiseFiles = ( e ) => {
@@ -587,6 +588,40 @@ export const unclipPage = ( ) => {
 	return {
 
 		type: types.UNCLIP_PAGE
+
+	}
+
+}
+
+export const disableAndreasPinch = ( ) => {
+
+	return function ( ){
+
+		/*let stage = document.getElementById( 'Body' )
+
+		var mc = new Hammer.Manager( stage )
+
+		stage.addEventListener( 'touchmove', ( e ) => {
+
+			if( e.touches.length >= 3 ){
+
+				mc.set( { enable: true } )
+				mc.add( new Hammer.Pinch( { event: 'AndreasPinch', pointers: 3, threshold: 0 } ) )
+
+			}else{
+
+				mc.set( { enable: false } )
+
+			}
+
+		} )
+		
+
+		mc.on( 'AndreasPinch', ( e ) => {
+
+			alert( e.type )
+
+		} )*/
 
 	}
 

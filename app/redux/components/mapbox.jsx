@@ -7,7 +7,8 @@ export default class MapboxGL extends Component {
 
 		className: PropTypes.string,
 
-		displayMap: PropTypes.func
+		displayMap: PropTypes.func,
+		disableAndreasPinch: PropTypes.func
 
 	}
 
@@ -20,6 +21,7 @@ export default class MapboxGL extends Component {
 	componentDidMount (){
 
 		this.props.displayMap()
+		this.props.disableAndreasPinch()
 
 	}
 
