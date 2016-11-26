@@ -19,10 +19,24 @@
 
 }
 
+.pointer{
+
+	@extend %flexcontainer;
+	flex-direction: column;
+	/* position: relative;
+	top: -25px; */
+	pointer-events: none;
+	position: relative;
+	top: calc( -10vh - 14px);
+
+	box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+
+}
+
 .img{
 
-	width: 100px;
-	height: 100px;
+	width: 20vh;
+	height: 20vh;
 	position: relative;
     z-index: 1;
     border-radius: 2px;
@@ -31,23 +45,99 @@
     background-size: cover;
     background-position: 50%;
 
-}
-
-.tip{
-
-	height: 70px;
-	position: relative;
-    top: -50px;
+    border-bottom: 10px solid $color-green;
 
 }
 
-.pointer{
+.img_locked{
+
+	border-bottom-color: $color-signal;
+
+}
+
+/* @media all and (orientation:landscape) {
+
+	.img{
+
+		width: 60vh;
+		height: 60vh;
+
+	}
+
+}
+
+@media all and (orientation:portrait) {
+
+	.img{
+
+		width: 60vw;
+		height: 60vw;
+
+	}
+
+} */
+
+.tip {
 
 	position: relative;
-	top: -25px;
+	background: $color-green;
+
+}
+
+.tip:after {
+
+	top: 100%;
+	left: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
 	pointer-events: none;
+	border-color: rgba(136, 183, 213, 0);
+	border-width: 20px;
+	margin-left: -20px;
+	border-top-color: $color-green;
 
 }
+
+.tip_locked{
+
+	background: $color-signal;
+
+}
+
+.tip_locked:after{
+
+	border-top-color: $color-signal;
+
+}
+
+
+/* .tip_tip {
+
+	position: relative;
+	background: $color-signal;
+	top: 10px;
+
+}
+
+.tip_tip:after {
+
+	top: 100%;
+	left: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+	border-color: rgba(136, 183, 213, 0);
+	border-top-color: $color-signal;
+	border-width: 10px;
+	margin-left: -10px;
+
+} */
 
 .cancel, .continue{
 
@@ -64,6 +154,7 @@
 .cancel{
 
 	@extend %roundBtn;
+	position: absolute;
 	width: 46px;
 	height: 46px;
 	bottom: 20px;
@@ -76,6 +167,7 @@
 .continue{
 
 	@extend %roundBtn;
+	position: absolute;
 	width: 46px;
 	height: 46px;
 	bottom: 20px;
@@ -93,7 +185,7 @@
 
 .toggle{
 
-	position: fixed;
+	position: absolute;
     bottom: 20px;
     right: 130px;
     width: 46px;

@@ -6,7 +6,18 @@ import { promiseXHR } from 'actions/util/request/xhr'
 import { fly, resetMap, hidePopup, switchModus, dropMarker } from 'actions/mapbox'
 import uuid from 'node-uuid'
 import _ from 'underscore'
-/*import Hammer from 'hammerjs'*/
+import Hammer from 'hammerjs'
+
+/*window.addEventListener( 'touchmove', ( e ) => {
+
+	if( event.touches.length > 2 ){
+
+		console.log( "THREE" )
+		e.preventDefault()
+
+	}
+
+} )*/
 
 
 const _promiseFiles = ( e ) => {
@@ -595,33 +606,36 @@ export const unclipPage = ( ) => {
 
 export const disableAndreasPinch = ( ) => {
 
-	return function ( ){
+	return function ( dispatch ){
 
-		/*let stage = document.getElementById( 'Body' )
+		let stage = document.getElementById( 'Body' )
 
-		var mc = new Hammer.Manager( stage )
-
-		stage.addEventListener( 'touchmove', ( e ) => {
-
-			if( e.touches.length >= 3 ){
-
-				mc.set( { enable: true } )
-				mc.add( new Hammer.Pinch( { event: 'AndreasPinch', pointers: 3, threshold: 0 } ) )
-
-			}else{
-
-				mc.set( { enable: false } )
-
-			}
-
-		} )
-		
+		/*var mc = new Hammer.Manager( stage, { touchAction: 'pan-y' } )
+		mc.add( new Hammer.Pinch( { event: 'AndreasPinch', pointers: 0, threshold: 0 } ) )
 
 		mc.on( 'AndreasPinch', ( e ) => {
 
-			alert( e.type )
+			e.preventDefault()
 
 		} )*/
+
+		//https://stackoverflow.com/questions/40345723/how-does-one-prevent-pinch-zooming-on-ios-10-devices-in-safari
+		document.documentElement.addEventListener( 'touchstart', function ( e ) {
+
+			if ( e.touches.length > 1 ) {
+
+				e.preventDefault()
+
+			}
+
+			if ( e.touches.length > 2  && true ) { //map visible
+
+				e.preventDefault()
+				dispatch( addSnackbarMessage( 'two_fingers' ) )
+
+			}
+
+		}, true )
 
 	}
 

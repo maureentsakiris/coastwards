@@ -28,7 +28,7 @@ const messages = defineMessages( {
 	thats_it:{
 		id: "thats_it",
 		description: "Note",
-		defaultMessage: "That's it"
+		defaultMessage: "That's it. I swear. No cookies, not even Google Analytics, just what you see above."
 	}
 
 

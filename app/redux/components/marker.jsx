@@ -63,7 +63,24 @@ const marker = ( { intl, className, resetMain, setLocation, toggleSatellite, add
 
 	/*<BUTTON className={ style.cancelBtn } onClick={ resetMain } title={ formatMessage( messages.cancel_title ) } ><I className="material-icons">close</I></BUTTON>
 			<BUTTON className={ clsDone } onClick={ setLocation } locked={ locked } title={ formatMessage( messages.done_title ) } ><I className="material-icons">done</I></BUTTON>
-			<A href="#" onClick={ toggleSatellite } className={ style.toggleSatellite } >satellite</A>*/
+			<A href="#" onClick={ toggleSatellite } className={ style.toggleSatellite } >satellite</A>
+
+			{ !locked && <IMG src="./assets/marker-green.png" alt="Location marker" className={ style.tip }  /> }
+				{ locked && <IMG src="./assets/marker-red.png" alt="Location marker" className={ style.tip } /> }
+
+				<DIV className={ style.tip_tip }></DIV>*/
+
+	const clsTip = Classnames( style.tip, {
+
+		[ style.tip_locked ]: locked
+
+	} )
+
+	const clsImg = Classnames( style.img, {
+
+		[ style.img_locked ]: locked
+
+	} )
 
 	const img = modus == 'vector' ? 'assets/satellite.png' : 'assets/vector.png'
 	const title = modus == 'vector' ? formatMessage( messages.switch_to_satellite ) : formatMessage( messages.switch_to_vector )
@@ -75,9 +92,8 @@ const marker = ( { intl, className, resetMain, setLocation, toggleSatellite, add
 
 		<DIV className={ cls } >
 			<DIV className={ style.pointer }>
-				{ image.dataURL && <DIV style={ { backgroundImage: 'url(' + image.dataURL + ')' } } className={ style.img } ></DIV> }
-				{ !locked && <IMG src="./assets/marker-green.png" alt="Location marker" className={ style.tip }  /> }
-				{ locked && <IMG src="./assets/marker-red.png" alt="Location marker" className={ style.tip } /> }
+				{ image.dataURL && <DIV style={ { backgroundImage: 'url(' + image.dataURL + ')' } } className={ clsImg } ></DIV> }
+				<DIV className={ clsTip }></DIV>
 			</DIV>
 			<A href="#" onClick={ toggleSatellite } className={ style.toggle } title={ title } ><IMG src={ img } alt={ title } /></A>
 			<BUTTON href="#" onClick={ resetMain } className={ style.cancel } title={ formatMessage( messages.cancel ) } ><I className="material-icons">close</I></BUTTON>
