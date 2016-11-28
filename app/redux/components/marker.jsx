@@ -96,8 +96,8 @@ const marker = ( { intl, className, resetMain, setLocation, toggleSatellite, add
 				<DIV className={ clsTip }></DIV>
 			</DIV>
 			<A href="#" onClick={ toggleSatellite } className={ style.toggle } title={ title } ><IMG src={ img } alt={ title } /></A>
-			<BUTTON href="#" onClick={ resetMain } className={ style.cancel } title={ formatMessage( messages.cancel ) } ><I className="material-icons">close</I></BUTTON>
-			<BUTTON href="#" onClick={ doneClick } className={ style.continue } title={ formatMessage( messages.continue ) } ><I className="material-icons">done</I></BUTTON>
+			<BUTTON href="#" onClick={ resetMain } className={ style.cancel } title={ formatMessage( messages.cancel ) } ><I className="material-icons">&#xE5CD;</I></BUTTON>
+			<BUTTON href="#" onClick={ doneClick } className={ style.continue } title={ formatMessage( messages.continue ) } ><I className="material-icons">&#xE876;</I></BUTTON>
 		</DIV> 
 
 	)

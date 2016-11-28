@@ -46,7 +46,7 @@ const top = ( { clipped, clipPage } ) => {
 				<Ask />
 			</DIV>
 			<A onClick={ clipPage } className={ clsDown } >
-				<I className="material-icons">keyboard_arrow_down</I>
+				<I className="material-icons">&#xE313;</I>
 			</A>
 		</DIV>
 

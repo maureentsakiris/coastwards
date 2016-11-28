@@ -3,21 +3,11 @@ import { promiseType, promiseEXIF, promiseMinimumBoxDimensions, promiseCanvasBox
 import { addSnackbarMessage } from 'actions/ui/snackbar'
 import { promiseDataURLtoBlob } from 'actions/util/form'
 import { promiseXHR } from 'actions/util/request/xhr'
-import { fly, resetMap, hidePopup, switchModus, dropMarker } from 'actions/mapbox'
+import { fly, resetMap, hidePopup, switchModus, dropMarker, trackZoom } from 'actions/mapbox'
 import uuid from 'node-uuid'
 import _ from 'underscore'
-import Hammer from 'hammerjs'
+/*import Hammer from 'hammerjs'*/
 
-/*window.addEventListener( 'touchmove', ( e ) => {
-
-	if( event.touches.length > 2 ){
-
-		console.log( "THREE" )
-		e.preventDefault()
-
-	}
-
-} )*/
 
 
 const _promiseFiles = ( e ) => {
@@ -162,6 +152,7 @@ export const validateFile = ( e ) => {
 
 		if( jazzSupported ) {
 
+			map.stop()
 			dispatch( hidePopup() )
 			dispatch( clipPage() )
 
@@ -213,11 +204,11 @@ export const validateFile = ( e ) => {
 			return promiseMinimumBoxDimensions( image, state.config.imageWidth )
 
 		} )
-		.then( ( image ) => {
+		/*.then( ( image ) => {
 
 			return promiseDateTime( image )
 
-		} )
+		} )*/
 		.then( ( image ) => {
 
 			return promiseCanvasBoxResize( image, state.config.imageWidth )
@@ -299,17 +290,10 @@ export const validateFile = ( e ) => {
 
 export const showMarker = ( ) => {
 
-	return function ( dispatch, getState ){
+	return function ( dispatch ){
 
-		let state = getState()
-		let map = state.mapbox.map
 
-		map.on( 'zoom', () => {
-
-			dispatch( { type: types.SET_ZOOM, to: map.getZoom() } )
-
-		} )
-
+		dispatch( trackZoom( 'on' ) )
 		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'locate', to: false } )
 		dispatch( switchModus( 'locate' ) )
 		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'marker', to: true } )
@@ -332,12 +316,7 @@ export const setLocation = ( ) => {
 		image.lat = center.lat
 		image.long = center.lng
 
-		map.off( 'zoom', () => {
-
-			dispatch( { type: types.SET_ZOOM, to: map.getZoom() } )
-			
-		} )
-
+		dispatch( trackZoom( 'off' ) )
 		dispatch( dropMarker( image ) )
 		dispatch( { type: types.SET_IMAGE_TO_UPLOAD, to: {} } )
 		dispatch( { type: types.SET_IMAGE_TO_UPLOAD, to: image } )

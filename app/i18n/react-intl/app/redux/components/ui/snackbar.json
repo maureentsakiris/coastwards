@@ -38,5 +38,10 @@
     "id": "zoom_closer",
     "description": "-",
     "defaultMessage": "You gotta zoom until the marker turns green!"
+  },
+  {
+    "id": "two_fingers",
+    "description": "Snack -",
+    "defaultMessage": "Use two fingers to zoom"
   }
 ]

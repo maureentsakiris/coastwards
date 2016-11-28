@@ -49,6 +49,11 @@ const intlMessages = defineMessages( {
 		id: "zoom_closer",
 		description: " - ",
 		defaultMessage: "You gotta zoom until the marker turns green!"
+	},
+	two_fingers:{
+		id: "two_fingers",
+		description: "Snack - ",
+		defaultMessage: "Use two fingers to zoom"
 	}
 
 } )

@@ -88,7 +88,7 @@ const main = ( { intl, uploadSupported, jazzSupported, scrollUp } ) => {
 				<Upload className={ style.upload } />
 				<Popup />
 				<A onClick={ scrollUp } className={ style.up } >
-					<I className="material-icons">keyboard_arrow_up</I>{ formatMessage( messages.top ) }
+					<I className="material-icons">&#xE316;</I>{ formatMessage( messages.top ) }
 				</A>
 			</DIV>
 

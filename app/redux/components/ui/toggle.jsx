@@ -48,8 +48,8 @@ class Toggle extends Component {
 
 		const clsIcon = Classnames( "material-icons", style.icon )
 
-		const dir = document.getElementsByTagName( 'html' )[ 0 ].getAttribute( 'dir' ) 
-		const chevron = dir == 'ltr' ? 'chevron_right' : 'chevron_left'
+		//const dir = document.getElementsByTagName( 'html' )[ 0 ].getAttribute( 'dir' ) 
+		//const chevron = dir == 'ltr' ? 'chevron_right' : 'chevron_left'
 
 		return (
 
@@ -57,8 +57,8 @@ class Toggle extends Component {
 				<A onClick={ this._toggle } title={ title } className={ style.anchor } >
 					<H priority={ priority } >
 						{ text } 		
-						{ !expanded && <I className={ clsIcon } >{ chevron }</I> }
-						{ expanded && <I className={ clsIcon } >expand_more</I> }
+						{ !expanded && <I className={ clsIcon } >&#xE5CC;</I> }
+						{ expanded && <I className={ clsIcon } >&#xE5CF;</I> }
 					</H>
 				</A>
 				{ expanded && <DIV>{ children }</DIV> }

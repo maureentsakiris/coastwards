@@ -3,10 +3,11 @@ import mapboxgl from 'mapbox-gl/dist/mapbox-gl.js'
 import _ from 'underscore'
 import { promiseGet } from 'actions/util/request/get'
 import { resetMain } from 'actions/main'
+import Modernizr from 'modernizr'
 
 const CENTER = [ 0, 39 ]
 const ZOOM = 1
-const MAXZOOM = 20
+const MAXZOOM = 17
 const ACCESSTOKEN = 'pk.eyJ1IjoibWF1cmVlbnRzYWtpcmlzIiwiYSI6ImNpbXM1N2Z2MTAwNXF3ZW0ydXI3eXZyOTAifQ.ATjSaskEecYMiEG36I_viw'
 const locateLayers = [ 'country_label_1', 'country_label_2', 'country_label_3', 'country_label_4', 'marine_label_point_1', 'marine_label_line_1', 'marine_label_point_2', 'marine_label_line_2', 'marine_label_point_3', 'marine_label_line_3', 'marine_label_4', 'marine_label_line_4', 'place_label_city', 'place_label_town', 'place_label_village', 'place_label_other', 'road_label_highway_shield', 'road_label', 'airport_label', 'poi_label_1', 'rail_station_label', 'poi_label_2', 'poi_label_3', 'poi_label_4', 'water_label'/*, 'admin_level_2_maritime', 'admin_level_3_maritime', 'admin_level_2_disputed', 'admin_level_2', 'admin_level_3'*/, 'bridge_major_rail_hatching', 'bridge_major_rail', 'bridge_motorway', 'bridge_trunk_primary', 'bridge_secondary_tertiary', 'bridge_street', 'bridge_link', 'bridge_service_track', 'bridge_motorway_link', 'bridge_path_pedestrian', 'bridge_motorway_casing', 'bridge_trunk_primary_casing', 'bridge_secondary_tertiary_casing', 'bridge_motorway_link_casing', 'road_major_rail_hatching', 'road_major_rail', 'road_motorway', 'road_trunk_primary', 'road_secondary_tertiary', 'road_street', 'road_link', 'road_service_track', 'road_motorway_link', 'road_path_pedestrian', 'road_motorway_casing', 'road_trunk_primary_casing', 'road_secondary_tertiary_casing', 'road_street_casing', 'road_link_casing', 'road_service_track_casing', 'road_motorway_link_casing', 'tunnel_major_rail_hatching', 'tunnel_major_rail', 'tunnel_motorway', 'tunnel_trunk_primary', 'tunnel_secondary_tertiary', 'tunnel_street', 'tunnel_link', 'tunnel_service_track', 'tunnel_motorway_link', 'tunnel_path_pedestrian', 'tunnel_motorway_casing', 'tunnel_trunk_primary_casing', 'tunnel_secondary_tertiary_casing', 'tunnel_street_casing', 'tunnel_link_casing', 'tunnel_service_track_casing', 'tunnel_motorway_link_casing', 'building_top', 'building', 'aeroway_taxiway', 'aeroway_runway', 'aeroway_fill', 'landuse_wood', 'landuse_school', 'landuse_hospital', 'landuse_cemetery', 'landuse_park', 'landuse_overlay_national_park' ]
 
@@ -32,6 +33,21 @@ const _promiseInitMap = ( ) => {
 			touchZoomRotate: true
 
 		} )
+
+		if( !Modernizr.touchevents ){
+
+			map.addControl( new mapboxgl.NavigationControl(), 'top-left' )
+
+			/*let geocoder = new MapboxGeocoder( {
+
+				accessToken: ACCESSTOKEN,
+				placeholder: placeholder
+
+			} )
+
+			map.addControl( geocoder, 'top-left' )*/
+
+		}
 
 		/*let geocoder = new MapboxGeocoder( {
 
@@ -553,6 +569,35 @@ export const resetMap = ( ) => {
 		dispatch( fly( CENTER, ZOOM ) )
 		dispatch( switchModus() )
 		dispatch( hideSatellite() )
+
+	}
+
+}
+
+
+export const trackZoom = ( flag ) => {
+
+	return function ( dispatch, getState ){
+
+		const state = getState()
+		const map = state.mapbox.map
+
+		const track = ( ) => {
+
+			//console.log( map.getZoom() );
+			dispatch( { type: types.SET_ZOOM, to: map.getZoom() } )
+
+		}
+
+		if ( flag == 'on' ){
+
+			map.on( 'zoom', track )
+
+		}else{
+
+			map.off( 'zoom', track )
+
+		}
 
 	}
 

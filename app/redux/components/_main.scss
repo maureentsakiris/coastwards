@@ -51,7 +51,6 @@
 	button{
 
 		pointer-events: all;
-		//outline: none;
 
 	}
 
@@ -106,6 +105,7 @@
     left: $gutter-width;
     z-index: 1;
     text-transform: uppercase;
+    width: 65px;
 
     i{
 

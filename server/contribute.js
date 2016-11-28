@@ -106,19 +106,74 @@ const _promiseFetchForm = ( req ) => {
 
 }
 
-const _promiseInsertFile = ( formData ) => {
+const _promiseValidDate = ( formData ) => {
+
+	return new Promise( ( resolve, reject ) => {
+
+		const { fields } = formData
+		const { datetime } = fields
+
+		var sql = 'SELECT DATE( ? ) as valid'
+		var inserts = [ datetime ]
+		var query = mysql.format( sql, inserts )
+
+		pool.getConnection( function ( error, connection ) {
+
+			if( error ){
+
+				reject( error )
+
+			}else{
+
+				connection.query( query, function ( error, results ) {
+
+					if( error ){
+
+						reject( error )
+
+					}else{
+
+						let res = results[ 0 ].valid;
+
+						if( res ){
+
+							formData.validDate = res
+
+						}else{
+
+							formData.validDate = '1000-01-01 00:00:00'
+
+						}
+							
+						resolve( formData )
+
+					}
+
+					connection.release()
+
+				} )
+
+			}
+
+		} )
+
+	} )
+
+}
+
+const _promiseInsertContribution = ( formData ) => {
 
 	return new Promise( function ( resolve, reject ) {
 
-		const { ip, fields } = formData
-		const { long, lat, manual, uid, datetime, labels, exifdata, material, adaptation, comment, hashtag } = fields
+		const { ip, fields, validDate } = formData
+		const { long, lat, manual, uid, labels, exifdata, material, adaptation, comment, hashtag } = fields
 		const point = util.format( 'POINT(%s %s)', long, lat )
 
 		const sanitizedComment = DOMPurify.sanitize( comment )
 		const trimmedComment = validator.trim( sanitizedComment )
 		const lowComment = validator.stripLow( trimmedComment )
 		const escapedComment = validator.escape( lowComment )
-		
+
 
 		// Truncate table coastwards.contributions
 		var sql = 'INSERT INTO ??.?? ( ??, ??, ??, ??, ??, ??, ??, ??, ??, ??, ?? ) VALUES ( (ST_PointFromText(?)), ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )'
@@ -131,11 +186,12 @@ const _promiseInsertFile = ( formData ) => {
 
 			'contribution_point_manual',
 			'contribution_uid',
-			'contribution_exif_datetime',
 			'contribution_labels',
 			'contribution_exif',
 			'contribution_ip',
 			'contribution_material',
+
+			'contribution_exif_datetime',
 			'contribution_adaptation',
 			'contribution_comment',
 			'contribution_hashtag',
@@ -143,11 +199,14 @@ const _promiseInsertFile = ( formData ) => {
 			point,
 			manual,
 			uid,
-			datetime,
 			labels,
 			exifdata,
 			ip,
 			material,
+
+
+			//CAREFULL!!!!
+			validDate,
 			adaptation,
 			escapedComment,
 			hashtag
@@ -193,7 +252,8 @@ const _promiseInsertFile = ( formData ) => {
 router.post( '/upload', ( req, res ) => {
 
 	_promiseFetchForm( req )
-	.then( _promiseInsertFile )
+	.then( _promiseValidDate )
+	.then( _promiseInsertContribution )
 	.then( ( formData ) => {
 
 		res.send( 'upload_ok' )
