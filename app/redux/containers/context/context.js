@@ -1,18 +1,17 @@
 import { connect } from 'react-redux'
-
-import DIV from 'components/tags/div'
+import CONTEXT from 'components/context'
 
 
 const mapStateToProps = ( state ) => {
 
-	const { locale, dir, messages } = state.i18n
-	const mount = messages ? true : false
+	const { locale, dir } = state.i18n
+	const { jazzSupported } = state.browser
 
 	return {
 
 		lang: locale,
 		dir: dir,
-		mount: mount
+		jazzSupported: jazzSupported
 
 	}
 
@@ -24,6 +23,6 @@ const context = connect(
 	mapStateToProps,
 	null
 
-)( DIV )
+)( CONTEXT )
 
 export default context

@@ -1,13 +1,50 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import { defineMessages, injectIntl, intlShape } from 'react-intl'
+/*import Classnames from 'classnames'*/
+import DIV from 'components/tags/div'
 
-import TOGGLE from 'components/ui/toggle'
-import P from 'components/tags/p'
-import BR from 'components/tags/br'
+import Main from 'containers/main'
+import Snackbar from 'containers/ui/snackbar'
+import Dialog from 'containers/ui/dialog'
 
-import style from './_how'
+
+import How from 'components/how'
+import Guidelines from 'components/guidelines'
+import Team from 'containers/team'
+import FAQs from 'components/faqs'
+import Ask from 'components/ask'
+
+
+import A from 'components/tags/a'
+import I from 'components/tags/i'
+import H from 'components/tags/h'
+import IMG from 'components/tags/img'
+
+import style from './_context'
+
 
 const messages = defineMessages( {
+
+	// INTRO
+
+	help_science:{
+		id: "help_science",
+		description: "Main Header. Line one",
+		defaultMessage: "Help Science study the risks of sea-level rise"
+	},
+	by:{
+		id: "by",
+		description: "Main Header. Line two",
+		defaultMessage: "by uploading pictures of coasts"
+	},
+	no_account:{
+		id: "no_account",
+		description: "Tagline. Informs user that creating an account is not necessary",
+		defaultMessage: "No account. Just drag & drop"
+	},
+
+
+	// HOW
 
 	how:{
 		id: "how",
@@ -109,30 +146,80 @@ const messages = defineMessages( {
 
 } )
 
-const how = ( { intl } ) => {
+const context = ( { intl, lang, dir, jazzSupported } ) => {
 
 	const { formatMessage } = intl
 
-	return(
+	if( !jazzSupported ){
 
-		<TOGGLE className={ style.how } priority={ 3 } title={ formatMessage( messages.how_title ) } text={ formatMessage( messages.how ) }  >
-			<P>{ formatMessage( messages.in_a_nutshell ) }</P>
-			<P>{ formatMessage( messages.how_it_works ) }</P>
-			<P>{ formatMessage( messages.place_on_map ) }</P>
-			<P>{ formatMessage( messages.determine_coastal_type ) } { " " } { formatMessage( messages.the_more_the_better ) }</P>
-			<P>{ formatMessage( messages.computer_programs ) }</P>
-			<P>{ formatMessage( messages.policy_makers ) }</P>
-			<P>{ formatMessage( messages.best_advice ) }</P>
-		</TOGGLE>
+		return(
 
-	)
+			<DIV lang={ lang } dir={ dir } >
+				<DIV id="Intro" className={ style.section }>
+					<IMG src="./assets/turtle.svg" alt="Logo coastwards: A turtle on a mission" />
+					<H priority={ 1 } ><span>{ formatMessage( messages.help_science ) }</span> <span>{ formatMessage( messages.by ) }</span></H>
+					<H priority={ 2 } >{ formatMessage( messages.no_account ) }</H>
+				</DIV>
+				<DIV id="Info"className={ style.section }>
+					<How />
+					<Guidelines />
+					<Team />
+					<FAQs />
+					<Ask />
+				</DIV>
+			</DIV>
+
+		)
+
+	}else{
+
+		return(
+
+			<DIV lang={ lang } dir={ dir } >
+				<DIV id="Intro" className={ style.page }>
+					<IMG src="./assets/turtle.svg" alt="Logo coastwards: A turtle on a mission" className={ style.logo } />
+					<H priority={ 1 } className={ style.headline } ><span>{ formatMessage( messages.help_science ) }</span> <span>{ formatMessage( messages.by ) }</span></H>
+					<H priority={ 2 } className={ style.tagline } >{ formatMessage( messages.no_account ) }</H>
+					<A href="#Info" className={ style.arrow } >
+						<I className="material-icons">&#xE313;</I>
+					</A>
+				</DIV>
+				<DIV id="Info"className={ style.pageTop }>
+					<A href="#Intro" className={ style.arrow } >
+						<I className="material-icons">&#xE316;</I>
+					</A>
+					<How />
+					<Guidelines />
+					<Team />
+					<FAQs />
+					<Ask />
+					<A href="#Main" className={ style.arrow } >
+						<I className="material-icons">&#xE313;</I>
+					</A>
+				</DIV>
+				<DIV id="Main" className={ style.page }>
+					<A href="#Info" className={ style.arrow } >
+						<I className="material-icons">&#xE316;</I>
+					</A>
+					<Main className={ style.main } />
+				</DIV>
+				<Snackbar />
+				<Dialog />
+			</DIV>
+
+		)
+
+	}
 
 }
 
-how.propTypes = {
+context.propTypes = {
 
-	intl: intlShape.isRequired
+	intl: intlShape.isRequired,
+	lang: PropTypes.string,
+	dir: PropTypes.string,
+	jazzSupported: PropTypes.bool
 
 }
 
-export default injectIntl( how ) 
+export default injectIntl( context )

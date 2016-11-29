@@ -46,6 +46,7 @@ class Toggle extends Component {
 		const { children, priority, text, title, className, ...restProps } = this.props
 		const { expanded } = this.state
 
+		const clsToggle = Classnames( className, style.toggle )
 		const clsIcon = Classnames( "material-icons", style.icon )
 
 		//const dir = document.getElementsByTagName( 'html' )[ 0 ].getAttribute( 'dir' ) 
@@ -53,7 +54,7 @@ class Toggle extends Component {
 
 		return (
 
-			<DIV { ...restProps } className={ className } >
+			<DIV { ...restProps } className={ clsToggle } >
 				<A onClick={ this._toggle } title={ title } className={ style.anchor } >
 					<H priority={ priority } >
 						{ text } 		

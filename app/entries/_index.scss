@@ -11,3 +11,9 @@
 
 }
 
+.page{
+
+	@extend %corset;
+	text-align: left;
+
+}

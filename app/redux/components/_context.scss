@@ -1,0 +1,84 @@
+@import 'app/styles/reset';
+@import 'app/styles/tags';
+
+.section{
+
+	
+	
+}
+
+%pageitem{
+
+	flex-grow: 0;
+	width: 80vw;
+
+}
+
+%page{
+
+	@extend %flexcontainer;
+	flex-direction: column;
+	min-height: 100vh;
+	align-items: center;
+	justify-content: center;
+
+}
+
+.page{
+
+	@extend %page;
+
+}
+
+.pageTop{
+
+	@extend %page;
+	justify-content: flex-start;
+
+}
+
+.headline{
+
+	@extend %flexitem;
+	@extend %pageitem;
+	flex-grow: 0;
+	width: 80vw;
+
+	text-transform: uppercase;
+	font-weight: 300;
+	font-size: 1.5em;
+	text-align: center;
+
+}
+
+.tagline{
+
+	@extend %flexitem;
+	@extend %pageitem;
+	flex-grow: 0;
+	width: 80vw;
+
+	font-weight: 500;
+	font-size: 1.2em;
+	text-align: center;
+
+}
+
+.logo{
+
+	@extend %flexitem;
+	@extend %pageitem;
+	flex-grow: 0;
+	width: 80vw;
+
+	max-width: 70vw;
+	width: 300px;
+
+}
+
+.toggle{
+
+	@extend %flexitem;
+	@extend %pageitem;
+
+}
