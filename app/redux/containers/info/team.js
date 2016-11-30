@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import { showDialog } from 'actions/ui/dialog'
 import { addSnackbarMessage } from 'actions/ui/snackbar'
 
-import TEAM from 'components/team'
+import TEAM from 'components/info/team'
 
 
 const mapDispatchToProps = ( dispatch ) => {

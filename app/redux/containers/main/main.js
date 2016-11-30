@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
-import MAIN from 'components/main'
-import { scrollUp } from 'actions/main'
+import MAIN from 'components/main/main'
+import { scrollUp } from 'actions/main/main'
 
 
 const mapStateToProps = ( state ) => {

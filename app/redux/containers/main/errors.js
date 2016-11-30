@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 
-import { resetForm, scrollToMap } from 'actions/main'
-import ERRORS from 'components/errors'
+import { resetForm, scrollToMap } from 'actions/main/main'
+import ERRORS from 'components/main/errors'
 
 
 const mapStateToProps = ( state ) => {

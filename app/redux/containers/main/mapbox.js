@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
-import { displayMap } from 'actions/mapbox'
-import { disableAndreasPinch } from 'actions/main'
-import MAPBOX from 'components/mapbox'
+import { displayMap } from 'actions/main/mapbox'
+import { disableAndreasPinch } from 'actions/main/main'
+import MAPBOX from 'components/main/mapbox'
 
 
 const mapDispatchToProps = ( dispatch ) => {

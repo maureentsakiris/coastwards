@@ -2,8 +2,9 @@ import * as types from 'types'
 import { promiseType, promiseEXIF, promiseMinimumBoxDimensions, promiseCanvasBoxResize, promiseLocation, promiseDateTime } from 'actions/util/image'
 import { addSnackbarMessage } from 'actions/ui/snackbar'
 import { promiseDataURLtoBlob } from 'actions/util/form'
+import { scrollToId } from 'actions/context'
 import { promiseXHR } from 'actions/util/request/xhr'
-import { fly, resetMap, hidePopup, switchModus, dropMarker, trackZoom } from 'actions/mapbox'
+import { fly, resetMap, hidePopup, switchModus, dropMarker, trackZoom } from 'actions/main/mapbox'
 import uuid from 'node-uuid'
 import _ from 'underscore'
 /*import Hammer from 'hammerjs'*/
@@ -504,7 +505,7 @@ export const resetMain = ( removeLastUpload = true ) => {
 
 }
 
-export const scrollUp = ( ) => {
+/*export const scrollUp = ( ) => {
 
 	return function ( dispatch, getState ) {
 
@@ -531,7 +532,7 @@ export const scrollUp = ( ) => {
 	}
 
 }
-
+*/
 export const scrollToMap = ( ) => {
 
 	return function () {
@@ -550,10 +551,11 @@ export const scrollToMap = ( ) => {
 
 export const openInput = ( ) => {
 
-	return function ( ) {
+	return function ( dispatch ) {
 
 		let input = document.getElementById( "images" )
 		input.click()
+		dispatch( clipPage() )
 
 	}
 
@@ -563,9 +565,11 @@ export const clipPage = ( ) => {
 
 	return function ( dispatch ){
 
-		/*window.dispatchEvent( new Event( 'resize' ) )
-		window.scroll( 0, 1 )
-		dispatch( { type: types.CLIP_PAGE } )*/
+		let intro = document.getElementById( 'Intro' )
+		let info = document.getElementById( 'Info' )
+
+		intro.setAttribute( 'style', 'display: none' )
+		info.setAttribute( 'style', 'display: none' )
 
 		dispatch( scrollToMap() )
 
@@ -575,9 +579,24 @@ export const clipPage = ( ) => {
 
 export const unclipPage = ( ) => {
 
-	return {
+	return function ( dispatch, getState ){
 
-		type: types.UNCLIP_PAGE
+		let state = getState()
+		let { errors, form, geolocator, locate, prompts, statuses } = state.layers
+		if( !errors && !form && !geolocator && !locate && !prompts && !statuses ){
+	
+			dispatch( { type: types.SET_PROMPT_MSG, to: 'select_file' } )
+			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'prompts', to: true } )
+
+		}
+
+		let intro = document.getElementById( 'Intro' )
+		let info = document.getElementById( 'Info' )
+
+		intro.setAttribute( 'style', 'display: flex' )
+		info.setAttribute( 'style', 'display: flex' )
+
+		window.location.href = '#Info'
 
 	}
 

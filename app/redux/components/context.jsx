@@ -4,17 +4,17 @@ import { scrollToId } from 'actions/context'
 /*import Classnames from 'classnames'*/
 import DIV from 'components/tags/div'
 
-import Main from 'containers/main'
+import Main from 'containers/main/main'
 import Snackbar from 'containers/ui/snackbar'
 import Dialog from 'containers/ui/dialog'
 
 
-import How from 'components/how'
-import Guidelines from 'components/guidelines'
-import Team from 'containers/team'
-import FAQs from 'components/faqs'
-import Ask from 'components/ask'
-
+import How from 'components/info/how'
+import Guidelines from 'components/info/guidelines'
+import Team from 'containers/info/team'
+import FAQs from 'components/info/faqs'
+import Ask from 'components/info/ask'
+ 
 
 import A from 'components/tags/a'
 import I from 'components/tags/i'
@@ -146,8 +146,8 @@ const messages = defineMessages( {
 	}
 
 } )
-
-const context = ( { intl, lang, dir, jazzSupported } ) => {
+ 
+const context = ( { intl, lang, dir, jazzSupported, unclipPage } ) => {
 
 	const { formatMessage } = intl
 
@@ -168,6 +168,7 @@ const context = ( { intl, lang, dir, jazzSupported } ) => {
 					<FAQs />
 					<Ask />
 				</DIV>
+				<Main />
 			</DIV>
 
 		)
@@ -178,34 +179,25 @@ const context = ( { intl, lang, dir, jazzSupported } ) => {
 
 			<DIV lang={ lang } dir={ dir } >
 				<DIV id="Intro" className={ style.intro }>
-					<DIV className={ style.scroll } >
-						<IMG src="./assets/turtle-white.svg" alt="Logo coastwards: A turtle on a mission" className={ style.logo } />
-						<H priority={ 1 } className={ style.headline } ><span>{ formatMessage( messages.help_science ) }</span> <span>{ formatMessage( messages.by ) }</span></H>
-						<H priority={ 2 } className={ style.tagline } >{ formatMessage( messages.no_account ) }</H>
-						<A onClick={ scrollToId.bind( this, 'Info' ) } className={ style.arrow } >
-							<I className="material-icons">&#xE313;</I>
-						</A>
-					</DIV>
+					<IMG src="./assets/turtle-white.svg" alt="Logo coastwards: A turtle on a mission" className={ style.logo } />
+					<H priority={ 1 } className={ style.headline } ><span>{ formatMessage( messages.help_science ) }</span> <span>{ formatMessage( messages.by ) }</span></H>
+					<H priority={ 2 } className={ style.tagline } >{ formatMessage( messages.no_account ) }</H>
+					<A onClick={ scrollToId.bind( this, 'Info' ) } className={ style.arrow } >
+						<I className="material-icons">&#xE313;</I>
+					</A>
 				</DIV>
 				<DIV id="Info"className={ style.info }>
-					<DIV className={ style.scroll } >
-						<A onClick={ scrollToId.bind( this, 'Intro' ) } className={ style.arrow } >
-							<I className="material-icons">&#xE316;</I>
-						</A>
-						<DIV>
-							<How />
-							<Guidelines />
-							<Team />
-							<FAQs />
-							<Ask />
-						</DIV>
-						<A onClick={ scrollToId.bind( this, 'Main' ) } className={ style.arrow } >
-							<I className="material-icons">&#xE313;</I>
-						</A>
-					</DIV>
+					<How />
+					<Guidelines />
+					<Team />
+					<FAQs />
+					<Ask />
+					<A onClick={ scrollToId.bind( this, 'Main' ) } className={ style.arrow } >
+						<I className="material-icons">&#xE313;</I>
+					</A>
 				</DIV>
 				<DIV id="Main" className={ style.main }>
-					<A onClick={ scrollToId.bind( this, 'Info' ) } className={ style.arrow } >
+					<A onClick={ unclipPage } className={ style.arrow } >
 						<I className="material-icons">&#xE316;</I>
 					</A>
 					<Main />
@@ -225,7 +217,9 @@ context.propTypes = {
 	intl: intlShape.isRequired,
 	lang: PropTypes.string,
 	dir: PropTypes.string,
-	jazzSupported: PropTypes.bool
+	jazzSupported: PropTypes.bool,
+
+	unclipPage: PropTypes.func
 
 }
 

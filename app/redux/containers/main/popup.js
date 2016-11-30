@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
-import { hidePopup } from 'actions/mapbox'
+import { hidePopup } from 'actions/main/mapbox'
 import { addSnackbarMessage } from 'actions/ui/snackbar'
-import POPUP from 'components/popup'
+import POPUP from 'components/main/popup'
 
 
 const mapStateToProps = ( state ) => {

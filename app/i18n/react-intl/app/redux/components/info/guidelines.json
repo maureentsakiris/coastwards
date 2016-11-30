@@ -1,0 +1,47 @@
+[
+  {
+    "id": "any_picture",
+    "description": "Section header - Just any picture?",
+    "defaultMessage": "Just any picture?"
+  },
+  {
+    "id": "any_picture_title",
+    "description": "Section header title - Some quick guidelines",
+    "defaultMessage": "Some quick guidelines"
+  },
+  {
+    "id": "any_coast",
+    "description": "Header -",
+    "defaultMessage": "Any coast but not any picture. We need these pictures to get a closer look at coasts (not people) and we need to know where these coasts are. So these are our guidelines:"
+  },
+  {
+    "id": "guideline_original_header",
+    "description": "Header - We need the original image",
+    "defaultMessage": "We need the original image"
+  },
+  {
+    "id": "guideline_original_text",
+    "description": "Guideline - Original",
+    "defaultMessage": "This means: No images from Facebook, Whatsapp or other Social Media and no scans or screenshots."
+  },
+  {
+    "id": "guideline_faces_header",
+    "description": "Header - No faces",
+    "defaultMessage": "No faces"
+  },
+  {
+    "id": "guideline_faces_text",
+    "description": "Guideline - Faces",
+    "defaultMessage": "That's a no-go for data privacy reasons."
+  },
+  {
+    "id": "guideline_material_header",
+    "description": "Header - Material",
+    "defaultMessage": "We need to see the coast material"
+  },
+  {
+    "id": "guideline_material_text",
+    "description": "Guideline - Material",
+    "defaultMessage": "You probably didn't care much about the coast material at the time you took the picture, so please bear in mind that we don't care about how beautiful (sunsets) or ugly (your toes!) the image is, as long as we can see the coast material."
+  }
+]

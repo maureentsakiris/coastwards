@@ -1,0 +1,12 @@
+[
+  {
+    "id": "data_privacy",
+    "description": "Header - Gives user the opportunity to see exactly what information is beind sent to our servers",
+    "defaultMessage": "What other information do you collect?"
+  },
+  {
+    "id": "thats_it",
+    "description": "Note",
+    "defaultMessage": "That's it. I swear. No cookies, not even Google Analytics, just what you see above."
+  }
+]

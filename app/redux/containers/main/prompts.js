@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
-import { resetForm, clipPage } from 'actions/main'
-import PROMPTS from 'components/prompts'
+import { resetForm, clipPage } from 'actions/main/main'
+import PROMPTS from 'components/main/prompts'
 
 
 const mapStateToProps = ( state ) => {

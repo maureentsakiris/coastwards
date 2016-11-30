@@ -1,20 +1,7 @@
 import { connect } from 'react-redux'
 
 import { showDialog } from 'actions/ui/dialog'
-import FORMDATA from 'components/formdata'
-
-
-const mapStateToProps = ( state ) => {
-
-	return {
-
-		image: state.form.image,
-		uid: state.form.uid,
-		imageWidth: state.config.imageWidth
-
-	}
-
-}
+import QUESTIONS from 'components/info/questions'
 
 const mapDispatchToProps = ( dispatch ) => {
 
@@ -32,11 +19,11 @@ const mapDispatchToProps = ( dispatch ) => {
 }
 
 
-const formdata = connect(
+const questions = connect(
 
-	mapStateToProps,
+	null,
 	mapDispatchToProps
 
-)( FORMDATA )
+)( QUESTIONS )
 
-export default formdata
+export default questions

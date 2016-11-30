@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 
-import { showMarker, resetMain } from 'actions/main'
-import LOCATE from 'components/locate'
+import { showMarker, resetMain } from 'actions/main/main'
+import LOCATE from 'components/main/locate'
 
 
 const mapStateToProps = ( state ) => {

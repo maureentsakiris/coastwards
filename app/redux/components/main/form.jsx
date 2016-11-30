@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react'
 import { defineMessages, injectIntl, intlShape } from 'react-intl'
 import Classnames from 'classnames'
 
-import FORMDATA from 'containers/formdata'
+import FORMDATA from 'containers/main/formdata'
 
 import H from 'components/tags/h'
 import IMG from 'components/tags/img'

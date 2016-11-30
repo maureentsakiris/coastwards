@@ -2,7 +2,7 @@ import * as types from 'types'
 import mapboxgl from 'mapbox-gl/dist/mapbox-gl.js'
 import _ from 'underscore'
 import { promiseGet } from 'actions/util/request/get'
-import { resetMain } from 'actions/main'
+import { resetMain } from 'actions/main/main'
 import Modernizr from 'modernizr'
 
 const CENTER = [ 0, 39 ]

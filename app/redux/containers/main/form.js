@@ -1,8 +1,8 @@
 import { connect } from 'react-redux'
 
-import { setMaterial, /*setAdaptation,*/ setComment, setHashtag, uploadImage, resetMain } from 'actions/main'
+import { setMaterial, /*setAdaptation,*/ setComment, setHashtag, uploadImage, resetMain } from 'actions/main/main'
 import { showDialog } from 'actions/ui/dialog'
-import FORM from 'components/form'
+import FORM from 'components/main/form'
 
 
 const mapStateToProps = ( state ) => {

@@ -1,5 +1,6 @@
 import { connect } from 'react-redux'
 import CONTEXT from 'components/context'
+import { unclipPage } from 'actions/main/main'
 
 
 const mapStateToProps = ( state ) => {
@@ -17,11 +18,26 @@ const mapStateToProps = ( state ) => {
 
 }
 
+const mapDispatchToProps = ( dispatch ) => {
+
+	return {
+
+		unclipPage: ( e ) => {
+
+			e.preventDefault()
+			dispatch( unclipPage( e ) )
+
+		}
+
+	}
+
+}
+
 
 const context = connect(
 
 	mapStateToProps,
-	null
+	mapDispatchToProps
 
 )( CONTEXT )
 

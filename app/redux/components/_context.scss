@@ -1,9 +1,133 @@
 @import 'app/styles/reset';
 @import 'app/styles/tags';
 
+.arrow{
+
+	display: inline-block;
+	//margin-top: 5vh;
+
+	i{
+
+		font-size: 112px;
+		color: inherit;
+
+	}
+
+}
+
+%page{
+
+	min-height: 100vh;
+	position: relative;
+	z-index: 1;
+
+	@extend %flexcontainer;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+	padding: 7vw;
+
+}
+
+.intro{
+
+	@extend %page;
+
+	background-color: $color-primary;
+	color: #fff;
+
+	.logo{
+
+		max-width: 70vw;
+		width: 300px;
+
+	}
+
+	.headline{
+
+		text-transform: uppercase;
+		font-weight: 300;
+		font-size: 1.5em;
+		text-align: center;
+
+	}
+
+	.tagline{
+
+		font-weight: 500;
+		font-size: 1.2em;
+		text-align: center;
+
+	}
+
+	a{
+
+		color: #fff;
+
+	}
+
+}
+
+.info{
+
+	@extend %page;
+	//min-height: auto;
+	justify-content: flex-start;
+	background-color: #fff;
+
+}
+
+.main{
+
+	position: relative;
+	z-index: 0;
+
+	&>a{
+
+		position: fixed;
+		top: 0;
+		z-index: 2;
+		left: 50%;
+    	margin-left: -28px;
+    	margin-top: 0;
+
+    	i{
+
+    		font-size: 56px;
+
+    	}
+
+	}
+
+}
 
 
-.section{
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* .section{
 
 	
 	
@@ -147,4 +271,4 @@
 
 	}
 
-}
+} */

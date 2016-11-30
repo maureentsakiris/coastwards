@@ -1,0 +1,62 @@
+[
+  {
+    "id": "files_undefined",
+    "description": "Error - Informs user that no files were selected",
+    "defaultMessage": "No files were selected."
+  },
+  {
+    "id": "wrong_filetype",
+    "description": "Error - Informs the user that the selected image has the wrong file type",
+    "defaultMessage": "Em... the file you selected is not an image. It should have of the following extensions: jpg, jpeg, tif, tiff, gif or png"
+  },
+  {
+    "id": "duplicate_file",
+    "description": "Error - Informs user that the file has already been selected before",
+    "defaultMessage": "You've already selected this file before!"
+  },
+  {
+    "id": "exifdata_empty",
+    "description": "Error - Informs user that exifdata is missing and why that could be",
+    "defaultMessage": "We couldn't find any metadata in your image. Our best guess is that it was sent through social media, like Facebook or Whatsapp, or, it might be a scan or a screenshot. Do you have the original image? Try that one!"
+  },
+  {
+    "id": "image_too_small",
+    "description": "Error - Informs user that the image is too small",
+    "defaultMessage": "Your image is too small for us to analyse. Do you have the original file somewhere? Try that one!"
+  },
+  {
+    "id": "orientation_undefined",
+    "description": "Error - Informs user that image orientation is undefined",
+    "defaultMessage": "We couldn't find information on image's orientation so we can't rotate it for image validation. Bummer, but keep on trying!"
+  },
+  {
+    "id": "faces_detected",
+    "description": "Error - Informs user that faces were detected in image",
+    "defaultMessage": "Sorry, for privacy concerns we have to reject images with faces"
+  },
+  {
+    "id": "spam_detected",
+    "description": "Error - Informs user that image did not pass spam filter",
+    "defaultMessage": "You sure that's a picture of a coast? We have our doubts..."
+  },
+  {
+    "id": "not_a_coast",
+    "description": "Error - Informs user that image probably does not depict a coast",
+    "defaultMessage": "This doesn't look like a coast. Or at least the image annotation software doesn't think so. Sorry, try another one!"
+  },
+  {
+    "id": "location_undefined",
+    "description": "Error - Informs user that we couldn't extract the location from the metadata",
+    "defaultMessage": "That's too bad. We need to know where the coast is located but we couldn't find that information in the metadata. Switch to a modern browser to locate the coast for us (unfortunately your browser doesn't support some of the features necessary to do that) or try uploading an image that was taken with a mobile or digital camera."
+  },
+  {
+    "id": "no_datetime",
+    "description": "Error -",
+    "defaultMessage": "We couldn't find the date and time you took this picture. Do you have the original? Try that one!"
+  },
+  {
+    "id": "upload_error",
+    "description": "Error - Informs user that an error ocurred during upload",
+    "defaultMessage": "Crap, something went wrong during upload. I'm sure this is my fault (or maybe your connection is bad). Try again?"
+  }
+]

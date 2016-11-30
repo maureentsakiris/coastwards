@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 
-import { resetForm } from 'actions/main'
-import STATUSES from 'components/statuses'
+import { resetForm } from 'actions/main/main'
+import STATUSES from 'components/main/statuses'
 
 
 const mapStateToProps = ( state ) => {

@@ -1,0 +1,17 @@
+[
+  {
+    "id": "can_you_locate",
+    "description": "Status - Informs user that we couldn't extract the location from the metadata and prompts user to locate the image for us",
+    "defaultMessage": "We couldn't find the location in the metadata. Do you remember exactly where you took this picture?"
+  },
+  {
+    "id": "yes_location_known",
+    "description": "Label - Yes, I can locate this coast",
+    "defaultMessage": "Yes, I can locate this coast"
+  },
+  {
+    "id": "no_location_unknown",
+    "description": "Label - No, I don't remember",
+    "defaultMessage": "No, I don't remember"
+  }
+]

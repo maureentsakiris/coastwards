@@ -1,8 +1,8 @@
 import { connect } from 'react-redux'
-import { toggleSatellite } from 'actions/mapbox'
-import { resetMain, setLocation } from 'actions/main'
+import { toggleSatellite } from 'actions/main/mapbox'
+import { resetMain, setLocation } from 'actions/main/main'
 import { addSnackbarMessage } from 'actions/ui/snackbar'
-import MARKER from 'components/marker'
+import MARKER from 'components/main/marker'
 
 
 const mapStateToProps = ( state ) => {

@@ -1,8 +1,8 @@
 import { connect } from 'react-redux'
 
-import { validateFile, openInput } from 'actions/main'
+import { validateFile, openInput } from 'actions/main/main'
 import { setLayerVisibility } from 'actions/layers'
-import UPLOAD from 'components/upload'
+import UPLOAD from 'components/main/upload'
 
 
 const mapStateToProps = ( state ) => {
@@ -15,7 +15,7 @@ const mapStateToProps = ( state ) => {
 
 	}
 
-}
+}  
 
 const mapDispatchToProps = ( dispatch ) => {
 
