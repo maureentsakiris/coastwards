@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react'
 import { defineMessages, injectIntl, intlShape } from 'react-intl'
+import { scrollToId } from 'actions/context'
 /*import Classnames from 'classnames'*/
 import DIV from 'components/tags/div'
 
@@ -176,32 +177,38 @@ const context = ( { intl, lang, dir, jazzSupported } ) => {
 		return(
 
 			<DIV lang={ lang } dir={ dir } >
-				<DIV id="Intro" className={ style.page }>
-					<IMG src="./assets/turtle.svg" alt="Logo coastwards: A turtle on a mission" className={ style.logo } />
-					<H priority={ 1 } className={ style.headline } ><span>{ formatMessage( messages.help_science ) }</span> <span>{ formatMessage( messages.by ) }</span></H>
-					<H priority={ 2 } className={ style.tagline } >{ formatMessage( messages.no_account ) }</H>
-					<A href="#Info" className={ style.arrow } >
-						<I className="material-icons">&#xE313;</I>
-					</A>
+				<DIV id="Intro" className={ style.intro }>
+					<DIV className={ style.scroll } >
+						<IMG src="./assets/turtle-white.svg" alt="Logo coastwards: A turtle on a mission" className={ style.logo } />
+						<H priority={ 1 } className={ style.headline } ><span>{ formatMessage( messages.help_science ) }</span> <span>{ formatMessage( messages.by ) }</span></H>
+						<H priority={ 2 } className={ style.tagline } >{ formatMessage( messages.no_account ) }</H>
+						<A onClick={ scrollToId.bind( this, 'Info' ) } className={ style.arrow } >
+							<I className="material-icons">&#xE313;</I>
+						</A>
+					</DIV>
 				</DIV>
-				<DIV id="Info"className={ style.pageTop }>
-					<A href="#Intro" className={ style.arrow } >
+				<DIV id="Info"className={ style.info }>
+					<DIV className={ style.scroll } >
+						<A onClick={ scrollToId.bind( this, 'Intro' ) } className={ style.arrow } >
+							<I className="material-icons">&#xE316;</I>
+						</A>
+						<DIV>
+							<How />
+							<Guidelines />
+							<Team />
+							<FAQs />
+							<Ask />
+						</DIV>
+						<A onClick={ scrollToId.bind( this, 'Main' ) } className={ style.arrow } >
+							<I className="material-icons">&#xE313;</I>
+						</A>
+					</DIV>
+				</DIV>
+				<DIV id="Main" className={ style.main }>
+					<A onClick={ scrollToId.bind( this, 'Info' ) } className={ style.arrow } >
 						<I className="material-icons">&#xE316;</I>
 					</A>
-					<How />
-					<Guidelines />
-					<Team />
-					<FAQs />
-					<Ask />
-					<A href="#Main" className={ style.arrow } >
-						<I className="material-icons">&#xE313;</I>
-					</A>
-				</DIV>
-				<DIV id="Main" className={ style.page }>
-					<A href="#Info" className={ style.arrow } >
-						<I className="material-icons">&#xE316;</I>
-					</A>
-					<Main className={ style.main } />
+					<Main />
 				</DIV>
 				<Snackbar />
 				<Dialog />
