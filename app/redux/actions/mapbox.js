@@ -19,7 +19,7 @@ const _promiseInitMap = ( ) => {
 		const map = new mapboxgl.Map( {
 
 			container: 'Mapbox',
-			style: 'mapbox://styles/maureentsakiris/cinxhoec70043b4nmx0rkoc02',
+			style: 'mapbox://styles/mapbox/streets-v9',
 			zoom: ZOOM,
 			maxZoom: MAXZOOM,
 			center: CENTER,
