@@ -34,6 +34,8 @@ const _promiseInitMap = ( ) => {
 
 		} )
 
+		console.log( map );
+
 		map.setStyle( 'mapbox://styles/maureentsakiris/cinxhoec70043b4nmx0rkoc02' )
 
 		if( !Modernizr.touchevents ){
@@ -166,6 +168,7 @@ export const displayMap = ( ) => {
 		_promiseInitMap( state.mapbox.geocoder_placeholder )
 		.then( ( map ) => {
 
+			console.log( "initialised map" );
 			//Register map
 			dispatch( { type: types.SET_MAP, to: map } )
 
@@ -208,6 +211,8 @@ export const displayMap = ( ) => {
 
 			} )
 
+			console.log( "added event listeners" );
+
 			return map
 
 
@@ -216,6 +221,8 @@ export const displayMap = ( ) => {
 		.then( JSON.parse )
 		.then( _promiseOKGeojson )
 		.then( ( geojson ) => {
+
+			console.log( "got geojson" );
 
 			if( _.isNull( geojson ) ){
 
