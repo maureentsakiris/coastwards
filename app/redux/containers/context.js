@@ -12,7 +12,8 @@ const mapStateToProps = ( state ) => {
 
 		lang: locale,
 		dir: dir,
-		jazzSupported: jazzSupported
+		jazzSupported: jazzSupported,
+		clipped: state.clipped
 
 	}
 

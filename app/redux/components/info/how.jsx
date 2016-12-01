@@ -126,7 +126,7 @@ const how = ( { intl } ) => {
 	return(
 
 		<DIV className={ style.how } >
-			<DIV className={ style.video } style={ { backgroundImage: 'url(assets/poster.png' } }></DIV>
+			<DIV className={ style.video } style={ { backgroundImage: 'url(assets/poster.png)' } }></DIV>
 			<TOGGLE className={ style.toggle } priority={ 3 } title={ formatMessage( messages.how_title ) } text={ formatMessage( messages.how ) }  >
 				<P>{ formatMessage( messages.in_a_nutshell ) }</P>
 				<P>{ formatMessage( messages.how_it_works ) }</P>

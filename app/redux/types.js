@@ -1,7 +1,7 @@
 //language
 export const LOAD_LANGUAGE = 'LOAD_LANGUAGE'
 
-//page
+//clipped
 export const CLIP_PAGE = 'CLIP_PAGE'
 export const UNCLIP_PAGE = 'UNCLIP_PAGE'
 

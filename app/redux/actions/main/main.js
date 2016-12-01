@@ -563,14 +563,9 @@ export const clipPage = ( ) => {
 
 	return function ( dispatch ){
 
-		let intro = document.getElementById( 'Intro' )
-		let info = document.getElementById( 'Info' )
-
-		intro.setAttribute( 'style', 'display: none' )
-		info.setAttribute( 'style', 'display: none' )
-
 		window.dispatchEvent( new Event( 'resize' ) )
 
+		dispatch( { type: 'CLIP_PAGE' } )
 		dispatch( scrollToMap() )
 
 	}
@@ -590,14 +585,12 @@ export const unclipPage = ( e ) => {
 
 		}
 
-		let intro = document.getElementById( 'Intro' )
-		let info = document.getElementById( 'Info' )
+		dispatch( { type: 'UNCLIP_PAGE' } )
 
-		intro.setAttribute( 'style', 'display: flex' )
-		info.setAttribute( 'style', 'display: flex' )
-
-		window.location.href = '#Main'
 		scrollToId( 'Info', e )
+
+		/*window.location.href = '#Main'
+		scrollToId( 'Info', e )*/
 
 	}
 
