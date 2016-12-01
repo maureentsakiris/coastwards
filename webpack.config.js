@@ -67,7 +67,7 @@ const config = {
 	postcss: [ autoprefixer ],
 	plugins: [
 		extractStyles,
-		//new webpack.optimize.DedupePlugin(),
+		new webpack.optimize.DedupePlugin(),
 		new webpack.DefinePlugin( {
 
 			'process.env': {
