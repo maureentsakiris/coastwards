@@ -78,6 +78,7 @@
 .intro{
 
 	@extend %page;
+	height: 100vh;
 
 	background-color: $color-primary;
 	color: #fff;

@@ -3,6 +3,7 @@ import ReactDom from 'react-dom'
 import { createStore, applyMiddleware, compose } from 'redux'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
+import 'babel-polyfill'
 
 require( 'smoothscroll-polyfill' ).polyfill()
 
@@ -26,6 +27,22 @@ const store = createStore( coastwards, compose(
 	window.devToolsExtension ? window.devToolsExtension() : ( f ) => f
 
 ) )
+
+//https://github.com/reactjs/react-redux/releases/tag/v2.0.0
+
+/*console.log( module.hot )
+
+if ( module.hot ) {
+
+	// Enable Webpack hot module replacement for reducers
+	module.hot.accept( 'reducers', () => {
+
+		const nextRootReducer = require( 'reducers' )
+		store.replaceReducer( nextRootReducer )
+
+	} )
+
+}*/
 
 
 //load negotiated language
