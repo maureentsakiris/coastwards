@@ -197,7 +197,7 @@ const context = ( { intl, lang, dir, jazzSupported, unclipPage } ) => {
 					</A>
 				</DIV>
 				<DIV id="Main" className={ style.main }>
-					<A onClick={ unclipPage } className={ style.arrow } >
+					<A onClick={ unclipPage.bind( this ) } className={ style.arrow } >
 						<I className="material-icons">&#xE316;</I>
 					</A>
 					<Main />

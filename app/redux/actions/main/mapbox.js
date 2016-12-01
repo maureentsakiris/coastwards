@@ -162,8 +162,6 @@ export const displayMap = ( ) => {
 
 	return function ( dispatch, getState ){
 
-		console.log( "displaying map" );
-
 		_promiseInitMap()
 		.then( ( map ) => {
 

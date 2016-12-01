@@ -571,6 +571,8 @@ export const clipPage = ( ) => {
 		intro.setAttribute( 'style', 'display: none' )
 		info.setAttribute( 'style', 'display: none' )
 
+		window.dispatchEvent( new Event( 'resize' ) )
+
 		dispatch( scrollToMap() )
 
 	}
