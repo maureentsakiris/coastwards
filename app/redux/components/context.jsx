@@ -156,12 +156,12 @@ const context = ( { intl, lang, dir, jazzSupported, unclipPage } ) => {
 		return(
 
 			<DIV lang={ lang } dir={ dir } >
-				<DIV id="Intro" className={ style.section }>
+				<DIV id="Intro" className={ style.introNoJazz } >
 					<IMG src="./assets/turtle.svg" alt="Logo coastwards: A turtle on a mission" />
 					<H priority={ 1 } ><span>{ formatMessage( messages.help_science ) }</span> <span>{ formatMessage( messages.by ) }</span></H>
 					<H priority={ 2 } >{ formatMessage( messages.no_account ) }</H>
 				</DIV>
-				<DIV id="Info"className={ style.section }>
+				<DIV id="Info" className={ style.infoNoJazz } >
 					<How />
 					<Guidelines />
 					<Team />
@@ -169,6 +169,8 @@ const context = ( { intl, lang, dir, jazzSupported, unclipPage } ) => {
 					<Ask />
 				</DIV>
 				<Main />
+				<Snackbar />
+				<Dialog />
 			</DIV>
 
 		)

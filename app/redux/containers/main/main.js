@@ -1,6 +1,5 @@
 import { connect } from 'react-redux'
 import MAIN from 'components/main/main'
-import { scrollUp } from 'actions/main/main'
 
 
 const mapStateToProps = ( state ) => {
@@ -15,7 +14,7 @@ const mapStateToProps = ( state ) => {
 
 }
 
-const mapDispatchToProps = ( dispatch ) => {
+/*const mapDispatchToProps = ( dispatch ) => {
 
 	return {
 
@@ -28,13 +27,13 @@ const mapDispatchToProps = ( dispatch ) => {
 
 	}
 
-}
+}*/
 
 
 const main = connect(
 
-	mapStateToProps,
-	mapDispatchToProps
+	mapStateToProps/*,
+	mapDispatchToProps*/
 
 )( MAIN )
 

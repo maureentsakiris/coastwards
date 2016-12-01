@@ -18,7 +18,6 @@
     "css/transitions",
     "forms/placeholder",
     "css/vhunit",
-    "css/vwunit",
-    "es6/promises"
+    "css/vwunit"
   ]
 }

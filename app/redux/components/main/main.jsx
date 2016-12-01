@@ -41,7 +41,7 @@ const messages = defineMessages( {
 	
 } )
 
-const main = ( { intl, uploadSupported, jazzSupported, scrollUp } ) => {
+const main = ( { intl, uploadSupported, jazzSupported } ) => {
 
 	const { formatMessage } = intl
 
@@ -98,10 +98,7 @@ main.propTypes = {
 	intl: intlShape.isRequired,
 
 	uploadSupported: PropTypes.bool,
-	jazzSupported: PropTypes.bool,
-
-	scrollUp: PropTypes.func,
-	scrollToMap: PropTypes.func
+	jazzSupported: PropTypes.bool
 	
 }
 
