@@ -22,7 +22,6 @@ const extractStyles = new ExtractTextPlugin( 'styles.css' )
 const config = {
 
 	server: server,
-	devtool: 'source-map',
 	entry: { 
 
 		index: ENTRY_INDEX,
@@ -68,6 +67,14 @@ const config = {
 	plugins: [
 		extractStyles,
 		new webpack.optimize.DedupePlugin(),
+		new webpack.optimize.UglifyJsPlugin( {
+
+			minimize: true,
+			compress: {
+				warnings: true
+			}
+
+		} ),
 		new webpack.DefinePlugin( {
 
 			'process.env': {
