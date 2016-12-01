@@ -10,10 +10,25 @@
 
 		font-size: 112px;
 		color: inherit;
+		opacity: 0.5;
+		line-height: 66px;
 
 	}
 
 }
+
+/* .arrow{
+
+	@extend %arrow;
+
+}
+
+.arrowLight{
+
+	@extend %arrow;
+	color: #ebf2f7;
+
+} */
 
 %page{
 
@@ -89,14 +104,7 @@
 		top: 0;
 		z-index: 2;
 		left: 50%;
-    	margin-left: -28px;
-    	margin-top: 0;
-
-    	i{
-
-    		font-size: 56px;
-
-    	}
+    	margin-left: -56px;
 
 	}
 

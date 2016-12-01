@@ -577,7 +577,7 @@ export const clipPage = ( ) => {
 
 }
 
-export const unclipPage = ( ) => {
+export const unclipPage = ( e ) => {
 
 	return function ( dispatch, getState ){
 
@@ -596,7 +596,8 @@ export const unclipPage = ( ) => {
 		intro.setAttribute( 'style', 'display: flex' )
 		info.setAttribute( 'style', 'display: flex' )
 
-		window.location.href = '#Info'
+		window.location.href = '#Main'
+		scrollToId( 'Info', e )
 
 	}
 
@@ -606,7 +607,7 @@ export const disableAndreasPinch = ( ) => {
 
 	return function ( dispatch ){
 
-		let stage = document.getElementById( 'Body' )
+		//let stage = document.getElementById( 'Body' )
 
 		/*var mc = new Hammer.Manager( stage, { touchAction: 'pan-y' } )
 		mc.add( new Hammer.Pinch( { event: 'AndreasPinch', pointers: 0, threshold: 0 } ) )

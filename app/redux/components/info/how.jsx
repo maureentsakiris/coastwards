@@ -3,6 +3,7 @@ import { defineMessages, injectIntl, intlShape } from 'react-intl'
 
 import TOGGLE from 'components/ui/toggle'
 import P from 'components/tags/p'
+import DIV from 'components/tags/div'
 
 import style from './_how'
 
@@ -17,6 +18,16 @@ const messages = defineMessages( {
 		id:"how_title",
 		description: "Section header title - Watch a video (2min)",
 		defaultMessage: "Watch a video (1min)"
+	},
+	transcript:{
+		id: "transcript",
+		description: "Section header",
+		defaultMessage: "I prefer to read"
+	},
+	transcript_title:{
+		id:"transcript_title",
+		description: "Section header title",
+		defaultMessage: "Read the transcript"
 	},
 
 	//script
@@ -114,14 +125,17 @@ const how = ( { intl } ) => {
 
 	return(
 
-		<TOGGLE className={ style.how } priority={ 3 } title={ formatMessage( messages.how_title ) } text={ formatMessage( messages.how ) }  >
-			<P>{ formatMessage( messages.in_a_nutshell ) }</P>
-			<P>{ formatMessage( messages.how_it_works ) }</P>
-			<P>{ formatMessage( messages.place_on_map ) }</P>
-			<P>{ formatMessage( messages.determine_coastal_type ) } { " " } { formatMessage( messages.the_more_the_better ) }</P>
-			<P>{ formatMessage( messages.computer_programs ) }</P>
-			<P>{ formatMessage( messages.policy_makers ) }</P>
-			<P>{ formatMessage( messages.best_advice ) }</P>
+		<TOGGLE expanded={ true } className={ style.how } priority={ 3 } title={ formatMessage( messages.how_title ) } text={ formatMessage( messages.how ) }  >
+			<DIV className={ style.video }></DIV>
+			<TOGGLE className={ style.how } priority={ 5 } title={ formatMessage( messages.transcript_title ) } text={ formatMessage( messages.transcript ) }  >
+				<P>{ formatMessage( messages.in_a_nutshell ) }</P>
+				<P>{ formatMessage( messages.how_it_works ) }</P>
+				<P>{ formatMessage( messages.place_on_map ) }</P>
+				<P>{ formatMessage( messages.determine_coastal_type ) } { " " } { formatMessage( messages.the_more_the_better ) }</P>
+				<P>{ formatMessage( messages.computer_programs ) }</P>
+				<P>{ formatMessage( messages.policy_makers ) }</P>
+				<P>{ formatMessage( messages.best_advice ) }</P>
+			</TOGGLE>
 		</TOGGLE>
 
 	)

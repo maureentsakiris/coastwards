@@ -10,6 +10,16 @@
     "defaultMessage": "Watch a video (1min)"
   },
   {
+    "id": "transcript",
+    "description": "Section header",
+    "defaultMessage": "I prefer to read"
+  },
+  {
+    "id": "transcript_title",
+    "description": "Section header title",
+    "defaultMessage": "Read the transcript"
+  },
+  {
     "id": "sea_levels_rise_because",
     "description": "Script - Sea-levels rise because ice melts and our oceans absorb the excess heat and expand - a process that will take centuries to play out.",
     "defaultMessage": "Sea-levels rise because ice melts and our oceans absorb the excess heat and expand - a process that will take centuries to play out."
