@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { resetForm, clipPage } from 'actions/main/main'
+import { resetForm/*, clipPage*/ } from 'actions/main/main'
 import PROMPTS from 'components/main/prompts'
 
 
@@ -22,7 +22,7 @@ const mapDispatchToProps = ( dispatch ) => {
 		hide: ( e ) => {
 
 			e.preventDefault()
-			dispatch( clipPage() )
+			//dispatch( clipPage() )
 			dispatch( { type: 'SET_LAYER_VISIBILITY', layer: 'prompts', to: false } )
 
 		},
