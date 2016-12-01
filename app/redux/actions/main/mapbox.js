@@ -19,7 +19,7 @@ const _promiseInitMap = ( ) => {
 		const map = new mapboxgl.Map( {
 
 			container: 'Mapbox',
-			//style: 'mapbox://styles/maureentsakiris/cinxhoec70043b4nmx0rkoc02',
+			style: 'mapbox://styles/maureentsakiris/cinxhoec70043b4nmx0rkoc02',
 			zoom: ZOOM,
 			maxZoom: MAXZOOM,
 			center: CENTER,
@@ -34,12 +34,9 @@ const _promiseInitMap = ( ) => {
 
 		} )
 
-
-		map.setStyle( 'mapbox://styles/maureentsakiris/cinxhoec70043b4nmx0rkoc02' )
-
 		if( !Modernizr.touchevents ){
 
-			//map.addControl( new mapboxgl.NavigationControl(), 'top-left' )
+			map.addControl( new mapboxgl.NavigationControl(), 'top-left' )
 
 			/*let geocoder = new MapboxGeocoder( {
 

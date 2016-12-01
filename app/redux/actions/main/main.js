@@ -1,5 +1,5 @@
 import * as types from 'types'
-import { promiseType, promiseEXIF, promiseMinimumBoxDimensions, promiseCanvasBoxResize, promiseLocation, promiseDateTime } from 'actions/util/image'
+import { promiseType, promiseEXIF, promiseMinimumBoxDimensions, promiseCanvasBoxResize, promiseLocation/*, promiseDateTime*/ } from 'actions/util/image'
 import { addSnackbarMessage } from 'actions/ui/snackbar'
 import { promiseDataURLtoBlob } from 'actions/util/form'
 import { scrollToId } from 'actions/context'
@@ -78,18 +78,16 @@ const _promiseSafe = ( image ) => {
 
 			}
 
-			console.log( annotations );
-
 			if( _.contains( annotations.safeSearchAnnotation, 'LIKELY' ) || _.contains( annotations.safeSearchAnnotation, 'VERY_LIKELY' ) ){
  
 				reject( Error( "spam_detected" ) ) //YES
 
 			}
 
-			let coast = _.filter( annotations.labelAnnotations, { description: 'coast' } )
+			/*let coast = _.filter( annotations.labelAnnotations, { description: 'coast' } )
 			let shore = _.filter( annotations.labelAnnotations, { description: 'shore' } )
 			let harbor = _.filter( annotations.labelAnnotations, { description: 'harbor' } )
-			let natural_environment = _.filter( annotations.labelAnnotations, { description: 'natural environment' } )
+			let natural_environment = _.filter( annotations.labelAnnotations, { description: 'natural environment' } )*/
 
 			/*if( !coast.length && !shore.length && !harbor.length && !natural_environment.length ){
 
