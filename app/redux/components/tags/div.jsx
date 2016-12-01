@@ -8,6 +8,8 @@ const div = ( { hocProps } ) => {
 	const { children, ...restProps } = hocProps
 	const allowedProps = _.pick( restProps, _.union( globalAttr, divAttr ) )
 
+	console.log( allowedProps );
+
 	return(
 
 		<div { ...allowedProps } >{ children }</div>

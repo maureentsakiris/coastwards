@@ -40,6 +40,51 @@
 }
 
 
+//############################################################################################ RESPONSIVE
+
+
+@mixin portrait( ) {
+
+	@media all and ( orientation:portrait ) {
+
+		@content;
+
+	}
+
+}
+
+@mixin landscape( ) {
+
+	@media all and ( orientation:landscape ) {
+
+		@content;
+
+	}
+
+
+}
+
+@mixin portraitMin( $min ){
+
+	@media (min-width: #{ $min } ) and ( orientation:portrait ) {
+
+		@content;
+
+	}
+
+}
+
+@mixin landscapeMin( $min ){
+
+	@media (min-width: #{ $min } ) and ( orientation:landscape ) {
+
+		@content;
+
+	}
+
+}
+
+
 //############################################################################################ LOADER
 
 

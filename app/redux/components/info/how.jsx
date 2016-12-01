@@ -125,9 +125,9 @@ const how = ( { intl } ) => {
 
 	return(
 
-		<TOGGLE expanded={ true } className={ style.how } priority={ 3 } title={ formatMessage( messages.how_title ) } text={ formatMessage( messages.how ) }  >
-			<DIV className={ style.video }></DIV>
-			<TOGGLE className={ style.how } priority={ 5 } title={ formatMessage( messages.transcript_title ) } text={ formatMessage( messages.transcript ) }  >
+		<DIV className={ style.how } >
+			<DIV className={ style.video } style={ { backgroundImage: 'url(assets/poster.png' } }></DIV>
+			<TOGGLE className={ style.toggle } priority={ 3 } title={ formatMessage( messages.how_title ) } text={ formatMessage( messages.how ) }  >
 				<P>{ formatMessage( messages.in_a_nutshell ) }</P>
 				<P>{ formatMessage( messages.how_it_works ) }</P>
 				<P>{ formatMessage( messages.place_on_map ) }</P>
@@ -136,11 +136,11 @@ const how = ( { intl } ) => {
 				<P>{ formatMessage( messages.policy_makers ) }</P>
 				<P>{ formatMessage( messages.best_advice ) }</P>
 			</TOGGLE>
-		</TOGGLE>
+		</DIV>
 
 	)
 
-}
+} 
 
 how.propTypes = {
 

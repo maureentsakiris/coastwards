@@ -11,7 +11,6 @@
 		font-size: 112px;
 		color: inherit;
 		opacity: 0.5;
-		line-height: 66px;
 
 	}
 
@@ -41,7 +40,17 @@
 	justify-content: center;
 	align-items: center;
 
-	padding: 7vw;
+	@include portrait( ){
+
+		padding: 7vw;
+
+	}
+
+	@include landscape( ){
+
+		padding: 7vh;
+
+	}
 
 }
 
@@ -54,8 +63,32 @@
 
 	.logo{
 
-		max-width: 70vw;
+		min-width: 160px;
 		width: 300px;
+
+		@include portrait( ){
+
+			max-width: 70vw;
+
+		}
+
+		@include landscape( ){
+
+			max-width: 50vh;
+
+		}
+
+		@include portraitMin( $tablet ){
+
+			max-width: 50vw;
+
+		}
+
+		@include landscapeMin( $tablet ){
+
+			max-width: 50vh;
+
+		}
 
 	}
 
@@ -66,6 +99,42 @@
 		font-size: 1.5em;
 		text-align: center;
 
+		@include portrait( ){
+
+			font-size: 4vh;
+
+		}
+
+		@include landscape( ){
+
+			font-size: 4vw;
+
+		}
+
+		@include portraitMin( $desktop ){
+
+			font-size: 3vh;
+
+			span{
+
+				display: block;
+
+			}
+
+		}
+
+		@include landscapeMin( $desktop ){
+
+			font-size: 3vw;
+
+			span{
+
+				display: block;
+
+			}
+
+		}
+
 	}
 
 	.tagline{
@@ -73,6 +142,7 @@
 		font-weight: 500;
 		font-size: 1.2em;
 		text-align: center;
+		margin: 0;
 
 	}
 
@@ -83,6 +153,7 @@
 	}
 
 }
+
 
 .info{
 
@@ -97,6 +168,8 @@
 
 	position: relative;
 	z-index: 0;
+	height: 100%;
+	width: 100%;
 
 	&>a{
 
