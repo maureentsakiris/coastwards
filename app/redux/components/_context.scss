@@ -81,20 +81,44 @@
 
 	}
 
+	/* @include portraitMin( $tablet ){
+
+		min-height: auto;
+
+	}
+
+	@include landscapeMin( $tablet ){
+
+		min-height: auto;
+
+	} */
+
 }
 
 .intro{
 
 	@extend %page;
-	// height: 100vh; FUCK EXPLORER
 
 	background-color: $color-primary;
 	color: #fff;
 
+
+	@include landscape( ){
+
+		min-height: 100vh;
+
+	}
+
+	@include landscapeMin( $tablet ){
+
+		min-height: auto;
+
+	}
+
 	.logo{
 
 		min-width: 160px;
-		width: 400px;
+		width: 300px;
 
 		@include portrait( ){
 
@@ -104,7 +128,7 @@
 
 		@include landscape( ){
 
-			max-width: 50vh;
+			max-width: 90vh;
 
 		}
 
@@ -126,14 +150,16 @@
 
 		text-transform: uppercase;
 		font-weight: 300;
-		font-size: 1.5em;
 		text-align: center;
+		font-weight: 600;
+
+		font-size: 26px;
 
 		@extend %corset;
 
-		@include portrait( ){
+		/* @include portrait( ){
 
-			font-size: 4vh;
+			font-size: 7vw;
 
 		}
 
@@ -141,15 +167,15 @@
 
 			font-size: 4vw;
 
-		}
+		} */
 
 		@include portraitMin( $desktop ){
 
-			font-size: 3vh;
+			font-size: 32px;
 
 			span{
 
-				//display: block;
+				display: block;
 
 			}
 
@@ -157,21 +183,15 @@
 
 		@include landscapeMin( $desktop ){
 
-			font-size: 2.6vw;
+			font-size: 32px;
 
 			span{
 
-				//display: block;
+				display: block;
 
 			}
 
 		}
-
-		/* @include landscapeMin( $huge ){
-
-			font-size: 2.5vw;
-
-		} */
 
 	}
 
@@ -196,7 +216,7 @@
 .info{
 
 	@extend %page;
-	padding: 0;
+	padding-top: 0;
 	//min-height: auto;
 	justify-content: flex-start;
 	background-color: $color-primary;

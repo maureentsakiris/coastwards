@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { Component } from 'react'
+import PureRenderMixin from 'react-addons-pure-render-mixin'
 import { defineMessages, injectIntl, intlShape } from 'react-intl'
 
 import TOGGLE from 'components/ui/toggle'
-import P from 'components/tags/p'
 import DIV from 'components/tags/div'
+import P from 'components/tags/p'
+import A from 'components/tags/a'
 
 import style from './_how'
 
@@ -19,16 +21,17 @@ const messages = defineMessages( {
 		description: "Section header title - Watch a video (2min)",
 		defaultMessage: "1min read.Tops"
 	},
-	transcript:{
-		id: "transcript",
+	show_transcript:{
+		id: "show_transcript",
 		description: "Section header",
-		defaultMessage: "I prefer to read"
+		defaultMessage: "Show transcript"
 	},
-	transcript_title:{
-		id:"transcript_title",
-		description: "Section header title",
-		defaultMessage: "Read the transcript"
+	hide_transcript:{
+		id: "hide_transcript",
+		description: " - ",
+		defaultMessage: "Hide transcript"
 	},
+
 
 	//script
 	sea_levels_rise_because:{
@@ -119,36 +122,66 @@ const messages = defineMessages( {
 
 } )
 
-const how = ( { intl } ) => {
 
-	const { formatMessage } = intl
+class How extends Component {
 
-	/*style={ { backgroundImage: 'url(assets/poster.png)' } }*/
+	static propTypes = {
 
-	/*<TOGGLE className={ style.toggle } priority={ 3 } title={ formatMessage( messages.how_title ) } text={ formatMessage( messages.how ) }  >
-				<P>{ formatMessage( messages.in_a_nutshell ) }</P>
-				<P>{ formatMessage( messages.how_it_works ) }</P>
-				<P>{ formatMessage( messages.place_on_map ) }</P>
-				<P>{ formatMessage( messages.determine_coastal_type ) } { " " } { formatMessage( messages.the_more_the_better ) }</P>
-				<P>{ formatMessage( messages.computer_programs ) }</P>
-				<P>{ formatMessage( messages.policy_makers ) }</P>
-				<P>{ formatMessage( messages.best_advice ) }</P>
-			</TOGGLE>*/
+		intl: intlShape.isRequired
 
-	return(
+	}
 
-		<TOGGLE className={ style.toggle } priority={ 3 } title={ formatMessage( messages.how_title ) } text={ formatMessage( messages.how ) }  >
-			<DIV className={ style.video } ></DIV>
-		</TOGGLE>
 
-	)
+	constructor ( props ) {
 
-} 
+		super ( props )
+		this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind( this )
 
-how.propTypes = {
+		this.state = {
 
-	intl: intlShape.isRequired
+			expanded: false
+
+		}
+
+	}
+
+	render () {
+
+		const { formatMessage } = this.props.intl
+		const { expanded } = this.state
+
+		const label = expanded ? formatMessage( messages.hide_transcript ) : formatMessage( messages.show_transcript );
+
+		return(
+
+			<TOGGLE title={ formatMessage( messages.how_title ) } priority={ 3 } text={ formatMessage( messages.how ) } className={ style.toggle } >
+				<DIV className={ style.video } style={ { backgroundImage: 'url(assets/poster.png)' } } ></DIV>
+				<A className={ style.toggleScript } onClick={ this._toggle.bind( this ) } >{ label }</A>
+				{ expanded && <DIV className={ style.script } >
+					<P>{ formatMessage( messages.in_a_nutshell ) }</P>
+					<P>{ formatMessage( messages.how_it_works ) }</P>
+					<P>{ formatMessage( messages.place_on_map ) }</P>
+					<P>{ formatMessage( messages.determine_coastal_type ) } { " " } { formatMessage( messages.the_more_the_better ) }</P>
+					<P>{ formatMessage( messages.computer_programs ) }</P>
+					<P>{ formatMessage( messages.policy_makers ) }</P>
+					<P>{ formatMessage( messages.best_advice ) }</P>
+				</DIV> }
+			</TOGGLE>
+
+		)
+
+
+	}
+
+	_toggle = ( e ) => {
+
+		e.preventDefault()
+		const { expanded } = this.state
+		this.setState( { expanded: !expanded } )
+
+	}
 
 }
 
-export default injectIntl( how ) 
+
+export default injectIntl( How ) 

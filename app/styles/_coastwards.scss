@@ -24,18 +24,18 @@ $screen-overlay-color: rgba(255, 255, 255, 0.7);
 
 %toggle{
 
-	color: #fff;
+	//color: #fff;
 
 	&>a{
 
 		padding: 1em 0;
-		color: rgba( 255, 255, 255, 0.5 );
+		//color: rgba( 255, 255, 255, 0.5 );
 
 	}
 
 	&>div{
 
-		margin-bottom: 2em;
+		margin: 2em 0 3em 0;
 
 		a{
 
@@ -102,6 +102,19 @@ $screen-overlay-color: rgba(255, 255, 255, 0.7);
 	cursor: pointer;
 
 	@include landscapeMin( $tablet ){
+
+		width: 99px;
+		height: 99px;
+
+		i{
+
+			font-size: 36px;
+
+		}
+
+	}
+
+	@include portraitMin( $tablet ){
 
 		width: 99px;
 		height: 99px;

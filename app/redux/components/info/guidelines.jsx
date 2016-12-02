@@ -6,6 +6,8 @@ import TOGGLE from 'components/ui/toggle'
 import DIV from 'components/tags/div'
 import P from 'components/tags/p'
 import H from 'components/tags/h'
+import SPAN from 'components/tags/span'
+import IMG from 'components/tags/img'
 
 import style from './_guidelines'
 
@@ -67,9 +69,9 @@ const guidelines = ( { intl } ) => {
 
 	const glData = [
 
-		{ img: 'original', header: formatMessage( messages.guideline_original_header ), text: formatMessage( messages.guideline_original_text ) },
-		{ img: 'faces', header: formatMessage( messages.guideline_faces_header ), text: formatMessage( messages.guideline_faces_text ) },
-		{ img: 'material', header: formatMessage( messages.guideline_material_header ), text: formatMessage( messages.guideline_material_text ) }
+		{ header: formatMessage( messages.guideline_original_header ), text: formatMessage( messages.guideline_original_text ), img: 'assets/original.png', alt: 'No facebook, twitter, whatsapp etc' },
+		{ header: formatMessage( messages.guideline_faces_header ), text: formatMessage( messages.guideline_faces_text ), img: 'assets/faces.png', alt: 'No faces' },
+		{ header: formatMessage( messages.guideline_material_header ), text: formatMessage( messages.guideline_material_text ), img: 'assets/material.png', alt: 'Coast material' }
 
 	]
 
@@ -80,12 +82,18 @@ const guidelines = ( { intl } ) => {
 
 		<P>{ gl.text }</P>*/
 
+		const { header, text, img, alt } = gl
+
+		const number = key + 1;
 
 		return(
 
-			<DIV key={ key } >
-				<H priority={ 4 } >{ gl.header }</H>
-				<P>{ gl.text }</P>
+			<DIV key={ key } className={ style.guideline } >
+				<IMG src={ img } alt={ alt } />
+				<DIV>
+					<H priority={ 4 } ><SPAN>0{ number }</SPAN> { header }</H>
+					<P>{ text }</P>
+				</DIV>
 			</DIV>
 
 		)

@@ -232,8 +232,6 @@ export const validateFile = ( e ) => {
 			const uid = uuid.v1()
 			dispatch( { type: types.SET_UID, to: uid } )
 
-			console.log( "image", image )
-
 			dispatch( { type: types.SET_IMAGE_TO_UPLOAD, to: image } )
 			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'statuses', to: false } )
 
@@ -589,7 +587,7 @@ export const unclipPage = ( e ) => {
 
 		dispatch( { type: 'UNCLIP_PAGE' } )
 
-		scrollToId( 'Info', e )
+		scrollToId( 'Intro', e )
 
 		/*window.location.href = '#Main'
 		scrollToId( 'Info', e )*/

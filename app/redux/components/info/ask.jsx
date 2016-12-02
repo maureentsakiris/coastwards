@@ -123,7 +123,7 @@ class ask extends Component {
 					<BR />
 					<EMAIL id="Email" onChange={ this._validateForm } form="Ask" label={ formatMessage( messages.label_email ) } name="email" placeholder={ formatMessage( messages.placeholder_email ) } />
 					<BR />
-					<SUBMIT onClick={ this._submit } form="Ask" name="submit" label={ formatMessage( messages.label_submit ) } disabled={ disabled } />
+					<SUBMIT className={ style.submit } onClick={ this._submit } form="Ask" name="submit" label={ formatMessage( messages.label_submit ) } disabled={ disabled } />
 					<DIV className={ style.status } >{ status && m }</DIV>
 				</FORM>
 			</TOGGLE>

@@ -1,7 +1,9 @@
+@import 'app/styles/base';
+
 .toggle{
 
 	width: 100%;
-	max-width: 600px;
+	max-width: $corset-width;
 
 	p{
 
