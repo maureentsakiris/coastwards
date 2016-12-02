@@ -60,7 +60,7 @@
 
 %page{
 
-	min-height: 100vh;
+	//min-height: 100vh;
 	position: relative;
 	z-index: 1;
 
@@ -129,6 +129,8 @@
 		font-size: 1.5em;
 		text-align: center;
 
+		@extend %corset;
+
 		@include portrait( ){
 
 			font-size: 4vh;
@@ -147,7 +149,7 @@
 
 			span{
 
-				display: block;
+				//display: block;
 
 			}
 
@@ -155,21 +157,21 @@
 
 		@include landscapeMin( $desktop ){
 
-			font-size: 3vw;
+			font-size: 2.6vw;
 
 			span{
 
-				display: block;
+				//display: block;
 
 			}
 
 		}
 
-		@include landscapeMin( $huge ){
+		/* @include landscapeMin( $huge ){
 
 			font-size: 2.5vw;
 
-		}
+		} */
 
 	}
 
@@ -194,9 +196,17 @@
 .info{
 
 	@extend %page;
+	padding: 0;
 	//min-height: auto;
 	justify-content: flex-start;
-	background-color: #fff;
+	background-color: $color-primary;
+	color: #fff;
+
+	a{
+
+		color: #fff;
+
+	}
 
 }
 

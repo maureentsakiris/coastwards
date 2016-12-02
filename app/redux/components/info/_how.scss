@@ -21,12 +21,13 @@
 	overflow: hidden; 
 	max-height: 90vh;
 
-	background-size: cover;
-    background-position: 50%;
+	/* background-size: cover;
+    background-position: 50%; */
     border-radius: 3px;
     width: 100%;
-    border: 2px solid $color-primary;
+    //border: 2px solid $color-primary;
     margin-bottom: 4vh;
+    background-color: #000;
 
     &>iframe, &>object, &>embed { 
     	position: absolute; 

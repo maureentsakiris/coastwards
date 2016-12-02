@@ -17,7 +17,7 @@ const messages = defineMessages( {
 	how_title:{
 		id:"how_title",
 		description: "Section header title - Watch a video (2min)",
-		defaultMessage: "Watch a video (1min)"
+		defaultMessage: "1min read.Tops"
 	},
 	transcript:{
 		id: "transcript",
@@ -123,11 +123,9 @@ const how = ( { intl } ) => {
 
 	const { formatMessage } = intl
 
-	return(
+	/*style={ { backgroundImage: 'url(assets/poster.png)' } }*/
 
-		<DIV className={ style.how } >
-			<DIV className={ style.video } style={ { backgroundImage: 'url(assets/poster.png)' } }></DIV>
-			<TOGGLE className={ style.toggle } priority={ 3 } title={ formatMessage( messages.how_title ) } text={ formatMessage( messages.how ) }  >
+	/*<TOGGLE className={ style.toggle } priority={ 3 } title={ formatMessage( messages.how_title ) } text={ formatMessage( messages.how ) }  >
 				<P>{ formatMessage( messages.in_a_nutshell ) }</P>
 				<P>{ formatMessage( messages.how_it_works ) }</P>
 				<P>{ formatMessage( messages.place_on_map ) }</P>
@@ -135,8 +133,13 @@ const how = ( { intl } ) => {
 				<P>{ formatMessage( messages.computer_programs ) }</P>
 				<P>{ formatMessage( messages.policy_makers ) }</P>
 				<P>{ formatMessage( messages.best_advice ) }</P>
-			</TOGGLE>
-		</DIV>
+			</TOGGLE>*/
+
+	return(
+
+		<TOGGLE className={ style.toggle } priority={ 3 } title={ formatMessage( messages.how_title ) } text={ formatMessage( messages.how ) }  >
+			<DIV className={ style.video } ></DIV>
+		</TOGGLE>
 
 	)
 

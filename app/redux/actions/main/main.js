@@ -232,7 +232,7 @@ export const validateFile = ( e ) => {
 			const uid = uuid.v1()
 			dispatch( { type: types.SET_UID, to: uid } )
 			dispatch( { type: types.SET_IMAGE_TO_UPLOAD, to: image } )
-			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'statuses', to: false } )
+			//dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'statuses', to: false } )
 
 			
 
@@ -578,6 +578,7 @@ export const unclipPage = ( e ) => {
 
 		let state = getState()
 		let { errors, form, geolocator, locate, prompts, statuses } = state.layers
+
 		if( !errors && !form && !geolocator && !locate && !prompts && !statuses ){
 	
 			dispatch( { type: types.SET_PROMPT_MSG, to: 'select_file' } )

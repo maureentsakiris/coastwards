@@ -196,9 +196,6 @@ const context = ( { intl, lang, dir, jazzSupported, clipped, unclipPage } ) => {
 					<IMG src="./assets/turtle-white.svg" alt="Logo coastwards: A turtle on a mission" className={ style.logo } />
 					<H priority={ 1 } className={ style.headline } ><span>{ formatMessage( messages.help_science ) }</span> <span>{ formatMessage( messages.by ) }</span></H>
 					<H priority={ 2 } className={ style.tagline } >{ formatMessage( messages.no_account ) }</H>
-					<A onClick={ scrollToId.bind( this, 'Info' ) } className={ style.arrow } >
-						<I className="material-icons">&#xE313;</I>
-					</A>
 				</DIV>
 				<DIV id="Info"className={ clsInfo }>
 					<How />
