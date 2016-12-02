@@ -84,16 +84,16 @@ const _promiseSafe = ( image ) => {
 
 			}
 
-			/*let coast = _.filter( annotations.labelAnnotations, { description: 'coast' } )
+			let coast = _.filter( annotations.labelAnnotations, { description: 'coast' } )
 			let shore = _.filter( annotations.labelAnnotations, { description: 'shore' } )
 			let harbor = _.filter( annotations.labelAnnotations, { description: 'harbor' } )
-			let natural_environment = _.filter( annotations.labelAnnotations, { description: 'natural environment' } )*/
+			let natural_environment = _.filter( annotations.labelAnnotations, { description: 'natural environment' } )
 
-			/*if( !coast.length && !shore.length && !harbor.length && !natural_environment.length ){
+			if( !coast.length && !shore.length && !harbor.length && !natural_environment.length ){
 
 				reject( Error( "not_a_coast" ) ) //YES
 
-			}*/
+			}
 			
 			image.labels = annotations.labelAnnotations
 			resolve( image )
@@ -231,10 +231,11 @@ export const validateFile = ( e ) => {
 
 			const uid = uuid.v1()
 			dispatch( { type: types.SET_UID, to: uid } )
-			dispatch( { type: types.SET_IMAGE_TO_UPLOAD, to: image } )
-			//dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'statuses', to: false } )
 
-			
+			console.log( "image", image )
+
+			dispatch( { type: types.SET_IMAGE_TO_UPLOAD, to: image } )
+			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'statuses', to: false } )
 
 			if( image.manual == 0 ){
 

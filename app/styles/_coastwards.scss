@@ -24,7 +24,7 @@ $screen-overlay-color: rgba(255, 255, 255, 0.7);
 
 %toggle{
 
-	color: rgba( 255, 255, 255, 0.5 );
+	color: #fff;
 
 	&>a{
 
@@ -36,6 +36,12 @@ $screen-overlay-color: rgba(255, 255, 255, 0.7);
 	&>div{
 
 		margin-bottom: 2em;
+
+		a{
+
+			text-decoration: underline;
+			
+		}
 
 	}
 
