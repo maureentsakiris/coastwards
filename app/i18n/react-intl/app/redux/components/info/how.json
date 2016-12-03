@@ -10,14 +10,9 @@
     "defaultMessage": "1min read.Tops"
   },
   {
-    "id": "show_transcript",
+    "id": "transcript",
     "description": "Section header",
     "defaultMessage": "Show transcript"
-  },
-  {
-    "id": "hide_transcript",
-    "description": "-",
-    "defaultMessage": "Hide transcript"
   },
   {
     "id": "sea_levels_rise_because",

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import { defineMessages, injectIntl, intlShape } from 'react-intl'
 import _ from 'underscore'
 
@@ -63,7 +63,7 @@ const messages = defineMessages( {
 
 } )
 
-const guidelines = ( { intl } ) => {
+const guidelines = ( { intl, jazzSupported } ) => {
 
 	const { formatMessage } = intl
 
@@ -77,26 +77,39 @@ const guidelines = ( { intl } ) => {
 
 	const gls = _.map( glData, ( gl, key ) => {
 
-		/*const img = 'assets/guidelines/' + gl.img + '.jpg'
-		<IMG src={ img } alt={ gl.img } />
-
-		<P>{ gl.text }</P>*/
-
 		const { header, text, img, alt } = gl
 
 		const number = key + 1;
 
-		return(
+		if( !jazzSupported ){
 
-			<DIV key={ key } className={ style.guideline } >
-				<IMG src={ img } alt={ alt } />
-				<DIV>
-					<H priority={ 4 } ><SPAN>0{ number }</SPAN> { header }</H>
-					<P>{ text }</P>
+			return(
+
+				<DIV key={ key } className={ style.guideline } >
+					<DIV>
+						<H priority={ 4 } ><SPAN>0{ number }</SPAN> { header }</H>
+						<P>{ text }</P>
+					</DIV>
 				</DIV>
-			</DIV>
 
-		)
+			)
+
+
+		}else{
+
+			return(
+
+				<DIV key={ key } className={ style.guidelineJazz } >
+					<IMG src={ img } alt={ alt } />
+					<DIV>
+						<H priority={ 4 } ><SPAN>0{ number }</SPAN> { header }</H>
+						<P>{ text }</P>
+					</DIV>
+				</DIV>
+
+			)
+
+		}
 
 	} )
 
@@ -113,7 +126,8 @@ const guidelines = ( { intl } ) => {
 
 guidelines.propTypes = {
 
-	intl: intlShape.isRequired
+	intl: intlShape.isRequired,
+	jazzSupported: PropTypes.bool
 
 }
 

@@ -18,6 +18,7 @@
     "css/transitions",
     "forms/placeholder",
     "css/vhunit",
-    "css/vwunit"
+    "css/vwunit",
+    "svg"
   ]
 }

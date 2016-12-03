@@ -10,7 +10,8 @@ const mapStateToProps = ( state ) => {
 
 		status: state.status,
 		progress: state.form.progress,
-		show: state.layers.statuses
+		show: state.layers.statuses,
+		jazzSupported: state.browser.jazzSupported
 
 	}
 

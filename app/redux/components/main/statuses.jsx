@@ -4,6 +4,7 @@ import Classnames from 'classnames'
 
 import DIV from 'components/tags/div'
 import H from 'components/tags/h'
+import IMG from 'components/tags/img'
 
 import style from './_statuses'
 
@@ -18,11 +19,16 @@ const messages = defineMessages( {
 		id: "status_uploading",
 		description: "Status - Informs user that his image is being uploaded",
 		defaultMessage: "Uploading... {progress}%"
+	},
+	loader:{
+		id: "loader",
+		description: "Alt - Describe image",
+		defaultMessage: "Progress spinner"
 	}
 
 } )
 
-const statuses = ( { intl, className, status, progress, show } ) => {
+const statuses = ( { intl, className, status, progress, show, jazzSupported } ) => {
 
 	const { formatMessage } = intl
 
@@ -38,7 +44,8 @@ const statuses = ( { intl, className, status, progress, show } ) => {
 
 		<DIV id="Statuses" className={ cls } >
 			<H priority={ 2 }>{ stat }</H>
-			<DIV className={ style.loader }></DIV>
+			{ jazzSupported && <DIV className={ style.loader }></DIV> }
+			{ !jazzSupported && <IMG src="assets/loader.gif" alt={ formatMessage( messages.loader ) } /> }
 		</DIV>
 
 	)
@@ -54,6 +61,7 @@ statuses.propTypes = {
 	status: PropTypes.string,
 	progress: PropTypes.number,
 	show: PropTypes.bool,
+	jazzSupported: PropTypes.bool,
 
 	resetForm: PropTypes.func
 

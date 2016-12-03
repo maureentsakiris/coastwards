@@ -50,19 +50,6 @@ const [ navigatorLocale ] = window.navigator.language.split ( '-' )
 const negotiatedLocale = document.documentElement.getAttribute( 'lang' )
 store.dispatch( loadLanguage( negotiatedLocale || navigatorLocale ) )
 
-const state = store.getState()
-const { jazzSupported } = state.browser
-
-if( !jazzSupported ){
-
-	store.dispatch( showDialog( 'NOJAZZ' ) )
-
-}else{
-
-	//store.dispatch( showDialog( 'TESTSITE' ) )
-
-}
-
 // <I18nLinks availableLanguages={ i18nLocales.locales } className={ style.i18n } />
 
 

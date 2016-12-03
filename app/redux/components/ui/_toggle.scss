@@ -5,9 +5,15 @@
 	width: 100%;
 	max-width: $corset-width;
 
-	p{
+	&>div{
 
-		padding: 0 0 1em 0;
+		margin-bottom: 2em;
+
+		p{
+
+			padding: 0 0 1em 0;
+
+		}
 
 	}
 

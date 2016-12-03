@@ -1,5 +1,6 @@
 $fringe-height: 100px;
 $screen-overlay-color: rgba(255, 255, 255, 0.7);
+$toggle-border: 1px solid rgba(0, 0, 0, 0.1);
 
 %corset{
 
@@ -16,26 +17,17 @@ $screen-overlay-color: rgba(255, 255, 255, 0.7);
 	
 }
 
-/* %center{
-
-	text-align: center;
-
-} */
-
 %toggle{
-
-	//color: #fff;
 
 	&>a{
 
 		padding: 1em 0;
-		//color: rgba( 255, 255, 255, 0.5 );
 
 	}
 
 	&>div{
 
-		margin: 2em 0 3em 0;
+		//margin: 2em 0 3em 0;
 
 		a{
 

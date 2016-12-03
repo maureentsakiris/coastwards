@@ -10,10 +10,10 @@ import Dialog from 'containers/ui/dialog'
 
 
 import How from 'components/info/how'
-import Guidelines from 'components/info/guidelines'
+import Guidelines from 'containers/info/guidelines'
 import Team from 'containers/info/team'
 import FAQs from 'components/info/faqs'
-import Ask from 'components/info/ask'
+import Ask from 'containers/info/ask'
  
 
 import A from 'components/tags/a'
@@ -157,7 +157,7 @@ const context = ( { intl, lang, dir, jazzSupported, clipped, unclipPage } ) => {
 
 			<DIV lang={ lang } dir={ dir } >
 				<DIV id="Intro" className={ style.introNoJazz } >
-					<IMG src="./assets/turtle.svg" alt="Logo coastwards: A turtle on a mission" />
+					<IMG src="./assets/coastwards.jpg" alt="Logo coastwards: A turtle on a mission" />
 					<H priority={ 1 } ><span>{ formatMessage( messages.help_science ) }</span> <span>{ formatMessage( messages.by ) }</span></H>
 					<H priority={ 2 } >{ formatMessage( messages.no_account ) }</H>
 				</DIV>
@@ -193,7 +193,7 @@ const context = ( { intl, lang, dir, jazzSupported, clipped, unclipPage } ) => {
 
 			<DIV lang={ lang } dir={ dir } >
 				<DIV id="Intro" className={ clsIntro }>
-					<IMG src="./assets/turtle-white.svg" alt="Logo coastwards: A turtle on a mission" className={ style.logo } />
+					<IMG src="./assets/coastwards.svg" alt="Logo coastwards: A turtle on a mission" className={ style.logo } />
 					<H priority={ 1 } className={ style.headline } ><span>{ formatMessage( messages.help_science ) }</span> <span>{ formatMessage( messages.by ) }</span></H>
 					<H priority={ 2 } className={ style.tagline } >{ formatMessage( messages.no_account ) }</H>
 				</DIV>

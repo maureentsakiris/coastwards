@@ -1,7 +1,9 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import PureRenderMixin from 'react-addons-pure-render-mixin'
 import { defineMessages, injectIntl, intlShape } from 'react-intl'
 import { promiseXHR } from 'actions/util/request/xhr'
+
+import Classnames from 'classnames'
 
 import isEmail from 'validator/lib/isEmail'
 import isEmpty from 'validator/lib/isEmpty'
@@ -86,7 +88,8 @@ class ask extends Component {
 
 	static propTypes = {
 
-		intl: intlShape.isRequired
+		intl: intlShape.isRequired, 
+		jazzSupported: PropTypes.bool
 
 	}
 
@@ -108,12 +111,20 @@ class ask extends Component {
 	render () {
 
 		const { formatMessage } = this.props.intl
+		const { jazzSupported } = this.props
 		const { sending, status, validated } = this.state
 
 		const disabled = sending || !validated
 
 		const mess = typeof status === 'object' ? status.message : status //if error object
 		const m = messages[ mess ] ? formatMessage( messages[ mess ] ) : mess //if translation 
+
+		const clsSubmit = Classnames( style.submit, {
+
+			[ style.sumbitJazz ]: jazzSupported
+
+		} )
+
 
 		return(
 
@@ -123,7 +134,7 @@ class ask extends Component {
 					<BR />
 					<EMAIL id="Email" onChange={ this._validateForm } form="Ask" label={ formatMessage( messages.label_email ) } name="email" placeholder={ formatMessage( messages.placeholder_email ) } />
 					<BR />
-					<SUBMIT className={ style.submit } onClick={ this._submit } form="Ask" name="submit" label={ formatMessage( messages.label_submit ) } disabled={ disabled } />
+					<SUBMIT classNameJazz={ clsSubmit } onClick={ this._submit } form="Ask" name="submit" label={ formatMessage( messages.label_submit ) } disabled={ disabled } />
 					<DIV className={ style.status } >{ status && m }</DIV>
 				</FORM>
 			</TOGGLE>

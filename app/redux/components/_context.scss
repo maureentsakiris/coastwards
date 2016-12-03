@@ -2,11 +2,13 @@
 @import 'app/styles/tags';
 
 
+
 .introNoJazz{
 
 	@extend %corset;
 	text-align: center;
-	margin-top: 3em;
+	margin-top: $site-padding-top;
+	padding: 0 $site-padding-sides;
 
 	img{
 
@@ -19,6 +21,8 @@
 .infoNoJazz{
 
 	@extend %corset;
+	margin-top: $site-padding-inner;
+	padding: 0 $site-padding-sides;
 
 }
 
@@ -99,8 +103,8 @@
 
 	@extend %page;
 
-	background-color: $color-primary;
-	color: #fff;
+	background-color: #fff;
+	/* color: #fff; */
 
 
 	@include landscape( ){
@@ -219,14 +223,13 @@
 	padding-top: 0;
 	//min-height: auto;
 	justify-content: flex-start;
-	background-color: $color-primary;
-	color: #fff;
+	background-color: #fff;
 
-	a{
+	/* a{
 
 		color: #fff;
 
-	}
+	} */
 
 }
 

@@ -8,5 +8,10 @@
     "id": "status_uploading",
     "description": "Status - Informs user that his image is being uploaded",
     "defaultMessage": "Uploading... {progress}%"
+  },
+  {
+    "id": "loader",
+    "description": "Alt - Describe image",
+    "defaultMessage": "Progress spinner"
   }
 ]

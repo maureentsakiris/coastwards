@@ -3,7 +3,7 @@
 .toggle{
 
 	@extend %toggle;
-	border-top: 1px solid rgba(255, 255, 255, 0.2);
+	border-top: $toggle-border;
 
 }
 
@@ -15,6 +15,12 @@
 }
 
 .submit{
+
+	border-radius: 2px;
+
+}
+
+.submitJazz{
 
 	background-color: #fff;
 	color: $color-primary;

@@ -3,11 +3,32 @@
 .toggle{
 
 	@extend %toggle;
-	border-top: 1px solid rgba(255, 255, 255, 0.2);
+	border-top: $toggle-border;
 
 }
 
 .guideline{
+
+	img{
+
+		width: 100px;
+		margin-right: 2em;
+
+	}
+
+	h4{
+
+		span{
+
+			display: none;
+
+		}
+
+	}
+
+}
+
+.guidelineJazz{
 
 	@extend %flexcontainer;
 	align-items: flex-start;

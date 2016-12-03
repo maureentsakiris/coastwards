@@ -2,10 +2,10 @@
 
 .noupload, .barebones{
 
-	padding-right: $site-padding-sides;
-	padding-left: $site-padding-sides;
-	padding-bottom: $site-padding-bottom;
-	margin-top: $site-padding-inner;
+	@extend %corset;
+	margin-top: $site-padding-top;
+	margin-bottom: $site-padding-bottom;
+	padding: 0 $site-padding-sides;
 
 }
 

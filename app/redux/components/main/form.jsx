@@ -150,7 +150,39 @@ const form = ( { intl, className, show, image, jazzSupported, setMaterial, /*set
 	]
 
 
-	if( jazzSupported ){
+	if( !jazzSupported ){
+
+		const cls = Classnames( className, style.form, {
+
+			[ style.show ]: show
+
+		} )
+
+		/*<BR/>
+				<COMMENT form="Form" label={ formatMessage( messages.say_hello ) } name="comment" placeholder={ formatMessage( messages.placeholder_say_hello ) } onChange={ setComment } preferPlaceholder={ false } /><BR/>
+				<HASHTAG form="Form" label={ formatMessage( messages.hashtag_your_image ) } name="hashtag" placeholder={ formatMessage( messages.placeholder_hashtag_your_image ) } onChange={ setHashtag } preferPlaceholder={ false } >
+					{ " " }<A onClick={ showDialog.bind( this, 'WHYHASHTAG' ) }>{ formatMessage( messages.why_hashtag ) }</A>
+				</HASHTAG>*/
+
+		return(
+
+			<FORM id="Form" action="#" className={ cls } >
+				{ image.dataURL && <IMG src={ image.dataURL } alt="your image" /> }
+				<H priority={ 2 }>{ formatMessage( messages.hurray ) }</H>
+				<RADIOGROUP form="Form" label={ formatMessage( messages.select_material ) } name="material" options={ materials } onClick={ setMaterial } preferPlaceholder={ false } >
+					{ " " }<SMALL><A onClick={ showDialog.bind( this, 'DEFINEMATERIAL' ) }>{ formatMessage( messages.define_material ) }</A></SMALL>
+				</RADIOGROUP>
+				<BR/><BR/>
+				<FORMDATA />
+				<BR/><BR/>
+				<CANCEL className={ style.cancel } onClick={ resetMain } label={ formatMessage( messages.cancel_upload ) } />
+				<GO onClick={ uploadImage } label={ formatMessage( messages.upload_image ) } />
+				<BR/><BR/>
+			</FORM>
+
+		)
+
+	}else{
 
 		const cls = Classnames( className, style.formJazz, {
 
@@ -184,39 +216,6 @@ const form = ( { intl, className, show, image, jazzSupported, setMaterial, /*set
 						<GO onClick={ uploadImage } label={ formatMessage( messages.upload_image ) } />
 					</DIV>
 				</DIV>
-			</FORM>
-
-		)
-
-	}else{
-
-		const cls = Classnames( className, style.form, {
-
-			[ style.show ]: show
-
-		} )
-
-		/*<BR/>
-				<COMMENT form="Form" label={ formatMessage( messages.say_hello ) } name="comment" placeholder={ formatMessage( messages.placeholder_say_hello ) } onChange={ setComment } preferPlaceholder={ false } /><BR/>
-				<HASHTAG form="Form" label={ formatMessage( messages.hashtag_your_image ) } name="hashtag" placeholder={ formatMessage( messages.placeholder_hashtag_your_image ) } onChange={ setHashtag } preferPlaceholder={ false } >
-					{ " " }<A onClick={ showDialog.bind( this, 'WHYHASHTAG' ) }>{ formatMessage( messages.why_hashtag ) }</A>
-				</HASHTAG>*/
-
-		return(
-
-			<FORM id="Form" action="#" className={ cls } >
-				<H priority={ 2 }>{ formatMessage( messages.hurray ) }</H>
-				{ image.dataURL && <IMG src={ image.dataURL } alt="your image" /> }
-				<BR/><BR/>
-				<RADIOGROUP form="Form" label={ formatMessage( messages.select_material ) } name="material" options={ materials } onClick={ setMaterial } preferPlaceholder={ false } >
-					{ " " }<SMALL><A onClick={ showDialog.bind( this, 'DEFINEMATERIAL' ) }>{ formatMessage( messages.define_material ) }</A></SMALL>
-				</RADIOGROUP>
-				<BR/><BR/>
-				<FORMDATA />
-				<BR/><BR/>
-				<CANCEL className={ style.cancel } onClick={ resetMain } label={ formatMessage( messages.cancel_upload ) } />
-				<GO onClick={ uploadImage } label={ formatMessage( messages.upload_image ) } />
-				<BR/><BR/>
 			</FORM>
 
 		)
