@@ -20,11 +20,18 @@ import A from 'components/tags/a'
 import I from 'components/tags/i'
 import H from 'components/tags/h'
 import IMG from 'components/tags/img'
+import P from 'components/tags/p'
 
 import style from './_context'
 
 
 const messages = defineMessages( {
+
+	nojazz_text:{
+		id: "nojazz_text",
+		description: "P - ",
+		defaultMessage: "Hmm, looks like you are using an old browser (or a not so old Internet Explorer). This site will work on your browser BUT IT'S SOO MUCH MORE FUN if you switch to a modern browser, plus you can navegate the coasts of this world. Chrome, Firefox or Safari are safe choices, especially if updated to the latest versions."
+	},
 
 	// INTRO
 
@@ -156,6 +163,7 @@ const context = ( { intl, lang, dir, jazzSupported, clipped, unclipPage } ) => {
 		return(
 
 			<DIV lang={ lang } dir={ dir } >
+				<P className={ style.alert } >{ formatMessage( messages.nojazz_text ) }</P>
 				<DIV id="Intro" className={ style.introNoJazz } >
 					<IMG src="./assets/coastwards.jpg" alt="Logo coastwards: A turtle on a mission" />
 					<H priority={ 1 } ><span>{ formatMessage( messages.help_science ) }</span> <span>{ formatMessage( messages.by ) }</span></H>
@@ -189,11 +197,21 @@ const context = ( { intl, lang, dir, jazzSupported, clipped, unclipPage } ) => {
 
 		} )
 
+		const clsArrowMap = Classnames( style.arrow, style.arrowMap, {
+
+			[ style.fixed ]: clipped
+
+		} )
+
+		/*<A onClick={ scrollToId.bind( this, 'Main' ) } className={ style.arrow } >
+						<I className="material-icons">&#xE313;</I>
+					</A>*/
+
 		return(
 
 			<DIV lang={ lang } dir={ dir } >
 				<DIV id="Intro" className={ clsIntro }>
-					<IMG src="./assets/coastwards.svg" alt="Logo coastwards: A turtle on a mission" className={ style.logo } />
+					<IMG src="./assets/coastwards-white.svg" alt="Logo coastwards: A turtle on a mission" className={ style.logo } />
 					<H priority={ 1 } className={ style.headline } ><span>{ formatMessage( messages.help_science ) }</span> <span>{ formatMessage( messages.by ) }</span></H>
 					<H priority={ 2 } className={ style.tagline } >{ formatMessage( messages.no_account ) }</H>
 				</DIV>
@@ -203,12 +221,10 @@ const context = ( { intl, lang, dir, jazzSupported, clipped, unclipPage } ) => {
 					<Team />
 					<FAQs />
 					<Ask />
-					<A onClick={ scrollToId.bind( this, 'Main' ) } className={ style.arrow } >
-						<I className="material-icons">&#xE313;</I>
-					</A>
+					
 				</DIV>
 				<DIV id="Main" className={ style.main }>
-					<A onClick={ unclipPage.bind( this ) } className={ style.arrow } >
+					<A onClick={ unclipPage.bind( this ) } className={ clsArrowMap } >
 						<I className="material-icons">&#xE316;</I>
 					</A>
 					<Main />

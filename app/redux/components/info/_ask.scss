@@ -14,16 +14,47 @@
 
 }
 
-.submit{
+.form{
 
-	border-radius: 2px;
+	button{
+
+		border-radius: 2px;
+
+	}
 
 }
 
-.submitJazz{
+.formJazz{
 
-	background-color: #fff;
-	color: $color-primary;
-	border-radius: 2px;
+	button{
+
+		background-color: #fff;
+		color: $color-primary;
+		border-radius: 2px;
+
+	}
+
+	textarea, input[type=text], input[type=email]{
+
+		border: none;
+		background-color: rgba(255, 255, 255, 0.2);
+
+	}
+
+	::-webkit-input-placeholder {
+	   color: #fff;
+	}
+
+	:-moz-placeholder { /* Firefox 18- */
+	   color: #fff;  
+	}
+
+	::-moz-placeholder {  /* Firefox 19+ */
+	   color: #fff;  
+	}
+
+	:-ms-input-placeholder {  
+	   color: #fff;  
+	}
 
 }

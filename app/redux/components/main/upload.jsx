@@ -18,6 +18,7 @@ export default class upload extends Component{
 		show: PropTypes.bool,
 		jazzSupported: PropTypes.bool,
 		className: PropTypes.string,
+		clipped: PropTypes.bool,
 
 		validateFile: PropTypes.func,
 		setLayerVisibility: PropTypes.func,
@@ -78,7 +79,7 @@ export default class upload extends Component{
 
 	render () {
 
-		const { jazzSupported, className, show, validateFile, openInput } = this.props
+		const { jazzSupported, className, clipped, show, validateFile, openInput } = this.props
 		const { dropzoneActive, dropX, dropY/*, isDrop*/ } = this.state
 
 		const cls = Classnames( className, {
@@ -95,12 +96,20 @@ export default class upload extends Component{
 
 			} )
 
+			const clsUploadBtn = Classnames( style.uploadBtn, {
+
+				[ style.fixed ]: clipped
+
+			} )
+
 			const clsRippler = Classnames( style.rippler, {
 
 				//[ style.ripple ]: isDrop
 
 			} )
 			
+			//<I className="material-icons">&#xE2C6;</I>
+			//<I className="material-icons">&#xE439;</I>
 			
 
 			return(
@@ -108,7 +117,7 @@ export default class upload extends Component{
 				<FORM id="Upload" action="#" className={ cls } >
 					<DIV className={ clsRippler } style={ { position: 'absolute', top: dropY, left: dropX } } ></DIV>
 					<DIV onDragLeave={ this._onDragLeave } onDrop={ this._onDrop.bind( this ) } className={ clsDropzone } ></DIV>
-					<BUTTON className={ style.uploadBtn } onClick={ openInput }><I className="material-icons">&#xE439;</I></BUTTON>
+					<BUTTON className={ clsUploadBtn } onClick={ openInput }><I className="material-icons">&#xE2C6;</I></BUTTON>
 					<INPUT className={ style.hidden } id="images" name="images" onChange={ validateFile } form="Upload" type="file" multiple={ false } accept="image/*" />
 				</FORM>
 

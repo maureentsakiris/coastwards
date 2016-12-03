@@ -8,6 +8,7 @@ import P from 'components/tags/p'
 import H from 'components/tags/h'
 import SPAN from 'components/tags/span'
 import IMG from 'components/tags/img'
+import STRONG from 'components/tags/strong'
 
 import style from './_guidelines'
 
@@ -116,7 +117,7 @@ const guidelines = ( { intl, jazzSupported } ) => {
 	return(
 
 		<TOGGLE id="Guidelines" title={ formatMessage( messages.any_picture_title ) } priority={ 3 } text={ formatMessage( messages.any_picture ) } className={ style.toggle } >
-			<P>{ formatMessage( messages.any_coast ) }</P>
+			<P><STRONG>{ formatMessage( messages.any_coast ) }</STRONG></P>
 			<DIV>{ gls }</DIV>
 		</TOGGLE>
 

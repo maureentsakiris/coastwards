@@ -2,6 +2,14 @@
 @import 'app/styles/tags';
 
 
+.alert{
+
+	@extend %alert;
+	@extend %corset;
+	margin-top: 5%;
+	margin-bottom: $site-padding-top;
+
+}
 
 .introNoJazz{
 
@@ -37,6 +45,27 @@
 		color: inherit;
 
 	}
+
+}
+
+.arrowMap{
+
+	position: absolute;
+	top: -15px;
+	z-index: 2;
+	left: 50%;
+	margin-left: -56px;
+
+	opacity: 0;
+	transition: opacity 200ms;
+	pointer-events: none;
+
+}
+
+.fixed{
+
+	opacity: 1;
+	pointer-events: all;
 
 }
 
@@ -103,8 +132,10 @@
 
 	@extend %page;
 
-	background-color: #fff;
-	/* color: #fff; */
+	background-color: $color-primary;
+	color: #fff;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 
 
 	@include landscape( ){
@@ -223,13 +254,16 @@
 	padding-top: 0;
 	//min-height: auto;
 	justify-content: flex-start;
-	background-color: #fff;
+	background-color: $color-primary;
+	color: #fff;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 
-	/* a{
+	a{
 
 		color: #fff;
 
-	} */
+	}
 
 }
 
@@ -238,16 +272,6 @@
 	position: relative;
 	z-index: 0;
 	height: 100vh;
-
-	&>a{
-
-		position: fixed;
-		top: -15px;
-		z-index: 2;
-		left: 50%;
-    	margin-left: -56px;
-
-	}
 
 }
 

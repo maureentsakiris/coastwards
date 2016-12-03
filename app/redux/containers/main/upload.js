@@ -11,7 +11,8 @@ const mapStateToProps = ( state ) => {
 
 		show: state.layers.upload,
 		jazzSupported: state.browser.jazzSupported,
-		prompt: state.prompt
+		prompt: state.prompt,
+		clipped: state.clipped
 
 	}
 

@@ -119,9 +119,9 @@ class ask extends Component {
 		const mess = typeof status === 'object' ? status.message : status //if error object
 		const m = messages[ mess ] ? formatMessage( messages[ mess ] ) : mess //if translation 
 
-		const clsSubmit = Classnames( style.submit, {
+		const clsForm = Classnames( style.form, {
 
-			[ style.sumbitJazz ]: jazzSupported
+			[ style.formJazz ]: jazzSupported
 
 		} )
 
@@ -129,12 +129,12 @@ class ask extends Component {
 		return(
 
 			<TOGGLE id="AskUs" title={ formatMessage( messages.one_more_question_title ) } priority={ 3 } text={ formatMessage( messages.one_more_question ) } className={ style.toggle } >
-				<FORM action="#" id="Ask" >
+				<FORM action="#" id="Ask" className={ clsForm } >
 					<COMMENT id="Comment" onChange={ this._validateForm } form="Ask" label={ formatMessage( messages.label_question ) } name="comment" placeholder={ formatMessage( messages.placeholder_question ) } />
 					<BR />
 					<EMAIL id="Email" onChange={ this._validateForm } form="Ask" label={ formatMessage( messages.label_email ) } name="email" placeholder={ formatMessage( messages.placeholder_email ) } />
 					<BR />
-					<SUBMIT classNameJazz={ clsSubmit } onClick={ this._submit } form="Ask" name="submit" label={ formatMessage( messages.label_submit ) } disabled={ disabled } />
+					<SUBMIT onClick={ this._submit } form="Ask" name="submit" label={ formatMessage( messages.label_submit ) } disabled={ disabled } />
 					<DIV className={ style.status } >{ status && m }</DIV>
 				</FORM>
 			</TOGGLE>

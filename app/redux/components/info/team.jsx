@@ -102,7 +102,7 @@ const team = ( { intl/*, showDialog*/, addSnackbarMessage } ) => {
 	return(
 
 		<TOGGLE id="Team" title={ formatMessage( messages.who_are_you_title ) } priority={ 3 } text={ formatMessage( messages.who_are_you ) } className={ style.toggle } >
-			<P>{ formatMessage( messages.hi_there ) }</P>
+			<P><STRONG>{ formatMessage( messages.hi_there ) }</STRONG></P>
 			<H priority={ 4 }>Athanasios Vafeidis</H>
 			<P>{ formatMessage( messages.nassos ) } <A href="#" title={ formatMessage( messages.more_title ) } onClick={ addSnackbarMessage.bind( this, 'there_will_be_more' ) } >{ formatMessage( messages.more ) }</A></P>
 			<H priority={ 4 }>Claudia  Wolff</H>

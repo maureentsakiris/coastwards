@@ -2,6 +2,16 @@ $fringe-height: 100px;
 $screen-overlay-color: rgba(255, 255, 255, 0.7);
 $toggle-border: 1px solid rgba(0, 0, 0, 0.1);
 
+%alert{
+
+	border: 3px solid $color-primary;
+	border-radius: 3px;
+	padding: 1em;
+	font-weight: bold;
+	color: $color-primary;
+
+}
+
 %corset{
 
 	max-width: $corset-width;
@@ -85,7 +95,7 @@ $toggle-border: 1px solid rgba(0, 0, 0, 0.1);
 	border-radius: 50%;
 	width: 66px;
 	height: 66px;
-	position: fixed;
+	position: absolute;
 	top: 20px;
 	right: 20px;
 	z-index: 3;
@@ -100,7 +110,7 @@ $toggle-border: 1px solid rgba(0, 0, 0, 0.1);
 
 		i{
 
-			font-size: 36px;
+			font-size: 48px;
 
 		}
 
@@ -113,7 +123,7 @@ $toggle-border: 1px solid rgba(0, 0, 0, 0.1);
 
 		i{
 
-			font-size: 36px;
+			font-size: 48px;
 
 		}
 
