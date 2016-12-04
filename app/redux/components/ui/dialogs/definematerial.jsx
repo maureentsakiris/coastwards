@@ -11,12 +11,12 @@ const messages = defineMessages( {
 	definematerial_header:{
 		id: "definematerial_header",
 		description: "Header - What do you mean by 'coast material'?",
-		defaultMessage: "By 'coast material' we mean"
+		defaultMessage: "Define 'coast material'"
 	},
 	definematerial_text:{
 		id: "definematerial_text",
 		description: "P - ",
-		defaultMessage: "the material that touches the water. If you were water, what would you first run into on land? Sand? Hard Rock? Of course there are in-betweens. If in doubt choose the material that is smaller. E.g. Sand over Pebble."
+		defaultMessage: "The coast material is the material that touches the water. If your coast has more than one material listed in the options choose the one that is prevalent. If still in doubt, ask yourself which material is probably under water. (I am working on a better description with the scientists here but you can always select 'Not sure')"
 	}
 
 } )

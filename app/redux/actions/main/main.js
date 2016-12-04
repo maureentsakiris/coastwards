@@ -72,6 +72,8 @@ const _promiseSafe = ( image ) => {
 
 			let annotations = response.responses[ 0 ]
 
+			console.log( annotations )
+
 			if( annotations.faceAnnotations ){
 
 				reject( Error( "faces_detected" ) ) //YES

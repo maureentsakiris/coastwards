@@ -4,8 +4,6 @@ let timer
 
 export function addSnackbarMessage ( message, timeout=6000 ){
 
-	console.log( message );
-
 	return function ( dispatch ){
 
 		dispatch( {
