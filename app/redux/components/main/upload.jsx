@@ -117,7 +117,7 @@ export default class upload extends Component{
 				<FORM id="Upload" action="#" className={ cls } >
 					<DIV className={ clsRippler } style={ { position: 'absolute', top: dropY, left: dropX } } ></DIV>
 					<DIV onDragLeave={ this._onDragLeave } onDrop={ this._onDrop.bind( this ) } className={ clsDropzone } ></DIV>
-					<BUTTON className={ clsUploadBtn } onClick={ openInput }><I className="material-icons">&#xE2C6;</I></BUTTON>
+					<BUTTON className={ clsUploadBtn } onClick={ openInput }><I className="material-icons">&#xE439;</I></BUTTON>
 					<INPUT className={ style.hidden } id="images" name="images" onChange={ validateFile } form="Upload" type="file" multiple={ false } accept="image/*" />
 				</FORM>
 

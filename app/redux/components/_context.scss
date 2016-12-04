@@ -132,12 +132,6 @@
 
 	@extend %page;
 
-	background-color: $color-primary;
-	color: #fff;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-
-
 	@include landscape( ){
 
 		min-height: 100vh;
@@ -186,7 +180,7 @@
 		text-transform: uppercase;
 		font-weight: 300;
 		text-align: center;
-		font-weight: 600;
+		font-weight: 300;
 
 		font-size: 26px;
 
@@ -239,12 +233,6 @@
 
 	}
 
-	a{
-
-		color: #fff;
-
-	}
-
 }
 
 
@@ -254,16 +242,6 @@
 	padding-top: 0;
 	//min-height: auto;
 	justify-content: flex-start;
-	background-color: $color-primary;
-	color: #fff;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-
-	a{
-
-		color: #fff;
-
-	}
 
 }
 
