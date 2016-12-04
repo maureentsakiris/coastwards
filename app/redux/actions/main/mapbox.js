@@ -250,7 +250,7 @@ export const displayMap = ( ) => {
 						type: 'categorical',
 						stops: [
 							[ 'sand', '#fbb03b' ],
-							[ 'pebble', '#223b53' ],
+							[ 'pebble', '#469a16' ],
 							[ 'rock', '#7e3096' ],
 							[ 'mud', '#8a5707' ],
 							[ 'ice', '#ef25db' ],
