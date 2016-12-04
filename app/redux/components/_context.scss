@@ -6,7 +6,7 @@
 
 	@extend %alert;
 	@extend %corset;
-	margin-top: 5%;
+	margin-top: $site-padding-top;
 	margin-bottom: $site-padding-top;
 
 }
@@ -15,7 +15,7 @@
 
 	@extend %corset;
 	text-align: center;
-	margin-top: $site-padding-top;
+	margin-top: 3em;
 	padding: 0 $site-padding-sides;
 
 	img{
@@ -29,7 +29,7 @@
 .infoNoJazz{
 
 	@extend %corset;
-	margin-top: $site-padding-inner;
+	margin-top: 3em;
 	padding: 0 $site-padding-sides;
 
 }

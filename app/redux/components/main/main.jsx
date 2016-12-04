@@ -21,7 +21,7 @@ const messages = defineMessages( {
 	unsupported:{
 		id: "unsupported",
 		description: "Warning - Warns the user that his browser does not support the image upload",
-		defaultMessage: "Oops nope ... looks like you are on an old browser that does not support some features we need to make this website work. Sorry, you'll need to upgrade or switch browsers to continue."
+		defaultMessage: "Oops nope ... looks like you're browser is even older than we thought. Sorry, you'll have to switch to a more modern browser to continue."
 	},
 	too_many:{
 		id: "too_many",
