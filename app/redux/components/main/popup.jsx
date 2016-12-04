@@ -93,7 +93,6 @@ class popup extends Component {
 				<DIV id="Popup" className={ style.popup } >
 					<DIV className={ style.top } style={ { backgroundImage: 'url(' + feature.properties.image +')' } } />
 					<DIV className={ style.actions }>
-						<span>{ feature.properties.id }</span>
 						<A onClick={ this._oops } className={ style.comment } >
 							<I className="material-icons">mode_comment</I>
 						</A>
