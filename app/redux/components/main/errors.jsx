@@ -41,7 +41,7 @@ const messages = defineMessages( {
 	orientation_undefined:{
 		id: "orientation_undefined",
 		description:"Error - Informs user that image orientation is undefined",
-		defaultMessage: "We couldn't find information on image's orientation so we can't rotate it for image validation. Bummer, but keep on trying!"
+		defaultMessage: "The metadata is not complete. Did you maybe apply a filter? Try the original one!"
 	},
 	faces_detected:{
 		id: "faces_detected",
