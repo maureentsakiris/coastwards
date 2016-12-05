@@ -70,6 +70,12 @@ const _promiseSafe = ( image ) => {
 		.then( JSON.parse )
 		.then( ( response ) => {
 
+			if( response.error ){
+
+				reject( Error( "problems_from_google" ) )
+
+			}
+
 			let annotations = response.responses[ 0 ]
 
 			console.log( annotations )
@@ -104,6 +110,7 @@ const _promiseSafe = ( image ) => {
 		} )
 		.catch( ( error ) => {
 
+			console.log( error )
 			reject( error )
 
 		} )
@@ -133,6 +140,7 @@ const _promiseLocation = ( image ) => {
 
 			}else{
 
+				console.log( error )
 				reject( error )
 
 			}
@@ -276,7 +284,13 @@ export const validateFile = ( e ) => {
 		.catch( ( error ) => {
 
 			dispatch( resetMain() )
-			dispatch( { type: types.SET_ERROR_MSG, to: error.message } )
+
+			if( error.message ){
+
+				dispatch( { type: types.SET_ERROR_MSG, to: error.message } )
+
+			}
+
 			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'errors', to: true } )
 			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'prompts', to: false } )
 			console.log( error )

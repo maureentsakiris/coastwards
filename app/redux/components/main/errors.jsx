@@ -69,6 +69,17 @@ const messages = defineMessages( {
 		defaultMessage: "We couldn't find the date and time you took this picture. Do you have the original? Try that one!"
 	},
 
+	problems_connecting:{
+		id: "problems_connecting",
+		description: "Error",
+		defaultMessage: "We could not connect to the image annotation service. Try again! It will probably work"
+	},
+	problems_from_google:{
+		id: "problems_from_google",
+		description: "Error",
+		defaultMessage: "The image annotation software returned an error. Try again?"
+	},
+
 
 
 	upload_error:{

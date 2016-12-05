@@ -23,15 +23,17 @@ export const promiseXHR = ( options ) => {
 
 		xhr.open( opts.method, opts.url, true );
 
-		xhr.addEventListener( 'error', ( error ) => {
+		xhr.addEventListener( 'error', () => {
 
-			reject( error )
+			reject( Error( "problems_connecting" ) )
 
 		}, false );
 
 		xhr.addEventListener( 'load', ( e ) => {
 
-			resolve( e.currentTarget.response );
+			let response = e.currentTarget.response
+
+			resolve( e.currentTarget.response )
 
 		}, false );
 

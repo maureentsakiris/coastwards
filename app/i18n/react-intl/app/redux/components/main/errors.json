@@ -55,6 +55,16 @@
     "defaultMessage": "We couldn't find the date and time you took this picture. Do you have the original? Try that one!"
   },
   {
+    "id": "problems_connecting",
+    "description": "Error",
+    "defaultMessage": "We could not connect to the image annotation service. Try again! It will probably work"
+  },
+  {
+    "id": "problems_from_google",
+    "description": "Error",
+    "defaultMessage": "The image annotation software returned an error. Try again?"
+  },
+  {
     "id": "upload_error",
     "description": "Error - Informs user that an error ocurred during upload",
     "defaultMessage": "Crap, something went wrong during upload. I'm sure this is my fault (or maybe your connection is bad). Try again?"
