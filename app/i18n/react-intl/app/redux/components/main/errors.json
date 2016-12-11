@@ -55,6 +55,11 @@
     "defaultMessage": "We couldn't find the date and time you took this picture. Do you have the original? Try that one!"
   },
   {
+    "id": "error_response_google",
+    "description": "Error -",
+    "defaultMessage": "Arrg, the image annotation software returned an error. Try again, it will probably work!"
+  },
+  {
     "id": "upload_error",
     "description": "Error - Informs user that an error ocurred during upload",
     "defaultMessage": "Crap, something went wrong during upload. I'm sure this is my fault (or maybe your connection is bad). Try again?"

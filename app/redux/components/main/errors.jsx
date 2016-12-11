@@ -70,6 +70,11 @@ const messages = defineMessages( {
 	},
 
 
+	error_response_google:{
+		id: "error_response_google",
+		description: "Error - ",
+		defaultMessage: "Arrg, the image annotation software returned an error. Try again, it will probably work!"
+	},
 
 	upload_error:{
 		id: "upload_error",

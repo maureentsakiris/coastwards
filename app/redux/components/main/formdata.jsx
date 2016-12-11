@@ -43,7 +43,7 @@ const formdata = ( { intl, image, uid, imageWidth, showDialog } ) => {
 
 	const exifTable = _.map( cleanExif, ( exif, key ) => {
 
-		const data = exif.toString()
+		const data = exif !== undefined ? exif.toString() : 'undefined'
 
 		return(
 

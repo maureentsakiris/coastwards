@@ -23,9 +23,9 @@ export const promiseXHR = ( options ) => {
 
 		xhr.open( opts.method, opts.url, true );
 
-		xhr.addEventListener( 'error', ( error ) => {
+		xhr.addEventListener( 'error', ( /*error*/ ) => {
 
-			reject( error )
+			reject( Error( 'error_connecting_via_xhr' ) )
 
 		}, false );
 
