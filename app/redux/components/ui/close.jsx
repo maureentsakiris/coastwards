@@ -22,7 +22,7 @@ const close = ( { intl, className, onClick } ) => {
 
 	const { formatMessage } = intl
 
-	const clsIcon = Classnames( 'material-icons', style.icon )
+	const clsIcon = Classnames( 'material-icons', style.icon, className )
 
 	return(
 
