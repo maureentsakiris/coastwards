@@ -58,7 +58,7 @@ const messages = defineMessages( {
 	claudia:{
 		id: "claudia",
 		description: "Team",
-		defaultMessage: "Claudia is Doctoral Researcher and she is the rising star that will turn your images into something meaningful. She's a charming though questioner and eager to learn for herself. She's also always the first to laugh."
+		defaultMessage: "Claudia is a Doctoral Researcher and the rising star who will turn your images into something meaningful. She's a charming though questioner and eager to learn for herself. She's also always the first to laugh."
 	},
 	claudia_official:{
 		id: "nassos_official",
@@ -78,7 +78,7 @@ const messages = defineMessages( {
 	me:{
 		id: "me",
 		description: "Team",
-		defaultMessage: "That's me. I'm not a scientist and I'm responsible for any typos or anything else that's wrong about this website. And I am crazy enough to believe that people will upload pictures to protect their coasts from sea-level rise. Don't make me turn my back on society and go live in a cabin in the woods!"
+		defaultMessage: "That's me. I'm not a scientist and I'm responsible for any typos or anything else that's wrong about this website. And I am crazy enough to believe that people will upload pictures to protect their coasts from sea-level rise."
 	},
 	me_official:{
 		id: "me_official",
