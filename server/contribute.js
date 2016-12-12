@@ -67,7 +67,10 @@ const _promiseFetchForm = ( req ) => {
 			}else{
 
 				// http://stackoverflow.com/questions/10849687/express-js-how-to-get-remote-client-address
-				var ip = req.ip
+				//var ip = req.ip
+
+
+				var ip = req.headers[ 'x-forwarded-for' ] || req.connection.remoteAddress
 				formData.ip = ip
 
 				formData.fields = fields
