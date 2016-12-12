@@ -71,6 +71,8 @@ const _promiseFetchForm = ( req ) => {
 
 
 				var ip = req.headers[ 'x-forwarded-for' ] || req.connection.remoteAddress
+
+				console.log( ip )
 				formData.ip = ip
 
 				formData.fields = fields
