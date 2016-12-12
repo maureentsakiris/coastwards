@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import { defineMessages, injectIntl, intlShape } from 'react-intl'
-import { scrollToId } from 'actions/context'
+/*import { scrollToId } from 'actions/context'*/
 import Classnames from 'classnames'
 import DIV from 'components/tags/div'
 
@@ -154,7 +154,7 @@ const messages = defineMessages( {
 
 } )
  
-const context = ( { intl, lang, dir, jazzSupported, clipped, unclipPage } ) => {
+const context = ( { intl, lang, dir, jazzSupported, clipped, useraction, unclipPage } ) => {
 
 	const { formatMessage } = intl
 
@@ -199,7 +199,8 @@ const context = ( { intl, lang, dir, jazzSupported, clipped, unclipPage } ) => {
 
 		const clsArrowMap = Classnames( style.arrow, style.arrowMap, {
 
-			[ style.fixed ]: clipped
+			[ style.fixed ]: clipped,
+			[ style.hidden ]: useraction == 'uploading'
 
 		} )
 
@@ -246,6 +247,7 @@ context.propTypes = {
 	dir: PropTypes.string,
 	jazzSupported: PropTypes.bool,
 	clipped: PropTypes.bool,
+	useraction: PropTypes.string,
 
 	unclipPage: PropTypes.func
 

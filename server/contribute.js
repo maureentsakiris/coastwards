@@ -2,6 +2,11 @@ const express = require( 'express' )
 const router = express.Router()
 const mysql = require( 'mysql' )
 const formidable = require( 'formidable' )
+// For node 7+
+var os = require( 'os' ); 
+os.tmpDir = os.tmpdir;
+
+
 const path = require( 'path' )
 const fs = require( 'fs' )
 const _ = require( 'underscore' )

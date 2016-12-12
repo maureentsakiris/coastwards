@@ -5,7 +5,7 @@ import { promiseDataURLtoBlob } from 'actions/util/form'
 import { scrollToId } from 'actions/context'
 import { promiseXHR } from 'actions/util/request/xhr'
 import { fly, resetMap, hidePopup, switchModus, dropMarker, trackZoom } from 'actions/main/mapbox'
-import uuid from 'node-uuid'
+import uuid from 'uuid'
 import _ from 'underscore'
 /*import Hammer from 'hammerjs'*/
 
@@ -165,6 +165,7 @@ export const validateFile = ( e ) => {
 
 		}
 
+		dispatch( { type: types.SET_USER_ACTION, to: 'uploading' } )
 		dispatch( { type: types.SET_STATUS_MSG, to: 'status_validating' } )
 		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'statuses', to: true } )
 		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'prompts', to: false } )
@@ -481,6 +482,7 @@ export const resetMain = ( removeLastUpload = true ) => {
 		document.getElementById( 'Form' ).reset()
 		
 		//close what else toggle 
+		dispatch( { type: types.SET_USER_ACTION, to: 'browsing' } )
 		dispatch( { type: types.SET_PROMPT_MSG, to: 'select_file' } )
 		dispatch( { type: types.RESET_FORM } )
 		dispatch( { type: types.RESET_LAYERS } )

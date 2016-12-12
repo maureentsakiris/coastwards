@@ -34,12 +34,16 @@ export default class upload extends Component{
 			e = e || event;
 			e.preventDefault()
 
+			console.log( "dragover" );
+
 		}, false );
 
 		window.addEventListener( 'dragenter', ( e ) => {
 
 			e = e || event;
 			e.preventDefault()
+
+			console.log( "dragenter" );
 
 			if( this.props.show ){
 
