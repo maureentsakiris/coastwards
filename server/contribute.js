@@ -76,6 +76,9 @@ const _promiseFetchForm = ( req ) => {
 
 				// https://github.com/indutny/node-ip
 				var ip = req.headers[ 'x-forwarded-for' ] || req.connection.remoteAddress
+				/*console.log( "ip", ip );
+				console.log( "req.ip", req.ip );
+				console.log( "req.ips", req.ips );*/
 				formData.ip = ip
 
 				formData.fields = fields
@@ -184,7 +187,7 @@ const _promiseInsertContribution = ( formData ) => {
 
 
 		// Truncate table coastwards.contributions
-		var sql = 'INSERT INTO ??.?? ( ??, ??, ??, ??, ??, ??, ??, ??, ??, ??, ?? ) VALUES ( (ST_PointFromText(?)), ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )'
+		var sql = 'INSERT INTO ??.?? ( ??, ??, ??, ??, ??, ??, ??, ??, ??, ??, ?? ) VALUES ( (ST_PointFromText(?)), ?, ?, ?, ?, (INET6_ATON(?)), ?, ?, ?, ?, ? )'
 		var inserts = [ 
 			'coastwards', 
 			'contributions',
