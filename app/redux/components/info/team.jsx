@@ -44,6 +44,16 @@ const messages = defineMessages( {
 		description: "Title - ",
 		defaultMessage: "A bit more official ..."
 	},
+	profile:{
+		id: "profile",
+		description: "Team",
+		defaultMessage: "View profile"
+	},
+	profile_title:{
+		id: "profile_title",
+		description: "Title - ",
+		defaultMessage: "A bit more official ..."
+	},
 
 	nassos:{
 		id: "nassos",
@@ -104,11 +114,11 @@ const team = ( { intl/*, showDialog*/, addSnackbarMessage } ) => {
 		<TOGGLE id="Team" title={ formatMessage( messages.who_are_you_title ) } priority={ 3 } text={ formatMessage( messages.who_are_you ) } className={ style.toggle } >
 			<P><STRONG>{ formatMessage( messages.hi_there ) }</STRONG></P>
 			<H priority={ 4 }>Athanasios Vafeidis</H>
-			<P>{ formatMessage( messages.nassos ) } <A href="#" title={ formatMessage( messages.more_title ) } onClick={ addSnackbarMessage.bind( this, 'there_will_be_more' ) } >{ formatMessage( messages.more ) }</A></P>
+			<P>{ formatMessage( messages.nassos ) } <A href="http://www.crslr.uni-kiel.de/en/people/gruppenleiter/prof.-athanasios-vafeidis.html" target="_blank" title={ formatMessage( messages.more_title ) } >{ formatMessage( messages.more ) }</A></P>
 			<H priority={ 4 }>Claudia  Wolff</H>
-			<P>{ formatMessage( messages.claudia ) } <A href="#" title={ formatMessage( messages.more_title ) } onClick={ addSnackbarMessage.bind( this, 'there_will_be_more' ) } >{ formatMessage( messages.more ) }</A></P>
+			<P>{ formatMessage( messages.claudia ) } <A href="http://www.crslr.uni-kiel.de/en/people/doctoral-researchers/claudia-wolff.html" target="_blank" title={ formatMessage( messages.more_title ) } >{ formatMessage( messages.more ) }</A></P>
 			<H priority={ 4 }>Jörn Schmidt</H>
-			<P>{ formatMessage( messages.joern ) } <A href="#" title={ formatMessage( messages.more_title ) } onClick={ addSnackbarMessage.bind( this, 'there_will_be_more' ) } >{ formatMessage( messages.more ) }</A></P>
+			<P>{ formatMessage( messages.joern ) } <A href="https://www.eree.uni-kiel.de/en/team/dr.-jorn-schmidt" target="_blank" title={ formatMessage( messages.more_title ) } >{ formatMessage( messages.more ) }</A></P>
 			<H priority={ 4 }>Maureen Tsakiris</H>
 			<P>{ formatMessage( messages.me ) } <A href="#" title={ formatMessage( messages.more_title ) } onClick={ addSnackbarMessage.bind( this, 'there_will_be_more_maybe' ) } >{ formatMessage( messages.more ) }</A></P>
 			<BR/>
