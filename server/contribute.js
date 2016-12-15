@@ -2,6 +2,11 @@ const express = require( 'express' )
 const router = express.Router()
 const mysql = require( 'mysql' )
 const formidable = require( 'formidable' )
+// For node 7+
+var os = require( 'os' ); 
+os.tmpDir = os.tmpdir;
+
+
 const path = require( 'path' )
 const fs = require( 'fs' )
 const _ = require( 'underscore' )
@@ -67,7 +72,13 @@ const _promiseFetchForm = ( req ) => {
 			}else{
 
 				// http://stackoverflow.com/questions/10849687/express-js-how-to-get-remote-client-address
-				var ip = req.ip
+				//var ip = req.ip
+
+				// https://github.com/indutny/node-ip
+				var ip = req.headers[ 'x-forwarded-for' ] || req.connection.remoteAddress
+				/*console.log( "ip", ip );
+				console.log( "req.ip", req.ip );
+				console.log( "req.ips", req.ips );*/
 				formData.ip = ip
 
 				formData.fields = fields
@@ -176,7 +187,7 @@ const _promiseInsertContribution = ( formData ) => {
 
 
 		// Truncate table coastwards.contributions
-		var sql = 'INSERT INTO ??.?? ( ??, ??, ??, ??, ??, ??, ??, ??, ??, ??, ?? ) VALUES ( (ST_PointFromText(?)), ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )'
+		var sql = 'INSERT INTO ??.?? ( ??, ??, ??, ??, ??, ??, ??, ??, ??, ??, ?? ) VALUES ( (ST_PointFromText(?)), ?, ?, ?, ?, (INET6_ATON(?)), ?, ?, ?, ?, ? )'
 		var inserts = [ 
 			'coastwards', 
 			'contributions',

@@ -5,6 +5,9 @@ export const LOAD_LANGUAGE = 'LOAD_LANGUAGE'
 export const CLIP_PAGE = 'CLIP_PAGE'
 export const UNCLIP_PAGE = 'UNCLIP_PAGE'
 
+//useraction
+export const SET_USER_ACTION = 'SET_USER_ACTION'
+
 //dialog
 export const SHOW_DIALOG = 'SHOW_DIALOG'
 export const HIDE_DIALOG = 'HIDE_DIALOG'

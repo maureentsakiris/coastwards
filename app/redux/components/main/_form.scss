@@ -34,6 +34,7 @@ $actions-height: 60px;
 
 	pointer-events: none;
 	opacity: 0;
+	visibility: hidden;
 	transition: opacity 500ms;
 	z-index: 2;
 
@@ -88,6 +89,7 @@ $actions-height: 60px;
 
 .showJazz{
  
+ 	visibility: visible;
 	pointer-events: all;
 	opacity: 1;
 

@@ -71,6 +71,19 @@ const clipped = ( state = false, action ) => {
 
 }
 
+const useraction = ( state = 'browsing', action ) => {
+
+	switch ( action.type ){
+
+	case types.SET_USER_ACTION:
+		return action.to
+	default:
+		return state;
+
+	}
+
+}
+
 const dialog = ( state = { component: '', active: false }, action ) => {
 
 	switch ( action.type ){
@@ -266,6 +279,7 @@ const coastwards = combineReducers( {
 	config,
 	i18n,
 	clipped,
+	useraction,
 	dialog,
 	snackbar,
 	layers,

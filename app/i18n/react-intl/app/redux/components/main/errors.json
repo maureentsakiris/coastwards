@@ -55,6 +55,7 @@
     "defaultMessage": "We couldn't find the date and time you took this picture. Do you have the original? Try that one!"
   },
   {
+<<<<<<< HEAD
     "id": "problems_connecting",
     "description": "Error",
     "defaultMessage": "We could not connect to the image annotation service. Try again! It will probably work"
@@ -63,6 +64,11 @@
     "id": "problems_from_google",
     "description": "Error",
     "defaultMessage": "The image annotation software returned an error. Try again?"
+=======
+    "id": "error_response_google",
+    "description": "Error -",
+    "defaultMessage": "Arrg, the image annotation software returned an error. Try again, it will probably work!"
+>>>>>>> 81d4f499403caa2b3c27da35954d1d1e9206074b
   },
   {
     "id": "upload_error",

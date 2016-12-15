@@ -54,12 +54,17 @@ const messages = defineMessages( {
 	guideline_material_header:{
 		id: "guideline_material_header",
 		description: "Header - Material",
-		defaultMessage: "We need to see the coast material"
+		defaultMessage: "What is the coast made of?"
 	},
 	guideline_material_text:{
 		id: "guideline_material_text",
 		description: "Guideline - Material",
-		defaultMessage: "You probably didn't care much about the coast material at the time you took the picture, so please bear in mind that we don't care about how beautiful (sunsets) or ugly (your toes!) the image is, as long as we can see the coast material."
+		defaultMessage: "You probably didn't care much about the coast material at the time you took the picture, so please bear in mind that we don't care about how beautiful (sunsets) or ugly (your toes!) the image is, as long as we can see what the coast is made of (e.g. sand, rock ...)."
+	},
+	guideline_coasts_header:{
+		id: "guideline_coasts_header",
+		description: "Header",
+		defaultMessage: "Oh and: Coasts are not only beaches!"
 	}
 
 } )
@@ -72,7 +77,8 @@ const guidelines = ( { intl/*, jazzSupported*/ } ) => {
 
 		{ header: formatMessage( messages.guideline_original_header ), text: formatMessage( messages.guideline_original_text ), img: 'assets/original.svg', alt: 'No facebook, twitter, whatsapp etc' },
 		{ header: formatMessage( messages.guideline_faces_header ), text: formatMessage( messages.guideline_faces_text ), img: 'assets/faces.svg', alt: 'No faces' },
-		{ header: formatMessage( messages.guideline_material_header ), text: formatMessage( messages.guideline_material_text ), img: 'assets/material.svg', alt: 'Coast material' }
+		{ header: formatMessage( messages.guideline_material_header ), text: formatMessage( messages.guideline_material_text ), img: 'assets/material.svg', alt: 'Coast material' },
+		{ header: formatMessage( messages.guideline_coasts_header ), text: '', img: 'assets/coasts.svg', alt: 'Coasts are not only beaches' }
 
 	]
 
@@ -87,7 +93,7 @@ const guidelines = ( { intl/*, jazzSupported*/ } ) => {
 			<DIV key={ key } className={ style.guideline } >
 				<DIV>
 					<H priority={ 4 } ><SPAN>0{ number }</SPAN> { header }</H>
-					<P>{ text }</P>
+					{ text && <P>{ text }</P> }
 				</DIV>
 			</DIV>
 

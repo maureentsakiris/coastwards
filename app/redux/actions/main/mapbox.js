@@ -339,12 +339,8 @@ export const displayMap = ( ) => {
 		.catch( ( error ) => {
 
 			dispatch( resetMain() )
-			
-			if( error.message ){
-
-				dispatch( { type: types.SET_ERROR_MSG, to: error.message } )
-
-			}
+			let msg = error.message ? error.message : 'an_error_occurred'
+			dispatch( { type: types.SET_ERROR_MSG, to: msg } )
 
 			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'errors', to: true } )
 			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'prompts', to: false } )

@@ -72,15 +72,13 @@ const messages = defineMessages( {
 	problems_connecting:{
 		id: "problems_connecting",
 		description: "Error",
-		defaultMessage: "We could not connect to the image annotation service. Try again! It will probably work"
+		defaultMessage: "We could not connect to the image annotation service. Is your internet connection stable?"
 	},
 	problems_from_google:{
 		id: "problems_from_google",
 		description: "Error",
-		defaultMessage: "The image annotation software returned an error. Try again?"
+		defaultMessage: "The image annotation software returned an error. Is your internet connection stable?"
 	},
-
-
 
 	upload_error:{
 		id: "upload_error",

@@ -31,8 +31,6 @@ export const promiseXHR = ( options ) => {
 
 		xhr.addEventListener( 'load', ( e ) => {
 
-			let response = e.currentTarget.response
-
 			resolve( e.currentTarget.response )
 
 		}, false );
