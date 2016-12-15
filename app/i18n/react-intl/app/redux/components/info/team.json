@@ -30,6 +30,11 @@
     "defaultMessage": "A bit more official ..."
   },
   {
+    "id": "just_kidding",
+    "description": "Title -",
+    "defaultMessage": "More"
+  },
+  {
     "id": "profile",
     "description": "Team",
     "defaultMessage": "View profile"
@@ -62,7 +67,7 @@
   {
     "id": "me",
     "description": "Team",
-    "defaultMessage": "That's me. I'm not a scientist and I'm responsible for any typos or anything else that's wrong about this website. And I am crazy enough to believe that people will upload pictures to protect their coasts from sea-level rise. Don't make me turn my back on society and go live in a cabin in the woods!"
+    "defaultMessage": "That's me. I'm responsible for any typos or anything else that's wrong about this website. And I am crazy enough to believe that people will upload pictures to protect their coasts from sea-level rise. Don't make me turn my back on society and go live in a cabin in the woods!"
   },
   {
     "id": "me_official",

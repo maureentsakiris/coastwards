@@ -44,6 +44,11 @@ const messages = defineMessages( {
 		description: "Title - ",
 		defaultMessage: "A bit more official ..."
 	},
+	just_kidding:{
+		id: "just_kidding",
+		description: "Title - ",
+		defaultMessage: "More"
+	},
 	profile:{
 		id: "profile",
 		description: "Team",
@@ -88,7 +93,7 @@ const messages = defineMessages( {
 	me:{
 		id: "me",
 		description: "Team",
-		defaultMessage: "That's me. I'm not a scientist and I'm responsible for any typos or anything else that's wrong about this website. And I am crazy enough to believe that people will upload pictures to protect their coasts from sea-level rise. Don't make me turn my back on society and go live in a cabin in the woods!"
+		defaultMessage: "That's me. I'm responsible for any typos or anything else that's wrong about this website. And I am crazy enough to believe that people will upload pictures to protect their coasts from sea-level rise. Don't make me turn my back on society and go live in a cabin in the woods!"
 	},
 	me_official:{
 		id: "me_official",
@@ -120,7 +125,7 @@ const team = ( { intl/*, showDialog*/, addSnackbarMessage } ) => {
 			<H priority={ 4 }>Jörn Schmidt</H>
 			<P>{ formatMessage( messages.joern ) } <A href="https://www.eree.uni-kiel.de/en/team/dr.-jorn-schmidt" target="_blank" title={ formatMessage( messages.more_title ) } >{ formatMessage( messages.more ) }</A></P>
 			<H priority={ 4 }>Maureen Tsakiris</H>
-			<P>{ formatMessage( messages.me ) } <A href="#" title={ formatMessage( messages.more_title ) } onClick={ addSnackbarMessage.bind( this, 'there_will_be_more_maybe' ) } >{ formatMessage( messages.more ) }</A></P>
+			<P>{ formatMessage( messages.me ) } <A href="#" title={ formatMessage( messages.just_kidding ) } onClick={ addSnackbarMessage.bind( this, 'just_kidding' ) } >{ formatMessage( messages.more ) }</A></P>
 			<BR/>
 			<P><STRONG>{ formatMessage( messages.contact_here ) }:</STRONG> <A href="mailTo:go@coastwards.org" >go@coastwards.org</A></P> 
 		</TOGGLE>

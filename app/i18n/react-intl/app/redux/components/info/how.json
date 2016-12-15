@@ -10,9 +10,14 @@
     "defaultMessage": "1min read.Tops"
   },
   {
-    "id": "transcript",
+    "id": "show_transcript",
     "description": "Section header",
     "defaultMessage": "Show transcript"
+  },
+  {
+    "id": "hide_transcript",
+    "description": "-",
+    "defaultMessage": "Hide transcript"
   },
   {
     "id": "sea_levels_rise_because",
@@ -67,7 +72,7 @@
   {
     "id": "policy_makers",
     "description": "Script - And these predictions inform policy makers at national and international levels on which actions to take and which countries need international support.",
-    "defaultMessage": "And these predictions inform policy makers at national and international levels on which actions to take and which countries need international support."
+    "defaultMessage": "These predictions inform policy makers at national and international levels on which actions to take and which countries need international support."
   },
   {
     "id": "best_advice",

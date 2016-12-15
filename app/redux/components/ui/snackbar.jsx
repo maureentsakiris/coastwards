@@ -35,10 +35,10 @@ const intlMessages = defineMessages( {
 		description: " - ",
 		defaultMessage: "There will be more .. and more official"
 	},
-	there_will_be_more_maybe:{
-		id: "there_will_be_more_maybe",
+	just_kidding:{
+		id: "just_kidding",
 		description: " - ",
-		defaultMessage: "There will be more .. maybe"
+		defaultMessage: "(Though a cabin in the mountains sounds great to me)"
 	},
 	zoom_until:{
 		id: "zoom_until",

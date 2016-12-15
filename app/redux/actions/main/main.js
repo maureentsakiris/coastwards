@@ -78,8 +78,6 @@ const _promiseSafe = ( image ) => {
 
 			let annotations = response.responses[ 0 ]
 
-			console.log( annotations )
-
 			if( annotations.faceAnnotations ){
 
 				reject( Error( "faces_detected" ) ) //YES
@@ -286,18 +284,8 @@ export const validateFile = ( e ) => {
 
 			dispatch( resetMain() )
 
-<<<<<<< HEAD
-			if( error.message ){
-
-				dispatch( { type: types.SET_ERROR_MSG, to: error.message } )
-
-			}
-
-=======
 			let msg = error.message ? error.message : 'an_error_occurred'
 			dispatch( { type: types.SET_ERROR_MSG, to: msg } )
-			
->>>>>>> 81d4f499403caa2b3c27da35954d1d1e9206074b
 			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'errors', to: true } )
 			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'prompts', to: false } )
 			console.log( error )

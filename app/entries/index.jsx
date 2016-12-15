@@ -9,7 +9,6 @@ require( 'smoothscroll-polyfill' ).polyfill()
 
 import coastwards from 'reducers'
 import { loadLanguage } from 'actions/i18n/i18n'
-import { showDialog } from 'actions/ui/dialog'
 
 import I18nProvider from 'containers/i18n/i18nProvider'
 import Context from 'containers/context'

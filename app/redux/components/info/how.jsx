@@ -92,7 +92,7 @@ const messages = defineMessages( {
 	policy_makers:{
 		id: "policy_makers",
 		description: "Script - And these predictions inform policy makers at national and international levels on which actions to take and which countries need international support.",
-		defaultMessage: "And these predictions inform policy makers at national and international levels on which actions to take and which countries need international support."
+		defaultMessage: "These predictions inform policy makers at national and international levels on which actions to take and which countries need international support."
 	},
 	best_advice:{
 		id: "best_advice",
