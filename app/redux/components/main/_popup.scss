@@ -13,8 +13,8 @@ $action-height: 45px;
 	/* @extend %flexcontainer;
 	flex-direction: column;
 	overflow-y: scroll; */
-	width: 300px;
-	height: 300px;
+	max-width: 600px;
+	max-height: 600px;
 	padding-bottom: $action-height;
 
 }
@@ -54,8 +54,8 @@ $action-height: 45px;
 
 	.popup{
 
-		width: 60vh;
-		height: 60vh;
+		width: 80vh;
+		height: 80vh;
 
 	}
 
@@ -71,8 +71,8 @@ $action-height: 45px;
 
 	.popup{
 
-		width: 60vw;
-		height: 60vw;
+		width: 80vw;
+		height: 80vw;
 
 	}
 
@@ -83,6 +83,7 @@ $action-height: 45px;
 	}
 
 }
+
 
 .clear{
 

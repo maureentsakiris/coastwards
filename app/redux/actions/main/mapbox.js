@@ -256,7 +256,7 @@ export const displayMap = ( ) => {
 							[ 'ice', '#ef25db' ],
 							[ 'notsure', '#ccc' ],
 							[ 'manmade', '#000' ],
-							[ '', '#396dc1' ]
+							[ '', '#0058e6' ]
 						] 
 					}
 

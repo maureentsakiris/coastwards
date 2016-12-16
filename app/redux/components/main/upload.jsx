@@ -7,6 +7,7 @@ import INPUT from 'components/tags/input'
 import BR from 'components/tags/br'
 import BUTTON from 'components/tags/button'
 import I from 'components/tags/i'
+import IMG from 'components/tags/img'
 
 
 import style from './_upload'
@@ -102,6 +103,12 @@ export default class upload extends Component{
 
 			} )
 
+			/*const clsLegendBtn = Classnames( style.legendBtn, {
+
+				[ style.fixed ]: clipped
+
+			} )
+*/
 			const clsRippler = Classnames( style.rippler, {
 
 				//[ style.ripple ]: isDrop
@@ -110,6 +117,8 @@ export default class upload extends Component{
 			
 			//<I className="material-icons">&#xE2C6;</I>
 			//<I className="material-icons">&#xE439;</I>
+
+			//<IMG className={ clsLegendBtn } src="assets/legend.svg" alt="!Show legend" />
 			
 
 			return(

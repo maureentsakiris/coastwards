@@ -93,7 +93,7 @@ const messages = defineMessages( {
 	me:{
 		id: "me",
 		description: "Team",
-		defaultMessage: "That's me. I'm responsible for any typos or anything else that's wrong about this website. And I am crazy enough to believe that people will upload pictures to protect their coasts from sea-level rise. Don't make me turn my back on society and go live in a cabin in the woods!"
+		defaultMessage: "That's me. I'm responsible for any typos or anything else that's wrong about this website. And I am crazy enough to believe that people will upload pictures to protect their coasts from sea-level rise. Don't make me turn my back on society and go live in a cabin in the mountains!"
 	},
 	me_official:{
 		id: "me_official",

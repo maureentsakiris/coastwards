@@ -59,7 +59,7 @@ const messages = defineMessages( {
 	guideline_material_text:{
 		id: "guideline_material_text",
 		description: "Guideline - Material",
-		defaultMessage: "You probably didn't care much about the coast material at the time you took the picture, so please bear in mind that we don't care about how beautiful (sunsets) or ugly (your toes!) the image is, as long as we can see what the coast is made of (e.g. sand, rock ...)."
+		defaultMessage: "You probably didn't care much about the coast material at the time you took the picture, so please bear in mind that we don't care about how beautiful (sunsets) or ugly (your toes!) the image is, as long as we can see what stuff the coast is made of (e.g. sand, rock ...)"
 	},
 	guideline_coasts_header:{
 		id: "guideline_coasts_header",
