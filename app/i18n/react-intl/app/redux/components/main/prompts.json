@@ -13,5 +13,15 @@
     "id": "upload_ok",
     "description": "Status - Informs user that his image was uploaded successfully",
     "defaultMessage": "WOHOO! Nice one! Your image was uploaded. Next one! :)"
+  },
+  {
+    "id": "uploadBtn_title",
+    "description": "Title -",
+    "defaultMessage": "Upload an image"
+  },
+  {
+    "id": "shareBtn_title",
+    "description": "Title -",
+    "defaultMessage": "Share with friends"
   }
 ]

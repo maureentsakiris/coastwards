@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react'
+import { defineMessages, injectIntl, intlShape } from 'react-intl'
 import Classnames from 'classnames'
 
 import FORM from 'components/tags/form'
@@ -7,14 +8,31 @@ import INPUT from 'components/tags/input'
 import BR from 'components/tags/br'
 import BUTTON from 'components/tags/button'
 import I from 'components/tags/i'
-import IMG from 'components/tags/img'
 
 
 import style from './_upload'
 
-export default class upload extends Component{
+const messages = defineMessages( {
+
+	uploadBtn_title:{
+		id: "uploadBtn_title",
+		description: "Title - ",
+		defaultMessage: "Upload an image"
+	},
+	shareBtn_title:{
+		id: "shareBtn_title",
+		description: "Title - ",
+		defaultMessage: "Share with friends"
+	}
+
+	
+} )
+
+class upload extends Component{
 
 	static propTypes = {
+
+		intl: intlShape.isRequired,
 
 		show: PropTypes.bool,
 		jazzSupported: PropTypes.bool,
@@ -23,8 +41,8 @@ export default class upload extends Component{
 
 		validateFile: PropTypes.func,
 		setLayerVisibility: PropTypes.func,
-		openInput: PropTypes.func,
-		addDropEvent: PropTypes.func
+		openInput: PropTypes.func/*,
+		showDialog: PropTypes.func*/
 
 	}
 
@@ -80,7 +98,8 @@ export default class upload extends Component{
 
 	render () {
 
-		const { jazzSupported, className, clipped, show, validateFile, openInput } = this.props
+		const { formatMessage } = this.props.intl
+		const { jazzSupported, className, clipped, show, validateFile, openInput/*, showDialog*/ } = this.props
 		const { dropzoneActive, dropX, dropY/*, isDrop*/ } = this.state
 
 		const cls = Classnames( className, {
@@ -103,6 +122,12 @@ export default class upload extends Component{
 
 			} )
 
+			/*const clsShareBtn = Classnames( style.shareBtn, {
+
+				[ style.fixed ]: clipped
+
+			} )*/
+
 			/*const clsLegendBtn = Classnames( style.legendBtn, {
 
 				[ style.fixed ]: clipped
@@ -119,6 +144,8 @@ export default class upload extends Component{
 			//<I className="material-icons">&#xE439;</I>
 
 			//<IMG className={ clsLegendBtn } src="assets/legend.svg" alt="!Show legend" />
+
+			//<BUTTON className={ clsShareBtn } onClick={ showDialog.bind( this, 'share' ) } title={ formatMessage( messages.shareBtn_title ) }><I className="material-icons">&#xE80D;</I></BUTTON>
 			
 
 			return(
@@ -126,7 +153,7 @@ export default class upload extends Component{
 				<FORM id="Upload" action="#" className={ cls } >
 					<DIV className={ clsRippler } style={ { position: 'absolute', top: dropY, left: dropX } } ></DIV>
 					<DIV onDragLeave={ this._onDragLeave } onDrop={ this._onDrop.bind( this ) } className={ clsDropzone } ></DIV>
-					<BUTTON className={ clsUploadBtn } onClick={ openInput }><I className="material-icons">&#xE439;</I></BUTTON>
+					<BUTTON className={ clsUploadBtn } onClick={ openInput } title={ formatMessage( messages.uploadBtn_title ) }><I className="material-icons">&#xE439;</I></BUTTON>
 					<INPUT className={ style.hidden } id="images" name="images" onChange={ validateFile } form="Upload" type="file" multiple={ false } accept="image/*" />
 				</FORM>
 
@@ -178,3 +205,5 @@ export default class upload extends Component{
 	}
 
 }
+
+export default injectIntl( upload )

@@ -91,19 +91,27 @@ $toggle-border: 1px solid rgba(0, 0, 0, 0.1);
 
 }
 
-%roundBtn{
+%materialBtn{
 
 	border: none;
 	border-radius: 50%;
 	width: 66px;
 	height: 66px;
+	color: #ffffff;
+	box-shadow: 0 1px 1.5px 0 rgba(0,0,0,.12),0 1px 1px 0 rgba(0,0,0,.24);
+	cursor: pointer;
+	background-color: $color-primary;
+
+}
+
+%roundBtn{
+
+	@extend %materialBtn;
 	position: absolute;
 	top: 20px;
 	right: 20px;
 	z-index: 1;
-	color: #ffffff;
-	box-shadow: 0 1px 1.5px 0 rgba(0,0,0,.12),0 1px 1px 0 rgba(0,0,0,.24);
-	cursor: pointer;
+	
 
 	/* @include landscapeMin( $tablet ){
 

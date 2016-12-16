@@ -13,6 +13,7 @@ import JOERN from './dialogs/joern'
 import ME from './dialogs/me'
 
 import TOOMANY from './dialogs/toomany'
+import SHARE from './dialogs/share'
 
 import DIV from 'components/tags/div'
 import CLOSE from 'components/ui/close'
@@ -60,6 +61,7 @@ const dialog = ( { intl, component, active, closeDialog } ) => {
 					{ component == 'ME' && <ME className={ style.scroll } /> }
 
 					{ component == 'TOOMANY' && <TOOMANY className={ style.scroll } /> }
+					{ component == 'SHARE' && <SHARE className={ style.scroll } /> }
 					
 				</DIV>
 			</DIV>

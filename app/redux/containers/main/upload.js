@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-
+/*import { showDialog } from 'actions/ui/dialog'*/
 import { validateFile, openInput } from 'actions/main/main'
 import { setLayerVisibility } from 'actions/layers'
 import UPLOAD from 'components/main/upload'
@@ -11,7 +11,6 @@ const mapStateToProps = ( state ) => {
 
 		show: state.layers.upload,
 		jazzSupported: state.browser.jazzSupported,
-		prompt: state.prompt,
 		clipped: state.clipped
 
 	}
@@ -37,8 +36,14 @@ const mapDispatchToProps = ( dispatch ) => {
 			e.preventDefault()
 			dispatch( openInput( ) )
 
-		}
+		}/*,
+		showDialog: ( component, e ) => {
 
+			e.preventDefault()
+			dispatch( showDialog( component ) )
+
+		}
+*/
 	}
 
 }

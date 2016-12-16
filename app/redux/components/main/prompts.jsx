@@ -4,6 +4,9 @@ import Classnames from 'classnames'
 
 import DIV from 'components/tags/div'
 import H from 'components/tags/h'
+/*import BUTTON from 'components/tags/button'
+import I from 'components/tags/i'
+import P from 'components/tags/p'*/
 
 import CLOSE from 'components/ui/close'
 
@@ -27,12 +30,23 @@ const messages = defineMessages( {
 		id: "upload_ok",
 		description: "Status - Informs user that his image was uploaded successfully",
 		defaultMessage: "WOHOO! Nice one! Your image was uploaded. Next one! :)"
+	},
+
+	uploadBtn_title:{
+		id: "uploadBtn_title",
+		description: "Title - ",
+		defaultMessage: "Upload an image"
+	},
+	shareBtn_title:{
+		id: "shareBtn_title",
+		description: "Title - ",
+		defaultMessage: "Share with friends"
 	}
 
 
 } )
 
-const prompts = ( { intl, className, prompt, jazzSupported, show, hide } ) => {
+const prompts = ( { intl, className, prompt, jazzSupported, show, hide/*, openInput, showDialog*/ } ) => {
 
 	const { formatMessage } = intl
 
@@ -61,6 +75,11 @@ const prompts = ( { intl, className, prompt, jazzSupported, show, hide } ) => {
 
 			<A className={ clsToomany } onClick={ showDialog.bind( this, 'TOOMANY' ) }  ><small>{ formatMessage( messages.too_many ) }</small></A>*/
 
+			/*<P>
+				<BUTTON className={ style.uploadBtn } title={ formatMessage( messages.uploadBtn_title ) } onClick={ openInput } ><I className="material-icons">&#xE439;</I></BUTTON>
+				<BUTTON className={ style.shareBtn } title={ formatMessage( messages.shareBtn_title ) } onClick={ showDialog.bind( this, 'share' ) }><I className="material-icons">&#xE80D;</I></BUTTON>
+			</P>*/
+
 	return(
 
 		<DIV id="Prompts" className={ cls } onClick={ hide } >
@@ -83,7 +102,9 @@ prompts.propTypes = {
 	jazzSupported: PropTypes.bool,
 	show: PropTypes.bool,
 
-	hide: PropTypes.func
+	hide: PropTypes.func/*,
+	openInput: PropTypes.func,
+	showDialog: PropTypes.func*/
 
 }
 

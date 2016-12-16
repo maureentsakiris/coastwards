@@ -1,0 +1,12 @@
+[
+  {
+    "id": "uploadBtn_title",
+    "description": "Title -",
+    "defaultMessage": "Upload an image"
+  },
+  {
+    "id": "shareBtn_title",
+    "description": "Title -",
+    "defaultMessage": "Share with friends"
+  }
+]

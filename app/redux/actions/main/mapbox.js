@@ -536,9 +536,6 @@ export const showPopup = ( feature ) => {
 		const featureDOM = document.getElementById( 'Popup' )
 		let offsetY = featureDOM.clientHeight / 2
 
-		//map.panTo( feature.geometry.coordinates )
-		//map.setCenter( feature.geometry.coordinates )
-		//dispatch( fly( wrapped, z, [ 0, offsetY ] ) )
 		map.flyTo( { speed: 0.4, center: wrapped, offset: [ 0, offsetY ], zoom: z } ) 
 
 	}
