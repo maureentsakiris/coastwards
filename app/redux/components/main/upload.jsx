@@ -108,7 +108,18 @@ class upload extends Component{
 
 		} )
 
-		if( jazzSupported ){
+		if( !jazzSupported ){
+
+			return(
+
+				<FORM id="Upload" action="#" className={ cls } >
+					<BR />
+					<INPUT id="images" name="images" onChange={ validateFile } form="Upload" type="file" multiple={ false } accept="image/*" />
+				</FORM>
+
+			)
+
+		}else{
 
 			const clsDropzone = Classnames( style.dropzone, {
 
@@ -155,17 +166,6 @@ class upload extends Component{
 					<DIV onDragLeave={ this._onDragLeave } onDrop={ this._onDrop.bind( this ) } className={ clsDropzone } ></DIV>
 					<BUTTON className={ clsUploadBtn } onClick={ openInput } title={ formatMessage( messages.uploadBtn_title ) }><I className="material-icons">&#xE439;</I></BUTTON>
 					<INPUT className={ style.hidden } id="images" name="images" onChange={ validateFile } form="Upload" type="file" multiple={ false } accept="image/*" />
-				</FORM>
-
-			)
-
-		}else{
-
-			return(
-
-				<FORM id="Upload" action="#" className={ cls } >
-					<BR />
-					<INPUT id="images" name="images" onChange={ validateFile } form="Upload" type="file" multiple={ false } accept="image/*" />
 				</FORM>
 
 			)

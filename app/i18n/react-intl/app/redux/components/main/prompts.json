@@ -15,13 +15,13 @@
     "defaultMessage": "WOHOO! Nice one! Your image was uploaded. Next one! :)"
   },
   {
-    "id": "uploadBtn_title",
+    "id": "upload_image",
     "description": "Title -",
     "defaultMessage": "Upload an image"
   },
   {
-    "id": "shareBtn_title",
+    "id": "tell_friend",
     "description": "Title -",
-    "defaultMessage": "Share with friends"
+    "defaultMessage": "Tell a friend"
   }
 ]

@@ -4,6 +4,8 @@ import Classnames from 'classnames'
 
 import DIV from 'components/tags/div'
 import H from 'components/tags/h'
+import P from 'components/tags/p'
+import A from 'components/tags/a'
 /*import BUTTON from 'components/tags/button'
 import I from 'components/tags/i'
 import P from 'components/tags/p'*/
@@ -32,21 +34,21 @@ const messages = defineMessages( {
 		defaultMessage: "WOHOO! Nice one! Your image was uploaded. Next one! :)"
 	},
 
-	uploadBtn_title:{
-		id: "uploadBtn_title",
+	upload_image:{
+		id: "upload_image",
 		description: "Title - ",
 		defaultMessage: "Upload an image"
 	},
-	shareBtn_title:{
-		id: "shareBtn_title",
+	tell_friend:{
+		id: "tell_friend",
 		description: "Title - ",
-		defaultMessage: "Share with friends"
+		defaultMessage: "Tell a friend"
 	}
 
 
 } )
 
-const prompts = ( { intl, className, prompt, jazzSupported, show, hide/*, openInput, showDialog*/ } ) => {
+const prompts = ( { intl, className, prompt, jazzSupported, show, hide, openInput, showDialog } ) => {
 
 	const { formatMessage } = intl
 
@@ -58,34 +60,13 @@ const prompts = ( { intl, className, prompt, jazzSupported, show, hide/*, openIn
 
 	} )
 
-	/*<A onClick={ () => {} } className={ style.toomany } >{ formatMessage( messages.what_again ) }</A>
-			<A onClick={ () => {} } className={ style.toomany } >{ formatMessage( messages.how ) }</A>
-			<A onClick={ () => {} } className={ style.toomany } >{ formatMessage( messages.too_many ) }</A>
-
-
-			<A onClick={ openInput } className={ style.option } >{ formatMessage( messages.upload_image ) }</A>
-				<A onClick={ openInput } className={ style.option } >{ formatMessage( messages.read_guidelines ) }</A>
-
-				<H className={ clsHeader } priority={ 2 }>{ str }</H>
-		
-			{ jazzSupported && <DIV>
-				{ init && <P className={ style.selecthelp } ><small>({ formatMessage( messages.select_help ) })</small></P> }
-				<A onClick={ hide } className={ style.option } >{ formatMessage( messages.browse_map ) }</A> 
-			</DIV> }
-
-			<A className={ clsToomany } onClick={ showDialog.bind( this, 'TOOMANY' ) }  ><small>{ formatMessage( messages.too_many ) }</small></A>*/
-
-			/*<P>
-				<BUTTON className={ style.uploadBtn } title={ formatMessage( messages.uploadBtn_title ) } onClick={ openInput } ><I className="material-icons">&#xE439;</I></BUTTON>
-				<BUTTON className={ style.shareBtn } title={ formatMessage( messages.shareBtn_title ) } onClick={ showDialog.bind( this, 'share' ) }><I className="material-icons">&#xE80D;</I></BUTTON>
-			</P>*/
-
 	return(
 
 		<DIV id="Prompts" className={ cls } onClick={ hide } >
 			<H priority={ 2 }>{ str } 
 				{ jazzSupported && <CLOSE onClick={ hide } /> }
 			</H>
+			<P><A href="#" onClick={ openInput }>{ formatMessage( messages.upload_image ) }</A> or <A href="#" onClick={ showDialog.bind( this, 'SHARE' ) }>{ formatMessage( messages.tell_friend ) }</A></P>
 		</DIV>
 
 	)
@@ -102,9 +83,9 @@ prompts.propTypes = {
 	jazzSupported: PropTypes.bool,
 	show: PropTypes.bool,
 
-	hide: PropTypes.func/*,
+	hide: PropTypes.func,
 	openInput: PropTypes.func,
-	showDialog: PropTypes.func*/
+	showDialog: PropTypes.func
 
 }
 

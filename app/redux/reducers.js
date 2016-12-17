@@ -32,7 +32,7 @@ const browser = ( state = { uploadSupported: uploadSupported, jazzSupported: jaz
 
 }
 
-const config = ( state= { google: true, imageWidth: 800 }, action ) => {
+const config = ( state= { google: true, imageWidth: 800, sand: '#fbb03b', pebble:'#469a16', rock:'#7e3096', mud:'#8a5707', ice:'#ef25db', notsure:'#ccc', manmade:'#000', notdefined:'#0058e6' }, action ) => {
 
 	switch ( action.type ){
 

@@ -41,7 +41,7 @@
 
 	i{
 
-		font-size: 112px;
+		font-size: 72px;
 		color: inherit;
 
 	}
@@ -51,10 +51,10 @@
 .arrowMap{
 
 	position: absolute;
-	top: -15px;
 	z-index: 2;
 	left: 50%;
-	margin-left: -56px;
+	margin-left: -36px;
+
 
 	opacity: 0;
 	transition: opacity 200ms;
@@ -67,6 +67,48 @@
 	-webkit-user-drag: none;
 	-webkit-user-select: none;
 	-ms-user-select: none;
+
+}
+
+@include landscapeMin( $tablet ){
+
+	.arrow{
+
+		i{
+
+			font-size: 112px;
+
+		}
+
+	}
+
+	.arrowMap{
+
+		margin-left: -56px;
+		top: -15px;
+
+	}
+
+}
+
+@include portraitMin( $tablet ){
+
+	.arrow{
+
+		i{
+
+			font-size: 112px;
+
+		}
+
+	}
+
+	.arrowMap{
+
+		margin-left: -56px;
+		top: -15px;
+
+	}
 
 }
 

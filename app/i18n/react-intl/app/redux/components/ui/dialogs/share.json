@@ -2,12 +2,12 @@
   {
     "id": "share_header",
     "description": "Header - Why do you need my IP Address?",
-    "defaultMessage": "Why do you need my IP Address?"
+    "defaultMessage": "Tell a friend"
   },
   {
     "id": "share_text",
     "description": "P -",
-    "defaultMessage": "We need to be able to prove that we are not the source of the image. Basically, we are covering our own asses BUT we can only point to your IP Address, not to you."
+    "defaultMessage": "(Sorry, not ready yet ... but you can still tell a friend!)"
   },
   {
     "id": "ip_address_learn_more",

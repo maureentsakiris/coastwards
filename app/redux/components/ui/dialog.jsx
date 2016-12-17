@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react'
 import { defineMessages, injectIntl, intlShape } from 'react-intl'
+import Classnames from 'classnames'
 
 import WHYIP from './dialogs/whyIP'
 import NOJAZZ from './dialogs/nojazz'
@@ -32,10 +33,16 @@ const messages = defineMessages( {
 } )
 
 
-const dialog = ( { intl, component, active, closeDialog } ) => {
+const dialog = ( { intl, component, active, jazzSupported, closeDialog } ) => {
 
 	const { formatMessage } = intl
 
+
+	const clsDialog = Classnames( style.dialog, {
+
+		[ style.dialogJazz ]: jazzSupported
+
+	} )
 	
 
 	if( !active ){
@@ -46,22 +53,22 @@ const dialog = ( { intl, component, active, closeDialog } ) => {
 
 		return(
 
-			<DIV className={ style.dialog } >
-				<DIV className={ style.body } >
-					<CLOSE className={ style.close } onClick={ closeDialog } title={ formatMessage( messages.close_dialog ) } />
-					{ component == 'WHYIP' && <WHYIP className={ style.scroll } /> }
-					{ component == 'NOJAZZ' && <NOJAZZ className={ style.scroll } /> }
-					{ component == 'DEFINEMATERIAL' && <DEFINEMATERIAL className={ style.scroll } /> }
-					{ component == 'WHYHASHTAG' && <WHYHASHTAG className={ style.scroll } /> }
-					{ component == 'TESTSITE' && <TESTSITE className={ style.scroll } /> }
+			<DIV className={ clsDialog } >
+				<DIV>
+					<CLOSE onClick={ closeDialog } title={ formatMessage( messages.close_dialog ) } />
+					{ component == 'WHYIP' && <WHYIP /> }
+					{ component == 'NOJAZZ' && <NOJAZZ /> }
+					{ component == 'DEFINEMATERIAL' && <DEFINEMATERIAL /> }
+					{ component == 'WHYHASHTAG' && <WHYHASHTAG /> }
+					{ component == 'TESTSITE' && <TESTSITE /> }
 
-					{ component == 'NASSOS' && <NASSOS className={ style.scroll } /> }
-					{ component == 'CLAUDIA' && <CLAUDIA className={ style.scroll } /> }
-					{ component == 'JOERN' && <JOERN className={ style.scroll } /> }
-					{ component == 'ME' && <ME className={ style.scroll } /> }
+					{ component == 'NASSOS' && <NASSOS /> }
+					{ component == 'CLAUDIA' && <CLAUDIA /> }
+					{ component == 'JOERN' && <JOERN /> }
+					{ component == 'ME' && <ME /> }
 
-					{ component == 'TOOMANY' && <TOOMANY className={ style.scroll } /> }
-					{ component == 'SHARE' && <SHARE className={ style.scroll } /> }
+					{ component == 'TOOMANY' && <TOOMANY /> }
+					{ component == 'SHARE' && <SHARE /> }
 					
 				</DIV>
 			</DIV>
@@ -77,6 +84,8 @@ dialog.propTypes = {
 	intl: intlShape,
 	component: PropTypes.node,
 	active: PropTypes.bool,
+	jazzSupported: PropTypes.bool,
+
 	closeDialog: PropTypes.func
 
 }

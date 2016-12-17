@@ -97,6 +97,16 @@ $action-height: 45px;
 
 }
 
+.label{
+
+	display: inline-block;
+    background-color: #fff;
+    color: white;
+    padding: 0.1em 1em;
+    border-radius: 2px;
+
+}
+
 .comment, .send{
 
 	@extend %action;

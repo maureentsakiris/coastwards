@@ -42,8 +42,8 @@ const mapDispatchToProps = ( dispatch ) => {
 			e.preventDefault()
 			dispatch( showDialog( component ) )
 
-		}
-*/
+		}*/
+
 	}
 
 }

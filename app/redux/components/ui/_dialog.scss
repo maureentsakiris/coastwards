@@ -12,23 +12,35 @@
 	overflow-y: scroll;
 	-webkit-overflow-scrolling: touch;
 
-	p{
+	&>div{
 
-		margin: 0.5em 0;
+		@extend %corset;
+		padding: $site-padding-sides;
+		padding-bottom: $site-padding-bottom;
+
+		&>a{
+
+			display: inline-block;
+    		float: right;
+    		margin-bottom: 1em;
+
+		}
+
+		&>div{
+
+			clear: both;
+
+		}
 
 	}
 
 }
 
-.close{
+/* .close{
 
 	display: block;
 	text-align: right;
 	margin-bottom: 1em;
-    /* z-index: 1;
-    position: absolute;
-    top: 10px;
-    right: 10px; */
 
 	i{
 
@@ -45,22 +57,9 @@
     margin-bottom: $site-padding-bottom;
     padding: 15px;
 
-	/* @extend %corset;
-	height: 100%;
-    position: relative; */
-
 }
 
 .scroll{
-
-	/* position: absolute;
-    top: 0;
-    height: 100%;
-    overflow-y: scroll;
-    -webkit-overflow-scrolling: touch;
-    padding: 56px 56px 56px 20px;
-    left: 0;
-*/
 
     &>*:first-child{
 
@@ -69,4 +68,4 @@
 
     }
 
-}
+} */

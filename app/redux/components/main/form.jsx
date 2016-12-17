@@ -47,6 +47,8 @@ const messages = defineMessages( {
 		description: "Anchor - ",
 		defaultMessage: "(Define coast material)"
 	},
+
+	//materials <--> popup.jsx
 	sand:{
 		id: "sand",
 		description: "Material - Sand",

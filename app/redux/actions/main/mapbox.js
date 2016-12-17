@@ -222,6 +222,8 @@ export const displayMap = ( ) => {
 			const state = getState()
 			const map = state.mapbox.map
 
+			const { sand, pebble, rock, mud, ice, notsure, manmade, notdefined } = state.config
+
 			map.addSource( 'geojson', {
 
 				type: 'geojson',
@@ -249,14 +251,14 @@ export const displayMap = ( ) => {
 						property: 'material',
 						type: 'categorical',
 						stops: [
-							[ 'sand', '#fbb03b' ],
-							[ 'pebble', '#469a16' ],
-							[ 'rock', '#7e3096' ],
-							[ 'mud', '#8a5707' ],
-							[ 'ice', '#ef25db' ],
-							[ 'notsure', '#ccc' ],
-							[ 'manmade', '#000' ],
-							[ '', '#0058e6' ]
+							[ 'sand', sand ],
+							[ 'pebble', pebble ],
+							[ 'rock', rock ],
+							[ 'mud', mud ],
+							[ 'ice', ice ],
+							[ 'notsure', notsure ],
+							[ 'manmade', manmade ],
+							[ '', notdefined ]
 						] 
 					}
 

@@ -597,6 +597,7 @@ export const unclipPage = ( e ) => {
 
 		}
 
+		dispatch( hidePopup() )
 		dispatch( { type: 'UNCLIP_PAGE' } )
 
 		scrollToId( 'Intro', e )

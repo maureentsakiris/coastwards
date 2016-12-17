@@ -4,7 +4,6 @@ import { defineMessages, injectIntl, intlShape } from 'react-intl'
 import DIV from 'components/tags/div'
 import H from 'components/tags/h'
 import P from 'components/tags/p'
-import A from 'components/tags/a'
 
 
 const messages = defineMessages( {
@@ -12,12 +11,12 @@ const messages = defineMessages( {
 	share_header:{
 		id: "share_header",
 		description: "Header - Why do you need my IP Address?",
-		defaultMessage: "Why do you need my IP Address?"
+		defaultMessage: "Tell a friend"
 	},
 	share_text:{
 		id: "share_text",
 		description: "P - ",
-		defaultMessage: "We need to be able to prove that we are not the source of the image. Basically, we are covering our own asses BUT we can only point to your IP Address, not to you."
+		defaultMessage: "(Sorry, not ready yet ... but you can still tell a friend!)"
 	},
 	ip_address_learn_more:{
 		id: "ip_address_learn_more",
@@ -41,7 +40,7 @@ const share = ( { intl, className } ) => {
 
 		<DIV className={ className } >
 			<H priority={ 2 }>{ formatMessage( messages.share_header ) }</H>
-			<P>{ formatMessage( messages.share_text ) } <A target="_blank" href={ formatMessage( messages.ip_address_learn_more_href ) }>{ formatMessage( messages.ip_address_learn_more ) }</A></P>
+			<P>{ formatMessage( messages.share_text ) }</P>
 		</DIV>
 
 	)

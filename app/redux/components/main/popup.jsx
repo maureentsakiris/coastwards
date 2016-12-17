@@ -1,20 +1,62 @@
 import React, { PropTypes, Component } from 'react'
 import PureRenderMixin from 'react-addons-pure-render-mixin'
-import { /*defineMessages,*/ injectIntl, intlShape } from 'react-intl'
+import { defineMessages, injectIntl, intlShape } from 'react-intl'
 /*import Classnames from 'classnames'
 import unescape from 'validator/lib/unescape'*/
 
 import DIV from 'components/tags/div'
 import A from 'components/tags/a'
 import I from 'components/tags/i'
-/*import P from 'components/tags/p'*/
+import P from 'components/tags/p'
 
 import style from './_popup'
 
-/*const messages = defineMessages( {
+const messages = defineMessages( {
+
+	//materials <--> popup.jsx
+	sand:{
+		id: "sand",
+		description: "Material - Sand",
+		defaultMessage: "Sand"
+	},
+	pebble:{
+		id: "pebble",
+		description: "Material - Pebble",
+		defaultMessage: "Pebble"
+	},
+	rock:{
+		id: "rock",
+		description: "Material - Rock",
+		defaultMessage: "Rock"
+	},
+	mud:{
+		id: "mud",
+		description: "Material - Mud",
+		defaultMessage: "Mud"
+	},
+	manmade:{
+		id: "manmade",
+		description: "Material - Man-made",
+		defaultMessage: "Man-made"
+	},
+	ice:{
+		id: "ice",
+		description: "Material - Ice",
+		defaultMessage: "Ice"
+	},
+	notsure:{
+		id: "notsure",
+		description: "Material - Not sure",
+		defaultMessage: "Not sure"
+	},
+	notdefined:{
+		id: "notdefined",
+		description: "Material",
+		defaultMessage: "Not set yet"
+	}
 
 
-} )*/
+} )
 
 
 class popup extends Component {
@@ -24,6 +66,7 @@ class popup extends Component {
 		intl: intlShape.isRequired,
 
 		feature: PropTypes.object,
+		config: PropTypes.object,
 
 		hidePopup: PropTypes.func,
 		addSnackbarMessage: PropTypes.func
@@ -45,7 +88,8 @@ class popup extends Component {
 
 	render () {
 
-		const { feature, hidePopup } = this.props
+		const { formatMessage } = this.props.intl
+		const { feature, config, hidePopup } = this.props
 		/*const { active } = this.state*/
 
 		if( !feature.properties ){
@@ -88,12 +132,7 @@ class popup extends Component {
 
 			const comment = hasComment ? unescape( feature.properties.comment ) : ''*/
 
-			return(
-
-				<DIV id="Popup" className={ style.popup } >
-					<DIV className={ style.top } style={ { backgroundImage: 'url(' + feature.properties.image +')' } } />
-					<DIV className={ style.actions }>
-						<A onClick={ this._oops } className={ style.comment } >
+			/*<A onClick={ this._oops } className={ style.comment } >
 							<I className="material-icons">mode_comment</I>
 						</A>
 						<A onClick={ this._oops } className={ style.send } >
@@ -102,6 +141,19 @@ class popup extends Component {
 						<A onClick={ this._oops } className={ style.favorite } >
 							<I className="material-icons">favorite</I>
 						</A>
+						<A onClick={ hidePopup } className={ style.clear } >
+							<I className="material-icons">clear</I>
+						</A>*/
+
+			const material = feature.properties.material ? feature.properties.material : 'notdefined'
+			const color = config[ material ]
+
+			return(
+
+				<DIV id="Popup" className={ style.popup } >
+					<DIV className={ style.top } style={ { backgroundImage: 'url(' + feature.properties.image +')' } } />
+					<DIV className={ style.actions }>
+						<P className={ style.label } style={ { backgroundColor: color } } >{ formatMessage( messages[ material ] ) }</P>
 						<A onClick={ hidePopup } className={ style.clear } >
 							<I className="material-icons">clear</I>
 						</A>

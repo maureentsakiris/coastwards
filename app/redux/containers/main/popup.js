@@ -8,7 +8,8 @@ const mapStateToProps = ( state ) => {
 
 	return {
 
-		feature: state.popup.feature
+		feature: state.popup.feature, 
+		config: state.config
 
 	}
 
