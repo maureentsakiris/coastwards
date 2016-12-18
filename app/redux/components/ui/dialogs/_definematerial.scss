@@ -1,0 +1,9 @@
+@import 'app/styles/base';
+
+
+.toggle{
+
+	@extend %toggle;
+	border-top: $toggle-border;
+
+}

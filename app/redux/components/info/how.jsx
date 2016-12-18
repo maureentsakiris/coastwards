@@ -145,17 +145,7 @@ class How extends Component {
 
 	}
 
-	render () {
-
-		const { formatMessage } = this.props.intl
-		const { expanded } = this.state
-
-		const label = expanded ? formatMessage( messages.hide_transcript ) : formatMessage( messages.show_transcript );
-
-		return(
-
-			<TOGGLE title={ formatMessage( messages.how_title ) } priority={ 3 } text={ formatMessage( messages.how ) } className={ style.toggle } >
-				<DIV className={ style.video } style={ { backgroundImage: 'url(assets/poster.png)' } } ></DIV>
+	/*<DIV className={ style.video } style={ { backgroundImage: 'url(assets/poster.png)' } } ></DIV>
 				<A className={ style.toggleScript } onClick={ this._toggle.bind( this ) } >{ label }</A>
 				{ expanded && <DIV className={ style.script } >
 					<P>{ formatMessage( messages.in_a_nutshell ) }</P>
@@ -165,7 +155,27 @@ class How extends Component {
 					<P>{ formatMessage( messages.computer_programs ) }</P>
 					<P>{ formatMessage( messages.policy_makers ) }</P>
 					<P>{ formatMessage( messages.best_advice ) }</P>
-				</DIV> }
+				</DIV> }*/
+
+	render () {
+
+		const { formatMessage } = this.props.intl
+		//const { expanded } = this.state
+
+		//const label = expanded ? formatMessage( messages.hide_transcript ) : formatMessage( messages.show_transcript );
+
+		return(
+
+			<TOGGLE title={ formatMessage( messages.how_title ) } priority={ 3 } text={ formatMessage( messages.how ) } className={ style.toggle } >
+				<DIV className={ style.script } >
+					<P>{ formatMessage( messages.in_a_nutshell ) }</P>
+					<P>{ formatMessage( messages.how_it_works ) }</P>
+					<P>{ formatMessage( messages.place_on_map ) }</P>
+					<P>{ formatMessage( messages.determine_coastal_type ) } { " " } { formatMessage( messages.the_more_the_better ) }</P>
+					<P>{ formatMessage( messages.computer_programs ) }</P>
+					<P>{ formatMessage( messages.policy_makers ) }</P>
+					<P>{ formatMessage( messages.best_advice ) }</P>
+				</DIV>
 			</TOGGLE>
 
 		)

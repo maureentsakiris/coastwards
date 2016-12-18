@@ -1,4 +1,5 @@
 import { connect } from 'react-redux'
+import { showDialog } from 'actions/ui/dialog'
 
 import GUIDELINES from 'components/info/guidelines'
 
@@ -14,11 +15,26 @@ const mapStateToProps = ( state ) => {
 
 }
 
+const mapDispatchToProps = ( dispatch ) => {
+
+	return {
+
+		showDialog: ( component, e ) => {
+
+			e.preventDefault()
+			dispatch( showDialog( component ) )
+
+		}
+
+	}
+
+}
+
 
 const guidelines = connect(
 
 	mapStateToProps,
-	null
+	mapDispatchToProps
 
 )( GUIDELINES )
 

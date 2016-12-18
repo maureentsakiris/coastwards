@@ -16,12 +16,32 @@
   },
   {
     "id": "upload_image",
-    "description": "Title -",
+    "description": "Prompt -",
     "defaultMessage": "Upload an image"
   },
   {
-    "id": "tell_friend",
+    "id": "upload_image_title",
     "description": "Title -",
-    "defaultMessage": "Tell a friend"
+    "defaultMessage": "Choose an image from your device"
+  },
+  {
+    "id": "or",
+    "description": "Prompt -",
+    "defaultMessage": "or"
+  },
+  {
+    "id": "tell_friend",
+    "description": "Prompt -",
+    "defaultMessage": "tell a friend"
+  },
+  {
+    "id": "tell_friend_title",
+    "description": "-",
+    "defaultMessage": "Share this website with friends and family"
+  },
+  {
+    "id": "just_browse",
+    "description": "Prompt -",
+    "defaultMessage": "Just browse"
   }
 ]

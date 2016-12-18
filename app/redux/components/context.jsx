@@ -33,6 +33,12 @@ const messages = defineMessages( {
 		defaultMessage: "Hmm, looks like you are using an old browser (or a not so old Internet Explorer). This site will work on your browser BUT IT'S SOO MUCH MORE FUN if you switch to a modern browser, plus you can navegate the coasts of this world. Chrome, Firefox or Safari are safe choices, especially if updated to the latest versions."
 	},
 
+	arrow_up_title:{
+		id: "arrow_up_title",
+		description: "Title - ",
+		defaultMessage: "Show intro"
+	},
+
 	// INTRO
 
 	help_science:{
@@ -225,7 +231,7 @@ const context = ( { intl, lang, dir, jazzSupported, clipped, useraction, unclipP
 					
 				</DIV>
 				<DIV id="Main" className={ style.main }>
-					<A onClick={ unclipPage.bind( this ) } className={ clsArrowMap } >
+					<A onClick={ unclipPage.bind( this ) } className={ clsArrowMap } title={ formatMessage( messages.arrow_up_title ) } >
 						<I className="material-icons">&#xE316;</I>
 					</A>
 					<Main />

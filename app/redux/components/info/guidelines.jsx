@@ -1,12 +1,12 @@
 import React, { PropTypes } from 'react'
 import { defineMessages, injectIntl, intlShape } from 'react-intl'
-import _ from 'underscore'
 
 import TOGGLE from 'components/ui/toggle'
 import DIV from 'components/tags/div'
 import P from 'components/tags/p'
 import H from 'components/tags/h'
-import SPAN from 'components/tags/span'
+import SMALL from 'components/tags/small'
+import A from 'components/tags/a'
 /*import IMG from 'components/tags/img'*/
 import STRONG from 'components/tags/strong'
 
@@ -54,12 +54,17 @@ const messages = defineMessages( {
 	guideline_material_header:{
 		id: "guideline_material_header",
 		description: "Header - Material",
-		defaultMessage: "What is the coast made of?"
+		defaultMessage: "We need to see the coast material"
+	},
+	guideline_material_help:{
+		id: "guideline_material_help",
+		description: "Header - help",
+		defaultMessage: "(What do you mean by coast material?)"
 	},
 	guideline_material_text:{
 		id: "guideline_material_text",
 		description: "Guideline - Material",
-		defaultMessage: "You probably didn't care much about the coast material at the time you took the picture, so please bear in mind that we don't care about how beautiful (sunsets) or ugly (your toes!) the image is, as long as we can see what stuff the coast is made of (e.g. sand, rock ...)"
+		defaultMessage: "You probably didn't care much about the coast material at the time you took the picture, so please bear in mind that we don't care about how beautiful (sunsets) or ugly (your toes!) the image is, as long as we can see what the coast is made of."
 	},
 	guideline_coasts_header:{
 		id: "guideline_coasts_header",
@@ -69,73 +74,31 @@ const messages = defineMessages( {
 
 } )
 
-const guidelines = ( { intl/*, jazzSupported*/ } ) => {
+const guidelines = ( { intl, showDialog } ) => {
 
 	const { formatMessage } = intl
-
-	const glData = [
-
-		{ header: formatMessage( messages.guideline_original_header ), text: formatMessage( messages.guideline_original_text ), img: 'assets/original.svg', alt: 'No facebook, twitter, whatsapp etc' },
-		{ header: formatMessage( messages.guideline_faces_header ), text: formatMessage( messages.guideline_faces_text ), img: 'assets/faces.svg', alt: 'No faces' },
-		{ header: formatMessage( messages.guideline_material_header ), text: formatMessage( messages.guideline_material_text ), img: 'assets/material.svg', alt: 'Coast material' },
-		{ header: formatMessage( messages.guideline_coasts_header ), text: '', img: 'assets/coasts.svg', alt: 'Coasts are not only beaches' }
-
-	]
-
-	const gls = _.map( glData, ( gl, key ) => {
-
-		const { header, text/*, img, alt*/ } = gl
-
-		const number = key + 1;
-
-		return(
-
-			<DIV key={ key } className={ style.guideline } >
-				<DIV>
-					<H priority={ 4 } ><SPAN>0{ number }</SPAN> { header }</H>
-					{ text && <P>{ text }</P> }
-				</DIV>
-			</DIV>
-
-		)
-
-		/*if( !jazzSupported ){
-
-			return(
-
-				<DIV key={ key } className={ style.guideline } >
-					<DIV>
-						<H priority={ 4 } ><SPAN>0{ number }</SPAN> { header }</H>
-						<P>{ text }</P>
-					</DIV>
-				</DIV>
-
-			)
-
-
-		}else{
-
-			return(
-
-				<DIV key={ key } className={ style.guidelineJazz } >
-					<IMG src={ img } alt={ alt } />
-					<DIV>
-						<H priority={ 4 } ><SPAN>0{ number }</SPAN> { header }</H>
-						<P>{ text }</P>
-					</DIV>
-				</DIV>
-
-			)
-
-		}*/
-
-	} )
 
 	return(
 
 		<TOGGLE id="Guidelines" title={ formatMessage( messages.any_picture_title ) } priority={ 3 } text={ formatMessage( messages.any_picture ) } className={ style.toggle } >
 			<P><STRONG>{ formatMessage( messages.any_coast ) }</STRONG></P>
-			<DIV>{ gls }</DIV>
+			<DIV>
+				<DIV className={ style.guideline } >
+					<H priority={ 4 } >{ formatMessage( messages.guideline_original_header ) }</H>
+					<P>{ formatMessage( messages.guideline_original_text ) }</P>
+				</DIV>
+				<DIV className={ style.guideline } >
+					<H priority={ 4 } >{ formatMessage( messages.guideline_faces_header ) }</H>
+					<P>{ formatMessage( messages.guideline_faces_text ) }</P>
+				</DIV>
+				<DIV className={ style.guideline } >
+					<H priority={ 4 } >{ formatMessage( messages.guideline_material_header ) } <SMALL><A onClick={ showDialog.bind( this, 'DEFINEMATERIAL' ) }>{ formatMessage( messages.guideline_material_help ) }</A></SMALL></H>
+					<P>{ formatMessage( messages.guideline_material_text ) }</P>
+				</DIV>
+				<DIV className={ style.guideline } >
+					<H priority={ 4 } >{ formatMessage( messages.guideline_coasts_header ) }</H>
+				</DIV>
+			</DIV>
 		</TOGGLE>
 
 	)
@@ -145,7 +108,9 @@ const guidelines = ( { intl/*, jazzSupported*/ } ) => {
 guidelines.propTypes = {
 
 	intl: intlShape.isRequired,
-	jazzSupported: PropTypes.bool
+	jazzSupported: PropTypes.bool,
+
+	showDialog: PropTypes.func
 
 }
 
