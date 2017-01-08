@@ -7,7 +7,6 @@ import { promiseXHR } from 'actions/util/request/xhr'
 import { fly, resetMap, hidePopup, switchModus, dropMarker, trackZoom } from 'actions/main/mapbox'
 import uuid from 'uuid'
 import _ from 'underscore'
-/*import Hammer from 'hammerjs'*/
 
 
 
@@ -186,7 +185,11 @@ export const validateFile = ( e ) => {
 			return selected[ 0 ]
 
 		} )
-		.then( promiseType )
+		.then( ( file ) => {
+
+			return promiseType( file )
+
+		} )
 		.then( ( file ) => {
 
 			//MATTHIAS
@@ -574,7 +577,7 @@ export const clipPage = ( ) => {
 
 	return function ( dispatch ){
 
-		//window.dispatchEvent( new Event( 'resize' ) )
+		window.dispatchEvent( new Event( 'resize' ) )
 
 		dispatch( { type: 'CLIP_PAGE' } )
 		dispatch( scrollToMap() )

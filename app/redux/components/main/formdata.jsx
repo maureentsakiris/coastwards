@@ -29,8 +29,77 @@ const messages = defineMessages( {
 		id: "thats_it",
 		description: "Note",
 		defaultMessage: "That's it. I swear. No cookies, not even Google Analytics, just what you see above."
+	},
+	ip_address:{
+		id: 'ip_address',
+		description: "Note",
+		defaultMessage: "IP Address"
+	},
+	save_ip:{
+		id: 'save_ip',
+		description: "Note",
+		defaultMessage: "We will save your IP Address upon upload"
+	},
+	save_ip_why:{
+		id: 'save_ip_why',
+		description: "Note",
+		defaultMessage: "WHY?"
+	},
+	image:{
+		id: 'image',
+		description: "Note",
+		defaultMessage: "Image"
+	},
+	save_image:{
+		id: "save_image",
+		description: "Note",
+		defaultMessage: "We save the image at {imageWidth} pixels width and strip the metadata"
+	},
+	uid:{
+		id: "uid",
+		description: "Note",
+		defaultMessage: "Unique identifier"
+	},
+	latitude:{
+		id: "latitude",
+		description: "Note",
+		defaultMessage: "Latitude"
+	},
+	longitude:{
+		id: "longitude",
+		description: "Note",
+		defaultMessage: "Longitude"
+	},
+	location_manual:{
+		id: "location_manual",
+		description: "Note",
+		defaultMessage: "Location manual"
+	},
+	date_time:{
+		id: "date_time",
+		description: "Note",
+		defaultMessage: "Date/Time"
+	},
+	annotations:{
+		id: "annotations",
+		description: "Note",
+		defaultMessage: "Annotations"
+	},
+	score:{
+		id: "score",
+		description: "Note",
+		defaultMessage: "Score"
+	},
+	exifdata:{
+		id: "exifdata",
+		description: "Note",
+		defaultMessage: "Exifdata"
+	},
+	value:{
+		id: "value",
+		description: "Note",
+		defaultMessage: "Value"
 	}
-
 
 } )
 
@@ -72,65 +141,58 @@ const formdata = ( { intl, image, uid, imageWidth, showDialog } ) => {
 
 	const datetime =  image.exifdata ? image.exifdata.DateTimeOriginal ||  image.exifdata.DateTimeDigitized ||  image.exifdata.DateTime : 'not found'
 
-	/*const adaptations = [
-
-		{ label: "!Dike", value: "dike" },
-		{ label: "!Wave-breaker", value: "wavebreaker" }
-
-	]*/
-
 	return(
 
 		<TOGGLE priority={ 6 } text={ formatMessage( messages.data_privacy ) } className={ style.toggle } >
 			<TABLE className={ style.table } >
 				<THEAD>
 					<TR>
-						<TH style={ { width: '160px' } } >IP Address</TH>
+						<TH style={ { width: '160px' } } >{ formatMessage( messages.ip_address ) }</TH>
 						<TH></TH>
 					</TR>
 				</THEAD>
 				<TBODY>
 					<TR>
-						<TD>IP Address</TD>
-						<TD>We will save your IP Address upon upload <A onClick={ showDialog.bind( this, 'WHYIP' ) }>WHY?</A></TD>
+						<TD>{ formatMessage( messages.ip_address ) }</TD>
+						<TD>{ formatMessage( messages.save_ip ) } <A onClick={ showDialog.bind( this, 'WHYIP' ) }>{ formatMessage( messages.save_ip_why ) }</A></TD>
 					</TR>
 				</TBODY>
 				<THEAD>
 					<TR>
-						<TH>Image</TH>
+						<TH>{ formatMessage( messages.image ) }</TH>
 						<TH></TH>
 					</TR>
 				</THEAD>
 				<TBODY>
 					<TR>
-						<TD>Image</TD>
-						<TD>We save the image at { imageWidth } pixels width and strip the metadata</TD>
+						<TD>{ formatMessage( messages.image ) }</TD>
+						<TD>{ formatMessage( messages.save_image, { imageWidth: imageWidth } ) }</TD>
 					</TR>
 					<TR>
-						<TD>Unique identifier</TD>
+						<TD>{ formatMessage( messages.uid ) }</TD>
 						<TD>{ uid }</TD>
 					</TR>
 					<TR>
-						<TD>Latitude</TD>
+						<TD>{ formatMessage( messages.latitude ) }</TD>
 						<TD>{ image.lat }</TD>
 					</TR>
 					<TR>
-						<TD>Longitude</TD>
+						<TD>{ formatMessage( messages.longitude ) }</TD>
 						<TD>{ image.long }</TD>
 					</TR>
 					<TR>
-						<TD>Location manual</TD>
+						<TD>{ formatMessage( messages.location_manual ) }</TD>
 						<TD>{ image.manual }</TD>
 					</TR>
 					<TR>
-						<TD>Date/Time</TD>
+						<TD>{ formatMessage( messages.date_time ) }</TD>
 						<TD>{ datetime }</TD>
 					</TR>
 				</TBODY>
 				<THEAD>
 					<TR>
-						<TH>Annotations</TH>
-						<TH>Score</TH>
+						<TH>{ formatMessage( messages.annotations ) }</TH>
+						<TH>{ formatMessage( messages.score ) }</TH>
 					</TR>
 				</THEAD>
 				<TBODY>
@@ -138,8 +200,8 @@ const formdata = ( { intl, image, uid, imageWidth, showDialog } ) => {
 				</TBODY>
 				<THEAD>
 					<TR>
-						<TH>Exifdata</TH>
-						<TH>Value</TH>
+						<TH>{ formatMessage( messages.exifdata ) }</TH>
+						<TH>{ formatMessage( messages.value ) }</TH>
 					</TR>
 				</THEAD>
 				<TBODY>

@@ -17,7 +17,7 @@ const Locales = [
 		locale: 'es',
 		name: 'Español',
 		en: 'Spanish'
-	},
+	}/*,
 	{
 		locale: 'hi',
 		name: 'हिन्दी, हिंदी',
@@ -52,7 +52,7 @@ const Locales = [
 		locale: 'it',
 		name: 'Italiano',
 		en: 'Italian'
-	}
+	}*/
 ]
 
 const hasIntl = typeof ( Intl ) !== 'undefined';

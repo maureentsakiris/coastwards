@@ -13,11 +13,6 @@ import style from './_definematerial'
 
 const messages = defineMessages( {
 
-	definematerial_header:{
-		id: "definematerial_header",
-		description: "Header - What do you mean by 'coast material'?",
-		defaultMessage: "What do you mean by 'coast material'?"
-	},
 	the_obvious_header:{
 		id: "the_obvious_header",
 		description: "P - ",
@@ -26,7 +21,7 @@ const messages = defineMessages( {
 	the_obvious_text:{
 		id: "the_obvious_text",
 		description: " - ",
-		defaultMessage: "If you were water from the ocean or sea, which material would you first encounter? Hard rock from a cliff or a sand from a beach? Or maybe something man-made like a concrete wall? The coast material is the stuff you find in the first meters on land."
+		defaultMessage: "If you were water from the ocean or sea, which material would you first encounter? Hard rock from a cliff or a sand from a beach? Or maybe something man-made like a concrete wall? The coast material is the stuff you find in the first meters of land."
 	},
 	multiple_materials_header:{
 		id: "multiple_materials_header",
@@ -36,7 +31,7 @@ const messages = defineMessages( {
 	multiple_materials_text:{
 		id: "multiple_materials_text",
 		description: " - ",
-		defaultMessage: "In that case, choose the material that predominates."
+		defaultMessage: "In that case, it's the material that predominates."
 	},
 	material_examples_header:{
 		id: "material_examples_header",

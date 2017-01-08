@@ -8,5 +8,75 @@
     "id": "thats_it",
     "description": "Note",
     "defaultMessage": "That's it. I swear. No cookies, not even Google Analytics, just what you see above."
+  },
+  {
+    "id": "ip_address",
+    "description": "Note",
+    "defaultMessage": "IP Address"
+  },
+  {
+    "id": "save_ip",
+    "description": "Note",
+    "defaultMessage": "We will save your IP Address upon upload"
+  },
+  {
+    "id": "save_ip_why",
+    "description": "Note",
+    "defaultMessage": "WHY?"
+  },
+  {
+    "id": "image",
+    "description": "Note",
+    "defaultMessage": "Image"
+  },
+  {
+    "id": "save_image",
+    "description": "Note",
+    "defaultMessage": "We save the image at {imageWidth} pixels width and strip the metadata"
+  },
+  {
+    "id": "uid",
+    "description": "Note",
+    "defaultMessage": "Unique identifier"
+  },
+  {
+    "id": "latitude",
+    "description": "Note",
+    "defaultMessage": "Latitude"
+  },
+  {
+    "id": "longitude",
+    "description": "Note",
+    "defaultMessage": "Longitude"
+  },
+  {
+    "id": "location_manual",
+    "description": "Note",
+    "defaultMessage": "Location manual"
+  },
+  {
+    "id": "date_time",
+    "description": "Note",
+    "defaultMessage": "Date/Time"
+  },
+  {
+    "id": "annotations",
+    "description": "Note",
+    "defaultMessage": "Annotations"
+  },
+  {
+    "id": "score",
+    "description": "Note",
+    "defaultMessage": "Score"
+  },
+  {
+    "id": "exifdata",
+    "description": "Note",
+    "defaultMessage": "Exifdata"
+  },
+  {
+    "id": "value",
+    "description": "Note",
+    "defaultMessage": "Value"
   }
 ]

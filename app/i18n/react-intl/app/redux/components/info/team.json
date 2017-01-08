@@ -5,19 +5,14 @@
     "defaultMessage": "Who's Science?"
   },
   {
-    "id": "hi_there",
-    "description": "Paragraph",
-    "defaultMessage": "We are the 'Coastal Risks and Sea-Level Rise Research Group' at the University of Kiel in Germany and this project is funded by the 'Future Ocean Excellence Cluster'."
+    "id": "who_are_you_title",
+    "description": "Section header - Meet us!",
+    "defaultMessage": "Meet us!"
   },
   {
     "id": "we_are",
     "description": "Paragraph",
-    "defaultMessage": "I'm Maureen, the project leader and this is the team of scientists:"
-  },
-  {
-    "id": "who_are_you_title",
-    "description": "Section header - Meet us!",
-    "defaultMessage": "Meet us!"
+    "defaultMessage": "We are the 'Coastal Risks and Sea-Level Rise Research Group' at the University of Kiel in Germany and this project is funded by the 'Future Ocean Excellence Cluster'."
   },
   {
     "id": "more",
@@ -30,29 +25,9 @@
     "defaultMessage": "A bit more official ..."
   },
   {
-    "id": "just_kidding",
-    "description": "Title -",
-    "defaultMessage": "More"
-  },
-  {
-    "id": "profile",
-    "description": "Team",
-    "defaultMessage": "View profile"
-  },
-  {
-    "id": "profile_title",
-    "description": "Title -",
-    "defaultMessage": "A bit more official ..."
-  },
-  {
     "id": "nassos",
     "description": "Team",
     "defaultMessage": "Nassos is the group leader and a professor at the University of Kiel. He's greek, has two little boys and his desk looks like hell."
-  },
-  {
-    "id": "nassos_official",
-    "description": "Team",
-    "defaultMessage": "Nassos has participated as a principal investigator in a number of collaborative research projects. He has co-authored peer-reviewed articles, book chapters and scientific reports and has also contributed to the Stern Review on the Economics of Climate Change and to the Fifth Assessment Report of the IPCC WGII. His teaching includes modules on “Climate Change”, “Coastal Zone Dynamics”, “Applications of GIS in coastal regions” and “Coasts of the World\"."
   },
   {
     "id": "claudia",
@@ -68,11 +43,6 @@
     "id": "me",
     "description": "Team",
     "defaultMessage": "That's me. I'm responsible for any typos or anything else that's wrong about this website. And I am crazy enough to believe that people will upload pictures to protect their coasts from sea-level rise. Don't make me turn my back on society and go live in a cabin in the mountains!"
-  },
-  {
-    "id": "me_official",
-    "description": "Team",
-    "defaultMessage": "Nassos has participated as a principal investigator in a number of collaborative research projects. He has co-authored peer-reviewed articles, book chapters and scientific reports and has also contributed to the Stern Review on the Economics of Climate Change and to the Fifth Assessment Report of the IPCC WGII. His teaching includes modules on “Climate Change”, “Coastal Zone Dynamics”, “Applications of GIS in coastal regions” and “Coasts of the World\"."
   },
   {
     "id": "contact_here",

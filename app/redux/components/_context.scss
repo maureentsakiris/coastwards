@@ -151,7 +151,6 @@
 
 %page{
 
-	//min-height: 100vh;
 	position: relative;
 	z-index: 1;
 
@@ -190,11 +189,43 @@
 
 	@extend %page;
 
-	@include landscape( ){
+	@include portraitMin( $tablet ){
+
+		padding-top: 0;
+
+	}
+
+	@include landscapeMin( $tablet ){
+
+		padding-top: 0;
+
+	}
+
+	.i18n{
+
+		display: none;
+		margin-top: 2vh;
+		margin-bottom: 9vh;
+
+		@include portraitMin( $tablet ){
+
+			display: block;
+
+		}
+
+		@include landscapeMin( $tablet ){
+
+			display: block;
+
+		}
+
+	}
+
+	/* @include landscape( ){
 
 		min-height: 100vh;
 
-	}
+	} */
 
 	@include landscapeMin( $tablet ){
 

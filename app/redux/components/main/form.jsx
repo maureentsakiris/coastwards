@@ -11,8 +11,6 @@ import DIV from 'components/tags/div'
 import A from 'components/tags/a'
 
 import RADIOGROUP from 'components/form/radiogroup/radiogroup'
-/*import COMMENT from 'components/form/input/comment'
-import HASHTAG from 'components/form/input/hashtag'*/
 import CANCEL from 'components/form/button/cancel'
 import GO from 'components/form/button/go'
 
@@ -85,41 +83,6 @@ const messages = defineMessages( {
 		defaultMessage: "Not sure"
 	},
 
-	also:{
-		id: "also",
-		description: "Header",
-		defaultMessage: "and if you like"
-	},
-
-	//comment
-	say_hello:{
-		id: "say_hello",
-		description: "Header - Prompts user to leave a comment",
-		defaultMessage: "Say hello, leave us a note, tell us the story of your coast..."
-	},
-	placeholder_say_hello:{
-		id: "placeholder_say_hello",
-		description: "Placeholder - Prompts user to leave a comment like ... Hello world!",
-		defaultMessage: "Hello world!"
-	},
-
-	//hashtag
-	hashtag_your_image:{
-		id: "hashtag_your_image",
-		description: "Header - Prompts user to hashtag the image",
-		defaultMessage: "Give your image a hashtag!"
-	},
-	placeholder_hashtag_your_image:{
-		id: "placeholder_hashtag_your_image",
-		description: "Placeholder - ",
-		defaultMessage: "#iwashere"
-	},
-	why_hashtag:{
-		id: "why_hashtag",
-		description: "Anchor - ",
-		defaultMessage: "Why?"
-	},
-
 	//upload
 	upload_image:{
 		id: "upload_image",
@@ -134,7 +97,7 @@ const messages = defineMessages( {
 
 } )
 
-const form = ( { intl, className, show, image, jazzSupported, setMaterial, /*setAdaptation, setComment, setHashtag,*/ uploadImage, resetMain, showDialog } ) => {
+const form = ( { intl, className, show, image, jazzSupported, setMaterial, uploadImage, resetMain, showDialog } ) => {
 
 	const { formatMessage } = intl
 
@@ -160,16 +123,10 @@ const form = ( { intl, className, show, image, jazzSupported, setMaterial, /*set
 
 		} )
 
-		/*<BR/>
-				<COMMENT form="Form" label={ formatMessage( messages.say_hello ) } name="comment" placeholder={ formatMessage( messages.placeholder_say_hello ) } onChange={ setComment } preferPlaceholder={ false } /><BR/>
-				<HASHTAG form="Form" label={ formatMessage( messages.hashtag_your_image ) } name="hashtag" placeholder={ formatMessage( messages.placeholder_hashtag_your_image ) } onChange={ setHashtag } preferPlaceholder={ false } >
-					{ " " }<A onClick={ showDialog.bind( this, 'WHYHASHTAG' ) }>{ formatMessage( messages.why_hashtag ) }</A>
-				</HASHTAG>*/
-
 		return(
 
 			<FORM id="Form" action="#" className={ cls } >
-				{ image.dataURL && <IMG src={ image.dataURL } alt="your image" /> }
+				{ image.dataURL && <IMG src={ image.dataURL } alt={ formatMessage( messages.img_alt ) } /> }
 				<H priority={ 2 }>{ formatMessage( messages.hurray ) }</H>
 				<RADIOGROUP form="Form" label={ formatMessage( messages.select_material ) } name="material" options={ materials } onClick={ setMaterial } preferPlaceholder={ false } >
 					{ " " }<SMALL><A onClick={ showDialog.bind( this, 'DEFINEMATERIAL' ) }>{ formatMessage( messages.define_material ) }</A></SMALL>
@@ -191,13 +148,6 @@ const form = ( { intl, className, show, image, jazzSupported, setMaterial, /*set
 			[ style.showJazz ]: show
 
 		} )
-
-		/*<H priority={ 2 }>{ formatMessage( messages.also ) }</H>
-							<COMMENT form="Form" label={ formatMessage( messages.say_hello ) } name="comment" placeholder={ formatMessage( messages.placeholder_say_hello ) } onChange={ setComment } preferPlaceholder={ false } />
-							<HASHTAG form="Form" label={ formatMessage( messages.hashtag_your_image ) } name="hashtag" placeholder={ formatMessage( messages.placeholder_hashtag_your_image ) } onChange={ setHashtag } preferPlaceholder={ false } >
-								{ " " }<A onClick={ showDialog.bind( this, 'WHYHASHTAG' ) }>{ formatMessage( messages.why_hashtag ) }</A>
-							</HASHTAG>
-							<BR />*/
 
 		return(
 
@@ -237,10 +187,6 @@ form.propTypes = {
 	jazzSupported: PropTypes.bool,
 
 	setMaterial: PropTypes.func,
-	/*setAdaptation: PropTypes.func,*/
-	setComment: PropTypes.func,
-	setHashtag: PropTypes.func,
-
 	uploadImage: PropTypes.func,
 	resetMain: PropTypes.func,
 	showDialog: PropTypes.func
@@ -248,7 +194,3 @@ form.propTypes = {
 }
 
 export default injectIntl( form )
-
-/*<TOGGLE priority={ 5 } text={ formatMessage( messages.help_even_more ) } >
-				<RADIOGROUP form="Form" label={ formatMessage( messages.select_adaptation ) } name="adaptation" options={ adaptations } onClick={ setAdaptation } />
-			</TOGGLE>*/

@@ -1,10 +1,5 @@
 [
   {
-    "id": "ask_us",
-    "description": "Header - Ask us!",
-    "defaultMessage": "Ask us! (In english please)"
-  },
-  {
     "id": "one_more_question",
     "description": "Section header - Contact us",
     "defaultMessage": "Still have a question!"

@@ -4,15 +4,13 @@ import accepts from 'attr-accept'
 import Modernirz from 'modernizr'
 
 
-export const promiseType = ( image, type ) => {
-
-	//console.log( "promiseType" )
+export const promiseType = ( file, type='image/*' ) => {
 
 	return new Promise( ( resolve, reject ) => {
 
-		if( accepts( image, type ) ){
+		if( accepts( file, type ) ){
 
-			resolve( image )
+			resolve( file )
 
 		}else{
 

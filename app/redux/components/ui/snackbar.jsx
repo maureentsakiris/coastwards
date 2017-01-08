@@ -20,21 +20,6 @@ const intlMessages = defineMessages( {
 		description: "Snack - ",
 		defaultMessage: "Found the location!! Here we go!"
 	},
-	help_translate:{
-		id: "help_translate",
-		description: "Snack - ",
-		defaultMessage: "Ya so, we haven't even started translating yet ... but that's the idea!"
-	},
-	oops:{
-		id: "oops",
-		description: "Snack - ",
-		defaultMessage: "This will work at some point..."
-	},
-	there_will_be_more:{
-		id: "there_will_be_more",
-		description: " - ",
-		defaultMessage: "There will be more .. and more official"
-	},
 	just_kidding:{
 		id: "just_kidding",
 		description: " - ",

@@ -133,7 +133,7 @@ $actions-height: 60px;
 	span{
 
 		@extend %flexitem;
-		width: 120px;
+		width: auto;
 		flex-grow: 0;
 		margin: 1em 0.5em 0.5em 0;
 

@@ -24,11 +24,6 @@ import style from './_ask'
 
 const messages = defineMessages( {
 
-	ask_us:{
-		id: "ask_us",
-		description: "Header - Ask us!",
-		defaultMessage: "Ask us! (In english please)"
-	},
 	one_more_question:{
 		id: "one_more_question",
 		description: "Section header - Contact us",
@@ -66,7 +61,7 @@ const messages = defineMessages( {
 	},
 
 	//mail status
-	sending_mail:{
+	sending_mail:{ 
 		id: "sending_mail",
 		description: "Status - ",
 		defaultMessage: "Just a sec ... sending mail"

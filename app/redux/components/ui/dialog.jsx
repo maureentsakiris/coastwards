@@ -3,17 +3,7 @@ import { defineMessages, injectIntl, intlShape } from 'react-intl'
 import Classnames from 'classnames'
 
 import WHYIP from './dialogs/whyIP'
-import NOJAZZ from './dialogs/nojazz'
 import DEFINEMATERIAL from './dialogs/definematerial'
-import WHYHASHTAG from './dialogs/whyhashtag'
-import TESTSITE from './dialogs/testsite'
-
-import NASSOS from './dialogs/nassos'
-import CLAUDIA from './dialogs/claudia'
-import JOERN from './dialogs/joern'
-import ME from './dialogs/me'
-
-import TOOMANY from './dialogs/toomany'
 import SHARE from './dialogs/share'
 
 import DIV from 'components/tags/div'
@@ -57,19 +47,8 @@ const dialog = ( { intl, component, active, jazzSupported, closeDialog } ) => {
 				<DIV>
 					<CLOSE onClick={ closeDialog } title={ formatMessage( messages.close_dialog ) } />
 					{ component == 'WHYIP' && <WHYIP /> }
-					{ component == 'NOJAZZ' && <NOJAZZ /> }
 					{ component == 'DEFINEMATERIAL' && <DEFINEMATERIAL /> }
-					{ component == 'WHYHASHTAG' && <WHYHASHTAG /> }
-					{ component == 'TESTSITE' && <TESTSITE /> }
-
-					{ component == 'NASSOS' && <NASSOS /> }
-					{ component == 'CLAUDIA' && <CLAUDIA /> }
-					{ component == 'JOERN' && <JOERN /> }
-					{ component == 'ME' && <ME /> }
-
-					{ component == 'TOOMANY' && <TOOMANY /> }
 					{ component == 'SHARE' && <SHARE /> }
-					
 				</DIV>
 			</DIV>
 

@@ -55,36 +55,6 @@
     "defaultMessage": "Not sure"
   },
   {
-    "id": "also",
-    "description": "Header",
-    "defaultMessage": "and if you like"
-  },
-  {
-    "id": "say_hello",
-    "description": "Header - Prompts user to leave a comment",
-    "defaultMessage": "Say hello, leave us a note, tell us the story of your coast..."
-  },
-  {
-    "id": "placeholder_say_hello",
-    "description": "Placeholder - Prompts user to leave a comment like ... Hello world!",
-    "defaultMessage": "Hello world!"
-  },
-  {
-    "id": "hashtag_your_image",
-    "description": "Header - Prompts user to hashtag the image",
-    "defaultMessage": "Give your image a hashtag!"
-  },
-  {
-    "id": "placeholder_hashtag_your_image",
-    "description": "Placeholder -",
-    "defaultMessage": "#iwashere"
-  },
-  {
-    "id": "why_hashtag",
-    "description": "Anchor -",
-    "defaultMessage": "Why?"
-  },
-  {
     "id": "upload_image",
     "description": "Button label - Prompts the user to upload the image",
     "defaultMessage": "UPLOAD"

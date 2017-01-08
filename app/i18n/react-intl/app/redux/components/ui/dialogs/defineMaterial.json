@@ -1,10 +1,5 @@
 [
   {
-    "id": "definematerial_header",
-    "description": "Header - What do you mean by 'coast material'?",
-    "defaultMessage": "What do you mean by 'coast material'?"
-  },
-  {
     "id": "the_obvious_header",
     "description": "P -",
     "defaultMessage": "The stuff the coast is made of."
@@ -12,7 +7,7 @@
   {
     "id": "the_obvious_text",
     "description": "-",
-    "defaultMessage": "If you were water from the ocean or sea, which material would you first encounter? Hard rock from a cliff or a sand from a beach? Or maybe something man-made like a concrete wall? The coast material is the stuff you find in the first meters on land."
+    "defaultMessage": "If you were water from the ocean or sea, which material would you first encounter? Hard rock from a cliff or a sand from a beach? Or maybe something man-made like a concrete wall? The coast material is the stuff you find in the first meters of land."
   },
   {
     "id": "multiple_materials_header",
@@ -22,7 +17,7 @@
   {
     "id": "multiple_materials_text",
     "description": "-",
-    "defaultMessage": "In that case, choose the material that predominates."
+    "defaultMessage": "In that case, it's the material that predominates."
   },
   {
     "id": "material_examples_header",

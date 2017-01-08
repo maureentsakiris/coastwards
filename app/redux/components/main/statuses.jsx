@@ -10,7 +10,7 @@ import style from './_statuses'
 
 const messages = defineMessages( {
 
-	status_validating:{
+	status_validating:{ 
 		id: "status_validating",
 		description: "Status - Informs user that selected image(s) is being validated",
 		defaultMessage:"Validating your image .. (just a few seconds)"

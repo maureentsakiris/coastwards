@@ -5,22 +5,17 @@
     "defaultMessage": "Help us draw this map of coasts!"
   },
   {
-    "id": "select_help",
-    "description": "-",
-    "defaultMessage": "Click the big blue button or drag and drop your images anywhere onto the world map"
-  },
-  {
     "id": "upload_ok",
     "description": "Status - Informs user that his image was uploaded successfully",
     "defaultMessage": "WOHOO! Nice one! Your image was uploaded. Next one! :)"
   },
   {
-    "id": "upload_image",
+    "id": "upload_image_prompt",
     "description": "Prompt -",
     "defaultMessage": "Upload an image"
   },
   {
-    "id": "upload_image_title",
+    "id": "upload_image_prompt_title",
     "description": "Title -",
     "defaultMessage": "Choose an image from your device"
   },

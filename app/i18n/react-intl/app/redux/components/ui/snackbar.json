@@ -10,21 +10,6 @@
     "defaultMessage": "Found the location!! Here we go!"
   },
   {
-    "id": "help_translate",
-    "description": "Snack -",
-    "defaultMessage": "Ya so, we haven't even started translating yet ... but that's the idea!"
-  },
-  {
-    "id": "oops",
-    "description": "Snack -",
-    "defaultMessage": "This will work at some point..."
-  },
-  {
-    "id": "there_will_be_more",
-    "description": "-",
-    "defaultMessage": "There will be more .. and more official"
-  },
-  {
     "id": "just_kidding",
     "description": "-",
     "defaultMessage": "(Though a cabin in the mountains sounds great to me)"

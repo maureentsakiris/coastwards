@@ -14,16 +14,6 @@ import style from './_marker'
 
 const messages = defineMessages( {
 
-	cancel_title:{
-		id: "cancel_title",
-		description: "Title - ",
-		defaultMessage: "Cancel upload"
-	},
-	done_title:{
-		id: "done_title",
-		description: "Title - ",
-		defaultMessage: "Continue with this location"
-	},
 	switch_to_satellite:{
 		id: "switch_to_satellite",
 		description: "Alt - ",
@@ -60,15 +50,6 @@ const marker = ( { intl, className, resetMain, setLocation, toggleSatellite, add
 	} )
 
 	const locked = zoom < 14
-
-	/*<BUTTON className={ style.cancelBtn } onClick={ resetMain } title={ formatMessage( messages.cancel_title ) } ><I className="material-icons">close</I></BUTTON>
-			<BUTTON className={ clsDone } onClick={ setLocation } locked={ locked } title={ formatMessage( messages.done_title ) } ><I className="material-icons">done</I></BUTTON>
-			<A href="#" onClick={ toggleSatellite } className={ style.toggleSatellite } >satellite</A>
-
-			{ !locked && <IMG src="./assets/marker-green.png" alt="Location marker" className={ style.tip }  /> }
-				{ locked && <IMG src="./assets/marker-red.png" alt="Location marker" className={ style.tip } /> }
-
-				<DIV className={ style.tip_tip }></DIV>*/
 
 	const clsTip = Classnames( style.tip, {
 

@@ -19,48 +19,6 @@ const messages = defineMessages( {
 		id: "other_questions_title",
 		description: "Section header title - Read the FAQs",
 		defaultMessage: "Read the FAQs"
-	},
-
-	//form
-	ask_us:{
-		id: "ask_us",
-		description: "Header - Ask us!",
-		defaultMessage: "Ask us! (In english please)"
-	},
-	one_more_question:{
-		id: "one_more_question",
-		description: "Section header - Contact us",
-		defaultMessage: "Still have a question!"
-	}, 
-	one_more_question_title:{
-		id: "one_more_question_title",
-		description: "Section header title - Tell us your question (in english please)",
-		defaultMessage: "Ask us (in english please)"
-	},
-	label_email:{
-		id: "label_email",
-		description: "Lable - Email",
-		defaultMessage: "Your email"
-	},
-	placeholder_email: {
-		id: "placeholder_email",
-		description: "Placeholder - Email",
-		defaultMessage: "Your email"
-	},
-	label_question:{
-		id: "label_question",
-		description: "Label - Your Question",
-		defaultMessage: "Still have a question? Ask us! (In english, please)"
-	},
-	placeholder_question:{
-		id: "placeholder_question",
-		description: "Placeholder - Still have a question? Ask us! (In english, please)",
-		defaultMessage: "Still have a question? Ask us! (In english, please)"
-	},
-	label_submit:{
-		id: "label_submit",
-		description: "Label - Submit",
-		defaultMessage: "Submit"
 	}
 
 } )

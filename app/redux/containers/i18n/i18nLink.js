@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { loadLanguage } from 'actions/i18n/i18n'
-import { addSnackbarMessage } from 'actions/ui/snackbar'
+/*import { addSnackbarMessage } from 'actions/ui/snackbar'*/
 import I18NLINK from 'components/i18n/i18nLink'
 
 
@@ -27,7 +27,7 @@ const mapDispatchToProps = ( dispatch, ownProps ) => {
 
 			e.preventDefault()
 			dispatch( loadLanguage( locale ) )
-			dispatch( addSnackbarMessage( 'help_translate' ) )
+			//dispatch( addSnackbarMessage( 'help_translate' ) )
 
 		}
 

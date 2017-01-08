@@ -21,13 +21,13 @@ const messages = defineMessages( {
 	wrong_filetype:{
 		id: "wrong_filetype",
 		description: "Error - Informs the user that the selected image has the wrong file type",
-		defaultMessage: "Em... the file you selected is not an image. It should have of the following extensions: jpg, jpeg, tif, tiff, gif or png"
+		defaultMessage: "The file you selected is not an image. It should have of the following extensions: jpg, jpeg, tif, tiff, gif or png"
 	},
-	duplicate_file:{
+	/*duplicate_file:{
 		id: "duplicate_file",
 		description: "Error - Informs user that the file has already been selected before",
 		defaultMessage: "You've already selected this file before!"
-	},
+	},*/
 	exifdata_empty:{
 		id: "exifdata_empty",
 		description: "Error - Informs user that exifdata is missing and why that could be",
@@ -63,23 +63,21 @@ const messages = defineMessages( {
 		description: "Error - Informs user that we couldn't extract the location from the metadata",
 		defaultMessage: "That's too bad. We need to know where the coast is located but we couldn't find that information in the metadata. Switch to a modern browser to locate the coast for us (unfortunately your browser doesn't support some of the features necessary to do that) or try uploading an image that was taken with a mobile or digital camera."
 	},
-	no_datetime:{
+	/*no_datetime:{
 		id: "no_datetime",
 		description: "Error - ",
 		defaultMessage: "We couldn't find the date and time you took this picture. Do you have the original? Try that one!"
-	},
-
+	},*/
 	problems_connecting:{
 		id: "problems_connecting",
 		description: "Error",
-		defaultMessage: "We could not connect to the image annotation service. Is your internet connection stable?"
+		defaultMessage: "We could not connect to the image annotation service. Please try again!"
 	},
 	problems_from_google:{
 		id: "problems_from_google",
 		description: "Error",
-		defaultMessage: "The image annotation software returned an error. Is your internet connection stable?"
+		defaultMessage: "The image annotation software returned an error. Please try again!"
 	},
-
 	upload_error:{
 		id: "upload_error",
 		description: "Error - Informs user that an error ocurred during upload",

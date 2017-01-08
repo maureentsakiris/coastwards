@@ -10,23 +10,13 @@ const messages = defineMessages( {
 
 	share_header:{
 		id: "share_header",
-		description: "Header - Why do you need my IP Address?",
+		description: "Header",
 		defaultMessage: "Tell a friend"
 	},
-	share_text:{
-		id: "share_text",
+	share_text_intro:{
+		id: "share_text_intro",
 		description: "P - ",
 		defaultMessage: "(Sorry, not ready yet ... but you can still tell a friend!)"
-	},
-	ip_address_learn_more:{
-		id: "ip_address_learn_more",
-		description: "A - Learn more about IP Addresses",
-		defaultMessage: "Read more about IP Addresses and the information they contain"
-	},
-	ip_address_learn_more_href:{
-		id: "ip_address_learn_more_href",
-		description: "HREF - ",
-		defaultMessage: "https://en.wikipedia.org/wiki/IP_address"
 	}
 
 } )
@@ -40,7 +30,7 @@ const share = ( { intl, className } ) => {
 
 		<DIV className={ className } >
 			<H priority={ 2 }>{ formatMessage( messages.share_header ) }</H>
-			<P>{ formatMessage( messages.share_text ) }</P>
+			<P>{ formatMessage( messages.share_text_intro ) }</P>
 		</DIV>
 
 	)

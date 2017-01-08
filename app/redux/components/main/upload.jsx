@@ -18,13 +18,7 @@ const messages = defineMessages( {
 		id: "uploadBtn_title",
 		description: "Title - ",
 		defaultMessage: "Upload an image"
-	},
-	shareBtn_title:{
-		id: "shareBtn_title",
-		description: "Title - ",
-		defaultMessage: "Share with friends"
 	}
-
 	
 } )
 
@@ -133,31 +127,11 @@ class upload extends Component{
 
 			} )
 
-			/*const clsShareBtn = Classnames( style.shareBtn, {
-
-				[ style.fixed ]: clipped
-
-			} )*/
-
-			/*const clsLegendBtn = Classnames( style.legendBtn, {
-
-				[ style.fixed ]: clipped
-
-			} )
-*/
 			const clsRippler = Classnames( style.rippler, {
 
 				//[ style.ripple ]: isDrop
 
 			} )
-			
-			//<I className="material-icons">&#xE2C6;</I>
-			//<I className="material-icons">&#xE439;</I>
-
-			//<IMG className={ clsLegendBtn } src="assets/legend.svg" alt="!Show legend" />
-
-			//<BUTTON className={ clsShareBtn } onClick={ showDialog.bind( this, 'share' ) } title={ formatMessage( messages.shareBtn_title ) }><I className="material-icons">&#xE80D;</I></BUTTON>
-			
 
 			return(
 

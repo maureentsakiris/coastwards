@@ -22,21 +22,6 @@ const messages = defineMessages( {
 		id: "unsupported",
 		description: "Warning - Warns the user that his browser does not support the image upload",
 		defaultMessage: "Oops nope ... looks like you're browser is even older than we thought. Sorry, you'll have to switch to a more modern browser to continue."
-	},
-	too_many:{
-		id: "too_many",
-		description: "Link - ",
-		defaultMessage: "I have too many to upload one by one!"
-	},
-	top:{
-		id: "top",
-		description: "Button",
-		defaultMessage: "top"
-	},
-	geocoder_placeholder:{
-		id: "geocoder_placeholder",
-		description: " - ",
-		defaultMessage: "Country, City ..."
 	}
 	
 } )

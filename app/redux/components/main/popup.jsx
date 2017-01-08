@@ -13,7 +13,8 @@ import style from './_popup'
 
 const messages = defineMessages( {
 
-	//materials <--> popup.jsx
+	// materials <--> popup.jsx
+	// DO NOT DELETE, DYNAMIC!
 	sand:{
 		id: "sand",
 		description: "Material - Sand",
@@ -90,7 +91,6 @@ class popup extends Component {
 
 		const { formatMessage } = this.props.intl
 		const { feature, config, hidePopup } = this.props
-		/*const { active } = this.state*/
 
 		if( !feature.properties ){
 
@@ -101,49 +101,6 @@ class popup extends Component {
 			)
 
 		}else{
-
-			/*<A onClick={ _oops } className={ style.send } >
-							<I className="material-icons">send</I>
-						</A>
-						<A onClick={ _oops } className={ style.favorite } >
-							<I className="material-icons">favorite</I>
-						</A>*/
-
-			/*const hasComment = feature.properties.comment ? true : false
-
-			const clsImageIcon = Classnames( style.icon, {
-
-				[ style.active ]: active == 'image'
-
-			} )
-
-			const clsCommentIcon = Classnames( style.icon, {
-
-				[ style.hide ]: !hasComment,
-				[ style.active ]: active == 'comment'
-
-			} )
-
-			const clsComment = Classnames( style.comment, {
-
-				[ style.show ]: active == 'comment' && hasComment
-
-			} )
-
-			const comment = hasComment ? unescape( feature.properties.comment ) : ''*/
-
-			/*<A onClick={ this._oops } className={ style.comment } >
-							<I className="material-icons">mode_comment</I>
-						</A>
-						<A onClick={ this._oops } className={ style.send } >
-							<I className="material-icons">send</I>
-						</A>
-						<A onClick={ this._oops } className={ style.favorite } >
-							<I className="material-icons">favorite</I>
-						</A>
-						<A onClick={ hidePopup } className={ style.clear } >
-							<I className="material-icons">clear</I>
-						</A>*/
 
 			const material = feature.properties.material ? feature.properties.material : 'notdefined'
 			const color = config[ material ]
@@ -165,29 +122,6 @@ class popup extends Component {
 		}
 
 	}
-
-	/*_setActive = ( comp, e ) => {
-
-		e.preventDefault()
-		this.setState( { active: comp } )
-
-	}
-
-	_hidePopup = ( e ) => {
-
-		e.preventDefault()
-		const { hidePopup } = this.props
-
-		this._reset()
-		hidePopup()
-
-	}
-
-	_reset = ( ) => {
-
-		this.setState( { active: 'image' } )
-
-	}*/
 
 	_oops = ( e ) => {
 

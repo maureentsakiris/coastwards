@@ -12,7 +12,7 @@ import STRONG from 'components/tags/strong'
 
 import style from './_guidelines'
 
-const messages = defineMessages( {
+const messages = defineMessages( { 
 
 	any_picture:{
 		id: "any_picture",

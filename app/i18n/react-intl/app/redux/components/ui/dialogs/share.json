@@ -1,22 +1,12 @@
 [
   {
     "id": "share_header",
-    "description": "Header - Why do you need my IP Address?",
+    "description": "Header",
     "defaultMessage": "Tell a friend"
   },
   {
-    "id": "share_text",
+    "id": "share_text_intro",
     "description": "P -",
     "defaultMessage": "(Sorry, not ready yet ... but you can still tell a friend!)"
-  },
-  {
-    "id": "ip_address_learn_more",
-    "description": "A - Learn more about IP Addresses",
-    "defaultMessage": "Read more about IP Addresses and the information they contain"
-  },
-  {
-    "id": "ip_address_learn_more_href",
-    "description": "HREF -",
-    "defaultMessage": "https://en.wikipedia.org/wiki/IP_address"
   }
 ]
