@@ -13,7 +13,6 @@ const portToListen = isProduction ? server.port : 8888;
 //const validate = require( './server/validate' );
 const contribute = require( './server/contribute' );
 const contact = require( './server/contact' );
-const login = require( './server/login' );
 
 const publicPath = path.resolve( __dirname, 'public' );
 //const uploadsPath = path.resolve( __dirname, 'uploads' );
@@ -38,7 +37,114 @@ app.get( '/', function ( req, res ) {
 //app.use( '/validate', validate );
 app.use( '/contribute', contribute );
 app.use( '/contact', contact );
-app.use( '/login', login );
+
+
+
+
+const passport = require( 'passport' )
+const session = require( 'express-session' )
+const bodyParser = require( 'body-parser' )
+const GitHubStrategy = require( 'passport-github2' ).Strategy;
+
+var GITHUB_CLIENT_ID = "4c5fbdea6aa5de99074d"
+var GITHUB_CLIENT_SECRET = "f33c5bfeb6a750bd3e2e743633ed4b8cc9b4c09e"
+
+passport.serializeUser( ( user, done ) => {
+
+	done( null, user )
+
+} )
+
+passport.deserializeUser( ( obj, done ) => {
+
+	done( null, obj )
+
+} )
+
+passport.use( new GitHubStrategy( {
+
+	clientID: GITHUB_CLIENT_ID,
+	clientSecret: GITHUB_CLIENT_SECRET,
+	callbackURL: "http://127.0.0.1:8888/login/callback"
+
+}, ( accessToken, refreshToken, profile, done ) => {
+
+	// asynchronous verification, for effect...
+	process.nextTick( () => {
+		
+		return done( null, profile )
+
+	} )
+
+} ) )
+
+
+app.use( bodyParser.json() )
+app.use( bodyParser.urlencoded( {
+
+	extended: true
+
+} ) )
+app.use( session( { 
+
+	secret: 'figuiiiin',
+	resave: false,
+	saveUninitialized: false
+
+} ) )
+
+
+app.use( passport.initialize() )  
+app.use( passport.session() )  
+
+app.get( '/admin', ensureAuthenticated, ( req, res ) => {
+
+	res.render( 'admin', { user: req.user } )
+
+} )
+
+app.get( '/login', ( req, res ) => {
+
+	res.render( 'login', { user: req.user } );
+
+} );
+
+
+app.get( '/login/github', passport.authenticate( 'github', { scope: [ 'user:email' ] } ), ( req, res ) => {
+
+		// The request will be redirected to GitHub for authentication, so this
+		// function will not be called.
+
+} )
+
+app.get( '/login/callback', passport.authenticate( 'github', { failureRedirect: '/login' } ), ( req, res ) => {
+
+	res.redirect( '/admin' )
+
+} ) 
+
+app.get( '/logout', ( req, res ) => {
+
+	req.logout()
+	res.redirect( '/' )
+
+} )
+
+
+function ensureAuthenticated ( req, res, next ) {
+
+	if ( req.isAuthenticated() ) { 
+
+		return next()
+
+	}
+
+	res.redirect( '/login' )
+
+}
+
+
+
 
 if ( !isProduction ) {
 

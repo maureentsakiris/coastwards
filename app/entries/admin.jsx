@@ -3,7 +3,7 @@ import ReactDom from 'react-dom';
 
 ReactDom.render( 
 
-	<a href="/login/github">Login with GitHub</a>, 
+	<div>admin <a href="/logout">Logout</a></div>, 
 	document.getElementById( 'Body' ) 
 
 ); 
