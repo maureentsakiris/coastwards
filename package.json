@@ -16,8 +16,11 @@
   "author": "Maureen Tsakiris <info@maureentsakiris.com>, Matthias Buchholz <mb@averagejoe.de>",
   "license": "ISC",
   "dependencies": {
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.3",
     "dompurify": "^0.8.4",
     "express": "^4.14.0",
+    "express-session": "^1.14.2",
     "formidable": "^1.0.17",
     "helmet": "^3.1.0",
     "http-proxy": "^1.15.2",
@@ -25,6 +28,8 @@
     "jsdom": "^9.8.3",
     "mysql": "^2.12.0",
     "nodemailer": "^2.6.4",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
     "pug": "^2.0.0-beta6",
     "underscore": "^1.8.3"
   },

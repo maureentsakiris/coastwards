@@ -44,7 +44,7 @@ module.exports = {
 
 		'who_are_you': "Quien es 'ciencia'?",
 		'who_are_you_title': 'Quienes somos',
-		'we_are': "Somos el 'Coastal Risks and Sea-level Rise Research Group' de la universidad de Kiel en Alemánia y este proyecto está subvencionado por el 'Future Ocean Excellence Cluster'. ",
+		'we_are': "Somos el {crslr} de la universidad de Kiel en Alemánia y este proyecto está subvencionado por el {future_ocean}. ",
 		'more': 'Más',
 		'more_title': 'Más oficial...',
 		'nassos': 'Nassos es el jefe del grupo y profesor en la uni. El es griego, tiene dos hijos pequeños y su escritorio es un desastre.',

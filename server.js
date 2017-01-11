@@ -10,11 +10,10 @@ const isProduction = globalConfigs.env === 'production';
 const server = globalConfigs.server;
 const portToListen = isProduction ? server.port : 8888;
 
-const validate = require( './server/validate' );
+//const validate = require( './server/validate' );
 const contribute = require( './server/contribute' );
-const translate = require( './server/translate' );
 const contact = require( './server/contact' );
-
+const login = require( './server/login' );
 
 const publicPath = path.resolve( __dirname, 'public' );
 //const uploadsPath = path.resolve( __dirname, 'uploads' );
@@ -25,6 +24,7 @@ const app = express();
 app.enable( 'trust proxy' );
 app.use( helmet() );
 app.use( express.static( publicPath ) );
+
 app.set( 'view engine', 'pug' );
 app.set( 'views', path.resolve( __dirname, './app/views' ) );
 
@@ -35,10 +35,10 @@ app.get( '/', function ( req, res ) {
 
 } );
 
-app.use( '/validate', validate );
+//app.use( '/validate', validate );
 app.use( '/contribute', contribute );
-app.use( '/translate', translate );
 app.use( '/contact', contact );
+app.use( '/login', login );
 
 if ( !isProduction ) {
 

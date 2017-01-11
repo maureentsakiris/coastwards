@@ -8,7 +8,7 @@ const PROJECT_ROOT = path.resolve( './' )
 const APP_ROOT = path.join( PROJECT_ROOT, 'app' )
 const BUILD_ROOT = path.join( PROJECT_ROOT, 'public/build' )
 const ENTRY_INDEX = path.join( PROJECT_ROOT, 'app/entries/index.jsx' )
-//const ENTRY_TRANSLATE = path.join( PROJECT_ROOT, 'app/entries/translate.jsx' )
+const ENTRY_LOGIN = path.join( PROJECT_ROOT, 'app/entries/login.jsx' )
 
 const ASSETS = path.join( PROJECT_ROOT, 'app/assets/' )
 const I18N = path.join( PROJECT_ROOT, 'app/i18n/' )
@@ -29,7 +29,8 @@ const config = {
 			'webpack-dev-server/client?http://' + server.ip + ':' + server.port,
 			'webpack/hot/only-dev-server',
 			ENTRY_INDEX
-		]
+		],
+		login: ENTRY_LOGIN
 
 	},
 	resolve: {

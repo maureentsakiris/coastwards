@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import { defineMessages, injectIntl, intlShape } from 'react-intl'
+import { defineMessages, injectIntl, intlShape, FormattedMessage } from 'react-intl'
 
 import TOGGLE from 'components/ui/toggle'
 import P from 'components/tags/p'
@@ -25,7 +25,7 @@ const messages = defineMessages( {
 	we_are:{
 		id: "we_are",
 		description: "Paragraph",
-		defaultMessage: "We are the 'Coastal Risks and Sea-Level Rise Research Group' at the University of Kiel in Germany and this project is funded by the 'Future Ocean Excellence Cluster'."
+		defaultMessage: "We are the {crslr} at the University of Kiel in Germany and this project is funded by the {future_ocean}."
 	},
 
 	//team
@@ -74,10 +74,19 @@ const team = ( { intl/*, showDialog*/, addSnackbarMessage } ) => {
 
 	const { formatMessage } = intl
 
+	// <P><STRONG>{ formatMessage( messages.we_are, { crslr: <a href="http://www.crslr.uni-kiel.de/en/people/gruppenleiter/prof.-athanasios-vafeidis.html" target="_blank" title={ formatMessage( messages.more_title ) } >{ formatMessage( messages.more ) }</a> } ) }</STRONG></P>
+
 	return(
 
 		<TOGGLE id="Team" title={ formatMessage( messages.who_are_you_title ) } priority={ 3 } text={ formatMessage( messages.who_are_you ) } className={ style.toggle } >
-			<P><STRONG>{ formatMessage( messages.we_are ) }</STRONG></P>
+			<FormattedMessage
+				id="we_are"
+				values={ { 
+					crslr: <a href="http://www.crslr.uni-kiel.de/en/people/" target="_blank" title="Coastal Risks and Sea-level Rise Research Group" >Coastal Risks and Sea-level Rise Research Group</a>, 
+					future_ocean: <a href="http://www.futureocean.org" target="_blank" title="Future Ocean Excellence Cluster" >Future Ocean Excellence Cluster</a>
+				} }
+			/>
+			
 			<H priority={ 4 }>Athanasios Vafeidis</H>
 			<P>{ formatMessage( messages.nassos ) } <A href="http://www.crslr.uni-kiel.de/en/people/gruppenleiter/prof.-athanasios-vafeidis.html" target="_blank" title={ formatMessage( messages.more_title ) } >{ formatMessage( messages.more ) }</A></P>
 			<H priority={ 4 }>Claudia  Wolff</H>

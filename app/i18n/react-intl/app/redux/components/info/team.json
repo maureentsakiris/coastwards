@@ -12,7 +12,7 @@
   {
     "id": "we_are",
     "description": "Paragraph",
-    "defaultMessage": "We are the 'Coastal Risks and Sea-Level Rise Research Group' at the University of Kiel in Germany and this project is funded by the 'Future Ocean Excellence Cluster'."
+    "defaultMessage": "We are the {crslr} at the University of Kiel in Germany and this project is funded by the {future_ocean}."
   },
   {
     "id": "more",
