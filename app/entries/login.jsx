@@ -1,9 +1,11 @@
-import React from 'react';
-import ReactDom from 'react-dom';
+import React from 'react'
+import ReactDom from 'react-dom'
+
+import LOGIN from 'components/admin/login'
 
 ReactDom.render( 
 
-	<a href="/login/github">Login with GitHub</a>, 
+	<LOGIN />, 
 	document.getElementById( 'Body' ) 
 
 ); 

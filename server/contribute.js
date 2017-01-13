@@ -337,12 +337,13 @@ router.get( '/geojson', function ( req, res ) {
 
 	promiseFetchGeojson()
 	.then( JSON.parse )
-	.then( function ( geojson ){
+	.then( ( geojson ) => {
 
 		res.json( { status: 'OK', json: geojson } )
 		return geojson;
 
-	} ).catch( function ( error ){
+	} )
+	.catch( ( error ) => {
 
 		res.json( { status: 'KO', message: error.toString() } )
 

@@ -1,9 +1,26 @@
 import React from 'react';
-import ReactDom from 'react-dom';
+import ReactDom from 'react-dom'
+import { createStore, applyMiddleware, compose } from 'redux'
+import { Provider } from 'react-redux'
+import thunk from 'redux-thunk'
+
+import admin from 'reducers-admin'
+
+
+const store = createStore( admin, compose(
+
+	applyMiddleware( thunk ),
+	window.devToolsExtension ? window.devToolsExtension() : ( f ) => f
+
+) )
+
+import ADMIN from 'containers/admin/admin'
 
 ReactDom.render( 
 
-	<div>admin <a href="/logout">Logout</a></div>, 
+	<Provider store={ store } >
+		<ADMIN />
+	</Provider>, 
 	document.getElementById( 'Body' ) 
 
 ); 

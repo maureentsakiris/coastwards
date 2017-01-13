@@ -14,12 +14,6 @@ import I18nProvider from 'containers/i18n/i18nProvider'
 import Context from 'containers/context'
 
 
-
-//TODO: i18nLinks should handle that itself?
-/*import i18nLocales from 'actions/i18n/i18nLocales'*/
-
-
-
 const store = createStore( coastwards, compose(
 
 	applyMiddleware( thunk ),
@@ -48,10 +42,6 @@ if ( module.hot ) {
 const [ navigatorLocale ] = window.navigator.language.split ( '-' )
 const negotiatedLocale = document.documentElement.getAttribute( 'lang' )
 store.dispatch( loadLanguage( negotiatedLocale || navigatorLocale ) )
-
-// <I18nLinks availableLanguages={ i18nLocales.locales } className={ style.i18n } />
-
-
 
 ReactDom.render( 
 

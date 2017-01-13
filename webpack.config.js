@@ -18,7 +18,7 @@ const STYLES = path.join( PROJECT_ROOT, 'app/styles/' )
 
 const autoprefixer = require( 'autoprefixer' )
 const ExtractTextPlugin = require( 'extract-text-webpack-plugin' )
-const extractStyles = new ExtractTextPlugin( 'styles.css' )
+const extractStyles = new ExtractTextPlugin( '[name].css' )
 
 const config = {
 

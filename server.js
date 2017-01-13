@@ -13,6 +13,7 @@ const portToListen = isProduction ? server.port : 8888;
 //const validate = require( './server/validate' );
 const contribute = require( './server/contribute' );
 const contact = require( './server/contact' );
+const administrate = require( './server/administrate' );
 
 const publicPath = path.resolve( __dirname, 'public' );
 //const uploadsPath = path.resolve( __dirname, 'uploads' );
@@ -37,6 +38,7 @@ app.get( '/', function ( req, res ) {
 //app.use( '/validate', validate );
 app.use( '/contribute', contribute );
 app.use( '/contact', contact );
+app.use( '/administrate', administrate );
 
 
 
@@ -97,15 +99,10 @@ app.use( session( {
 app.use( passport.initialize() )  
 app.use( passport.session() )  
 
-app.get( '/admin', ensureAuthenticated, ( req, res ) => {
-
-	res.render( 'admin', { user: req.user } )
-
-} )
 
 app.get( '/login', ( req, res ) => {
 
-	res.render( 'login', { user: req.user } );
+	res.render( 'login', { user: req.user } )
 
 } );
 
@@ -123,10 +120,24 @@ app.get( '/login/callback', passport.authenticate( 'github', { failureRedirect: 
 
 } ) 
 
+app.get( '/admin', ensureAuthenticated, ( req, res ) => {
+
+	if( req.user.username == 'maureentsakiris' ){
+
+		res.render( 'admin', { user: req.user } )
+
+	}else{
+
+		res.send( 'Sorry, you are not authorized to use the admin!' )
+
+	}
+
+} )
+
 app.get( '/logout', ( req, res ) => {
 
 	req.logout()
-	res.redirect( '/' )
+	res.redirect( '/login' )
 
 } )
 

@@ -1,0 +1,29 @@
+@import 'app/styles/base';
+
+
+.contribution{
+
+	border-top: 1px solid #eee;
+    padding: 1em 0;
+
+}
+
+.image{
+
+	width: 200px;
+
+}
+
+%button{
+
+	vertical-align: top;
+    float: right;
+
+}
+
+.delete{
+
+	@extend %button;
+	background-color: red;
+
+}

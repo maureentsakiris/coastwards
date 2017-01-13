@@ -1,0 +1,28 @@
+@import 'app/styles/reset';
+@import 'app/styles/tags';
+
+
+.corset{
+
+	@extend %corset;
+	padding-top: 5vh;
+
+}
+
+.form{
+
+	margin-top: 2em;
+
+	button{
+
+		margin-top: 2em;
+
+	}
+
+}
+
+.divider{
+
+	margin: 2em 0;
+
+}
