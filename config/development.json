@@ -9,5 +9,10 @@
 	"server": {
 		"port": 3000, 
 		"ip": "127.0.0.1"
+	},
+	"github": {
+		"GITHUB_CLIENT_ID": "4c5fbdea6aa5de99074d",
+		"GITHUB_CLIENT_SECRET": "f33c5bfeb6a750bd3e2e743633ed4b8cc9b4c09e",
+		"callbackURL": "http://127.0.0.1:8888/login/callback"
 	}
 }

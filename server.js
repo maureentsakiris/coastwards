@@ -48,8 +48,6 @@ const session = require( 'express-session' )
 const bodyParser = require( 'body-parser' )
 const GitHubStrategy = require( 'passport-github2' ).Strategy;
 
-var GITHUB_CLIENT_ID = "4c5fbdea6aa5de99074d"
-var GITHUB_CLIENT_SECRET = "f33c5bfeb6a750bd3e2e743633ed4b8cc9b4c09e"
 
 passport.serializeUser( ( user, done ) => {
 
@@ -65,9 +63,9 @@ passport.deserializeUser( ( obj, done ) => {
 
 passport.use( new GitHubStrategy( {
 
-	clientID: GITHUB_CLIENT_ID,
-	clientSecret: GITHUB_CLIENT_SECRET,
-	callbackURL: "http://127.0.0.1:8888/login/callback"
+	clientID: globalConfigs.github.GITHUB_CLIENT_ID,
+	clientSecret: globalConfigs.github.GITHUB_CLIENT_SECRET,
+	callbackURL: globalConfigs.github.callbackURL
 
 }, ( accessToken, refreshToken, profile, done ) => {
 
