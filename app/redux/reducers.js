@@ -4,6 +4,7 @@ import _ from 'underscore'
 import Modernizr from 'modernizr'
 import mapboxgl from 'mapbox-gl/dist/mapbox-gl.js'
 
+import materials from 'config'
 
 Modernizr.addTest( 'draganddrop', function () {
 
@@ -32,7 +33,7 @@ const browser = ( state = { uploadSupported: uploadSupported, jazzSupported: jaz
 
 }
 
-const config = ( state= { google: true, imageWidth: 800, sand: '#fbb03b', pebble:'#469a16', rock:'#7e3096', mud:'#8a5707', ice:'#ef25db', notsure:'#ccc', manmade:'#000', notdefined:'#0058e6' }, action ) => {
+const config = ( state= { google: true, imageWidth: 800 }, action ) => {
 
 	switch ( action.type ){
 
@@ -42,6 +43,7 @@ const config = ( state= { google: true, imageWidth: 800, sand: '#fbb03b', pebble
 	}
 
 }
+
 
 const i18n = ( state = { locale: 'en', dir: 'ltr', messages: undefined }, action ) => {
 
@@ -277,6 +279,7 @@ const coastwards = combineReducers( {
 
 	browser,
 	config,
+	materials,
 	i18n,
 	clipped,
 	useraction,

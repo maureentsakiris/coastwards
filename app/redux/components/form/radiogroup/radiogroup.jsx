@@ -26,7 +26,7 @@ const _renderOptions = ( form, name, options, onClick ) => {
 
 	return _.map( options, ( option, key ) => {
 
-		let { label, value } = option
+		let { label, value, checked } = option
 
 		return React.createElement( RADIO, {
 
@@ -35,7 +35,8 @@ const _renderOptions = ( form, name, options, onClick ) => {
 			label: label,
 			name: name,
 			value: value,
-			onClick: onClick
+			onClick: onClick,
+			defaultChecked: checked
 
 		} )
 

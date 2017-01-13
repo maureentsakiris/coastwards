@@ -1,6 +1,8 @@
 import React, { PropTypes } from 'react'
 import { defineMessages, injectIntl, intlShape } from 'react-intl'
 import Classnames from 'classnames'
+import _ from 'underscore'
+
 
 import FORMDATA from 'containers/main/formdata'
 
@@ -97,12 +99,12 @@ const messages = defineMessages( {
 
 } )
 
-const form = ( { intl, className, show, image, jazzSupported, setMaterial, uploadImage, resetMain, showDialog } ) => {
+const form = ( { intl, className, show, image, jazzSupported, materials, setMaterial, uploadImage, resetMain, showDialog } ) => {
 
 	const { formatMessage } = intl
 
 
-	const materials = [
+	const mats = [
 
 		{ label: formatMessage( messages.sand ), value: 'sand' },
 		{ label: formatMessage( messages.pebble ), value: 'pebble' },
@@ -113,6 +115,15 @@ const form = ( { intl, className, show, image, jazzSupported, setMaterial, uploa
 		{ label: formatMessage( messages.notsure ), value: 'notsure' }
 
 	]
+
+	/*const m = _.map( materials, ( material ) => {
+
+		let { value } = material
+		console.log( value );
+		return { label: formatMessage( messages[ value ] ), value: value }
+
+	} )
+	console.log( m )*/
 
 
 	if( !jazzSupported ){
@@ -128,7 +139,7 @@ const form = ( { intl, className, show, image, jazzSupported, setMaterial, uploa
 			<FORM id="Form" action="#" className={ cls } >
 				{ image.dataURL && <IMG src={ image.dataURL } alt={ formatMessage( messages.img_alt ) } /> }
 				<H priority={ 2 }>{ formatMessage( messages.hurray ) }</H>
-				<RADIOGROUP form="Form" label={ formatMessage( messages.select_material ) } name="material" options={ materials } onClick={ setMaterial } preferPlaceholder={ false } >
+				<RADIOGROUP form="Form" label={ formatMessage( messages.select_material ) } name="material" options={ mats } onClick={ setMaterial } preferPlaceholder={ false } >
 					{ " " }<SMALL><A onClick={ showDialog.bind( this, 'DEFINEMATERIAL' ) }>{ formatMessage( messages.define_material ) }</A></SMALL>
 				</RADIOGROUP>
 				<BR/><BR/>
@@ -157,7 +168,7 @@ const form = ( { intl, className, show, image, jazzSupported, setMaterial, uploa
 						{ image.dataURL && <DIV className={ style.image } style={ { backgroundImage: 'url(' + image.dataURL + ')' } } ></DIV> }
 						<DIV id="Content" className={ style.content } >
 							<H priority={ 2 }>{ formatMessage( messages.hurray ) }</H>
-							<RADIOGROUP form="Form" label={ formatMessage( messages.select_material ) } name="material" options={ materials } onClick={ setMaterial } preferPlaceholder={ false } className={ style.radiogroup } >
+							<RADIOGROUP form="Form" label={ formatMessage( messages.select_material ) } name="material" options={ mats } onClick={ setMaterial } preferPlaceholder={ false } className={ style.radiogroup } >
 								{ " " }<SMALL><A onClick={ showDialog.bind( this, 'DEFINEMATERIAL' ) }>{ formatMessage( messages.define_material ) }</A></SMALL>
 							</RADIOGROUP>
 							<FORMDATA />
@@ -185,6 +196,7 @@ form.propTypes = {
 	show: PropTypes.bool,
 	image: PropTypes.object,
 	jazzSupported: PropTypes.bool,
+	materials: PropTypes.array,
 
 	setMaterial: PropTypes.func,
 	uploadImage: PropTypes.func,

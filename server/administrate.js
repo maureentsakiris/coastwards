@@ -62,7 +62,7 @@ const _fetch = ( fields ) => {
 
 	return new Promise( ( resolve, reject ) => { 
 
-		const { material } = fields
+		const { material, verified } = fields
 
 		pool.getConnection( function ( error, connection ) {
 
@@ -72,15 +72,18 @@ const _fetch = ( fields ) => {
 
 			}else{
 
-				var sql = 'SELECT * FROM contributions WHERE contribution_material=?';
+				var sql = 'SELECT * FROM contributions WHERE contribution_material LIKE ? && contribution_verified=?';
 
 				var inserts = [
 
-					material
+					material,
+					verified
 
 				]
 
 				var query = mysql.format( sql, inserts )
+
+				console.log( query )
 
 				connection.query( query, function ( err, results ) {
 

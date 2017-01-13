@@ -222,8 +222,6 @@ export const displayMap = ( ) => {
 			const state = getState()
 			const map = state.mapbox.map
 
-			const { sand, pebble, rock, mud, ice, notsure, manmade, notdefined } = state.config
-
 			map.addSource( 'geojson', {
 
 				type: 'geojson',
@@ -232,6 +230,13 @@ export const displayMap = ( ) => {
 				clusterMaxZoom: 10, // Max zoom to cluster points on
 				clusterRadius: 20 // Radius of each cluster when clustering points (defaults to 50)
 				
+			} )
+
+			const stops = _.map( state.materials, ( material ) => {
+
+				let { value, color } = material
+				return [ value, color ]
+
 			} )
 
 			map.addLayer( {
@@ -250,16 +255,7 @@ export const displayMap = ( ) => {
 					'circle-color': {
 						property: 'material',
 						type: 'categorical',
-						stops: [
-							[ 'sand', sand ],
-							[ 'pebble', pebble ],
-							[ 'rock', rock ],
-							[ 'mud', mud ],
-							[ 'ice', ice ],
-							[ 'notsure', notsure ],
-							[ 'manmade', manmade ],
-							[ '', notdefined ]
-						] 
+						stops: stops
 					}
 
 				}

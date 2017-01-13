@@ -5,17 +5,23 @@ import INPUT from 'components/tags/input'
 
 import style from './_radio'
 
-const radio = ( { form, label, name, value, onClick } ) => {
+const radio = ( { form, label, name, value, defaultChecked, onClick } ) => {
 
 	return(
 
 		<SPAN className={ style.radio }>
-			<INPUT type="radio" form={ form } name={ name } value={ value } onClick={ onClick } />
+			<INPUT type="radio" form={ form } name={ name } value={ value } onClick={ onClick } defaultChecked={ defaultChecked } />
 			<SPAN>{ label }</SPAN>
 		</SPAN>
 
 	)
 	
+}
+
+radio.defaultProps = {
+
+	defaultChecked: false
+
 }
 
 
@@ -25,6 +31,8 @@ radio.propTypes = {
 	label: PropTypes.string.isRequired,
 	name: PropTypes.string.isRequired,
 	value: PropTypes.string.isRequired,
+	defaultChecked: PropTypes.bool,
+
 	onClick: PropTypes.func.isRequired
 
 }

@@ -1,6 +1,7 @@
 import React, { PropTypes, Component } from 'react'
 import PureRenderMixin from 'react-addons-pure-render-mixin'
 import { defineMessages, injectIntl, intlShape } from 'react-intl'
+import _ from 'underscore'
 /*import Classnames from 'classnames'
 import unescape from 'validator/lib/unescape'*/
 
@@ -67,7 +68,7 @@ class popup extends Component {
 		intl: intlShape.isRequired,
 
 		feature: PropTypes.object,
-		config: PropTypes.object,
+		materials: PropTypes.array,
 
 		hidePopup: PropTypes.func,
 		addSnackbarMessage: PropTypes.func
@@ -90,7 +91,7 @@ class popup extends Component {
 	render () {
 
 		const { formatMessage } = this.props.intl
-		const { feature, config, hidePopup } = this.props
+		const { feature, materials, hidePopup } = this.props
 
 		if( !feature.properties ){
 
@@ -102,15 +103,16 @@ class popup extends Component {
 
 		}else{
 
-			const material = feature.properties.material ? feature.properties.material : 'notdefined'
-			const color = config[ material ]
+			const mat = feature.properties.material ? feature.properties.material : ''
+			const material = _.findWhere( materials, { value: mat } )
+			const color = material.color
 
 			return(
 
 				<DIV id="Popup" className={ style.popup } >
 					<DIV className={ style.top } style={ { backgroundImage: 'url(' + feature.properties.image +')' } } />
 					<DIV className={ style.actions }>
-						<P className={ style.label } style={ { backgroundColor: color } } >{ formatMessage( messages[ material ] ) }</P>
+						{ mat != '' && <P className={ style.label } style={ { backgroundColor: color } } >{ formatMessage( messages[ mat ] ) }</P> }
 						<A onClick={ hidePopup } className={ style.clear } >
 							<I className="material-icons">clear</I>
 						</A>

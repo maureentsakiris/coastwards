@@ -4,41 +4,37 @@ import _ from 'underscore'
 import DIV from 'components/tags/div'
 import A from 'components/tags/a'
 import UL from 'components/tags/ul'
-import HR from 'components/tags/hr'
 
 import FORM from 'components/tags/form'
-import RADIOGROUP from 'components/form/radiogroup/radiogroup'
-import SUBMIT from 'components/form/button/submit'
+import SELECTGROUP from 'components/form/selectgroup/selectgroup'
+import CHECKBOX from 'components/form/input/checkbox'
 
 import CONTRIBUTION from 'containers/admin/contribution'
 
 import style from './_admin'
 
-const admin = ( { results, fetch, setMaterial } ) => {
+const admin = ( { results, materials, material, setMaterial, setVerified } ) => {
 
-	const materials = [
 
-		{ label: 'Sand', value: 'sand' },
-		{ label: 'Pebble', value: 'pebble' },
-		{ label: 'Rock', value: 'rock' },
-		{ label: 'Mud', value: 'mud' },
-		{ label: 'Ice', value: 'ice' },
-		{ label: 'Man-made', value: 'manmade' },
-		{ label: 'Not sure', value: 'notsure' }
+	const all = [ { label: 'All', value: '%' } ]
+	const mats = _.map( materials, ( material ) => {
 
-	]
+		return { label: material.label, value: material.value }
+
+	} )
+
+	const options = all.concat( mats )
 
 	const list = _renderResults( results )
 
 	return(
 
 		<DIV className={ style.corset } >
-			<A href="/logout">Logout</A>
+			<A href="/logout" className={ style.logger }>Logout</A>
 			<FORM className={ style.form } id="Admin" action="/admin/fetch" >
-				<RADIOGROUP form="Admin" label="Material" name="material" options={ materials } preferPlaceholder={ false }  onClick={ setMaterial } />
-				<SUBMIT form="Admin" name="submit" label="Submit" onClick={ fetch } />
+				<SELECTGROUP form="Admin" label="Material" name="material" preferPlaceholder={ false } options={ options } onChange={ setMaterial } value={ material } />
+				<CHECKBOX form="Admin" label="Verified" name="verified" preferPlaceholder={ false } value="1" onChange={ setVerified } />
 			</FORM>
-			<HR className={ style.divider } />
 			<UL>{ list }</UL>
 		</DIV>
 
@@ -64,9 +60,11 @@ const _renderResults = ( results ) => {
 admin.propTypes = {
 
 	results: PropTypes.array,
+	materials: PropTypes.array,
+	material: PropTypes.string,
 
-	fetch: PropTypes.func,
-	setMaterial: PropTypes.func
+	setMaterial: PropTypes.func,
+	setVerified: PropTypes.func
 
 }
 

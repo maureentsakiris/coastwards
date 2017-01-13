@@ -107,6 +107,12 @@ $action-height: 45px;
 
 }
 
+.notdefined{
+
+	display: none;
+
+}
+
 .comment, .send{
 
 	@extend %action;

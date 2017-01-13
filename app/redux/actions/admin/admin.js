@@ -12,16 +12,29 @@ export const setMaterial = ( e ) => {
 
 }
 
+export const setVerified = ( e ) => {
+
+	return function ( dispatch ){
+
+		const val = e.currentTarget.checked ? e.currentTarget.value : '0'
+		dispatch( { type: types.SET_VERIFIED, to: val } )
+
+	}
+
+}
+
 
 export const fetch = ( ) => {
 
 	return function ( dispatch, getState ){
 
 		const state = getState()
-		const { material } = state.form
+
+		const { material, verified } = state.form
 
 		let formData = new FormData()
 		formData.append( 'material', material )
+		formData.append( 'verified', verified )
 
 		let options = {
 

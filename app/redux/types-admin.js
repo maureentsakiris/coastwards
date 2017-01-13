@@ -1,2 +1,3 @@
 export const SET_RESULTS = 'SET_RESULTS'
 export const SET_MATERIAL = 'SET_MATERIAL'
+export const SET_VERIFIED = 'SET_VERIFIED'

@@ -6,6 +6,9 @@
 	border-top: 1px solid #eee;
     padding: 1em 0;
 
+    @extend %flexcontainer;
+    align-items: flex-start;
+
 }
 
 .image{
@@ -14,10 +17,23 @@
 
 }
 
+.form{
+
+	flex-grow: 1;
+	padding: 0 1em;
+
+}
+
+.actions{
+
+	@extend %flexcontainer;
+	flex-direction: column;
+
+}
+
 %button{
 
-	vertical-align: top;
-    float: right;
+	margin-bottom: 0.5em;
 
 }
 
@@ -25,5 +41,11 @@
 
 	@extend %button;
 	background-color: red;
+
+}
+
+.update{
+
+	@extend %button;
 
 }

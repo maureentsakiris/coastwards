@@ -8,7 +8,7 @@ const mapStateToProps = ( state ) => {
 
 	return {
 
-		
+		materials: state.materials
 
 	}
 
@@ -22,7 +22,7 @@ const mapDispatchToProps = ( dispatch ) => {
 
 			e.preventDefault()
 			
-			if ( confirm( 'YOU COMPLETELY SURE?' ) ) {
+			if ( confirm( 'YOU COMPLETELY SURE YOU WANT TO DELETE THIS CONTRIBUTION?' ) ) {
 
 				dispatch( deleteContribution( id ) )
 

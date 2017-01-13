@@ -9,9 +9,16 @@
 
 }
 
+.logger{
+
+	display: block;
+	text-align: right;
+
+}
+
 .form{
 
-	margin-top: 2em;
+	margin: 2em 0;
 
 	button{
 
@@ -19,10 +26,11 @@
 
 	}
 
-}
+	label{
 
-.divider{
+		display: block;
+		margin-bottom: 2em;
 
-	margin: 2em 0;
+	}
 
 }

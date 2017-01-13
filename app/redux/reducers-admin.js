@@ -2,8 +2,9 @@ import { combineReducers } from 'redux'
 import * as types from 'types-admin'
 import _ from 'underscore'
 
+import materials from 'config'
 
-const form = ( state = { results: [], material: '' }, action ) => {
+const form = ( state = { results: [], material: '%', verified: 0 }, action ) => {
 
 	switch ( action.type ){
 
@@ -11,6 +12,8 @@ const form = ( state = { results: [], material: '' }, action ) => {
 		return _.extend( {}, state, { results: action.to } )
 	case types.SET_MATERIAL:
 		return _.extend( {}, state, { material: action.to } )
+	case types.SET_VERIFIED:
+		return _.extend( {}, state, { verified: action.to } )
 	default:
 		return state
 
@@ -21,7 +24,8 @@ const form = ( state = { results: [], material: '' }, action ) => {
 
 const admin = combineReducers( {
 
-	form
+	form,
+	materials
 
 } )
 
