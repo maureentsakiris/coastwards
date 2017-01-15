@@ -50,11 +50,11 @@ const messages = defineMessages( {
 		description: "Team",
 		defaultMessage: "Claudia is a Doctoral Researcher and the rising star who will turn your images into something meaningful. She's a charming though questioner and eager to learn for herself. She's also always the first to laugh."
 	},
-	joern:{
+	/*joern:{
 		id: "joern",
 		description: "Team",
 		defaultMessage: "Jörn is probably the least stressed father of 4 you have ever met. He's very tall with hair down to his hips and kindly stoops down when he talks to people."
-	},
+	},*/
 	me:{
 		id: "me",
 		description: "Team",
@@ -70,7 +70,7 @@ const messages = defineMessages( {
 
 } )
 
-const team = ( { intl/*, showDialog*/, addSnackbarMessage } ) => {
+const team = ( { intl, showDialog, addSnackbarMessage } ) => {
 
 	const { formatMessage } = intl
 
@@ -91,12 +91,11 @@ const team = ( { intl/*, showDialog*/, addSnackbarMessage } ) => {
 			<P>{ formatMessage( messages.nassos ) } <A href="http://www.crslr.uni-kiel.de/en/people/gruppenleiter/prof.-athanasios-vafeidis.html" target="_blank" title={ formatMessage( messages.more_title ) } >{ formatMessage( messages.more ) }</A></P>
 			<H priority={ 4 }>Claudia  Wolff</H>
 			<P>{ formatMessage( messages.claudia ) } <A href="http://www.crslr.uni-kiel.de/en/people/doctoral-researchers/claudia-wolff.html" target="_blank" title={ formatMessage( messages.more_title ) } >{ formatMessage( messages.more ) }</A></P>
-			<H priority={ 4 }>Jörn Schmidt</H>
-			<P>{ formatMessage( messages.joern ) } <A href="https://www.eree.uni-kiel.de/en/team/dr.-jorn-schmidt" target="_blank" title={ formatMessage( messages.more_title ) } >{ formatMessage( messages.more ) }</A></P>
 			<H priority={ 4 }>Maureen Tsakiris</H>
 			<P>{ formatMessage( messages.me ) } <A href="#" title={ formatMessage( messages.more_title ) } onClick={ addSnackbarMessage.bind( this, 'just_kidding' ) } >{ formatMessage( messages.more ) }</A></P>
 			<BR/>
 			<P><STRONG>{ formatMessage( messages.contact_here ) }:</STRONG> <A href="mailTo:go@coastwards.org" >go@coastwards.org</A></P> 
+			<P><A href="#" onClick={ showDialog.bind( this, 'IMPRINT' ) }>Impressum</A></P>
 		</TOGGLE>
 
 	)
@@ -107,7 +106,7 @@ team.propTypes = {
 
 	intl: intlShape.isRequired,
 
-	/*showDialog: PropTypes.func,*/
+	showDialog: PropTypes.func,
 	addSnackbarMessage: PropTypes.func
 
 }

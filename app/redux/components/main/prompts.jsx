@@ -18,7 +18,7 @@ const messages = defineMessages( {
 	select_file:{
 		id: "select_file",
 		description: "Prompt - Prompts user to select a file through the file system",
-		defaultMessage: "Help us draw this map of coasts!"
+		defaultMessage: "Have any pictures of coasts?"
 	},
 	upload_ok:{
 		id: "upload_ok",

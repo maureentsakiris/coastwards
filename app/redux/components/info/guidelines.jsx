@@ -2,11 +2,12 @@ import React, { PropTypes } from 'react'
 import { defineMessages, injectIntl, intlShape } from 'react-intl'
 
 import TOGGLE from 'components/ui/toggle'
-import DIV from 'components/tags/div'
 import P from 'components/tags/p'
 import H from 'components/tags/h'
 import SMALL from 'components/tags/small'
 import A from 'components/tags/a'
+import OL from 'components/tags/ol'
+import LI from 'components/tags/li'
 /*import IMG from 'components/tags/img'*/
 import STRONG from 'components/tags/strong'
 
@@ -82,23 +83,23 @@ const guidelines = ( { intl, showDialog } ) => {
 
 		<TOGGLE id="Guidelines" title={ formatMessage( messages.any_picture_title ) } priority={ 3 } text={ formatMessage( messages.any_picture ) } className={ style.toggle } >
 			<P><STRONG>{ formatMessage( messages.any_coast ) }</STRONG></P>
-			<DIV>
-				<DIV className={ style.guideline } >
+			<OL>
+				<LI className={ style.guideline } >
 					<H priority={ 4 } >{ formatMessage( messages.guideline_original_header ) }</H>
 					<P>{ formatMessage( messages.guideline_original_text ) }</P>
-				</DIV>
-				<DIV className={ style.guideline } >
+				</LI>
+				<LI className={ style.guideline } >
 					<H priority={ 4 } >{ formatMessage( messages.guideline_faces_header ) }</H>
 					<P>{ formatMessage( messages.guideline_faces_text ) }</P>
-				</DIV>
-				<DIV className={ style.guideline } >
+				</LI>
+				<LI className={ style.guideline } >
 					<H priority={ 4 } >{ formatMessage( messages.guideline_material_header ) } <SMALL><A onClick={ showDialog.bind( this, 'DEFINEMATERIAL' ) }>{ formatMessage( messages.guideline_material_help ) }</A></SMALL></H>
 					<P>{ formatMessage( messages.guideline_material_text ) }</P>
-				</DIV>
-				<DIV className={ style.guideline } >
+				</LI>
+				<LI className={ style.guideline } >
 					<H priority={ 4 } >{ formatMessage( messages.guideline_coasts_header ) }</H>
-				</DIV>
-			</DIV>
+				</LI>
+			</OL>
 		</TOGGLE>
 
 	)

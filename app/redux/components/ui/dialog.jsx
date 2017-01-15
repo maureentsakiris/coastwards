@@ -5,6 +5,7 @@ import Classnames from 'classnames'
 import WHYIP from './dialogs/whyIP'
 import DEFINEMATERIAL from './dialogs/definematerial'
 import SHARE from './dialogs/share'
+import IMPRINT from './dialogs/imprint'
 
 import DIV from 'components/tags/div'
 import CLOSE from 'components/ui/close'
@@ -49,6 +50,7 @@ const dialog = ( { intl, component, active, jazzSupported, closeDialog } ) => {
 					{ component == 'WHYIP' && <WHYIP /> }
 					{ component == 'DEFINEMATERIAL' && <DEFINEMATERIAL /> }
 					{ component == 'SHARE' && <SHARE /> }
+					{ component == 'IMPRINT' && <IMPRINT /> }
 				</DIV>
 			</DIV>
 

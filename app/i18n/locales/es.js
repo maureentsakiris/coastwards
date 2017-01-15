@@ -16,6 +16,7 @@ module.exports = {
 
 		'other_questions': '... ??',
 		'other_questions_title': 'Lee las preguntas frequentes (en inglés, sorry)',
+		'send_me_yours': "Aquí es donde aún necesito tu ayuda. Dime tus preguntas para compilar esta sección de preguntas frequentes. Pincha en 'Tengo una duda!' para mandarme tu pregunta. Gracias!",
 
 		'any_picture': 'Cualquier foto?',
 		'any_picture_title': 'Una guía rápida',
@@ -49,7 +50,7 @@ module.exports = {
 		'more_title': 'Más oficial...',
 		'nassos': 'Nassos es el jefe del grupo y profesor en la uni. El es griego, tiene dos hijos pequeños y su escritorio es un desastre.',
 		'claudia': 'Claudia es investigadora doctoral y la estrella prometadora que va a convertir tus imagenes en algo significativo. Es una preguntadona encantadora y ambiciosa. También se rie mucho.',
-		'joern': 'Joern es el padre de 4 más relajado que existe y Postdoc en la Universidad de Kiel. Es súper alto con pelo hasta sus caderas y se agacha amablemente cuando habla con la gente.',
+		//'joern': 'Joern es el padre de 4 más relajado que existe y Postdoc en la Universidad de Kiel. Es súper alto con pelo hasta sus caderas y se agacha amablemente cuando habla con la gente.',
 		'me': 'Esa soy yo. Soy responsable de los errores de ortografia y cualquier otra cosa que no funcione en esta página web. También soy lo suficientemente loca por creer que la gente subirá fotos de costas para ayudar a la ciencia a estudiar la subida del mar. No me hagaís dar la vuelta a la sociedad y vivir en una cabaña en las montañas!',
 		'contact_here': 'Nos puedes contactar aquí',
 
@@ -110,9 +111,9 @@ module.exports = {
 
 		'notdefined': 'Sin definir',
 
-		'select_file': 'Ayúdanos a dibujar ese mapa de costas!',
+		'select_file': 'Tienes fotos de costas?',
 		'upload_ok': 'GENIAL!! Tu imágen se ha subido. Otra! :)',
-		'upload_image_prompt': 'Sube una imágen',
+		'upload_image_prompt': 'Sube una foto',
 		'upload_image_prompt_title': 'Selecciona una imágen de tu dispositivo',
 		'or': 'o',
 		'tell_friend': 'cuéntaselo a un amigo',

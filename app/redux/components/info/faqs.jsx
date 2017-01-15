@@ -19,9 +19,14 @@ const messages = defineMessages( {
 		id: "other_questions_title",
 		description: "Section header title - Read the FAQs",
 		defaultMessage: "Read the FAQs"
+	},
+	send_me_yours:{
+		id: "send_me_yours",
+		description: "Prompt",
+		defaultMessage: "Ok, this is the part where I need your help. Please tell me your questions so I can put together this FAQs section. Click on 'Still have a question!' and send me yours. Thank you so much!"
 	}
 
-} )
+} ) 
 
 const faqs = ( { intl } ) => {
 
@@ -32,7 +37,7 @@ const faqs = ( { intl } ) => {
 	return(
 
 		<TOGGLE id="Faqs" title={ formatMessage( messages.other_questions_title ) } priority={ 3 } text={ formatMessage( messages.other_questions ) } className={ style.toggle } >
-			<P><strong>Ok, this is the part where I need your help. Please tell me your questions so I can put together this FAQs section. Click on "Still have a question!" and send me yours. Thank you so much!</strong></P>
+			<P><strong>{ formatMessage( messages.send_me_yours ) }</strong></P>
 		</TOGGLE>
 	)
 

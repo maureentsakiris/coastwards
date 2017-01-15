@@ -119,7 +119,7 @@ const context = ( { intl, lang, dir, jazzSupported, clipped, useraction, unclipP
 			<DIV lang={ lang } dir={ dir } >
 				<DIV id="Intro" className={ clsIntro }>
 					<I18nLinks availableLanguages={ i18nLocales.locales } className={ style.i18n } />
-					<IMG src="./assets/coastwards-cloud.svg" alt="Logo coastwards: A turtle on a mission" className={ style.logo } />
+					<IMG src="./assets/coastwards.svg" alt="Logo coastwards: A turtle on a mission" className={ style.logo } />
 					<H priority={ 1 } className={ style.headline } ><span>{ formatMessage( messages.help_science ) }</span> <span>{ formatMessage( messages.by ) }</span></H>
 					<H priority={ 2 } className={ style.tagline } >{ formatMessage( messages.no_account ) }</H>
 				</DIV>
