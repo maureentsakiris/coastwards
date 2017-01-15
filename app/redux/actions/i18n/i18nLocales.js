@@ -17,6 +17,11 @@ const Locales = [
 		locale: 'es',
 		name: 'Español',
 		en: 'Spanish'
+	},
+	{
+		locale: 'de',
+		name: 'Deutsch',
+		en: 'German'
 	}/*,
 	{
 		locale: 'hi',

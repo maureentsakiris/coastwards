@@ -191,6 +191,7 @@ export const displayMap = ( ) => {
 
 				if( !features.length ){
 
+					dispatch( hidePopup() )
 					return
 
 				}
