@@ -10,27 +10,27 @@ const materials = ( state= [
 	{ 
 		label: 'Sand',
 		value: 'sand',
-		color: '#ffe34f'
+		color: '#ffc417'
 	}, 
 	{
 		label: 'Pebble',
 		value: 'pebble',
-		color: '#7fbb74'
+		color: '#6bcc59'
 	}, 
 	{ 
 		label: 'Rock',
 		value: 'rock',
-		color: '#24adbb'
+		color: '#bed839'
 	}, 
 	{
 		label: 'Mud',
 		value: 'mud',
-		color: '#c7da65'
+		color: '#24adbb'
 	},
 	{
 		label: 'Ice',
 		value: 'ice',
-		color: '#ED4768'
+		color: '#ff99ad'
 	},
 	{
 		label: 'Man-made',
@@ -40,12 +40,12 @@ const materials = ( state= [
 	{
 		label: 'Not sure',
 		value: 'notsure',
-		color: '#ccc'
+		color: '#5f81b1'
 	},
 	{
 		label: 'Not set',
 		value: '',
-		color: '#ccc' 
+		color: '#5f81b1' 
 	}
 
 ], action ) => {
