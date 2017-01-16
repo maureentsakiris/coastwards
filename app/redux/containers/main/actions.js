@@ -22,8 +22,9 @@ const mapDispatchToProps = ( dispatch ) => {
 
 			e.preventDefault()
 			dispatch( clipPage() )
-			dispatch( { type: 'SET_LAYER_VISIBILITY', layer: 'prompts', to: false } )
-			dispatch( { type: 'SET_USER_ACTION', to: 'browsing' } )
+			/*dispatch( { type: 'SET_LAYER_VISIBILITY', layer: 'prompts', to: false } )
+			dispatch( { type: 'SET_LAYER_VISIBILITY', layer: 'errors', to: false } )*/
+			//dispatch( { type: 'SET_USER_ACTION', to: 'browsing' } )
 
 		},
 		openInput: ( e ) => {

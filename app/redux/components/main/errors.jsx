@@ -87,7 +87,7 @@ const messages = defineMessages( {
 
 } )
 
-const errors = ( { intl, className, error, jazzSupported, show, hide } ) => {
+const errors = ( { intl, className, error, jazzSupported, show } ) => {
 
 	const { formatMessage } = intl
 
@@ -103,7 +103,7 @@ const errors = ( { intl, className, error, jazzSupported, show, hide } ) => {
 
 		return(
 
-			<DIV id="Errors" className={ cls } onClick={ hide } >
+			<DIV id="Errors" className={ cls } >
 				<H priority={ 2 }>{ str }</H>
 			</DIV>
 
@@ -113,7 +113,7 @@ const errors = ( { intl, className, error, jazzSupported, show, hide } ) => {
 
 		return(
 
-			<DIV id="Errors" className={ cls } onClick={ hide } >
+			<DIV id="Errors" className={ cls } >
 				<H priority={ 2 }>{ str }</H>
 				<ACTIONS />
 			</DIV>
@@ -132,9 +132,7 @@ errors.propTypes = {
 
 	error: PropTypes.string,
 	jazzSupported: PropTypes.bool,
-	show: PropTypes.bool,
-
-	hide: PropTypes.func,
+	show: PropTypes.bool
 
 }
 
