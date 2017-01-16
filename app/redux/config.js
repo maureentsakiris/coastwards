@@ -20,7 +20,7 @@ const materials = ( state= [
 	{ 
 		label: 'Rock',
 		value: 'rock',
-		color: '#0F4A57'
+		color: '#ff5bb2'
 	}, 
 	{
 		label: 'Mud',
