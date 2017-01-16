@@ -4,48 +4,48 @@
 
 */
 
-
+//cbd836
 const materials = ( state= [ 
 
 	{ 
 		label: 'Sand',
 		value: 'sand',
-		color: '#ffc655'
+		color: '#ffe34f'
 	}, 
 	{
 		label: 'Pebble',
 		value: 'pebble',
-		color: '#82BD89'
+		color: '#7fbb74'
 	}, 
 	{ 
 		label: 'Rock',
 		value: 'rock',
-		color: '#ff5bb2'
+		color: '#24adbb'
 	}, 
 	{
 		label: 'Mud',
 		value: 'mud',
-		color: '#f46e36'
+		color: '#c7da65'
 	},
 	{
 		label: 'Ice',
 		value: 'ice',
-		color: '#24adbb'
+		color: '#ED4768'
 	},
 	{
 		label: 'Man-made',
 		value: 'manmade',
-		color: '#ED4768'
+		color: '#f46e36'
 	},
 	{
 		label: 'Not sure',
 		value: 'notsure',
-		color: '#cbd836'
+		color: '#ccc'
 	},
 	{
 		label: 'Not set',
 		value: '',
-		color: '#0058e6' 
+		color: '#ccc' 
 	}
 
 ], action ) => {
