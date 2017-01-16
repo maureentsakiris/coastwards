@@ -31,38 +31,21 @@
 
 	background: $color-primary;
     @extend %roundBtn;
+    display: none;
 	
 }
 
-.shareBtn{
-
-	background-color: rgba( 255, 255, 255, 0.4 );
-	color: $color-primary;
-    @extend %roundBtn;
-    top: auto;
-    bottom: 20px;
-    box-shadow: none;
-	
-}
 
 .fixed{
 
 	position: fixed;
+	display: block;
 
 }
 
-/* .legendBtn{
-
-	position: absolute;
-    bottom: 20px;
-    right: 20px;
-    height: 60px;
-    z-index: 1;
-
-} */
 
 
-.rippler{
+/* .rippler{
 
 	width: 140px;
 	height: 140px;
@@ -100,4 +83,4 @@
 		background-color: rgba( 255,255,255, 0 );
 	}
 
-}
+} */

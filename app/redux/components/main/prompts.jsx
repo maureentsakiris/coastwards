@@ -2,12 +2,10 @@ import React, { PropTypes } from 'react'
 import { defineMessages, injectIntl, intlShape } from 'react-intl'
 import Classnames from 'classnames'
 
+import ACTIONS from 'containers/main/actions'
+
 import DIV from 'components/tags/div'
 import H from 'components/tags/h'
-import SPAN from 'components/tags/span'
-import A from 'components/tags/a'
-
-import CLOSE from 'components/ui/close'
 
 
 import style from './_prompts'
@@ -18,7 +16,7 @@ const messages = defineMessages( {
 	select_file:{
 		id: "select_file",
 		description: "Prompt - Prompts user to select a file through the file system",
-		defaultMessage: "Have any pictures of coasts?"
+		defaultMessage: "Have any pictures of coasts? Why not upload them now?"
 	},
 	upload_ok:{
 		id: "upload_ok",
@@ -55,12 +53,42 @@ const messages = defineMessages( {
 		id: "just_browse",
 		description: "Prompt - ",
 		defaultMessage: "Just browse"
-	}
+	},
 
+	uploadBtn_title:{
+		id: "uploadBtn_title",
+		description: "Title - ",
+		defaultMessage: "Upload an image"
+	},
+	uploadBtn_label:{
+		id: "uploadBtn_label",
+		description: "Label - ",
+		defaultMessage: "Upload"
+	},
+	browseBtn_title:{
+		id: "browseBtn_title",
+		description: "Title - ",
+		defaultMessage: "Browse the map"
+	},
+	browseBtn_label:{
+		id: "browseBtn_label",
+		description: "Label - ",
+		defaultMessage: "Browse"
+	},
+	shareBtn_title:{
+		id: "shareBtn_title",
+		description: "Title - ",
+		defaultMessage: "Tell a friend"
+	},
+	shareBtn_label:{
+		id: "shareBtn_label",
+		description: "Label - ",
+		defaultMessage: "Share"
+	}
 
 } )
 
-const prompts = ( { intl, className, prompt, jazzSupported, show, hide, openInput, showDialog } ) => {
+const prompts = ( { intl, className, prompt, jazzSupported, show } ) => {
 
 	const { formatMessage } = intl
 
@@ -72,15 +100,28 @@ const prompts = ( { intl, className, prompt, jazzSupported, show, hide, openInpu
 
 	} )
 
-	return(
+	if( !jazzSupported ){
 
-		<DIV id="Prompts" className={ cls } >
-			<H priority={ 2 }>{ str }
-			{ jazzSupported && <SPAN> <A href="#" onClick={ openInput } title={ formatMessage( messages.upload_image_prompt_title ) } >{ formatMessage( messages.upload_image_prompt ) }</A> { formatMessage( messages.or ) } <A href="#" onClick={ showDialog.bind( this, 'SHARE' ) } title={ formatMessage( messages.tell_friend_title ) }>{ formatMessage( messages.tell_friend ) }</A>. <CLOSE onClick={ hide } title={ formatMessage( messages.just_browse ) } /></SPAN> } 
-			</H>
-		</DIV>
+		return(
 
-	)
+			<DIV id="Prompts" className={ cls } >
+				<H priority={ 2 }>{ str }</H>
+			</DIV>
+
+		)
+
+	}else{
+
+		return(
+
+			<DIV id="Prompts" className={ cls } >
+				<H priority={ 2 }>{ str }</H>
+				<ACTIONS />
+			</DIV>
+
+		)
+
+	}
 	
 }
 
@@ -92,11 +133,7 @@ prompts.propTypes = {
 	
 	prompt: PropTypes.string,
 	jazzSupported: PropTypes.bool,
-	show: PropTypes.bool,
-
-	hide: PropTypes.func,
-	openInput: PropTypes.func,
-	showDialog: PropTypes.func
+	show: PropTypes.bool
 
 }
 

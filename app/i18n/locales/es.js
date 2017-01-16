@@ -111,20 +111,24 @@ module.exports = {
 
 		'notdefined': 'Sin definir',
 
-		'select_file': 'Tienes fotos de costas?',
+		'select_file': 'Tienes fotos de costas? Porque no subirlas ahora?',
 		'upload_ok': 'GENIAL!! Tu imágen se ha subido. Otra! :)',
-		'upload_image_prompt': 'Sube una foto',
+		'uploadBtn_title': 'Subir una imágen',
+		'uploadBtn_label': 'Subir',
+		'browseBtn_title': 'Ver mapa',
+		'browseBtn_label': 'Mapa',
+		'shareBtn_title': "Compárte con amigos y familia",
+		'shareBtn_label': 'Compárte',
+		/*'upload_image_prompt': 'Sube una foto',
 		'upload_image_prompt_title': 'Selecciona una imágen de tu dispositivo',
 		'or': 'o',
 		'tell_friend': 'cuéntaselo a un amigo',
 		'tell_friend_title': 'Compárte este proyecto con tus amigos y familia',
-		'just_browse': 'Cerrar y ver mapa',
+		'just_browse': 'Cerrar y ver mapa',*/
 
 		'status_validating': 'Validando tu imágen ... (unos segundos nada más)',
 		'status_uploading': 'Subiendo... {progress}%',
 		'loader': 'Cargando',
-
-		'uploadBtn_title': 'Subir una imágen',
 
 		'close_dialog': 'Cerrar diálogo',
 

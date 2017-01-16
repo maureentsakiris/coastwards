@@ -111,20 +111,24 @@ module.exports = {
 
 		'notdefined': 'Unbestimmt',
 
-		'select_file': 'Hast Du Fotos von Küsten?',
+		'select_file': 'Hast Du Fotos von Küsten? Warum nicht jetzt hochladen?',
 		'upload_ok': 'Yeah! Dein Foto wurde hochgelanden! Noch eins!! :)',
-		'upload_image_prompt': 'Lade ein Foto hoch',
+		'uploadBtn_title': 'Lade ein Foto hoch',
+		'uploadBtn_label': 'Hochladen',
+		'browseBtn_title': 'Zur Karte',
+		'browseBtn_label': 'Karte',
+		'shareBtn_title': "Sag's weiter",
+		'shareBtn_label': 'Teilen',
+		/*'upload_image_prompt': 'Lade ein Foto hoch',
 		'upload_image_prompt_title': 'Wähle eine Datei aus',
 		'or': 'oder',
 		'tell_friend': "sag's weiter",
 		'tell_friend_title': 'Teile dieses Projekt mit Freunden',
-		'just_browse': 'Schließen und zur Kartenansicht',
+		'just_browse': 'Schließen und zur Kartenansicht',*/
 
 		'status_validating': 'Dein Foto wird überprüft ... (ein paar Sekunden)',
 		'status_uploading': 'Wird hochgeladen... {progress}%',
 		'loader': 'Ladevorgang',
-
-		'uploadBtn_title': 'Lade ein Foto hoch',
 
 		'close_dialog': 'Dialog schließen',
 

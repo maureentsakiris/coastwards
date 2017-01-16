@@ -2,7 +2,7 @@
   {
     "id": "select_file",
     "description": "Prompt - Prompts user to select a file through the file system",
-    "defaultMessage": "Have any pictures of coasts?"
+    "defaultMessage": "Have any pictures of coasts? Why not upload them now?"
   },
   {
     "id": "upload_ok",
@@ -38,5 +38,35 @@
     "id": "just_browse",
     "description": "Prompt -",
     "defaultMessage": "Just browse"
+  },
+  {
+    "id": "uploadBtn_title",
+    "description": "Title -",
+    "defaultMessage": "Upload an image"
+  },
+  {
+    "id": "uploadBtn_label",
+    "description": "Label -",
+    "defaultMessage": "Upload"
+  },
+  {
+    "id": "browseBtn_title",
+    "description": "Title -",
+    "defaultMessage": "Browse the map"
+  },
+  {
+    "id": "browseBtn_label",
+    "description": "Label -",
+    "defaultMessage": "Browse"
+  },
+  {
+    "id": "shareBtn_title",
+    "description": "Title -",
+    "defaultMessage": "Tell a friend"
+  },
+  {
+    "id": "shareBtn_label",
+    "description": "Label -",
+    "defaultMessage": "Share"
   }
 ]

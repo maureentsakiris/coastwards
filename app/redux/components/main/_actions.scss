@@ -1,0 +1,76 @@
+@import 'app/styles/base';
+
+.actions{
+
+	//@extend %flexcontainer;
+
+}
+
+%labelBtn{
+
+	display: inline-block;
+
+	button{
+
+		margin: 0 1em;
+	    @extend %materialBtn;
+
+	}
+
+	p{
+
+		margin: 0.5em 0;
+		text-transform: uppercase;
+
+	}
+
+}
+
+
+.uploadBtn{
+
+	@extend %labelBtn;
+
+	button{
+
+		background: $color-primary;
+
+	}
+	
+	p{
+
+		color: $color-primary;
+
+	}
+}
+
+%secondaryBtn{
+
+	button{
+
+		background-color: #fff;
+		color: $color-primary;
+
+	}
+
+	p{
+
+		color: $color-primary;
+
+	}
+
+}
+
+.shareBtn{
+
+	@extend %labelBtn;
+	@extend %secondaryBtn;
+
+}
+
+.browseBtn{
+
+	@extend %labelBtn;
+	@extend %secondaryBtn;
+
+}

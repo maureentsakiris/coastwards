@@ -6,8 +6,26 @@
 
 	@extend %alert;
 	@extend %corset;
-	margin-top: $site-padding-top;
-	margin-bottom: $site-padding-top;
+	margin-top: 5%;
+	margin-bottom: 5%;
+
+}
+
+.i18n{
+
+	text-align: center;
+
+	@include portraitMin( $tablet ){
+
+		display: block;
+
+	}
+
+	@include landscapeMin( $tablet ){
+
+		display: block;
+
+	}
 
 }
 
@@ -203,21 +221,8 @@
 
 	.i18n{
 
-		display: none;
 		margin-top: 2vh;
 		margin-bottom: 9vh;
-
-		@include portraitMin( $tablet ){
-
-			display: block;
-
-		}
-
-		@include landscapeMin( $tablet ){
-
-			display: block;
-
-		}
 
 	}
 

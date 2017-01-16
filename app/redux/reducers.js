@@ -73,7 +73,7 @@ const clipped = ( state = false, action ) => {
 
 }
 
-const useraction = ( state = 'browsing', action ) => {
+const useraction = ( state = 'prompt', action ) => {
 
 	switch ( action.type ){
 

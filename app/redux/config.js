@@ -10,7 +10,7 @@ const materials = ( state= [
 	{ 
 		label: 'Sand',
 		value: 'sand',
-		color: '#F5A851'
+		color: '#ffc655'
 	}, 
 	{
 		label: 'Pebble',
@@ -25,7 +25,7 @@ const materials = ( state= [
 	{
 		label: 'Mud',
 		value: 'mud',
-		color: '#8a5707'
+		color: '#f46e36'
 	},
 	{
 		label: 'Ice',
@@ -40,7 +40,7 @@ const materials = ( state= [
 	{
 		label: 'Not sure',
 		value: 'notsure',
-		color: '#F0E7AF'
+		color: '#cbd836'
 	},
 	{
 		label: 'Not set',

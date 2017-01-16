@@ -18,6 +18,21 @@ const messages = defineMessages( {
 		id: "uploadBtn_title",
 		description: "Title - ",
 		defaultMessage: "Upload an image"
+	},
+	uploadBtn_label:{
+		id: "uploadBtn_label",
+		description: "Label - ",
+		defaultMessage: "Upload"
+	},
+	shareBtn_title:{
+		id: "shareBtn_title",
+		description: "Title - ",
+		defaultMessage: "Tell a friend"
+	},
+	shareBtn_label:{
+		id: "shareBtn_label",
+		description: "Label - ",
+		defaultMessage: "Share"
 	}
 	
 } )
@@ -31,12 +46,11 @@ class upload extends Component{
 		show: PropTypes.bool,
 		jazzSupported: PropTypes.bool,
 		className: PropTypes.string,
-		clipped: PropTypes.bool,
+		useraction: PropTypes.string,
 
 		validateFile: PropTypes.func,
 		setLayerVisibility: PropTypes.func,
-		openInput: PropTypes.func/*,
-		showDialog: PropTypes.func*/
+		openInput: PropTypes.func
 
 	}
 
@@ -93,7 +107,7 @@ class upload extends Component{
 	render () {
 
 		const { formatMessage } = this.props.intl
-		const { jazzSupported, className, clipped, show, validateFile, openInput/*, showDialog*/ } = this.props
+		const { jazzSupported, className, useraction, show, validateFile, openInput } = this.props
 		const { dropzoneActive, dropX, dropY/*, isDrop*/ } = this.state
 
 		const cls = Classnames( className, {
@@ -123,7 +137,7 @@ class upload extends Component{
 
 			const clsUploadBtn = Classnames( style.uploadBtn, {
 
-				[ style.fixed ]: clipped
+				[ style.fixed ]: useraction == 'browsing'
 
 			} )
 
@@ -132,6 +146,7 @@ class upload extends Component{
 				//[ style.ripple ]: isDrop
 
 			} )
+
 
 			return(
 

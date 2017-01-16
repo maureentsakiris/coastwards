@@ -484,7 +484,7 @@ export const resetMain = ( removeLastUpload = true ) => {
 		document.getElementById( 'Form' ).reset()
 		
 		//close what else toggle 
-		dispatch( { type: types.SET_USER_ACTION, to: 'browsing' } )
+		dispatch( { type: types.SET_USER_ACTION, to: 'prompt' } )
 		dispatch( { type: types.SET_PROMPT_MSG, to: 'select_file' } )
 		dispatch( { type: types.RESET_FORM } )
 		dispatch( { type: types.RESET_LAYERS } )
@@ -602,6 +602,7 @@ export const unclipPage = ( e ) => {
 
 		dispatch( hidePopup() )
 		dispatch( { type: 'UNCLIP_PAGE' } )
+		dispatch( { type: types.SET_USER_ACTION, to: 'prompt' } )
 
 		scrollToId( 'Intro', e )
 

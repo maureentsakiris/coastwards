@@ -2,10 +2,11 @@ import React, { PropTypes } from 'react'
 import { defineMessages, injectIntl, intlShape } from 'react-intl'
 import Classnames from 'classnames'
 
+
+import ACTIONS from 'containers/main/actions'
+
 import DIV from 'components/tags/div'
 import H from 'components/tags/h'
-
-import CLOSE from 'components/ui/close'
 
 import style from './_errors'
 
@@ -98,15 +99,28 @@ const errors = ( { intl, className, error, jazzSupported, show, hide } ) => {
 
 	} )
 
-	return(
+	if( !jazzSupported ){
 
-		<DIV id="Errors" className={ cls } onClick={ hide } >
-			<H priority={ 2 }>{ str } 
-				{ jazzSupported && <CLOSE onClick={ hide } /> }
-			</H>
-		</DIV>
+		return(
 
-	)
+			<DIV id="Errors" className={ cls } onClick={ hide } >
+				<H priority={ 2 }>{ str }</H>
+			</DIV>
+
+		)
+
+	}else{
+
+		return(
+
+			<DIV id="Errors" className={ cls } onClick={ hide } >
+				<H priority={ 2 }>{ str }</H>
+				<ACTIONS />
+			</DIV>
+
+		)
+
+	}
 	
 }
 
