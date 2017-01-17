@@ -21,6 +21,7 @@
 
 		margin: 0.5em 0;
 		text-transform: uppercase;
+		font-size: 0.7em;
 
 	}
 
@@ -37,25 +38,13 @@
 
 	}
 	
-	p{
-
-		color: $color-primary;
-
-	}
 }
 
 %secondaryBtn{
 
 	button{
 
-		background-color: #fff;
-		color: $color-primary;
-
-	}
-
-	p{
-
-		color: $color-primary;
+		background: $color-primary;
 
 	}
 

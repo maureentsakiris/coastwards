@@ -136,8 +136,9 @@ module.exports = {
 		'here_we_go': 'Encontramos el sitio!! Ahí vamos!',
 		'just_kidding': '(Aunque no suena nada mal, la verdad)',
 		'zoom_until': 'Acércate hasta que el color del marcador cambie a verde y apunte al sitio donde sacaste la foto!',
-		'zoom_closer': 'Te tienes que acercarte más!',
+		'zoom_closer': 'Tienes que acercarte hasta el marcardor cambie a verde!',
 		'two_fingers': 'Utiliza dos dedos para hacer zoom.',
+		'draw_map': 'Todos por uno, uno por todos. O parecido...',
 
 		'nojazz_text': 'Mmh. Parece que estás usando un navegador antiguo. La página funcionará pero es MUUUCHO más divertida si cambias a un navegador moderno como por ejemplo Chrome, Firefox o Safari. Podrás ver todas las fotos de costas que se han subido ya!',
 		'arrow_up_title': 'Volver al principio',

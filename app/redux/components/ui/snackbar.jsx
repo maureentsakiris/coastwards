@@ -39,6 +39,11 @@ const intlMessages = defineMessages( {
 		id: "two_fingers",
 		description: "Snack - ",
 		defaultMessage: "Use two fingers to zoom"
+	},
+	draw_map:{
+		id: "draw_map",
+		description: "Snack",
+		defaultMessage: "One for all, all for one. Or something like that..."
 	}
 
 } )
