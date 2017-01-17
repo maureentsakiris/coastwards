@@ -139,6 +139,7 @@ module.exports = {
 		'zoom_closer': 'Du musst noch ein bisschen näher ran!',
 		'two_fingers': 'Benutze zwei Finger zum zoomen.',
 		'draw_map': 'Alle für einen, einer für alle. Oder so ähnlich...',
+		'accept_terms_first': 'Du musst noch den Bedingungen zustimmen!',
 
 		'nojazz_text': 'Schade, dein Browser scheint ziemlich alt zu sein. Die Seite funktioniert zwar auch so aber Du verpasst was! Mit einem modernen Browser kannst du zum Beispiel auf einer interaktiven Karte alle hochgeladenen Fotos von Küsten weltweit ansehen.',
 		'arrow_up_title': 'Zur Einleitung',
@@ -160,7 +161,15 @@ module.exports = {
 		'whyIP_header': 'Warum speichert ihr meine IP Adresse?',
 		'whyIP_text': 'Wir müssen beweisen können, dass wir die Fotos nicht selber hochgeladen haben. Damit ziehen wir uns selber aus der Schlinge, können aber nur auf Deine IP Adresse verweisen und nicht direkt zu Dir.',
 		'ip_address_learn_more': 'Hier kannst Du mehr über IP Adressen und die Informationen, die sie enthalten erfahren.',
-		'ip_address_learn_more_href': 'https://de.wikipedia.org/wiki/IP-Adresse'
+		'ip_address_learn_more_href': 'https://de.wikipedia.org/wiki/IP-Adresse',
+
+		"accept_terms": "Ich habe die {terms} gelesen und akzeptiere sie",
+		"terms": "Bedingungen",
+		"terms_header": "Bedingungen",
+		"terms_author": "Beim Hochladen des Fotos bestätigen Sie das alleinige Urheberrecht dieses Fotos zu besitzen.",
+		"terms_cc0": "Beim Hochladen des Fotos verzichten Sie auf das Urheberrecht und stellen das Foto in die öffentliche Domäne unter der {license} Lizenz.",
+		"license": "Creative Commons CC0 1.0 Universell (CC0 1.0) Public Domain Dedication",
+		"http_license": "https://creativecommons.org/publicdomain/zero/1.0/deed.de"
 
 
 	}

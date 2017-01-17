@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-
+import { addSnackbarMessage } from 'actions/ui/snackbar'
 import { setMaterial, uploadImage, resetMain } from 'actions/main/main'
 import { showDialog } from 'actions/ui/dialog'
 import FORM from 'components/main/form'
@@ -41,6 +41,11 @@ const mapDispatchToProps = ( dispatch ) => {
 
 			e.preventDefault()
 			dispatch( showDialog( component ) )
+
+		},
+		addSnackbarMessage: ( message ) => {
+
+			dispatch( addSnackbarMessage( message ) )
 
 		}
 

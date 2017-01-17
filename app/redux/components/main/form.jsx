@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import { defineMessages, injectIntl, intlShape } from 'react-intl'
+import { defineMessages, injectIntl, intlShape, FormattedMessage } from 'react-intl'
 import Classnames from 'classnames'
 import _ from 'underscore'
 
@@ -95,35 +95,42 @@ const messages = defineMessages( {
 		id: "cancel_upload",
 		description: "Button label - Cancel upload",
 		defaultMessage: "CANCEL"
+	},
+	accept_terms:{
+		id: "accept_terms",
+		description: "Checkbox - ",
+		defaultMessage: "I accept the {terms}"
+	},
+	terms:{
+		id: "terms",
+		description: "Checkbox - ",
+		defaultMessage: "Terms"
 	}
 
 } )
 
-const form = ( { intl, className, show, image, jazzSupported, materials, setMaterial, uploadImage, resetMain, showDialog } ) => {
+const form = ( { intl, className, show, image, jazzSupported, materials, setMaterial, uploadImage, resetMain, showDialog, addSnackbarMessage } ) => {
 
 	const { formatMessage } = intl
 
-
-	const mats = [
-
-		{ label: formatMessage( messages.sand ), value: 'sand' },
-		{ label: formatMessage( messages.pebble ), value: 'pebble' },
-		{ label: formatMessage( messages.rock ), value: 'rock' },
-		{ label: formatMessage( messages.mud ), value: 'mud' },
-		{ label: formatMessage( messages.ice ), value: 'ice' },
-		{ label: formatMessage( messages.manmade ), value: 'manmade' },
-		{ label: formatMessage( messages.notsure ), value: 'notsure' }
-
-	]
-
-	/*const m = _.map( materials, ( material ) => {
+	const mats = _.chain( materials )
+	.filter( ( material ) => {
 
 		let { value } = material
-		console.log( value );
-		return { label: formatMessage( messages[ value ] ), value: value }
+		return value !== ''
 
 	} )
-	console.log( m )*/
+	.map( ( material ) => {
+
+		let { value } = material
+		if( value !== '' ){
+
+			return { label: formatMessage( messages[ value ] ), value: value }
+
+		}
+
+	} )
+	.value()
 
 
 	if( !jazzSupported ){
@@ -175,8 +182,19 @@ const form = ( { intl, className, show, image, jazzSupported, materials, setMate
 						</DIV>
 					</DIV>
 					<DIV className={ style.actions } >
-						<CANCEL className={ style.cancel } onClick={ resetMain } label={ formatMessage( messages.cancel_upload ) } />
-						<GO onClick={ uploadImage } label={ formatMessage( messages.upload_image ) } />
+						<span className={ style.terms } >
+							<input id="Terms" type="checkbox" value="1" />
+							<FormattedMessage
+								id="accept_terms"
+								values={ { 
+									terms: <A id="TermsLabel" href="#" onClick={ showDialog.bind( this, 'TERMS' ) } >{  formatMessage( messages.terms ) }</A>
+								} }
+							/>
+						</span>
+						<span className={ style.action } >
+							<CANCEL className={ style.cancel } onClick={ resetMain } label={ formatMessage( messages.cancel_upload ) } />
+							<GO onClick={ _checkTerms } label={ formatMessage( messages.upload_image ) } />
+						</span>
 					</DIV>
 				</DIV>
 			</FORM>
@@ -184,8 +202,25 @@ const form = ( { intl, className, show, image, jazzSupported, materials, setMate
 		)
 
 	}
+
+	function _checkTerms (){
+
+		let checked = document.getElementById( 'Terms' ).checked
+
+		if( checked ){
+
+			uploadImage()
+
+		}else{
+
+			addSnackbarMessage( 'accept_terms_first' )
+
+		}
+
+	}
 	
 }
+
 
 form.propTypes = {
 
@@ -201,7 +236,8 @@ form.propTypes = {
 	setMaterial: PropTypes.func,
 	uploadImage: PropTypes.func,
 	resetMain: PropTypes.func,
-	showDialog: PropTypes.func
+	showDialog: PropTypes.func,
+	addSnackbarMessage: PropTypes.func
 
 }
 

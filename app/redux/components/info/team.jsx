@@ -7,6 +7,7 @@ import H from 'components/tags/h'
 import A from 'components/tags/a'
 import STRONG from 'components/tags/strong'
 import BR from 'components/tags/br'
+import IMG from 'components/tags/img'
 
 import style from './_team'
 
@@ -76,6 +77,12 @@ const team = ( { intl, showDialog, addSnackbarMessage } ) => {
 
 	// <P><STRONG>{ formatMessage( messages.we_are, { crslr: <a href="http://www.crslr.uni-kiel.de/en/people/gruppenleiter/prof.-athanasios-vafeidis.html" target="_blank" title={ formatMessage( messages.more_title ) } >{ formatMessage( messages.more ) }</a> } ) }</STRONG></P>
 
+	/*<P><A href="#" onClick={ showDialog.bind( this, 'IMPRINT' ) }>Impressum</A></P>
+			<P className={ style.logos }>
+				<IMG src="assets/Cluster-of-Excellence-The-Future-Ocean.jpg" alt="Cluster-of-Excellence-The-Future-Ocean" />
+				<IMG src="assets/Christian-Albrechts-Universität-zu-Kiel.png" alt="Christian-Albrechts-Universität-zu-Kie" />
+			</P>*/
+
 	return(
 
 		<TOGGLE id="Team" title={ formatMessage( messages.who_are_you_title ) } priority={ 3 } text={ formatMessage( messages.who_are_you ) } className={ style.toggle } >
@@ -83,7 +90,7 @@ const team = ( { intl, showDialog, addSnackbarMessage } ) => {
 				id="we_are"
 				values={ { 
 					crslr: <a href="http://www.crslr.uni-kiel.de/en/people/" target="_blank" title="Coastal Risks and Sea-level Rise Research Group" >Coastal Risks and Sea-level Rise Research Group</a>, 
-					future_ocean: <a href="http://www.futureocean.org" target="_blank" title="Future Ocean Excellence Cluster" >Future Ocean Excellence Cluster</a>
+					future_ocean: <a href="http://www.futureocean.org" target="_blank" title="Cluster of Excellence 'The Future Ocean'" >Cluster of Excellence "The Future Ocean"</a>
 				} }
 			/>
 			
@@ -95,7 +102,7 @@ const team = ( { intl, showDialog, addSnackbarMessage } ) => {
 			<P>{ formatMessage( messages.me ) } <A href="#" title={ formatMessage( messages.more_title ) } onClick={ addSnackbarMessage.bind( this, 'just_kidding' ) } >{ formatMessage( messages.more ) }</A></P>
 			<BR/>
 			<P><STRONG>{ formatMessage( messages.contact_here ) }:</STRONG> <A href="mailTo:go@coastwards.org" >go@coastwards.org</A></P> 
-			<P><A href="#" onClick={ showDialog.bind( this, 'IMPRINT' ) }>Impressum</A></P>
+
 		</TOGGLE>
 
 	)

@@ -63,5 +63,15 @@
     "id": "cancel_upload",
     "description": "Button label - Cancel upload",
     "defaultMessage": "CANCEL"
+  },
+  {
+    "id": "accept_terms",
+    "description": "Checkbox -",
+    "defaultMessage": "I accept the {terms}"
+  },
+  {
+    "id": "terms",
+    "description": "Checkbox -",
+    "defaultMessage": "Terms"
   }
 ]

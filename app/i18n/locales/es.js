@@ -138,7 +138,8 @@ module.exports = {
 		'zoom_until': 'Acércate hasta que el color del marcador cambie a verde y apunte al sitio donde sacaste la foto!',
 		'zoom_closer': 'Tienes que acercarte hasta el marcardor cambie a verde!',
 		'two_fingers': 'Utiliza dos dedos para hacer zoom.',
-		'draw_map': 'Todos por uno, uno por todos. O parecido...',
+		'draw_map': 'Todos por uno, uno por todos. O algo parecido...',
+		'accept_terms_first': 'Tienes que acceptar los términos para continuar!',
 
 		'nojazz_text': 'Mmh. Parece que estás usando un navegador antiguo. La página funcionará pero es MUUUCHO más divertida si cambias a un navegador moderno como por ejemplo Chrome, Firefox o Safari. Podrás ver todas las fotos de costas que se han subido ya!',
 		'arrow_up_title': 'Volver al principio',
@@ -160,7 +161,15 @@ module.exports = {
 		'whyIP_header': 'Porque necesitais saber mi dirección IP?',
 		'whyIP_text': 'Tenemos que poder demostrar que no somos el origen de las imagenes. Básicamente nos estamos cubriendo la espalda PERO solamente podemos apuntar a tu IP, no a ti.',
 		'ip_address_learn_more': 'Lee más sobre las direcciones IP y la información que contienen.',
-		'ip_address_learn_more_href': 'https://es.wikipedia.org/wiki/Direcci%C3%B3n_IP'
+		'ip_address_learn_more_href': 'https://es.wikipedia.org/wiki/Direcci%C3%B3n_IP',
+
+		"accept_terms": "He leído los {terms} los acepto",
+		"terms": "términos",
+		"terms_header": "Términos",
+		"terms_author": "Al subir la imágen confirmas tener los derechos de autor.",
+		"terms_cc0": "Al subir la imágen confirmas ceder los derechos de autor y dispones la imágen al dominio público bajo la licencia {license}.",
+		"license": "Creative Commons CC0 1.0 Universal (CC0 1.0) Ofrecimiento al Dominio Público",
+		"http_license": "https://creativecommons.org/publicdomain/zero/1.0/deed.es_ES"
 
 
 	}

@@ -1,0 +1,27 @@
+[
+  {
+    "id": "terms_header",
+    "description": "Header",
+    "defaultMessage": "Terms"
+  },
+  {
+    "id": "terms_author",
+    "description": "P -",
+    "defaultMessage": "By uploading this image you confirm that you are the sole author of this image."
+  },
+  {
+    "id": "terms_cc0",
+    "description": "P -",
+    "defaultMessage": "By uploading this image you agree to waive your copyright and place the image in the public domain under the {license}."
+  },
+  {
+    "id": "license",
+    "description": "Link -",
+    "defaultMessage": "Creative Commons CC0 1.0 Universal (CC0 1.0) Public Domain Dedication license"
+  },
+  {
+    "id": "http_license",
+    "description": "HTTP -",
+    "defaultMessage": "https://creativecommons.org/publicdomain/zero/1.0/"
+  }
+]

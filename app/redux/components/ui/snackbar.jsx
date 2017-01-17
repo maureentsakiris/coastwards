@@ -44,6 +44,11 @@ const intlMessages = defineMessages( {
 		id: "draw_map",
 		description: "Snack",
 		defaultMessage: "One for all, all for one. Or something like that..."
+	},
+	accept_terms_first:{
+		id: "accept_terms_first",
+		description: "Snack - ",
+		defaultMessage: "You still have to accept the terms!"
 	}
 
 } )

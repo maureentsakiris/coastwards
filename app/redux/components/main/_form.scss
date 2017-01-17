@@ -85,6 +85,31 @@ $actions-height: 60px;
 	top: -$actions-height;
 	@extend %drawershadow;
 
+	@extend %flexcontainer;
+	flex-wrap: wrap;
+
+}
+
+.terms{
+
+	@extend %flexitem;
+	width: auto;
+	text-align: left;
+	margin-bottom: 0.4em;
+
+	input{
+
+		margin-right: 1em;
+		
+	}
+
+}
+
+.action{
+
+	@extend %flexitem;
+	width: auto;
+
 }
 
 .showJazz{
