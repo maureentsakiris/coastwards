@@ -74,10 +74,18 @@ const config = {
 		new webpack.optimize.DedupePlugin(),
 		new webpack.optimize.UglifyJsPlugin( {
 
-			minimize: true,
+			beautify: false,
 			compress: {
-				warnings: true
-			}
+				warnings: true,
+				screw_ie8: true
+			},
+			mangle: {
+				screw_ie8: true,
+				keep_fnames: true
+			},
+			comments: false,
+			sourceMap: true,
+			minimize: true
 
 		} ),
 		new webpack.DefinePlugin( {
