@@ -1,0 +1,36 @@
+@import 'app/styles/base';
+
+
+.logos{
+
+	margin: 3em 0;
+	text-align: center;
+
+	img{
+
+		width: 100px;
+		margin: 1em 1em 0 1em;
+
+	}
+
+	@media ( min-width: #{ $tablet } ) {
+
+		img{
+
+			width: 150px;
+			margin: 2em 2em 0 2em;
+
+		}
+
+	}
+
+}
+
+.imprint{
+
+	margin-top: 1em;
+	display: inline-block;
+	color: #ccc;
+    font-size: 12px;
+
+}

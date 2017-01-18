@@ -2,7 +2,6 @@ import React, { PropTypes } from 'react'
 import { defineMessages, injectIntl, intlShape } from 'react-intl'
 /*import { scrollToId } from 'actions/context'*/
 import Classnames from 'classnames'
-import DIV from 'components/tags/div'
 
 
 //TODO: i18nLinks should handle that itself?
@@ -19,8 +18,9 @@ import Guidelines from 'containers/info/guidelines'
 import Team from 'containers/info/team'
 import FAQs from 'components/info/faqs'
 import Ask from 'containers/info/ask'
+import Logos from 'containers/info/logos'
  
-
+import DIV from 'components/tags/div'
 import A from 'components/tags/a'
 import I from 'components/tags/i'
 import H from 'components/tags/h'
@@ -63,7 +63,7 @@ const messages = defineMessages( {
 
 } )
  
-const context = ( { intl, lang, dir, jazzSupported, clipped, useraction, unclipPage, showDialog } ) => {
+const context = ( { intl, lang, dir, jazzSupported, clipped, useraction, unclipPage } ) => {
 
 	const { formatMessage } = intl
 
@@ -85,12 +85,7 @@ const context = ( { intl, lang, dir, jazzSupported, clipped, useraction, unclipP
 					<Team />
 					<FAQs />
 					<Ask />
-					<P className={ style.logos }>
-						<A target="_blank" href="http://www.futureocean.org"><IMG src="assets/Cluster-of-Excellence-The-Future-Ocean.jpg" alt="Cluster of Excellence The Future Ocean" /></A>
-						<A target="_blank" href="https://www.uni-kiel.de"><IMG src="assets/Christian-Albrechts-Universitat-zu-Kiel.png" alt="Christian Albrechts Universität zu Kiel" /></A>
-						<A target="_blank" href="http://www.crslr.uni-kiel.de"><IMG src="assets/Coastal-Risks-And-Sea-Level-Rise-Research-Group.png" alt="Coastal Risks and Sea-Level Rise Research Group" /></A>
-					</P>
-					<A className={ style.imprint } href="#" onClick={ showDialog.bind( this, 'IMPRINT' ) }>Impressum</A>
+					<Logos />
 				</DIV>
 				<Main />
 				<Snackbar />
@@ -135,12 +130,7 @@ const context = ( { intl, lang, dir, jazzSupported, clipped, useraction, unclipP
 					<Team />
 					<FAQs />
 					<Ask />
-					<P className={ style.logos }>
-						<A target="_blank" href="http://www.futureocean.org"><IMG src="assets/Cluster-of-Excellence-The-Future-Ocean.jpg" alt="Cluster of Excellence The Future Ocean" /></A>
-						<A target="_blank" href="https://www.uni-kiel.de"><IMG src="assets/Christian-Albrechts-Universitat-zu-Kiel.png" alt="Christian Albrechts Universität zu Kiel" /></A>
-						<A target="_blank" href="http://www.crslr.uni-kiel.de"><IMG src="assets/Coastal-Risks-And-Sea-Level-Rise-Research-Group.png" alt="Coastal Risks and Sea-Level Rise Research Group" /></A>
-					</P>
-					<A className={ style.imprint } href="#" onClick={ showDialog.bind( this, 'IMPRINT' ) }>Impressum</A>
+					<Logos />
 				</DIV>
 				<DIV id="Main" className={ style.main }>
 					<A onClick={ unclipPage.bind( this ) } className={ clsArrowMap } title={ formatMessage( messages.arrow_up_title ) } >
@@ -167,8 +157,7 @@ context.propTypes = {
 	clipped: PropTypes.bool,
 	useraction: PropTypes.string,
 
-	unclipPage: PropTypes.func,
-	showDialog: PropTypes.func
+	unclipPage: PropTypes.func
 
 }
 

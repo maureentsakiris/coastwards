@@ -30,27 +30,6 @@
 
 }
 
-.logos{
-
-	text-align: center;
-
-	img{
-
-		width: 150px;
-		margin: 2em 2em 0 2em;
-
-	}
-
-}
-
-.imprint{
-
-	color: #ccc;
-    font-size: 12px;
-    margin-top: 1em;
-
-}
-
 .introNoJazz{
 
 	@extend %corset;

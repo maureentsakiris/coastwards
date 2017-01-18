@@ -77,6 +77,8 @@ const _promiseSafe = ( image ) => {
 
 			let annotations = response.responses[ 0 ]
 
+			console.log( annotations );
+
 			if( annotations.faceAnnotations ){
 
 				reject( Error( "faces_detected" ) ) //YES
@@ -88,6 +90,7 @@ const _promiseSafe = ( image ) => {
 				reject( Error( "spam_detected" ) ) //YES
 
 			}
+
 
 			let coast = _.filter( annotations.labelAnnotations, { description: 'coast' } )
 			let shore = _.filter( annotations.labelAnnotations, { description: 'shore' } )

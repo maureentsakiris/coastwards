@@ -5,7 +5,7 @@ import { clipPage, openInput } from 'actions/main/main'
 import ACTIONS from 'components/main/actions'
 
 
-const mapStateToProps = ( state ) => {
+const mapStateToProps = ( ) => {
 
 	return {
 

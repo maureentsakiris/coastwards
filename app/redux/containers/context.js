@@ -1,6 +1,5 @@
 import { connect } from 'react-redux'
 import CONTEXT from 'components/context'
-import { showDialog } from 'actions/ui/dialog'
 import { unclipPage } from 'actions/main/main'
 
 
@@ -29,12 +28,6 @@ const mapDispatchToProps = ( dispatch ) => {
 
 			e.preventDefault()
 			dispatch( unclipPage( e ) )
-
-		},
-		showDialog: ( component, e ) => {
-
-			e.preventDefault()
-			dispatch( showDialog( component ) )
 
 		}
 
