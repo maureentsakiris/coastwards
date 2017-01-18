@@ -7,7 +7,6 @@ import H from 'components/tags/h'
 import A from 'components/tags/a'
 import STRONG from 'components/tags/strong'
 import BR from 'components/tags/br'
-import IMG from 'components/tags/img'
 
 import style from './_team'
 
@@ -71,7 +70,7 @@ const messages = defineMessages( {
 
 } )
 
-const team = ( { intl, showDialog, addSnackbarMessage } ) => {
+const team = ( { intl, addSnackbarMessage } ) => {
 
 	const { formatMessage } = intl
 
@@ -80,7 +79,7 @@ const team = ( { intl, showDialog, addSnackbarMessage } ) => {
 	/*<P><A href="#" onClick={ showDialog.bind( this, 'IMPRINT' ) }>Impressum</A></P>
 			<P className={ style.logos }>
 				<IMG src="assets/Cluster-of-Excellence-The-Future-Ocean.jpg" alt="Cluster-of-Excellence-The-Future-Ocean" />
-				<IMG src="assets/Christian-Albrechts-Universität-zu-Kiel.png" alt="Christian-Albrechts-Universität-zu-Kie" />
+				<IMG src="assets/Christian-Albrechts-Universität-zu-Kiel.png" alt="Christian-Albrechts-Universität-zu-Kiel" />
 			</P>*/
 
 	return(
@@ -112,8 +111,6 @@ const team = ( { intl, showDialog, addSnackbarMessage } ) => {
 team.propTypes = {
 
 	intl: intlShape.isRequired,
-
-	showDialog: PropTypes.func,
 	addSnackbarMessage: PropTypes.func
 
 }
