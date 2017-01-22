@@ -27,8 +27,9 @@ module.exports = {
 		'guideline_faces_text': 'No valen las fotos con caras por razones de privacidad.',
 		'guideline_material_header': 'Necesitamos ver el material de la costa',
 		'guideline_material_help': "(A qué te refieres con 'material de la costa'?)",
-		'guideline_material_text': "Seguramente a la hora de sacar la foto no te importaba el material de la costa, así que ten en cuenta que no nos importa lo bonito (puestas de sol) o feo (tus pies!) la imágen es, mientras se pueda ver de que está hecho la costa.",
-		'guideline_coasts_header': "Ah! Y costas no solamente son playas!!",
+		'guideline_material_text': "Sinceramente, no nos importa lo bonito (puestas de sol) o feo (tus pies!) la imágen es, mientras se pueda ver el material de la costa.",
+		'guideline_coasts_header': "Y costas no solamente son playas!",
+		'guideline_coasts_text': "Acantilados, puertos, paseos al lado del mar ... todo lo que toca los océanos y mares.",
 
 		'how': 'Cómo ayuda mi foto?',
 		'how_title': 'Lectura de 1 min máximo',

@@ -115,6 +115,8 @@ const context = ( { intl, lang, dir, jazzSupported, clipped, useraction, unclipP
 
 		} )
 
+		//<i class="material-icons">&#xE836;</i> &#xE86C;
+
 		return(
 
 			<DIV lang={ lang } dir={ dir } >

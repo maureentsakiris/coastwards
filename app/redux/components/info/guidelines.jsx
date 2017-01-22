@@ -4,12 +4,11 @@ import { defineMessages, injectIntl, intlShape } from 'react-intl'
 import TOGGLE from 'components/ui/toggle'
 import P from 'components/tags/p'
 import H from 'components/tags/h'
-import SMALL from 'components/tags/small'
 import A from 'components/tags/a'
 import OL from 'components/tags/ol'
 import LI from 'components/tags/li'
-/*import IMG from 'components/tags/img'*/
-import STRONG from 'components/tags/strong'
+import IMG from 'components/tags/img'
+import DIV from 'components/tags/div'
 
 import style from './_guidelines'
 
@@ -65,44 +64,101 @@ const messages = defineMessages( {
 	guideline_material_text:{
 		id: "guideline_material_text",
 		description: "Guideline - Material",
-		defaultMessage: "You probably didn't care much about the coast material at the time you took the picture, so please bear in mind that we don't care about how beautiful (sunsets) or ugly (your toes!) the image is, as long as we can see what the coast is made of."
+		defaultMessage: "We honestly don't care about how beautiful (sunsets) or ugly (your toes!) the image is, as long as we can see the coast material."
 	},
 	guideline_coasts_header:{
 		id: "guideline_coasts_header",
 		description: "Header",
-		defaultMessage: "Oh and: Coasts are not only beaches!"
-	}
+		defaultMessage: "Coasts are not only beaches!"
+	},
+	guideline_coasts_text:{
+		id: "guideline_coasts_text",
+		description: "Guideline - Coasts",
+		defaultMessage: "Harbors, cliffs, promenades alongside the water ... anything that touches the oceans and seas."
+	},
 
 } )
 
-const guidelines = ( { intl, showDialog } ) => {
+const guidelines = ( { intl, jazzSupported, showDialog } ) => {
 
 	const { formatMessage } = intl
 
-	return(
+	if( !jazzSupported ){
 
-		<TOGGLE id="Guidelines" title={ formatMessage( messages.any_picture_title ) } priority={ 3 } text={ formatMessage( messages.any_picture ) } className={ style.toggle } >
-			<P><STRONG>{ formatMessage( messages.any_coast ) }</STRONG></P>
-			<OL>
-				<LI className={ style.guideline } >
-					<H priority={ 4 } >{ formatMessage( messages.guideline_original_header ) }</H>
-					<P>{ formatMessage( messages.guideline_original_text ) }</P>
-				</LI>
-				<LI className={ style.guideline } >
-					<H priority={ 4 } >{ formatMessage( messages.guideline_faces_header ) }</H>
-					<P>{ formatMessage( messages.guideline_faces_text ) }</P>
-				</LI>
-				<LI className={ style.guideline } >
-					<H priority={ 4 } >{ formatMessage( messages.guideline_material_header ) } <SMALL><A onClick={ showDialog.bind( this, 'DEFINEMATERIAL' ) }>{ formatMessage( messages.guideline_material_help ) }</A></SMALL></H>
-					<P>{ formatMessage( messages.guideline_material_text ) }</P>
-				</LI>
-				<LI className={ style.guideline } >
-					<H priority={ 4 } >{ formatMessage( messages.guideline_coasts_header ) }</H>
-				</LI>
-			</OL>
-		</TOGGLE>
 
-	)
+		return(
+
+			<TOGGLE id="Guidelines" title={ formatMessage( messages.any_picture_title ) } priority={ 3 } text={ formatMessage( messages.any_picture ) } className={ style.toggle } >
+				<P>{ formatMessage( messages.any_coast ) }</P>
+				<OL>
+					<LI>
+						<IMG src="assets/guidelines/original.png" alt={ formatMessage( messages.guideline_original_header ) } />
+						<H priority={ 4 } >{ formatMessage( messages.guideline_original_header ) }</H>
+						<P>{ formatMessage( messages.guideline_original_text ) }</P>
+					</LI>
+					<LI>
+						<IMG src="assets/guidelines/faces.png" alt={ formatMessage( messages.guideline_faces_header ) } />
+						<H priority={ 4 } >{ formatMessage( messages.guideline_faces_header ) }</H>
+						<P>{ formatMessage( messages.guideline_faces_text ) }</P>
+					</LI>
+					<LI>
+						<IMG src="assets/guidelines/material.png" alt={ formatMessage( messages.guideline_material_header ) } />
+						<H priority={ 4 } >{ formatMessage( messages.guideline_material_header ) }</H>
+						<P>{ formatMessage( messages.guideline_material_text ) } <A onClick={ showDialog.bind( this, 'DEFINEMATERIAL' ) }>{ formatMessage( messages.guideline_material_help ) }</A></P>
+					</LI>
+					<LI>
+						<IMG src="assets/guidelines/harbor.png" alt={ formatMessage( messages.guideline_coasts_header ) } />
+						<H priority={ 4 } >{ formatMessage( messages.guideline_coasts_header ) }</H>
+						<P>{ formatMessage( messages.guideline_coasts_text ) }</P>
+					</LI>
+				</OL>
+			</TOGGLE>
+
+		)
+
+
+	}else{
+
+		return(
+
+			<TOGGLE id="Guidelines" title={ formatMessage( messages.any_picture_title ) } priority={ 3 } text={ formatMessage( messages.any_picture ) } className={ style.toggle } >
+				<P>{ formatMessage( messages.any_coast ) }</P>
+				<OL className={ style.guidelines } >
+					<LI className={ style.guideline } >
+						<IMG src="assets/guidelines/original.svg" alt={ formatMessage( messages.guideline_original_header ) } />
+						<DIV>
+							<H priority={ 4 } >{ formatMessage( messages.guideline_original_header ) }</H>
+							<P>{ formatMessage( messages.guideline_original_text ) }</P>
+						</DIV>
+					</LI>
+					<LI className={ style.guideline } >
+						<IMG src="assets/guidelines/faces.svg" alt={ formatMessage( messages.guideline_faces_header ) } />
+						<DIV>
+							<H priority={ 4 } >{ formatMessage( messages.guideline_faces_header ) }</H>
+							<P>{ formatMessage( messages.guideline_faces_text ) }</P>
+						</DIV>
+					</LI>
+					<LI className={ style.guideline } >
+						<IMG src="assets/guidelines/material.svg" alt={ formatMessage( messages.guideline_material_header ) } />
+						<DIV>
+							<H priority={ 4 } >{ formatMessage( messages.guideline_material_header ) }</H>
+							<P>{ formatMessage( messages.guideline_material_text ) } <A onClick={ showDialog.bind( this, 'DEFINEMATERIAL' ) }>{ formatMessage( messages.guideline_material_help ) }</A></P>
+						</DIV>
+					</LI>
+					<LI className={ style.guideline } >
+						<IMG src="assets/guidelines/harbor.svg" alt={ formatMessage( messages.guideline_coasts_header ) } />
+						<DIV>
+							<H priority={ 4 } >{ formatMessage( messages.guideline_coasts_header ) }</H>
+							<P>{ formatMessage( messages.guideline_coasts_text ) }</P>
+						</DIV>
+					</LI>
+				</OL>
+			</TOGGLE>
+
+		)
+
+
+	}
 
 }
 

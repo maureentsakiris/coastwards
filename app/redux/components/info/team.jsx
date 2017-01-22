@@ -7,6 +7,8 @@ import H from 'components/tags/h'
 import A from 'components/tags/a'
 import STRONG from 'components/tags/strong'
 import BR from 'components/tags/br'
+import IMG from 'components/tags/img'
+import DIV from 'components/tags/div'
 
 import style from './_team'
 
@@ -93,12 +95,21 @@ const team = ( { intl, addSnackbarMessage } ) => {
 				} }
 			/>
 			
-			<H priority={ 4 }>Athanasios Vafeidis</H>
-			<P>{ formatMessage( messages.nassos ) } <A href="http://www.crslr.uni-kiel.de/en/people/gruppenleiter/prof.-athanasios-vafeidis.html" target="_blank" title={ formatMessage( messages.more_title ) } >{ formatMessage( messages.more ) }</A></P>
-			<H priority={ 4 }>Claudia  Wolff</H>
-			<P>{ formatMessage( messages.claudia ) } <A href="http://www.crslr.uni-kiel.de/en/people/doctoral-researchers/claudia-wolff.html" target="_blank" title={ formatMessage( messages.more_title ) } >{ formatMessage( messages.more ) }</A></P>
-			<H priority={ 4 }>Maureen Tsakiris</H>
-			<P>{ formatMessage( messages.me ) } <A href="#" title={ formatMessage( messages.more_title ) } onClick={ addSnackbarMessage.bind( this, 'just_kidding' ) } >{ formatMessage( messages.more ) }</A></P>
+			<DIV className={ style.person }>
+				<IMG src="assets/team/nassos.jpg" alt="Athanasios Vafeidis" />
+				<H priority={ 4 }>Athanasios Vafeidis</H>
+				<P>{ formatMessage( messages.nassos ) } <A href="http://www.crslr.uni-kiel.de/en/people/gruppenleiter/prof.-athanasios-vafeidis.html" target="_blank" title={ formatMessage( messages.more_title ) } >{ formatMessage( messages.more ) }</A></P>
+			</DIV>
+			<DIV className={ style.person }>
+				<IMG src="assets/team/claudia.jpg" alt="Claudia  Wolff" />
+				<H priority={ 4 }>Claudia  Wolff</H>
+				<P>{ formatMessage( messages.claudia ) } <A href="http://www.crslr.uni-kiel.de/en/people/doctoral-researchers/claudia-wolff.html" target="_blank" title={ formatMessage( messages.more_title ) } >{ formatMessage( messages.more ) }</A></P>
+			</DIV>
+			<DIV className={ style.person }>
+				<IMG src="assets/team/maureen.jpg" alt="Maureen Tsakiris" />
+				<H priority={ 4 }>Maureen Tsakiris</H>
+				<P>{ formatMessage( messages.me ) } <A href="#" title={ formatMessage( messages.more_title ) } onClick={ addSnackbarMessage.bind( this, 'just_kidding' ) } >{ formatMessage( messages.more ) }</A></P>
+			</DIV>
 			<BR/>
 			<P><STRONG>{ formatMessage( messages.contact_here ) }:</STRONG> <A href="mailTo:go@coastwards.org" >go@coastwards.org</A></P> 
 

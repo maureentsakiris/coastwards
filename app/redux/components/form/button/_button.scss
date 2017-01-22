@@ -33,7 +33,28 @@
 
 }
 
-.cancel:disabled, .go:disabled, .submit:disabled{
+.icon{
+
+	@extend %button;
+	background-color: $color-primary;
+	color: #ffffff;
+
+	i{
+
+		vertical-align: middle;
+		margin-right: 0.3em;
+
+	}
+
+}
+
+.toggle{
+
+
+
+}
+
+.cancel:disabled, .go:disabled, .submit:disabled, .icon:disabled{
 
 	opacity: 0.5;
 	cursor: default;

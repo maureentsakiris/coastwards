@@ -180,13 +180,13 @@
 
 	@include portrait( ){
 
-		padding: 7vw;
+		padding: 14vw 7vw
 
 	}
 
 	@include landscape( ){
 
-		padding: 7vh;
+		padding: 14vh;
 
 	}
 
@@ -207,6 +207,7 @@
 .intro{
 
 	@extend %page;
+	padding-bottom: 1em;
 
 	@include portraitMin( $tablet ){
 
@@ -242,17 +243,17 @@
 	.logo{
 
 		min-width: 160px;
-		width: 300px;
+		width: 250px;
 
 		@include portrait( ){
 
-			max-width: 70vw;
+			max-width: 50vw;
 
 		}
 
 		@include landscape( ){
 
-			max-width: 90vh;
+			max-width: 50vh;
 
 		}
 
@@ -277,7 +278,7 @@
 		text-align: center;
 		font-weight: 300;
 
-		font-size: 26px;
+		font-size: 22px;
 
 		@extend %corset;
 
@@ -322,9 +323,21 @@
 	.tagline{
 
 		font-weight: 500;
-		font-size: 1.2em;
+		font-size: 14px;
 		text-align: center;
-		margin: 0;
+		margin: 60px 0;
+
+		@include portraitMin( $desktop ){
+
+			font-size: 1.2em;
+
+		}
+
+		@include landscapeMin( $desktop ){
+
+			font-size: 1.2em;
+
+		}
 
 	}
 

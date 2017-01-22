@@ -13,6 +13,7 @@ import DIV from 'components/tags/div'
 import A from 'components/tags/a'
 
 import RADIOGROUP from 'components/form/radiogroup/radiogroup'
+import ICONRADIOGROUP from 'components/form/radiogroup/iconradiogroup'
 import CANCEL from 'components/form/button/cancel'
 import GO from 'components/form/button/go'
 
@@ -122,10 +123,10 @@ const form = ( { intl, className, show, image, jazzSupported, materials, setMate
 	} )
 	.map( ( material ) => {
 
-		let { value } = material
+		let { value, color } = material
 		if( value !== '' ){
 
-			return { label: formatMessage( messages[ value ] ), value: value }
+			return { label: formatMessage( messages[ value ] ), value: value, color: color }
 
 		}
 
@@ -152,8 +153,18 @@ const form = ( { intl, className, show, image, jazzSupported, materials, setMate
 				<BR/><BR/>
 				<FORMDATA />
 				<BR/><BR/>
+				<span>
+					<input id="Terms" type="checkbox" value="1" />
+					<FormattedMessage
+						id="accept_terms"
+						values={ { 
+							terms: <A id="TermsLabel" href="#" onClick={ showDialog.bind( this, 'TERMS' ) } >{  formatMessage( messages.terms ) }</A>
+						} }
+					/>
+				</span>
+				<BR/><BR/>
 				<CANCEL className={ style.cancel } onClick={ resetMain } label={ formatMessage( messages.cancel_upload ) } />
-				<GO onClick={ uploadImage } label={ formatMessage( messages.upload_image ) } />
+				<GO onClick={ _checkTerms } label={ formatMessage( messages.upload_image ) } />
 				<BR/><BR/>
 			</FORM>
 
@@ -175,9 +186,9 @@ const form = ( { intl, className, show, image, jazzSupported, materials, setMate
 						{ image.dataURL && <DIV className={ style.image } style={ { backgroundImage: 'url(' + image.dataURL + ')' } } ></DIV> }
 						<DIV id="Content" className={ style.content } >
 							<H priority={ 2 }>{ formatMessage( messages.hurray ) }</H>
-							<RADIOGROUP form="Form" label={ formatMessage( messages.select_material ) } name="material" options={ mats } onClick={ setMaterial } preferPlaceholder={ false } className={ style.radiogroup } >
+							<ICONRADIOGROUP form="Form" label={ formatMessage( messages.select_material ) } name="material" options={ mats } onClick={ setMaterial } preferPlaceholder={ false } className={ style.iconradiogroup } >
 								{ " " }<SMALL><A onClick={ showDialog.bind( this, 'DEFINEMATERIAL' ) }>{ formatMessage( messages.define_material ) }</A></SMALL>
-							</RADIOGROUP>
+							</ICONRADIOGROUP>
 							<FORMDATA />
 						</DIV>
 					</DIV>
