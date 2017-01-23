@@ -50,7 +50,7 @@ const share = ( { intl, className } ) => {
 
 						facebook: <A className={ style.link } target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A//coastwards.org">FACEBOOK</A>,
 						twitter: <A className={ style.link } target="_blank" href="https://twitter.com/home?status=Help%20Science%20study%20the%20risks%20of%20Sea-level%20Rise%20by%20uploading%20pictures%20of%20coasts%20at%20http%3A//coastwards.org">TWITTER</A>,
-						whatsapp: <A className={ style.link } href="whatsapp://send?text=Hello%20World!">WHATSAPP</A>
+						whatsapp: <A className={ style.link } href="whatsapp://send?text=http%3A//coastwards.org">WHATSAPP</A>
 
 					} }
 				/>
