@@ -156,10 +156,9 @@ module.exports = {
 		'material_examples_header': 'Muéstrame ejemplos!',
 		'material_examples_text': 'Estoy todavía colocando esta sección. Hasta entonces puedes mirar las imagenes que ya están subidas para darte una idea.',
 
-		'share_header': 'Compárte con amigos y familia (sobre todo si viven cerca de una costa!)',
+		'share_header': 'Go coastwards! Compárte con amigos y familia (sobre todo si viven cerca de una costa!)',
 		"share_text_intro": "Hay muchas formas de compartir. Obviamente hay {facebook} y {twitter}. Si eres de la siguiente generación igual prefieres {whatsapp} o algún programa que no conozco porque soy muy vieja o no sé cuales son las plataformas que se usan en tu pais.",
 		"share_text_but": "Pero todos sabemos como funcionan las redes sociales. Si realmente quieres alcanzar a alguien, hablar con esa persona sigue siendo lo más efectivo.",
-		"share_go_coastwards": "Go coastwards!",
 
 		'whyIP_header': 'Porque necesitais saber mi dirección IP?',
 		'whyIP_text': 'Tenemos que poder demostrar que no somos el origen de las imagenes. Básicamente nos estamos cubriendo la espalda PERO solamente podemos apuntar a tu IP, no a ti.',

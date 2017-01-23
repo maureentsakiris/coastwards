@@ -2,7 +2,7 @@
   {
     "id": "share_header",
     "description": "Header",
-    "defaultMessage": "Share with friends and family (especially if they live near the coast!)"
+    "defaultMessage": "Go coastwards! Share with friends and family (especially if they live near the coast!)"
   },
   {
     "id": "share_text_intro",
@@ -13,10 +13,5 @@
     "id": "share_text_but",
     "description": "P -",
     "defaultMessage": "But we all know how social media works. If you really want to reach someone, talking to that person still is the most effective."
-  },
-  {
-    "id": "share_go_coastwards",
-    "description": "P",
-    "defaultMessage": "Go coastwards!"
   }
 ]
