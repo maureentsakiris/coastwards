@@ -45,7 +45,6 @@ const config = {
 		chunkFilename: '[name].js'
 	},
 	module: {
-		noParse: /node_modules\/mapbox-gl\/dist\/mapbox-gl.js/,
 		loaders: [ 
 			{
 				test: /\.jsx?$/,
@@ -74,18 +73,10 @@ const config = {
 		new webpack.optimize.DedupePlugin(),
 		new webpack.optimize.UglifyJsPlugin( {
 
-			beautify: false,
+			minimize: true,
 			compress: {
-				warnings: true,
-				screw_ie8: true
-			},
-			mangle: {
-				screw_ie8: true,
-				keep_fnames: true
-			},
-			comments: false,
-			sourceMap: true,
-			minimize: true
+				warnings: true
+			}
 
 		} ),
 		new webpack.DefinePlugin( {
