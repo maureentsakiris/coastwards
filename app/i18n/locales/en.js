@@ -10,7 +10,9 @@ module.exports = {
 		"terms": "Terms",
 		"terms_cc0": "By uploading this image you agree to waive your copyright and place the image in the public domain under the {license} license.",
 		"license": "Creative Commons CC0 1.0 Universal (CC0 1.0) Public Domain Dedication",
-		"http_license": "https://creativecommons.org/publicdomain/zero/1.0/"
+		"http_license": "https://creativecommons.org/publicdomain/zero/1.0/",
+
+		"share_text_intro": "There are many ways to share. Of course, there is {facebook} and {twitter}. If you are the next generation you might prefer {whatsapp} or some other programm I don't know about because I'm too old or not familiar with the platforms you use in your country."
 
 	}
 };

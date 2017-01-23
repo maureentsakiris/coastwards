@@ -2,11 +2,16 @@
   {
     "id": "share_header",
     "description": "Header",
-    "defaultMessage": "Tell a friend"
+    "defaultMessage": "Go coastwards! Share with friends and family (especially if they live near the coast!)"
   },
   {
     "id": "share_text_intro",
     "description": "P -",
-    "defaultMessage": "(Sorry, not ready yet ... but you can still tell a friend!)"
+    "defaultMessage": "There are many ways to share. Of course, there is {facebook} and {twitter}. If you are the next generation you might prefer {whatsapp} or some other programm I don't know about because I'm too old or not familiar with the platforms you use in your country."
+  },
+  {
+    "id": "share_text_but",
+    "description": "P -",
+    "defaultMessage": "But we all know how social media works. If you really want to reach someone, talking to that person still is the most effective."
   }
 ]
