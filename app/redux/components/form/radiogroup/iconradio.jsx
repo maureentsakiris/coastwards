@@ -1,6 +1,8 @@
 import React, { /*Component,*/ PropTypes } from 'react'
 import ClassNames from 'classnames'
+
 import ICON from 'components/form/button/icon'
+import SPAN from 'components/tags/span'
 
 import style from './_radio'
 
@@ -13,7 +15,7 @@ const radio = ( { index, label, value, checked, className, backgroundColor, onCl
 
 	return(
 
-		<ICON style={ { 'backgroundColor': backgroundColor } } className={ clsIcon } materialIcon={ icon } onClick={ onClick.bind( this, index, value ) }>{ label }</ICON>
+		<ICON style={ { 'backgroundColor': backgroundColor } } className={ clsIcon } materialIcon={ icon } onClick={ onClick.bind( this, index, value ) }><SPAN>{ label }</SPAN></ICON>
 
 	)
 	
