@@ -346,7 +346,6 @@ export const setLocation = ( ) => {
 export const setMaterial = ( e ) => {
 
 	const value = typeof( e ) === 'string' ? e : e.currentTarget.value
-	console.log( value )
 
 	return function ( dispatch ){
 

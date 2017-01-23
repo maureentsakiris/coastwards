@@ -7,7 +7,7 @@ import SPAN from 'components/tags/span'
 import style from './_radio'
 
 
-const radio = ( { index, label, value, checked, className, backgroundColor, onClick } ) => {
+const radio = ( { label, value, checked, className, backgroundColor, onClick } ) => {
 
 	const icon = checked ? "radio_button_checked" : "radio_button_unchecked"
 
@@ -15,7 +15,7 @@ const radio = ( { index, label, value, checked, className, backgroundColor, onCl
 
 	return(
 
-		<ICON style={ { 'backgroundColor': backgroundColor } } className={ clsIcon } materialIcon={ icon } onClick={ onClick.bind( this, index, value ) }><SPAN>{ label }</SPAN></ICON>
+		<ICON style={ { 'backgroundColor': backgroundColor } } className={ clsIcon } materialIcon={ icon } onClick={ onClick.bind( this, value ) }><SPAN>{ label }</SPAN></ICON>
 
 	)
 	
@@ -31,7 +31,6 @@ radio.defaultProps = {
 
 radio.propTypes = {
 
-	index: PropTypes.number,
 	label: PropTypes.string.isRequired,
 	value: PropTypes.string.isRequired,
 	checked: PropTypes.bool,

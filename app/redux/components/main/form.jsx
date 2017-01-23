@@ -110,7 +110,7 @@ const messages = defineMessages( {
 
 } )
 
-const form = ( { intl, className, show, image, jazzSupported, materials, setMaterial, uploadImage, resetMain, showDialog, addSnackbarMessage } ) => {
+const form = ( { intl, className, show, image, checkedValue, jazzSupported, materials, setMaterial, uploadImage, resetMain, showDialog, addSnackbarMessage } ) => {
 
 	const { formatMessage } = intl
 
@@ -186,7 +186,7 @@ const form = ( { intl, className, show, image, jazzSupported, materials, setMate
 						{ image.dataURL && <DIV className={ style.image } style={ { backgroundImage: 'url(' + image.dataURL + ')' } } ></DIV> }
 						<DIV id="Content" className={ style.content } >
 							<H priority={ 2 }>{ formatMessage( messages.hurray ) }</H>
-							<ICONRADIOGROUP form="Form" label={ formatMessage( messages.select_material ) } name="material" options={ mats } onClick={ setMaterial } preferPlaceholder={ false } className={ style.iconradiogroup } >
+							<ICONRADIOGROUP checkedValue={ checkedValue } form="Form" label={ formatMessage( messages.select_material ) } name="material" options={ mats } onClick={ setMaterial } preferPlaceholder={ false } className={ style.iconradiogroup } >
 								{ " " }<SMALL><A onClick={ showDialog.bind( this, 'DEFINEMATERIAL' ) }>{ formatMessage( messages.define_material ) }</A></SMALL>
 							</ICONRADIOGROUP>
 							<FORMDATA />
@@ -241,6 +241,7 @@ form.propTypes = {
 
 	show: PropTypes.bool,
 	image: PropTypes.object,
+	checkedValue: PropTypes.string,
 	jazzSupported: PropTypes.bool,
 	materials: PropTypes.array,
 
