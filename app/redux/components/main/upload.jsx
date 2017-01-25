@@ -23,16 +23,6 @@ const messages = defineMessages( {
 		id: "uploadBtn_label",
 		description: "Label - ",
 		defaultMessage: "Upload"
-	},
-	shareBtn_title:{
-		id: "shareBtn_title",
-		description: "Title - ",
-		defaultMessage: "Tell a friend"
-	},
-	shareBtn_label:{
-		id: "shareBtn_label",
-		description: "Label - ",
-		defaultMessage: "Share"
 	}
 	
 } )

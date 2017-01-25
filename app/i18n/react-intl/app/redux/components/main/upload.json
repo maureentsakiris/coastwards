@@ -8,15 +8,5 @@
     "id": "uploadBtn_label",
     "description": "Label -",
     "defaultMessage": "Upload"
-  },
-  {
-    "id": "shareBtn_title",
-    "description": "Title -",
-    "defaultMessage": "Tell a friend"
-  },
-  {
-    "id": "shareBtn_label",
-    "description": "Label -",
-    "defaultMessage": "Share"
   }
 ]

@@ -24,7 +24,7 @@ const messages = defineMessages( {
 		defaultMessage: "WOHOO! Nice one! Your image was uploaded. Next one! :)"
 	},
 
-	upload_image_prompt:{
+	/*upload_image_prompt:{
 		id: "upload_image_prompt",
 		description: "Prompt - ",
 		defaultMessage: "Upload an image"
@@ -53,7 +53,7 @@ const messages = defineMessages( {
 		id: "just_browse",
 		description: "Prompt - ",
 		defaultMessage: "Just browse"
-	},
+	},*/
 
 	uploadBtn_title:{
 		id: "uploadBtn_title",

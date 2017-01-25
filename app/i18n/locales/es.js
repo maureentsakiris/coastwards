@@ -15,8 +15,8 @@ module.exports = {
 		'mail_ko': 'Ains, hubo un problema con enviar el mail. Inténtalo de nuevo!',
 
 		'other_questions': '... ??',
-		'other_questions_title': 'Lee las preguntas frequentes (en inglés, sorry)',
-		'send_me_yours': "Aquí es donde aún necesito tu ayuda. Dime tus preguntas para compilar esta sección de preguntas frequentes. Pincha en 'Tengo una duda!' para mandarme tu pregunta. Gracias!",
+		'other_questions_title': 'Lee las preguntas frecuentes (en inglés, sorry)',
+		'send_me_yours': "Aquí es donde aún necesito tu ayuda. Dime tus preguntas para compilar esta sección de preguntas frecuentes. Pincha en 'Tengo una duda!' para mandarme tu pregunta. Gracias!",
 
 		'any_picture': 'Cualquier foto?',
 		'any_picture_title': 'Una guía rápida',
@@ -46,13 +46,13 @@ module.exports = {
 
 		'who_are_you': "Quien es 'ciencia'?",
 		'who_are_you_title': 'Quienes somos',
-		'we_are': "Somos el {crslr} de la universidad de Kiel en Alemánia y este proyecto está subvencionado por el {future_ocean}. ",
+		'we_are': "Somos el {crslr} de la universidad de Kiel en Alemánia y este proyecto está subvencionado por el {future_ocean}.",
 		'more': 'Más',
 		'more_title': 'Más oficial...',
 		'nassos': 'Nassos es el jefe del grupo y profesor en la uni. El es griego, tiene dos hijos pequeños y su escritorio es un desastre.',
 		'claudia': 'Claudia es investigadora doctoral y la estrella prometadora que va a convertir tus imagenes en algo significativo. Es una preguntadona encantadora y ambiciosa. También se rie mucho.',
 		//'joern': 'Joern es el padre de 4 más relajado que existe y Postdoc en la Universidad de Kiel. Es súper alto con pelo hasta sus caderas y se agacha amablemente cuando habla con la gente.',
-		'me': 'Esa soy yo. Soy responsable de los errores de ortografia y cualquier otra cosa que no funcione en esta página web. También soy lo suficientemente loca por creer que la gente subirá fotos de costas para ayudar a la ciencia a estudiar la subida del mar. No me hagaís dar la vuelta a la sociedad y vivir en una cabaña en las montañas!',
+		'me': 'Esa soy yo. Soy responsable de los errores de ortografia y cualquier otra cosa que no funcione en esta página web. También soy lo suficientemente loca por creer que van a subir fotos de costas para ayudar a la ciencia a estudiar la subida del mar. No me hagan dar la vuelta a la sociedad y vivir en una cabaña en las montañas!',
 		'contact_here': 'Nos puedes contactar aquí',
 
 		'files_undefined': 'No se han seleccionado archivos',
@@ -167,6 +167,7 @@ module.exports = {
 
 		"accept_terms": "He leído los {terms} los acepto",
 		"terms": "términos",
+		
 		"terms_header": "Términos",
 		"terms_author": "Al subir la imágen confirmas tener los derechos de autor.",
 		"terms_cc0": "Al subir la imágen confirmas ceder los derechos de autor y dispones la imágen al dominio público bajo la licencia {license}.",

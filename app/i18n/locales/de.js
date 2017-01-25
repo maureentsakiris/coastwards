@@ -52,7 +52,7 @@ module.exports = {
 		'nassos': 'Nassos ist der Gruppenleiter und Professor an der Uni Kiel. Er ist Grieche, hat zwei kleine Jungs und sein Schreibtisch ist ein Desaster.',
 		'claudia': 'Claudia ist die vielversprechende Doktorandin, die deine Fotos in etwas Aufschlußreiches verwandeln wird. Sie ist eine zähe aber charmante Fragestellerin. Sie lacht auch sehr gerne und viel.',
 		'joern': 'Jörn',
-		'me': 'Das bin ich. Ich bin für alle Schreibfehler und alles andere auf dieser Webseite verantwortlich. Ich bin auch verrückt genug zu glauben, dass Leute Fotos hochladen werden, um ihre Küsten vor dem Meeresspiegelanstieg zu schützen. Bringt mich nicht dazu abseits der Zivilisation in einem Häuschen in den Bergen zu leben!',
+		'me': 'Das bin ich. Ich bin für alle Schreibfehler und alles andere was auf dieser Webseite nicht funktioniert verantwortlich. Ich bin auch verrückt genug zu glauben, dass Ihr Fotos hochladen werdet, um Eure Küsten vor dem Meeresspiegelanstieg zu schützen. Bringt mich nicht dazu abseits der Zivilisation in einem Häuschen in den Bergen zu leben!',
 		'contact_here': 'Du kannst uns hier erreichen',
 
 		'files_undefined': 'Es wurden keine Dateien ausgewählt',

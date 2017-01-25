@@ -10,36 +10,6 @@
     "defaultMessage": "WOHOO! Nice one! Your image was uploaded. Next one! :)"
   },
   {
-    "id": "upload_image_prompt",
-    "description": "Prompt -",
-    "defaultMessage": "Upload an image"
-  },
-  {
-    "id": "upload_image_prompt_title",
-    "description": "Title -",
-    "defaultMessage": "Choose an image from your device"
-  },
-  {
-    "id": "or",
-    "description": "Prompt -",
-    "defaultMessage": "or"
-  },
-  {
-    "id": "tell_friend",
-    "description": "Prompt -",
-    "defaultMessage": "tell a friend"
-  },
-  {
-    "id": "tell_friend_title",
-    "description": "-",
-    "defaultMessage": "Share this website with friends and family"
-  },
-  {
-    "id": "just_browse",
-    "description": "Prompt -",
-    "defaultMessage": "Just browse"
-  },
-  {
     "id": "uploadBtn_title",
     "description": "Title -",
     "defaultMessage": "Upload an image"
