@@ -45,12 +45,12 @@ const messages = defineMessages( {
 	nassos:{
 		id: "nassos",
 		description: "Team",
-		defaultMessage: "Nassos is the group leader and a professor at the University of Kiel. He's greek, has two little boys and his desk looks like hell."
+		defaultMessage: "Nassos is the group leader and a professor at the University of Kiel. He's Greek, has two little boys and his desk looks like hell."
 	},
 	claudia:{
 		id: "claudia",
 		description: "Team",
-		defaultMessage: "Claudia is a Doctoral Researcher and the rising star who will turn your images into something meaningful. She's a charming though questioner and eager to learn for herself. She's also always the first to laugh."
+		defaultMessage: "Claudia is a Doctoral Researcher and the rising star who will turn your images into something meaningful. She's a charming tough questioner and eager to learn for herself. She's also always the first to laugh."
 	},
 	/*joern:{
 		id: "joern",
@@ -108,7 +108,7 @@ const team = ( { intl, addSnackbarMessage } ) => {
 			<DIV className={ style.person }>
 				<IMG src="assets/team/maureen.jpg" alt="Maureen Tsakiris" />
 				<H priority={ 4 }>Maureen Tsakiris</H>
-				<P>{ formatMessage( messages.me ) } <A href="#" title={ formatMessage( messages.more_title ) } onClick={ addSnackbarMessage.bind( this, 'just_kidding' ) } >{ formatMessage( messages.more ) }</A></P>
+				<P>{ formatMessage( messages.me ) }</P>
 			</DIV>
 			<BR/>
 			<P><STRONG>{ formatMessage( messages.contact_here ) }:</STRONG> <A href="mailTo:go@coastwards.org" >go@coastwards.org</A></P> 
