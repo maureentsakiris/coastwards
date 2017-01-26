@@ -46,6 +46,8 @@ module.exports = {
 		//'joern': 'Joern es el padre de 4 más relajado que existe y Postdoc en la Universidad de Kiel. Es súper alto con pelo hasta sus caderas y se agacha amablemente cuando habla con la gente.',
 		'me': 'Esa soy yo. La responsable de los errores de ortografia y cualquier otra cosa que no funcione en esta página. ',
 		'contact_here': 'Contáctanos aquí',
+		'special_thanks': 'Agradecimientos especiales a',
+		'claudio': 'Por la traducción de este sitio web al Español',
 
 		'other_questions': '... ??',
 		'other_questions_title': 'Lee las preguntas más frecuentes',

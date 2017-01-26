@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react'
+import React/*, { PropTypes }*/ from 'react'
 import { defineMessages, injectIntl, intlShape, FormattedMessage } from 'react-intl'
 
 import TOGGLE from 'components/ui/toggle'
@@ -60,7 +60,7 @@ const messages = defineMessages( {
 	me:{
 		id: "me",
 		description: "Team",
-		defaultMessage: "That's me. I'm responsible for any typos or anything else that's wrong about this website. And I am crazy enough to believe that people will upload pictures to protect their coasts from sea-level rise. Don't make me turn my back on society and go live in a cabin in the mountains!"
+		defaultMessage: "That's me. I'm responsible for any typos or anything else that's wrong about this website."
 	},
 
 	//and
@@ -68,11 +68,21 @@ const messages = defineMessages( {
 		id: "contact_here",
 		description: "Contact",
 		defaultMessage: "Contact us here"
+	},
+	special_thanks:{
+		id: "special_thanks",
+		description: "H",
+		defaultMessage: "Special thanks to"
+	},
+	claudio:{
+		id: "claudio",
+		description:"P",
+		defaultMessage: "For translating this site into Spanish"
 	}
 
 } )
 
-const team = ( { intl, addSnackbarMessage } ) => {
+const team = ( { intl/*, addSnackbarMessage*/ } ) => {
 
 	const { formatMessage } = intl
 
@@ -113,6 +123,13 @@ const team = ( { intl, addSnackbarMessage } ) => {
 			<BR/>
 			<P><STRONG>{ formatMessage( messages.contact_here ) }:</STRONG> <A href="mailTo:go@coastwards.org" >go@coastwards.org</A></P> 
 
+			<BR/>
+			<TOGGLE id="Team" priority={ 5 } text={ formatMessage( messages.special_thanks ) } >
+
+				<P><A href="https://www.linkedin.com/in/claudio-molinari-4a9a472?trk=hp-identity-name" target="_blank">Claudio Molinari</A> - { formatMessage( messages.claudio ) }</P>
+
+			</TOGGLE>
+
 		</TOGGLE>
 
 	)
@@ -121,8 +138,8 @@ const team = ( { intl, addSnackbarMessage } ) => {
 
 team.propTypes = {
 
-	intl: intlShape.isRequired,
-	addSnackbarMessage: PropTypes.func
+	intl: intlShape.isRequired/*,
+	addSnackbarMessage: PropTypes.func*/
 
 }
 
