@@ -4,6 +4,10 @@ module.exports = {
 	messages: {
 		'help_science': 'Help Science study the risks of sea-level rise',
 		'no_account': 'No account. Just drag & drop.',
+		'we_know': '(we assume you have some)',
+
+		'project_by': 'A project by',
+		'imprint': 'Imprint',
 
 		'we_are': "We are the {crslr} at the University of Kiel in Germany and this project is funded by the {future_ocean}.",
 		"accept_terms": "I have read and accept the {terms}",

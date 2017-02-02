@@ -6,6 +6,7 @@ module.exports = {
 		'help_science': 'Ayuda a que la ciencia estudie el ascenso',
 		'by': 'del nivel del mar subiendo fotos de costas',
 		'no_account': 'No necesitas crear una cuenta',
+		'we_know': '(suponemos que las tengan)',
 
 		'nojazz_text': 'Hm. Parece que estás usando un navegador antiguo. Pero si cambias a uno moderno como Chrome, Firefox o Safari, la página funcionará MUUUCHO mejor. ¡Y podrás ver todas las fotos de costas que se han subido ya!',
 		'arrow_up_title': 'Volver al principio',
@@ -63,6 +64,9 @@ module.exports = {
 		'sending_mail': 'Paciencia... estamos enviando tu mail',
 		'mail_ok': '¡Enviado! ¡Gracias por preguntar!',
 		'mail_ko': 'Lo sentimos. Hubo un problema de envío. ¡Inténtalo de nuevo!',
+
+		'project_by': 'Un proyecto de',
+		'imprint': 'Imprenta',
 
 		'uploadBtn_title': 'Subir una imagen',
 		'uploadBtn_label': 'Subir',

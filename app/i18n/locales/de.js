@@ -3,6 +3,8 @@ module.exports = {
 	dir: 'ltr',
 	messages: {
 
+		'we_know': '(wir vermuten Ihr habt welche)',
+
 		'one_more_question': "Ich habe noch eine Frage!",
 		'one_more_question_title': 'Stelle sie uns!',
 		'label_email': 'Deine E-mail',
@@ -56,6 +58,9 @@ module.exports = {
 		'contact_here': 'Du kannst uns hier erreichen',
 		'special_thanks': 'Besonderer Dank an',
 		'claudio': 'Für die Übersetzung dieser Seite ins Spanische',
+
+		'project_by': 'Ein Projekt von',
+		'imprint': 'Impressum',
 
 		'files_undefined': 'Es wurden keine Dateien ausgewählt',
 		'wrong_filetype': 'Die ausgewählte Datei ist kein Foto. Bitte wähle eine Datei mit einem der folgenden Dateiendungen: jpg, jpeg, tif, tiff, gif o png',
