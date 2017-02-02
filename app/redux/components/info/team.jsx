@@ -104,7 +104,7 @@ const team = ( { intl/*, addSnackbarMessage*/ } ) => {
 					future_ocean: <a href="http://www.futureocean.org" target="_blank" title="Cluster of Excellence 'The Future Ocean'" >Cluster of Excellence "The Future Ocean"</a>
 				} }
 			/>
-			
+			<BR/><BR/><BR/>
 			<DIV className={ style.person }>
 				<IMG src="assets/team/nassos.jpg" alt="Athanasios Vafeidis" />
 				<H priority={ 4 }>Athanasios Vafeidis</H>
@@ -120,7 +120,7 @@ const team = ( { intl/*, addSnackbarMessage*/ } ) => {
 				<H priority={ 4 }>Maureen Tsakiris</H>
 				<P>{ formatMessage( messages.me ) }</P>
 			</DIV>
-			<BR/>
+			<BR/><BR/>
 			<P><STRONG>{ formatMessage( messages.contact_here ) }:</STRONG> <A href="mailTo:go@coastwards.org" >go@coastwards.org</A></P> 
 
 			<BR/>

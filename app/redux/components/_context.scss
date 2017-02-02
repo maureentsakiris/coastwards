@@ -147,20 +147,6 @@
 }
 
 
-/* .arrow{
-
-	@extend %arrow;
-
-}
-
-.arrowLight{
-
-	@extend %arrow;
-	color: #ebf2f7;
-
-} */
-
-
 .clip{
 
 	display: none;
@@ -189,18 +175,6 @@
 		padding: 14vh;
 
 	}
-
-	/* @include portraitMin( $tablet ){
-
-		min-height: auto;
-
-	}
-
-	@include landscapeMin( $tablet ){
-
-		min-height: auto;
-
-	} */
 
 }
 
@@ -244,6 +218,7 @@
 
 		min-width: 160px;
 		width: 250px;
+		margin-bottom: 1em;
 
 		@include portrait( ){
 
@@ -278,21 +253,9 @@
 		text-align: center;
 		font-weight: 300;
 
-		font-size: 22px;
+		font-size: 29px;
 
 		@extend %corset;
-
-		/* @include portrait( ){
-
-			font-size: 7vw;
-
-		}
-
-		@include landscape( ){
-
-			font-size: 4vw;
-
-		} */
 
 		@include portraitMin( $desktop ){
 
@@ -320,12 +283,31 @@
 
 	}
 
+	.comment{
+
+		text-align: center;
+		font-size: 24px;
+
+		@include portraitMin( $desktop ){
+
+			font-size: 28px;
+
+		}
+
+		@include landscapeMin( $desktop ){
+
+			font-size: 28px;
+
+		}
+
+	}
+
 	.tagline{
 
-		font-weight: 500;
+		font-weight: 200;
 		font-size: 14px;
 		text-align: center;
-		margin: 60px 0;
+		margin: 3em 0;
 
 		@include portraitMin( $desktop ){
 

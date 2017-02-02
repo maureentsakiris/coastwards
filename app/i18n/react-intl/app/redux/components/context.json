@@ -20,6 +20,11 @@
     "defaultMessage": "by uploading pictures of coasts"
   },
   {
+    "id": "we_know",
+    "description": "Main Header. Line three",
+    "defaultMessage": "(we know you have some)"
+  },
+  {
     "id": "no_account",
     "description": "Tagline. Informs user that creating an account is not necessary",
     "defaultMessage": "No account. Just drag & drop"
