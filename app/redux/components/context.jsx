@@ -29,6 +29,30 @@ import P from 'components/tags/p'
 
 import style from './_context'
 
+/*var wrap = document.getElementById( 'Scroll' )
+
+console.log( wrap )
+
+wrap.addEventListener( 'scroll', ( e ) => {
+
+	console.log( e )
+
+} )
+
+/*wrap.on( "scroll", function ( e ) {
+    
+	if ( this.scrollTop > 147 ) {
+
+		wrap.addClass( "fix-search" );
+	
+	} else {
+
+		wrap.removeClass( "fix-search" )
+
+	}
+
+} )*/
+
 
 const messages = defineMessages( {
 
@@ -42,6 +66,11 @@ const messages = defineMessages( {
 		id: "arrow_up_title",
 		description: "Title - ",
 		defaultMessage: "Show intro"
+	},
+	scroll_down:{
+		id: "scroll_down",
+		description: "Prompt",
+		defaultMessage: "Scroll down"
 	},
 
 	// INTRO
@@ -68,7 +97,7 @@ const messages = defineMessages( {
 
 } )
  
-const context = ( { intl, lang, dir, jazzSupported, clipped, useraction, unclipPage } ) => {
+const context = ( { intl, lang, dir, jazzSupported, clipped, useraction, unclipPage, scrollToId } ) => {
 
 	const { formatMessage } = intl
 
@@ -82,7 +111,8 @@ const context = ( { intl, lang, dir, jazzSupported, clipped, useraction, unclipP
 				<DIV id="Intro" className={ style.introNoJazz } >
 					<IMG src="./assets/coastwards.jpg" alt="Logo coastwards: A turtle on a mission" />
 					<H priority={ 1 } ><span>{ formatMessage( messages.help_science ) }</span> <span>{ formatMessage( messages.by ) }</span></H>
-					<H priority={ 2 } >{ formatMessage( messages.no_account ) }</H>
+					<H priority={ 2 } >{ formatMessage( messages.we_know ) }</H>
+					<H priority={ 3 } >{ formatMessage( messages.no_account ) }</H>
 				</DIV>
 				<DIV id="Info" className={ style.infoNoJazz } >
 					<How />
@@ -140,6 +170,7 @@ const context = ( { intl, lang, dir, jazzSupported, clipped, useraction, unclipP
 					<Ask />
 					<Logos />
 				</DIV>
+				<A onClick={ scrollToId.bind( this, 'Main' ) } className={ style.scrollDown }><I className="material-icons">&#xE313;</I></A>
 				<DIV id="Main" className={ style.main }>
 					<A onClick={ unclipPage.bind( this ) } className={ clsArrowMap } title={ formatMessage( messages.arrow_up_title ) } >
 						<I className="material-icons">&#xE316;</I>
@@ -165,7 +196,8 @@ context.propTypes = {
 	clipped: PropTypes.bool,
 	useraction: PropTypes.string,
 
-	unclipPage: PropTypes.func
+	unclipPage: PropTypes.func,
+	scrollToId: PropTypes.func
 
 }
 

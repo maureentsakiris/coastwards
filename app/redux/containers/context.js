@@ -1,5 +1,6 @@
 import { connect } from 'react-redux'
 import CONTEXT from 'components/context'
+import { scrollToId } from 'actions/context'
 import { unclipPage } from 'actions/main/main'
 
 
@@ -28,6 +29,11 @@ const mapDispatchToProps = ( dispatch ) => {
 
 			e.preventDefault()
 			dispatch( unclipPage( e ) )
+
+		},
+		scrollToId:( id, e ) => {
+
+			dispatch( scrollToId( id, e ) )
 
 		}
 

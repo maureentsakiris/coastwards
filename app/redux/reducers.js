@@ -6,6 +6,7 @@ import mapboxgl from 'mapbox-gl/dist/mapbox-gl.js'
 
 import materials from 'config'
 
+
 Modernizr.addTest( 'draganddrop', function () {
 
 	var div = document.createElement( 'div' )
