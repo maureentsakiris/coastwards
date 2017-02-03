@@ -67,13 +67,33 @@
 	align-items: center;
     flex-direction: column;
     align-content: center;
+    padding: 2em 0 0 0;
 
     i{
 
-    	font-size: 112px;
+    	font-size: 72px;
 
     }
-    padding: 2em 0 0 0;
+
+    @include landscapeMin( $tablet ){
+
+    	i{
+
+    		font-size: 112px;
+
+    	}
+
+    }
+
+    @include portraitMin( $tablet ){
+
+    	i{
+
+    		font-size: 112px;
+
+    	}
+
+    }
 
 }
 

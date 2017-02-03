@@ -2,7 +2,6 @@ import * as types from 'types'
 import { promiseType, promiseEXIF, promiseMinimumBoxDimensions, promiseCanvasBoxResize, promiseLocation/*, promiseDateTime*/ } from 'actions/util/image'
 import { addSnackbarMessage } from 'actions/ui/snackbar'
 import { promiseDataURLtoBlob } from 'actions/util/form'
-import { scrollToId } from 'actions/context'
 import { promiseXHR } from 'actions/util/request/xhr'
 import { fly, resetMap, hidePopup, switchModus, dropMarker, trackZoom } from 'actions/main/mapbox'
 import uuid from 'uuid'
@@ -590,7 +589,7 @@ export const clipPage = ( ) => {
 
 }
 
-export const unclipPage = ( e ) => {
+export const unclipPage = ( ) => {
 
 	return function ( dispatch, getState ){
 
@@ -607,11 +606,6 @@ export const unclipPage = ( e ) => {
 		dispatch( hidePopup() )
 		dispatch( { type: 'UNCLIP_PAGE' } )
 		dispatch( { type: types.SET_USER_ACTION, to: 'prompt' } )
-
-		scrollToId( 'Intro', e )
-
-		/*window.location.href = '#Main'
-		scrollToId( 'Info', e )*/
 
 	}
 

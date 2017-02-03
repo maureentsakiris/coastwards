@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import CONTEXT from 'components/context'
-import { scrollToId } from 'actions/context'
+//import { scrollToId } from 'actions/context'
 import { unclipPage } from 'actions/main/main'
 
 
@@ -31,9 +31,11 @@ const mapDispatchToProps = ( dispatch ) => {
 			dispatch( unclipPage( e ) )
 
 		},
-		scrollToId:( id, e ) => {
+		scrollToMap:( e ) => {
 
-			dispatch( scrollToId( id, e ) )
+			e.preventDefault()
+			let div = document.getElementById( 'Main' )
+			div.scrollIntoView( { behavior: 'smooth' } )
 
 		}
 
