@@ -55,6 +55,16 @@
     "defaultMessage": "Not sure"
   },
   {
+    "id": "comment",
+    "description": "Label -",
+    "defaultMessage": "Leave us a comment!"
+  },
+  {
+    "id": "comment_placeholder",
+    "description": "Placeholder -",
+    "defaultMessage": "Tell us, how did this coast change in recent years...?"
+  },
+  {
     "id": "upload_image",
     "description": "Button label - Prompts the user to upload the image",
     "defaultMessage": "UPLOAD"

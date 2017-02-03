@@ -5,7 +5,6 @@ import { defineMessages, injectIntl, intlShape } from 'react-intl'
 import TOGGLE from 'components/ui/toggle'
 import DIV from 'components/tags/div'
 import P from 'components/tags/p'
-import BR from 'components/tags/br'
 
 import style from './_how'
 

@@ -165,7 +165,7 @@ const context = ( { intl, lang, dir, jazzSupported, clipped, useraction, unclipP
 					<Ask />
 					<Logos />
 				</DIV>
-				<A onClick={ scrollToMap } className={ style.scrollDown }><I className="material-icons">&#xE313;</I></A>
+				<DIV className={ style.scrollDown } ><A onClick={ scrollToMap } ><I className="material-icons">&#xE313;</I></A></DIV>
 				<DIV id="Main" className={ style.main }>
 					<A onClick={ unclipPage.bind( this ) } className={ clsArrowMap } title={ formatMessage( messages.arrow_up_title ) } >
 						<I className="material-icons">&#xE316;</I>

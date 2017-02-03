@@ -60,7 +60,10 @@ module.exports = {
 		'claudio': 'Für die Übersetzung dieser Seite ins Spanische',
 
 		'project_by': 'Ein Projekt von',
+		'legal_notice': 'Impressum',
 		'imprint': 'Impressum',
+		'disclaimer': 'Rechtliche Hinweise zur Haftung',
+		'privacy_policy': 'Datenschutzerklärung',
 
 		'files_undefined': 'Es wurden keine Dateien ausgewählt',
 		'wrong_filetype': 'Die ausgewählte Datei ist kein Foto. Bitte wähle eine Datei mit einem der folgenden Dateiendungen: jpg, jpeg, tif, tiff, gif o png',
@@ -79,6 +82,9 @@ module.exports = {
 		'hurray': 'Super! Dein Foto kann jetzt hochgeladen werden. Nur noch eine kleine Frage ...',
 		'select_material': 'Wie würdest Du das Küstenmaterial beschreiben?',
 		'define_material': "(Was meinst du mit 'Küstenmaterial'?)",
+		'comment': "Hinterlasse uns einen Kommentar!",
+		'comment_placeholder': 'Erzähle uns etwas über diese Küste ...',
+
 		'sand': 'Sand',
 		'pebble': 'Steine',
 		'rock': 'Felsen',
@@ -174,11 +180,14 @@ module.exports = {
 
 		"accept_terms": "Ich habe die {terms} gelesen und akzeptiere sie",
 		"terms": "Bedingungen",
-		"terms_header": "Bedingungen",
-		"terms_author": "Beim Hochladen des Fotos bestätigen Sie das alleinige Urheberrecht dieses Fotos zu besitzen.",
-		"terms_cc0": "Beim Hochladen des Fotos verzichten Sie auf das Urheberrecht und stellen das Foto in die öffentliche Domäne unter der {license} Lizenz.",
+		"terms_header": "Teilnahmebedingungen",
+		"terms_author": "Durch das Hochladen des Fotos bestätigen Sie das alleinige Urheberrecht an diesem Fotos zu besitzen.",
+		"terms_cc0": "Durch das Hochladen des Fotos verzichten Sie auf Ihr Urheberrecht und stellen das Foto in die öffentliche Domäne unter der {license} Lizenz.",
 		"license": "Creative Commons CC0 1.0 Universell (CC0 1.0) Public Domain Dedication",
-		"http_license": "https://creativecommons.org/publicdomain/zero/1.0/deed.de"
+		"http_license": "https://creativecommons.org/publicdomain/zero/1.0/deed.de",
+		"honor_privacy": "Durch das Hochladen des Fotos bestätigen Sie, dass keine personenbezogenen Inhalte enthalten sind.",
+		"warning_notice": "Warnhinweis zur Teilnahme",
+		"no_liablility": "Die Haftung der Universität wird auf Vorsatz und grobe Fahrlässigkeit beschränkt. Für Personen Körperschäden gelten die gesetzlichen Regelungen.",
 
 
 	}

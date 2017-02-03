@@ -16,8 +16,8 @@ const messages = defineMessages( {
 		defaultMessage: "A project by"
 	},
 
-	imprint:{
-		id: "imprint",
+	legal_notice:{
+		id: "legal_notice",
 		description: "A - ",
 		defaultMessage: "Imprint"
 	},
@@ -31,7 +31,7 @@ const logos = ( { intl, showDialog } ) => {
 	return(
 
 		<DIV className={ style.logos }>
-			<P>{ formatMessage( messages.project_by ) } | <A className={ style.imprint } href="#" onClick={ showDialog.bind( this, 'IMPRINT' ) }>{ formatMessage( messages.imprint ) }</A></P>
+			<P>{ formatMessage( messages.project_by ) } | <A className={ style.imprint } href="#" onClick={ showDialog.bind( this, 'IMPRINT' ) }>{ formatMessage( messages.legal_notice ) }</A></P>
 			<P>
 				<A target="_blank" href="http://www.futureocean.org"><IMG src="assets/Cluster-of-Excellence-The-Future-Ocean.jpg" alt="Cluster of Excellence The Future Ocean" /></A>
 				<A target="_blank" href="https://www.uni-kiel.de"><IMG src="assets/Christian-Albrechts-Universitat-zu-Kiel.png" alt="Christian Albrechts Universität zu Kiel" /></A>

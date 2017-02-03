@@ -9,6 +9,7 @@ import DIV from 'components/tags/div'
 import A from 'components/tags/a'
 import I from 'components/tags/i'
 import P from 'components/tags/p'
+/*import SPAN from 'components/tags/span'*/
 
 import style from './_popup'
 
@@ -106,6 +107,8 @@ class popup extends Component {
 			const mat = feature.properties.material ? feature.properties.material : ''
 			const material = _.findWhere( materials, { value: mat } )
 			const color = material.color
+
+			/*<SPAN>{ feature.properties.comment }</SPAN>*/
 
 			return(
 

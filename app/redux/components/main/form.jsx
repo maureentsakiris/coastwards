@@ -14,6 +14,7 @@ import A from 'components/tags/a'
 
 import RADIOGROUP from 'components/form/radiogroup/radiogroup'
 import ICONRADIOGROUP from 'components/form/radiogroup/iconradiogroup'
+import COMMENT from 'components/form/input/comment'
 import CANCEL from 'components/form/button/cancel'
 import GO from 'components/form/button/go'
 
@@ -86,6 +87,19 @@ const messages = defineMessages( {
 		defaultMessage: "Not sure"
 	},
 
+	//comment
+
+	comment:{
+		id: "comment",
+		description: "Label - ",
+		defaultMessage: "Leave us a comment!"
+	},
+	comment_placeholder:{
+		id: "comment_placeholder",
+		description: "Placeholder - ",
+		defaultMessage: "Tell us, how did this coast change in recent years...?"
+	},
+
 	//upload
 	upload_image:{
 		id: "upload_image",
@@ -110,7 +124,7 @@ const messages = defineMessages( {
 
 } )
 
-const form = ( { intl, className, show, image, checkedValue, jazzSupported, materials, setMaterial, uploadImage, resetMain, showDialog, addSnackbarMessage } ) => {
+const form = ( { intl, className, show, image, checkedValue, jazzSupported, materials, setMaterial, setComment, uploadImage, resetMain, showDialog, addSnackbarMessage } ) => {
 
 	const { formatMessage } = intl
 
@@ -151,6 +165,8 @@ const form = ( { intl, className, show, image, checkedValue, jazzSupported, mate
 					{ " " }<SMALL><A onClick={ showDialog.bind( this, 'DEFINEMATERIAL' ) }>{ formatMessage( messages.define_material ) }</A></SMALL>
 				</RADIOGROUP>
 				<BR/><BR/>
+				<COMMENT className={ style.comment } form="Form" label={ formatMessage( messages.comment ) }  preferPlaceholder={ false } placeholder={ formatMessage( messages.comment_placeholder ) } name="comment" onChange={ setComment } />
+				<BR/><BR/>
 				<FORMDATA />
 				<BR/><BR/>
 				<span>
@@ -189,6 +205,7 @@ const form = ( { intl, className, show, image, checkedValue, jazzSupported, mate
 							<ICONRADIOGROUP checkedValue={ checkedValue } form="Form" label={ formatMessage( messages.select_material ) } name="material" options={ mats } onClick={ setMaterial } preferPlaceholder={ false } className={ style.iconradiogroup } >
 								{ " " }<SMALL><A onClick={ showDialog.bind( this, 'DEFINEMATERIAL' ) }>{ formatMessage( messages.define_material ) }</A></SMALL>
 							</ICONRADIOGROUP>
+							<COMMENT className={ style.comment } form="Form" label={ formatMessage( messages.comment ) }  preferPlaceholder={ false } placeholder={ formatMessage( messages.comment_placeholder ) } name="comment" onChange={ setComment } />
 							<FORMDATA />
 						</DIV>
 					</DIV>
@@ -246,6 +263,7 @@ form.propTypes = {
 	materials: PropTypes.array,
 
 	setMaterial: PropTypes.func,
+	setComment: PropTypes.func,
 	uploadImage: PropTypes.func,
 	resetMain: PropTypes.func,
 	showDialog: PropTypes.func,

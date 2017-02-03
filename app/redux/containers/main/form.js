@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { addSnackbarMessage } from 'actions/ui/snackbar'
-import { setMaterial, uploadImage, resetMain } from 'actions/main/main'
+import { setMaterial, setComment, uploadImage, resetMain } from 'actions/main/main'
 import { showDialog } from 'actions/ui/dialog'
 import FORM from 'components/main/form'
 
@@ -26,6 +26,11 @@ const mapDispatchToProps = ( dispatch ) => {
 		setMaterial: ( e ) => {
 
 			dispatch( setMaterial( e ) )
+
+		},
+		setComment: ( e ) => {
+
+			dispatch( setComment( e ) )
 
 		},
 		uploadImage: ( e ) => {

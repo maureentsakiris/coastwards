@@ -66,7 +66,10 @@ module.exports = {
 		'mail_ko': 'Lo sentimos. Hubo un problema de envío. ¡Inténtalo de nuevo!',
 
 		'project_by': 'Un proyecto de',
+		'legal_notice': 'Aviso legal',
 		'imprint': 'Imprenta',
+		'disclaimer': 'Renuncia',
+		'privacy_policy': 'Política de privacidad',
 
 		'uploadBtn_title': 'Subir una imagen',
 		'uploadBtn_label': 'Subir',
@@ -92,6 +95,9 @@ module.exports = {
 		'hurray': '¡Genial! Tu imágen está lista para subirse. Una preguntita más ...',
 		'select_material': '¿Cómo describirías el material de costa?',
 		'define_material': "(¿Qué quiere decir 'material de la costa'?)",
+		'comment': "¡Déjanos un comentario!",
+		'comment_placeholder': 'Cuéntanos algo sobre esta costa ...',
+
 		'sand': 'Arena',
 		'pebble': 'Piedrecitas',
 		'rock': 'Roca',
@@ -155,10 +161,14 @@ module.exports = {
 		"share_text_but": "Pero todos sabemos como funcionan las redes sociales. Si realmente quieres contactar con alguien, lo más efectivo sigue siendo hablan con esa persona.",
 
 		"terms_header": "Términos",
-		"terms_author": "Al subir la imágen está confirmando tener los derechos de autor.",
+		"terms_author": "Al subir la imágen confirmas tener los derechos de autor.",
 		"terms_cc0": "Al subir la imágen confirmas que cedes los derechos de autor y colocas la imágen en el dominio público bajo la licencia {license}.",
 		"license": "Creative Commons CC0 1.0 Universal (CC0 1.0) Ofrecimiento al Dominio Público",
 		"http_license": "https://creativecommons.org/publicdomain/zero/1.0/deed.es_ES",
+		"honor_privacy": "Al subir la imágen confirmas que no contiene información personal.",
+		"warning_notice": "Aviso legal",
+		"no_liablility": "Die Haftung der Universität wird auf Vorsatz und grobe Fahrlässigkeit beschränkt. Für Personen Körperschäden gelten die gesetzlichen Regelungen.",
+
 
 		'whyIP_header': '¿Porque es necesario conocer mi dirección IP?',
 		'whyIP_text': 'Tenemos que poder demostrar que no suministramos las imagenes. Básicamente nos estamos cubriendo la espalda. Sólo indicaremos tu dirección IP, no a ti.',

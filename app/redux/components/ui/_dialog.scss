@@ -15,8 +15,7 @@
 	&>div{
 
 		@extend %corset;
-		padding: $site-padding-sides;
-		padding-bottom: $site-padding-bottom;
+		padding: 5% 1em 10% 1em;
 
 		&>a{
 
