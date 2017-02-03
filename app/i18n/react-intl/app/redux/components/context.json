@@ -10,11 +10,6 @@
     "defaultMessage": "Show intro"
   },
   {
-    "id": "scroll_down",
-    "description": "Prompt",
-    "defaultMessage": "Scroll down"
-  },
-  {
     "id": "help_science",
     "description": "Main Header. Line one",
     "defaultMessage": "Help Science study the risks of sea-level rise"

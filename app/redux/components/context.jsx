@@ -67,11 +67,6 @@ const messages = defineMessages( {
 		description: "Title - ",
 		defaultMessage: "Show intro"
 	},
-	scroll_down:{
-		id: "scroll_down",
-		description: "Prompt",
-		defaultMessage: "Scroll down"
-	},
 
 	// INTRO
 	help_science:{
