@@ -166,9 +166,6 @@ module.exports = {
 		"license": "Creative Commons CC0 1.0 Universal (CC0 1.0) Ofrecimiento al Dominio Público",
 		"http_license": "https://creativecommons.org/publicdomain/zero/1.0/deed.es_ES",
 		"honor_privacy": "Al subir la imágen confirmas que no contiene información personal.",
-		"warning_notice": "Aviso legal",
-		"no_liablility": "Die Haftung der Universität wird auf Vorsatz und grobe Fahrlässigkeit beschränkt. Für Personen Körperschäden gelten die gesetzlichen Regelungen.",
-
 
 		'whyIP_header': '¿Porque es necesario conocer mi dirección IP?',
 		'whyIP_text': 'Tenemos que poder demostrar que no suministramos las imagenes. Básicamente nos estamos cubriendo la espalda. Sólo indicaremos tu dirección IP, no a ti.',

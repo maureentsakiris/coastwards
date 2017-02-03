@@ -185,10 +185,7 @@ module.exports = {
 		"terms_cc0": "Durch das Hochladen des Fotos verzichten Sie auf Ihr Urheberrecht und stellen das Foto in die öffentliche Domäne unter der {license} Lizenz.",
 		"license": "Creative Commons CC0 1.0 Universell (CC0 1.0) Public Domain Dedication",
 		"http_license": "https://creativecommons.org/publicdomain/zero/1.0/deed.de",
-		"honor_privacy": "Durch das Hochladen des Fotos bestätigen Sie, dass keine personenbezogenen Inhalte enthalten sind.",
-		"warning_notice": "Warnhinweis zur Teilnahme",
-		"no_liablility": "Die Haftung der Universität wird auf Vorsatz und grobe Fahrlässigkeit beschränkt. Für Personen Körperschäden gelten die gesetzlichen Regelungen.",
-
-
+		"honor_privacy": "Durch das Hochladen des Fotos bestätigen Sie, dass keine personenbezogenen Inhalte enthalten sind."
+		
 	}
 };

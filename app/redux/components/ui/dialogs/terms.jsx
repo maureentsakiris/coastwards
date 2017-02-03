@@ -41,16 +41,6 @@ const messages = defineMessages( {
 		id: "honor_privacy",
 		description: "P - ",
 		defaultMessage: "By uploading this image you confirm that it does not contain any personal data."
-	},
-	warning_notice:{
-		id: "warning_notice",
-		description: "H - ",
-		defaultMessage: "Warning notice"
-	},
-	no_liability:{
-		id: "no_liability",
-		description: "P - ",
-		defaultMessage: "Die Haftung der Universität wird auf Vorsatz und grobe Fahrlässigkeit beschränkt. Für Personen Körperschäden gelten die gesetzlichen Regelungen."
 	}
 
  
