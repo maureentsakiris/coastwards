@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react'
 import { defineMessages, injectIntl, intlShape } from 'react-intl'
+import 'actions/ui/scroll'
 /*import { scrollToId } from 'actions/context'*/
 import Classnames from 'classnames'
 
@@ -28,30 +29,6 @@ import IMG from 'components/tags/img'
 import P from 'components/tags/p'
 
 import style from './_context'
-
-/*var wrap = document.getElementById( 'Scroll' )
-
-console.log( wrap )
-
-wrap.addEventListener( 'scroll', ( e ) => {
-
-	console.log( e )
-
-} )
-
-/*wrap.on( "scroll", function ( e ) {
-    
-	if ( this.scrollTop > 147 ) {
-
-		wrap.addClass( "fix-search" );
-	
-	} else {
-
-		wrap.removeClass( "fix-search" )
-
-	}
-
-} )*/
 
 
 const messages = defineMessages( {
@@ -92,7 +69,7 @@ const messages = defineMessages( {
 
 } )
  
-const context = ( { intl, lang, dir, jazzSupported, clipped, useraction, unclipPage, scrollToId } ) => {
+const context = ( { intl, lang, dir, jazzSupported, clipped, useraction, scrollY, unclipPage, scrollToMain } ) => {
 
 	const { formatMessage } = intl
 
@@ -132,18 +109,39 @@ const context = ( { intl, lang, dir, jazzSupported, clipped, useraction, unclipP
 
 		} )
 
-		let clsInfo = Classnames( style.info, {
-
-			[ style.clip ]: clipped
-
-		} )
-
 		const clsArrowMap = Classnames( style.arrow, style.arrowMap, {
 
 			[ style.fixed ]: clipped,
 			[ style.hidden ]: useraction == 'uploading'
 
 		} )
+
+		let clsScroll = style.scrollDown
+
+		let clsInfo = Classnames( style.info, {
+
+			[ style.clip ]: clipped 
+
+		} )
+
+		if( document.getElementById( 'Main' ) ){
+
+			let unfix = scrollY + window.innerHeight >= document.getElementById( 'Intro' ).offsetHeight + document.getElementById( 'Info' ).offsetHeight + document.getElementById( 'Scroll' ).offsetHeight
+
+			clsScroll = Classnames( style.scrollDown, {
+
+				[ style.unfix ]: unfix
+
+			} )
+
+			clsInfo = Classnames( style.info, {
+
+				[ style.clip ]: clipped,
+				[ style.unfix ]: unfix
+
+			} )
+
+		}
 
 		//<i class="material-icons">&#xE836;</i> &#xE86C;
 
@@ -165,7 +163,7 @@ const context = ( { intl, lang, dir, jazzSupported, clipped, useraction, unclipP
 					<Ask />
 					<Logos />
 				</DIV>
-				<A onClick={ scrollToId.bind( this, 'Main' ) } className={ style.scrollDown }><I className="material-icons">&#xE313;</I></A>
+				<A id="Scroll" onClick={ scrollToMain } className={ clsScroll }><I className="material-icons">&#xE313;</I></A>
 				<DIV id="Main" className={ style.main }>
 					<A onClick={ unclipPage.bind( this ) } className={ clsArrowMap } title={ formatMessage( messages.arrow_up_title ) } >
 						<I className="material-icons">&#xE316;</I>
@@ -190,9 +188,10 @@ context.propTypes = {
 	jazzSupported: PropTypes.bool,
 	clipped: PropTypes.bool,
 	useraction: PropTypes.string,
+	scrollY: PropTypes.number,
 
 	unclipPage: PropTypes.func,
-	scrollToId: PropTypes.func
+	scrollToMain: PropTypes.func
 
 }
 

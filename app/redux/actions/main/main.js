@@ -590,7 +590,7 @@ export const clipPage = ( ) => {
 
 }
 
-export const unclipPage = ( e ) => {
+export const unclipPage = ( ) => {
 
 	return function ( dispatch, getState ){
 
@@ -608,10 +608,7 @@ export const unclipPage = ( e ) => {
 		dispatch( { type: 'UNCLIP_PAGE' } )
 		dispatch( { type: types.SET_USER_ACTION, to: 'prompt' } )
 
-		scrollToId( 'Intro', e )
-
-		/*window.location.href = '#Main'
-		scrollToId( 'Info', e )*/
+		scrollToId( 'Intro' )
 
 	}
 

@@ -15,7 +15,8 @@ const mapStateToProps = ( state ) => {
 		dir: dir,
 		jazzSupported: jazzSupported,
 		clipped: state.clipped,
-		useraction: state.useraction
+		useraction: state.useraction,
+		scrollY: state.scroll.y
 
 	}
 
@@ -28,12 +29,12 @@ const mapDispatchToProps = ( dispatch ) => {
 		unclipPage: ( e ) => {
 
 			e.preventDefault()
-			dispatch( unclipPage( e ) )
+			dispatch( unclipPage() )
 
 		},
-		scrollToId:( id, e ) => {
+		scrollToMain: ( ) => {
 
-			dispatch( scrollToId( id, e ) )
+			dispatch( scrollToId( 'Main' ) )
 
 		}
 

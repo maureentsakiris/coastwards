@@ -10,7 +10,7 @@ const a = ( { hocProps } ) => {
 
 	return(
 
-		<a href="#" { ...allowedProps } >{ children }</a>
+		<a { ...allowedProps } >{ children }</a>
 
 	)
 

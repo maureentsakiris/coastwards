@@ -1,9 +1,12 @@
 /*import * as types from 'types'*/
 
-export function scrollToId ( id, e ){
+export function scrollToId ( id ){
 
-	e.preventDefault()
-	let div = document.getElementById( id )
-	div.scrollIntoView( { behavior: 'smooth' } )
+	return function (){
+
+		let div = document.getElementById( id )
+		div.scrollIntoView( { behavior: 'smooth' } )
+
+	}
 
 }

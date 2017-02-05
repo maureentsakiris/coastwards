@@ -15,7 +15,7 @@ const i18nLinks = ( { children, className, active, hrefLang, onClick } ) => {
 
 	return (
 
-		<A className={ cls } hrefLang={ hrefLang } onClick={ onClick } href="#" >{ children }</A>
+		<A className={ cls } hrefLang={ hrefLang } onClick={ onClick } >{ children }</A>
 
 	)	
 

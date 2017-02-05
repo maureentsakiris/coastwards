@@ -13,7 +13,7 @@ const close = ( { className, onClick, title } ) => {
 
 	return(
 
-		<A href="#" className={ className } onClick={ onClick } title={ title } ><I className={ clsIcon } >&#xE5CD;</I></A>
+		<A className={ className } onClick={ onClick } title={ title } ><I className={ clsIcon } >&#xE5CD;</I></A>
 
 	)
 	

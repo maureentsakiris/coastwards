@@ -9,6 +9,7 @@ require( 'smoothscroll-polyfill' ).polyfill()
 
 import coastwards from 'reducers'
 import { loadLanguage } from 'actions/i18n/i18n'
+import { setScrollY } from 'actions/ui/scroll'
 
 import I18nProvider from 'containers/i18n/i18nProvider'
 import Context from 'containers/context'
@@ -42,6 +43,12 @@ if ( module.hot ) {
 const [ navigatorLocale ] = window.navigator.language.split ( '-' )
 const negotiatedLocale = document.documentElement.getAttribute( 'lang' )
 store.dispatch( loadLanguage( negotiatedLocale || navigatorLocale ) )
+
+window.addEventListener( 'scroll', ( ) => {
+
+	store.dispatch( setScrollY( window.scrollY ) )
+
+} ) 
 
 ReactDom.render( 
 
