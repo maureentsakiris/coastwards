@@ -191,7 +191,8 @@ module.exports = {
 		"report_header": "Haz un informe acerca esta imágen",
 		"report_text": "Aquí tienes la oportunidad de enviar un informe acerca esta imágen para que se quite del sitio web.",
 		"label_report_comment": "Comentario",
-		"placeholder_report_comment": "Planteanos porque se debe quitar esta imágen del sitio web..."
+		"placeholder_report_comment": "Planteanos porque se debe quitar esta imágen del sitio web...",
+		"report_ok": "Tu informe ha sido enviado!"
 
 
 	}

@@ -584,7 +584,7 @@ export const clipPage = ( ) => {
 
 		dispatch( { type: 'CLIP_PAGE' } )
 		dispatch( scrollToMap() )
-		window.dispatchEvent( new Event( 'resize' ) )
+		//window.dispatchEvent( new Event( 'resize' ) )
 
 	}
 

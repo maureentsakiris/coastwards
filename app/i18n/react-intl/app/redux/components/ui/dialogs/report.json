@@ -40,9 +40,9 @@
     "defaultMessage": "Just a sec ... sending mail"
   },
   {
-    "id": "mail_ok",
+    "id": "report_ok",
     "description": "Status -",
-    "defaultMessage": "Email sent, thanks for asking!"
+    "defaultMessage": "Your report has been sent!"
   },
   {
     "id": "mail_ko",

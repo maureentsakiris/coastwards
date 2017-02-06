@@ -63,7 +63,7 @@ const actions = ( { intl, hide, openInput, showDialog } ) => {
 				<P>{ formatMessage( messages.uploadBtn_label ) }</P>
 			</DIV>
 			<DIV className={ style.browseBtn }>
-				<BUTTON onClick={ hide } title={ formatMessage( messages.browseBtn_title ) }><I className="material-icons">&#xE417;</I></BUTTON>
+				<BUTTON onClick={ hide.bind( this ) } title={ formatMessage( messages.browseBtn_title ) }><I className="material-icons">&#xE417;</I></BUTTON>
 				<P>{ formatMessage( messages.browseBtn_label ) }</P>
 			</DIV>
 		</DIV>

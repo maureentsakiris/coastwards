@@ -67,10 +67,10 @@ const messages = defineMessages( {
 		description: "Status - ",
 		defaultMessage: "Just a sec ... sending mail"
 	},
-	mail_ok:{
-		id: "mail_ok",
+	report_ok:{
+		id: "report_ok",
 		description: "Status - ",
-		defaultMessage: "Email sent, thanks for asking!"
+		defaultMessage: "Your report has been sent!"
 	},
 	mail_ko:{
 		id: "mail_ko",
@@ -172,7 +172,7 @@ class report extends Component {
 
 			if( response == 'OK' ){
 
-				this.setState( { status: 'mail_ok', sending: false } )
+				this.setState( { status: 'report_ok', sending: false } )
 
 			}else{
 
