@@ -56,6 +56,17 @@ const messages = defineMessages( {
 		id: "notdefined",
 		description: "Material",
 		defaultMessage: "Not set yet"
+	},
+
+	close_popup:{
+		id: "close_popup",
+		description: "Title - ",
+		defaultMessage: "Close popup"
+	},
+	report_image:{
+		id: "report_image",
+		description: "Title - ",
+		defaultMessage: "Report image"
 	}
 
 
@@ -72,7 +83,7 @@ class popup extends Component {
 		materials: PropTypes.array,
 
 		hidePopup: PropTypes.func,
-		addSnackbarMessage: PropTypes.func
+		showDialog: PropTypes.func
 
 	}
 
@@ -92,7 +103,7 @@ class popup extends Component {
 	render () {
 
 		const { formatMessage } = this.props.intl
-		const { feature, materials, hidePopup } = this.props
+		const { feature, materials, hidePopup, showDialog } = this.props
 
 		if( !feature.properties ){
 
@@ -116,8 +127,11 @@ class popup extends Component {
 					<DIV className={ style.top } style={ { backgroundImage: 'url(' + feature.properties.image +')' } } />
 					<DIV className={ style.actions }>
 						{ mat != '' && <P className={ style.label } style={ { backgroundColor: color } } >{ formatMessage( messages[ mat ] ) }</P> }
-						<A onClick={ hidePopup } className={ style.clear } >
+						<A onClick={ hidePopup } className={ style.close } title={ formatMessage( messages.close_popup ) } >
 							<I className="material-icons">clear</I>
+						</A>
+						<A onClick={ showDialog.bind( this, 'REPORT' ) } className={ style.report } title={ formatMessage( messages.report_image ) } >
+							<I className="material-icons">report_problem</I>
 						</A>
 					</DIV>
 				</DIV>
@@ -125,13 +139,6 @@ class popup extends Component {
 			)
 
 		}
-
-	}
-
-	_oops = ( e ) => {
-
-		const { addSnackbarMessage } = this.props;
-		addSnackbarMessage( 'oops', e )
 
 	}
 

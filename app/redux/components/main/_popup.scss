@@ -84,8 +84,21 @@ $action-height: 45px;
 
 }
 
+.report{
 
-.clear{
+	float: right;
+	margin-right: 0.5em;
+	opacity: 0.5;
+
+	&:hover{
+
+		opacity: 1;
+
+	}
+
+}
+
+.close{
 
 	float: right;
 

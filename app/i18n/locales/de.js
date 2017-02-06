@@ -92,6 +92,11 @@ module.exports = {
 		'manmade': 'Von Menschen gemacht',
 		'ice': 'Eis',
 		'notsure': 'Nicht sicher',
+		'notdefined': 'Ohne Angabe',
+
+		'close_popup': 'Popup schließen',
+		'report_image': 'Dieses Foto melden',
+
 		'upload_image': 'Hochladen',
 		'cancel_upload': 'Abbrechen',
 
@@ -122,8 +127,6 @@ module.exports = {
 		'switch_to_vector': 'Zur Kartenansicht',
 		'cancel': 'Abbrechen',
 		'continue': 'Fortfahren',
-
-		'notdefined': 'Unbestimmt',
 
 		'select_file': 'Hast Du Fotos von Küsten? Warum nicht jetzt hochladen?',
 		'upload_ok': 'Yeah! Dein Foto wurde hochgelanden! Noch eins!! :)',
@@ -185,7 +188,12 @@ module.exports = {
 		"terms_cc0": "Durch das Hochladen des Fotos verzichten Sie auf Ihr Urheberrecht und stellen das Foto in die öffentliche Domäne unter der {license} Lizenz.",
 		"license": "Creative Commons CC0 1.0 Universell (CC0 1.0) Public Domain Dedication",
 		"http_license": "https://creativecommons.org/publicdomain/zero/1.0/deed.de",
-		"honor_privacy": "Durch das Hochladen des Fotos bestätigen Sie, dass keine personenbezogenen Inhalte enthalten sind."
+		"honor_privacy": "Durch das Hochladen des Fotos bestätigen Sie, dass keine personenbezogenen Inhalte enthalten sind.",
+
+		"report_header": "Dieses Foto melden",
+		"report_text": "Hier hast Du die Möglichkeit Fotos bei uns zu melden solltest Du der Meinung sein sie gehören nicht veröffentlicht.",
+		"label_report_comment": "Kommentar",
+		"placeholder_report_comment": "Sag uns warum wir dieses Foto von der Webseite entfernen sollten ..."
 		
 	}
 };

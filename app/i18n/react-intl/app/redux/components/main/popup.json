@@ -38,5 +38,15 @@
     "id": "notdefined",
     "description": "Material",
     "defaultMessage": "Not set yet"
+  },
+  {
+    "id": "close_popup",
+    "description": "Title -",
+    "defaultMessage": "Close popup"
+  },
+  {
+    "id": "report_image",
+    "description": "Title -",
+    "defaultMessage": "Report image"
   }
 ]

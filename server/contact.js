@@ -54,6 +54,9 @@ const _promiseFetchForm = ( req ) => {
 
 }
 
+
+
+
 const _sendAsk = ( fields ) => {
 
 	return new Promise( ( resolve, reject ) => { 
@@ -83,8 +86,6 @@ const _sendAsk = ( fields ) => {
 
 }
 
-
-
 router.post( '/ask', function ( req, res ) {
 
 	_promiseFetchForm( req )
@@ -102,6 +103,9 @@ router.post( '/ask', function ( req, res ) {
 	} )
 
 } )
+
+
+
 
 const _requestBatchUpload = ( fields ) => {
 
@@ -148,6 +152,55 @@ router.post( '/requestBatchUpload', function ( req, res ) {
 
 	} )
 
-} );
+} )
+
+
+
+const _sendReport = ( fields ) => {
+
+	return new Promise( ( resolve, reject ) => { 
+
+		let mailOptions = {
+
+			from: '"' + fields.email + '" <' + fields.email + '>',
+			to: 'go@coastwards.org',
+			subject: 'Reporting image with id: ' + fields.id,
+			text: fields.comment
+
+		}
+
+		transporter.sendMail( mailOptions, function ( error, info ){
+ 
+			if( error ){
+
+				reject( Error( error ) )
+
+			}
+
+			resolve( info.response )
+
+		} );
+
+	} )
+
+}
+
+router.post( '/report', function ( req, res ) {
+
+	_promiseFetchForm( req )
+	.then( _sendReport )
+	.then( ( response ) => {
+
+		res.send( 'OK' )
+		return response
+
+	} )
+	.catch( ( error ) => {
+
+		res.send( error.message )
+
+	} )
+
+} )
 
 module.exports = router

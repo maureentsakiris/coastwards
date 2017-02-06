@@ -1,12 +1,14 @@
 import React, { PropTypes } from 'react'
 import { defineMessages, injectIntl, intlShape } from 'react-intl'
-import Classnames from 'classnames'
+/*import Classnames from 'classnames'*/
 
 import WHYIP from './dialogs/whyIP'
 import DEFINEMATERIAL from './dialogs/definematerial'
 import SHARE from './dialogs/share'
 import IMPRINT from './dialogs/imprint'
 import TERMS from './dialogs/terms'
+
+import REPORT from 'containers/ui/dialogs/report'
 
 import DIV from 'components/tags/div'
 import CLOSE from 'components/ui/close'
@@ -25,16 +27,16 @@ const messages = defineMessages( {
 } )
 
 
-const dialog = ( { intl, component, active, jazzSupported, closeDialog } ) => {
+const dialog = ( { intl, component, active/*, jazzSupported*/, closeDialog } ) => {
 
 	const { formatMessage } = intl
 
 
-	const clsDialog = Classnames( style.dialog, {
+	/*const clsDialog = Classnames( style.dialog, {
 
 		[ style.dialogJazz ]: jazzSupported
 
-	} )
+	} )*/
 	
 
 	if( !active ){
@@ -45,7 +47,7 @@ const dialog = ( { intl, component, active, jazzSupported, closeDialog } ) => {
 
 		return(
 
-			<DIV className={ clsDialog } >
+			<DIV className={ style.dialog } >
 				<DIV>
 					<CLOSE onClick={ closeDialog } title={ formatMessage( messages.close_dialog ) } />
 					{ component == 'WHYIP' && <WHYIP /> }
@@ -53,6 +55,7 @@ const dialog = ( { intl, component, active, jazzSupported, closeDialog } ) => {
 					{ component == 'SHARE' && <SHARE /> }
 					{ component == 'IMPRINT' && <IMPRINT /> }
 					{ component == 'TERMS' && <TERMS /> }
+					{ component == 'REPORT' && <REPORT /> }
 				</DIV>
 			</DIV>
 
@@ -67,7 +70,7 @@ dialog.propTypes = {
 	intl: intlShape,
 	component: PropTypes.node,
 	active: PropTypes.bool,
-	jazzSupported: PropTypes.bool,
+	/*jazzSupported: PropTypes.bool,*/
 
 	closeDialog: PropTypes.func
 

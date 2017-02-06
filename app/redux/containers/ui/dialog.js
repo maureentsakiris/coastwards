@@ -10,8 +10,8 @@ const mapStateToProps = ( state ) => {
 	return { 
 
 		component: component,
-		active: active, 
-		jazzSupported: state.browser.jazzSupported
+		active: active/*, 
+		jazzSupported: state.browser.jazzSupported*/
 
 	}
 

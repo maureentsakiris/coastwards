@@ -1,22 +1,21 @@
 import { connect } from 'react-redux'
-import { hidePopup } from 'actions/main/mapbox'
-import { showDialog } from 'actions/ui/dialog'
+/*import { hidePopup } from 'actions/main/mapbox'
+import { showDialog } from 'actions/ui/dialog'*/
 /*import { addSnackbarMessage } from 'actions/ui/snackbar'*/
-import POPUP from 'components/main/popup'
+import REPORT from 'components/ui/dialogs/report'
 
 
 const mapStateToProps = ( state ) => {
 
 	return {
 
-		feature: state.popup.feature, 
-		materials: state.materials
+		feature: state.popup.feature
 
 	}
 
 }
 
-const mapDispatchToProps = ( dispatch ) => {
+/*const mapDispatchToProps = ( dispatch ) => {
 
 	return {
 
@@ -26,12 +25,12 @@ const mapDispatchToProps = ( dispatch ) => {
 			dispatch( hidePopup() )
 
 		},
-		/*addSnackbarMessage: ( message, e ) => {
+		addSnackbarMessage: ( message, e ) => {
 
 			e.preventDefault()
 			dispatch( addSnackbarMessage( message, 1000 ) )
 
-		},*/
+		},
 		showDialog: ( component, e ) => {
 
 			e.preventDefault()
@@ -41,14 +40,13 @@ const mapDispatchToProps = ( dispatch ) => {
 
 	}
 
-}
+}*/
 
 
-const popup = connect(
+const report = connect(
 
-	mapStateToProps,
-	mapDispatchToProps
+	mapStateToProps
 
-)( POPUP )
+)( REPORT )
 
-export default popup
+export default report

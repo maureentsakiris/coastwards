@@ -107,6 +107,9 @@ module.exports = {
 		'notsure': 'No sé que poner',
 		'notdefined': 'Sin definir',
 
+		'close_popup': 'Cerrar popup',
+		'report_image': 'Haz un informe acerca esta imágen',
+
 		'upload_image': 'Subir',
 		'cancel_upload': 'Cancelar',
 
@@ -184,6 +187,11 @@ module.exports = {
 		'two_fingers': 'Utiliza dos dedos para hacer zoom.',
 		'draw_map': 'Todos por uno, uno por todos. O algo parecido...',
 		'accept_terms_first': 'Tienes que acceptar los términos para continuar!',
+
+		"report_header": "Haz un informe acerca esta imágen",
+		"report_text": "Aquí tienes la oportunidad de enviar un informe acerca esta imágen para que se quite del sitio web.",
+		"label_report_comment": "Comentario",
+		"placeholder_report_comment": "Planteanos porque se debe quitar esta imágen del sitio web..."
 
 
 	}

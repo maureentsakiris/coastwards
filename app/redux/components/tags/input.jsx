@@ -42,7 +42,7 @@ input.propTypes = {
 		name: PropTypes.string.isRequired,
 		pattern: PropTypes.string,
 		placeholder: PropTypes.string,
-		readonly: PropTypes.bool,
+		readOnly: PropTypes.bool,
 		required: PropTypes.bool,
 		size: PropTypes.number,
 		src: PropTypes.string,

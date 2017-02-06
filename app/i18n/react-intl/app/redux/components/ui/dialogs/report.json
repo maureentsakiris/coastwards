@@ -1,0 +1,52 @@
+[
+  {
+    "id": "report_header",
+    "description": "Header",
+    "defaultMessage": "Report this image"
+  },
+  {
+    "id": "report_text",
+    "description": "P",
+    "defaultMessage": "Here you have the possibility to report an image you think should not be published on the website."
+  },
+  {
+    "id": "label_email",
+    "description": "Lable - Email",
+    "defaultMessage": "Your email"
+  },
+  {
+    "id": "placeholder_email",
+    "description": "Placeholder - Email",
+    "defaultMessage": "And your email"
+  },
+  {
+    "id": "label_report_comment",
+    "description": "Label - Your comment",
+    "defaultMessage": "Your comment"
+  },
+  {
+    "id": "placeholder_report_comment",
+    "description": "Placeholder - Tell us why you are reporting this image...",
+    "defaultMessage": "Tell us why you are reporting this image..."
+  },
+  {
+    "id": "label_submit",
+    "description": "Label - Submit",
+    "defaultMessage": "Submit"
+  },
+  {
+    "id": "sending_mail",
+    "description": "Status -",
+    "defaultMessage": "Just a sec ... sending mail"
+  },
+  {
+    "id": "mail_ok",
+    "description": "Status -",
+    "defaultMessage": "Email sent, thanks for asking!"
+  },
+  {
+    "id": "mail_ko",
+    "description": "Status -",
+    "defaultMessage": "Sorry, there was a problem sending the email. Please try again"
+  }
+]
