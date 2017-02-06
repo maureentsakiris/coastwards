@@ -126,26 +126,25 @@ class popup extends Component {
 			const material = _.findWhere( materials, { value: mat } )
 			const color = material.color
 
-			/*<SPAN>{ feature.properties.comment }</SPAN>*/
-
 			const showcomment = comment && feature.properties.comment
+			const commentIcon = showcomment ? 'insert_comment' : 'mode_comment'
 
 			return(
 
 				<DIV id="Popup" className={ style.popup } >
+					{ !showcomment && <A onClick={ showDialog.bind( this, 'REPORT' ) } className={ style.report } title={ formatMessage( messages.report_image ) } >
+						<I className="material-icons">report_problem</I>
+					</A> }
 					<DIV className={ style.top } style={ { backgroundImage: 'url(' + feature.properties.image +')' } } >
 						{ showcomment && <P className={ style.comment } >{ feature.properties.comment }</P> }
 					</DIV>
 					<DIV className={ style.actions }>
 						{ mat != '' && <P className={ style.label } style={ { backgroundColor: color } } >{ formatMessage( messages[ mat ] ) }</P> }
 						<A onClick={ this._toggleComment } className={ style.showcomment } title={ formatMessage( messages.toggle_comment ) } >
-							<I className="material-icons">mode_comment</I>
+							<I className="material-icons">{ commentIcon }</I>
 						</A>
 						<A onClick={ hidePopup } className={ style.close } title={ formatMessage( messages.close_popup ) } >
 							<I className="material-icons">clear</I>
-						</A>
-						<A onClick={ showDialog.bind( this, 'REPORT' ) } className={ style.report } title={ formatMessage( messages.report_image ) } >
-							<I className="material-icons">report_problem</I>
 						</A>
 					</DIV>
 				</DIV>
