@@ -69,7 +69,7 @@ const messages = defineMessages( {
 
 } )
  
-const context = ( { intl, lang, dir, jazzSupported, clipped, useraction, scrollY, unclipPage, scrollToMain } ) => {
+const context = ( { intl, lang, dir, jazzSupported, clipped, useraction, scrollY, unclipPage, scrollToMap } ) => {
 
 	const { formatMessage } = intl
 
@@ -130,6 +130,7 @@ const context = ( { intl, lang, dir, jazzSupported, clipped, useraction, scrollY
 
 			clsScroll = Classnames( style.scrollDown, {
 
+				[ style.clip ]: clipped,
 				[ style.unfix ]: unfix
 
 			} )
@@ -163,7 +164,7 @@ const context = ( { intl, lang, dir, jazzSupported, clipped, useraction, scrollY
 					<Ask />
 					<Logos />
 				</DIV>
-				<A id="Scroll" onClick={ scrollToMain } className={ clsScroll }><I className="material-icons">&#xE313;</I></A>
+				<DIV id="Scroll" className={ clsScroll } ><A onClick={ scrollToMap } ><I className="material-icons">&#xE313;</I></A></DIV>
 				<DIV id="Main" className={ style.main }>
 					<A onClick={ unclipPage.bind( this ) } className={ clsArrowMap } title={ formatMessage( messages.arrow_up_title ) } >
 						<I className="material-icons">&#xE316;</I>
@@ -191,7 +192,7 @@ context.propTypes = {
 	scrollY: PropTypes.number,
 
 	unclipPage: PropTypes.func,
-	scrollToMain: PropTypes.func
+	scrollToMap: PropTypes.func
 
 }
 

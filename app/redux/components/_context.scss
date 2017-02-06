@@ -67,15 +67,41 @@
 	align-items: center;
     flex-direction: column;
     align-content: center;
+    pointer-events: none;
 
-    i{
+    a{
 
-    	font-size: 112px;
+    	pointer-events: all;
 
     }
 
+    i{
 
-    &.unfix{
+    	font-size: 122px;
+
+    }
+
+    /* @include landscapeMin( $tablet ){
+
+    	i{
+
+    		font-size: 112px;
+
+    	}
+
+    }
+
+    @include portraitMin( $tablet ){
+
+    	i{
+
+    		font-size: 112px;
+
+    	}
+
+    } */
+	
+	&.unfix{
 
     	position: initial;
 

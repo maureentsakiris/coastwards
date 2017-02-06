@@ -1,0 +1,21 @@
+@import 'app/styles/base';
+
+
+.toggle{
+
+	@extend %toggle;
+	border-top: $toggle-border;
+
+	&>div>p{
+
+		padding: 0;
+
+	}
+
+}
+
+.toggleFirst{
+
+	@extend %toggle;
+
+}

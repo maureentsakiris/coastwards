@@ -7,7 +7,7 @@
   {
     "id": "terms_author",
     "description": "P -",
-    "defaultMessage": "By uploading this image you confirm that you are the sole author of this image."
+    "defaultMessage": "By uploading this image you confirm that you own the copyright of this image."
   },
   {
     "id": "terms_cc0",
@@ -23,5 +23,10 @@
     "id": "http_license",
     "description": "HTTP -",
     "defaultMessage": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  {
+    "id": "honor_privacy",
+    "description": "P -",
+    "defaultMessage": "By uploading this image you confirm that it does not contain any personal data."
   }
 ]

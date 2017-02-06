@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import CONTEXT from 'components/context'
-import { scrollToId } from 'actions/context'
-import { unclipPage } from 'actions/main/main'
+//import { scrollToMap } from 'actions/context'
+import { unclipPage, scrollToMap } from 'actions/main/main'
 
 
 const mapStateToProps = ( state ) => {
@@ -32,9 +32,9 @@ const mapDispatchToProps = ( dispatch ) => {
 			dispatch( unclipPage() )
 
 		},
-		scrollToMain: ( ) => {
+		scrollToMap: ( ) => {
 
-			dispatch( scrollToId( 'Main' ) )
+			dispatch( scrollToMap( ) )
 
 		}
 

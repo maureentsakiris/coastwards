@@ -607,8 +607,10 @@ export const unclipPage = ( ) => {
 		dispatch( hidePopup() )
 		dispatch( { type: 'UNCLIP_PAGE' } )
 		dispatch( { type: types.SET_USER_ACTION, to: 'prompt' } )
+		//dispatch( { type: types.SET_SCROLL_Y, to: 1 } )
 
-		scrollToId( 'Intro' )
+		//window.dispatchEvent( new Event( 'scroll' ) )
+		dispatch( scrollToId( 'Body' ) )
 
 	}
 

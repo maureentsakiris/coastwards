@@ -1,7 +1,17 @@
 [
   {
-    "id": "imprint_header",
-    "description": "Header",
+    "id": "imprint",
+    "description": "H -",
     "defaultMessage": "Imprint"
+  },
+  {
+    "id": "disclaimer",
+    "description": "H",
+    "defaultMessage": "Disclaimer"
+  },
+  {
+    "id": "privacy_policy",
+    "description": "H -",
+    "defaultMessage": "Privacy Policy"
   }
 ]
