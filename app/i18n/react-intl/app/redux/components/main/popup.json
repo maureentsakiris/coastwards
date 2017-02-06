@@ -48,5 +48,10 @@
     "id": "report_image",
     "description": "Title -",
     "defaultMessage": "Report image"
+  },
+  {
+    "id": "toggle_comment",
+    "description": "Title -",
+    "defaultMessage": "Show comment"
   }
 ]

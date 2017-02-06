@@ -108,7 +108,7 @@ module.exports = {
 		'notdefined': 'Sin definir',
 
 		'close_popup': 'Cerrar popup',
-		'report_image': 'Haz un informe acerca esta imágen',
+		'report_image': 'Denuncia esta imágen',
 
 		'upload_image': 'Subir',
 		'cancel_upload': 'Cancelar',
@@ -188,8 +188,8 @@ module.exports = {
 		'draw_map': 'Todos por uno, uno por todos. O algo parecido...',
 		'accept_terms_first': 'Tienes que acceptar los términos para continuar!',
 
-		"report_header": "Haz un informe acerca esta imágen",
-		"report_text": "Aquí tienes la oportunidad de enviar un informe acerca esta imágen para que se quite del sitio web.",
+		"report_header": "Denuncia esta imágen",
+		"report_text": "Aquí puedes denunciar esta imágen para que se quite del sitio web.",
 		"label_report_comment": "Comentario",
 		"placeholder_report_comment": "Planteanos porque se debe quitar esta imágen del sitio web...",
 		"report_ok": "Tu informe ha sido enviado!"

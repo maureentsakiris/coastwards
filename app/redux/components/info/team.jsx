@@ -118,7 +118,7 @@ const team = ( { intl/*, addSnackbarMessage*/ } ) => {
 			<DIV className={ style.person }>
 				<IMG src="assets/team/maureen.jpg" alt="Maureen Tsakiris" />
 				<H priority={ 4 }>Maureen Tsakiris</H>
-				<P>{ formatMessage( messages.me ) }</P>
+				<P>{ formatMessage( messages.me ) } <A href="http://www.crslr.uni-kiel.de/en/people/affiliated/maureen-tsakiris.html" target="_blank" title={ formatMessage( messages.more_title ) } >{ formatMessage( messages.more ) }</A></P>
 			</DIV>
 			<BR/><BR/>
 			<P><STRONG>{ formatMessage( messages.contact_here ) }:</STRONG> <A href="mailTo:go@coastwards.org" >go@coastwards.org</A></P> 

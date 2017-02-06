@@ -67,6 +67,12 @@ const messages = defineMessages( {
 		id: "report_image",
 		description: "Title - ",
 		defaultMessage: "Report image"
+	},
+
+	toggle_comment:{
+		id: "toggle_comment",
+		description: "Title - ",
+		defaultMessage: "Show comment"
 	}
 
 
@@ -94,7 +100,7 @@ class popup extends Component {
 
 		this.state = {
 
-			active: 'image'
+			comment: false
 
 		}
 
@@ -104,6 +110,7 @@ class popup extends Component {
 
 		const { formatMessage } = this.props.intl
 		const { feature, materials, hidePopup, showDialog } = this.props
+		const { comment } = this.state
 
 		if( !feature.properties ){
 
@@ -121,12 +128,19 @@ class popup extends Component {
 
 			/*<SPAN>{ feature.properties.comment }</SPAN>*/
 
+			const showcomment = comment && feature.properties.comment
+
 			return(
 
 				<DIV id="Popup" className={ style.popup } >
-					<DIV className={ style.top } style={ { backgroundImage: 'url(' + feature.properties.image +')' } } />
+					<DIV className={ style.top } style={ { backgroundImage: 'url(' + feature.properties.image +')' } } >
+						{ showcomment && <P className={ style.comment } >{ feature.properties.comment }</P> }
+					</DIV>
 					<DIV className={ style.actions }>
 						{ mat != '' && <P className={ style.label } style={ { backgroundColor: color } } >{ formatMessage( messages[ mat ] ) }</P> }
+						<A onClick={ this._toggleComment } className={ style.showcomment } title={ formatMessage( messages.toggle_comment ) } >
+							<I className="material-icons">mode_comment</I>
+						</A>
 						<A onClick={ hidePopup } className={ style.close } title={ formatMessage( messages.close_popup ) } >
 							<I className="material-icons">clear</I>
 						</A>
@@ -139,6 +153,12 @@ class popup extends Component {
 			)
 
 		}
+
+	}
+
+	_toggleComment = () => {
+
+		this.setState( { comment: !this.state.comment } )
 
 	}
 
