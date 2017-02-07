@@ -179,8 +179,9 @@ const _promiseInsertContribution = ( formData ) => {
 
 		const sanitizedComment = DOMPurify.sanitize( comment )
 		const trimmedComment = validator.trim( sanitizedComment )
-		const lowComment = validator.stripLow( trimmedComment )
+		const lowComment = validator.stripLow( trimmedComment, true ) //true -> keep new lines
 		const escapedComment = validator.escape( lowComment )
+		const linedComment = escapedComment.replace( /(?:\r\n|\r|\n)/g, '\\n' )
 
 
 		// Truncate table coastwards.contributions
@@ -217,7 +218,7 @@ const _promiseInsertContribution = ( formData ) => {
 			//CAREFULL!!!!
 			validDate,
 			adaptation,
-			escapedComment,
+			linedComment,
 			hashtag
 
 		]

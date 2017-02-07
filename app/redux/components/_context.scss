@@ -77,11 +77,11 @@
 
     i{
 
-    	font-size: 122px;
+    	font-size: 72px;
 
     }
 
-    /* @include landscapeMin( $tablet ){
+    @include landscapeMin( $tablet ){
 
     	i{
 
@@ -99,7 +99,7 @@
 
     	}
 
-    } */
+    }
 	
 	&.unfix{
 
