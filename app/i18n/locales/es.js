@@ -45,7 +45,7 @@ module.exports = {
 		'nassos': 'Nassos es el jefe del grupo, y profesor en la Uniersidad de Kiel. Es griego, tiene dos hijos pequeños y su escritorio es un desastre.',
 		'claudia': 'Claudia está investigando para su doctorado. Es la científica estrella  que convertirá tus imagenes en algo significativo. Es encantadora, preguntona y ambiciosa. Y la primera en reírse.',
 		//'joern': 'Joern es el padre de 4 más relajado que existe y Postdoc en la Universidad de Kiel. Es súper alto con pelo hasta sus caderas y se agacha amablemente cuando habla con la gente.',
-		'me': 'Esa soy yo. La responsable de los errores de ortografia y cualquier otra cosa que no funcione en esta página. ',
+		'me': 'Esa soy yo. He creado este sitio web y soy la responsable de todos los errores de ortografia (y cualquier otra cosa que no funcione en esta página). ',
 		'contact_here': 'Contáctanos aquí',
 		'special_thanks': 'Agradecimientos especiales a',
 		'claudio': 'Por la traducción de este sitio web al Español',

@@ -60,7 +60,7 @@ const messages = defineMessages( {
 	me:{
 		id: "me",
 		description: "Team",
-		defaultMessage: "That's me. I'm responsible for any typos or anything else that's wrong about this website."
+		defaultMessage: "That's me. I created this website, so I'm responsible for all the typos (or anything else that's wrong about it)."
 	},
 
 	//and
