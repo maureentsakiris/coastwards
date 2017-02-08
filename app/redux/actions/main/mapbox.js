@@ -50,6 +50,13 @@ const _promiseInitMap = ( ) => {
 
 		}
 
+		/*map.addControl( new mapboxgl.ScaleControl( {
+
+			maxWidth: 80,
+			unit: 'metric'
+
+		} ), 'bottom-right' )*/
+
 		/*let geocoder = new MapboxGeocoder( {
 
 			accessToken: ACCESSTOKEN,

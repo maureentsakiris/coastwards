@@ -126,7 +126,8 @@ class popup extends Component {
 			const material = _.findWhere( materials, { value: mat } )
 			const color = material.color
 
-			const showcomment = comment && feature.properties.comment
+			const hascomment = feature.properties.comment != ''
+			const showcomment = comment && hascomment
 			const commentIcon = showcomment ? 'insert_comment' : 'mode_comment'
 
 			return(
@@ -140,9 +141,9 @@ class popup extends Component {
 					</DIV>
 					<DIV className={ style.actions }>
 						{ mat != '' && <P className={ style.label } style={ { backgroundColor: color } } >{ formatMessage( messages[ mat ] ) }</P> }
-						<A onClick={ this._toggleComment } className={ style.showcomment } title={ formatMessage( messages.toggle_comment ) } >
+						{ hascomment && <A onClick={ this._toggleComment } className={ style.showcomment } title={ formatMessage( messages.toggle_comment ) } >
 							<I className="material-icons">{ commentIcon }</I>
-						</A>
+						</A> }
 						<A onClick={ hidePopup } className={ style.close } title={ formatMessage( messages.close_popup ) } >
 							<I className="material-icons">clear</I>
 						</A>
