@@ -52,6 +52,6 @@
   {
     "id": "toggle_comment",
     "description": "Title -",
-    "defaultMessage": "Show comment"
+    "defaultMessage": "Toggle comment"
   }
 ]

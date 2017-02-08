@@ -109,6 +109,7 @@ module.exports = {
 
 		'close_popup': 'Cerrar popup',
 		'report_image': 'Denuncia esta imágen',
+		'toggle_comment': 'Mostrar/Ocultar comentario',
 
 		'upload_image': 'Subir',
 		'cancel_upload': 'Cancelar',

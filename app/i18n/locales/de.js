@@ -96,6 +96,7 @@ module.exports = {
 
 		'close_popup': 'Popup schließen',
 		'report_image': 'Dieses Foto melden',
+		'toggle_comment': 'Komentar anzeigen/verstecken',
 
 		'upload_image': 'Hochladen',
 		'cancel_upload': 'Abbrechen',

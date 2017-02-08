@@ -72,7 +72,7 @@ const messages = defineMessages( {
 	toggle_comment:{
 		id: "toggle_comment",
 		description: "Title - ",
-		defaultMessage: "Show comment"
+		defaultMessage: "Toggle comment"
 	}
 
 
