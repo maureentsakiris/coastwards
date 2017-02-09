@@ -141,7 +141,20 @@ const _onMarkerClick = ( features ) => {
 	return function ( dispatch ){
 
 		let feature = features[ 0 ]
-		dispatch( showPopup( feature ) )
+
+		promiseGet( '/contribute/contribution/' + feature.properties.id )
+		.then( ( result ) => {
+
+			console.log( result );
+			return result
+
+		} )
+		.catch( ( error ) => {
+
+			console.log( error );
+
+		} )
+		//dispatch( showPopup( feature ) )
 
 	}
 
