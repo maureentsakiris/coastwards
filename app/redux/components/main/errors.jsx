@@ -14,6 +14,16 @@ import style from './_errors'
 const messages = defineMessages( {
 
 	//error messages
+	error_parsing_geojson:{
+		id: "error_parsing_geojson",
+		description: "Error - ",
+		defaultMessage: "Crap, the pictures are not loading. Try refreshing the page!"
+	},
+	error_loading_mapbox:{
+		id: "error_loading_mapbox",
+		description: "Error",
+		defaultMessage: "Crap, the map is not loading. Try refreshing the page!"
+	},
 	files_undefined:{
 		id: "files_undefined",
 		description: "Error - Informs user that no files were selected",
@@ -87,7 +97,7 @@ const messages = defineMessages( {
 
 } )
 
-const errors = ( { intl, className, error, jazzSupported, show } ) => {
+const errors = ( { intl, className, error, jazzSupported, show, upload } ) => {
 
 	const { formatMessage } = intl
 
@@ -115,7 +125,7 @@ const errors = ( { intl, className, error, jazzSupported, show } ) => {
 
 			<DIV id="Errors" className={ cls } >
 				<H priority={ 2 }>{ str }</H>
-				<ACTIONS />
+				{ upload && <ACTIONS /> }
 			</DIV>
 
 		)
@@ -132,7 +142,8 @@ errors.propTypes = {
 
 	error: PropTypes.string,
 	jazzSupported: PropTypes.bool,
-	show: PropTypes.bool
+	show: PropTypes.bool,
+	upload: PropTypes.bool
 
 }
 

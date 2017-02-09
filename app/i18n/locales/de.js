@@ -65,6 +65,8 @@ module.exports = {
 		'disclaimer': 'Rechtliche Hinweise zur Haftung',
 		'privacy_policy': 'Datenschutzerklärung',
 
+		'error_parsing_geojson': 'Ohje, die Fotos wollen nicht laden. Versuche die gesamte Seite neu zu laden!',
+		'error_loading_mapbox': 'Ohje, die Weltkarte will nicht laden. Versuche die gesamte Seite neu zu laden!',
 		'files_undefined': 'Es wurden keine Dateien ausgewählt',
 		'wrong_filetype': 'Die ausgewählte Datei ist kein Foto. Bitte wähle eine Datei mit einem der folgenden Dateiendungen: jpg, jpeg, tif, tiff, gif o png',
 		'exifdata_empty': 'Wir konnten leider die Exifdaten nicht finden. Kann es sein, dass das Foto aus den sozialen Netzwerken stammt? Versuche es mit der Originaldatei!',

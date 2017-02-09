@@ -1,5 +1,15 @@
 [
   {
+    "id": "error_parsing_geojson",
+    "description": "Error -",
+    "defaultMessage": "Crap, the pictures are not loading. Try refreshing the page!"
+  },
+  {
+    "id": "error_loading_mapbox",
+    "description": "Error",
+    "defaultMessage": "Crap, the map is not loading. Try refreshing the page!"
+  },
+  {
     "id": "files_undefined",
     "description": "Error - Informs user that no files were selected",
     "defaultMessage": "No files were selected."

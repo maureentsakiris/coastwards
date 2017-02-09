@@ -8,7 +8,8 @@ const mapStateToProps = ( state ) => {
 
 		error: state.error,
 		jazzSupported: state.browser.jazzSupported,
-		show: state.layers.errors
+		show: state.layers.errors,
+		upload: state.layers.upload
 
 	}
 

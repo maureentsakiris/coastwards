@@ -78,6 +78,8 @@ module.exports = {
 		'shareBtn_title': "Compártelo con amigos y familia",
 		'shareBtn_label': 'Compártelo',
 
+		'error_parsing_geojson': "¡Huy! Parece que no se cargan las fotos. !Inténta recargar la página entera!",
+		'error_loading_mapbox': "¡Huy! Parece que no se carga el mapa mundi. !Inténta recargar la página entera!",
 		'files_undefined': 'No se han seleccionado archivos',
 		'wrong_filetype': 'El archivo seleccionado no es una foto. Elige una con una de las siguientes extensiones: jpg, jpeg, tif, tiff, gif o png.',
 		'exifdata_empty': 'No hemos podido encontrar los datos exif en tu foto. A lo mejor  proviene de una red social. ¡Inténtalo de nuevo con la foto original!',

@@ -2,7 +2,7 @@ import * as types from 'types'
 import mapboxgl from 'mapbox-gl/dist/mapbox-gl.js'
 import _ from 'underscore'
 import { promiseGet } from 'actions/util/request/get'
-import { resetMain } from 'actions/main/main'
+//import { resetMain } from 'actions/main/main'
 import Modernizr from 'modernizr'
 
 const CENTER = [ 0, 39 ]
@@ -98,13 +98,13 @@ const _promiseInitMap = ( ) => {
 
 			map.dragRotate.disable()
 			map.touchZoomRotate.disableRotation()
-			resolve( map ) 
+			resolve( map )
 
 		} )
 
-		map.on( 'error', ( e ) => {
+		map.on( 'error', ( ) => {
 
-			reject( e ) 
+			reject( Error( 'error_loading_mapbox' ) )  
 
 		} )
 
@@ -124,7 +124,7 @@ const _promiseOKGeojson = ( parsed ) => {
 
 		if( parsed.status == 'KO' ){
 
-			reject( parsed.message )
+			reject( Error( 'error_parsing_geojson' ) )
 
 		}else{
 
@@ -340,17 +340,22 @@ export const displayMap = ( ) => {
 
 			//dispatch( { type: types.ADD_INTERACTIVE_LAYER, layer: { layer: 'drops', onClick: _onMarkerClick } } )
 
+			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'prompts', to: true } )
+			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'upload', to: true } )
+			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'loader', to: false } )
+
 			return geojson
 
 		} )
 		.catch( ( error ) => {
 
-			dispatch( resetMain() )
 			let msg = error.message ? error.message : 'an_error_occurred'
 			dispatch( { type: types.SET_ERROR_MSG, to: msg } )
 
 			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'errors', to: true } )
 			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'prompts', to: false } )
+			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'upload', to: false } )
+			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'loader', to: false } )
 			console.log( error )
 
 		} )

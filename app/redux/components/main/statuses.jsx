@@ -44,7 +44,7 @@ const statuses = ( { intl, className, status, progress, show, jazzSupported } ) 
 
 		<DIV id="Statuses" className={ cls } >
 			<H priority={ 2 }>{ stat }</H>
-			{ jazzSupported && <DIV className={ style.loader }></DIV> }
+			{ jazzSupported && <DIV className={ style.spinner }></DIV> }
 			{ !jazzSupported && <IMG src="assets/loader.gif" alt={ formatMessage( messages.loader ) } /> }
 		</DIV>
 
