@@ -2,6 +2,7 @@ import React, { PropTypes, Component } from 'react'
 import PureRenderMixin from 'react-addons-pure-render-mixin'
 import { defineMessages, injectIntl, intlShape } from 'react-intl'
 import _ from 'underscore'
+import validator from 'validator'
 /*import Classnames from 'classnames'
 import unescape from 'validator/lib/unescape'*/
 
@@ -126,7 +127,8 @@ class popup extends Component {
 			const material = _.findWhere( materials, { value: mat } )
 			const color = material.color
 
-			const hascomment = feature.properties.comment != ''
+			const usercomment = validator.unescape( feature.properties.comment )
+			const hascomment = usercomment != ''
 			const showcomment = comment && hascomment
 			const commentIcon = showcomment ? 'insert_comment' : 'mode_comment'
 
@@ -137,7 +139,7 @@ class popup extends Component {
 						<I className="material-icons">report_problem</I>
 					</A> }
 					<DIV className={ style.top } style={ { backgroundImage: 'url(' + feature.properties.image +')' } } >
-						{ showcomment && <P className={ style.comment } >{ feature.properties.comment }</P> }
+						{ showcomment && <P className={ style.comment } >{ usercomment }</P> }
 					</DIV>
 					<DIV className={ style.actions }>
 						{ mat != '' && <P className={ style.label } style={ { backgroundColor: color } } >{ formatMessage( messages[ mat ] ) }</P> }
