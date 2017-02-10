@@ -54,7 +54,7 @@ module.exports = {
 		'nassos': 'Nassos ist der Gruppenleiter und Professor an der Uni Kiel. Er ist Grieche, hat zwei kleine Jungs und sein Schreibtisch ist ein Desaster.',
 		'claudia': 'Claudia ist die vielversprechende Doktorandin, die deine Fotos in etwas Aufschlußreiches verwandeln wird. Sie ist eine zähe aber charmante Fragestellerin. Sie lacht auch sehr gerne und viel.',
 		'joern': 'Jörn',
-		'me': 'Das bin ich. Ich habe diese Webseite entwickelt ... Schreibfehler gehen also alle auf meine Kappe!',
+		'me': 'Das bin ich. Ich habe diese Webseite mit viel Liebe und endlosen Stunden des Starrens entwickelt. (Developers: Node, React und Redux ROCK!)',
 		'contact_here': 'Du kannst uns hier erreichen',
 		'special_thanks': 'Besonderer Dank an',
 		'claudio': 'Für die Übersetzung dieser Seite ins Spanische',
@@ -175,9 +175,10 @@ module.exports = {
 		'material_examples_header': 'Zeig mir Beispiele!',
 		'material_examples_text': 'Ich arbeite daran .. bis dahin kannst Du Dir die Fotos auf der Karte ansehen, um eine bessere Vorstellung davon zu bekommen.',
 
-		'share_header': "Go coastwards! Teile mit Freunden und Familie (vor allem wenn sie an einer Küste wohnen!)",
+		'share_header': "Go coastwards! Teile mit Freunden und Familie.",
 		'share_text_intro': 'Es gibt viele Möglichkeiten zu teilen. Offensichtlich gibt es {facebook} oder {twitter}. Solltest Du die nächste Generation sein, ziehst Du vielleicht {whatsapp} vor oder eine andere Plattform, die ich nicht kenne, weil ich schon zu alt oder mit den Plattformen in deinem Land nicht vertraut bin.',
 		'share_text_but': 'Aber wir alle wissen wie das mit den sozialen Medien funktioniert. Wenn Du jemanden wirklich erreichen willst, dann ist mit dieser Person zu sprechen immer noch am wirkungsvollsten.',
+		'know_anyone': 'Kennst Du jemanden, der in der Nähe einer Küste lebt?',
 
 		'whyIP_header': 'Warum speichert ihr meine IP Adresse?',
 		'whyIP_text': 'Wir müssen beweisen können, dass wir die Fotos nicht selber hochgeladen haben. Damit ziehen wir uns selber aus der Schlinge, können aber nur auf Deine IP Adresse verweisen und nicht direkt zu Dir.',

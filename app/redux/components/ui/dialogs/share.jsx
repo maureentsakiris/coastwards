@@ -15,7 +15,7 @@ const messages = defineMessages( {
 	share_header:{
 		id: "share_header",
 		description: "Header",
-		defaultMessage: "Go coastwards! Share with friends and family (especially if they live near the coast!)"
+		defaultMessage: "Go coastwards! Share with friends and family."
 	},
 	share_text_intro:{
 		id: "share_text_intro",
@@ -26,6 +26,11 @@ const messages = defineMessages( {
 		id: "share_text_but",
 		description: "P - ",
 		defaultMessage: "But we all know how social media works. If you really want to reach someone, talking to that person still is the most effective."
+	},
+	know_anyone:{
+		id: "know_anyone",
+		description: "P - ",
+		defaultMessage: "Know anyone who lives at the coast?"
 	}
 
 } )
@@ -52,6 +57,8 @@ const share = ( { intl, className } ) => {
 			</P>
 			<BR/>
 			<P>{ formatMessage( messages.share_text_but ) }</P>
+			<BR/>
+			<P>{ formatMessage( messages.know_anyone ) }</P>
 		</DIV>
 
 	)

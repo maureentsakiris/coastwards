@@ -45,7 +45,7 @@ module.exports = {
 		'nassos': 'Nassos es el jefe del grupo, y profesor en la Uniersidad de Kiel. Es griego, tiene dos hijos pequeños y su escritorio es un desastre.',
 		'claudia': 'Claudia está investigando para su doctorado. Es la científica estrella  que convertirá tus imagenes en algo significativo. Es encantadora, preguntona y ambiciosa. Y la primera en reírse.',
 		//'joern': 'Joern es el padre de 4 más relajado que existe y Postdoc en la Universidad de Kiel. Es súper alto con pelo hasta sus caderas y se agacha amablemente cuando habla con la gente.',
-		'me': 'Esa soy yo. He desarrollado este sitio web ... así que soy la responsable de todos los errores de ortografía!',
+		'me': 'Esa soy yo. He desarrollado este sitio web con mucho amor y muchas horas de mirarlo fijamente. (Developers: Node, React und Redux ROCK!)',
 		'contact_here': 'Contáctanos aquí',
 		'special_thanks': 'Agradecimientos especiales a',
 		'claudio': 'Por la traducción de este sitio web al Español',
@@ -162,9 +162,10 @@ module.exports = {
 		'material_examples_header': '¡Muéstrame ejemplos!',
 		'material_examples_text': 'Estoy todavía colocando esta sección. Hasta entonces puedes mirar las imagenes que ya están subidas para darte una idea.',
 
-		'share_header': '¡Comparte con amigos y familia, especialmente si viven cerca de la costa!',
+		'share_header': '¡Comparte con amigos y familia!',
 		"share_text_intro": "Hay muchas formas de compartir. Obviamente existe {facebook} y {twitter}. Y si eres de la nueva generación tal vez prefieras {whatsapp} o algún otro programa que no conozco, porque soy mayor, o porque existen otras plataformas en tu país.",
 		"share_text_but": "Pero todos sabemos como funcionan las redes sociales. Si realmente quieres contactar con alguien, lo más efectivo sigue siendo hablan con esa persona.",
+		"know_anyone": "¿Conoces a alguien que vive cerca de una costa?",
 
 		"terms_header": "Términos",
 		"terms_author": "Al subir la imágen confirmas tener los derechos de autor.",
