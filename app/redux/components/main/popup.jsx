@@ -1,6 +1,6 @@
 import React, { PropTypes, Component } from 'react'
 import PureRenderMixin from 'react-addons-pure-render-mixin'
-import { defineMessages, injectIntl, intlShape } from 'react-intl'
+import { defineMessages, injectIntl, intlShape, FormattedDate } from 'react-intl'
 import _ from 'underscore'
 import validator from 'validator'
 /*import Classnames from 'classnames'
@@ -125,7 +125,7 @@ class popup extends Component {
 
 		}else{
 
-			const { contribution_material, contribution_comment, contribution_uid } = feature
+			const { contribution_material, contribution_comment, contribution_uid, contribution_exif_datetime } = feature
 
 			const mat = contribution_material ? contribution_material : ''
 			const m = _.findWhere( materials, { value: mat } )
@@ -136,12 +136,21 @@ class popup extends Component {
 			const showcomment = commentToggled && hascomment
 			const commentIcon = showcomment ? 'insert_comment' : 'mode_comment'
 
+			const date = contribution_exif_datetime == '0999-12-31T23:00:00.000Z' ? false : contribution_exif_datetime
+
 			return(
 
 				<DIV id="Popup" className={ style.popup } >
-					{ !showcomment && <A onClick={ showDialog.bind( this, 'REPORT' ) } className={ style.report } title={ formatMessage( messages.report_image ) } >
-						<I className="material-icons">report_problem</I>
-					</A> }
+					{ !showcomment && <DIV className={ style.bar }>
+						<A onClick={ showDialog.bind( this, 'REPORT' ) } className={ style.report } title={ formatMessage( messages.report_image ) } >
+							<I className="material-icons">report_problem</I>
+						</A>
+						{ date && <FormattedDate
+							value={ new Date( contribution_exif_datetime ) }
+							year="numeric"
+							month="short"
+						/> }
+					</DIV> }
 					<DIV className={ style.top } style={ { backgroundImage: 'url("uploads/' + contribution_uid +'.jpg")' } } >
 						{ showcomment && <P className={ style.comment } >{ usercomment }</P> }
 					</DIV>
