@@ -1,7 +1,7 @@
 import * as types from 'types'
 import mapboxgl from 'mapbox-gl/dist/mapbox-gl.js'
 import _ from 'underscore'
-import { promiseGet } from 'actions/util/request/get'
+import { promiseGet, promiseJSONOK } from 'actions/util/request/get'
 //import { resetMain } from 'actions/main/main'
 import Modernizr from 'modernizr'
 
@@ -118,23 +118,6 @@ const _promiseFetchGeojson = () => {
 
 }
 
-const _promiseOKGeojson = ( parsed ) => {
-
-	return new Promise( ( resolve, reject ) => {
-
-		if( parsed.status == 'KO' ){
-
-			reject( Error( 'error_parsing_geojson' ) )
-
-		}else{
-
-			resolve( parsed.json )
-
-		}
-
-	} )
-
-}
 
 const _onMarkerClick = ( features ) => {
 
@@ -142,19 +125,22 @@ const _onMarkerClick = ( features ) => {
 
 		let feature = features[ 0 ]
 
-		/*promiseGet( '/contribute/contribution/' + feature.properties.id )
-		.then( ( result ) => {
+		dispatch( { type: types.SET_POPUP_FEATURE, to: {} } )
 
-			console.log( result );
-			return result
+		promiseGet( '/contribute/' + feature.properties.id )
+		.then( JSON.parse )
+		.then( promiseJSONOK )
+		.then( ( json ) => {
+
+			dispatch( showPopup( json ) )
+			return json
 
 		} )
 		.catch( ( error ) => {
 
 			console.log( error );
 
-		} )*/
-		dispatch( showPopup( feature ) )
+		} )
 
 	}
 
@@ -190,7 +176,7 @@ export const displayMap = ( ) => {
 			const popup = new mapboxgl.Popup( { closeButton: false, closeOnClick: false, anchor: 'bottom' } )
 			const featureDOM = document.getElementById( 'Popup' )
 			popup.setDOMContent( featureDOM )
-			dispatch( { type: types.SET_POPUP, to: popup } )
+			dispatch( { type: types.SET_POPUP_INSTANCE, to: popup } )
 
 			//Init mouse events
 			map.on( 'mousemove', ( e ) => {
@@ -232,7 +218,7 @@ export const displayMap = ( ) => {
 		} )
 		.then( _promiseFetchGeojson )
 		.then( JSON.parse )
-		.then( _promiseOKGeojson )
+		.then( promiseJSONOK )
 		.then( ( geojson ) => {
 
 			if( _.isNull( geojson ) ){
@@ -548,7 +534,7 @@ export const showPopup = ( feature ) => {
 
 		}
 
-		let ll = new mapboxgl.LngLat.convert( feature.geometry.coordinates )
+		let ll = new mapboxgl.LngLat.convert( [ feature.contribution_point.x, feature.contribution_point.y ] )
 		let wrapped = ll.wrap()
 
 		dispatch( { type: types.SET_POPUP_FEATURE, to: feature } )

@@ -101,7 +101,7 @@ class popup extends Component {
 
 		this.state = {
 
-			comment: false
+			commentToggled: false
 
 		}
 
@@ -111,25 +111,29 @@ class popup extends Component {
 
 		const { formatMessage } = this.props.intl
 		const { feature, materials, hidePopup, showDialog } = this.props
-		const { comment } = this.state
+		const { commentToggled } = this.state
 
-		if( !feature.properties ){
+		if( !feature.contribution_uid ){
 
 			return (
 				
-				<DIV id="Popup" className={ style.popup } ></DIV>
+				<DIV id="Popup" className={ style.popup } >
+					<DIV className={ style.spinner }></DIV>
+				</DIV>
 
 			)
 
 		}else{
 
-			const mat = feature.properties.material ? feature.properties.material : ''
-			const material = _.findWhere( materials, { value: mat } )
-			const color = material.color
+			const { contribution_material, contribution_comment, contribution_uid } = feature
 
-			const usercomment = validator.unescape( feature.properties.comment )
+			const mat = contribution_material ? contribution_material : ''
+			const m = _.findWhere( materials, { value: mat } )
+			const color = m.color
+
+			const usercomment = validator.unescape( contribution_comment )
 			const hascomment = usercomment != ''
-			const showcomment = comment && hascomment
+			const showcomment = commentToggled && hascomment
 			const commentIcon = showcomment ? 'insert_comment' : 'mode_comment'
 
 			return(
@@ -138,7 +142,7 @@ class popup extends Component {
 					{ !showcomment && <A onClick={ showDialog.bind( this, 'REPORT' ) } className={ style.report } title={ formatMessage( messages.report_image ) } >
 						<I className="material-icons">report_problem</I>
 					</A> }
-					<DIV className={ style.top } style={ { backgroundImage: 'url(' + feature.properties.image +')' } } >
+					<DIV className={ style.top } style={ { backgroundImage: 'url("uploads/' + contribution_uid +'.jpg")' } } >
 						{ showcomment && <P className={ style.comment } >{ usercomment }</P> }
 					</DIV>
 					<DIV className={ style.actions }>
@@ -160,7 +164,7 @@ class popup extends Component {
 
 	_toggleComment = () => {
 
-		this.setState( { comment: !this.state.comment } )
+		this.setState( { commentToggled: !this.state.commentToggled } )
 
 	}
 

@@ -275,11 +275,11 @@ const drops = ( state = [], action ) => {
 
 }
 
-const popup = ( state = { popup: undefined, feature: {}, coords: [], active: false }, action ) => {
+const popup = ( state = { popup: undefined, feature: {}/*, coords: [], active: false*/ }, action ) => {
 
 	switch ( action.type ){
 
-	case types.SET_POPUP:
+	case types.SET_POPUP_INSTANCE:
 		return _.extend( {}, state, { popup: action.to } )
 	case types.SET_POPUP_FEATURE:
 		return _.extend( {}, state, { feature: action.to } )

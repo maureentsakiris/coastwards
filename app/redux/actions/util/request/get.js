@@ -35,3 +35,22 @@ export const promiseGet = ( url ) => {
 	} )
 
 }
+
+
+export const promiseJSONOK = ( parsed ) => {
+
+	return new Promise( ( resolve, reject ) => {
+
+		if( parsed.status == 'KO' ){
+
+			reject( Error( 'error_json' ) )
+
+		}else{
+
+			resolve( parsed.json )
+
+		}
+
+	} )
+
+}

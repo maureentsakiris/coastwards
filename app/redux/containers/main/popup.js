@@ -11,7 +11,7 @@ const mapStateToProps = ( state ) => {
 
 		feature: state.popup.feature, 
 		materials: state.materials
-
+		
 	}
 
 }

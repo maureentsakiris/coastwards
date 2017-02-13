@@ -126,7 +126,7 @@ class report extends Component {
 				<FORM action="#" id="Report" >
 					<COMMENT id="Comment" onChange={ this._validateForm } form="Report" label={ formatMessage( messages.label_report_comment ) } name="comment" placeholder={ formatMessage( messages.placeholder_report_comment ) } />
 					<BR />
-					<INPUT type="hidden" id="Id" form="Report" name="id" value={ feature.properties.id } readOnly={ true } />
+					<INPUT type="hidden" id="Id" form="Report" name="id" value={ '' + feature.contribution_id } readOnly={ true } />
 					<BR />
 					<EMAIL id="Email" onChange={ this._validateForm } form="Report" label={ formatMessage( messages.label_email ) } name="email" placeholder={ formatMessage( messages.placeholder_email ) } />
 					<BR />
@@ -134,8 +134,8 @@ class report extends Component {
 					<DIV className={ style.status } >{ status && m }</DIV>
 				</FORM>
 			</DIV>
-
-		)
+   
+		) 
 
 	}
 

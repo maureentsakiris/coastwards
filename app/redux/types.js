@@ -60,5 +60,5 @@ export const ADD_DROP = 'ADD_DROP'
 export const REMOVE_LAST_DROP = 'REMOVE_LAST_DROP'
 
 //popup
-export const SET_POPUP = 'SET_POPUP'
+export const SET_POPUP_INSTANCE = 'SET_POPUP_INSTANCE'
 export const SET_POPUP_FEATURE = 'SET_POPUP_FEATURE'
