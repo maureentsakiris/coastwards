@@ -1,5 +1,6 @@
 import * as types from 'types'
 import mapboxgl from 'mapbox-gl/dist/mapbox-gl.js'
+import MapboxGeocoder from 'mapbox-gl/plugins/src/mapbox-gl-geocoder/v2.0.0/mapbox-gl-geocoder.js'
 import _ from 'underscore'
 import { promiseGet, promiseJSONOK } from 'actions/util/request/get'
 //import { resetMain } from 'actions/main/main'
@@ -37,16 +38,16 @@ const _promiseInitMap = ( ) => {
 
 		if( !Modernizr.touchevents ){
 
-			map.addControl( new mapboxgl.NavigationControl(), 'top-left' )
+			//map.addControl( new mapboxgl.NavigationControl(), 'top-left' )
 
-			/*let geocoder = new MapboxGeocoder( {
+			let geocoder = new MapboxGeocoder( {
 
-				accessToken: ACCESSTOKEN,
-				placeholder: placeholder
+				accessToken: ACCESSTOKEN/*,
+				placeholder: "sdfg"*/
 
 			} )
 
-			map.addControl( geocoder, 'top-left' )*/
+			map.addControl( geocoder, 'top-left' )
 
 		}
 

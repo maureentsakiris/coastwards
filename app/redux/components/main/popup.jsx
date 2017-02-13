@@ -148,7 +148,7 @@ class popup extends Component {
 						{ date && <FormattedDate
 							value={ new Date( contribution_exif_datetime ) }
 							year="numeric"
-							month="short"
+							month="long"
 						/> }
 					</DIV> }
 					<DIV className={ style.top } style={ { backgroundImage: 'url("uploads/' + contribution_uid +'.jpg")' } } >
