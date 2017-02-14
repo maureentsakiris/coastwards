@@ -40,7 +40,12 @@ app.use( '/contribute', contribute );
 app.use( '/contact', contact );
 app.use( '/administrate', administrate );
 
+/*app.get( '/newsletter', ( req, res ) => {
 
+	var lang = req.acceptsLanguages( [ 'en', 'es', 'de' ] );
+	res.render( 'newsletter', { lang: lang } );
+
+} );*/
 
 
 const passport = require( 'passport' )

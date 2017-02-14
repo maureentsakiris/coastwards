@@ -6,6 +6,7 @@ import ACTIONS from 'containers/main/actions'
 
 import DIV from 'components/tags/div'
 import H from 'components/tags/h'
+import A from 'components/tags/a'
 
 
 import style from './_prompts'
@@ -117,6 +118,7 @@ const prompts = ( { intl, className, prompt, jazzSupported, show } ) => {
 			<DIV id="Prompts" className={ cls } >
 				<H priority={ 2 }>{ str }</H>
 				<ACTIONS />
+				<A className={ style.signUp } href="http://eepurl.com/b1-BSH" >Sign up for more</A>
 			</DIV>
 
 		)
