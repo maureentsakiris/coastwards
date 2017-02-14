@@ -4,10 +4,32 @@ import { addSnackbarMessage } from 'actions/ui/snackbar'
 import { promiseDataURLtoBlob } from 'actions/util/form'
 import { scrollToId } from 'actions/context'
 import { promiseXHR } from 'actions/util/request/xhr'
+import { promiseGet } from 'actions/util/request/get'
 import { fly, resetMap, hidePopup, switchModus, dropMarker, trackZoom } from 'actions/main/mapbox'
 import uuid from 'uuid'
 import _ from 'underscore'
 
+export const getCount = ( ) => {
+
+	return function ( dispatch ){
+
+		promiseGet( '/contribute/count' )
+		.then( JSON.parse )
+		.then( ( parsed ) => {
+
+			dispatch( { type: types.SET_COUNT, to: parsed.count } )
+			return parsed.count
+
+		} )
+		.catch( ( error ) => {
+
+			console.log( error );
+
+		} )
+
+	}
+
+}
 
 
 const _promiseFiles = ( e ) => {
@@ -176,6 +198,7 @@ export const validateFile = ( e ) => {
 		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'prompts', to: false } )
 		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'errors', to: false } )
 		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'upload', to: false } )
+		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'counter', to: false } )
 
 
 

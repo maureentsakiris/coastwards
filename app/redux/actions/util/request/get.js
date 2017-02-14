@@ -47,7 +47,7 @@ export const promiseJSONOK = ( parsed ) => {
 
 		}else{
 
-			resolve( parsed.json )
+			resolve( parsed )
 
 		}
 

@@ -11,6 +11,7 @@ import Form from 'containers/main/form'
 import Mapbox from 'containers/main/mapbox'
 import Popup from 'containers/main/popup'
 import Loader from 'containers/main/loader'
+import Counter from 'containers/main/counter'
 
 import DIV from 'components/tags/div'
 import P from 'components/tags/p'
@@ -71,6 +72,7 @@ const main = ( { intl, uploadSupported, jazzSupported } ) => {
 				<Errors key="errors" className={ style.screen } />
 				<Form className={ style.form } />
 				<Upload className={ style.upload } />
+				<Counter />
 				<Popup />
 			</DIV>
 

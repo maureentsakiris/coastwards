@@ -48,7 +48,8 @@ window.addEventListener( 'scroll', ( ) => {
 
 	store.dispatch( setScrollY( window.scrollY ) )
 
-} ) 
+} )
+
 
 ReactDom.render( 
 

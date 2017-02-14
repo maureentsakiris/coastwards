@@ -350,6 +350,69 @@ router.get( '/geojson', function ( req, res ) {
 
 } )
 
+function promiseFetchCount ( ){
+
+	return new Promise( function ( resolve, reject ) {
+
+		pool.getConnection( function ( error, connection ) {
+
+			if( error ){
+
+				reject( error )
+
+			}else{
+
+				var query = 'SELECT COUNT(*) as count from contributions'
+
+				connection.query( query, function ( err, results ) {
+
+					if( error ){
+
+						reject( error )
+
+					}else{
+
+						if( results[ 0 ] === undefined ){
+
+							reject( Error( 'contributions/promiseFetchCount/Could not read result from query (Update schema?)' ) )
+
+						}else{
+
+							resolve( results[ 0 ].count )
+
+						}
+
+					}
+					
+					connection.release()
+
+				} )
+
+			}
+
+		} )
+
+	} )
+
+}
+
+router.get( '/count', function ( req, res ) {
+
+	promiseFetchCount()
+	.then( ( count ) => {
+
+		res.json( { status: 'OK', count: count } )
+		return count;
+
+	} )
+	.catch( ( error ) => {
+
+		res.json( { status: 'KO', message: error.toString() } )
+
+	} )
+
+} )
+
 function promiseFetchContribution ( id ){
 
 	return new Promise( function ( resolve, reject ) {
@@ -429,5 +492,7 @@ router.get( '/:contribution_id', function ( req, res ) {
 	} )
 
 } )
+
+
 
 module.exports = router;

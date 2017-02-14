@@ -136,14 +136,14 @@ const snackbar = ( state = [], action ) => {
 
 
 // IF YOU ADD A LAYER HERE YOU MIGHT HAVE TO CHANGE main.js/scrollUp
-const layers = ( state = { loader: true, upload: false, prompts: false, statuses: false, errors: false, locate: false, geolocater: false, form: false, marker: false }, action ) => {
+const layers = ( state = { loader: true, counter: true, upload: false, prompts: false, statuses: false, errors: false, locate: false, geolocater: false, form: false, marker: false }, action ) => {
 
 	switch ( action.type ){
 
 	case types.SET_LAYER_VISIBILITY:
 		return _.extend( {}, state, { [ action.layer ]: action.to } )
 	case types.RESET_LAYERS:
-		return { loader: false, upload: true, prompts: true, statuses: false, errors: false, locate: false, geolocater: false, form: false, marker: false }
+		return { loader: false, counter: true, upload: true, prompts: true, statuses: false, errors: false, locate: false, geolocater: false, form: false, marker: false }
 	default: 
 		return state
 
@@ -217,7 +217,7 @@ const form = ( state = { image: {}, material: '', uid: '', adaptation: '', comme
 
 } 
 
-const selected = ( state = [ ], action ) => {
+const selected = ( state = [], action ) => {
 
 	switch ( action.type ){
 
@@ -291,6 +291,20 @@ const popup = ( state = { popup: undefined, feature: {}/*, coords: [], active: f
 }
 
 
+const count = ( state = 0, action ) => {
+
+	switch ( action.type ){
+
+	case types.SET_COUNT:
+		return action.to
+	default:
+		return state
+
+	}
+
+}
+
+
 const coastwards = combineReducers( {
 
 	browser,
@@ -311,7 +325,8 @@ const coastwards = combineReducers( {
 	mapbox,
 	interactiveLayers,
 	drops,
-	popup
+	popup,
+	count
 
 } )
 
