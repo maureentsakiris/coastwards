@@ -25,5 +25,7 @@ module.exports = {
 
 		'comment': "Leave us a comment!",
 		'comment_placeholder': 'Tell us something about this coast ...',
+
+		'counting': "{count} images uploaded so far"
 	}
 };

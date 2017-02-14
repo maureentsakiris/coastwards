@@ -1,6 +1,6 @@
 import React, { PropTypes, Component } from 'react'
 import PureRenderMixin from 'react-addons-pure-render-mixin'
-/*import { defineMessages, injectIntl, intlShape } from 'react-intl'*/
+//import { defineMessages, injectIntl, intlShape } from 'react-intl'
 
 import DIV from 'components/tags/div'
 import P from 'components/tags/p'
@@ -18,7 +18,7 @@ class counter extends Component {
 
 	static propTypes = {
 
-		/*intl: intlShape.isRequired,*/
+		//intl: intlShape.isRequired,
 		count: PropTypes.number,
 		show: PropTypes.bool,
 

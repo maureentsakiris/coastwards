@@ -198,7 +198,6 @@ export const validateFile = ( e ) => {
 		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'prompts', to: false } )
 		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'errors', to: false } )
 		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'upload', to: false } )
-		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'counter', to: false } )
 
 
 

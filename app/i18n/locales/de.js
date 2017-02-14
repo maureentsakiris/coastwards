@@ -198,7 +198,9 @@ module.exports = {
 		"report_text": "Hier hast Du die Möglichkeit Fotos bei uns zu melden solltest Du der Meinung sein sie gehören nicht veröffentlicht.",
 		"label_report_comment": "Kommentar",
 		"placeholder_report_comment": "Sag uns warum wir dieses Foto von der Webseite entfernen sollten ...",
-		"report_ok": "Deine Meldung wurde verschickt!"
+		"report_ok": "Deine Meldung wurde verschickt!",
+
+		'counting': "{count} fotos hochgeladen"
 		
 	}
 };

@@ -1,7 +1,7 @@
 [
   {
-    "id": "pictures_uploaded",
+    "id": "counting",
     "description": "-",
-    "defaultMessage": "and counting"
+    "defaultMessage": "{count} images uploaded so far"
   }
 ]

@@ -196,7 +196,9 @@ module.exports = {
 		"report_text": "Aquí puedes denunciar esta imágen para que se quite del sitio web.",
 		"label_report_comment": "Comentario",
 		"placeholder_report_comment": "Planteanos porque se debe quitar esta imágen del sitio web...",
-		"report_ok": "Tu informe ha sido enviado!"
+		"report_ok": "Tu informe ha sido enviado!",
+
+		'counting': "{count} imagenes subidas"
 
 
 	}
