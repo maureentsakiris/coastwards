@@ -1,17 +1,7 @@
 # coastwards.org
 
+COASTWARDS is a Citizen Science project funded by the Cluster of Excellence 'The Future Ocean', the University of Kiel and the Coastal Risks and Sea-level Rise Research Group.
 
-sudo chown -R tsakiris:tsakiris /var/www/
+Participants can help Science study the risks of sea-level rise by uploading pictures of coasts. 
 
-
-
-ssh-keygen -t rsa
-ssh -T git@github.com
-Are you sure you want to continue connecting (yes/no)? yes
-
-
-
-link(rel="stylesheet", href="https://fonts.googleapis.com/icon?family=Material+Icons", type="text/css")
-		link(rel="stylesheet", href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700", type="text/css")
-		link(rel="stylesheet", href="./css/mapbox-gl.css", type="text/css")
-		link(rel="stylesheet", href="./build/styles.css", type="text/css")
+Have any pictures of coasts? Go check it out!
