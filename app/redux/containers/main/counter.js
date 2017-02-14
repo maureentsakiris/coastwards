@@ -21,11 +21,11 @@ const mapDispatchToProps = ( dispatch ) => {
 		getCount: ( ) => {
 
 			dispatch( getCount() )
-			setInterval( ( ) => {
+			/*setInterval( ( ) => {
 
 				dispatch( getCount() )
 
-			}, 5000 )
+			}, 10000 )*/
 
 		}
 
