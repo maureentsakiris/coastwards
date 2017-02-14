@@ -1,9 +1,8 @@
 import React, { PropTypes, Component } from 'react'
 import PureRenderMixin from 'react-addons-pure-render-mixin'
-//import { defineMessages, injectIntl, intlShape } from 'react-intl'
+import { FormattedNumber, injectIntl } from 'react-intl'
 
 import DIV from 'components/tags/div'
-import P from 'components/tags/p'
 
 import style from './_counter'
 
@@ -53,7 +52,7 @@ class counter extends Component {
 			return (
 				
 				<DIV id="Counter" className={ style.counter } >
-					<P>{ count }</P>
+					<FormattedNumber value={ count }/>
 				</DIV>
 
 			)
@@ -64,4 +63,4 @@ class counter extends Component {
 
 }
 
-export default counter
+export default injectIntl( counter )
