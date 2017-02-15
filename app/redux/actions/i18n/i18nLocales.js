@@ -22,6 +22,11 @@ const Locales = [
 		locale: 'de',
 		name: 'Deutsch',
 		en: 'German'
+	},
+	{
+		locale: 'pt',
+		name: 'Português',
+		en: 'Portuguese'
 	}/*,
 	{
 		locale: 'hi',
@@ -185,6 +190,48 @@ loaders.es = ( done ) => {
 	}
 
 }
+
+loaders.pt = ( done ) => {
+
+	if ( !hasIntl ){
+
+		require.ensure(
+
+			[ 'intl/locale-data/jsonp/pt.js', 'react-intl/locale-data/pt', '../../../i18n/locales/pt' ],
+			( require ) => {
+
+				require( 'intl/locale-data/jsonp/pt.js' ); 
+				var localeData = require( 'react-intl/locale-data/pt' );
+				addLocaleData( localeData );
+				var i18n = require( '../../../i18n/locales/pt' );
+				done ( null, i18n );
+
+			},
+			'pt-polyfill'
+
+		);
+
+	}else{
+
+		require.ensure(
+
+			[ 'react-intl/locale-data/pt', '../../../i18n/locales/pt' ],
+			( require ) => {
+
+				var localeData = require( 'react-intl/locale-data/pt' );
+				addLocaleData( localeData );
+				var i18n = require( '../../../i18n/locales/pt' );
+				done ( null, i18n );
+
+			},
+			'pt'
+
+		);
+
+	}
+
+}
+
 
 /*loaders.it = ( done ) => {
 
