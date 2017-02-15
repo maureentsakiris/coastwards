@@ -186,7 +186,7 @@ loaders.es = ( done ) => {
 
 }
 
-loaders.it = ( done ) => {
+/*loaders.it = ( done ) => {
 
 	if ( !hasIntl ){
 
@@ -430,7 +430,7 @@ loaders.zh = ( done ) => {
 
 	}
 
-}
+}*/
 
 const loadLocale = function ( locale, done ){
 

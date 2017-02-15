@@ -20,11 +20,6 @@ const intlMessages = defineMessages( {
 		description: "Snack - ",
 		defaultMessage: "Found the location!! Here we go!"
 	},
-	just_kidding:{
-		id: "just_kidding",
-		description: " - ",
-		defaultMessage: "(Though a cabin in the mountains sounds great to me)"
-	},
 	zoom_until:{
 		id: "zoom_until",
 		description: "Snack - ",
@@ -39,11 +34,6 @@ const intlMessages = defineMessages( {
 		id: "two_fingers",
 		description: "Snack - ",
 		defaultMessage: "Use two fingers to zoom"
-	},
-	draw_map:{
-		id: "draw_map",
-		description: "Snack",
-		defaultMessage: "One for all, all for one. Or something like that..."
 	},
 	accept_terms_first:{
 		id: "accept_terms_first",

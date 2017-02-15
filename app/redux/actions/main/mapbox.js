@@ -169,6 +169,8 @@ export const displayMap = ( ) => {
 
 	return function ( dispatch, getState ){
 
+		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'upload', to: false } )
+
 		_promiseInitMap()
 		.then( ( map ) => {
 

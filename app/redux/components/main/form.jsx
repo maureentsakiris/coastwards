@@ -15,6 +15,7 @@ import A from 'components/tags/a'
 import RADIOGROUP from 'components/form/radiogroup/radiogroup'
 import ICONRADIOGROUP from 'components/form/radiogroup/iconradiogroup'
 import COMMENT from 'components/form/input/comment'
+import HASHTAG from 'components/form/input/hashtag'
 import CANCEL from 'components/form/button/cancel'
 import GO from 'components/form/button/go'
 
@@ -100,6 +101,17 @@ const messages = defineMessages( {
 		defaultMessage: "Tell us, how did this coast change in recent years...?"
 	},
 
+	hashtag:{
+		id: "hashtag",
+		description: "Label - ",
+		defaultMessage: "Sign your image with a hashtag!"
+	},
+	hashtag_placeholder:{
+		id: "hashtag_placeholder",
+		description: "Placeholder - ",
+		defaultMessage: "#iwashere"
+	},
+
 	//upload
 	upload_image:{
 		id: "upload_image",
@@ -124,7 +136,7 @@ const messages = defineMessages( {
 
 } )
 
-const form = ( { intl, className, show, image, checkedValue, jazzSupported, materials, setMaterial, setComment, uploadImage, resetMain, showDialog, addSnackbarMessage } ) => {
+const form = ( { intl, className, show, image, checkedValue, jazzSupported, materials, setMaterial, setComment, setHashtag, uploadImage, resetMain, showDialog, addSnackbarMessage } ) => {
 
 	const { formatMessage } = intl
 
@@ -206,6 +218,7 @@ const form = ( { intl, className, show, image, checkedValue, jazzSupported, mate
 								{ " " }<SMALL><A onClick={ showDialog.bind( this, 'DEFINEMATERIAL' ) }>{ formatMessage( messages.define_material ) }</A></SMALL>
 							</ICONRADIOGROUP>
 							<COMMENT className={ style.comment } form="Form" label={ formatMessage( messages.comment ) }  preferPlaceholder={ false } placeholder={ formatMessage( messages.comment_placeholder ) } name="comment" onChange={ setComment } />
+							<HASHTAG className={ style.hashtag } preferPlaceholder={ false } label={ formatMessage( messages.hashtag ) } placeholder={ formatMessage( messages.hashtag_placeholder ) } form="Form" name="hashtag" onChange={ setHashtag } />
 							<FORMDATA />
 						</DIV>
 					</DIV>
@@ -264,6 +277,7 @@ form.propTypes = {
 
 	setMaterial: PropTypes.func,
 	setComment: PropTypes.func,
+	setHashtag: PropTypes.func,
 	uploadImage: PropTypes.func,
 	resetMain: PropTypes.func,
 	showDialog: PropTypes.func,

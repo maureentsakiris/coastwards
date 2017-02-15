@@ -10,11 +10,6 @@
     "defaultMessage": "Found the location!! Here we go!"
   },
   {
-    "id": "just_kidding",
-    "description": "-",
-    "defaultMessage": "(Though a cabin in the mountains sounds great to me)"
-  },
-  {
     "id": "zoom_until",
     "description": "Snack -",
     "defaultMessage": "Zoom until the marker turns green and points to the location you took this picture!"
@@ -28,11 +23,6 @@
     "id": "two_fingers",
     "description": "Snack -",
     "defaultMessage": "Use two fingers to zoom"
-  },
-  {
-    "id": "draw_map",
-    "description": "Snack",
-    "defaultMessage": "One for all, all for one. Or something like that..."
   },
   {
     "id": "accept_terms_first",

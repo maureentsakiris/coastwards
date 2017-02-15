@@ -136,7 +136,7 @@ const snackbar = ( state = [], action ) => {
 
 
 // IF YOU ADD A LAYER HERE YOU MIGHT HAVE TO CHANGE main.js/scrollUp
-const layers = ( state = { loader: true, upload: false, prompts: false, statuses: false, errors: false, locate: false, geolocater: false, form: false, marker: false }, action ) => {
+const layers = ( state = { loader: true, upload: true, prompts: false, statuses: false, errors: false, locate: false, geolocater: false, form: false, marker: false }, action ) => {
 
 	switch ( action.type ){
 

@@ -77,7 +77,7 @@ const context = ( { intl, lang, dir, jazzSupported, clipped, useraction, scrollY
 
 		return(
 
-			<DIV lang={ lang } dir={ dir } >
+			<DIV lang={ lang } dir={ dir }>
 				<P className={ style.alert } >{ formatMessage( messages.nojazz_text ) }</P>
 				<I18nLinks availableLanguages={ i18nLocales.locales } className={ style.i18n } />
 				<DIV id="Intro" className={ style.introNoJazz } >
@@ -149,7 +149,7 @@ const context = ( { intl, lang, dir, jazzSupported, clipped, useraction, scrollY
 		return(
 
 			<DIV lang={ lang } dir={ dir } >
-				<DIV id="Intro" className={ clsIntro }>
+				<DIV id="Intro" className={ clsIntro }> 
 					<I18nLinks availableLanguages={ i18nLocales.locales } className={ style.i18n } />
 					<IMG src="./assets/coastwards.svg" alt="Logo coastwards: A turtle on a mission" className={ style.logo } />
 					<H priority={ 1 } className={ style.headline } ><span>{ formatMessage( messages.help_science ) }</span> <span>{ formatMessage( messages.by ) }</span></H>

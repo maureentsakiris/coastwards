@@ -425,7 +425,7 @@ function promiseFetchContribution ( id ){
 
 			}else{
 
-				var sql = 'SELECT ??, ??, ??, ??, ??, ?? FROM ?? WHERE ??=?'
+				var sql = 'SELECT ??, ??, ??, ??, ??, ??, ?? FROM ?? WHERE ??=?'
 				var inserts = [
 
 					"contribution_uid",
@@ -434,6 +434,7 @@ function promiseFetchContribution ( id ){
 					"contribution_exif_datetime",
 					"contribution_point",
 					"contribution_id",
+					"contribution_hashtag",
 
 					"contributions",
 

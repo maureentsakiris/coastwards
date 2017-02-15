@@ -65,6 +65,16 @@
     "defaultMessage": "Tell us, how did this coast change in recent years...?"
   },
   {
+    "id": "hashtag",
+    "description": "Label -",
+    "defaultMessage": "Sign your image with a hashtag!"
+  },
+  {
+    "id": "hashtag_placeholder",
+    "description": "Placeholder -",
+    "defaultMessage": "#iwashere"
+  },
+  {
     "id": "upload_image",
     "description": "Button label - Prompts the user to upload the image",
     "defaultMessage": "UPLOAD"

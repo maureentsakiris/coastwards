@@ -10,6 +10,7 @@ import DIV from 'components/tags/div'
 import A from 'components/tags/a'
 import I from 'components/tags/i'
 import P from 'components/tags/p'
+import BR from 'components/tags/br'
 /*import SPAN from 'components/tags/span'*/
 
 import style from './_popup'
@@ -125,7 +126,7 @@ class popup extends Component {
 
 		}else{
 
-			const { contribution_material, contribution_comment, contribution_uid, contribution_exif_datetime } = feature
+			const { contribution_material, contribution_comment, contribution_uid, contribution_exif_datetime/*, contribution_hashtag*/ } = feature
 
 			const mat = contribution_material ? contribution_material : ''
 			const m = _.findWhere( materials, { value: mat } )
