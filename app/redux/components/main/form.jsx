@@ -206,6 +206,8 @@ const form = ( { intl, className, show, image, checkedValue, jazzSupported, mate
 
 		} )
 
+		/*<HASHTAG className={ style.hashtag } preferPlaceholder={ false } label={ formatMessage( messages.hashtag ) } placeholder={ formatMessage( messages.hashtag_placeholder ) } form="Form" name="hashtag" onChange={ setHashtag } />*/
+
 		return(
 
 			<FORM id="Form" action="#" className={ cls } >
@@ -218,7 +220,6 @@ const form = ( { intl, className, show, image, checkedValue, jazzSupported, mate
 								{ " " }<SMALL><A onClick={ showDialog.bind( this, 'DEFINEMATERIAL' ) }>{ formatMessage( messages.define_material ) }</A></SMALL>
 							</ICONRADIOGROUP>
 							<COMMENT className={ style.comment } form="Form" label={ formatMessage( messages.comment ) }  preferPlaceholder={ false } placeholder={ formatMessage( messages.comment_placeholder ) } name="comment" onChange={ setComment } />
-							<HASHTAG className={ style.hashtag } preferPlaceholder={ false } label={ formatMessage( messages.hashtag ) } placeholder={ formatMessage( messages.hashtag_placeholder ) } form="Form" name="hashtag" onChange={ setHashtag } />
 							<FORMDATA />
 						</DIV>
 					</DIV>
