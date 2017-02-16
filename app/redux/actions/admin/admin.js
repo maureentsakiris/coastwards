@@ -114,3 +114,48 @@ export const deleteContribution = ( contribution_id ) => {
 	}
 
 }
+
+export const updateContribution = ( formID ) => {
+
+	return function ( dispatch ){
+
+		let form = document.getElementById( formID )
+		let formData = new FormData( form )
+
+		let options = {
+
+			data: formData,
+			url: '/administrate/update'
+
+		}
+
+		promiseXHR( options )
+		.then( JSON.parse )
+		.then( ( parsed ) => {
+
+			if( parsed.status == 'KO' ){
+
+				throw Error( parsed.message )
+
+			}else{
+
+				if( parsed.affectedRows == 1 ){
+
+					dispatch( fetch() )
+
+				}
+
+			}
+
+			return parsed
+
+		} )
+		.catch( ( error ) => {
+
+			console.log( error )
+
+		} )
+
+	}
+
+}

@@ -1,14 +1,15 @@
 import { connect } from 'react-redux'
-import { deleteContribution } from 'actions/admin/admin'
+import { deleteContribution, updateContribution } from 'actions/admin/admin'
 
 import CONTRIBUTION from 'components/admin/contribution'
 
 
-const mapStateToProps = ( state ) => {
+const mapStateToProps = ( state, ownProps ) => {
 
 	return {
 
-		materials: state.materials
+		materials: state.materials,
+		result: ownProps.result
 
 	}
 
@@ -27,6 +28,13 @@ const mapDispatchToProps = ( dispatch ) => {
 				dispatch( deleteContribution( id ) )
 
 			} 
+
+		},
+		updateContribution: ( formID, e ) => {
+
+			e.preventDefault()
+			
+			dispatch( updateContribution( formID ) )
 
 		}
 

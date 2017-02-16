@@ -8,9 +8,9 @@ import RADIO from 'components/form/radiogroup/radio'
 
 const radiogroup = ( { hocProps } ) => {
 
-	const { form, name, options, onClick, className } = hocProps
+	const { form, name, options, checked, onChange, className, controlled } = hocProps
 
-	const radios = _renderOptions( form, name, options, onClick )
+	const radios = _renderOptions( form, name, options, checked, onChange, controlled )
 
 	return(
 
@@ -22,11 +22,12 @@ const radiogroup = ( { hocProps } ) => {
 	
 }
 
-const _renderOptions = ( form, name, options, onClick ) => {
+const _renderOptions = ( form, name, options, checked, onChange, controlled ) => {
 
 	return _.map( options, ( option, key ) => {
 
-		let { label, value, checked } = option
+		let { label, value } = option
+		let isChecked = value == checked ? true : false
 
 		return React.createElement( RADIO, {
 
@@ -35,8 +36,9 @@ const _renderOptions = ( form, name, options, onClick ) => {
 			label: label,
 			name: name,
 			value: value,
-			onClick: onClick,
-			defaultChecked: checked
+			onChange: onChange,
+			isChecked: isChecked,
+			controlled: controlled
 
 		} )
 
@@ -48,9 +50,10 @@ radiogroup.propTypes = {
 
 	hocProps: PropTypes.shape( {
 
-		onClick: PropTypes.func,
+		onChange: PropTypes.func,
 		options: PropTypes.array.isRequired,
-		className: PropTypes.string
+		className: PropTypes.string,
+		controlled: PropTypes.bool
 
 	} )
 

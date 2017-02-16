@@ -23,12 +23,17 @@ const mapDispatchToProps = ( dispatch ) => {
 		setMaterial: ( e ) => {
 
 			dispatch( setMaterial( e ) )
-			dispatch( fetch() )
+			//dispatch( fetch() )
 
 		},
 		setVerified: ( e ) => {
 
 			dispatch( setVerified( e ) )
+			//dispatch( fetch() )
+
+		},
+		fetch: ( ) => {
+
 			dispatch( fetch() )
 
 		}

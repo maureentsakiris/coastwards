@@ -83,8 +83,6 @@ const _fetch = ( fields ) => {
 
 				var query = mysql.format( sql, inserts )
 
-				console.log( query )
-
 				connection.query( query, function ( err, results ) {
 
 					if( error ){
@@ -108,8 +106,6 @@ const _fetch = ( fields ) => {
 	} )
 
 }
-
-
 
 router.post( '/fetch', function ( req, res ) {
 
@@ -182,6 +178,80 @@ router.post( '/delete', function ( req, res ) {
 
 	_promiseFetchForm( req )
 	.then( _delete )
+	.then( ( affectedRows ) => {
+
+		res.json( { status: 'OK', affectedRows: affectedRows } )
+		
+		return affectedRows
+
+	} )
+	.catch( ( error ) => {
+
+		res.json( { status: 'KO', message: error.toString() } )
+
+	} )
+
+} )
+
+const _update = ( fields ) => {
+
+	console.log( fields );
+
+	return new Promise( ( resolve, reject ) => { 
+
+		const { contribution_id, contribution_verified, contribution_material_verified } = fields
+
+		pool.getConnection( function ( error, connection ) {
+
+			if( error ){
+
+				reject( error )
+
+			}else{
+
+				var sql = 'UPDATE ?? SET contribution_verified=?, contribution_material_verified=? WHERE contribution_id=?';
+
+				var inserts = [
+
+					"contributions",
+
+					contribution_verified,
+					contribution_material_verified,
+
+					contribution_id
+
+				]
+
+				var query = mysql.format( sql, inserts )
+
+				connection.query( query, function ( err, result ) {
+
+					if( error ){
+
+						reject( error )
+
+					}else{
+
+						resolve( result.affectedRows )
+
+					}
+					
+					connection.release()
+
+				} )
+
+			}
+
+		} )
+
+	} )
+
+}
+
+router.post( '/update', function ( req, res ) {
+
+	_promiseFetchForm( req )
+	.then( _update )
 	.then( ( affectedRows ) => {
 
 		res.json( { status: 'OK', affectedRows: affectedRows } )

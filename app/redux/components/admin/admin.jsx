@@ -8,13 +8,13 @@ import UL from 'components/tags/ul'
 import FORM from 'components/tags/form'
 import SELECTGROUP from 'components/form/selectgroup/selectgroup'
 import CHECKBOX from 'components/form/input/checkbox'
+import GO from 'components/form/button/go'
 
 import CONTRIBUTION from 'containers/admin/contribution'
 
 import style from './_admin'
 
-const admin = ( { results, materials, material, setMaterial, setVerified } ) => {
-
+const admin = ( { results, materials, material, setMaterial, setVerified, fetch } ) => {
 
 	const all = [ { label: 'All', value: '%' } ]
 	const mats = _.map( materials, ( material ) => {
@@ -34,6 +34,7 @@ const admin = ( { results, materials, material, setMaterial, setVerified } ) => 
 			<FORM className={ style.form } id="Admin" action="/admin/fetch" >
 				<SELECTGROUP form="Admin" label="Material" name="material" preferPlaceholder={ false } options={ options } onChange={ setMaterial } value={ material } />
 				<CHECKBOX form="Admin" label="Verified" name="verified" preferPlaceholder={ false } value="1" onChange={ setVerified } />
+				<GO onClick={ fetch } label="GO" />
 			</FORM>
 			<UL>{ list }</UL>
 		</DIV>
@@ -64,7 +65,8 @@ admin.propTypes = {
 	material: PropTypes.string,
 
 	setMaterial: PropTypes.func,
-	setVerified: PropTypes.func
+	setVerified: PropTypes.func,
+	fetch: PropTypes.func
 
 }
 

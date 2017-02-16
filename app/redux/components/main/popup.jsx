@@ -3,15 +3,11 @@ import PureRenderMixin from 'react-addons-pure-render-mixin'
 import { defineMessages, injectIntl, intlShape, FormattedDate } from 'react-intl'
 import _ from 'underscore'
 import validator from 'validator'
-/*import Classnames from 'classnames'
-import unescape from 'validator/lib/unescape'*/
 
 import DIV from 'components/tags/div'
 import A from 'components/tags/a'
 import I from 'components/tags/i'
 import P from 'components/tags/p'
-import BR from 'components/tags/br'
-/*import SPAN from 'components/tags/span'*/
 
 import style from './_popup'
 

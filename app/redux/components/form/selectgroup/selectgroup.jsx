@@ -44,9 +44,11 @@ selectgroup.propTypes = {
 
 	hocProps: PropTypes.shape( {
 
-		onChange: PropTypes.func,
+		value: PropTypes.string.isRequired,
 		options: PropTypes.array.isRequired,
-		className: PropTypes.string
+		className: PropTypes.string,
+
+		onChange: PropTypes.func.isRequired
 
 	} )
 
