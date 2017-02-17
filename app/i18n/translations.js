@@ -208,17 +208,17 @@ module.exports = {
 		"es": "Ocultar transcripción",
 		"pt": ""
 	},
-	/*"in_a_nutshell": {
-		"en": "In a nutshell, it gives science what satellites cannot: A close-up image of a coast. The possibility to study the bigger picture, in as much detail as possible.",
-		"de": "Kurz gesagt, geben sie uns die Möglichkeit das große Ganze im kleinsten Detail zu studieren. ",
-		"es": "Nos brinda algo que satélites no nos pueden mostrar: La imagen  cercana de una costa. Y la posibilidad de estudiarla con el mayor detalle posible."
-	},*/
 	"in_a_nutshell": {
-		"en": "In a nutshell, your image helps scientists improve a global map of coastal types from 1958. They need this map to make predictions. And we need these predictions to protect ourselves from sea-level rise.",
-		"de": "Kurz gesagt, hilft dein Foto den Wissenschaftlern einen globalen Datensatz über Küstentypen aus dem Jahre 1958 zu aktualisieren. Dieser Datensatz hilft ihnen Voraussagen über den Meeresspiegelanstieg zu treffen. Und wir brauchen diese Voraussagen, um uns auf den Meeresspiegelanstieg vorzubereiten.",
+		"en": "In a nutshell, it gives science what satellites cannot: A close-up image of a coast. The possibility to study the bigger picture, in as much detail as possible.",
+		"de": "Kurz gesagt, gibt es Wissenschaftlern ein Stück mehr als Satellitenfotos: ein Küstenselfie. Die Möglichkeit das große Ganze im kleinsten Detail zu studieren.",
+		"es": "Nos brinda algo que satélites no nos pueden mostrar: La imagen cercana de una costa. Y la posibilidad de estudiarla con el mayor detalle posible."
+	},
+	/*"in_a_nutshell": {
+		"en": "In a nutshell, your pictures help scientists improve a global map of coastal types from 1958. They need this map to make predictions on how coasts behave in different situations - and we need these predictions to know how to protect ourselves from sea-level rise.",
+		"de": "Kurz gesagt, hilft dein Foto Wissenschaftlern einen globalen Datensatz über Küstentypen aus dem Jahre 1958 zu aktualisieren. Dieser Datensatz hilft ihnen Voraussagen darüber zu treffen, wie Küsten in verschiedenen Situation reagieren - und wir brauchen diese Voraussagen, um herauszufinden wie wir uns am besten auf den Meeresspiegelanstieg vorbereiten können.",
 		"es": "En resumen, tu foto ayuda a los científicos actualizar un mapa global sobre tipos de costas del año 1958. Necesitan este mapa para hacer prognósticos. Y nosotros necesitamos estos prognósticos para protegernos de la subida del mar.",
 		"pt": ""
-	},
+	},*/
 	"how_it_works": {
 		"en": "Here is how it works.",
 		"de": "Und das geht so.",
@@ -238,27 +238,27 @@ module.exports = {
 		"pt": "Depois será analisada por cientistas e cidadãos cientistas para determinar o tipo de costa em cada local."
 	},
 	"the_more_the_better": {
-		"en": "The more images are analysed, the more detail is added to this global map from 1958.",
-		"de": "Je mehr Fotos analysiert werden, desto detaillierter wird der globale Datensatz von 1958.",
-		"es": "Cuantas más imagenes analizemos, más detallado será el mapa global del año 1958.",
+		"en": "The more images we analyse, the more detail is added to a global map of what types of coasts exist and where.",
+		"de": "Je mehr Fotos wir analysieren, desto detaillierter wird ein globaler Datensatz darüber, welche Küstentypen wo existieren.",
+		"es": "Cuantas más imagenes analizemos, más detallado será nuestro mapa global de los diferentes tipos de costas y sus localizaciones.",
 		"pt": ""
 	},
 	"computer_programs": {
-		"en": "It is then fed into computer programs, called integrated assessment models, that help scientists make predictions on how different coasts respond under different circumstances.",
-		"de": "Dieser wird dann in Computerprogramme, sogenannte 'Integrated assessment models', eingespeist, die Wissenschaftlern helfen Voraussagen darüber zu treffen, wie Küsten sich in verschiedenen Situationen verhalten.",
+		"en": "This map is then fed into computer programs, called integrated assessment models, that help scientists make predictions on how different coasts respond under different circumstances.",
+		"de": "Dieser Datensatz wird dann in Computerprogramme, sogenannte 'Integrated assessment models', eingespeist, die Wissenschaftlern helfen Voraussagen zu treffen, wie sich Küsten in verschiedenen Situationen verhalten.",
 		"es": "Éste pasa a formar parte de 'modelos de evaluación integrados', que ayudan a los científicos a pronosticar cómo responden distintos tipos de costas frente a circunstancias diferentes.",
 		"pt": "Este mapa será inserido em programas de computador, chamados modelos de avaliação integrados, que ajudam aos cientistas prever de como diferentes tipos de costas respondem a diferentes circunstâncias."
 	},
 	"policy_makers": {
 		"en": "These predictions inform policy makers at national and international levels on which actions to take and which countries need international support.",
-		"de": "Und diese Voraussagen informieren die Politik darüber, welche Schutzmaßnahmen zu treffen sind und welche Länder internationale Hilfe benötigen.",
+		"de": "Und diese Voraussagen informieren politische Entscheidungsträger darüber, welche Schutzmaßnahmen zu treffen sind und welche Länder internationale Hilfe benötigen.",
 		"es": "Estos pronósticos ayudan a formular políticas de respuesta locales e internaionales. Y a saber qué países podrían necesitar más asistencia.",
 		"pt": "Estas previsões informam aos responsáveis a nível nacional e internacional que medidas tomar e que países precisam de apoio internacional."
 	},
 	"best_advice": {
-		"en": "Your images help scientists give their best advice on how to protect ourselves, our children and our grandchildren from sea-level rise.",
-		"de": "Deine Fotos helfen also der Wissenschaft ihren besten Ratschlag zu geben, um uns, unsere Kinder und Enkelkinder vor dem Meeresspiegelanstieg zu schützen.",
-		"es": "Tus imagenes ayudan a los científicos a precisar qué medidas a tomar ante el ascenso del nivel del mar. Por el bien de nuestros hijos y nietos.",
+		"en": "So, your images help scientists give their best advice on how to protect ourselves, our children and our grandchildren from sea-level rise.",
+		"de": "Deine Fotos helfen also der Wissenschaft ihren besten Ratschlag zu geben, wie wir uns, unsere Kinder und Enkelkinder vor dem Meeresspiegelanstieg schützen sollten.",
+		"es": "Así que, tus imagenes ayudan a los científicos a precisar qué medidas a tomar ante el ascenso del nivel del mar. Por el bien de nuestros hijos y nietos.",
 		"pt": "Ou seja as tuas fotografias ajudam aos cientistas a tomar as melhores decisões para proteger nos a nós, os nossos filhos e netos da subida do nível do mar."
 	},
 	"project_by": {
@@ -317,7 +317,7 @@ module.exports = {
 	},
 	"me": {
 		"en": "That's me. I created this website with a lot of love and endless hours of just staring at it. (Developers: Node, React and Redux ROCK!)",
-		"de": "Das bin ich. Ich habe diese Webseite mit viel Liebe und endlosen Stunden des Starrens entwickelt. (Developers: Node, React und Redux ROCK!)",
+		"de": "Das bin ich. Ich habe diese Webseite mit viel Liebe und viel zu viel endloses Draufstarren entwickelt. (Developers: Node, React und Redux ROCK!)",
 		"es": "Esa soy yo. He desarrollado este sitio web con mucho amor y muchas horas de mirarlo fijamente. (Developers: Node, React und Redux ROCK!)",
 		"pt": "Essa são eu."
 	},
