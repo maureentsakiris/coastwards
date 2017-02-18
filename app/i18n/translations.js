@@ -406,7 +406,7 @@ module.exports = {
 		"pt": ""
 	},
 	"wrong_filetype": {
-		"en": "The file you selected is not an image. It should have of the following extensions: jpg, jpeg, tif, tiff, gif or png",
+		"en": "The file you selected is not an image. It should have one of the following extensions: jpg, jpeg, tif, tiff, gif or png",
 		"de": "Die ausgewählte Datei ist kein Foto. Bitte wähle eine Datei mit einem der folgenden Dateiendungen: jpg, jpeg, tif, tiff, gif o png",
 		"es": "El archivo seleccionado no es una foto. Elige una con una de las siguientes extensiones: jpg, jpeg, tif, tiff, gif o png.",
 		"pt": ""

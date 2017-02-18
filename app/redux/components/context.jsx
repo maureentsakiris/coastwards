@@ -157,6 +157,7 @@ const context = ( { intl, lang, dir, jazzSupported, clipped, useraction, scrollY
 					<H priority={ 2 } className={ style.tagline } >{ formatMessage( messages.no_account ) }</H>
 				</DIV>
 				<DIV id="Info"className={ clsInfo }>
+					<IMG src="./assets/poster.png" alt="poster" />
 					<How />
 					<Guidelines />
 					<Team />
