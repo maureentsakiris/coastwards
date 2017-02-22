@@ -287,6 +287,12 @@
 
 }
 
+.mapboxgl-ctrl-geocoder{
+
+    direction: ltr;
+
+}
+
 @media (max-width: 600px) { 
 
     .mapboxgl-ctrl-geocoder{

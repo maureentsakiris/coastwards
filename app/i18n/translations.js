@@ -5,12 +5,12 @@
 			"de": "Schade, dein Browser scheint ziemlich alt zu sein. Die Seite funktioniert zwar auch so aber Du verpasst was! Mit einem modernen Browser kannst du zum Beispiel auf einer interaktiven Karte alle hochgeladenen Fotos von Küsten weltweit ansehen.",
 			"es": "Hm. Parece que estás usando un navegador antiguo. Pero si cambias a uno moderno como Chrome, Firefox o Safari, la página funcionará MUUUCHO mejor. ¡Y podrás ver todas las fotos de costas que se han subido ya!",
 			"ar": "ممم، يبدو أنك تستخدم متصفح قديم. هذا الموقع يحتاج لمتصفح حديث، انه ايضا اكثر متعة أن يكون لديك متصفح حديث مثل كروم أو فاير فوكس أو سافاري، عندها يمكنك تصفح موقعنا ة الاستمتاع بتصفح امن",
-			"ar": ""
+			"pt": ""
 		},
 		"arrow_up_title": {
 			"en": "Show intro",
 			"de": "Zur Einleitung",
-			"es": "Volver al principio"
+			"es": "Volver al principio",
 			"ar": "أعرض المقدمة",
 		},
 		"help_science": {
@@ -32,7 +32,7 @@
 			"de": "(wir vermuten Ihr habt welche)",
 			"es": "(suponemos que las tengan)",
 			"ar": "(باعتبار أنك تملك بعض منها)",
-			"pt": ""
+			"pt": "(nós assumimos que você tem algum)"
 		},
 		"no_account": {
 			"en": "No account. Just drag & drop",
@@ -338,7 +338,7 @@
 			"en": "We are the {crslr} at the University of Kiel in Germany and this project is funded by the {future_ocean}.",
 			"de": "Wir sind die {crslr} der Universität in Kiel und dieses Projekt wird vom {future_ocean} finanziert. ",
 			"es": "Somos el {crslr}, dependiente de la universidad de Kiel, Alemania. Y este proyecto está subvencionado por el {future_ocean}.",
-			"ar": "نحن {crslr} جامعة كييل في ألمانيا ويتم تمويل هذا المشروع من قبل {محيطات المستقبل}.",
+			"ar": "نحن {crslr} جامعة كييل في ألمانيا ويتم تمويل هذا المشروع من قبل {future_ocean}.",
 			"pt": "Somos o {crslr} na Universidade de Kiel na Alemanha e este projecto está subvencionado por {future_ocean}"
 		},
 		"more": {
@@ -395,6 +395,13 @@
 			"de": "Für die Übersetzung dieser Seite ins Spanische",
 			"es": "Por la traducción de este sitio web al Español",
 			"ar": "للترجمة للاسبانية",
+			"pt": ""
+		},
+		"bassel": {
+			"en": "For translating this site into Arabic",
+			"de": "Für die Übersetzung dieser Seite ins Arabische",
+			"es": "Por la traducción de este sitio web al Árabe",
+			"ar": "الترجمة إلى العربية",
 			"pt": ""
 		},
 		"uploadBtn_title": {
@@ -755,7 +762,7 @@
 			"pt": ""
 		},
 		"annotations": {
-				"en": "Annotations",
+			"en": "Annotations",
 			"de": "Annotationen",
 			"es": "Anotaciones",
 			"ar": "وسوم",
@@ -937,7 +944,7 @@
 			"pt": ""
 		},
 		"material_examples_header": {
-				"en": "Show me some examples!",
+			"en": "Show me some examples!",
 			"de": "Zeig mir Beispiele!",
 			"es": "¡Muéstrame ejemplos!",
 			"ar": "اريني بعض الأمثلة!",

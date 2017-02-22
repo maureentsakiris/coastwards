@@ -27,6 +27,11 @@ const Locales = [
 		locale: 'pt',
 		name: 'Português',
 		en: 'Portuguese'
+	},
+	{
+		locale: 'ar',
+		name: 'العربية',
+		en: 'Arabic'
 	}/*,
 	{
 		locale: 'hi',
@@ -39,11 +44,6 @@ const Locales = [
 		en: 'Chinese'
 	},
 	{
-		locale: 'ar',
-		name: 'العربية',
-		en: 'Arabic'
-	},
-	{
 		locale: 'ru',
 		name: 'русский',
 		en: 'Russian'
@@ -52,11 +52,6 @@ const Locales = [
 		locale: 'bn',
 		name: 'বাংলা',
 		en: 'Bengali'
-	},
-	{
-		locale: 'de',
-		name: 'Deutsch',
-		en: 'German'
 	},
 	{
 		locale: 'it',
@@ -232,6 +227,46 @@ loaders.pt = ( done ) => {
 
 }
 
+loaders.ar = ( done ) => {
+
+	if ( !hasIntl ){
+
+		require.ensure(
+
+			[ 'intl/locale-data/jsonp/ar.js', 'react-intl/locale-data/ar', '../../../i18n/locales/ar' ],
+			( require ) => {
+
+				require( 'intl/locale-data/jsonp/ar.js' ); 
+				var localeData = require( 'react-intl/locale-data/ar' );
+				addLocaleData( localeData );
+				var i18n = require( '../../../i18n/locales/ar' );
+				done ( null, i18n );
+
+			},
+			'ar-polyfill'
+
+		);
+
+	}else{
+
+		require.ensure(
+
+			[ 'react-intl/locale-data/ar', '../../../i18n/locales/ar' ],
+			( require ) => {
+
+				var localeData = require( 'react-intl/locale-data/ar' );
+				addLocaleData( localeData );
+				var i18n = require( '../../../i18n/locales/ar' );
+				done ( null, i18n );
+
+			},
+			'ar'
+
+		);
+
+	}
+
+}
 
 /*loaders.it = ( done ) => {
 
@@ -390,47 +425,6 @@ loaders.bn = ( done ) => {
 
 			},
 			'bn'
-
-		);
-
-	}
-
-}
-
-loaders.ar = ( done ) => {
-
-	if ( !hasIntl ){
-
-		require.ensure(
-
-			[ 'intl/locale-data/jsonp/ar.js', 'react-intl/locale-data/ar', '../../../i18n/locales/ar' ],
-			( require ) => {
-
-				require( 'intl/locale-data/jsonp/ar.js' ); 
-				var localeData = require( 'react-intl/locale-data/ar' );
-				addLocaleData( localeData );
-				var i18n = require( '../../../i18n/locales/ar' );
-				done ( null, i18n );
-
-			},
-			'ar-polyfill'
-
-		);
-
-	}else{
-
-		require.ensure(
-
-			[ 'react-intl/locale-data/ar', '../../../i18n/locales/ar' ],
-			( require ) => {
-
-				var localeData = require( 'react-intl/locale-data/ar' );
-				addLocaleData( localeData );
-				var i18n = require( '../../../i18n/locales/ar' );
-				done ( null, i18n );
-
-			},
-			'ar'
 
 		);
 

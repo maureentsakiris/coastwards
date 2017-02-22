@@ -79,7 +79,7 @@ $actions-height: 60px;
 	@extend %inner;
 	@extend %sheetCorset;
 	
-	text-align: right;
+	//text-align: right;
 	background: #fff;
 	position: relative;
 	top: -$actions-height;
@@ -87,6 +87,7 @@ $actions-height: 60px;
 
 	@extend %flexcontainer;
 	flex-wrap: wrap;
+	justify-content: flex-end;
 
 	button{
 
@@ -99,13 +100,12 @@ $actions-height: 60px;
 .terms{
 
 	@extend %flexitem;
-	width: auto;
-	text-align: left;
-	margin-bottom: 0.4em;
+	flex-shrink: 1;
+	margin-bottom: 1em;
 
-	input{
+	span{
 
-		margin-right: 1em;
+		margin: 0 1em;
 		
 	}
 
@@ -115,6 +115,7 @@ $actions-height: 60px;
 
 	@extend %flexitem;
 	width: auto;
+	flex-grow: 0;
 
 }
 

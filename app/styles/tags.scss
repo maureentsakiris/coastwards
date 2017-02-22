@@ -163,10 +163,21 @@ td,th{
 
 th{
 
-	text-align: left;
 	padding-top: 1.5em;
     font-size: 1.3em;
     text-transform: uppercase;
     font-weight: bold;
+
+}
+
+html[dir="ltr"] th{
+
+	text-align: left;
+
+}
+
+html[dir="rtl"] th{
+
+	text-align: right;
 
 }

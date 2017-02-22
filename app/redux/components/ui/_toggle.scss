@@ -25,14 +25,26 @@
 
 	h1,h2,h3,h4,h5,h6{
 
+		@extend %flexcontainer;
 		margin: 0;
+
+		span{
+
+			@extend %flexitem;
+			flex-grow: 0;
+			max-width: calc( 100% - 2em);
+
+		}
+
+		.icon{
+
+			@extend %flexitem;
+			flex-grow: 0;
+			width: auto;
+			vertical-align: middle;
+
+		}
 
 	}
 	
-}
-
-.icon{
-
-	vertical-align: middle;
-
 }

@@ -78,6 +78,11 @@ const messages = defineMessages( {
 		id: "claudio",
 		description:"P",
 		defaultMessage: "For translating this site into Spanish"
+	},
+	bassel:{
+		id: "bassel",
+		description:"P",
+		defaultMessage: "For translating this site into Arabic"
 	}
 
 } )
@@ -127,6 +132,7 @@ const team = ( { intl/*, addSnackbarMessage*/ } ) => {
 			<TOGGLE id="Team" priority={ 5 } text={ formatMessage( messages.special_thanks ) } >
 
 				<P><A href="https://www.linkedin.com/in/claudio-molinari-4a9a472?trk=hp-identity-name" target="_blank">Claudio Molinari</A> - { formatMessage( messages.claudio ) }</P>
+				<P><A href="https://github.com/basselAlshK" target="_blank">Bassel Alsheekh Kassem</A> - { formatMessage( messages.bassel ) }</P>
 
 			</TOGGLE>
 

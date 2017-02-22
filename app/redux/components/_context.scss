@@ -15,6 +15,7 @@
 
 	text-align: center;
 	display: none;
+	direction: ltr; //no need to change direction with rtl scripts
 
 	@include portraitMin( $tablet ){
 
@@ -311,7 +312,7 @@
 		text-align: center;
 		font-weight: 300;
 
-		font-size: 29px;
+		font-size: 22px;
 
 		@extend %corset;
 
