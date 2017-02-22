@@ -38,10 +38,5 @@
     "id": "shareBtn_label",
     "description": "Label -",
     "defaultMessage": "Share"
-  },
-  {
-    "id": "sign_up",
-    "description": "A -",
-    "defaultMessage": "Notify me about ..."
   }
 ]

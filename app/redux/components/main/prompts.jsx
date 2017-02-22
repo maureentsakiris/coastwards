@@ -6,7 +6,6 @@ import ACTIONS from 'containers/main/actions'
 
 import DIV from 'components/tags/div'
 import H from 'components/tags/h'
-import A from 'components/tags/a'
 
 
 import style from './_prompts'
@@ -85,11 +84,6 @@ const messages = defineMessages( {
 		id: "shareBtn_label",
 		description: "Label - ",
 		defaultMessage: "Share"
-	},
-	sign_up:{
-		id: "sign_up",
-		description: "A - ",
-		defaultMessage: "Notify me about ... "
 	}
 	
 } )
@@ -123,7 +117,6 @@ const prompts = ( { intl, className, prompt, jazzSupported, show } ) => {
 			<DIV id="Prompts" className={ cls } >
 				<H priority={ 2 }>{ str }</H>
 				<ACTIONS />
-				<A className={ style.signUp } href="http://eepurl.com/b1-BSH" >{ formatMessage( messages.sign_up ) }</A>
 			</DIV>
 
 		)

@@ -94,6 +94,7 @@ const messages = defineMessages( {
 		description: "Error - Informs user that an error ocurred during upload",
 		defaultMessage: "Crap, something went wrong during upload. I'm sure this is my fault (or maybe your connection is bad). Try again?"
 	}
+	
 
 } )
 
