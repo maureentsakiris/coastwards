@@ -240,6 +240,7 @@ export const validateFile = ( e ) => {
 		.then( promiseEXIF )
 		.then( ( image ) => {
 
+			console.log( image )
 			return promiseMinimumBoxDimensions( image, state.config.imageWidth )
 
 		} )
@@ -425,7 +426,7 @@ export const uploadImage = ( ) => {
 			const { exifdata, lat, long, manual, labels } = image
 
 			//UPDATE ALSO IN FORMDATA.JSX
-			const cleanExif = _.omit( image.exifdata, [ 'MakerNote', 'undefined' ] )
+			const cleanExif = _.omit( image.exifdata, [ 'MakerNote', 'undefined', 'Artist', 'Copyright' ] )
 
 			const devLabels = labels ? labels : {}
 			const datetime = exifdata.DateTimeOriginal || exifdata.DateTimeDigitized || exifdata.DateTime

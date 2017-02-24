@@ -74,11 +74,11 @@ export const promiseMinimumBoxDimensions = ( image, boxlength ) => {
 
 		}
 
-		if( image.exifdata && image.exifdata.PixelXDimension && image.exifdata.PixelYDimension ){
+		/*if( image.exifdata && image.exifdata.PixelXDimension && image.exifdata.PixelYDimension ){
 
 			_dotheMath( image.exifdata.PixelXDimension, image.exifdata.PixelYDimension )
 
-		}else if( !image.exifdata && Modernirz.filereader ){
+		}else */if( Modernirz.filereader ){
 
 			let reader = new FileReader()
 
@@ -109,7 +109,7 @@ export const promiseMinimumBoxDimensions = ( image, boxlength ) => {
 
 		}else{
 
-			reject( Error( 'unsupported' ) ) //YES
+			reject( Error( 'dimensions_undefined' ) ) //YES
 
 		}
 
@@ -185,7 +185,7 @@ export const promiseCanvasBoxResize = ( image, boxlength ) => {
 				ctx.save()
 
 				let orientation = image.exifdata.Orientation
-				if ( !orientation || orientation > 8 ) {
+				if ( orientation > 8 ) {
 
 					reject( Error( "orientation_undefined" ) ) //YES
 

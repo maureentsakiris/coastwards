@@ -108,7 +108,7 @@ const formdata = ( { intl, image, uid, imageWidth, showDialog } ) => {
 	const { formatMessage } = intl
 
 	//UPDATE ALSO IN MAIN.JS (uploadImage)
-	const cleanExif = _.omit( image.exifdata, [ 'MakerNote', 'undefined' ] )
+	const cleanExif = _.omit( image.exifdata, [ 'MakerNote', 'undefined', 'Artist', 'Copyright' ] )
 
 	const exifTable = _.map( cleanExif, ( exif, key ) => {
 
