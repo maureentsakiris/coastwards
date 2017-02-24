@@ -100,7 +100,6 @@ class contribution extends Component {
 
 	_setVerified = ( e ) => {
 
-		console.log( e.currentTarget.value );
 		this.setState( { verified: e.currentTarget.value } )
 
 	}

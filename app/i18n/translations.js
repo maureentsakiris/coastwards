@@ -558,6 +558,13 @@
 			"ar": "تباً، حدث خطأ أثناء التحميل. أنا متأكد من أن هذا هو خطأي (أو ربما لديك اتصال سيئ). حاول ثانية؟",
 			"pt": ""
 		},
+		"make_blacklisted": {
+			"en": "Hm, looks like the image was taken with an App that uses color filters, e.g. Hipstamatic. Sorry, try another one!",
+			"de": "Schade! Leider können wir keine Fotos von Apps mit starken Farbfiltern wie Hipstamatic akzeptieren. Versuche es mit einem anderen Foto!",
+			"es": "Qué pena, no podemos acceptar fotos de Apps que aplican filtros de color, ej. Hipstamatic. ¿Tienes otra?",
+			"ar": "",
+			"pt": ""
+		},
 		"img_alt": {
 			"en": "Your image",
 			"de": "Dein Foto",

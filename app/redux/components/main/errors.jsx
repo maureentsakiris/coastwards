@@ -93,6 +93,11 @@ const messages = defineMessages( {
 		id: "upload_error",
 		description: "Error - Informs user that an error ocurred during upload",
 		defaultMessage: "Crap, something went wrong during upload. I'm sure this is my fault (or maybe your connection is bad). Try again?"
+	},
+	make_blacklisted:{
+		id: "make_blacklisted",
+		description: "Error - ",
+		defaultMessage: "Hm, looks like the image was taken with an App that uses color filters, e.g. Hipstamatic. Sorry, try another one!"
 	}
 	
 

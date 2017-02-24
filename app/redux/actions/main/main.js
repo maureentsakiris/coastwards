@@ -52,6 +52,34 @@ const _promiseFiles = ( e ) => {
 
 }
 
+const _promiseMake = ( image, blacklist ) => {
+
+	return new Promise ( ( resolve, reject ) => {
+
+		if( image.exifdata.Make ){
+
+			let filtered = _.indexOf( blacklist, image.exifdata.Make )
+
+			if( filtered != -1 ){
+
+				reject( Error( 'make_blacklisted' ) )
+
+			}else{
+
+				resolve( image )
+
+			}
+
+		}else{
+
+			resolve( image )
+
+		}
+
+	} )
+
+}
+
 const _promiseSafe = ( image ) => {
 
 	return new Promise ( ( resolve, reject ) => {
@@ -121,8 +149,11 @@ const _promiseSafe = ( image ) => {
 			let sea = _.filter( annotations.labelAnnotations, { description: 'sea' } )
 			let bodyofwater = _.filter( annotations.labelAnnotations, { description: 'body of water' } )
 			let natural_environment = _.filter( annotations.labelAnnotations, { description: 'natural environment' } )
+			/*let habitat = _.filter( annotations.labelAnnotations, { description: 'habitat' } )
+			let landform = _.filter( annotations.labelAnnotations, { description: 'landform' } )
+			let geographical_feature = _.filter( annotations.labelAnnotations, { description: 'geographical feature' } )*/
 
-			if( !coast.length && !shore.length && !harbor.length && !beach.length && !sea.length && !natural_environment.length && !bodyofwater.length ){
+			if( !coast.length && !shore.length && !harbor.length && !beach.length && !sea.length && !natural_environment.length && !bodyofwater.length /*&& !habitat.length && !landform.length && !geographical_feature.length*/ ){
 
 				reject( Error( "not_a_coast" ) ) //YES
 
@@ -240,8 +271,12 @@ export const validateFile = ( e ) => {
 		.then( promiseEXIF )
 		.then( ( image ) => {
 
-			console.log( image )
 			return promiseMinimumBoxDimensions( image, state.config.imageWidth )
+
+		} )
+		.then( ( image ) => {
+
+			return _promiseMake( image, state.config.makeBlacklist )
 
 		} )
 		/*.then( ( image ) => {

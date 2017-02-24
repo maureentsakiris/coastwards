@@ -15,7 +15,7 @@ import A from 'components/tags/a'
 import RADIOGROUP from 'components/form/radiogroup/radiogroup'
 import ICONRADIOGROUP from 'components/form/radiogroup/iconradiogroup'
 import COMMENT from 'components/form/input/comment'
-import HASHTAG from 'components/form/input/hashtag'
+/*import HASHTAG from 'components/form/input/hashtag'*/
 import CANCEL from 'components/form/button/cancel'
 import GO from 'components/form/button/go'
 
@@ -136,7 +136,7 @@ const messages = defineMessages( {
 
 } )
 
-const form = ( { intl, className, show, image, checkedValue, jazzSupported, materials, setMaterial, setComment, setHashtag, uploadImage, resetMain, showDialog, addSnackbarMessage } ) => {
+const form = ( { intl, className, show, image, checkedValue, jazzSupported, materials, setMaterial, setComment/*, setHashtag*/, uploadImage, resetMain, showDialog, addSnackbarMessage } ) => {
 
 	const { formatMessage } = intl
 
@@ -278,7 +278,7 @@ form.propTypes = {
 
 	setMaterial: PropTypes.func,
 	setComment: PropTypes.func,
-	setHashtag: PropTypes.func,
+	/*setHashtag: PropTypes.func,*/
 	uploadImage: PropTypes.func,
 	resetMain: PropTypes.func,
 	showDialog: PropTypes.func,
