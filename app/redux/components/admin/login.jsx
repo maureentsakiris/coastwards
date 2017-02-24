@@ -9,7 +9,7 @@ const login = ( ) => {
 	return(
 
 		<DIV className={ style.corset } >
-			<A href="/login/github" className={ style.logger }>Login with GitHub</A>
+			<A target="_self" href="/login/github" className={ style.logger }>Login with GitHub</A>
 		</DIV>
 
 	)

@@ -40,11 +40,12 @@ export const fetch = ( ) => {
 
 		const state = getState()
 
-		const { material, verified } = state.form
+		const { material, verified, materialverified } = state.form
 
 		let formData = new FormData()
 		formData.append( 'material', material )
 		formData.append( 'verified', verified )
+		formData.append( 'materialverified', materialverified )
 
 		let options = {
 
