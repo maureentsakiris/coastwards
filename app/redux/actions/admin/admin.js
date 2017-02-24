@@ -12,6 +12,16 @@ export const setMaterial = ( e ) => {
 
 }
 
+export const setMaterialVerified = ( e ) => {
+
+	return function ( dispatch ){
+
+		dispatch( { type: types.SET_MATERIAL_VERIFIED, to: e.currentTarget.value } )
+
+	}
+
+}
+
 export const setVerified = ( e ) => {
 
 	return function ( dispatch ){

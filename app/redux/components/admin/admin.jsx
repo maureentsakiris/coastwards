@@ -14,7 +14,7 @@ import CONTRIBUTION from 'containers/admin/contribution'
 
 import style from './_admin'
 
-const admin = ( { results, materials, material, setMaterial, setVerified, fetch } ) => {
+const admin = ( { results, materials, material, setMaterial, setMaterialVerified, setVerified, fetch } ) => {
 
 	const all = [ { label: 'All', value: '%' } ]
 	const mats = _.map( materials, ( material ) => {
@@ -33,6 +33,7 @@ const admin = ( { results, materials, material, setMaterial, setVerified, fetch 
 			<A href="/logout" className={ style.logger }>Logout</A>
 			<FORM className={ style.form } id="Admin" action="/admin/fetch" >
 				<SELECTGROUP form="Admin" label="Material" name="material" preferPlaceholder={ false } options={ options } onChange={ setMaterial } value={ material } />
+				<SELECTGROUP form="Admin" label="Materialverified" name="materialverified" preferPlaceholder={ false } options={ options } onChange={ setMaterialVerified } value={ material } />
 				<CHECKBOX form="Admin" label="Verified" name="verified" preferPlaceholder={ false } value="1" onChange={ setVerified } />
 				<GO onClick={ fetch } label="GO" />
 			</FORM>
@@ -65,6 +66,7 @@ admin.propTypes = {
 	material: PropTypes.string,
 
 	setMaterial: PropTypes.func,
+	setMaterialVerified: PropTypes.func,
 	setVerified: PropTypes.func,
 	fetch: PropTypes.func
 

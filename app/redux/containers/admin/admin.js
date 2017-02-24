@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { fetch, setMaterial, setVerified } from 'actions/admin/admin'
+import { fetch, setMaterial, setMaterialVerified, setVerified } from 'actions/admin/admin'
 
 import ADMIN from 'components/admin/admin'
 
@@ -23,13 +23,16 @@ const mapDispatchToProps = ( dispatch ) => {
 		setMaterial: ( e ) => {
 
 			dispatch( setMaterial( e ) )
-			//dispatch( fetch() )
+
+		},
+		setMaterialVerified: ( e ) => {
+
+			dispatch( setMaterialVerified( e ) )
 
 		},
 		setVerified: ( e ) => {
 
 			dispatch( setVerified( e ) )
-			//dispatch( fetch() )
 
 		},
 		fetch: ( ) => {

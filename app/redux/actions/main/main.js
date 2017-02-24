@@ -272,7 +272,6 @@ export const validateFile = ( e ) => {
 		.then( promiseEXIF )
 		.then( ( image ) => {
 
-			console.log( image );
 			return promiseMinimumWidth( image, state.config.imageWidth )
 
 		} )
