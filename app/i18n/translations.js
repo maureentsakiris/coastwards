@@ -496,10 +496,10 @@
 			"pt": "Não conseguimos encontrar a Metadata na tua imagem. Possivelmente porque foi enviada via Facebook ou Whatsapp, ou foi scaneada ou captura de ecrã. Tens a fotografia original? Experimenta com essa!"
 		},
 		"image_too_small": {
-			"en": "Your image is too small for us to analyse. Do you have the original file somewhere? Try that one!",
-			"de": "Das Foto ist zu klein. Hast du das Original?",
-			"es": "La foto es demasiado pequeña. ¿Tienes la original?",
-			"ar": "الصورة صغيرة جدا بالنسبة لنا لتحليلها. هل لديك الملف الأصلي في مكان ما؟ حاول معه!",
+			"en": "Your image is too small for us to analyse (Minimum width 800px). Do you have the original file somewhere? Try that one!",
+			"de": "Das Foto ist zu klein (Mindesbreite 800px). Hast du das Original?",
+			"es": "La foto es demasiado pequeña (Ancho mínimo 800px). ¿Tienes la original?",
+			"ar": "الصورة صغيرة جدا بالنسبة لنا لتحليلها. (الحد الأدنى عرض 800px) هل لديك الملف الأصلي في مكان ما؟ حاول معه!",
 			"pt": ""
 		},
 		"orientation_undefined": {

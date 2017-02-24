@@ -46,6 +46,62 @@ export const promiseEXIF = ( image ) => {
 
 }
 
+export const promiseMinimumWidth = ( image, width ) => {
+
+	//console.log( "promiseMinimumBoxDimensions" )
+
+	return new Promise( ( resolve, reject ) => {
+
+		if( !width ){
+
+			reject( Error( 'You need to define the minimum width to promiseMinimumWidth' ) )
+
+		}
+
+		if( Modernirz.filereader ){
+
+			let reader = new FileReader()
+
+			reader.onload = function ( e ){
+
+				let img = new Image()
+
+				img.onload = function ( ){
+
+					if( img.width < width ){
+
+						reject( Error( 'image_too_small' ) )
+
+					}else{
+
+						resolve( image )
+
+					}
+
+				}
+
+				img.src = e.target.result
+
+			}
+
+			reader.onerror = function ( error ) {
+
+				reject( error )
+
+			}
+
+			reader.readAsDataURL( image )
+
+		}else{
+
+			reject( Error( 'dimensions_undefined' ) ) //YES
+
+		}
+
+	} )
+
+}
+
 export const promiseMinimumBoxDimensions = ( image, boxlength ) => {
 
 	//console.log( "promiseMinimumBoxDimensions" )

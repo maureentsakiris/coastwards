@@ -1,5 +1,5 @@
 import * as types from 'types'
-import { promiseType, promiseEXIF, promiseMinimumBoxDimensions, promiseCanvasBoxResize, promiseLocation/*, promiseDateTime*/ } from 'actions/util/image'
+import { promiseType, promiseEXIF, promiseMinimumWidth, promiseCanvasBoxResize, promiseLocation/*, promiseDateTime*/ } from 'actions/util/image'
 import { addSnackbarMessage } from 'actions/ui/snackbar'
 import { promiseDataURLtoBlob } from 'actions/util/form'
 import { scrollToId } from 'actions/context'
@@ -149,11 +149,12 @@ const _promiseSafe = ( image ) => {
 			let sea = _.filter( annotations.labelAnnotations, { description: 'sea' } )
 			let bodyofwater = _.filter( annotations.labelAnnotations, { description: 'body of water' } )
 			let natural_environment = _.filter( annotations.labelAnnotations, { description: 'natural environment' } )
+			let geographical_feature = _.filter( annotations.labelAnnotations, { description: 'geographical feature' } )
+			let loch = _.filter( annotations.labelAnnotations, { description: 'loch' } )
 			/*let habitat = _.filter( annotations.labelAnnotations, { description: 'habitat' } )
-			let landform = _.filter( annotations.labelAnnotations, { description: 'landform' } )
-			let geographical_feature = _.filter( annotations.labelAnnotations, { description: 'geographical feature' } )*/
+			let landform = _.filter( annotations.labelAnnotations, { description: 'landform' } )*/
 
-			if( !coast.length && !shore.length && !harbor.length && !beach.length && !sea.length && !natural_environment.length && !bodyofwater.length /*&& !habitat.length && !landform.length && !geographical_feature.length*/ ){
+			if( !coast.length && !shore.length && !harbor.length && !beach.length && !sea.length && !natural_environment.length && !bodyofwater.length && !geographical_feature.length && !loch.length/*&& !habitat.length && !landform.length*/ ){
 
 				reject( Error( "not_a_coast" ) ) //YES
 
@@ -271,7 +272,8 @@ export const validateFile = ( e ) => {
 		.then( promiseEXIF )
 		.then( ( image ) => {
 
-			return promiseMinimumBoxDimensions( image, state.config.imageWidth )
+			console.log( image );
+			return promiseMinimumWidth( image, state.config.imageWidth )
 
 		} )
 		.then( ( image ) => {
