@@ -135,9 +135,11 @@ class How extends Component {
 				</DIV>
 			</TOGGLE>*/
 
-			/*<DIV className={ style.how } >
+		return(
+
+			<DIV className={ style.how } >
 				<DIV id="Video" className={ style.videoWrapper }>
-					<iframe src="https://player.vimeo.com/video/201518019?title=0&byline=0&portrait=0" width="640" height="360" frameBorder="0" allowFullScreen></iframe>
+					<iframe src="https://player.vimeo.com/video/206066163?title=0&byline=0&portrait=0" width="640" height="360" frameBorder="0" allowFullScreen></iframe>
 				</DIV>
 				<TOGGLE className={ style.toggleScript } priority={ 6 } text={ formatMessage( messages.show_transcript ) } >
 					<DIV className={ style.script } >
@@ -150,21 +152,7 @@ class How extends Component {
 						<P>{ formatMessage( messages.best_advice ) }</P>
 					</DIV>
 				</TOGGLE>
-			</DIV>*/
-
-		return(
-
-			<TOGGLE title={ formatMessage( messages.how_title ) } priority={ 3 } text={ formatMessage( messages.how ) } className={ style.toggle } >
-				<DIV className={ style.script } >
-					<P>{ formatMessage( messages.in_a_nutshell ) }</P>
-					<P>{ formatMessage( messages.how_it_works ) }</P>
-					<P>{ formatMessage( messages.place_on_map ) }</P>
-					<P>{ formatMessage( messages.determine_coastal_type ) } { " " } { formatMessage( messages.the_more_the_better ) }</P>
-					<P>{ formatMessage( messages.computer_programs ) }</P>
-					<P>{ formatMessage( messages.policy_makers ) }</P>
-					<P>{ formatMessage( messages.best_advice ) }</P>
-				</DIV>
-			</TOGGLE>
+			</DIV>
 
 		)
 

@@ -17,6 +17,8 @@
 .videoWrapper{
 
 	@extend %videoWrapper;
+	//border: 2px solid #0c7eb4;
+	box-shadow: 0 1px 1.5px 0 rgba(0, 0, 0, 0.12), 0 1px 1px 0 rgba(0, 0, 0, 0.24);
 
 }
 
