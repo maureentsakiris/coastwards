@@ -124,8 +124,8 @@ class popup extends Component {
 
 			const { contribution_material, contribution_comment, contribution_uid, contribution_exif_datetime/*, contribution_hashtag*/ } = feature
 
-			const mat = contribution_material ? contribution_material : ''
-			const m = _.findWhere( materials, { value: mat } )
+			//const mat = contribution_material ? contribution_material : ''
+			const m = _.findWhere( materials, { value: contribution_material } )
 			const color = m.color
 
 			const usercomment = validator.unescape( contribution_comment )
@@ -152,7 +152,7 @@ class popup extends Component {
 						{ showcomment && <P className={ style.comment } >{ usercomment }</P> }
 					</DIV>
 					<DIV className={ style.actions }>
-						{ mat != '' && <P className={ style.label } style={ { backgroundColor: color } } >{ formatMessage( messages[ mat ] ) }</P> }
+						{ contribution_material != 'notset' && <P className={ style.label } style={ { backgroundColor: color } } >{ formatMessage( messages[ contribution_material ] ) }</P> }
 						{ hascomment && <A onClick={ this._toggleComment } className={ style.showcomment } title={ formatMessage( messages.toggle_comment ) } >
 							<I className="material-icons">{ commentIcon }</I>
 						</A> }
