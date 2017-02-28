@@ -110,7 +110,7 @@ app.get( '/login', ( req, res ) => {
 } );
 
 
-app.get( '/login/github', passport.authenticate( 'github', { scope: [ 'user:email' ] } ), ( req, res ) => {
+app.get( '/login/github', passport.authenticate( 'github', { scope: [ 'user:email' ] } ), ( ) => {
 
 		// The request will be redirected to GitHub for authentication, so this
 		// function will not be called.

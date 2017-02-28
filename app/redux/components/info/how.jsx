@@ -5,7 +5,6 @@ import { defineMessages, injectIntl, intlShape } from 'react-intl'
 import TOGGLE from 'components/ui/toggle'
 import DIV from 'components/tags/div'
 import P from 'components/tags/p'
-import BR from 'components/tags/br'
 
 import style from './_how'
 
@@ -137,7 +136,7 @@ class How extends Component {
 
 		return(
 
-			<DIV className={ style.how } >
+			<TOGGLE title={ formatMessage( messages.how_title ) } priority={ 3 } text={ formatMessage( messages.how ) } className={ style.toggle } >
 				<DIV id="Video" className={ style.videoWrapper }>
 					<iframe src="https://player.vimeo.com/video/206066163?title=0&byline=0&portrait=0" width="640" height="360" frameBorder="0" allowFullScreen></iframe>
 				</DIV>
@@ -152,7 +151,7 @@ class How extends Component {
 						<P>{ formatMessage( messages.best_advice ) }</P>
 					</DIV>
 				</TOGGLE>
-			</DIV>
+			</TOGGLE>
 
 		)
 
