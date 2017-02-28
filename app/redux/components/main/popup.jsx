@@ -50,8 +50,8 @@ const messages = defineMessages( {
 		description: "Material - Not sure",
 		defaultMessage: "Not sure"
 	},
-	notdefined:{
-		id: "notdefined",
+	notset:{
+		id: "notset",
 		description: "Material",
 		defaultMessage: "Not set yet"
 	},

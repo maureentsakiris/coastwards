@@ -35,7 +35,7 @@
     "defaultMessage": "Not sure"
   },
   {
-    "id": "notdefined",
+    "id": "notset",
     "description": "Material",
     "defaultMessage": "Not set yet"
   },
