@@ -4,7 +4,7 @@ import _ from 'underscore'
 
 import materials from 'config'
 
-const form = ( state = { results: [], material: '%', materialverified: '%', verified: 0 }, action ) => {
+const form = ( state = { results: [], material: '%', materialverified: '%', verified: '%' }, action ) => {
 
 	switch ( action.type ){
 

@@ -83,6 +83,11 @@ const messages = defineMessages( {
 		id: "bassel",
 		description:"P",
 		defaultMessage: "For translating this site into Arabic"
+	},
+	pholpo:{
+		id: "pholpo",
+		description: "P - ",
+		defaultMessage: "For the explanatory video and general support"
 	}
 
 } )
@@ -131,6 +136,7 @@ const team = ( { intl/*, addSnackbarMessage*/ } ) => {
 			<BR/>
 			<TOGGLE id="Team" priority={ 5 } text={ formatMessage( messages.special_thanks ) } >
 
+				<P><A href="http://www.pholpo.net/" target="_blank">Nicola Scodellaro & Sara Zampieri • pholpo GbR</A> - { formatMessage( messages.pholpo ) }</P>
 				<P><A href="https://www.linkedin.com/in/claudio-molinari-4a9a472?trk=hp-identity-name" target="_blank">Claudio Molinari</A> - { formatMessage( messages.claudio ) }</P>
 				<P><A href="https://github.com/basselAlshK" target="_blank">Bassel Alsheekh Kassem</A> - { formatMessage( messages.bassel ) }</P>
 

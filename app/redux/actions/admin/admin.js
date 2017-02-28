@@ -26,8 +26,7 @@ export const setVerified = ( e ) => {
 
 	return function ( dispatch ){
 
-		const val = e.currentTarget.checked ? e.currentTarget.value : '0'
-		dispatch( { type: types.SET_VERIFIED, to: val } )
+		dispatch( { type: types.SET_VERIFIED, to: e.currentTarget.value } )
 
 	}
 

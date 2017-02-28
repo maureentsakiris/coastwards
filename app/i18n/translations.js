@@ -404,6 +404,13 @@
 			"ar": "الترجمة إلى العربية",
 			"pt": ""
 		},
+		"pholpo": {
+			"en": "For creating the explanatory video and for their moral support",
+			"de": "Für das Erklärvideo und seelische Unterstützung",
+			"es": "Por el video explicativo y su apoyo moral",
+			"ar": "",
+			"pt": ""
+		},
 		"uploadBtn_title": {
 			"en": "Upload an image",
 			"de": "Lade ein Foto hoch",
@@ -641,6 +648,13 @@
 			"es": "No sé que poner",
 			"ar": "لست متأكد",
 			"pt": ""
+		},
+		"notset":{
+			"en": "Undefined",
+			"de": "Undefiniert",
+			"es": "Indefinido",
+			"ar": "غير محدد",
+			"pt": "Indefinido"
 		},
 		"comment": {
 			"en": "Leave us a comment!",

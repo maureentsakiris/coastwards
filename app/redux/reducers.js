@@ -191,7 +191,7 @@ const error = ( state = '', action ) => {
 
 }
 
-const form = ( state = { image: {}, material: '', uid: '', adaptation: '', comment: '', hashtag: '', progress: 0 }, action ) => {
+const form = ( state = { image: {}, material: 'notset', uid: '', adaptation: '', comment: '', hashtag: '', progress: 0 }, action ) => {
 
 	switch ( action.type ){
 
@@ -210,7 +210,7 @@ const form = ( state = { image: {}, material: '', uid: '', adaptation: '', comme
 	case types.SET_UPLOAD_PROGRESS:
 		return _.extend( {}, state, { progress: action.to } )
 	case types.RESET_FORM:
-		return _.extend( {}, state, { image: {}, material: '', uid: '', comment: '', hashtag: '', progress: 0 } )
+		return _.extend( {}, state, { image: {}, material: 'notset', uid: '', comment: '', hashtag: '', progress: 0 } )
 	default:
 		return state
 

@@ -72,7 +72,7 @@ const _fetch = ( fields ) => {
 
 			}else{
 
-				var sql = 'SELECT * FROM contributions WHERE contribution_material LIKE ? && contribution_material_verified LIKE ? && contribution_verified=?';
+				var sql = 'SELECT * FROM contributions WHERE contribution_material LIKE ? && contribution_material_verified LIKE ? && contribution_verified LIKE ?';
 
 				var inserts = [
 
@@ -83,6 +83,8 @@ const _fetch = ( fields ) => {
 				]
 
 				var query = mysql.format( sql, inserts )
+
+				console.log( query );
 
 				connection.query( query, function ( err, results ) {
 

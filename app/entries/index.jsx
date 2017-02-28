@@ -17,8 +17,8 @@ import Context from 'containers/context'
 
 const store = createStore( coastwards, compose(
 
-	applyMiddleware( thunk ),
-	window.devToolsExtension ? window.devToolsExtension() : ( f ) => f
+	applyMiddleware( thunk )/*,
+	window.devToolsExtension ? window.devToolsExtension() : ( f ) => f*/
 
 ) )
 

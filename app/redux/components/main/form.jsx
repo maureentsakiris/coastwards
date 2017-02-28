@@ -87,6 +87,11 @@ const messages = defineMessages( {
 		description: "Material - Not sure",
 		defaultMessage: "Not sure"
 	},
+	notset:{
+		id: "notset",
+		description: "Material - Not set",
+		defaultMessage: "undefined"
+	},
 
 	//comment
 
@@ -144,13 +149,13 @@ const form = ( { intl, className, show, image, checkedValue, jazzSupported, mate
 	.filter( ( material ) => {
 
 		let { value } = material
-		return value !== ''
+		return value !== 'notset'
 
 	} )
 	.map( ( material ) => {
 
 		let { value, color } = material
-		if( value !== '' ){
+		if( value !== 'noset' ){
 
 			return { label: formatMessage( messages[ value ] ), value: value, color: color }
 

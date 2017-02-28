@@ -58,5 +58,10 @@
     "id": "bassel",
     "description": "P",
     "defaultMessage": "For translating this site into Arabic"
+  },
+  {
+    "id": "pholpo",
+    "description": "P -",
+    "defaultMessage": "For the explanatory video and general support"
   }
 ]

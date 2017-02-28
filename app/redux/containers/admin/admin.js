@@ -11,7 +11,8 @@ const mapStateToProps = ( state ) => {
 		results: state.form.results,
 		materials: state.materials, 
 		material: state.form.material,
-		materialverified: state.form.materialverified
+		materialverified: state.form.materialverified,
+		verified: state.form.verified
 
 	}
 

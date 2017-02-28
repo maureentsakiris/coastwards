@@ -55,6 +55,11 @@
     "defaultMessage": "Not sure"
   },
   {
+    "id": "notset",
+    "description": "Material - Not set",
+    "defaultMessage": "undefined"
+  },
+  {
     "id": "comment",
     "description": "Label -",
     "defaultMessage": "Leave us a comment!"

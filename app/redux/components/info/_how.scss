@@ -4,7 +4,7 @@
 
 	@extend %corset;
 	width: 100%;
-	margin: 3vh;
+	margin: 3vh 0;
 
 	p{
 
@@ -28,18 +28,13 @@
 
 .toggleScript{
 
-	font-size: 12px;
-	display: block;
-	text-align: right;
 	margin: 0.5em 0 2em 0;
-	text-transform: uppercase;
-	font-weight: bold;
 
 }
 
 .script{
 
-	//margin-bottom: 2em;
+	margin-bottom: 2em;
 
 }
 

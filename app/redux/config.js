@@ -44,7 +44,7 @@ const materials = ( state= [
 	},
 	{
 		label: 'Not set',
-		value: '',
+		value: 'notset',
 		color: '#5f81b1' 
 	}
 
