@@ -157,8 +157,8 @@ class popup extends Component {
 						{ showcomment && <P className={ style.comment } >{ usercomment }</P> }
 					</DIV>
 					<DIV className={ style.actions }>
-						{ material != 'notset' && <P className={ style.label } style={ { backgroundColor: color } } >{ formatMessage( messages[ material ] ) }</P> }
-						{ contribution_verified == 1 && <I className={ clsVerified } >check_circle</I> }
+						{ material != 'notset' && <P className={ style.label } style={ { backgroundColor: color } } >{ formatMessage( messages[ material ] ) }{ contribution_verified == 1 && <I className={ clsVerified } >check_circle</I> }</P> }
+						
 						{ hascomment && <A onClick={ this._toggleComment } className={ style.showcomment } title={ formatMessage( messages.toggle_comment ) } >
 							<I className="material-icons">{ commentIcon }</I>
 						</A> }

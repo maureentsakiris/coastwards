@@ -140,7 +140,7 @@ $action-height: 45px;
 .showcomment{
 
 	float: left;
-	margin-left: 0.5em;
+	margin-left: 0.7em;
 
 }
 
@@ -180,16 +180,17 @@ $action-height: 45px;
     color: white;
     padding: 0.1em 1em;
     border-radius: 2px;
+    position: relative;
 
 }
 
 .verified{
 
-	font-size: 16px;
+	font-size: 18px;
 	color: green;
-	position: relative;
-	left: -9px;
-	top: -5px;
+	position: absolute;
+	right: -9px;
+	top: -6px;
 	background: white;
 	border-radius: 50%;
 	
