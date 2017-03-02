@@ -84,7 +84,7 @@ class contribution extends Component {
 				</FORM>
 				<DIV className={ style.actions }>
 					<GO onClick={ updateContribution.bind( this, formID ) } label="UPDATE" className={ style.update } />
-					<GO onClick={ deleteContribution.bind( this, contribution_id ) } label="DELETE" className={ style.delete } />
+					<GO onClick={ deleteContribution.bind( this, contribution_id, contribution_uid ) } label="DELETE" className={ style.delete } />
 				</DIV>
 			</LI>
 

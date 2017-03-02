@@ -19,13 +19,13 @@ const mapDispatchToProps = ( dispatch ) => {
 
 	return {
 
-		deleteContribution: ( id, e ) => {
+		deleteContribution: ( id, uid, e ) => {
 
 			e.preventDefault()
 			
 			if ( confirm( 'YOU COMPLETELY SURE YOU WANT TO DELETE THIS CONTRIBUTION?' ) ) {
 
-				dispatch( deleteContribution( id ) )
+				dispatch( deleteContribution( id, uid ) )
 
 			} 
 

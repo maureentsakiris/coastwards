@@ -3,6 +3,11 @@ const router = express.Router()
 const mysql = require( 'mysql' )
 const formidable = require( 'formidable' )
 const _ = require( 'underscore' )
+const fs = require( 'fs' )
+const path = require( 'path' )
+
+const PROJECT_ROOT = path.resolve( './' )
+const UPLOADS = path.join( PROJECT_ROOT, 'public/uploads/' )
 
 const globalConfigs = require ( '../config/' )
 const config = globalConfigs.mysql;
@@ -131,7 +136,7 @@ const _delete = ( fields ) => {
 
 	return new Promise( ( resolve, reject ) => { 
 
-		const { id } = fields
+		const { id, uid } = fields
 
 		pool.getConnection( function ( error, connection ) {
 
@@ -159,7 +164,7 @@ const _delete = ( fields ) => {
 
 					}else{
 
-						resolve( result.affectedRows )
+						resolve( uid )
 
 					}
 					
@@ -175,15 +180,38 @@ const _delete = ( fields ) => {
 
 }
 
+const _unlink = ( uid ) => {
+
+	return new Promise( ( resolve, reject ) => { 
+
+		fs.unlink( path.join( UPLOADS, uid + '.jpg' ), ( error ) => {
+
+			if( error ){
+
+				reject( error )
+
+			}else{
+
+				resolve( uid )
+
+			}
+
+		} )
+
+	} ) 
+
+}
+
 router.post( '/delete', function ( req, res ) {
 
 	_promiseFetchForm( req )
 	.then( _delete )
-	.then( ( affectedRows ) => {
+	.then( _unlink )
+	.then( ( uid ) => {
 
-		res.json( { status: 'OK', affectedRows: affectedRows } )
+		res.json( { status: 'OK', uid: uid } )
 		
-		return affectedRows
+		return uid
 
 	} )
 	.catch( ( error ) => {

@@ -80,12 +80,13 @@ export const fetch = ( ) => {
 
 }
 
-export const deleteContribution = ( contribution_id ) => {
+export const deleteContribution = ( contribution_id, contribution_uid ) => {
 
 	return function ( dispatch ){
 
 		let formData = new FormData()
 		formData.append( 'id', contribution_id )
+		formData.append( 'uid', contribution_uid )
 
 		let options = {
 
@@ -104,11 +105,7 @@ export const deleteContribution = ( contribution_id ) => {
 
 			}else{
 
-				if( parsed.affectedRows == 1 ){
-
-					dispatch( fetch() )
-
-				}
+				dispatch( fetch() )
 
 			}
 
