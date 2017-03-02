@@ -40,12 +40,12 @@ const materials = ( state= [
 	{
 		label: 'Not sure',
 		value: 'notsure',
-		color: '#5f81b1'
+		color: '#0076b7'
 	},
 	{
 		label: 'Not set',
 		value: 'notset',
-		color: '#5f81b1' 
+		color: '#0076b7' 
 	}
 
 ], action ) => {
