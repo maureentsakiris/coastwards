@@ -10,6 +10,7 @@
   "scripts": {
     "build": "webpack",
     "start": "webpack && node server",
+    "test": "webpack && NODE_ENV=development node server",
     "reset": "NODE_ENV=development node reset.js && NODE_ENV=development node server",
     "dev": "NODE_ENV=development node server",
     "translate": "NODE_ENV=development node ./app/i18n/translate.js"
