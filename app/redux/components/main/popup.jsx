@@ -3,6 +3,7 @@ import PureRenderMixin from 'react-addons-pure-render-mixin'
 import { defineMessages, injectIntl, intlShape, FormattedDate } from 'react-intl'
 import _ from 'underscore'
 import validator from 'validator'
+import Classnames from 'classnames'
 
 import DIV from 'components/tags/div'
 import A from 'components/tags/a'
@@ -122,11 +123,13 @@ class popup extends Component {
 
 		}else{
 
-			const { contribution_material, contribution_comment, contribution_uid, contribution_exif_datetime/*, contribution_hashtag*/ } = feature
+			const { contribution_verified, contribution_material, contribution_material_verified, contribution_comment, contribution_uid, contribution_exif_datetime/*, contribution_hashtag*/ } = feature
 
-			//const mat = contribution_material ? contribution_material : ''
-			const m = _.findWhere( materials, { value: contribution_material } )
+
+			const material = contribution_verified ? contribution_material_verified : contribution_material
+			const m = _.findWhere( materials, { value: contribution_material_verified } )
 			const color = m.color
+			
 
 			const usercomment = validator.unescape( contribution_comment )
 			const hascomment = usercomment != ''
@@ -134,6 +137,8 @@ class popup extends Component {
 			const commentIcon = showcomment ? 'insert_comment' : 'mode_comment'
 
 			const date = contribution_exif_datetime == '0999-12-31T23:00:00.000Z' ? false : contribution_exif_datetime
+
+			const clsVerified = Classnames( "material-icons", style.verified )
 
 			return(
 
@@ -152,7 +157,8 @@ class popup extends Component {
 						{ showcomment && <P className={ style.comment } >{ usercomment }</P> }
 					</DIV>
 					<DIV className={ style.actions }>
-						{ contribution_material != 'notset' && <P className={ style.label } style={ { backgroundColor: color } } >{ formatMessage( messages[ contribution_material ] ) }</P> }
+						{ material != 'notset' && <P className={ style.label } style={ { backgroundColor: color } } >{ formatMessage( messages[ material ] ) }</P> }
+						{ contribution_verified == 1 && <I className={ clsVerified } >check_circle</I> }
 						{ hascomment && <A onClick={ this._toggleComment } className={ style.showcomment } title={ formatMessage( messages.toggle_comment ) } >
 							<I className="material-icons">{ commentIcon }</I>
 						</A> }

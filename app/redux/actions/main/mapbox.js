@@ -268,7 +268,7 @@ export const displayMap = ( ) => {
 					},
 					// color circles by ethnicity, using data-driven styles
 					'circle-color': {
-						property: 'material',
+						property: 'material_verified',
 						type: 'categorical',
 						stops: stops
 					}

@@ -84,8 +84,6 @@ const _fetch = ( fields ) => {
 
 				var query = mysql.format( sql, inserts )
 
-				console.log( query );
-
 				connection.query( query, function ( err, results ) {
 
 					if( error ){
