@@ -289,25 +289,25 @@
 
 		@include portrait( ){
 
-			max-width: 70vw;
+			max-width: 60vw;
 
 		}
 
 		@include landscape( ){
 
-			max-width: 70vh;
+			max-width: 60vh;
 
 		}
 
 		@include portraitMin( $tablet ){
 
-			max-width: 70vw;
+			max-width: 60vw;
 
 		}
 
 		@include landscapeMin( $tablet ){
 
-			max-width: 70vh;
+			max-width: 60vh;
 
 		}
 
@@ -333,23 +333,11 @@
 
 			font-size: 64px;
 
-			span{
-
-				//display: block;
-
-			}
-
 		}
 
 		@include landscapeMin( $desktop ){
 
 			font-size: 64px;
-
-			span{
-
-				//display: block;
-
-			}
 
 		}
 
@@ -359,6 +347,7 @@
 
 		text-align: center;
 		font-size: 24px;
+		font-weight: 400;
 
 		@include portraitMin( $desktop ){
 
