@@ -151,7 +151,7 @@ const context = ( { intl, lang, dir, jazzSupported, clipped, useraction, scrollY
 			<DIV lang={ lang } dir={ dir } >
 				<DIV id="Intro" className={ clsIntro }> 
 					<I18nLinks availableLanguages={ i18nLocales.locales } className={ style.i18n } />
-					<IMG src="./assets/coastwards.svg" alt="Logo coastwards: A turtle on a mission" className={ style.logo } />
+					<IMG src="./assets/coastwards-white.svg" alt="Logo coastwards: A turtle on a mission" className={ style.logo } />
 					<H priority={ 1 } className={ style.headline } ><span>{ formatMessage( messages.help_science ) }</span> <span>{ formatMessage( messages.by ) }</span></H>
 					<H priority={ 1 } className={ style.comment } >{ formatMessage( messages.we_know ) }</H>
 					<H priority={ 2 } className={ style.tagline } >{ formatMessage( messages.no_account ) }</H>
@@ -162,7 +162,6 @@ const context = ( { intl, lang, dir, jazzSupported, clipped, useraction, scrollY
 					<Team />
 					<FAQs />
 					<Ask />
-					<Logos />
 				</DIV>
 				<DIV id="Scroll" className={ clsScroll } ><A onClick={ scrollToMap } ><I className="material-icons">&#xE313;</I></A></DIV>
 				<DIV id="Main" className={ style.main }>

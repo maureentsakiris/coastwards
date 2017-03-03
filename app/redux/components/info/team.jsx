@@ -1,6 +1,8 @@
 import React/*, { PropTypes }*/ from 'react'
 import { defineMessages, injectIntl, intlShape, FormattedMessage } from 'react-intl'
 
+import Logos from 'containers/info/logos'
+
 import TOGGLE from 'components/ui/toggle'
 import P from 'components/tags/p'
 import H from 'components/tags/h'
@@ -141,7 +143,7 @@ const team = ( { intl/*, addSnackbarMessage*/ } ) => {
 				<P><A href="https://github.com/basselAlshK" target="_blank">Bassel Alsheekh Kassem</A> - { formatMessage( messages.bassel ) }</P>
 
 			</TOGGLE>
-
+			<Logos />
 		</TOGGLE>
 
 	)

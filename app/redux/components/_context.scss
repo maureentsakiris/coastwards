@@ -241,6 +241,14 @@
 
 	@extend %page;
 	padding-bottom: 1em;
+	background-color: $color-primary;
+	color: #fff;
+
+	a{
+
+		color: #fff;
+
+	}
 
 	@include portraitMin( $tablet ){
 
@@ -281,25 +289,25 @@
 
 		@include portrait( ){
 
-			max-width: 50vw;
+			max-width: 70vw;
 
 		}
 
 		@include landscape( ){
 
-			max-width: 50vh;
+			max-width: 70vh;
 
 		}
 
 		@include portraitMin( $tablet ){
 
-			max-width: 50vw;
+			max-width: 70vw;
 
 		}
 
 		@include landscapeMin( $tablet ){
 
-			max-width: 50vh;
+			max-width: 70vh;
 
 		}
 
@@ -307,22 +315,27 @@
 
 	.headline{
 
-		text-transform: uppercase;
-		font-weight: 300;
+		font-family: "Roboto Slab";
+		font-size: 48px;
+		//text-transform: uppercase;
+		//font-weight: 300;
 		text-align: center;
-		font-weight: 300;
+		line-height: 1.1em;
+		word-wrap: break-word;
+    	max-width: 100%;
+		//font-weight: 300;
 
-		font-size: 22px;
+		//font-size: 22px;
 
-		@extend %corset;
+		//@extend %corset;
 
 		@include portraitMin( $desktop ){
 
-			font-size: 32px;
+			font-size: 64px;
 
 			span{
 
-				display: block;
+				//display: block;
 
 			}
 
@@ -330,11 +343,11 @@
 
 		@include landscapeMin( $desktop ){
 
-			font-size: 32px;
+			font-size: 64px;
 
 			span{
 
-				display: block;
+				//display: block;
 
 			}
 
@@ -388,7 +401,7 @@
 .info{
 
 	@extend %page;
-	padding-top: 0;
+	//padding-top: 0;
 	//min-height: auto;
 	justify-content: flex-start;
 	margin-bottom: 112px;
