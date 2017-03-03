@@ -81,7 +81,7 @@ const context = ( { intl, lang, dir, jazzSupported, clipped, useraction, scrollY
 				<P className={ style.alert } >{ formatMessage( messages.nojazz_text ) }</P>
 				<I18nLinks availableLanguages={ i18nLocales.locales } className={ style.i18n } />
 				<DIV id="Intro" className={ style.introNoJazz } >
-					<IMG src="./assets/coastwards.jpg" alt="Logo coastwards: A turtle on a mission" />
+					<IMG src="./assets/coastwards-blue.png" alt="Logo coastwards: A turtle on a mission" />
 					<H priority={ 1 } ><span>{ formatMessage( messages.help_science ) }</span> <span>{ formatMessage( messages.by ) }</span></H>
 					<H priority={ 2 } >{ formatMessage( messages.we_know ) }</H>
 					<H priority={ 3 } >{ formatMessage( messages.no_account ) }</H>
