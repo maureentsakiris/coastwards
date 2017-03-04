@@ -46,12 +46,7 @@ store.dispatch( loadLanguage( negotiatedLocale || navigatorLocale ) )
 
 window.addEventListener( 'scroll', ( ) => {
 
-	store.dispatch( setScrollY( window.scrollY ) )
-
-} )
-
-window.addEventListener( 'wheel', ( ) => {
-
+	console.log( window.scrollY );
 	store.dispatch( setScrollY( window.scrollY ) )
 
 } )
