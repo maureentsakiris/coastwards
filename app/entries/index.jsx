@@ -47,7 +47,6 @@ store.dispatch( loadLanguage( negotiatedLocale || navigatorLocale ) )
 window.addEventListener( 'scroll', ( ) => {
 
 	let scroll = window.scrollY || window.pageYOffset
-	console.log( scroll )
 	store.dispatch( setScrollY( scroll ) )
 
 } )
