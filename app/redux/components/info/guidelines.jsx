@@ -76,6 +76,16 @@ const messages = defineMessages( {
 		description: "Guideline - Coasts",
 		defaultMessage: "Harbors, cliffs, promenades alongside the water ... anything that touches the oceans and seas."
 	},
+	guidelines_and:{
+		id: "guidelines_and",
+		description: " - ",
+		defaultMessage: "and"
+	},
+	guideline_closer_header:{
+		id: "guideline_closer_header",
+		description: "Header - ",
+		defaultMessage: "The closer, the BETTER!"
+	}
 
 } )
 
@@ -153,6 +163,8 @@ const guidelines = ( { intl, jazzSupported, showDialog } ) => {
 						</DIV>
 					</LI>
 				</OL>
+				<H priority={ 4 } className={ style.and } >{ formatMessage( messages.guidelines_and ) }</H>
+				<H priority={ 4 } className={ style.closer }>{ formatMessage( messages.guideline_closer_header ) }</H>
 			</TOGGLE>
 
 		)

@@ -1,5 +1,14 @@
 @import 'app/styles/base';
 
+%slab{
+
+	font-family: 'Roboto Slab';
+	font-size: 28px;
+	line-height: 1.1em;
+	text-align: center;
+
+}
+
 .toggle{
 
 	@extend %toggle;
@@ -40,10 +49,27 @@
 
 		h4{
 
+			@extend %slab;
 			margin-bottom: 0.3em;
 
 		}
 
 	}
+
+}
+
+.and{
+
+	@extend %slab;
+	font-size: 28px;
+	margin: 2em 0;
+
+}
+
+.closer{
+
+	@extend %slab;
+	font-size: 42px;
+	margin: 0 0 2em 0;
 
 }

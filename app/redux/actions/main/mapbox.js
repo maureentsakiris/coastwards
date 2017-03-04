@@ -39,8 +39,6 @@ const _promiseInitMap = ( ) => {
 
 		if( !Modernizr.touchevents ){
 
-			//map.addControl( new mapboxgl.NavigationControl(), 'top-left' )
-
 			let geocoder = new MapboxGeocoder( {
 
 				accessToken: ACCESSTOKEN/*,
@@ -49,6 +47,7 @@ const _promiseInitMap = ( ) => {
 			} )
 
 			map.addControl( geocoder, 'top-left' )
+			map.addControl( new mapboxgl.NavigationControl(), 'top-left' )
 
 		}
 

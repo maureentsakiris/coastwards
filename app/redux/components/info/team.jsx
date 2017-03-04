@@ -1,8 +1,6 @@
 import React/*, { PropTypes }*/ from 'react'
 import { defineMessages, injectIntl, intlShape, FormattedMessage } from 'react-intl'
 
-import Logos from 'containers/info/logos'
-
 import TOGGLE from 'components/ui/toggle'
 import P from 'components/tags/p'
 import H from 'components/tags/h'
@@ -134,7 +132,6 @@ const team = ( { intl/*, addSnackbarMessage*/ } ) => {
 			</DIV>
 			<BR/><BR/>
 			<P><STRONG>{ formatMessage( messages.contact_here ) }:</STRONG> <A href="mailTo:go@coastwards.org" >go@coastwards.org</A></P> 
-
 			<BR/>
 			<TOGGLE id="Team" priority={ 5 } text={ formatMessage( messages.special_thanks ) } >
 
@@ -143,7 +140,6 @@ const team = ( { intl/*, addSnackbarMessage*/ } ) => {
 				<P><A href="https://github.com/basselAlshK" target="_blank">Bassel Alsheekh Kassem</A> - { formatMessage( messages.bassel ) }</P>
 
 			</TOGGLE>
-			<Logos />
 		</TOGGLE>
 
 	)

@@ -58,5 +58,15 @@
     "id": "guideline_coasts_text",
     "description": "Guideline - Coasts",
     "defaultMessage": "Harbors, cliffs, promenades alongside the water ... anything that touches the oceans and seas."
+  },
+  {
+    "id": "guidelines_and",
+    "description": "-",
+    "defaultMessage": "and"
+  },
+  {
+    "id": "guideline_closer_header",
+    "description": "Header -",
+    "defaultMessage": "The closer, the BETTER!"
   }
 ]

@@ -316,18 +316,11 @@
 	.headline{
 
 		font-family: "Roboto Slab";
-		font-size: 48px;
-		//text-transform: uppercase;
-		//font-weight: 300;
+		font-size: 46px;
 		text-align: center;
 		line-height: 1.1em;
 		word-wrap: break-word;
     	max-width: 100%;
-		//font-weight: 300;
-
-		//font-size: 22px;
-
-		//@extend %corset;
 
 		@include portraitMin( $desktop ){
 

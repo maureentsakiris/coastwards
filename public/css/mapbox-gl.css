@@ -281,9 +281,22 @@
 
 }
 
+/*.mapboxgl-ctrl-bottom-right {
+
+    bottom: 20px;
+    right: 20px;
+
+}*/
+
 .mapboxgl-ctrl-top-left .mapboxgl-ctrl {
 
     margin: 0;
+
+}
+
+.mapboxgl-ctrl.mapboxgl-ctrl-group{
+
+    margin-top: 15px;
 
 }
 
@@ -295,7 +308,7 @@
 
 @media (max-width: 600px) { 
 
-    .mapboxgl-ctrl-geocoder{
+    .mapboxgl-ctrl-geocoder, .mapboxgl-ctrl.mapboxgl-ctrl-group{
 
         display: none;
 

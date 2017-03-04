@@ -23,11 +23,11 @@ const Locales = [
 		name: 'Deutsch',
 		en: 'German'
 	},
-	{
+	/*{
 		locale: 'pt',
 		name: 'Português',
 		en: 'Portuguese'
-	},
+	},*/
 	{
 		locale: 'ar',
 		name: 'العربية',

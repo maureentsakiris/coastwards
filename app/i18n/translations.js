@@ -29,7 +29,7 @@
 		},
 		"we_know": {
 			"en": "(we assume you have some)",
-			"de": "(wir vermuten Ihr habt welche)",
+			"de": "(Ihr habt doch welche)",
 			"es": "(suponemos que las tengan)",
 			"ar": "(باعتبار أنك تملك بعض منها)",
 			"pt": "(nós assumimos que você tem algum)"
@@ -127,7 +127,7 @@
 		},
 		"send_me_yours": {
 			"en": "Ok, this is the part where I need your help. Please tell me your questions so I can put together this FAQs section. Click on 'Still have a question!' and send me yours. Thank you so much!",
-			"de": "Hier brauche ich noch etwas Hilfe. Stellt mir Eure Fragen, damit ich die häufig gestellten Fragen zusammenstellen kann. Gehe zu 'Ich habe noch eine Frage!' und schicke mir Deine. Danke!",
+			"de": "Hier brauche ich noch etwas Hilfe. Stellt mir Eure Fragen, damit Antworten auf die häufigsten Fragen zusammenstellen kann. Gehe zu 'Ich habe noch eine Frage!' und schicke mir Deine. Danke!",
 			"es": "Aquí vamos a necesitar tu ayuda. Háznos tu pregunta de modo de poder compilar montones de ellas en esta sección. Pincha en '¡Tengo una duda!' y envíanos tu pregunta. ¡Gracias!",
 			"ar": "حسنا، هذا هو الجزء الذي نريد مساعدتك فيه. من فضلك قل لي أسئلتك لكي أتمكن من وضعها مع قسم الأسئلة الشائعة. انقر على 'ما زال لديي سؤال!' وأرسل لي سؤالك. شكرا جزيلا!",
 			"pt": "Ora bem, esta é a parte onde preciso da tua ajuda. Coloca-me qualquer dúvida que tenhas a cerca do site ou projecto para eu poder criar a secção de Perguntas Mais Frequentes. Clica em “ainda tenho uma dúvida” e envia-a. Muito Obrigado!"
@@ -205,7 +205,7 @@
 		"guideline_coasts_header": {
 			"en": "Coasts are not only beaches!",
 			"de": "Küsten sind nicht nur Sandstrände!",
-			"es": "!Las costas no son sólo playas!",
+			"es": "¡Las costas no son sólo playas!",
 			"ar": "سواحل ليس المقصود بها الشواطئ!",
 			"pt": ""
 		},
@@ -215,6 +215,21 @@
 			"es": "Hay acantilados, puertos y paseos marítimos... ¡todo tipo de costa que bordee oceanos y mares nos sirve!",
 			"ar": "الموانئ، والمنحدرات، منتزهات جنبا إلى جنب مع الماء ... أي شيء يمس المحيطات والبحار.",
 			"pt": ""
+		},
+		"guidelines_and": {
+			"en": "-and-",
+			"de": "-und-",
+			"es": "-y-",
+			"ar": "-و-",
+			"pt": "-e-",
+			"zh": "-和-"
+		},
+		"guideline_closer_header": {
+			"en": "The closer, the better!",
+			"de": "Je näher, desto besser!",
+			"es": "¡Cuanto más cerca, mejor!",
+			"ar": "وأقرب، كان ذلك أفضل",
+			"pt": "Quanto mais perto, melhor!"
 		},
 		"how": {
 			"en": "How does my picture help?",
@@ -246,7 +261,7 @@
 		},
 		"in_a_nutshell": {
 			"en": "In a nutshell, it gives science what satellites cannot: A close-up image of a coast. The possibility to study the bigger picture, in as much detail as possible.",
-			"de": "Kurz gesagt, gibt es Wissenschaftlern ein Stück mehr als Satellitenfotos: ein Küstenselfie. Die Möglichkeit das große Ganze im kleinsten Detail zu studieren.",
+			"de": "Kurz gesagt, gibt es Wissenschaftlern ein Stück mehr als Satellitenfotos: ein Küstenselfie. Und damit die Möglichkeit das große Ganze im kleinsten Detail zu studieren.",
 			"es": "Nos brinda algo que satélites no nos pueden mostrar: La imagen cercana de una costa. Y la posibilidad de estudiarla con el mayor detalle posible.",
 			"ar": "باختصار، الصور تعطي العلم ما لا يمكن للأقمار الصناعية أن تعطيه: صورة عن قرب للساحل. تعطي الامكانية لدراسة الساحل بتفاصيل أكثر دقة من صورة قمر صناعي."
 		},
@@ -259,7 +274,7 @@
 		},*/
 		"how_it_works": {
 			"en": "Here is how it works.",
-			"de": "Und das geht so.",
+			"de": "Und das geht so:",
 			"es": "Así es cómo funciona.",
 			"ar": "تجد هنا كيف تعمل.",
 			"pt": "Assim é como funciona."
@@ -371,7 +386,7 @@
 		},
 		"me": {
 			"en": "That's me. I created this website with a lot of love and endless hours of just staring at it. (Developers: Node, React and Redux ROCK!)",
-			"de": "Das bin ich. Ich habe diese Webseite mit viel Liebe und viel zu viel endloses Draufstarren entwickelt. (Developers: Node, React und Redux ROCK!)",
+			"de": "Das bin ich. Ich habe diese Webseite mit viel Liebe und viel zu viel endlosem Draufstarren entwickelt. (Developers: Node, React und Redux ROCK!)",
 			"es": "Esa soy yo. He desarrollado este sitio web con mucho amor y muchas horas de mirarlo fijamente. (Developers: Node, React und Redux ROCK!)",
 			"ar": "هذه أنا. أنا الذي طورت هذا الموقع مع الكثير من الحب وصرفت الكثير من الوقت لمجرد البدء بتطويره. (المطورون: Node, React and Redux ROCK!)",
 			"pt": "Essa são eu."
@@ -408,7 +423,7 @@
 			"en": "For creating the explanatory video and for their moral support",
 			"de": "Für das Erklärvideo und seelische Unterstützung",
 			"es": "Por el video explicativo y su apoyo moral",
-			"ar": "",
+			"ar": "فيديو والدعم",
 			"pt": ""
 		},
 		"uploadBtn_title": {
@@ -685,7 +700,7 @@
 			"pt": ""
 		},
 		"accept_terms": {
-			"en": "I accept the {terms}",
+			"en": "I have read and accept the {terms}",
 			"de": "Ich habe die {terms} gelesen und akzeptiere sie",
 			"es": "He leído los {terms} los acepto",
 			"ar": "أوفاق على {terms}",
