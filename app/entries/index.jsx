@@ -50,6 +50,12 @@ window.addEventListener( 'scroll', ( ) => {
 
 } )
 
+window.addEventListener( 'wheel', ( ) => {
+
+	store.dispatch( setScrollY( window.scrollY ) )
+
+} )
+
 
 ReactDom.render( 
 
