@@ -10,12 +10,7 @@ export function loadLanguage ( locale ) {
 
 			if( error ){
 
-				dispatch( {
-					
-					type: types.SHOW_DIALOG,
-					message: error
-
-				} )
+				console.log( error.message );
 
 			}else{
 

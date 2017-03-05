@@ -7,6 +7,8 @@
 
 import { addLocaleData } from 'react-intl';
 
+const DEFAULTLOCALE = 'en'
+
 const Locales = [
 	{
 		locale: 'en',
@@ -475,8 +477,17 @@ loaders.zh = ( done ) => {
 
 const loadLocale = function ( locale, done ){
 
-	var loader = loaders[ locale ];
-	loader ( done );
+	var loader;
+	loader = loaders[ locale ];
+
+	if ( !loader ){
+
+		loader = loaders[ DEFAULTLOCALE ];
+
+	}
+
+	loader( done );
+	
 
 }
 
