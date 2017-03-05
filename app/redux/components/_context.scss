@@ -222,16 +222,17 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	padding: 3em 1em;
 
 	@include portrait( ){
 
-		padding: 14vw 7vw
+		padding: 3em 5vw;
 
 	}
 
 	@include landscape( ){
 
-		padding: 14vh;
+		padding: 3em 15vh;
 
 	}
 
