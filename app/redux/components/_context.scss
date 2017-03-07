@@ -73,6 +73,7 @@
     a{
 
     	pointer-events: all;
+    	margin-top: 10vh;
 
     }
 
@@ -105,6 +106,12 @@
 	&.unfix{
 
     	position: initial;
+
+    	/* a{
+
+    		margin-top: 0;
+
+    	} */
 
     }
 
