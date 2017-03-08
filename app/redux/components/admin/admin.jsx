@@ -42,7 +42,7 @@ const admin = ( { results, materials, material, materialverified, verified, id, 
 
 		<DIV className={ style.corset } >
 			<A target="_self" href="/logout" className={ style.logger }>Logout</A>
-			<FORM className={ style.form } id="Admin" >
+			<FORM className={ style.form } id="Admin" action="javascript:;" onSubmit={ fetch } >
 				<INPUT form="Admin" label="ID: " name="id" preferPlaceholder={ false } placeholder="ID" onChange={ setID } value={ id } />
 				<SELECTGROUP form="Admin" label="Material: " name="material" preferPlaceholder={ false } options={ materialOptions } onChange={ setMaterial } value={ material } />
 				<SELECTGROUP form="Admin" label="Material verified: " name="materialverified" preferPlaceholder={ false } options={ materialOptions } onChange={ setMaterialVerified } value={ materialverified } />
