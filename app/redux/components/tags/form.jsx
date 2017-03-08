@@ -21,7 +21,7 @@ form.propTypes = {
 	hocProps: PropTypes.shape( { 
 
 		acceptCharset: PropTypes.string,
-		action: PropTypes.string.isRequired,
+		action: PropTypes.string,
 		autoComplete: PropTypes.oneOf( [ 'on', 'off' ] ),
 		enctype: PropTypes.oneOf( [ 'application/x-www-form-urlencoded', 'multipart/form-data', 'text/plain' ] ),
 		method: PropTypes.oneOf( [ 'get', 'post' ] ),

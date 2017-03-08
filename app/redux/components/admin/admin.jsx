@@ -5,7 +5,9 @@ import DIV from 'components/tags/div'
 import A from 'components/tags/a'
 import UL from 'components/tags/ul'
 
+
 import FORM from 'components/tags/form'
+import INPUT from 'components/form/input/input'
 import SELECTGROUP from 'components/form/selectgroup/selectgroup'
 import GO from 'components/form/button/go'
 
@@ -13,7 +15,7 @@ import CONTRIBUTION from 'containers/admin/contribution'
 
 import style from './_admin'
 
-const admin = ( { results, materials, material, materialverified, verified, setMaterial, setMaterialVerified, setVerified, fetch } ) => {
+const admin = ( { results, materials, material, materialverified, verified, id, setMaterial, setMaterialVerified, setVerified, setID, fetch } ) => {
 
 	const all = [ { label: 'All', value: '%' } ]
 	const mats = _.map( materials, ( material ) => {
@@ -40,11 +42,11 @@ const admin = ( { results, materials, material, materialverified, verified, setM
 
 		<DIV className={ style.corset } >
 			<A target="_self" href="/logout" className={ style.logger }>Logout</A>
-			<FORM className={ style.form } id="Admin" action="/admin/fetch" >
-				<SELECTGROUP form="Admin" label="Material" name="material" preferPlaceholder={ false } options={ materialOptions } onChange={ setMaterial } value={ material } />
-				<SELECTGROUP form="Admin" label="Material verified" name="materialverified" preferPlaceholder={ false } options={ materialOptions } onChange={ setMaterialVerified } value={ materialverified } />
-				<SELECTGROUP form="Admin" label="Verified" name="verified" preferPlaceholder={ false } options={ verifiedOptions } onChange={ setVerified } value={ verified } />
-				
+			<FORM className={ style.form } id="Admin" >
+				<INPUT form="Admin" label="ID: " name="id" preferPlaceholder={ false } placeholder="ID" onChange={ setID } value={ id } />
+				<SELECTGROUP form="Admin" label="Material: " name="material" preferPlaceholder={ false } options={ materialOptions } onChange={ setMaterial } value={ material } />
+				<SELECTGROUP form="Admin" label="Material verified: " name="materialverified" preferPlaceholder={ false } options={ materialOptions } onChange={ setMaterialVerified } value={ materialverified } />
+				<SELECTGROUP form="Admin" label="Verified: " name="verified" preferPlaceholder={ false } options={ verifiedOptions } onChange={ setVerified } value={ verified } />
 				<GO onClick={ fetch } label="GO" />
 			</FORM>
 			<UL>{ list }</UL>
@@ -76,10 +78,12 @@ admin.propTypes = {
 	material: PropTypes.string,
 	materialverified: PropTypes.string,
 	verified: PropTypes.string,
+	id: PropTypes.string,
 
 	setMaterial: PropTypes.func,
 	setMaterialVerified: PropTypes.func,
 	setVerified: PropTypes.func,
+	setID: PropTypes.func,
 	fetch: PropTypes.func
 
 }

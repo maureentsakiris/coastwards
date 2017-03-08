@@ -4,7 +4,7 @@ import _ from 'underscore'
 
 import materials from 'config'
 
-const form = ( state = { results: [], material: '%', materialverified: '%', verified: '%' }, action ) => {
+const form = ( state = { results: [], material: '%', materialverified: '%', verified: '%', id: '%' }, action ) => {
 
 	switch ( action.type ){
 
@@ -16,6 +16,8 @@ const form = ( state = { results: [], material: '%', materialverified: '%', veri
 		return _.extend( {}, state, { materialverified: action.to } )
 	case types.SET_VERIFIED:
 		return _.extend( {}, state, { verified: action.to } )
+	case types.SET_ID:
+		return _.extend( {}, state, { id: action.to } )
 	default:
 		return state
 
