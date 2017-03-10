@@ -118,16 +118,14 @@ const dialog = ( state = { component: '', active: false }, action ) => {
 
 }
 
-const snackbar = ( state = [], action ) => {
+const snackbar = ( state = { message: "", timeout: 6000, yes: undefined, no: undefined }, action ) => {
 
 	switch ( action.type ){
 
-	case types.ADD_SNACKBAR_MESSAGE:
-		return [ ...state, action.message ]
-	case types.REMOVE_SNACKBAR_MESSAGES:
-		return []
+	case types.SET_SNACKBAR_MESSAGE:
+		return { ...state, message: action.message, timeout: action.timeout, yes: action.yes, no: action.no }
 	case types.REMOVE_SNACKBAR_MESSAGE:
-		return _.without( state, action.message )
+		return { message: "", timeout: 6000, yes: undefined, no: undefined  }
 	default:
 		return state;
 
@@ -137,14 +135,14 @@ const snackbar = ( state = [], action ) => {
 
 
 // IF YOU ADD A LAYER HERE YOU MIGHT HAVE TO CHANGE main.js/scrollUp
-const layers = ( state = { loader: true, upload: true, prompts: false, statuses: false, errors: false, locate: false, geolocater: false, form: false, marker: false }, action ) => {
+const layers = ( state = { loader: true, upload: true, prompts: false, statuses: false, errors: false, locate: false, geolocater: false, form: false, marker: false, satellite: false }, action ) => {
 
 	switch ( action.type ){
 
 	case types.SET_LAYER_VISIBILITY:
 		return _.extend( {}, state, { [ action.layer ]: action.to } )
 	case types.RESET_LAYERS:
-		return { loader: false, upload: true, prompts: true, statuses: false, errors: false, locate: false, geolocater: false, form: false, marker: false }
+		return { loader: false, upload: true, prompts: true, statuses: false, errors: false, locate: false, geolocater: false, form: false, marker: false, satellite: false }
 	default: 
 		return state
 

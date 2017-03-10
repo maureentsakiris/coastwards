@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { addSnackbarMessage } from 'actions/ui/snackbar'
+import { setSnackbarMessage } from 'actions/ui/snackbar'
 
 import TEAM from 'components/info/team'
 
@@ -8,10 +8,10 @@ const mapDispatchToProps = ( dispatch ) => {
 
 	return {
 
-		addSnackbarMessage: ( msg, e ) => {
+		setSnackbarMessage: ( msg, e ) => {
 
 			e.preventDefault()
-			dispatch( addSnackbarMessage( msg, 1500 ) )
+			dispatch( setSnackbarMessage( msg, 1500 ) )
 
 		}
 

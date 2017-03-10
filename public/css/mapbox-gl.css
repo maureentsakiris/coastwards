@@ -281,24 +281,24 @@
 
 }
 
-/*.mapboxgl-ctrl-bottom-right {
+.mapboxgl-ctrl-bottom-right {
 
     bottom: 20px;
     right: 20px;
 
-}*/
+}
 
-.mapboxgl-ctrl-top-left .mapboxgl-ctrl {
+.mapboxgl-ctrl-top-left .mapboxgl-ctrl, .mapboxgl-ctrl-bottom-right .mapboxgl-ctrl {
 
     margin: 0;
 
 }
 
-.mapboxgl-ctrl.mapboxgl-ctrl-group{
+/*.mapboxgl-ctrl.mapboxgl-ctrl-group{
 
     margin-top: 15px;
 
-}
+}*/
 
 .mapboxgl-ctrl-geocoder{
 

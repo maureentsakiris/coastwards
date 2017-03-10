@@ -1,9 +1,13 @@
 import React, { PropTypes } from 'react'
 import { defineMessages, injectIntl, intlShape } from 'react-intl'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
-import _ from 'underscore'
+import Classnames from 'classnames'
+/*import _ from 'underscore'*/
 
-import P from 'components/tags/p'
+import SPAN from 'components/tags/span'
+import DIV from 'components/tags/div'
+import GO from 'components/form/button/go'
+import CANCEL from 'components/form/button/cancel'
 
 import style from './_snackbar'
 
@@ -39,13 +43,51 @@ const intlMessages = defineMessages( {
 		id: "accept_terms_first",
 		description: "Snack - ",
 		defaultMessage: "You still have to accept the terms!"
+	},
+	continue:{
+		id: "continue",
+		description: "Button",
+		defaultMessage: "Continue"
+	},
+	cancel:{
+		id: "cancel",
+		description: "Button",
+		defaultMessage: "Cancel"
+	},
+	yes:{
+		id: "yes",
+		description: "Button",
+		defaultMessage: "Yes"
+	},
+	no:{
+		id: "no",
+		description: "Button",
+		defaultMessage: "No"
+	},
+	ok:{
+		id: "ok",
+		description: "Button",
+		defaultMessage: "OK"
+	},
+	location_right:{
+		id: "location_right",
+		description: "Snack",
+		defaultMessage: "Does the location look right?"
 	}
 
 } )
 
-const snackbar = ( { intl, messages } ) => {
+const snackbar = ( { intl, /*jazzSupported,*/ message, yes, no, dismissSnackbar } ) => {
 
-	const msgs = _composeMessages( intl, messages )
+	const { formatMessage } = intl
+	const mess = typeof message === 'object' ? message.message : message //if error object
+	const m = intlMessages[ mess ] ? formatMessage( intlMessages[ mess ] ) : mess //if translation 
+
+	/*const clsMsg = Classnames( style.msg, {
+
+		[ style.msgActionJazz ]: jazzSupported && yes
+
+	} )*/
 
 	return(
 
@@ -69,40 +111,102 @@ const snackbar = ( { intl, messages } ) => {
 			transitionAppearTimeout={ 300 }
 
 		>
-			{ msgs }
+			{ m && <DIV>
+				{ m }
+				<SPAN>
+					{ no && <CANCEL onClick={ dismissSnackbar.bind( this, no.action ) } label={ formatMessage( intlMessages[ no.label ] ) } /> }
+					{ yes && <GO onClick={ dismissSnackbar.bind( this, yes.action ) } label={ formatMessage( intlMessages[ yes.label ] ) } /> }
+				</SPAN>
+			</DIV> }
 		</ReactCSSTransitionGroup>
 
 	)
 
+	/*if( jazzSupported ){
+
+		return(
+
+			<ReactCSSTransitionGroup 
+
+				component="div"
+				className={ style.snackbarNoJazz }
+				transitionAppear={true} 
+				transitionName={ {
+
+					enter: style.enter,
+					enterActive: style.enterActive,
+					leave: style.leave,
+					leaveActive: style.leaveActive,
+					appear: style.enter,
+					appearActive: style.enterActive
+
+				} }
+				transitionEnterTimeout={ 300 }
+				transitionLeaveTimeout={ 300 }
+				transitionAppearTimeout={ 300 }
+
+			>
+				{ m && <DIV>
+					<SPAN>{ m }</SPAN>
+					<SPAN>
+						{ no && <CANCEL onClick={ dismissSnackbar.bind( this, no.action ) } label={ formatMessage( intlMessages[ no.label ] ) } /> }
+						{ yes && <GO onClick={ dismissSnackbar.bind( this, yes.action ) } label={ formatMessage( intlMessages[ yes.label ] ) } /> }
+					</SPAN>
+				</DIV> }
+			</ReactCSSTransitionGroup>
+
+		)
+
+	}else{
+
+		return(
+
+			<ReactCSSTransitionGroup 
+
+				component="div"
+				className={ style.snackbar }
+				transitionAppear={true} 
+				transitionName={ {
+
+					enter: style.enter,
+					enterActive: style.enterActive,
+					leave: style.leave,
+					leaveActive: style.leaveActive,
+					appear: style.enter,
+					appearActive: style.enterActive
+
+				} }
+				transitionEnterTimeout={ 300 }
+				transitionLeaveTimeout={ 300 }
+				transitionAppearTimeout={ 300 }
+
+			>
+				{ m && <DIV className={ style.msg }>
+					<SPAN className={ style.message } >{ m }</SPAN>
+					<SPAN className={ style.actions } >
+						{ no && <CANCEL onClick={ dismissSnackbar.bind( this, no.action ) } label={ formatMessage( intlMessages[ no.label ] ) } /> }
+						{ yes && <GO onClick={ dismissSnackbar.bind( this, yes.action ) } label={ formatMessage( intlMessages[ yes.label ] ) } /> }
+					</SPAN>
+				</DIV> }
+			</ReactCSSTransitionGroup>
+
+		)
+
+	}*/
+
+	
+
 } 
-
-const _composeMessages = ( intl, messages ) => {
-
-	const { formatMessage } = intl
-
-	const msgs = messages.slice( -1 )
-
-	return _.map( msgs, ( message, index ) => {
-
-		const mess = typeof message === 'object' ? message.message : message //if error object
-		const m = intlMessages[ mess ] ? formatMessage( intlMessages[ mess ] ) : mess //if translation 
-
-		return React.createElement( P, {
-
-			className: style.msg,
-			key: index,
-			children: m
-
-		} )
-
-	} )
-
-}
 
 snackbar.propTypes = {
 
 	intl: intlShape,
-	messages: PropTypes.array.isRequired
+	/*jazzSupported: PropTypes.bool,*/
+	message: PropTypes.string.isRequired,
+	yes: PropTypes.object,
+	no: PropTypes.object,
+
+	dismissSnackbar: PropTypes.func
 
 }
 

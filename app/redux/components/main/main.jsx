@@ -12,6 +12,7 @@ import Mapbox from 'containers/main/mapbox'
 import Popup from 'containers/main/popup'
 import Loader from 'containers/main/loader'
 import Counter from 'containers/main/counter'
+import Satellite from 'containers/main/satellite'
 
 import DIV from 'components/tags/div'
 import P from 'components/tags/p'
@@ -64,6 +65,7 @@ const main = ( { intl, uploadSupported, jazzSupported } ) => {
 
 			<DIV id="Main" className={ style.jazz } >
 				<Mapbox className={ style.mapbox } />
+				<Satellite className={ style.satellite } />
 				<Loader className={ style.screen } />
 				<Locate key="locate" className={ style.screen } />
 				<Marker key="marker" className={ style.marker } />

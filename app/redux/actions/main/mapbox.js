@@ -47,7 +47,7 @@ const _promiseInitMap = ( ) => {
 			} )
 
 			map.addControl( geocoder, 'top-left' )
-			map.addControl( new mapboxgl.NavigationControl(), 'top-left' )
+			map.addControl( new mapboxgl.NavigationControl(), 'bottom-right' )
 
 		}
 
@@ -341,7 +341,7 @@ export const displayMap = ( ) => {
 
 				}
 
-			} )
+			}, 'country_label_1' )
 
 			//dispatch( { type: types.ADD_INTERACTIVE_LAYER, layer: { layer: 'drops', onClick: _onMarkerClick } } )
 
@@ -451,7 +451,7 @@ export const switchModus = ( modus ) => {
 			map.setLayoutProperty( 'markers', 'visibility', 'none' )
 			/*map.setLayoutProperty( 'cluster-circles', 'visibility', 'none' )
 			map.setLayoutProperty( 'cluster-count', 'visibility', 'none' )*/
-			map.setLayoutProperty( 'drops', 'visibility', 'none' )
+			//map.setLayoutProperty( 'drops', 'visibility', 'none' )
 			/*map.setLayoutProperty( 'mapbox-mapbox-satellite', 'visibility', 'visible' )
 			map.setLayerZoomRange( 'mapbox-mapbox-satellite', 14, 20 )*/
 
@@ -470,7 +470,7 @@ export const switchModus = ( modus ) => {
 			map.setLayoutProperty( 'markers', 'visibility', 'visible' )
 			/*map.setLayoutProperty( 'cluster-circles', 'visibility', 'visible' )
 			map.setLayoutProperty( 'cluster-count', 'visibility', 'visible' )*/
-			map.setLayoutProperty( 'drops', 'visibility', 'visible' )
+			//map.setLayoutProperty( 'drops', 'visibility', 'visible' )
 			/*map.setLayoutProperty( 'mapbox-mapbox-satellite', 'visibility', 'none' )*/
 
 			_.each( locateLayers, ( layer ) => {
@@ -595,6 +595,8 @@ export const trackZoom = ( flag ) => {
 
 		const state = getState()
 		const map = state.mapbox.map
+
+		dispatch( { type: types.SET_ZOOM, to: map.getZoom() } )
 
 		const track = ( ) => {
 

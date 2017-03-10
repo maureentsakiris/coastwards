@@ -692,7 +692,7 @@
 			"ar": "حمّل",
 			"pt": ""
 		},
-		"cancel_upload": {
+		"cancel": {
 			"en": "CANCEL",
 			"de": "Abbrechen",
 			"es": "Cancelar",
@@ -867,14 +867,14 @@
 			"ar": "بدل إلى طريقة العرض الشعاعي",
 			"pt": ""
 		},
-		"cancel": {
+		"cancel_upload": {
 			"en": "Cancel upload",
 			"de": "Abbrechen",
 			"es": "Cancelar subida",
 			"ar": "أوقف التحميل",
 			"pt": ""
 		},
-		"continue": {
+		"continue_upload": {
 			"en": "Continue",
 			"de": "Fortfahren",
 			"es": "Continuar",
@@ -1188,6 +1188,34 @@
 			"es": "Tienes que acceptar los términos para continuar!",
 			"ar": "لا يزال عليك قبول الشروط!",
 			"pt": ""
+		},
+		"location_right":{
+			"en": "Does the location look right?",
+			"de": "Ist der Marker richtig platziert?",
+			"es": "Está bien situado?",
+			"ar": "إضافة إلى أنها تقع؟",
+			"pt": "É bem localizado?"
+		},
+		"yes": {
+			"en": "Yes",
+			"de": "Ja",
+			"es": "Sí",
+			"ar": "بلى",
+			"pt": "Sim"
+		},
+		"no": {
+			"en": "No",
+			"de": "Nein",
+			"es": "No",
+			"ar": "لا",
+			"pt": "Não"
+		},
+		"ok": {
+			"en": "OK",
+			"de": "OK",
+			"es": "OK",
+			"ar": "حسنا",
+			"pt": "OK"
 		}
 
 	}

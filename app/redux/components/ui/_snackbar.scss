@@ -9,6 +9,71 @@
 	text-align: center;
 	pointer-events: none;
 
+
+	div{
+
+		display: inline-block;
+		width: 100%;
+		background: #000;
+		color: #fff;
+		position: relative;
+		box-shadow: 3px -4px 10px -4px rgba(0, 0, 0, 0.3), -3px 4px 10px -4px rgba(0, 0, 0, 0.3);
+		padding: 1em 2em;
+
+		span{
+
+			white-space: nowrap;
+
+		}
+
+		button{
+
+			pointer-events: all;
+			margin-top: 0.5em;
+		
+		}
+
+		button:first-child{
+
+			margin-left: 1em;
+			margin-right: 1em;
+
+		}
+
+	}
+
+	@media ( min-width: #{ $corset-width } ) {
+
+	  div{
+
+	  	width: auto;
+	  	max-width: $corset-width;
+	  	border-radius: 2px 2px 0 0;
+	  	margin: 0 auto;
+
+	  }
+
+	}
+
+}
+
+/* .snackbar{
+
+	position: fixed;
+	width: 100%;
+	z-index: 300;
+	bottom: 0;
+	text-align: center;
+	pointer-events: none;
+
+
+	button{
+
+		pointer-events: all;
+		margin: 0 1em;
+
+	}
+
 }
 
 .msg{
@@ -17,23 +82,52 @@
 	width: 100%;
 	background: #000;
 	color: #fff;
-	padding: 1em 2em;
 	position: relative;
 	box-shadow: 3px -4px 10px -4px rgba(0, 0, 0, 0.3), -3px 4px 10px -4px rgba(0, 0, 0, 0.3);
+	padding: 1em 2em;
 
 }
+
+.msgActionJazz{
+
+	display: flex;
+	align-items: baseline;
+    text-align: initial;
+    padding: 0;
+
+    .message{
+
+    	padding: 1em 2em;
+    	@extend %flexitem;
+    	flex-shrink: 1;
+    	flex-grow: 1;
+
+    }
+
+    .actions{
+
+    	@extend %flexitem;
+    	flex-shrink: 0;
+    	flex-grow: 0;
+    	padding: 0 1em;
+
+    }
+
+}
+
 
 @media ( min-width: #{ $corset-width } ) {
 
   .msg{
 
   	width: auto;
-  	max-width: 600px;
+  	max-width: $corset-width;
   	border-radius: 2px 2px 0 0;
+  	margin: 0 auto;
 
   }
 
-}
+} */
 
 .enter{
 

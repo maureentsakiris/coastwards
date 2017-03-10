@@ -1,0 +1,20 @@
+@import 'app/styles/base';
+
+.show{
+
+	@extend %screenShow;
+
+}
+
+.satellite{
+
+	@extend %screenInit;
+	position: absolute;
+	bottom: 20px;
+	left: 20px;
+	width: 60px;
+	height: 60px;
+	box-shadow: 0 1px 1.5px 0 rgba(0, 0, 0, 0.12), 0 1px 1px 0 rgba(0, 0, 0, 0.24);
+    overflow: hidden;
+
+}

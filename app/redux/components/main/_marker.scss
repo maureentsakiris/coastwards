@@ -23,8 +23,6 @@
 
 	@extend %flexcontainer;
 	flex-direction: column;
-	/* position: relative;
-	top: -25px; */
 	pointer-events: none;
 	position: relative;
 	top: calc( -15vh - 10px);
@@ -54,28 +52,6 @@
 	border-bottom-color: $color-signal;
 
 }
-
-/* @media all and (orientation:landscape) {
-
-	.img{
-
-		width: 60vh;
-		height: 60vh;
-
-	}
-
-}
-
-@media all and (orientation:portrait) {
-
-	.img{
-
-		width: 60vw;
-		height: 60vw;
-
-	}
-
-} */
 
 .tip {
 
@@ -113,32 +89,6 @@
 
 }
 
-
-/* .tip_tip {
-
-	position: relative;
-	background: $color-signal;
-	top: 10px;
-
-}
-
-.tip_tip:after {
-
-	top: 100%;
-	left: 50%;
-	border: solid transparent;
-	content: " ";
-	height: 0;
-	width: 0;
-	position: absolute;
-	pointer-events: none;
-	border-color: rgba(136, 183, 213, 0);
-	border-top-color: $color-signal;
-	border-width: 10px;
-	margin-left: -10px;
-
-} */
-
 .cancel, .continue{
 
 	top: auto;
@@ -155,10 +105,10 @@
 
 	@extend %roundBtn;
 	position: absolute;
-	width: 46px;
-	height: 46px;
-	bottom: 20px;
-	right: 75px;
+	width: 66px;
+	height: 66px;
+	top: 20px;
+	right: 100px;
 	background-color: $color-signal;
 
 }
@@ -168,69 +118,29 @@
 
 	@extend %roundBtn;
 	position: absolute;
-	width: 46px;
-	height: 46px;
-	bottom: 20px;
+	width: 66px;
+	height: 66px;
+	top: 20px;
 	right: 20px;
     background-color: $color-green;
 
 }
 
-.disabled{
+/* .disabled{
 
 	pointer-events: none !important;
 	opacity: 0.5;
 
-}
+} */
 
-.toggle{
+/* .toggle{
 
 	position: absolute;
     bottom: 20px;
-    right: 130px;
-    width: 46px;
-    height: 46px;
+    right: 20px;
+    width: 66px;
+    height: 66px;
     box-shadow: 0 1px 1.5px 0 rgba(0, 0, 0, 0.12), 0 1px 1px 0 rgba(0, 0, 0, 0.24);
-    border-radius: 50%;
     overflow: hidden;
 
-}
-
-
-@media ( min-width: #{ $tablet } ) {
-
-	.cancel, .continue{
-
-	    width: 66px;
-	    height: 66px;
-
-	}
-
-	.cancel{
-
-		right: 100px;
-
-	}
-
-	.toggle{
-
-		width: 66px;
-		height: 66px;
-		right: 180px;
-
-	}
-
-	/* .img{
-
-		width: 300px;
-		height: 300px;
-
-	}
-
-	.pointer{
-
-		top: -125px;
-
-	} */
-
-}
+} */

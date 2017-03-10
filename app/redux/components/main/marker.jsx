@@ -4,33 +4,23 @@ import Classnames from 'classnames'
 
 
 import DIV from 'components/tags/div'
-import IMG from 'components/tags/img'
+//import IMG from 'components/tags/img'
 import I from 'components/tags/i'
 import BUTTON from 'components/tags/button'
-import A from 'components/tags/a'
+//import A from 'components/tags/a'
 
 import style from './_marker'
 
 
 const messages = defineMessages( {
 
-	switch_to_satellite:{
-		id: "switch_to_satellite",
-		description: "Alt - ",
-		defaultMessage: "Switch to satellite view"
-	},
-	switch_to_vector:{
-		id: "switch_to_vector",
-		description: " - ",
-		defaultMessage: "Switch to vector view"
-	},
-	cancel:{
-		id: "cancel",
+	cancel_upload:{
+		id: "cancel_upload",
 		description: "Button",
 		defaultMessage: "Cancel upload"
 	},
-	continue:{
-		id: "continue",
+	continue_upload:{
+		id: "continue_upload",
 		description: "Button",
 		defaultMessage: "Continue"
 	}
@@ -39,7 +29,7 @@ const messages = defineMessages( {
 } )
 
 
-const marker = ( { intl, className, resetMain, setLocation, toggleSatellite, addSnackbarMessage, show, zoom, modus, image } ) => {
+const marker = ( { intl, className, resetMain, setLocation, /*toggleSatellite,*/ setSnackbarMessage, show, zoom, /*modus,*/ image } ) => {
 
 	const { formatMessage } = intl
 
@@ -63,11 +53,7 @@ const marker = ( { intl, className, resetMain, setLocation, toggleSatellite, add
 
 	} )
 
-	const img = modus == 'vector' ? 'assets/satellite.png' : 'assets/vector.png'
-	const title = modus == 'vector' ? formatMessage( messages.switch_to_satellite ) : formatMessage( messages.switch_to_vector )
-
-	const doneClick = locked ? addSnackbarMessage.bind( this, 'zoom_closer' ) : setLocation
-
+	const doneClick = locked ? setSnackbarMessage.bind( this, 'zoom_closer' ) : setLocation
 
 	return(
 
@@ -76,9 +62,8 @@ const marker = ( { intl, className, resetMain, setLocation, toggleSatellite, add
 				{ image.dataURL && <DIV style={ { backgroundImage: 'url(' + image.dataURL + ')' } } className={ clsImg } ></DIV> }
 				<DIV className={ clsTip }></DIV>
 			</DIV>
-			<A href="#" onClick={ toggleSatellite } className={ style.toggle } title={ title } ><IMG src={ img } alt={ title } /></A>
-			<BUTTON href="#" onClick={ resetMain } className={ style.cancel } title={ formatMessage( messages.cancel ) } ><I className="material-icons">&#xE5CD;</I></BUTTON>
-			<BUTTON href="#" onClick={ doneClick } className={ style.continue } title={ formatMessage( messages.continue ) } ><I className="material-icons">&#xE876;</I></BUTTON>
+			<BUTTON href="#" onClick={ resetMain } className={ style.cancel } title={ formatMessage( messages.cancel_upload ) } ><I className="material-icons">&#xE5CD;</I></BUTTON>
+			<BUTTON href="#" onClick={ doneClick } className={ style.continue } title={ formatMessage( messages.continue_upload ) } ><I className="material-icons">&#xE876;</I></BUTTON>
 		</DIV> 
 
 	)
@@ -93,13 +78,11 @@ marker.propTypes = {
 	className: PropTypes.string,
 	show: PropTypes.bool,
 	zoom: PropTypes.number,
-	modus: PropTypes.string,
 	image: PropTypes.object,
 
 	resetMain: PropTypes.func,
 	setLocation: PropTypes.func,
-	toggleSatellite: PropTypes.func,
-	addSnackbarMessage: PropTypes.func
+	setSnackbarMessage: PropTypes.func
 
 }
 

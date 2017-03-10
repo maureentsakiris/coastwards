@@ -85,7 +85,7 @@
     "defaultMessage": "UPLOAD"
   },
   {
-    "id": "cancel_upload",
+    "id": "cancel",
     "description": "Button label - Cancel upload",
     "defaultMessage": "CANCEL"
   },

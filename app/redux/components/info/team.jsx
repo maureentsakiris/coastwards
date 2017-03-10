@@ -92,17 +92,9 @@ const messages = defineMessages( {
 
 } )
 
-const team = ( { intl/*, addSnackbarMessage*/ } ) => {
+const team = ( { intl } ) => {
 
 	const { formatMessage } = intl
-
-	// <P><STRONG>{ formatMessage( messages.we_are, { crslr: <a href="http://www.crslr.uni-kiel.de/en/people/gruppenleiter/prof.-athanasios-vafeidis.html" target="_blank" title={ formatMessage( messages.more_title ) } >{ formatMessage( messages.more ) }</a> } ) }</STRONG></P>
-
-	/*<P><A href="#" onClick={ showDialog.bind( this, 'IMPRINT' ) }>Impressum</A></P>
-			<P className={ style.logos }>
-				<IMG src="assets/Cluster-of-Excellence-The-Future-Ocean.jpg" alt="Cluster-of-Excellence-The-Future-Ocean" />
-				<IMG src="assets/Christian-Albrechts-Universität-zu-Kiel.png" alt="Christian-Albrechts-Universität-zu-Kiel" />
-			</P>*/
 
 	return(
 
@@ -148,8 +140,7 @@ const team = ( { intl/*, addSnackbarMessage*/ } ) => {
 
 team.propTypes = {
 
-	intl: intlShape.isRequired/*,
-	addSnackbarMessage: PropTypes.func*/
+	intl: intlShape.isRequired
 
 }
 

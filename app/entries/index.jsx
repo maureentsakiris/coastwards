@@ -10,6 +10,7 @@ require( 'smoothscroll-polyfill' ).polyfill()
 import coastwards from 'reducers'
 import { loadLanguage } from 'actions/i18n/i18n'
 import { setScrollY } from 'actions/ui/scroll'
+import { setSnackbarMessage } from 'actions/ui/snackbar'
 
 import I18nProvider from 'containers/i18n/i18nProvider'
 import Context from 'containers/context'
@@ -43,6 +44,8 @@ if ( module.hot ) {
 const [ navigatorLocale ] = window.navigator.language.split ( '-' )
 const negotiatedLocale = document.documentElement.getAttribute( 'lang' )
 store.dispatch( loadLanguage( negotiatedLocale || navigatorLocale ) )
+
+//store.dispatch( setSnackbarMessage( 'zoom_until', 0, { label: "yes", action: loadLanguage( "es" ) }, { label: "no", action: loadLanguage( "es" ) } ) )
 
 window.addEventListener( 'scroll', ( ) => {
 

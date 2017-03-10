@@ -1,7 +1,6 @@
 import { connect } from 'react-redux'
-import { toggleSatellite } from 'actions/main/mapbox'
 import { resetMain, setLocation } from 'actions/main/main'
-import { addSnackbarMessage } from 'actions/ui/snackbar'
+import { setSnackbarMessage } from 'actions/ui/snackbar'
 import MARKER from 'components/main/marker'
 
 
@@ -11,7 +10,6 @@ const mapStateToProps = ( state ) => {
 
 		show: state.layers.marker,
 		zoom: state.mapbox.zoom,
-		modus: state.mapbox.modus,
 		image: state.form.image
 
 	}
@@ -34,16 +32,10 @@ const mapDispatchToProps = ( dispatch ) => {
 			dispatch( setLocation() )
 
 		},
-		toggleSatellite: ( e ) => {
+		setSnackbarMessage: ( msg, e ) => {
 
 			e.preventDefault()
-			dispatch( toggleSatellite() )
-
-		},
-		addSnackbarMessage: ( msg, e ) => {
-
-			e.preventDefault()
-			dispatch( addSnackbarMessage( msg ) )
+			dispatch( setSnackbarMessage( msg ) )
 
 		}
 

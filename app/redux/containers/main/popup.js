@@ -1,7 +1,6 @@
 import { connect } from 'react-redux'
 import { hidePopup } from 'actions/main/mapbox'
 import { showDialog } from 'actions/ui/dialog'
-/*import { addSnackbarMessage } from 'actions/ui/snackbar'*/
 import POPUP from 'components/main/popup'
 
 
@@ -26,12 +25,6 @@ const mapDispatchToProps = ( dispatch ) => {
 			dispatch( hidePopup() )
 
 		},
-		/*addSnackbarMessage: ( message, e ) => {
-
-			e.preventDefault()
-			dispatch( addSnackbarMessage( message, 1000 ) )
-
-		},*/
 		showDialog: ( component, e ) => {
 
 			e.preventDefault()

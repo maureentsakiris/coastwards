@@ -123,8 +123,8 @@ const messages = defineMessages( {
 		description: "Button label - Prompts the user to upload the image",
 		defaultMessage: "UPLOAD"
 	},
-	cancel_upload:{
-		id: "cancel_upload",
+	cancel:{
+		id: "cancel",
 		description: "Button label - Cancel upload",
 		defaultMessage: "CANCEL"
 	},
@@ -141,7 +141,7 @@ const messages = defineMessages( {
 
 } )
 
-const form = ( { intl, className, show, image, checkedValue, jazzSupported, materials, setMaterial, setComment/*, setHashtag*/, uploadImage, resetMain, showDialog, addSnackbarMessage } ) => {
+const form = ( { intl, className, show, image, checkedValue, jazzSupported, materials, setMaterial, setComment/*, setHashtag*/, uploadImage, resetMain, showDialog, setSnackbarMessage } ) => {
 
 	const { formatMessage } = intl
 
@@ -196,7 +196,7 @@ const form = ( { intl, className, show, image, checkedValue, jazzSupported, mate
 					/>
 				</span>
 				<BR/><BR/>
-				<CANCEL className={ style.cancel } onClick={ resetMain } label={ formatMessage( messages.cancel_upload ) } />
+				<CANCEL className={ style.cancel } onClick={ resetMain } label={ formatMessage( messages.cancel ) } />
 				<GO onClick={ _checkTerms } label={ formatMessage( messages.upload_image ) } />
 				<BR/><BR/>
 			</FORM>
@@ -239,7 +239,7 @@ const form = ( { intl, className, show, image, checkedValue, jazzSupported, mate
 							/>
 						</span>
 						<span className={ style.action } >
-							<CANCEL className={ style.cancel } onClick={ resetMain } label={ formatMessage( messages.cancel_upload ) } />
+							<CANCEL className={ style.cancel } onClick={ resetMain } label={ formatMessage( messages.cancel ) } />
 							<GO onClick={ _checkTerms } label={ formatMessage( messages.upload_image ) } />
 						</span>
 					</DIV>
@@ -260,7 +260,7 @@ const form = ( { intl, className, show, image, checkedValue, jazzSupported, mate
 
 		}else{
 
-			addSnackbarMessage( 'accept_terms_first' )
+			setSnackbarMessage( 'accept_terms_first' )
 
 		}
 
@@ -287,7 +287,7 @@ form.propTypes = {
 	uploadImage: PropTypes.func,
 	resetMain: PropTypes.func,
 	showDialog: PropTypes.func,
-	addSnackbarMessage: PropTypes.func
+	setSnackbarMessage: PropTypes.func
 
 }
 

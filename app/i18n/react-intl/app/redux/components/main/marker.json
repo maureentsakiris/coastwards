@@ -1,21 +1,11 @@
 [
   {
-    "id": "switch_to_satellite",
-    "description": "Alt -",
-    "defaultMessage": "Switch to satellite view"
-  },
-  {
-    "id": "switch_to_vector",
-    "description": "-",
-    "defaultMessage": "Switch to vector view"
-  },
-  {
-    "id": "cancel",
+    "id": "cancel_upload",
     "description": "Button",
     "defaultMessage": "Cancel upload"
   },
   {
-    "id": "continue",
+    "id": "continue_upload",
     "description": "Button",
     "defaultMessage": "Continue"
   }

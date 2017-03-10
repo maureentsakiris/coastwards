@@ -1,11 +1,11 @@
 import * as types from 'types'
 import { promiseType, promiseEXIF, promiseMinimumWidth, promiseCanvasBoxResize, promiseLocation/*, promiseDateTime*/ } from 'actions/util/image'
-import { addSnackbarMessage } from 'actions/ui/snackbar'
+import { setSnackbarMessage, dismissSnackbar } from 'actions/ui/snackbar'
 import { promiseDataURLtoBlob } from 'actions/util/form'
 import { scrollToId } from 'actions/context'
 import { promiseXHR } from 'actions/util/request/xhr'
 import { promiseGet } from 'actions/util/request/get'
-import { fly, resetMap, hidePopup, switchModus, dropMarker, trackZoom } from 'actions/main/mapbox'
+import { fly, resetMap, hidePopup, switchModus, dropMarker, trackZoom, hideSatellite } from 'actions/main/mapbox'
 import uuid from 'uuid'
 import _ from 'underscore'
 
@@ -238,7 +238,7 @@ export const validateFile = ( e ) => {
 
 			if( selected.length > 1 ){
 
-				dispatch( addSnackbarMessage( 'selected_truncated' ) )
+				dispatch( setSnackbarMessage( 'selected_truncated' ) )
 
 			}
 
@@ -318,13 +318,15 @@ export const validateFile = ( e ) => {
 
 					dispatch( dropMarker( image ) )
 
-					dispatch( addSnackbarMessage( 'here_we_go', 5000 ) )
+
+					dispatch( setSnackbarMessage( 'here_we_go', 4000 ) )
 					dispatch( fly( [ image.long, image.lat ], 15 ) )
 
 					map.once( 'moveend', () => {
 
-						dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'statuses', to: false } )
-						dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'form', to: true } )
+						dispatch( switchModus( 'locate' ) )
+						dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'satellite', to: true } )
+						dispatch( setSnackbarMessage( 'location_right', 0, { label: 'yes', action: showForm()  }, { label: 'no', action: showMarker( true ) } ) )
 
 					} )
 
@@ -364,17 +366,35 @@ export const validateFile = ( e ) => {
 
 }
 
-
-export const showMarker = ( ) => {
+export const showForm = () => {
 
 	return function ( dispatch ){
 
+		dispatch( dismissSnackbar() )
+		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'statuses', to: false } )
+		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'form', to: true } )
+		dispatch( hideSatellite() )
+		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'satellite', to: false } )
 
+	}
+
+}
+
+
+export const showMarker = ( removeLastMarker = false ) => {
+
+	return function ( dispatch ){
+
+		if( removeLastMarker ){
+
+			dispatch( removeLastDrop() )
+
+		}
 		dispatch( trackZoom( 'on' ) )
+		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'satellite', to: true } )
 		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'locate', to: false } )
-		dispatch( switchModus( 'locate' ) )
 		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'marker', to: true } )
-		dispatch( addSnackbarMessage( 'zoom_until', 7000 ) )
+		dispatch( setSnackbarMessage( 'zoom_until', 6000 ) )
 
 
 	}
@@ -399,7 +419,10 @@ export const setLocation = ( ) => {
 		dispatch( { type: types.SET_IMAGE_TO_UPLOAD, to: image } )
 		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'marker', to: false } )
 		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'form', to: true } )
-		dispatch( scrollToMap() )
+		dispatch( dismissSnackbar() )
+		dispatch( hideSatellite() )
+		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'satellite', to: false } )
+		//dispatch( scrollToMap() )
 
 	}
 
@@ -551,6 +574,7 @@ export const resetMain = ( removeLastUpload = true ) => {
 		document.getElementById( 'Form' ).reset()
 		
 		//close what else toggle 
+		dispatch( dismissSnackbar() )
 		dispatch( { type: types.SET_USER_ACTION, to: 'prompt' } )
 		dispatch( { type: types.SET_PROMPT_MSG, to: 'select_file' } )
 		dispatch( { type: types.RESET_FORM } )
@@ -563,22 +587,32 @@ export const resetMain = ( removeLastUpload = true ) => {
 
 			if( removeLastUpload ){ // shouldn't remove when error is duplicate_file
 
-				dispatch( { type: types.REMOVE_LAST_DROP } )
-
-				let state = getState()
-				
-				let data = {
-
-					"type": "FeatureCollection",
-					"features": state.drops
-
-				}
-
-				state.mapbox.map.getSource( 'drops' ).setData( data )
+				dispatch( removeLastDrop() )
 
 			}
 
 		}
+
+	}
+
+}
+
+export const removeLastDrop = () => {
+
+	return function ( dispatch, getState ){
+
+		dispatch( { type: types.REMOVE_LAST_DROP } )
+
+		let state = getState()
+		
+		let data = {
+
+			"type": "FeatureCollection",
+			"features": state.drops
+
+		}
+
+		state.mapbox.map.getSource( 'drops' ).setData( data )
 
 	}
 
@@ -646,7 +680,7 @@ export const clipPage = ( ) => {
 
 		dispatch( { type: 'CLIP_PAGE' } )
 		dispatch( scrollToMap() )
-		//window.dispatchEvent( new Event( 'resize' ) )
+		window.dispatchEvent( new Event( 'resize' ) )
 
 	}
 
@@ -705,7 +739,7 @@ export const disableAndreasPinch = ( ) => {
 			if ( e.touches.length > 2  && true ) { //map visible
 
 				e.preventDefault()
-				dispatch( addSnackbarMessage( 'two_fingers' ) )
+				dispatch( setSnackbarMessage( 'two_fingers' ) )
 
 			}
 

@@ -2,29 +2,53 @@ import * as types from 'types'
 
 let timer
 
-export function addSnackbarMessage ( message, timeout=6000 ){
+export const setSnackbarMessage = ( message, timeout=6000, yes, no ) => {
 
 	return function ( dispatch ){
 
 		dispatch( {
 
-			type: types.ADD_SNACKBAR_MESSAGE,
-			message: message
+			type: types.SET_SNACKBAR_MESSAGE,
+			message: message,
+			timeout: timeout,
+			yes: yes,
+			no: no
 
 		} )
 
-		clearTimeout( timer )
+		if( timer ){
 
-		timer = setTimeout ( () => {
+			clearTimeout( timer )
 
-			dispatch( {
+		}
 
-				type: types.REMOVE_SNACKBAR_MESSAGES,
-				message: message
-				
-			} )
+		if( timeout ){
 
-		}, timeout )
+			timer = setTimeout ( () => {
+
+				dispatch( {
+
+					type: types.REMOVE_SNACKBAR_MESSAGE
+					
+				} )
+
+			}, timeout )
+
+		}
+
+	}
+
+}
+
+export const dismissSnackbar = () => {
+
+	return function ( dispatch ){
+
+		dispatch( {
+
+			type: types.REMOVE_SNACKBAR_MESSAGE
+			
+		} )
 
 	}
 
