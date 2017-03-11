@@ -5,7 +5,7 @@ import { promiseDataURLtoBlob } from 'actions/util/form'
 import { scrollToId } from 'actions/context'
 import { promiseXHR } from 'actions/util/request/xhr'
 import { promiseGet } from 'actions/util/request/get'
-import { fly, resetMap, hidePopup, switchModus, dropMarker, trackZoom, hideSatellite } from 'actions/main/mapbox'
+import { fly, resetMap, hidePopup, /*switchModus,*/ dropMarker, trackZoom/*, hideSatellite*/ } from 'actions/main/mapbox'
 import uuid from 'uuid'
 import _ from 'underscore'
 
@@ -320,12 +320,14 @@ export const validateFile = ( e ) => {
 
 
 					dispatch( setSnackbarMessage( 'here_we_go', 4000 ) )
-					dispatch( fly( [ image.long, image.lat ], 15 ) )
+					dispatch( fly( [ image.long, image.lat ], 12 ) )
 
 					map.once( 'moveend', () => {
 
-						dispatch( switchModus( 'locate' ) )
-						dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'satellite', to: true } )
+						//dispatch( showMarker() )
+
+						//dispatch( switchModus( 'locate' ) )
+						//dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'satellite', to: true } )
 						dispatch( setSnackbarMessage( 'location_right', 0, { label: 'yes', action: showForm()  }, { label: 'no', action: showMarker( true ) } ) )
 
 					} )
@@ -373,8 +375,8 @@ export const showForm = () => {
 		dispatch( dismissSnackbar() )
 		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'statuses', to: false } )
 		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'form', to: true } )
-		dispatch( hideSatellite() )
-		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'satellite', to: false } )
+		//dispatch( hideSatellite() )
+		//dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'satellite', to: false } )
 
 	}
 
@@ -390,8 +392,9 @@ export const showMarker = ( removeLastMarker = false ) => {
 			dispatch( removeLastDrop() )
 
 		}
+		//dispatch( switchModus( 'locate' ) )
 		dispatch( trackZoom( 'on' ) )
-		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'satellite', to: true } )
+		//dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'satellite', to: true } )
 		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'locate', to: false } )
 		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'marker', to: true } )
 		dispatch( setSnackbarMessage( 'zoom_until', 6000 ) )
@@ -420,8 +423,8 @@ export const setLocation = ( ) => {
 		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'marker', to: false } )
 		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'form', to: true } )
 		dispatch( dismissSnackbar() )
-		dispatch( hideSatellite() )
-		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'satellite', to: false } )
+		//dispatch( hideSatellite() )
+		//dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'satellite', to: false } )
 		//dispatch( scrollToMap() )
 
 	}

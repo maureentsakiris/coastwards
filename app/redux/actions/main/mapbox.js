@@ -22,7 +22,7 @@ const _promiseInitMap = ( ) => {
 		const map = new mapboxgl.Map( {
 
 			container: 'Mapbox',
-			style: 'mapbox://styles/maureentsakiris/cinxhoec70043b4nmx0rkoc02',
+			style: 'mapbox://styles/maureentsakiris/cj04f0nru00ai2rmv7kb1b0s2',
 			zoom: ZOOM,
 			maxZoom: MAXZOOM,
 			center: CENTER,
@@ -274,7 +274,7 @@ export const displayMap = ( ) => {
 
 				}
 
-			}, 'country_label_1' )
+			}, 'water_label' )
 
 			/*map.addLayer( {
 			
@@ -287,7 +287,7 @@ export const displayMap = ( ) => {
 				},
 				filter: [ '>', 'point_count', 1 ]
 
-			}, 'country_label_1' )
+			}, 'water_label' )
 
 			map.addLayer( {
 
@@ -310,7 +310,7 @@ export const displayMap = ( ) => {
 
 				}
 
-			}, 'country_label_1' )*/
+			}, 'water_label' )*/
 
 			dispatch( { type: types.ADD_INTERACTIVE_LAYER, layer: { layer: 'markers', onClick: _onMarkerClick } } )
 			/*dispatch( { type: types.ADD_INTERACTIVE_LAYER, layer: { layer: 'cluster-circles', onClick: _onClusterClick } } )
@@ -341,7 +341,7 @@ export const displayMap = ( ) => {
 
 				}
 
-			}, 'country_label_1' )
+			}, 'water_label' )
 
 			//dispatch( { type: types.ADD_INTERACTIVE_LAYER, layer: { layer: 'drops', onClick: _onMarkerClick } } )
 
@@ -490,7 +490,7 @@ export const switchModus = ( modus ) => {
 
 }
 
-export const toggleSatellite = ( ) => {
+/*export const toggleSatellite = ( ) => {
 
 	return function ( dispatch, getState ){
 
@@ -524,7 +524,7 @@ export const hideSatellite = ( ) => {
 
 	}
 
-}
+}*/
 
 export const showPopup = ( feature ) => {
 
@@ -581,8 +581,8 @@ export const resetMap = ( ) => {
 	return function ( dispatch ){
 
 		dispatch( fly( CENTER, ZOOM ) )
-		dispatch( switchModus() )
-		dispatch( hideSatellite() )
+		//dispatch( switchModus() )
+		//dispatch( hideSatellite() )
 
 	}
 

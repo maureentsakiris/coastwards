@@ -135,14 +135,14 @@ const snackbar = ( state = { message: "", timeout: 6000, yes: undefined, no: und
 
 
 // IF YOU ADD A LAYER HERE YOU MIGHT HAVE TO CHANGE main.js/scrollUp
-const layers = ( state = { loader: true, upload: true, prompts: false, statuses: false, errors: false, locate: false, geolocater: false, form: false, marker: false, satellite: false }, action ) => {
+const layers = ( state = { loader: true, upload: true, prompts: false, statuses: false, errors: false, locate: false, geolocater: false, form: false, marker: false/*, satellite: false*/ }, action ) => {
 
 	switch ( action.type ){
 
 	case types.SET_LAYER_VISIBILITY:
 		return _.extend( {}, state, { [ action.layer ]: action.to } )
 	case types.RESET_LAYERS:
-		return { loader: false, upload: true, prompts: true, statuses: false, errors: false, locate: false, geolocater: false, form: false, marker: false, satellite: false }
+		return { loader: false, upload: true, prompts: true, statuses: false, errors: false, locate: false, geolocater: false, form: false, marker: false/*, satellite: false*/ }
 	default: 
 		return state
 

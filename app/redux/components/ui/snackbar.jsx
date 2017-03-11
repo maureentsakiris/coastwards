@@ -1,8 +1,7 @@
 import React, { PropTypes } from 'react'
 import { defineMessages, injectIntl, intlShape } from 'react-intl'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
-import Classnames from 'classnames'
-/*import _ from 'underscore'*/
+
 
 import SPAN from 'components/tags/span'
 import DIV from 'components/tags/div'
