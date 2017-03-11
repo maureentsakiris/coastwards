@@ -186,7 +186,7 @@ const _promiseInsertContribution = ( formData ) => {
 
 		// Truncate table coastwards.contributions
 		//(INET6_ATON(?))
-		var sql = 'INSERT INTO ??.?? ( ??, ??, ??, ??, ??, ??, ??, ??, ??, ??, ?? ) VALUES ( (ST_PointFromText(?)), ?, ?, ?, ?, (INET6_ATON(?)), ?, ?, ?, ?, ? )'
+		var sql = 'INSERT INTO ??.?? ( ??, ??, ??, ??, ??, ??, ??, ??, ??, ??, ?? ) VALUES ( (ST_PointFromText(?)), ?, ?, ?, ?,   ?, ?, ?, ?, ?, ? )'
 		//var sql = 'INSERT INTO ??.?? ( ??, ??, ??, ??, ??, ??, ??, ??, ??, ??, ?? ) VALUES ( (ST_PointFromText(?)), ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )'
 		var inserts = [ 
 			'coastwards', 
@@ -267,14 +267,12 @@ router.post( '/upload', ( req, res ) => {
 	.then( _promiseInsertContribution )
 	.then( ( formData ) => {
 
-		res.send( 'upload_ok' )
-		//res.json( { status: 'OK', json: JSON.stringify( formData ) } )
+		res.json( { status: 'OK', formData: JSON.stringify( formData ) } )
 		return formData;
 
 	} ).catch( ( error ) => {
 
-		res.send( error.message )
-		//res.json( { status: 'KO', message: error.toString() } )
+		res.json( { status: 'KO', message: error.toString() } )
 
 	} )
 

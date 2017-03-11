@@ -316,7 +316,7 @@ export const displayMap = ( ) => {
 			/*dispatch( { type: types.ADD_INTERACTIVE_LAYER, layer: { layer: 'cluster-circles', onClick: _onClusterClick } } )
 			dispatch( { type: types.ADD_INTERACTIVE_LAYER, layer: { layer: 'cluster-count', onClick: _onClusterClick } } )*/
 
-			let data = {
+			let dataDrops = {
 
 				"type": "FeatureCollection",
 				"features": []
@@ -326,7 +326,7 @@ export const displayMap = ( ) => {
 			map.addSource( 'drops', {
 
 				type: 'geojson',
-				data: data
+				data: dataDrops
 				
 			} )
 
@@ -341,9 +341,37 @@ export const displayMap = ( ) => {
 
 				}
 
-			}, 'water_label' )
+			}, 'country_label_1' )
 
-			//dispatch( { type: types.ADD_INTERACTIVE_LAYER, layer: { layer: 'drops', onClick: _onMarkerClick } } )
+			//UPLOADS
+			let dataUploads = {
+
+				"type": "FeatureCollection",
+				"features": []
+
+			}
+
+			map.addSource( 'uploads', {
+
+				type: 'geojson',
+				data: dataUploads
+				
+			} )
+
+			map.addLayer( {
+			
+				id: 'uploads',
+				type: 'symbol',
+				source: 'uploads',
+				layout: {
+
+					'icon-image': '{marker-symbol}'
+
+				}
+
+			}, 'country_label_1' )
+
+			dispatch( { type: types.ADD_INTERACTIVE_LAYER, layer: { layer: 'uploads', onClick: _onMarkerClick } } )
 
 			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'prompts', to: true } )
 			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'upload', to: true } )
@@ -396,7 +424,7 @@ export const fly = ( center, zoom, offset = [ 0, 0 ] ) => {
 
 }
 
-export const dropMarker = ( image ) => {
+export const addDropMarker = ( image ) => {
 
 	return function ( dispatch, getState ){
 
@@ -411,13 +439,13 @@ export const dropMarker = ( image ) => {
 				"coordinates": [ image.long, image.lat ]
 			},
 			"properties": {
-				"marker-symbol": "marker-accent"/*,
+				"marker-symbol": "marker-accent-flat"/*,
 				"image": image.dataURL*/
 			}
 
 		}
 
-		dispatch( { type: types.ADD_DROP, drop: feature } )
+		dispatch( { type: types.ADD_DROP, feature: feature } )
 
 		if( map ){
 
@@ -436,6 +464,89 @@ export const dropMarker = ( image ) => {
 	}
 
 }
+
+export const removeLastDrop = () => {
+
+	return function ( dispatch, getState ){
+
+		dispatch( { type: types.REMOVE_LAST_DROP } )
+
+		let state = getState()
+		
+		let data = {
+
+			"type": "FeatureCollection",
+			"features": state.drops
+
+		}
+
+		state.mapbox.map.getSource( 'drops' ).setData( data )
+
+	}
+
+}
+
+export const addUploadMarker = ( image ) => {
+
+	return function ( dispatch, getState ){
+
+		const state = getState()
+		const map = state.mapbox.map
+
+		const feature = {
+
+			"type": "Feature",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [ image.long, image.lat ]
+			},
+			"properties": {
+				"marker-symbol": "marker-accent-flat",
+				"id": image.id
+			}
+
+		}
+
+		dispatch( { type: types.ADD_UPLOAD, feature: feature } )
+
+		if( map ){
+
+			let freshState = getState()
+			
+			let data = {
+
+				"type": "FeatureCollection",
+				"features": freshState.uploads
+			}
+
+			map.getSource( 'uploads' ).setData( data )
+
+		}
+
+	}
+
+}
+
+/*export const removeLastUpload = () => {
+
+	return function ( dispatch, getState ){
+
+		dispatch( { type: types.REMOVE_LAST_UPLOAD } )
+
+		let state = getState()
+		
+		let data = {
+
+			"type": "FeatureCollection",
+			"features": state.uploads
+
+		}
+
+		state.mapbox.map.getSource( 'uploads' ).setData( data )
+
+	}
+
+}*/
 
 export const switchModus = ( modus ) => {
 

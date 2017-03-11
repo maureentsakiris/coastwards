@@ -35,7 +35,7 @@ const browser = ( state = { uploadSupported: uploadSupported, jazzSupported: jaz
 }
 
 
-const config = ( state= { google: true, imageWidth: 800, makeBlacklist: [ 'Hipstamatic' ]  /*Add to error message, too!*/ }, action ) => {
+const config = ( state= { google: false, imageWidth: 800, makeBlacklist: [ 'Hipstamatic' ]  /*Add to error message, too!*/ }, action ) => {
 
 	switch ( action.type ){
 
@@ -264,8 +264,23 @@ const drops = ( state = [], action ) => {
 	switch ( action.type ){
 
 	case types.ADD_DROP:
-		return [ action.drop, ...state ]
+		return [ action.feature, ...state ]
 	case types.REMOVE_LAST_DROP:
+		return state.slice( 1 )
+	default:
+		return state
+
+	}
+
+}
+
+const uploads = ( state = [], action ) => {
+
+	switch ( action.type ){
+
+	case types.ADD_UPLOAD:
+		return [ action.feature, ...state ]
+	case types.REMOVE_LAST_UPLOAD:
 		return state.slice( 1 )
 	default:
 		return state
@@ -324,6 +339,7 @@ const coastwards = combineReducers( {
 	mapbox,
 	interactiveLayers,
 	drops,
+	uploads,
 	popup,
 	count
 

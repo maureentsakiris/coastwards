@@ -58,6 +58,10 @@ export const ADD_INTERACTIVE_LAYER = 'ADD_INTERACTIVE_LAYER'
 export const ADD_DROP = 'ADD_DROP'
 export const REMOVE_LAST_DROP = 'REMOVE_LAST_DROP'
 
+//uploads
+export const ADD_UPLOAD = 'ADD_UPLOAD'
+export const REMOVE_LAST_UPLOAD = 'REMOVE_LAST_UPLOAD'
+
 //popup
 export const SET_POPUP_INSTANCE = 'SET_POPUP_INSTANCE'
 export const SET_POPUP_FEATURE = 'SET_POPUP_FEATURE'

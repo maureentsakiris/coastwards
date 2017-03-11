@@ -4,8 +4,8 @@ import { setSnackbarMessage, dismissSnackbar } from 'actions/ui/snackbar'
 import { promiseDataURLtoBlob } from 'actions/util/form'
 import { scrollToId } from 'actions/context'
 import { promiseXHR } from 'actions/util/request/xhr'
-import { promiseGet } from 'actions/util/request/get'
-import { fly, resetMap, hidePopup, /*switchModus,*/ dropMarker, trackZoom/*, hideSatellite*/ } from 'actions/main/mapbox'
+import { promiseGet, promiseJSONOK } from 'actions/util/request/get'
+import { fly, resetMap, hidePopup, /*switchModus,*/ addDropMarker, removeLastDrop, addUploadMarker, removeLastUpload, trackZoom/*, hideSatellite*/ } from 'actions/main/mapbox'
 import uuid from 'uuid'
 import _ from 'underscore'
 
@@ -316,7 +316,7 @@ export const validateFile = ( e ) => {
 
 				if( state.browser.jazzSupported ){
 
-					dispatch( dropMarker( image ) )
+					dispatch( addDropMarker( image ) )
 
 
 					dispatch( setSnackbarMessage( 'here_we_go', 4000 ) )
@@ -417,7 +417,7 @@ export const setLocation = ( ) => {
 		image.long = center.lng
 
 		dispatch( trackZoom( 'off' ) )
-		dispatch( dropMarker( image ) )
+		dispatch( addDropMarker( image ) )
 		dispatch( { type: types.SET_IMAGE_TO_UPLOAD, to: {} } )
 		dispatch( { type: types.SET_IMAGE_TO_UPLOAD, to: image } )
 		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'marker', to: false } )
@@ -542,18 +542,33 @@ export const uploadImage = ( ) => {
 			return promiseXHR( options )
 
 		} )
-		.then( ( response ) => {
+		.then( JSON.parse )
+		.then( promiseJSONOK )
+		.then( ( parsed ) => {
 
-			dispatch( resetMain( false ) )
-			dispatch( { type: types.SET_PROMPT_MSG, to: response } )
+			dispatch( resetMain() )
+			dispatch( removeLastDrop() )
+
+			const upload = JSON.parse( parsed.formData )
+			const image = {
+
+				lat: upload.fields.lat,
+				long: upload.fields.long,
+				id: upload.insertId
+
+			}
+
+			dispatch( addUploadMarker( image ) )
+			dispatch( { type: types.SET_PROMPT_MSG, to: 'upload_ok' } )
 			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'prompts', to: true } )
 
-			return response
+			return parsed
 
 		} )
 		.catch( ( error ) => {
 
 			dispatch( resetMain() )
+			dispatch( removeLastDrop() )
 			dispatch( { type: types.SET_ERROR_MSG, to: 'upload_error' } )
 			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'errors', to: true } )
 			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'prompts', to: false } )
@@ -565,7 +580,7 @@ export const uploadImage = ( ) => {
 
 }
 
-export const resetMain = ( removeLastUpload = true ) => {
+export const resetMain = ( ) => {
 
 	return function ( dispatch, getState ){
 
@@ -588,38 +603,12 @@ export const resetMain = ( removeLastUpload = true ) => {
 			document.getElementById( 'Sheet' ).scrollTop = 0
 			dispatch( resetMap() )
 
-			if( removeLastUpload ){ // shouldn't remove when error is duplicate_file
-
-				dispatch( removeLastDrop() )
-
-			}
-
 		}
 
 	}
 
 }
 
-export const removeLastDrop = () => {
-
-	return function ( dispatch, getState ){
-
-		dispatch( { type: types.REMOVE_LAST_DROP } )
-
-		let state = getState()
-		
-		let data = {
-
-			"type": "FeatureCollection",
-			"features": state.drops
-
-		}
-
-		state.mapbox.map.getSource( 'drops' ).setData( data )
-
-	}
-
-}
 
 /*export const scrollUp = ( ) => {
 
