@@ -1,18 +1,18 @@
 import React, { PropTypes } from 'react'
-import { defineMessages, injectIntl, intlShape } from 'react-intl'
+//import { defineMessages, injectIntl, intlShape } from 'react-intl'
 import Classnames from 'classnames'
 
 
 import DIV from 'components/tags/div'
 //import IMG from 'components/tags/img'
-import I from 'components/tags/i'
-import BUTTON from 'components/tags/button'
+/*import I from 'components/tags/i'
+import BUTTON from 'components/tags/button'*/
 //import A from 'components/tags/a'
 
 import style from './_marker'
 
 
-const messages = defineMessages( {
+/*const messages = defineMessages( {
 
 	cancel_upload:{
 		id: "cancel_upload",
@@ -26,12 +26,12 @@ const messages = defineMessages( {
 	}
 	
 
-} )
+} )*/
 
 
-const marker = ( { intl, className, resetMain, setLocation, /*toggleSatellite,*/ setSnackbarMessage, show, zoom, /*modus,*/ image } ) => {
+const marker = ( { /*intl,*/ className, /*resetMain, setLocation, setSnackbarMessage,*/ show, zoom, /*modus,*/ image } ) => {
 
-	const { formatMessage } = intl
+	//const { formatMessage } = intl
 
 	const cls = Classnames( className, style.marker, {
 
@@ -53,7 +53,10 @@ const marker = ( { intl, className, resetMain, setLocation, /*toggleSatellite,*/
 
 	} )
 
-	const doneClick = locked ? setSnackbarMessage.bind( this, 'zoom_closer' ) : setLocation
+	//const doneClick = locked ? setSnackbarMessage.bind( this, 'zoom_closer' ) : setLocation
+
+	/*<BUTTON href="#" onClick={ resetMain } className={ style.cancel } title={ formatMessage( messages.cancel_upload ) } ><I className="material-icons">&#xE5CD;</I></BUTTON>
+				<BUTTON href="#" onClick={ doneClick } className={ style.continue } title={ formatMessage( messages.continue_upload ) } ><I className="material-icons">&#xE876;</I></BUTTON>*/
 
 	return(
 
@@ -62,8 +65,6 @@ const marker = ( { intl, className, resetMain, setLocation, /*toggleSatellite,*/
 				{ image.dataURL && <DIV style={ { backgroundImage: 'url(' + image.dataURL + ')' } } className={ clsImg } ></DIV> }
 				<DIV className={ clsTip }></DIV>
 			</DIV>
-			<BUTTON href="#" onClick={ resetMain } className={ style.cancel } title={ formatMessage( messages.cancel_upload ) } ><I className="material-icons">&#xE5CD;</I></BUTTON>
-			<BUTTON href="#" onClick={ doneClick } className={ style.continue } title={ formatMessage( messages.continue_upload ) } ><I className="material-icons">&#xE876;</I></BUTTON>
 		</DIV> 
 
 	)
@@ -73,17 +74,17 @@ const marker = ( { intl, className, resetMain, setLocation, /*toggleSatellite,*/
 
 marker.propTypes = {
 
-	intl: intlShape.isRequired,
+	/*intl: intlShape.isRequired,*/
 
 	className: PropTypes.string,
 	show: PropTypes.bool,
 	zoom: PropTypes.number,
 	image: PropTypes.object,
 
-	resetMain: PropTypes.func,
+	/*resetMain: PropTypes.func,
 	setLocation: PropTypes.func,
-	setSnackbarMessage: PropTypes.func
+	setSnackbarMessage: PropTypes.func*/
 
 }
 
-export default injectIntl( marker )
+export default marker

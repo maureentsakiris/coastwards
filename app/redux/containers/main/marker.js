@@ -16,7 +16,7 @@ const mapStateToProps = ( state ) => {
 
 }
 
-const mapDispatchToProps = ( dispatch ) => {
+/*const mapDispatchToProps = ( dispatch ) => {
 
 	return {
 
@@ -41,13 +41,13 @@ const mapDispatchToProps = ( dispatch ) => {
 
 	}
 
-}
+}*/
 
 
 const marker = connect(
 
-	mapStateToProps,
-	mapDispatchToProps
+	mapStateToProps/*,
+	mapDispatchToProps*/
 
 )( MARKER )
 

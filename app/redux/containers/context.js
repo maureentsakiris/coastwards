@@ -1,7 +1,8 @@
 import { connect } from 'react-redux'
 import CONTEXT from 'components/context'
-//import { scrollToMap } from 'actions/context'
-import { unclipPage, scrollToMap } from 'actions/main/main'
+import { SET_INFOS_STATE } from 'types'
+import { scrollToDiv } from 'actions/ui/scroll'
+import { unclipPage } from 'actions/main/main'
 
 
 const mapStateToProps = ( state ) => {
@@ -16,7 +17,8 @@ const mapStateToProps = ( state ) => {
 		jazzSupported: jazzSupported,
 		clipped: state.clipped,
 		useraction: state.useraction,
-		scrollY: state.scroll.y
+		/*scrollY: state.scroll.y*/
+		infosState: state.state.infos
 
 	}
 
@@ -32,9 +34,11 @@ const mapDispatchToProps = ( dispatch ) => {
 			dispatch( unclipPage() )
 
 		},
-		scrollToMap: ( ) => {
+		setInfosState: ( bool, e ) => {
 
-			dispatch( scrollToMap( ) )
+			e.preventDefault()
+			dispatch( scrollToDiv( 'Info' ) )
+			dispatch( { type: SET_INFOS_STATE, to: bool } )
 
 		}
 

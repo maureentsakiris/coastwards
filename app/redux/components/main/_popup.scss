@@ -14,9 +14,6 @@ $action-height: 45px;
 	flex-direction: column;
 	align-items: center;
     justify-content: center;
-	/* @extend %flexcontainer;
-	flex-direction: column;
-	overflow-y: scroll; */
 	max-width: 600px;
 	max-height: 600px;
 	padding-bottom: $action-height;
@@ -59,13 +56,6 @@ $action-height: 45px;
 
 .top{
 
-	/* @extend %flexitem;
-	flex-grow: 1;
-	width: 100%;
-	overflow: hidden;
-	background-size: cover;
-	background-position: center;
-	margin-bottom: 50px; */
 	background-size: cover;
 	background-position: center;
 	height: 100%;
@@ -78,7 +68,7 @@ $action-height: 45px;
 		background-color: rgba(0, 0, 0, 0.5);
 		padding: 1em;
 		color: white;
-		overflow-y: scroll;
+		overflow-y: auto;
 		-webkit-overflow-scrolling: touch;
 		white-space: pre-wrap;
 

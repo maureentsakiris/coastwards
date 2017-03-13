@@ -30,12 +30,12 @@
     "defaultMessage": "You still have to accept the terms!"
   },
   {
-    "id": "continue",
+    "id": "continue_upload",
     "description": "Button",
-    "defaultMessage": "Continue"
+    "defaultMessage": "Place image"
   },
   {
-    "id": "cancel",
+    "id": "cancel_upload",
     "description": "Button",
     "defaultMessage": "Cancel"
   },

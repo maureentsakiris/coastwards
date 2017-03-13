@@ -54,8 +54,9 @@
 
 }
 
-.scrollDown{
+/* .scrollDown{
 
+	display: none;
 	width: 100%;
 	background-color: rgba( 255, 255, 255, 0.6 );
 	background: linear-gradient(to bottom, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%);
@@ -107,15 +108,15 @@
 
     	position: initial;
 
-    	/* a{
+    	a{
 
     		margin-top: 0;
 
-    	} */
+    	}
 
     }
 
-}
+} */
 
 
 .arrow{
@@ -245,12 +246,15 @@
 
 }
 
+
 .intro{
 
 	@extend %page;
-	padding-bottom: 1em;
+	//padding-bottom: 1em;
 	background-color: $color-primary;
 	color: #fff;
+	background: linear-gradient(to top, rgba(0,118,183,0.6) 0%,rgba(0,118,183,1) 100%);
+
 
 	a{
 
@@ -329,6 +333,7 @@
 		line-height: 1.1em;
 		word-wrap: break-word;
     	max-width: 100%;
+    	margin-bottom: 0;
 
 		@include portraitMin( $desktop ){
 
@@ -385,7 +390,29 @@
 
 	}
 
+	.infoBtn{
+
+		border: 1px solid #fff;
+		border-radius: 2px;
+		padding: 0.5em 2em;
+		font-size: 2em;
+		display: block;
+		/* transition: opacity 300ms ease-in;
+		opacity: 1;
+		pointer-events: all; */
+
+	}
+
+	.collapse{
+
+		/* opacity: 0;
+		pointer-events: none; */
+		//display: none; 
+
+	}
+
 }
+
 
 
 .info{
@@ -394,11 +421,41 @@
 	//padding-top: 0;
 	//min-height: auto;
 	justify-content: flex-start;
-	margin-bottom: 112px;
+	//background: linear-gradient(to bottom, #66add4 0%, #f1f8fb 500px);
+	//margin-bottom: 112px;
+	//z-index: 2;
+	//box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.4);
+	//border-top: 2px dotted $color-primary;
+	//margin-bottom: 4px;
 
-	&.unfix{
+	padding: 0;
 
-		margin-bottom: 0;
+	/* .infoBtn{
+
+		background-color: $color-primary;
+		font-size: 36px;
+		padding: 1em 2em 2em 2em;
+		color: #fff;
+		width: 100%;
+		text-align: center;
+		line-height: 1em;
+		font-weight: 600;
+		text-decoration: underline;
+
+
+	} */
+
+	.infos{
+
+		@extend %corset;
+		width: 100%;
+		display: none;
+
+	}
+
+	.expand{
+
+		display: block;
 
 	}
 

@@ -1,13 +1,16 @@
 //language
 export const LOAD_LANGUAGE = 'LOAD_LANGUAGE'
 
-//scroll
+/*//scroll
 export const SET_SCROLL_X = 'SET_SCROLL_X'
-export const SET_SCROLL_Y = 'SET_SCROLL_Y'
+export const SET_SCROLL_Y = 'SET_SCROLL_Y'*/
 
 //clipped
 export const CLIP_PAGE = 'CLIP_PAGE'
 export const UNCLIP_PAGE = 'UNCLIP_PAGE'
+
+//state
+export const SET_INFOS_STATE = 'SET_INFOS_STATE'
 
 //useraction
 export const SET_USER_ACTION = 'SET_USER_ACTION'

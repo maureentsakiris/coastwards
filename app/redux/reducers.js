@@ -60,7 +60,20 @@ const i18n = ( state = { locale: 'en', dir: 'ltr', messages: undefined }, action
 
 }
 
-const scroll = ( state = { y: 0, x: 0 }, action ) => {
+const state = ( state = { infos: false }, action ) => {
+
+	switch ( action.type ){
+
+	case types.SET_INFOS_STATE:
+		return { ...state, infos: action.to }
+	default:
+		return state;
+
+	}
+
+}
+
+/*const scroll = ( state = { y: 0, x: 0 }, action ) => {
 
 	switch ( action.type ){
 
@@ -73,7 +86,7 @@ const scroll = ( state = { y: 0, x: 0 }, action ) => {
 
 	}
 
-}
+}*/
 
 const clipped = ( state = false, action ) => {
 
@@ -325,7 +338,7 @@ const coastwards = combineReducers( {
 	config,
 	materials,
 	i18n,
-	scroll,
+	state,
 	clipped,
 	useraction,
 	dialog,

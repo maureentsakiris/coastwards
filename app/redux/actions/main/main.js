@@ -5,7 +5,7 @@ import { promiseDataURLtoBlob } from 'actions/util/form'
 import { scrollToId } from 'actions/context'
 import { promiseXHR } from 'actions/util/request/xhr'
 import { promiseGet, promiseJSONOK } from 'actions/util/request/get'
-import { fly, resetMap, hidePopup, /*switchModus,*/ addDropMarker, removeLastDrop, addUploadMarker, removeLastUpload, trackZoom/*, hideSatellite*/ } from 'actions/main/mapbox'
+import { fly, resetMap, hidePopup, /*switchModus,*/ addDropMarker, removeLastDrop, addUploadMarker, setMarkerVisibility, trackZoom/*, hideSatellite*/ } from 'actions/main/mapbox'
 import uuid from 'uuid'
 import _ from 'underscore'
 
@@ -317,10 +317,10 @@ export const validateFile = ( e ) => {
 				if( state.browser.jazzSupported ){
 
 					dispatch( addDropMarker( image ) )
-
+					dispatch( setMarkerVisibility( 'none' ) )
 
 					dispatch( setSnackbarMessage( 'here_we_go', 4000 ) )
-					dispatch( fly( [ image.long, image.lat ], 12 ) )
+					dispatch( fly( [ image.long, image.lat ], 14 ) )
 
 					map.once( 'moveend', () => {
 
@@ -328,6 +328,7 @@ export const validateFile = ( e ) => {
 
 						//dispatch( switchModus( 'locate' ) )
 						//dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'satellite', to: true } )
+						
 						dispatch( setSnackbarMessage( 'location_right', 0, { label: 'yes', action: showForm()  }, { label: 'no', action: showMarker( true ) } ) )
 
 					} )
@@ -394,11 +395,11 @@ export const showMarker = ( removeLastMarker = false ) => {
 		}
 		//dispatch( switchModus( 'locate' ) )
 		dispatch( trackZoom( 'on' ) )
+		dispatch( setMarkerVisibility( 'none' ) )
 		//dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'satellite', to: true } )
 		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'locate', to: false } )
 		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'marker', to: true } )
-		dispatch( setSnackbarMessage( 'zoom_until', 6000 ) )
-
+		dispatch( setSnackbarMessage( 'zoom_until', 0, { label: 'continue_upload', action: setLocation() }, { label: 'cancel_upload', action: resetMain() }  ) )
 
 	}
 
@@ -410,22 +411,31 @@ export const setLocation = ( ) => {
 
 		let state = getState()
 		let map = state.mapbox.map
-		let image = state.form.image
-		let center = map.getCenter()
 
-		image.lat = center.lat
-		image.long = center.lng
+		if( state.mapbox.zoom < 14 ) {
 
-		dispatch( trackZoom( 'off' ) )
-		dispatch( addDropMarker( image ) )
-		dispatch( { type: types.SET_IMAGE_TO_UPLOAD, to: {} } )
-		dispatch( { type: types.SET_IMAGE_TO_UPLOAD, to: image } )
-		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'marker', to: false } )
-		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'form', to: true } )
-		dispatch( dismissSnackbar() )
-		//dispatch( hideSatellite() )
-		//dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'satellite', to: false } )
-		//dispatch( scrollToMap() )
+			dispatch( setSnackbarMessage( 'zoom_closer', 0, { label: 'continue_upload', action: setLocation() }, { label: 'cancel_upload', action: resetMain() }  ) )
+
+		}else{
+
+			let image = state.form.image
+			let center = map.getCenter()
+
+			image.lat = center.lat
+			image.long = center.lng
+
+			dispatch( trackZoom( 'off' ) )
+			dispatch( addDropMarker( image ) )
+			dispatch( { type: types.SET_IMAGE_TO_UPLOAD, to: {} } )
+			dispatch( { type: types.SET_IMAGE_TO_UPLOAD, to: image } )
+			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'marker', to: false } )
+			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'form', to: true } )
+			dispatch( dismissSnackbar() )
+			//dispatch( hideSatellite() )
+			//dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'satellite', to: false } )
+			//dispatch( scrollToMap() )
+
+		}
 
 	}
 
@@ -547,7 +557,6 @@ export const uploadImage = ( ) => {
 		.then( ( parsed ) => {
 
 			dispatch( resetMain() )
-			dispatch( removeLastDrop() )
 
 			const upload = JSON.parse( parsed.formData )
 			const image = {
@@ -568,7 +577,6 @@ export const uploadImage = ( ) => {
 		.catch( ( error ) => {
 
 			dispatch( resetMain() )
-			dispatch( removeLastDrop() )
 			dispatch( { type: types.SET_ERROR_MSG, to: 'upload_error' } )
 			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'errors', to: true } )
 			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'prompts', to: false } )
@@ -598,10 +606,13 @@ export const resetMain = ( ) => {
 		dispatch( { type: types.RESET_FORM } )
 		dispatch( { type: types.RESET_LAYERS } )
 
+		
+
 		if( state.browser.jazzSupported ){
 
 			document.getElementById( 'Sheet' ).scrollTop = 0
 			dispatch( resetMap() )
+			dispatch( removeLastDrop() )
 
 		}
 

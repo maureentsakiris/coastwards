@@ -65,11 +65,16 @@ const messages = defineMessages( {
 		id: "no_account",
 		description: "Tagline. Informs user that creating an account is not necessary",
 		defaultMessage: "No account. Just drag & drop"
+	},
+	more_info:{
+		id: "more_info",
+		description: "A",
+		defaultMessage: "More info"
 	}
 
 } )
  
-const context = ( { intl, lang, dir, jazzSupported, clipped, useraction, scrollY, unclipPage, scrollToMap } ) => {
+const context = ( { intl, lang, dir, jazzSupported, clipped, useraction, infosState, /*scrollY,*/ unclipPage, setInfosState/*, scrollToMap*/ } ) => {
 
 	const { formatMessage } = intl
 
@@ -116,7 +121,13 @@ const context = ( { intl, lang, dir, jazzSupported, clipped, useraction, scrollY
 
 		} )
 
-		let clsScroll = style.scrollDown
+		//let clsScroll = style.scrollDown
+
+		let clsInfoBtn = Classnames( style.infoBtn, {
+
+			[ style.collapse ]: infosState
+
+		} )
 
 		let clsInfo = Classnames( style.info, {
 
@@ -124,7 +135,13 @@ const context = ( { intl, lang, dir, jazzSupported, clipped, useraction, scrollY
 
 		} )
 
-		if( document.getElementById( 'Main' ) ){
+		let clsInfos = Classnames( style.infos, {
+
+			[ style.expand ]: infosState 
+
+		} )
+
+		/*if( document.getElementById( 'Main' ) ){
 
 			let unfix = scrollY + window.innerHeight >= document.getElementById( 'Intro' ).offsetHeight + document.getElementById( 'Info' ).offsetHeight + document.getElementById( 'Scroll' ).offsetHeight
 
@@ -138,13 +155,22 @@ const context = ( { intl, lang, dir, jazzSupported, clipped, useraction, scrollY
 			clsInfo = Classnames( style.info, {
 
 				[ style.clip ]: clipped,
-				[ style.unfix ]: unfix
+				[ style.unfix ]: unfix,
+				//[ style.hidden ]: true
 
 			} )
 
-		}
+		}*/
 
 		//<i class="material-icons">&#xE836;</i> &#xE86C;
+		//<DIV id="Scroll" className={ clsScroll } ><A onClick={ scrollToMap } ><I className="material-icons">&#xE313;</I></A></DIV>
+
+		/*<How />
+					<Guidelines />
+					<Team />
+					<FAQs />
+					<Ask />
+					<Logos />*/
 
 		return(
 
@@ -153,18 +179,20 @@ const context = ( { intl, lang, dir, jazzSupported, clipped, useraction, scrollY
 					<I18nLinks availableLanguages={ i18nLocales.locales } className={ style.i18n } />
 					<IMG src="./assets/coastwards.svg" alt="Logo coastwards: A turtle on a mission!" className={ style.logo } />
 					<H priority={ 1 } className={ style.headline} >{ formatMessage( messages.help_science ) } { formatMessage( messages.by ) }</H>
-					<H priority={ 2 } className={ style.comment } >{ formatMessage( messages.we_know ) }</H>
+					{/*<H priority={ 2 } className={ style.comment } >{ formatMessage( messages.we_know ) }</H>*/}
 					<H priority={ 3 } className={ style.tagline } >{ formatMessage( messages.no_account ) }</H>
+					<A className={ clsInfoBtn } onClick={ setInfosState.bind( this, !infosState ) } >{ formatMessage( messages.more_info ) }</A>
 				</DIV>
-				<DIV id="Info"className={ clsInfo }>
-					<How />
-					<Guidelines />
-					<Team />
-					<FAQs />
-					<Ask />
-					<Logos />
+				<DIV id="Info" className={ clsInfo } >
+					<DIV className={ clsInfos }>
+						<How />
+						<Guidelines />
+						<Team />
+						<FAQs />
+						<Ask />
+						<Logos />
+					</DIV>
 				</DIV>
-				<DIV id="Scroll" className={ clsScroll } ><A onClick={ scrollToMap } ><I className="material-icons">&#xE313;</I></A></DIV>
 				<DIV id="Main" className={ style.main }>
 					<A onClick={ unclipPage.bind( this ) } className={ clsArrowMap } title={ formatMessage( messages.arrow_up_title ) } >
 						<I className="material-icons">&#xE316;</I>
@@ -189,10 +217,12 @@ context.propTypes = {
 	jazzSupported: PropTypes.bool,
 	clipped: PropTypes.bool,
 	useraction: PropTypes.string,
-	scrollY: PropTypes.number,
+	infosState: PropTypes.bool,
+	/*scrollY: PropTypes.number,*/
 
 	unclipPage: PropTypes.func,
-	scrollToMap: PropTypes.func
+	/*scrollToMap: PropTypes.func*/
+	setInfosState: PropTypes.func
 
 }
 

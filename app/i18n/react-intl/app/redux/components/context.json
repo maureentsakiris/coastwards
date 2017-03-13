@@ -28,5 +28,10 @@
     "id": "no_account",
     "description": "Tagline. Informs user that creating an account is not necessary",
     "defaultMessage": "No account. Just drag & drop"
+  },
+  {
+    "id": "more_info",
+    "description": "A",
+    "defaultMessage": "More info"
   }
 ]

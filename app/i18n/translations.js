@@ -41,6 +41,13 @@
 			"ar": "لا يوجد تسجيل حساب. فقط سحب وترك",
 			"pt": "Sem conta. Só arrastar e largar."
 		},
+		"more_info": {
+			"en": "More info",
+			"de": "Weitere Infos",
+			"es": "Más información",
+			"ar": "مزيد من بقية المقال",
+			"pt": "Mais informações"
+		},
 		"one_more_question": {
 			"en": "Still have a question!",
 			"de": "Ich habe noch eine Frage!",
@@ -875,10 +882,10 @@
 			"pt": ""
 		},
 		"continue_upload": {
-			"en": "Continue",
-			"de": "Fortfahren",
-			"es": "Continuar",
-			"ar": "استمر",
+			"en": "Place image",
+			"de": "Foto platzieren",
+			"es": "Situar imágen",
+			"ar": "استمر", //BASSEL
 			"pt": ""
 		},
 		"notdefined": {
@@ -910,10 +917,11 @@
 			"pt": ""
 		},
 		"select_file": {
-			"en": "Have any pictures of coasts? Why not upload them now?",
-			"de": "Hast Du Fotos von Küsten? Warum nicht jetzt hochladen?",
-			"es": "¿Tienes fotos de costas? ¿Porque no subirlas ahora?",
-			"ar": "هل لديك أي صور لسواحل؟ لماذا لا تقوم بتحميلها الآن؟",
+			"en": "Have any pictures of coasts?",
+			"de": "Hast Du Fotos von Küsten?",
+			"es": "¿Tienes fotos de costas?",
+			//"ar": "هل لديك أي صور لسواحل؟ لماذا لا تقوم بتحميلها الآن؟",
+			"ar": "هل لديك أي صور لسواحل؟", //BASSEL
 			"pt": ""
 		},
 		"upload_ok": {
@@ -1163,7 +1171,7 @@
 		},
 		"zoom_until": {
 			"en": "Zoom until the marker turns green and points to the location you took this picture!",
-			"de": "Zoome solange in die Karte rein bis der Marker grün wird auf den Standort der Aufnahme zeigt!",
+			"de": "Zoome solange in die Karte rein bis der Marker grün wird und auf den Standort der Aufnahme zeigt!",
 			"es": "¡Acércate hasta que el color del marcador cambie a verde, y apunta al sitio donde sacaste la foto!",
 			"ar": "قم بالتكبير حتى علامة اللون الأخضر وأشر إلى الموقع الذي تم التقاط هذه الصورة فيه!",
 			"pt": ""

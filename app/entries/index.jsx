@@ -47,12 +47,12 @@ store.dispatch( loadLanguage( negotiatedLocale || navigatorLocale ) )
 
 //store.dispatch( setSnackbarMessage( 'zoom_until', 0, { label: "yes", action: loadLanguage( "es" ) }, { label: "no", action: loadLanguage( "es" ) } ) )
 
-window.addEventListener( 'scroll', ( ) => {
+/*window.addEventListener( 'scroll', ( ) => {
 
 	let scroll = window.scrollY || window.pageYOffset
 	store.dispatch( setScrollY( scroll ) )
 
-} )
+} )*/
 
 
 ReactDom.render( 

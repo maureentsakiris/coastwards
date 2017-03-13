@@ -548,6 +548,19 @@ export const addUploadMarker = ( image ) => {
 
 }*/
 
+export const setMarkerVisibility = ( visibility ) => {
+
+	return function ( dispatch, getState ){
+
+		const state = getState()
+		const map = state.mapbox.map
+
+		map.setLayoutProperty( 'markers', 'visibility', visibility )
+
+	}
+
+}
+
 export const switchModus = ( modus ) => {
 
 	return function ( dispatch, getState ){
@@ -692,6 +705,7 @@ export const resetMap = ( ) => {
 	return function ( dispatch ){
 
 		dispatch( fly( CENTER, ZOOM ) )
+		dispatch( setMarkerVisibility( 'visible' ) )
 		//dispatch( switchModus() )
 		//dispatch( hideSatellite() )
 

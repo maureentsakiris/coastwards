@@ -43,13 +43,13 @@ const intlMessages = defineMessages( {
 		description: "Snack - ",
 		defaultMessage: "You still have to accept the terms!"
 	},
-	continue:{
-		id: "continue",
+	continue_upload:{
+		id: "continue_upload",
 		description: "Button",
-		defaultMessage: "Continue"
+		defaultMessage: "Place image"
 	},
-	cancel:{
-		id: "cancel",
+	cancel_upload:{
+		id: "cancel_upload",
 		description: "Button",
 		defaultMessage: "Cancel"
 	},

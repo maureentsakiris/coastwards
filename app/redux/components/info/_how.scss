@@ -2,9 +2,8 @@
 
 .how{
 
-	@extend %corset;
-	width: 100%;
-	margin: 3vh 0;
+	margin-bottom: 3em;
+	margin-top: 2em;
 
 	p{
 
@@ -19,6 +18,7 @@
 	@extend %videoWrapper;
 	//border: 2px solid #0c7eb4;
 	box-shadow: 0 1px 1.5px 0 rgba(0, 0, 0, 0.12), 0 1px 1px 0 rgba(0, 0, 0, 0.24);
+	margin-bottom: 0.5em;
 
 }
 
