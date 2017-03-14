@@ -10,7 +10,7 @@ import BR from 'components/tags/br'
 import IMG from 'components/tags/img'
 import DIV from 'components/tags/div'
 
-import Logos from 'containers/info/logos'
+//import Logos from 'containers/info/logos'
 
 import style from './_team'
 
@@ -126,7 +126,6 @@ const team = ( { intl } ) => {
 			</DIV>
 			<BR/><BR/>
 			<P><STRONG>{ formatMessage( messages.contact_here ) }:</STRONG> <A target="_self" href="mailTo:go@coastwards.org" >go@coastwards.org</A></P> 
-			<Logos />
 			<BR/>
 			<TOGGLE id="Team" priority={ 5 } text={ formatMessage( messages.special_thanks ) } >
 
