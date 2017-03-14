@@ -190,7 +190,6 @@ const context = ( { intl, lang, dir, jazzSupported, clipped, useraction, infosSt
 						<Team />
 						<FAQs />
 						<Ask />
-						<Logos />
 					</DIV>
 				</DIV>
 				<DIV id="Main" className={ style.main }>

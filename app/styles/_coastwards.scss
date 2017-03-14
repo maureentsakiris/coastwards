@@ -31,7 +31,7 @@ $toggle-border: 1px solid rgba(0, 0, 0, 0.1);
 
 	&>a{
 
-		padding: 1em 0;
+		padding: 2em 1em;
 
 	}
 
@@ -46,6 +46,12 @@ $toggle-border: 1px solid rgba(0, 0, 0, 0.1);
 			flex-grow: 1;
 
 		}
+
+	}
+
+	&>div{
+
+		padding: 1em;
 
 	}
 

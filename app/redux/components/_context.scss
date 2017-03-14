@@ -450,12 +450,22 @@
 		@extend %corset;
 		width: 100%;
 		display: none;
+		transition: opacity 300ms ease-in;
+		transition-delay: 10ms;
+		opacity: 0;
+
+		@include min( $corset-width ){
+
+			margin: 10vh 0;
+
+		}
 
 	}
 
 	.expand{
 
 		display: block;
+		opacity: 1;
 
 	}
 

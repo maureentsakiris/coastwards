@@ -35,7 +35,7 @@ const browser = ( state = { uploadSupported: uploadSupported, jazzSupported: jaz
 }
 
 
-const config = ( state= { google: false, imageWidth: 800, makeBlacklist: [ 'Hipstamatic' ]  /*Add to error message, too!*/ }, action ) => {
+const config = ( state= { google: true, imageWidth: 800, makeBlacklist: [ 'Hipstamatic' ]  /*Add to error message, too!*/ }, action ) => {
 
 	switch ( action.type ){
 

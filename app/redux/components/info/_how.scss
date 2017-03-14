@@ -3,11 +3,17 @@
 .how{
 
 	margin-bottom: 3em;
-	margin-top: 2em;
+	
 
 	p{
 
 		padding: 0 0 1em 0;
+
+	}
+
+	@include min( $corset-width ){
+
+		margin-top: 2em;
 
 	}
 
@@ -17,8 +23,14 @@
 
 	@extend %videoWrapper;
 	//border: 2px solid #0c7eb4;
-	box-shadow: 0 1px 1.5px 0 rgba(0, 0, 0, 0.12), 0 1px 1px 0 rgba(0, 0, 0, 0.24);
+	
 	margin-bottom: 0.5em;
+
+	@include min( $corset-width ){
+
+		box-shadow: 0 1px 1.5px 0 rgba(0, 0, 0, 0.12), 0 1px 1px 0 rgba(0, 0, 0, 0.24);
+		
+	}
 
 }
 
@@ -36,7 +48,7 @@
 
 .script{
 
-	margin-bottom: 2em;
+	//margin-bottom: 2em;
 
 }
 

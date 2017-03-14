@@ -153,11 +153,11 @@ class How extends Component {
 
 		return(
 
-			<DIV className={ style.how } >
+			<TOGGLE title={ formatMessage( messages.how_title ) } priority={ 3 } text={ formatMessage( messages.how ) } className={ style.toggle } >
 				<DIV id="Video" className={ style.videoWrapper }>
-					<iframe src="https://player.vimeo.com/video/206066163?color=0076b7&title=0&byline=0&portrait=0" width="640" height="360" frameBorder="0" allowFullScreen></iframe>
+					<iframe src="https://player.vimeo.com/video/206066163?color=0076b7&title=0&byline=0&portrait=0" width="640" height="360" frameBorder="0"  allowFullScreen></iframe>
 				</DIV>
-				<TOGGLE priority={ 5 } text={ formatMessage( messages.show_transcript ) } >
+				<TOGGLE className={ style.toggleScript } priority={ 6 } text={ formatMessage( messages.show_transcript ) } >
 					<DIV className={ style.script } >
 						<P>{ formatMessage( messages.in_a_nutshell ) }</P>
 						<P>{ formatMessage( messages.how_it_works ) }</P>
@@ -168,7 +168,7 @@ class How extends Component {
 						<P>{ formatMessage( messages.best_advice ) }</P>
 					</DIV>
 				</TOGGLE>
-			</DIV>
+			</TOGGLE>
 
 		)
 
