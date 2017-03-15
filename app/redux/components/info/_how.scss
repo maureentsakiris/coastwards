@@ -2,39 +2,100 @@
 
 .how{
 
-	margin-bottom: 3em;
-	
-
-	p{
-
-		padding: 0 0 1em 0;
-
-	}
+	background-color: $color-primary;
+	padding: 0 1em 1em 1em;
 
 	@include min( $corset-width ){
 
-		margin-top: 2em;
+		padding: 0 0 10vh 0;
+
+	}
+
+	.videoDiv{
+
+		@extend %corset;
+		/* @include portrait(){
+
+			max-width: 100vw;
+
+		} */
+
+		.videoWrapper{
+
+			@extend %videoWrapper;
+			box-shadow: 0 1px 1.5px 0 rgba(0, 0, 0, 0.12), 0 1px 1px 0 rgba(0, 0, 0, 0.24);
+
+			/* @include min( $corset-width ){
+
+				box-shadow: 0 1px 1.5px 0 rgba(0, 0, 0, 0.12), 0 1px 1px 0 rgba(0, 0, 0, 0.24);
+				
+			} */
+			//border: 2px solid #0c7eb4;
+			
+			/* margin-bottom: 0.5em;
+
+			@include min( $corset-width ){
+
+				box-shadow: 0 1px 1.5px 0 rgba(0, 0, 0, 0.12), 0 1px 1px 0 rgba(0, 0, 0, 0.24);
+				
+			} */
+
+		}
+
 
 	}
 
 }
 
-.videoWrapper{
 
-	@extend %videoWrapper;
-	//border: 2px solid #0c7eb4;
+
+
+/* .video { 
+
+	position: relative; 
+	padding-bottom: 56.25%; 
+	height: 0; 
+	overflow: hidden; 
+	max-height: 90vh;
+
+	background-size: cover;
+    background-position: 50%;
+    border-radius: 3px;
+    width: 100%;
+
+    &>iframe, &>object, &>embed { 
+    	
+    	position: absolute; 
+    	top: 0;
+    	left: 0; 
+    	width: 100%; 
+    	height: 100%; 
+
+    }
+
+}  */
+
+.how{
+
+	// margin-bottom: 3em;
 	
-	margin-bottom: 0.5em;
 
-	@include min( $corset-width ){
+	// p{
 
-		box-shadow: 0 1px 1.5px 0 rgba(0, 0, 0, 0.12), 0 1px 1px 0 rgba(0, 0, 0, 0.24);
-		
-	}
+	// 	padding: 0 0 1em 0;
+
+	// }
+
+	// @include min( $corset-width ){
+
+	// 	margin-top: 2em;
+
+	// }
 
 }
 
-.toggle{
+
+/* .toggle{
 
 	@extend %toggle;
 
@@ -90,4 +151,4 @@
 
 	}
 	
-}
+} */

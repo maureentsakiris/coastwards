@@ -54,87 +54,10 @@
 
 }
 
-/* .scrollDown{
-
-	display: none;
-	width: 100%;
-	background-color: rgba( 255, 255, 255, 0.6 );
-	background: linear-gradient(to bottom, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%);
-
-	position: fixed;
-	bottom: 0;
-	z-index: 2;
-
-	@extend %flexcontainer;
-	align-items: center;
-    flex-direction: column;
-    align-content: center;
-    pointer-events: none;
-
-    a{
-
-    	pointer-events: all;
-    	margin-top: 10vh;
-
-    }
-
-    i{
-
-    	font-size: 72px;
-
-    }
-
-    @include landscapeMin( $tablet ){
-
-    	i{
-
-    		font-size: 112px;
-
-    	}
-
-    }
-
-    @include portraitMin( $tablet ){
-
-    	i{
-
-    		font-size: 112px;
-
-    	}
-
-    }
-	
-	&.unfix{
-
-    	position: initial;
-
-    	a{
-
-    		margin-top: 0;
-
-    	}
-
-    }
-
-} */
-
 
 .arrow{
 
 	display: inline-block;
-	//margin-top: 5vh;
-
-	i{
-
-		font-size: 72px;
-		color: inherit;
-
-	}
-
-}
-
-.arrowMap{
-
 	position: absolute;
 	z-index: 2;
 	left: 50%;
@@ -153,11 +76,26 @@
 	-webkit-user-select: none;
 	-ms-user-select: none;
 
-}
+	i{
 
-@include landscapeMin( $tablet ){
+		font-size: 72px;
+		color: inherit;
 
-	.arrow{
+	}
+
+	&.fixed{
+
+		visibility: visible;
+		opacity: 1;
+		pointer-events: all;
+		position: fixed;
+
+	}
+
+	@include min( $tablet){
+
+		margin-left: -56px;
+		top: -15px;
 
 		i{
 
@@ -167,45 +105,8 @@
 
 	}
 
-	.arrowMap{
-
-		margin-left: -56px;
-		top: -15px;
-
-	}
-
 }
 
-@include portraitMin( $tablet ){
-
-	.arrow{
-
-		i{
-
-			font-size: 112px;
-
-		}
-
-	}
-
-	.arrowMap{
-
-		margin-left: -56px;
-		top: -15px;
-
-	}
-
-}
-
-.fixed{
-
-	visibility: visible;
-	opacity: 1;
-	pointer-events: all;
-	position: fixed;
-	top: 0;
-
-}
 
 .hidden{
 
@@ -214,23 +115,35 @@
 }
 
 
-.clip{
+/* %page{
 
-	display: none;
-
-}
-
-
-%page{
-
-	position: relative;
-	z-index: 1;
+	//position: relative;
+	//z-index: 1;
 
 	@extend %flexcontainer;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	padding: 3em 1em;
+	//padding: 3em 1em;
+
+} */
+
+
+.intro{
+
+	@extend %flexcontainer;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background-color: $color-primary;
+	color: #fff;
+	//background: linear-gradient(to top, rgba(0,118,183,0.6) 0%,rgba(0,118,183,1) 100%);
+
+	a{
+
+		color: #fff;
+
+	}
 
 	@include portrait( ){
 
@@ -244,31 +157,7 @@
 
 	}
 
-}
-
-
-.intro{
-
-	@extend %page;
-	//padding-bottom: 1em;
-	background-color: $color-primary;
-	color: #fff;
-	background: linear-gradient(to top, rgba(0,118,183,0.6) 0%,rgba(0,118,183,1) 100%);
-
-
-	a{
-
-		color: #fff;
-
-	}
-
-	@include portraitMin( $tablet ){
-
-		padding-top: 0;
-
-	}
-
-	@include landscapeMin( $tablet ){
+	@include min( $tablet ){
 
 		padding-top: 0;
 
@@ -278,18 +167,6 @@
 
 		margin-top: 2vh;
 		margin-bottom: 9vh;
-
-	}
-
-	/* @include landscape( ){
-
-		min-height: 100vh;
-
-	} */
-
-	@include landscapeMin( $tablet ){
-
-		min-height: auto;
 
 	}
 
@@ -335,17 +212,11 @@
     	max-width: 100%;
     	margin-bottom: 0;
 
-		@include portraitMin( $desktop ){
+    	@include min( $tablet ){
 
-			font-size: 64px;
+    		font-size: 64px;
 
-		}
-
-		@include landscapeMin( $desktop ){
-
-			font-size: 64px;
-
-		}
+    	}
 
 	}
 
@@ -407,7 +278,7 @@
 
 		/* opacity: 0;
 		pointer-events: none; */
-		//display: none; 
+		display: none; 
 
 	}
 
@@ -417,10 +288,10 @@
 
 .info{
 
-	@extend %page;
+	//@extend %page;
 	//padding-top: 0;
 	//min-height: auto;
-	justify-content: flex-start;
+	//justify-content: flex-start;
 	//background: linear-gradient(to bottom, #66add4 0%, #f1f8fb 500px);
 	//margin-bottom: 112px;
 	//z-index: 2;
@@ -428,7 +299,7 @@
 	//border-top: 2px dotted $color-primary;
 	//margin-bottom: 4px;
 
-	padding: 0;
+	//padding: 0;
 
 	/* .infoBtn{
 
@@ -447,25 +318,25 @@
 
 	.infos{
 
-		@extend %corset;
-		width: 100%;
+		//@extend %corset;
+		//width: 100%;
 		display: none;
-		transition: opacity 300ms ease-in;
+		/* transition: opacity 300ms ease-in;
 		transition-delay: 10ms;
-		opacity: 0;
+		opacity: 0; */
 
-		@include min( $corset-width ){
+		/* @include min( $corset-width ){
 
 			margin-top: 10vh;
 
+		} */
+
+		&.expand{
+
+			display: block;
+			//opacity: 1;
+
 		}
-
-	}
-
-	.expand{
-
-		display: block;
-		opacity: 1;
 
 	}
 

@@ -1,6 +1,40 @@
 @import 'app/styles/base';
 
-%slab{
+.guidelines{
+
+	@extend %corset;
+	margin: 10vh auto;
+	padding: 1em;
+
+	.headline{
+
+		font-size: 3em;
+		color: $color-primary;
+		margin: 0 0 0.3em 0;
+
+	}
+
+	.intro{
+
+		font-size: 1.2em;
+
+	}
+
+	.read{
+
+		border: 2px solid #0076b7;
+		padding: 0.5em 2em;
+		border-radius: 2px;
+		display: inline-block;
+		font-size: 1.5em;
+		margin: 1.5em 0;
+
+	}
+
+}
+
+
+/* %slab{
 
 	font-family: 'Roboto Slab';
 	font-size: 21px;
@@ -71,4 +105,4 @@
 	font-size: 42px;
 	margin: 0 0 2em 0;
 
-}
+} */

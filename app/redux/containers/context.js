@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import CONTEXT from 'components/context'
 import { SET_INFOS_STATE } from 'types'
-import { scrollToDiv } from 'actions/ui/scroll'
+//import { scrollToDiv } from 'actions/ui/scroll'
 import { unclipPage } from 'actions/main/main'
 
 
@@ -37,7 +37,7 @@ const mapDispatchToProps = ( dispatch ) => {
 		setInfosState: ( bool, e ) => {
 
 			e.preventDefault()
-			dispatch( scrollToDiv( 'Info' ) )
+			//dispatch( scrollToDiv( 'Info' ) )
 			dispatch( { type: SET_INFOS_STATE, to: bool } )
 
 		}

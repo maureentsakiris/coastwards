@@ -4,6 +4,22 @@
 
 	@extend %screenInit;
 
+	h2{
+
+		font-size: 2em;
+
+	}
+
+	@include min( $tablet ){
+
+		h2{
+
+			font-size: 2.5em !important;
+
+		}
+
+	}
+
 }
 
 .show{

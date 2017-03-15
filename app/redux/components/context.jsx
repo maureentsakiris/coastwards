@@ -110,18 +110,16 @@ const context = ( { intl, lang, dir, jazzSupported, clipped, useraction, infosSt
 
 		let clsIntro = Classnames( style.intro, {
 
-			[ style.clip ]: clipped
+			[ style.hidden ]: clipped
 
 		} )
 
-		const clsArrowMap = Classnames( style.arrow, style.arrowMap, {
+		const clsArrowMap = Classnames( style.arrow, {
 
 			[ style.fixed ]: clipped,
 			[ style.hidden ]: useraction == 'uploading'
 
 		} )
-
-		//let clsScroll = style.scrollDown
 
 		let clsInfoBtn = Classnames( style.infoBtn, {
 
@@ -131,7 +129,7 @@ const context = ( { intl, lang, dir, jazzSupported, clipped, useraction, infosSt
 
 		let clsInfo = Classnames( style.info, {
 
-			[ style.clip ]: clipped 
+			[ style.hidden ]: clipped 
 
 		} )
 
@@ -140,30 +138,6 @@ const context = ( { intl, lang, dir, jazzSupported, clipped, useraction, infosSt
 			[ style.expand ]: infosState 
 
 		} )
-
-		/*if( document.getElementById( 'Main' ) ){
-
-			let unfix = scrollY + window.innerHeight >= document.getElementById( 'Intro' ).offsetHeight + document.getElementById( 'Info' ).offsetHeight + document.getElementById( 'Scroll' ).offsetHeight
-
-			clsScroll = Classnames( style.scrollDown, {
-
-				[ style.clip ]: clipped,
-				[ style.unfix ]: unfix
-
-			} )
-
-			clsInfo = Classnames( style.info, {
-
-				[ style.clip ]: clipped,
-				[ style.unfix ]: unfix,
-				//[ style.hidden ]: true
-
-			} )
-
-		}*/
-
-		//<i class="material-icons">&#xE836;</i> &#xE86C;
-		//<DIV id="Scroll" className={ clsScroll } ><A onClick={ scrollToMap } ><I className="material-icons">&#xE313;</I></A></DIV>
 
 		/*<How />
 					<Guidelines />
@@ -179,7 +153,6 @@ const context = ( { intl, lang, dir, jazzSupported, clipped, useraction, infosSt
 					<I18nLinks availableLanguages={ i18nLocales.locales } className={ style.i18n } />
 					<IMG src="./assets/coastwards.svg" alt="Logo coastwards: A turtle on a mission!" className={ style.logo } />
 					<H priority={ 1 } className={ style.headline} >{ formatMessage( messages.help_science ) } { formatMessage( messages.by ) }</H>
-					{/*<H priority={ 2 } className={ style.comment } >{ formatMessage( messages.we_know ) }</H>*/}
 					<H priority={ 3 } className={ style.tagline } >{ formatMessage( messages.no_account ) }</H>
 					<A className={ clsInfoBtn } onClick={ setInfosState.bind( this, !infosState ) } >{ formatMessage( messages.more_info ) }</A>
 				</DIV>
@@ -187,10 +160,6 @@ const context = ( { intl, lang, dir, jazzSupported, clipped, useraction, infosSt
 					<DIV className={ clsInfos }>
 						<How />
 						<Guidelines />
-						<Team />
-						<FAQs />
-						<Ask />
-						<Logos />
 					</DIV>
 				</DIV>
 				<DIV id="Main" className={ style.main }>

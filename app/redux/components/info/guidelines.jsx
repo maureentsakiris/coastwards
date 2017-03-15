@@ -131,7 +131,31 @@ const guidelines = ( { intl, jazzSupported, showDialog } ) => {
 
 		return(
 
-			<TOGGLE id="Guidelines" title={ formatMessage( messages.any_picture_title ) } priority={ 3 } text={ formatMessage( messages.any_picture ) } className={ style.toggle } >
+			<DIV className={ style.guidelines } >
+				<H priority={ 3 } className={ style.headline } >{ formatMessage( messages.any_picture ) }</H>
+				<P className={ style.intro } >{ formatMessage( messages.any_coast ) }</P>
+				<A className={ style.read } >{ formatMessage( messages.any_picture_title ) }</A>
+			</DIV>
+
+		)
+
+
+	}
+
+}
+
+guidelines.propTypes = {
+
+	intl: intlShape.isRequired,
+	jazzSupported: PropTypes.bool,
+
+	showDialog: PropTypes.func
+
+}
+
+export default injectIntl( guidelines ) 
+
+/*<TOGGLE id="Guidelines" title={ formatMessage( messages.any_picture_title ) } priority={ 3 } text={ formatMessage( messages.any_picture ) } className={ style.toggle } >
 				<P>{ formatMessage( messages.any_coast ) }</P>
 				<OL className={ style.guidelines } >
 					<LI className={ style.guideline } >
@@ -165,22 +189,4 @@ const guidelines = ( { intl, jazzSupported, showDialog } ) => {
 				</OL>
 				<H priority={ 4 } className={ style.and } >{ formatMessage( messages.guidelines_and ) }</H>
 				<H priority={ 4 } className={ style.closer }>{ formatMessage( messages.guideline_closer_header ) }</H>
-			</TOGGLE>
-
-		)
-
-
-	}
-
-}
-
-guidelines.propTypes = {
-
-	intl: intlShape.isRequired,
-	jazzSupported: PropTypes.bool,
-
-	showDialog: PropTypes.func
-
-}
-
-export default injectIntl( guidelines ) 
+			</TOGGLE>*/
