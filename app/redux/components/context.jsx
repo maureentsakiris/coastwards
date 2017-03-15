@@ -160,6 +160,7 @@ const context = ( { intl, lang, dir, jazzSupported, clipped, useraction, infosSt
 					<DIV className={ clsInfos }>
 						<How />
 						<Guidelines />
+						
 					</DIV>
 				</DIV>
 				<DIV id="Main" className={ style.main }>

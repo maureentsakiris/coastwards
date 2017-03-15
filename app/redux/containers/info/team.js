@@ -3,6 +3,18 @@ import { setSnackbarMessage } from 'actions/ui/snackbar'
 
 import TEAM from 'components/info/team'
 
+const mapStateToProps = ( state ) => {
+
+	const { jazzSupported } = state.browser
+
+	return {
+
+		jazzSupported: jazzSupported
+
+	}
+
+}
+
 
 const mapDispatchToProps = ( dispatch ) => {
 
@@ -22,7 +34,7 @@ const mapDispatchToProps = ( dispatch ) => {
 
 const team = connect(
 
-	null,
+	mapStateToProps,
 	mapDispatchToProps
 
 )( TEAM )

@@ -16,7 +16,7 @@ import EMAIL from 'components/form/input/email'
 import COMMENT from 'components/form/input/comment'
 import SUBMIT from  'components/form/button/submit'
 
-
+import H from 'components/tags/h'
 import BR from 'components/tags/br'
 import DIV from 'components/tags/div'
 
@@ -120,21 +120,45 @@ class ask extends Component {
 
 		} )
 
+		if( !jazzSupported ){
 
-		return(
+			return(
 
-			<TOGGLE id="AskUs" title={ formatMessage( messages.one_more_question_title ) } priority={ 3 } text={ formatMessage( messages.one_more_question ) } className={ style.toggle } >
-				<FORM action="#" id="Ask" className={ clsForm } >
-					<COMMENT id="Comment" onChange={ this._validateForm } form="Ask" label={ formatMessage( messages.label_question ) } name="comment" placeholder={ formatMessage( messages.placeholder_question ) } />
-					<BR />
-					<EMAIL id="Email" onChange={ this._validateForm } form="Ask" label={ formatMessage( messages.label_email ) } name="email" placeholder={ formatMessage( messages.placeholder_email ) } />
-					<BR />
-					<SUBMIT onClick={ this._submit } form="Ask" name="submit" label={ formatMessage( messages.label_submit ) } disabled={ disabled } />
-					<DIV className={ style.status } >{ status && m }</DIV>
-				</FORM>
-			</TOGGLE>
+				<TOGGLE id="AskUs" title={ formatMessage( messages.one_more_question_title ) } priority={ 3 } text={ formatMessage( messages.one_more_question ) } className={ style.toggle } >
+					<FORM action="#" id="Ask" className={ clsForm } >
+						<COMMENT id="Comment" onChange={ this._validateForm } form="Ask" label={ formatMessage( messages.label_question ) } name="comment" placeholder={ formatMessage( messages.placeholder_question ) } />
+						<BR />
+						<EMAIL id="Email" onChange={ this._validateForm } form="Ask" label={ formatMessage( messages.label_email ) } name="email" placeholder={ formatMessage( messages.placeholder_email ) } />
+						<BR />
+						<SUBMIT onClick={ this._submit } form="Ask" name="submit" label={ formatMessage( messages.label_submit ) } disabled={ disabled } />
+						<DIV className={ style.status } >{ status && m }</DIV>
+					</FORM>
+				</TOGGLE>
 
-		)
+			)
+
+
+		}else{
+
+			return (
+
+				<DIV className={ style.ask } >
+					<DIV className={ style.box } >
+						<H priority={ 3 } className={ style.headline } >{ formatMessage( messages.one_more_question ) }</H>
+						<FORM action="#" id="Ask" className={ clsForm } >
+							<COMMENT id="Comment" onChange={ this._validateForm } form="Ask" label={ formatMessage( messages.label_question ) } name="comment" placeholder={ formatMessage( messages.placeholder_question ) } />
+							<BR />
+							<EMAIL id="Email" onChange={ this._validateForm } form="Ask" label={ formatMessage( messages.label_email ) } name="email" placeholder={ formatMessage( messages.placeholder_email ) } />
+							<BR />
+							<SUBMIT onClick={ this._submit } form="Ask" name="submit" label={ formatMessage( messages.label_submit ) } disabled={ disabled } />
+							<DIV className={ style.status } >{ status && m }</DIV>
+						</FORM>
+					</DIV>
+				</DIV>
+
+			)
+
+		}
 
 	}
 

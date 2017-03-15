@@ -3,13 +3,9 @@
 .how{
 
 	background-color: $color-primary;
-	padding: 0 1em 1em 1em;
-
-	@include min( $corset-width ){
-
-		padding: 0 0 10vh 0;
-
-	}
+	background-size: contain;
+	background-repeat: no-repeat;
+	padding: 0 5vw 6em 5vw;
 
 	.videoDiv{
 

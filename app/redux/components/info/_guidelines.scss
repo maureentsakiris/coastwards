@@ -2,21 +2,42 @@
 
 .guidelines{
 
-	@extend %corset;
-	margin: 10vh auto;
-	padding: 1em;
+	@extend %flexcontainer;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	text-align: center;
+	
+	@include portrait(){
 
-	.headline{
-
-		font-size: 3em;
-		color: $color-primary;
-		margin: 0 0 0.3em 0;
+		padding: 10vw 5vw 20vw;
 
 	}
 
-	.intro{
+	@include landscape(){
 
-		font-size: 1.2em;
+		padding: 10vh 5vw 20vh;
+
+	}
+
+	.box{
+
+		max-width: 800px;
+		margin-bottom: 5vh;
+
+		.headline{
+
+			font-size: 3em;
+			color: $color-primary;
+			margin: 0 0 0.3em 0;
+
+		}
+
+		.intro{
+
+			font-size: 1.2em;
+
+		}
 
 	}
 
@@ -28,10 +49,89 @@
 		display: inline-block;
 		font-size: 1.5em;
 		margin: 1.5em 0;
+		text-align: center;
 
 	}
 
 }
+
+%slab{
+
+	font-family: 'Roboto Slab';
+	font-size: 21px;
+	line-height: 1.1em;
+	text-align: center;
+
+}
+
+.list{
+
+	@extend %flexcontainer;
+	flex-wrap: wrap;
+	max-width: 900px;
+	margin: 2em 0 0 0;
+
+}
+
+.guideline{
+
+	@extend %flexitem;
+
+	width: 100%;
+
+	@include min( $minitablet ){
+
+		width: 40%;
+
+	}
+	
+	margin: 20px;
+	text-align: center;
+	padding: 20px;
+	border: 2px solid $color-primary;
+	border-radius: 3px;
+	flex-shrink: 1;
+	/* background-color: $color-primary;
+	color: #fff; */
+
+	img{
+
+		max-width: 150px;
+		display: block;
+		margin: 0 auto;
+
+	}
+
+	div{
+
+		margin: 0 auto;
+
+		h4{
+
+			@extend %slab;
+			margin-bottom: 0.3em;
+
+		}
+
+	}
+
+}
+
+.and{
+
+	@extend %slab;
+	font-size: 28px;
+	margin: 2em 0;
+
+}
+
+.closer{
+
+	@extend %slab;
+	font-size: 46px;
+	margin: 0;
+
+} 
 
 
 /* %slab{

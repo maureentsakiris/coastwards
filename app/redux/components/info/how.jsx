@@ -153,6 +153,8 @@ class How extends Component {
 
 		return(
 
+			/*style={ { backgroundImage: "url(assets/how/how-bg.png)" } }*/
+
 			<DIV className={ style.how } >
 				<DIV className={ style.videoDiv } >
 					<DIV id="Video" className={ style.videoWrapper }>

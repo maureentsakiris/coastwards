@@ -1,5 +1,61 @@
 @import 'app/styles/base';
 
+.team{
+
+	@extend %flexcontainer;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	align-items: center;
+	background-color: #efefe9;
+	
+	@include portrait(){
+
+		padding: 10vw 5vw;
+
+	}
+
+	@include landscape(){
+
+		padding: 10vh 5vw;
+
+	}
+
+	.box{
+
+		max-width: 600px;
+
+		.headline{
+
+			font-size: 3em;
+			color: $color-primary;
+			margin: 0 0 0.3em 0;
+
+		}
+
+		.intro{
+
+			font-size: 1.2em;
+
+		}
+
+	}
+
+	.read{
+
+		border: 2px solid #0076b7;
+		padding: 0.5em 2em;
+		border-radius: 2px;
+		display: inline-block;
+		font-size: 1.5em;
+		margin: 1.5em 0;
+		text-align: center;
+
+	}
+
+}
+
+
 .toggle{
 
 	@extend %toggle;

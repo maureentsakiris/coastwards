@@ -129,12 +129,49 @@ const guidelines = ( { intl, jazzSupported, showDialog } ) => {
 
 	}else{
 
+		/*style={ { backgroundImage: "url(assets/guidelines/guidelines-bg.png)" } }*/
+		/*<IMG src="assets/guidelines/popup.png" alt="Popup" />*/
+		<A className={ style.read } >{ formatMessage( messages.any_picture_title ) }</A>
+
 		return(
 
 			<DIV className={ style.guidelines } >
-				<H priority={ 3 } className={ style.headline } >{ formatMessage( messages.any_picture ) }</H>
-				<P className={ style.intro } >{ formatMessage( messages.any_coast ) }</P>
-				<A className={ style.read } >{ formatMessage( messages.any_picture_title ) }</A>
+				<DIV className={ style.box } >
+					<H priority={ 3 } className={ style.headline } >{ formatMessage( messages.any_picture ) }</H>
+					<P className={ style.intro } >{ formatMessage( messages.any_coast ) }</P>
+				</DIV>
+				<OL className={ style.list } >
+					<LI className={ style.guideline } >
+						<IMG src="assets/guidelines/original.svg" alt={ formatMessage( messages.guideline_original_header ) } />
+						<DIV>
+							<H priority={ 4 } >{ formatMessage( messages.guideline_original_header ) }</H>
+							<P>{ formatMessage( messages.guideline_original_text ) }</P>
+						</DIV>
+					</LI>
+					<LI className={ style.guideline } >
+						<IMG src="assets/guidelines/faces.svg" alt={ formatMessage( messages.guideline_faces_header ) } />
+						<DIV>
+							<H priority={ 4 } >{ formatMessage( messages.guideline_faces_header ) }</H>
+							<P>{ formatMessage( messages.guideline_faces_text ) }</P>
+						</DIV>
+					</LI>
+					<LI className={ style.guideline } >
+						<IMG src="assets/guidelines/material.svg" alt={ formatMessage( messages.guideline_material_header ) } />
+						<DIV>
+							<H priority={ 4 } >{ formatMessage( messages.guideline_material_header ) }</H>
+							<P>{ formatMessage( messages.guideline_material_text ) } <A onClick={ showDialog.bind( this, 'DEFINEMATERIAL' ) }>{ formatMessage( messages.guideline_material_help ) }</A></P>
+						</DIV>
+					</LI>
+					<LI className={ style.guideline } >
+						<IMG src="assets/guidelines/harbor.svg" alt={ formatMessage( messages.guideline_coasts_header ) } />
+						<DIV>
+							<H priority={ 4 } >{ formatMessage( messages.guideline_coasts_header ) }</H>
+							<P>{ formatMessage( messages.guideline_coasts_text ) }</P>
+						</DIV>
+					</LI>
+				</OL>
+				<H priority={ 4 } className={ style.and } >{ formatMessage( messages.guidelines_and ) }</H>
+				<H priority={ 4 } className={ style.closer }>{ formatMessage( messages.guideline_closer_header ) }</H>
 			</DIV>
 
 		)
