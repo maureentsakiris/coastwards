@@ -31,14 +31,14 @@ $toggle-border: 1px solid rgba(0, 0, 0, 0.1);
 
 	&>a{
 
-		padding: 2em 1em;
+		padding: 1em 0;
 
 	}
 
 	h3{
 
 		position: relative;
-		font-style: italic;
+		//font-style: italic;
 		font-weight: 400;
 
 		span{
@@ -49,11 +49,11 @@ $toggle-border: 1px solid rgba(0, 0, 0, 0.1);
 
 	}
 
-	&>div{
+	/* &>div{
 
 		padding: 1em;
 
-	}
+	} */
 
 }
 

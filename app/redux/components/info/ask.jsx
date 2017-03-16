@@ -144,7 +144,7 @@ class ask extends Component {
 
 				<DIV className={ style.ask } >
 					<DIV className={ style.box } >
-						<H priority={ 3 } className={ style.headline } >{ formatMessage( messages.one_more_question ) }</H>
+						<H priority={ 3 } >{ formatMessage( messages.one_more_question ) }</H>
 						<FORM action="#" id="Ask" className={ clsForm } >
 							<COMMENT id="Comment" onChange={ this._validateForm } form="Ask" label={ formatMessage( messages.label_question ) } name="comment" placeholder={ formatMessage( messages.placeholder_question ) } />
 							<BR />

@@ -4,16 +4,19 @@
 
 	@extend %flexcontainer;
 	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	align-items: center;
 
 	@include portrait(){
 
-		padding: 10vw 5vw;
+		padding: 10vw 5vw 0;
 
 	}
 
 	@include landscape(){
 
-		padding: 10vh 5vw;
+		padding: 10vh 5vw 0;
 
 	}
 	
@@ -27,13 +30,15 @@
 
 	.box{
 
-		@extend %corset;
+		max-width: $corset-width;
 
-		.headline{
+		h3{
 
 			font-size: 3em;
 			color: $color-primary;
 			margin: 0 0 0.3em 0;
+			line-height: 1.2em;
+			font-weight: 200;
 
 		}
 

@@ -146,7 +146,7 @@ const team = ( { intl, jazzSupported } ) => {
 
 			<DIV className={ style.team }>
 				<DIV className={ style.box } >
-					<H priority={ 3 } className={ style.headline } >{ formatMessage( messages.who_are_you ) }</H>
+					<H priority={ 3 } >{ formatMessage( messages.who_are_you ) }</H>
 					<P className={ style.intro } >
 						<FormattedMessage
 							id="we_are"
@@ -157,7 +157,6 @@ const team = ( { intl, jazzSupported } ) => {
 						/>	
 					</P>
 				</DIV>
-				<Logos />
 			</DIV>
 
 		)

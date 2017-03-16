@@ -131,13 +131,14 @@ const guidelines = ( { intl, jazzSupported, showDialog } ) => {
 
 		/*style={ { backgroundImage: "url(assets/guidelines/guidelines-bg.png)" } }*/
 		/*<IMG src="assets/guidelines/popup.png" alt="Popup" />*/
-		<A className={ style.read } >{ formatMessage( messages.any_picture_title ) }</A>
+		//<A className={ style.read } >{ formatMessage( messages.any_picture_title ) }</A>
+		//<H priority={ 4 } >{ formatMessage( messages.any_picture_title ) }</H>
 
 		return(
 
 			<DIV className={ style.guidelines } >
 				<DIV className={ style.box } >
-					<H priority={ 3 } className={ style.headline } >{ formatMessage( messages.any_picture ) }</H>
+					<H priority={ 3 } >{ formatMessage( messages.any_picture ) }</H>
 					<P className={ style.intro } >{ formatMessage( messages.any_coast ) }</P>
 				</DIV>
 				<OL className={ style.list } >
@@ -169,9 +170,12 @@ const guidelines = ( { intl, jazzSupported, showDialog } ) => {
 							<P>{ formatMessage( messages.guideline_coasts_text ) }</P>
 						</DIV>
 					</LI>
+					<LI className={ style.guideline } >
+						<DIV>
+							<H priority={ 4 } >{ formatMessage( messages.guideline_closer_header ) }</H>
+						</DIV>
+					</LI>
 				</OL>
-				<H priority={ 4 } className={ style.and } >{ formatMessage( messages.guidelines_and ) }</H>
-				<H priority={ 4 } className={ style.closer }>{ formatMessage( messages.guideline_closer_header ) }</H>
 			</DIV>
 
 		)

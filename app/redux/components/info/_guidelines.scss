@@ -4,32 +4,33 @@
 
 	@extend %flexcontainer;
 	flex-direction: column;
-	justify-content: space-around;
+	//justify-content: space-around;
 	align-items: center;
-	text-align: center;
 	
 	@include portrait(){
 
-		padding: 10vw 5vw 20vw;
+		padding: 10vw 5vw 0;
 
 	}
 
 	@include landscape(){
 
-		padding: 10vh 5vw 20vh;
+		padding: 10vh 5vw 0;
 
 	}
 
 	.box{
 
 		max-width: 800px;
-		margin-bottom: 5vh;
+		margin-bottom: 1em;
 
-		.headline{
+		h3{
 
 			font-size: 3em;
 			color: $color-primary;
-			margin: 0 0 0.3em 0;
+			margin: 0 0 0.5em 0;
+    		line-height: 1.2em;
+    		font-weight: 200;
 
 		}
 
@@ -38,6 +39,13 @@
 			font-size: 1.2em;
 
 		}
+
+	}
+
+	&>h4{
+
+		color: $color-primary;
+		font-weight: 200;
 
 	}
 
@@ -60,7 +68,7 @@
 	font-family: 'Roboto Slab';
 	font-size: 21px;
 	line-height: 1.1em;
-	text-align: center;
+	//text-align: center;
 
 }
 
@@ -68,8 +76,7 @@
 
 	@extend %flexcontainer;
 	flex-wrap: wrap;
-	max-width: 900px;
-	margin: 2em 0 0 0;
+	max-width: $corset-width;
 
 }
 
@@ -79,17 +86,17 @@
 
 	width: 100%;
 
-	@include min( $minitablet ){
+	/* @include min( $minitablet ){
 
 		width: 40%;
 
-	}
+	} */
 	
-	margin: 20px;
-	text-align: center;
-	padding: 20px;
-	border: 2px solid $color-primary;
-	border-radius: 3px;
+	//margin: 20px;
+	//text-align: center;
+	//padding: 20px;
+	//border: 2px solid $color-primary;
+	//border-radius: 3px;
 	flex-shrink: 1;
 	/* background-color: $color-primary;
 	color: #fff; */
@@ -99,6 +106,7 @@
 		max-width: 150px;
 		display: block;
 		margin: 0 auto;
+		display: none;
 
 	}
 
@@ -117,7 +125,7 @@
 
 }
 
-.and{
+/* .and{
 
 	@extend %slab;
 	font-size: 28px;
@@ -131,7 +139,7 @@
 	font-size: 46px;
 	margin: 0;
 
-} 
+}  */
 
 
 /* %slab{

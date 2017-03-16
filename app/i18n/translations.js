@@ -35,9 +35,9 @@
 			"pt": "(nós assumimos que você tem algum)"
 		},
 		"no_account": {
-			"en": "No account. Just drag & drop",
-			"de": "Kein Konto. Einfach hochladen",
-			"es": "No necesitas crear una cuenta",
+			"en": "No account. Just drag & drop.",
+			"de": "Kein Konto. Einfach hochladen.",
+			"es": "No necesitas crear una cuenta.",
 			"ar": "لا يوجد تسجيل حساب. فقط سحب وترك",
 			"pt": "Sem conta. Só arrastar e largar."
 		},
@@ -71,7 +71,7 @@
 		},
 		"placeholder_email": {
 			"en": "And your email",
-			"de": "... und Deine E-mail",
+			"de": "und Deine E-mail",
 			"es": "y tu e-mail",
 			"ar": " و برديك الالكتروني",
 			"pt": ""
@@ -85,7 +85,7 @@
 		},
 		"placeholder_question": {
 			"en": "Tell us your question",
-			"de": "Deine Frage...",
+			"de": "Deine Frage",
 			"es": "Planteanos tu duda",
 			"ar": "أخبرنا ما هو سؤالك",
 			"pt": ""
@@ -235,7 +235,7 @@
 			"en": "The closer, the better!",
 			"de": "Je näher, desto besser!",
 			"es": "¡Cuanto más cerca, mejor!",
-			"ar": "وأقرب، كان ذلك أفضل",
+			"ar": "وأقرب، كان ذلك أفضل", // Bassel
 			"pt": "Quanto mais perto, melhor!"
 		},
 		"how": {
