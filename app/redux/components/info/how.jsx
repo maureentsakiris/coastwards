@@ -1,10 +1,11 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import PureRenderMixin from 'react-addons-pure-render-mixin'
 import { defineMessages, injectIntl, intlShape } from 'react-intl'
 
 import TOGGLE from 'components/ui/toggle'
 import DIV from 'components/tags/div'
 import P from 'components/tags/p'
+import H from 'components/tags/h'
 
 import style from './_how'
 
@@ -81,7 +82,9 @@ class How extends Component {
 
 	static propTypes = {
 
-		intl: intlShape.isRequired
+		intl: intlShape.isRequired,
+
+		jazzSupported: PropTypes.bool
 
 	}
 
@@ -102,6 +105,40 @@ class How extends Component {
 	render () {
 
 		const { formatMessage } = this.props.intl
+		const { jazzSupported } = this.props
+
+		if( !jazzSupported ){
+
+			return (
+
+				<DIV id="Video" className={ style.noJazz } >
+					<DIV className={ style.videoWrapper } >
+						<iframe src="https://player.vimeo.com/video/206066163?color=0076b7&title=0&byline=0&portrait=0" width="640" height="360" frameBorder="0" allowFullScreen ></iframe>
+					</DIV>
+					<TOGGLE priority={ 5 } text={ formatMessage( messages.show_transcript ) } >
+						<DIV>
+							<P>{ formatMessage( messages.in_a_nutshell ) }</P>
+							<P>{ formatMessage( messages.how_it_works ) }</P>
+							<P>{ formatMessage( messages.place_on_map ) }</P>
+							<P>{ formatMessage( messages.determine_coastal_type ) } { " " } { formatMessage( messages.the_more_the_better ) }</P>
+							<P>{ formatMessage( messages.computer_programs ) }</P>
+							<P>{ formatMessage( messages.policy_makers ) }</P>
+							<P>{ formatMessage( messages.best_advice ) }</P>
+						</DIV>
+					</TOGGLE>
+				</DIV>
+
+			)
+
+		}else{
+
+			return (
+
+				<P>asdf</P>
+
+			)
+
+		}
 		//const { expanded } = this.state
 
 		//const label = expanded ? formatMessage( messages.hide_transcript ) : formatMessage( messages.show_transcript );
@@ -151,9 +188,7 @@ class How extends Component {
 				</TOGGLE>
 			</TOGGLE>*/
 
-		return(
-
-			/*style={ { backgroundImage: "url(assets/how/how-bg.png)" } }*/
+		/*return(
 
 			<DIV className={ style.how } >
 				<DIV className={ style.videoDiv } >
@@ -163,7 +198,7 @@ class How extends Component {
 				</DIV>
 			</DIV>
 
-		)
+		)*/
 
 
 	}

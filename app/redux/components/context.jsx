@@ -14,10 +14,9 @@ import Snackbar from 'containers/ui/snackbar'
 import Dialog from 'containers/ui/dialog'
 
 
-import How from 'components/info/how'
+import How from 'containers/info/how'
 import Guidelines from 'containers/info/guidelines'
 import Team from 'containers/info/team'
-import FAQs from 'components/info/faqs'
 import Ask from 'containers/info/ask'
 import Logos from 'containers/info/logos'
  
@@ -56,11 +55,6 @@ const messages = defineMessages( {
 		description: "Main Header. Line two",
 		defaultMessage: "by uploading pictures of coasts"
 	},
-	we_know:{
-		id: "we_know",
-		description: "Main Header. Line three",
-		defaultMessage: "(we know you have some)"
-	},
 	no_account:{
 		id: "no_account",
 		description: "Tagline. Informs user that creating an account is not necessary",
@@ -78,24 +72,35 @@ const context = ( { intl, lang, dir, jazzSupported, clipped, useraction, infosSt
 
 	const { formatMessage } = intl
 
+	let clsInfo = Classnames( style.info, {
+
+		[ style.show ]: infosState
+
+	} )
+
+	let clsMore = Classnames( style.more, {
+
+		[ style.show ]: !infosState
+
+	} )
+
 	if( !jazzSupported ){
 
 		return(
 
-			<DIV lang={ lang } dir={ dir }>
-				<P className={ style.alert } >{ formatMessage( messages.nojazz_text ) }</P>
+			<DIV lang={ lang } dir={ dir } className={ style.noJazz } >
 				<I18nLinks availableLanguages={ i18nLocales.locales } className={ style.i18n } />
-				<DIV id="Intro" className={ style.introNoJazz } >
-					<IMG src="./assets/coastwards.png" alt="Logo coastwards: A turtle on a mission" />
-					<H priority={ 1 } >{ formatMessage( messages.help_science ) } { formatMessage( messages.by ) }</H>
-					<H priority={ 2 } >{ formatMessage( messages.we_know ) }</H>
-					<H priority={ 3 } >{ formatMessage( messages.no_account ) }</H>
+				<P className={ style.alert } >{ formatMessage( messages.nojazz_text ) }</P>
+				<DIV className={ style.intro } >
+					<IMG className={ style.logo } src="./assets/coastwards.png" alt="Logo coastwards: A turtle on a mission" />
+					<H priority={ 1 } className={ style.headline } >{ formatMessage( messages.help_science ) } { formatMessage( messages.by ) }</H>
+					<H priority={ 2 } className={ style.tagline } >{ formatMessage( messages.no_account ) }</H>
+					<A className={ clsMore } onClick={ setInfosState.bind( this, !infosState ) } >{ formatMessage( messages.more_info ) }</A>
 				</DIV>
-				<DIV id="Info" className={ style.infoNoJazz } >
+				<DIV className={ clsInfo }>
 					<How />
 					<Guidelines />
 					<Team />
-					<FAQs />
 					<Ask />
 					<Logos />
 				</DIV>
@@ -151,7 +156,7 @@ const context = ( { intl, lang, dir, jazzSupported, clipped, useraction, infosSt
 			<DIV lang={ lang } dir={ dir } >
 				<DIV id="Intro" className={ clsIntro }> 
 					<I18nLinks availableLanguages={ i18nLocales.locales } className={ style.i18n } />
-					<IMG src="./assets/coastwards.svg" alt="Logo coastwards: A turtle on a mission!" className={ style.logo } />
+					<IMG className={ style.logo } src="./assets/coastwards.svg" alt="Logo coastwards: A turtle on a mission!" />
 					<H priority={ 1 } className={ style.headline} >{ formatMessage( messages.help_science ) } { formatMessage( messages.by ) }</H>
 					<H priority={ 3 } className={ style.tagline } >{ formatMessage( messages.no_account ) }</H>
 					<A className={ clsInfoBtn } onClick={ setInfosState.bind( this, !infosState ) } >{ formatMessage( messages.more_info ) }</A>

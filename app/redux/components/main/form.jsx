@@ -11,10 +11,15 @@ import IMG from 'components/tags/img'
 import FORM from 'components/tags/form'
 import DIV from 'components/tags/div'
 import A from 'components/tags/a'
+import INPUT from 'components/tags/input'
+import P from 'components/tags/p'
+import SPAN from 'components/tags/span'
 
 import RADIOGROUP from 'components/form/radiogroup/radiogroup'
 import ICONRADIOGROUP from 'components/form/radiogroup/iconradiogroup'
 import COMMENT from 'components/form/input/comment'
+import CHECKBOX from 'components/form/input/checkbox'
+
 /*import HASHTAG from 'components/form/input/hashtag'*/
 import CANCEL from 'components/form/button/cancel'
 import GO from 'components/form/button/go'
@@ -141,7 +146,7 @@ const messages = defineMessages( {
 
 } )
 
-const form = ( { intl, className, show, image, checkedValue, jazzSupported, materials, setMaterial, setComment/*, setHashtag*/, uploadImage, resetMain, showDialog, setSnackbarMessage } ) => {
+const form = ( { intl, className, jazzSupported, show, image, checkedValue, materials, setMaterial, setComment/*, setHashtag*/, uploadImage, resetMain, showDialog, setSnackbarMessage } ) => {
 
 	const { formatMessage } = intl
 
@@ -155,11 +160,7 @@ const form = ( { intl, className, show, image, checkedValue, jazzSupported, mate
 	.map( ( material ) => {
 
 		let { value, color } = material
-		if( value !== 'noset' ){
-
-			return { label: formatMessage( messages[ value ] ), value: value, color: color }
-
-		}
+		return { label: formatMessage( messages[ value ] ), value: value, color: color }
 
 	} )
 	.value()
@@ -167,38 +168,31 @@ const form = ( { intl, className, show, image, checkedValue, jazzSupported, mate
 
 	if( !jazzSupported ){
 
-		const cls = Classnames( className, style.form, {
+		const clsNoJazz = Classnames( style.noJazz, {
 
 			[ style.show ]: show
 
 		} )
 
+		//ARRRRG!
+		//Would like to use CHECKBOX component but don't know how to pass a FormattedMessage (containing html) as label
+
 		return(
 
-			<FORM id="Form" action="#" className={ cls } >
+			<FORM id="Form" action="javascript:;" className={ clsNoJazz } >
 				{ image.dataURL && <IMG src={ image.dataURL } alt={ formatMessage( messages.img_alt ) } /> }
 				<H priority={ 2 }>{ formatMessage( messages.hurray ) }</H>
 				<RADIOGROUP controlled={ false } form="Form" label={ formatMessage( messages.select_material ) } name="material" options={ mats } onChange={ setMaterial } preferPlaceholder={ false } >
-					{ " " }<SMALL><A onClick={ showDialog.bind( this, 'DEFINEMATERIAL' ) }>{ formatMessage( messages.define_material ) }</A></SMALL>
+					{ " " }<A onClick={ showDialog.bind( this, 'DEFINEMATERIAL' ) }>{ formatMessage( messages.define_material ) }</A>
 				</RADIOGROUP>
-				<BR/><BR/>
-				<COMMENT className={ style.comment } form="Form" label={ formatMessage( messages.comment ) }  preferPlaceholder={ false } placeholder={ formatMessage( messages.comment_placeholder ) } name="comment" onChange={ setComment } />
-				<BR/><BR/>
+				<COMMENT form="Form" label={ formatMessage( messages.comment ) } preferPlaceholder={ false } placeholder={ formatMessage( messages.comment_placeholder ) } name="comment" onChange={ setComment } />
 				<FORMDATA />
-				<BR/><BR/>
-				<span>
-					<input id="Terms" type="checkbox" value="1" />
-					<FormattedMessage
-						id="accept_terms"
-						values={ { 
-							terms: <A id="TermsLabel" onClick={ showDialog.bind( this, 'TERMS' ) } >{  formatMessage( messages.terms ) }</A>
-						} }
-					/>
-				</span>
-				<BR/><BR/>
+				<P>
+					<INPUT id="Terms" type="checkbox" value="1" form="Form" name="terms" />
+					<FormattedMessage id="accept_terms" values={ { terms: <A onClick={ showDialog.bind( this, 'TERMS' ) } >{  formatMessage( messages.terms ) }</A> } } />
+				</P>
 				<CANCEL className={ style.cancel } onClick={ resetMain } label={ formatMessage( messages.cancel ) } />
 				<GO onClick={ _checkTerms } label={ formatMessage( messages.upload_image ) } />
-				<BR/><BR/>
 			</FORM>
 
 		)
@@ -274,11 +268,10 @@ form.propTypes = {
 	intl: intlShape.isRequired,
 
 	className: PropTypes.string,
-
+	jazzSupported: PropTypes.bool,
 	show: PropTypes.bool,
 	image: PropTypes.object,
 	checkedValue: PropTypes.string,
-	jazzSupported: PropTypes.bool,
 	materials: PropTypes.array,
 
 	setMaterial: PropTypes.func,

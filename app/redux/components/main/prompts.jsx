@@ -3,7 +3,6 @@ import { defineMessages, injectIntl, intlShape } from 'react-intl'
 import Classnames from 'classnames'
 
 import ACTIONS from 'containers/main/actions'
-
 import DIV from 'components/tags/div'
 import H from 'components/tags/h'
 
@@ -94,23 +93,36 @@ const prompts = ( { intl, className, prompt, jazzSupported, show } ) => {
 
 	const str = messages[ prompt ] ? formatMessage( messages[ prompt ] ) : prompt
 
-	const cls = Classnames( className, style.prompts, {
-
-		[ style.show ]: show
-
-	} )
 
 	if( !jazzSupported ){
 
+		const clsNoJazz = Classnames( style.noJazz, {
+
+			[ style.show ]: show
+
+		} )
+
 		return(
 
-			<DIV id="Prompts" className={ cls } >
+			<DIV id="Prompts" className={ clsNoJazz } >
 				<H priority={ 2 }>{ str }</H>
 			</DIV>
 
 		)
 
 	}else{
+
+		return (
+
+			<DIV>promot</DIV>
+
+		)
+
+		/*const cls = Classnames( style.prompts, {
+
+			[ style.show ]: show
+
+		} )
 
 		return(
 
@@ -119,7 +131,7 @@ const prompts = ( { intl, className, prompt, jazzSupported, show } ) => {
 				<ACTIONS />
 			</DIV>
 
-		)
+		)*/
 
 	}
 	

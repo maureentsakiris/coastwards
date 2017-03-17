@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import { defineMessages, injectIntl, intlShape } from 'react-intl'
 
-import TOGGLE from 'components/ui/toggle'
+//import TOGGLE from 'components/ui/toggle'
 import P from 'components/tags/p'
 import H from 'components/tags/h'
 import A from 'components/tags/a'
@@ -19,11 +19,11 @@ const messages = defineMessages( {
 		description: "Section header - Just any picture?",
 		defaultMessage: "Just any picture?"
 	},
-	any_picture_title:{
+	/*any_picture_title:{
 		id: "any_picture_title",
 		description: "Section header title - Some quick guidelines",
 		defaultMessage: "Some quick guidelines"
-	},
+	},*/
 	any_coast:{
 		id: "any_coast",
 		description: "Header - ",
@@ -98,31 +98,28 @@ const guidelines = ( { intl, jazzSupported, showDialog } ) => {
 
 		return(
 
-			<TOGGLE id="Guidelines" title={ formatMessage( messages.any_picture_title ) } priority={ 3 } text={ formatMessage( messages.any_picture ) } className={ style.toggle } >
+			<DIV id="Guidelines" className={ style.noJazz } >
+				<H priority={ 3 } >{ formatMessage( messages.any_picture ) }</H>
 				<P>{ formatMessage( messages.any_coast ) }</P>
 				<OL>
 					<LI>
-						<IMG src="assets/guidelines/original.png" alt={ formatMessage( messages.guideline_original_header ) } />
 						<H priority={ 4 } >{ formatMessage( messages.guideline_original_header ) }</H>
 						<P>{ formatMessage( messages.guideline_original_text ) }</P>
 					</LI>
 					<LI>
-						<IMG src="assets/guidelines/faces.png" alt={ formatMessage( messages.guideline_faces_header ) } />
 						<H priority={ 4 } >{ formatMessage( messages.guideline_faces_header ) }</H>
 						<P>{ formatMessage( messages.guideline_faces_text ) }</P>
 					</LI>
 					<LI>
-						<IMG src="assets/guidelines/material.png" alt={ formatMessage( messages.guideline_material_header ) } />
 						<H priority={ 4 } >{ formatMessage( messages.guideline_material_header ) }</H>
 						<P>{ formatMessage( messages.guideline_material_text ) } <A onClick={ showDialog.bind( this, 'DEFINEMATERIAL' ) }>{ formatMessage( messages.guideline_material_help ) }</A></P>
 					</LI>
 					<LI>
-						<IMG src="assets/guidelines/harbor.png" alt={ formatMessage( messages.guideline_coasts_header ) } />
 						<H priority={ 4 } >{ formatMessage( messages.guideline_coasts_header ) }</H>
 						<P>{ formatMessage( messages.guideline_coasts_text ) }</P>
 					</LI>
 				</OL>
-			</TOGGLE>
+			</DIV>
 
 		)
 

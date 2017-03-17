@@ -27,19 +27,19 @@
 			"ar": "من خلال تحميل صور للشواطئ",
 			"pt": "nivel do mar subindo fotografias da costa"
 		},
-		"we_know": {
+		/*"we_know": {
 			"en": "(we assume you have some)",
 			"de": "(Ihr habt doch welche)",
 			"es": "(suponemos que las tengan)",
 			"ar": "(باعتبار أنك تملك بعض منها)",
 			"pt": "(nós assumimos que você tem algum)"
-		},
+		},*/
 		"no_account": {
-			"en": "No account. Just drag & drop.",
-			"de": "Kein Konto. Einfach hochladen.",
-			"es": "No necesitas crear una cuenta.",
-			"ar": "لا يوجد تسجيل حساب. فقط سحب وترك",
-			"pt": "Sem conta. Só arrastar e largar."
+			"en": "(No account. Just drag & drop.)",
+			"de": "(Kein Konto. Einfach hochladen.)",
+			"es": "(No necesitas crear una cuenta.)",
+			"ar": "(لا يوجد تسجيل حساب. فقط سحب وترك)", //Bassel
+			"pt": "(Sem conta. Só arrastar e largar.)"
 		},
 		"more_info": {
 			"en": "More info",
@@ -145,14 +145,14 @@
 			"es": "¿Puedo subir cualquier tipo de foto?",
 			"ar": "أي صورة؟",
 			"pt": "Qualquer fotografia serve?"
-		},
-		"any_picture_title": {
+		}, 
+		/*"any_picture_title": {
 			"en": "Some quick guidelines",
 			"de": "Unsere Richtlinien",
 			"es": "Aquí van unos breves consejos.",
 			"ar": "بعض الإرشادات السريعة",
 			"pt": ""
-		},
+		},*/
 		"any_coast": {
 			"en": "Any coast but not any picture. We need these pictures to get a closer look at coasts (not people) and we need to know where these coasts are. So these are our guidelines:",
 			"de": "Irgendeine Küste aber nicht irgendein Foto. Wir brauchen diese Fotos, um uns Küsten (nicht Menschen) aus der Nähe anzusehen und wir müssen wissen wo sich diese Küsten befinden. Unsere Richtlinen sind also folgende:",
@@ -328,13 +328,13 @@
 			"ar": "لذلك فإن صورك ستساعد العلماء لتقديم أفضل نصائحهم حول كيفية حماية أنفسنا، أطفالنا وأحفادنا من ارتفاع مستوى سطح البحر.",
 			"pt": "Ou seja as tuas fotografias ajudam aos cientistas a tomar as melhores decisões para proteger nos a nós, os nossos filhos e netos da subida do nível do mar."
 		},
-		"project_by": {
+		/*"project_by": {
 			"en": "A project by",
 			"de": "Ein Projekt von",
 			"es": "Un proyecto de",
 			"ar": "مشروع تم تطويره من قبل",
 			"pt": ""
-		},
+		},*/
 		"legal_notice": {
 			"en": "Imprint",
 			"de": "Impressum",

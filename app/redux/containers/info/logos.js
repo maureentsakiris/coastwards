@@ -1,7 +1,18 @@
 import { connect } from 'react-redux'
-
 import { showDialog } from 'actions/ui/dialog'
 import LOGOS from 'components/info/logos'
+
+const mapStateToProps = ( state ) => {
+
+	const { jazzSupported } = state.browser
+
+	return {
+
+		jazzSupported: jazzSupported
+
+	}
+
+}
 
 const mapDispatchToProps = ( dispatch ) => {
 
@@ -21,7 +32,7 @@ const mapDispatchToProps = ( dispatch ) => {
 
 const logos = connect(
 
-	null,
+	mapStateToProps,
 	mapDispatchToProps
 
 )( LOGOS )

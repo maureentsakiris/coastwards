@@ -1,5 +1,20 @@
 @import 'app/styles/base';
 
+
+.noJazz{
+
+	.videoWrapper{
+
+		@extend %videoWrapper;
+		margin-left: 0;
+		margin-right: 0;
+
+	}
+
+}
+
+
+
 .how{
 
 	background-color: $color-primary;

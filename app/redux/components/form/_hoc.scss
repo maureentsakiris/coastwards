@@ -1,9 +1,11 @@
-label{
+.label{
+
+	display: block;
+    margin-bottom: 2em;
 
 	&>span:first-child{
 
 		font-weight: bold;
-		margin: 0 0 0.3em 0;
 		
 	}
 

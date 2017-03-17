@@ -1,6 +1,24 @@
 @import 'app/styles/base';
 
 
+.noJazz{
+
+	text-align: center;
+
+	a{
+
+		img{
+
+			max-width: 27%;
+			margin: 0 3%;
+
+		}
+
+	}
+
+}
+
+
 .logos{
 
 	@extend %flexcontainer;

@@ -1,6 +1,18 @@
 @import 'app/styles/base';
 
-.dropzone{
+.noJazz{
+
+	display: none;
+
+	&.show{
+
+		display: block;
+
+	}
+
+}
+
+/* .dropzone{
 
 	width: 100%;
 	height: 100%;
@@ -41,7 +53,7 @@
 	position: fixed;
 	display: block;
 
-}
+} */
 
 
 

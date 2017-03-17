@@ -35,7 +35,7 @@ const radio = ( { form, label, name, value, isChecked, controlled, onChange } ) 
 
 radio.defaultProps = {
 
-	defaultChecked: false,
+	isChecked: false,
 	controlled: true
 
 }

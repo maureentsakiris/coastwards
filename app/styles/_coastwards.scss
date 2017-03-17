@@ -2,7 +2,7 @@ $fringe-height: 100px;
 $screen-overlay-color: rgba(255, 255, 255, 0.7);
 $toggle-border: 1px solid rgba(0, 0, 0, 0.1);
 
-%alert{
+/* %alert{
 
 	border: 3px solid $color-primary;
 	border-radius: 3px;
@@ -10,22 +10,16 @@ $toggle-border: 1px solid rgba(0, 0, 0, 0.1);
 	font-weight: bold;
 	color: $color-primary;
 
-}
+} */
 
-%corset{
 
-	max-width: $corset-width;
-	margin-left: auto;
-	margin-right: auto;
 
-}
-
-%pad{
+/* %pad{
 
 	padding-right: $site-padding-sides;
 	padding-left: $site-padding-sides;
 	
-}
+} */
 
 %toggle{
 
@@ -49,12 +43,6 @@ $toggle-border: 1px solid rgba(0, 0, 0, 0.1);
 
 	}
 
-	/* &>div{
-
-		padding: 1em;
-
-	} */
-
 }
 
 %screenInit{
@@ -73,6 +61,29 @@ $toggle-border: 1px solid rgba(0, 0, 0, 0.1);
 	pointer-events: all;
 	display: block;
 	visibility: visible;
+
+}
+
+%sectionHeader{
+
+	font-size: 2.5em;
+	color: $color-primary;
+	font-weight: 200;
+	margin-bottom: 0.5em;
+	line-height: 1.2em;
+
+	@include min( $tablet ){
+
+		font-size: 3em;
+
+	}
+
+}
+
+%guidelineHeader{
+
+	font-family: "Roboto Slab";
+	font-size: 1.2em;
 
 }
 
@@ -105,33 +116,6 @@ $toggle-border: 1px solid rgba(0, 0, 0, 0.1);
 	right: 20px;
 	z-index: 1;
 	
-
-	/* @include landscapeMin( $tablet ){
-
-		width: 99px;
-		height: 99px;
-
-		i{
-
-			font-size: 48px;
-
-		}
-
-	}
-
-	@include portraitMin( $tablet ){
-
-		width: 99px;
-		height: 99px;
-
-		i{
-
-			font-size: 48px;
-
-		}
-
-	} */
-
 }
 
 %drawershadow{

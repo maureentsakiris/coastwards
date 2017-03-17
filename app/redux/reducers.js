@@ -21,7 +21,7 @@ Modernizr.addTest( 'mapbox', function () {
 } )
 
 const uploadSupported = Modernizr.xhr2 && Modernizr.filereader && Modernizr.blobconstructor && Modernizr.canvas && true
-const jazzSupported = Modernizr.mapbox && Modernizr.draganddrop && Modernizr.flexbox && Modernizr.flexwrap && Modernizr.csspointerevents && Modernizr.cssanimations && Modernizr.csstransitions && Modernizr.cssvwunit && Modernizr.svg && true
+const jazzSupported = Modernizr.mapbox && Modernizr.draganddrop && Modernizr.flexbox && Modernizr.flexwrap && Modernizr.csspointerevents && Modernizr.cssanimations && Modernizr.csstransitions && Modernizr.cssvwunit && Modernizr.svg && false
 
 const browser = ( state = { uploadSupported: uploadSupported, jazzSupported: jazzSupported }, action ) => {
 
@@ -148,7 +148,7 @@ const snackbar = ( state = { message: "", timeout: 6000, yes: undefined, no: und
 
 
 // IF YOU ADD A LAYER HERE YOU MIGHT HAVE TO CHANGE main.js/scrollUp
-const layers = ( state = { loader: true, upload: true, prompts: false, statuses: false, errors: false, locate: false, geolocater: false, form: false, marker: false/*, satellite: false*/ }, action ) => {
+const layers = ( state = { loader: true, upload: true, prompts: true, statuses: false, errors: false, locate: false, geolocater: false, form: false, marker: false/*, satellite: false*/ }, action ) => {
 
 	switch ( action.type ){
 

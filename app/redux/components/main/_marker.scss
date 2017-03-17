@@ -43,20 +43,20 @@
     background-size: cover;
     background-position: 50%;
 
-    border-bottom: 10px solid $color-green;
+    border-bottom: 10px solid $color-true;
 
 }
 
 .img_locked{
 
-	border-bottom-color: $color-signal;
+	border-bottom-color: $color-false;
 
 }
 
 .tip {
 
 	position: relative;
-	background: $color-green;
+	background: $color-true;
 	top: -1px;
 
 }
@@ -74,19 +74,19 @@
 	border-color: rgba(136, 183, 213, 0);
 	border-width: 20px;
 	margin-left: -20px;
-	border-top-color: $color-green;
+	border-top-color: $color-true;
 
 }
 
 .tip_locked{
 
-	background: $color-signal;
+	background: $color-false;
 
 }
 
 .tip_locked:after{
 
-	border-top-color: $color-signal;
+	border-top-color: $color-false;
 
 }
 
@@ -110,7 +110,7 @@
 	height: 46px;
 	top: 10px;
 	left: 10px;
-	background-color: $color-signal;
+	background-color: $color-false;
 
 }
 
@@ -123,7 +123,7 @@
 	height: 46px;
 	top: 10px;
 	right: 10px;
-    background-color: $color-green;
+    background-color: $color-true;
 
 }
 

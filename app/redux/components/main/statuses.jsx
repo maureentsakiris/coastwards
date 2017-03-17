@@ -28,13 +28,37 @@ const messages = defineMessages( {
 
 } )
 
-const statuses = ( { intl, className, status, progress, show, jazzSupported } ) => {
+const statuses = ( { intl, className, jazzSupported, show, status, progress } ) => {
 
 	const { formatMessage } = intl
 
 	const stat = messages[ status ] ? formatMessage( messages[ status ], { progress: progress } ) : status
+	
 
-	const cls = Classnames( className, style.statuses, {
+	if( !jazzSupported ){
+
+		const clsNoJazz = Classnames( style.noJazz, {
+
+			[ style.show ]: show
+
+		} )
+
+		return(
+
+			<DIV id="Statuses" className={ clsNoJazz } >
+				<H priority={ 2 }>{ stat }</H>
+				<IMG src="assets/loader.gif" alt={ formatMessage( messages.loader ) } />
+			</DIV>
+
+		)
+
+	}else{
+
+		<DIV>status</DIV>
+
+	}
+
+	/*const cls = Classnames( className, style.statuses, {
 
 		[ style.show ]: show
 
@@ -48,7 +72,7 @@ const statuses = ( { intl, className, status, progress, show, jazzSupported } ) 
 			{ !jazzSupported && <IMG src="assets/loader.gif" alt={ formatMessage( messages.loader ) } /> }
 		</DIV>
 
-	)
+	)*/
 	
 }
 
@@ -57,11 +81,10 @@ statuses.propTypes = {
 	intl: intlShape.isRequired,
 
 	className: PropTypes.string,
-
+	jazzSupported: PropTypes.bool,
+	show: PropTypes.bool,
 	status: PropTypes.string,
 	progress: PropTypes.number,
-	show: PropTypes.bool,
-	jazzSupported: PropTypes.bool,
 
 	resetForm: PropTypes.func
 

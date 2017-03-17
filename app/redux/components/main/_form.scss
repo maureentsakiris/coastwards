@@ -1,6 +1,18 @@
 @import 'app/styles/base';
 
-$actions-height: 60px;
+.noJazz{
+
+	display: none;
+
+	&.show{
+
+		display: block;
+
+	}
+
+}
+
+/* $actions-height: 60px;
 
 %sheetCorset{
 
@@ -178,15 +190,6 @@ $actions-height: 60px;
 
 	}
 
-	/* span{
-
-		@extend %flexitem;
-		width: auto;
-		flex-grow: 0;
-		margin: 1em 0.5em 0.5em 0;
-
-	} */
-
 }
 
 .comment{
@@ -207,4 +210,4 @@ $actions-height: 60px;
 
 	}
 
-}
+} */

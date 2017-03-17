@@ -37,7 +37,7 @@ const hoc = ( ComposedComponent ) => class extends Component {
 
 		const { form, label, name, className, preferPlaceholder, children } = this.props
 
-		const cls = Classnames( className, style )
+		const cls = Classnames( className, style.label )
 
 		const showLabel = !Modernizr.placeholder ? true : preferPlaceholder ? false : true
 

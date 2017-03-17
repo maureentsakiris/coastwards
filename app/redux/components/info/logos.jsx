@@ -10,11 +10,11 @@ import style from './_logos'
 
 const messages = defineMessages( {
 
-	project_by:{
+	/*project_by:{
 		id: "project_by",
 		description: "P - ",
 		defaultMessage: "A project by"
-	},
+	},*/
 
 	legal_notice:{
 		id: "legal_notice",
@@ -24,7 +24,7 @@ const messages = defineMessages( {
 
 } )
 
-const logos = ( { intl, showDialog } ) => {
+const logos = ( { intl, jazzSupported, showDialog } ) => {
 
 	const { formatMessage } = intl
 
@@ -33,7 +33,32 @@ const logos = ( { intl, showDialog } ) => {
 
 				</P>*/
 
-	return(
+	if( !jazzSupported ){
+
+		return(
+
+			<DIV id="Logos" className={ style.noJazz } >
+				<A target="_blank" href="http://www.futureocean.org" ><IMG src="assets/Cluster-of-Excellence-The-Future-Ocean.jpg" alt="Cluster of Excellence The Future Ocean" /></A>
+				<A target="_blank" href="https://www.uni-kiel.de" ><IMG src="assets/Christian-Albrechts-Universitat-zu-Kiel.png" alt="Christian Albrechts Universität zu Kiel" /></A>
+				<A target="_blank" href="http://www.crslr.uni-kiel.de" ><IMG src="assets/Coastal-Risks-And-Sea-Level-Rise-Research-Group.png" alt="Coastal Risks and Sea-Level Rise Research Group" /></A>
+				<P>
+					<A onClick={ showDialog.bind( this, 'IMPRINT' ) } >{ formatMessage( messages.legal_notice ) }</A>
+				</P>
+			</DIV>
+
+		)
+
+	}else{
+
+		return (
+
+			<P>logos</P>
+
+		)
+
+	}
+
+	/*return(
 
 		<DIV className={ style.logos }>
 			<DIV className={ style.box }>
@@ -44,13 +69,16 @@ const logos = ( { intl, showDialog } ) => {
 				</DIV>
 			</DIV>
 		</DIV>
-	)
+	)*/
 
 }
 
 logos.propTypes = {
 
 	intl: intlShape.isRequired,
+
+	jazzSupported: PropTypes.bool,
+
 	showDialog: PropTypes.func
 
 }

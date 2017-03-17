@@ -1,5 +1,22 @@
 @import 'app/styles/base';
 
+.noJazz{
+
+	h3{
+
+		@extend %sectionHeader;
+
+	}
+
+}
+
+
+
+
+
+
+
+
 .ask{
 
 	@extend %flexcontainer;

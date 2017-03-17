@@ -1,6 +1,18 @@
 @import 'app/styles/base';
 
-.errors{
+.noJazz{
+
+	@extend %screenInit;
+
+	&.show{
+
+		@extend %screenShow;
+
+	}
+
+}
+
+/* .errors{
 
 	@extend %screenInit;
 
@@ -11,4 +23,4 @@
 	@extend %screenShow; 
 
 }
-
+ */

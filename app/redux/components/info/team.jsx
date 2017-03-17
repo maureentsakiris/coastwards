@@ -102,7 +102,8 @@ const team = ( { intl, jazzSupported } ) => {
 
 		return(
 
-			<TOGGLE id="Team" title={ formatMessage( messages.who_are_you_title ) } priority={ 3 } text={ formatMessage( messages.who_are_you ) } className={ style.toggle } >
+			<DIV id="Team" className={ style.noJazz } >
+				<H priority={ 3 } >{ formatMessage( messages.who_are_you ) }</H>
 				<FormattedMessage
 					id="we_are"
 					values={ { 
@@ -110,33 +111,7 @@ const team = ( { intl, jazzSupported } ) => {
 						future_ocean: <a href="http://www.futureocean.org" target="_blank" title="Cluster of Excellence 'The Future Ocean'" >Cluster of Excellence "The Future Ocean"</a>
 					} }
 				/>
-				<BR/><BR/><BR/>
-				<DIV className={ style.person }>
-					<IMG src="assets/team/nassos.jpg" alt="Athanasios Vafeidis" />
-					<H priority={ 4 }>Athanasios Vafeidis</H>
-					<P>{ formatMessage( messages.nassos ) } <A href="http://www.crslr.uni-kiel.de/en/people/gruppenleiter/prof.-athanasios-vafeidis.html" target="_blank" title={ formatMessage( messages.more_title ) } >{ formatMessage( messages.more ) }</A></P>
-				</DIV>
-				<DIV className={ style.person }>
-					<IMG src="assets/team/claudia.jpg" alt="Claudia  Wolff" />
-					<H priority={ 4 }>Claudia  Wolff</H>
-					<P>{ formatMessage( messages.claudia ) } <A href="http://www.crslr.uni-kiel.de/en/people/doctoral-researchers/claudia-wolff.html" target="_blank" title={ formatMessage( messages.more_title ) } >{ formatMessage( messages.more ) }</A></P>
-				</DIV>
-				<DIV className={ style.person }>
-					<IMG src="assets/team/maureen.jpg" alt="Maureen Tsakiris" />
-					<H priority={ 4 }>Maureen Tsakiris</H>
-					<P>{ formatMessage( messages.me ) } <A href="http://www.crslr.uni-kiel.de/en/people/affiliated/maureen-tsakiris.html" target="_blank" title={ formatMessage( messages.more_title ) } >{ formatMessage( messages.more ) }</A></P>
-				</DIV>
-				<BR/><BR/>
-				<P><STRONG>{ formatMessage( messages.contact_here ) }:</STRONG> <A target="_self" href="mailTo:go@coastwards.org" >go@coastwards.org</A></P> 
-				<BR/>
-				<TOGGLE id="Team" priority={ 5 } text={ formatMessage( messages.special_thanks ) } >
-
-					<P><A href="http://www.pholpo.net/" target="_blank">Nicola Scodellaro & Sara Zampieri • pholpo GbR</A> - { formatMessage( messages.pholpo ) }</P>
-					<P><A href="https://www.linkedin.com/in/claudio-molinari-4a9a472?trk=hp-identity-name" target="_blank">Claudio Molinari</A> - { formatMessage( messages.claudio ) }</P>
-					<P><A href="https://github.com/basselAlshK" target="_blank">Bassel Alsheekh Kassem</A> - { formatMessage( messages.bassel ) }</P>
-
-				</TOGGLE>
-			</TOGGLE>
+			</DIV>
 
 		)
 
@@ -176,3 +151,40 @@ team.propTypes = {
 }
 
 export default injectIntl( team ) 
+
+
+/*<TOGGLE id="Team" title={ formatMessage( messages.who_are_you_title ) } priority={ 3 } text={ formatMessage( messages.who_are_you ) } className={ style.toggle } >
+				<FormattedMessage
+					id="we_are"
+					values={ { 
+						crslr: <a href="http://www.crslr.uni-kiel.de/en/people/" target="_blank" title="Coastal Risks and Sea-level Rise Research Group" >Coastal Risks and Sea-level Rise Research Group</a>, 
+						future_ocean: <a href="http://www.futureocean.org" target="_blank" title="Cluster of Excellence 'The Future Ocean'" >Cluster of Excellence "The Future Ocean"</a>
+					} }
+				/>
+				<BR/><BR/><BR/>
+				<DIV className={ style.person }>
+					<IMG src="assets/team/nassos.jpg" alt="Athanasios Vafeidis" />
+					<H priority={ 4 }>Athanasios Vafeidis</H>
+					<P>{ formatMessage( messages.nassos ) } <A href="http://www.crslr.uni-kiel.de/en/people/gruppenleiter/prof.-athanasios-vafeidis.html" target="_blank" title={ formatMessage( messages.more_title ) } >{ formatMessage( messages.more ) }</A></P>
+				</DIV>
+				<DIV className={ style.person }>
+					<IMG src="assets/team/claudia.jpg" alt="Claudia  Wolff" />
+					<H priority={ 4 }>Claudia  Wolff</H>
+					<P>{ formatMessage( messages.claudia ) } <A href="http://www.crslr.uni-kiel.de/en/people/doctoral-researchers/claudia-wolff.html" target="_blank" title={ formatMessage( messages.more_title ) } >{ formatMessage( messages.more ) }</A></P>
+				</DIV>
+				<DIV className={ style.person }>
+					<IMG src="assets/team/maureen.jpg" alt="Maureen Tsakiris" />
+					<H priority={ 4 }>Maureen Tsakiris</H>
+					<P>{ formatMessage( messages.me ) } <A href="http://www.crslr.uni-kiel.de/en/people/affiliated/maureen-tsakiris.html" target="_blank" title={ formatMessage( messages.more_title ) } >{ formatMessage( messages.more ) }</A></P>
+				</DIV>
+				<BR/><BR/>
+				<P><STRONG>{ formatMessage( messages.contact_here ) }:</STRONG> <A target="_self" href="mailTo:go@coastwards.org" >go@coastwards.org</A></P> 
+				<BR/>
+				<TOGGLE id="Team" priority={ 5 } text={ formatMessage( messages.special_thanks ) } >
+
+					<P><A href="http://www.pholpo.net/" target="_blank">Nicola Scodellaro & Sara Zampieri • pholpo GbR</A> - { formatMessage( messages.pholpo ) }</P>
+					<P><A href="https://www.linkedin.com/in/claudio-molinari-4a9a472?trk=hp-identity-name" target="_blank">Claudio Molinari</A> - { formatMessage( messages.claudio ) }</P>
+					<P><A href="https://github.com/basselAlshK" target="_blank">Bassel Alsheekh Kassem</A> - { formatMessage( messages.bassel ) }</P>
+
+				</TOGGLE>
+			</TOGGLE>*/

@@ -33,9 +33,9 @@ class upload extends Component{
 
 		intl: intlShape.isRequired,
 
-		show: PropTypes.bool,
-		jazzSupported: PropTypes.bool,
 		className: PropTypes.string,
+		jazzSupported: PropTypes.bool,
+		show: PropTypes.bool,
 		useraction: PropTypes.string,
 
 		validateFile: PropTypes.func,
@@ -97,27 +97,38 @@ class upload extends Component{
 	render () {
 
 		const { formatMessage } = this.props.intl
-		const { jazzSupported, className, useraction, show, validateFile, openInput } = this.props
+		const { className, jazzSupported, show, useraction, validateFile, openInput } = this.props
 		const { dropzoneActive, dropX, dropY/*, isDrop*/ } = this.state
-
-		const cls = Classnames( className, {
-
-			[ style.hidden ]: !show
-
-		} )
 
 		if( !jazzSupported ){
 
+			const clsNoJazz = Classnames( style.noJazz, {
+
+				[ style.show ]: show
+
+			} )
+
 			return(
 
-				<FORM id="Upload" action="#" className={ cls } >
-					<BR />
+				<FORM id="Upload" action="javascript:;" className={ clsNoJazz } >
 					<INPUT id="images" name="images" onChange={ validateFile } form="Upload" type="file" multiple={ false } accept="image/*" />
 				</FORM>
 
 			)
 
 		}else{
+
+			return(
+
+				<DIV>upload</DIV>
+
+			)
+
+			/*const cls = Classnames( className, {
+
+				[ style.hidden ]: !show
+
+			} )
 
 			const clsDropzone = Classnames( style.dropzone, {
 
@@ -147,7 +158,7 @@ class upload extends Component{
 					<INPUT className={ style.hidden } id="images" name="images" onChange={ validateFile } form="Upload" type="file" multiple={ false } accept="image/*" />
 				</FORM>
 
-			)
+			)*/
 
 		}
 

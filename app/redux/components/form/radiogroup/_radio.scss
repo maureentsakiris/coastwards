@@ -1,24 +1,38 @@
-.icon{
-
-	margin: 0.5em 1em 0 0;
-    display: inline-block;
-
-}
-
 .radio{
 
-	margin: 0.5em 1em 0 0;
     display: inline-block;
-
-	input{
-
-		margin-right: 0.5em;
-
-	}
+    margin-top: 0.5em;
 
 	span{
 
 		white-space: nowrap;
+
+	}
+
+}
+
+.icon{
+
+    display: inline-block;
+    margin-top: 0.5em;
+
+}
+
+html[dir="ltr"]{
+
+	.radio, .icon{
+
+		margin-right: 1em;
+
+	}
+
+}
+
+html[dir="rtl"]{
+
+	.radio, .icon{
+
+		margin-left: 1em;
 
 	}
 

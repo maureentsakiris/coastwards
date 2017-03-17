@@ -7,16 +7,33 @@ import SPAN from 'components/tags/span'
 
 const checkbox = ( { hocProps } ) => {
 
-	const { form, name, label, onChange, value, checked } = hocProps
+	const { form, name, label, onChange, value, isChecked, controlled } = hocProps
 
-	return(
+	if( !controlled ){
+
+		return(
+
+			<SPAN>
+				<INPUT type="checkbox" form={ form } name={ name } onChange={ onChange } value={ value } defaultChecked={ isChecked } /> { label }
+			</SPAN>
+
+		)
+
+	}else{
 
 		<SPAN>
-			<INPUT type="checkbox" form={ form } name={ name } onChange={ onChange } value={ value } checked={ checked } /> { label }
+			<INPUT type="checkbox" form={ form } name={ name } onChange={ onChange } value={ value } checked={ isChecked } /> { label }
 		</SPAN>
 
-	)
+	}
 	
+}
+
+checkbox.defaultProps = {
+
+	isChecked: false,
+	controlled: true
+
 }
 
 checkbox.propTypes = {

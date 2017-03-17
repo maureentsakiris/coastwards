@@ -2,9 +2,7 @@ import React, { PropTypes } from 'react'
 import { defineMessages, injectIntl, intlShape } from 'react-intl'
 import Classnames from 'classnames'
 
-
 import ACTIONS from 'containers/main/actions'
-
 import DIV from 'components/tags/div'
 import H from 'components/tags/h'
 
@@ -103,29 +101,43 @@ const messages = defineMessages( {
 
 } )
 
-const errors = ( { intl, className, error, jazzSupported, show, upload } ) => {
+const errors = ( { intl, className, jazzSupported, show, error, upload } ) => {
 
 	const { formatMessage } = intl
 
 	const str = messages[ error ] ? formatMessage( messages[ error ] ) : error
 
-	const cls = Classnames( className, style.errors, {
 
-		[ style.show ]: show
-
-	} )
 
 	if( !jazzSupported ){
 
+		const clsNoJazz = Classnames( style.noJazz, {
+
+			[ style.show ]: show
+
+		} )
+
 		return(
 
-			<DIV id="Errors" className={ cls } >
+			<DIV id="Errors" className={ clsNoJazz } >
 				<H priority={ 2 }>{ str }</H>
 			</DIV>
 
 		)
 
 	}else{
+
+		return (
+
+			<DIV>error</DIV>
+
+		)
+
+		/*const cls = Classnames( className, style.errors, {
+
+			[ style.show ]: show
+
+		} )
 
 		return(
 
@@ -134,7 +146,7 @@ const errors = ( { intl, className, error, jazzSupported, show, upload } ) => {
 				{ upload && <ACTIONS /> }
 			</DIV>
 
-		)
+		)*/
 
 	}
 	
@@ -145,10 +157,9 @@ errors.propTypes = {
 	intl: intlShape.isRequired,
 
 	className: PropTypes.string,
-
-	error: PropTypes.string,
 	jazzSupported: PropTypes.bool,
 	show: PropTypes.bool,
+	error: PropTypes.string,
 	upload: PropTypes.bool
 
 }

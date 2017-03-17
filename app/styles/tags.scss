@@ -138,6 +138,26 @@ input[type=text],input[type=email]{
 
 }
 
+html[dir="ltr"]{
+
+	input[type=checkbox], input[type=radio]{
+
+		margin-right: 1em;
+
+	}
+
+}
+
+html[dir="rtl"]{
+
+	input[type=checkbox], input[type=radio]{
+
+		margin-left: 1em;
+
+	}
+
+}
+
 strong{
 
 	font-weight: bold;
@@ -168,6 +188,7 @@ th{
     font-size: 1.3em;
     text-transform: uppercase;
     font-weight: bold;
+    border-bottom: 1px solid;
 
 }
 

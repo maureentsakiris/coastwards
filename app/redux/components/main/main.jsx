@@ -37,10 +37,7 @@ const main = ( { intl, uploadSupported, jazzSupported } ) => {
 
 		return(
 
-			<DIV className={ style.noupload } >
-				<Prompts className={ style.corset } />
-				<P className={ style.corset } >{ formatMessage( messages.unsupported ) }</P>
-			</DIV>
+			<P>{ formatMessage( messages.unsupported ) }</P>
 
 		)
 
@@ -48,12 +45,12 @@ const main = ( { intl, uploadSupported, jazzSupported } ) => {
 
 		return(
 
-			<DIV className={ style.barebones } >
-				<Prompts className={ style.corset } />
-				<Errors className={ style.corset } /> 
-				<Statuses className={ style.corset } />
-				<Upload className={ style.corset } />
-				<Form className={ style.corset } />
+			<DIV id="Main" className={ style.noJazz } >
+				<Prompts />
+				<Errors /> 
+				<Statuses />
+				<Upload />
+				<Form />
 			</DIV>
 
 		)

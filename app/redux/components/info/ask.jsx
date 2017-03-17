@@ -114,26 +114,25 @@ class ask extends Component {
 		const mess = typeof status === 'object' ? status.message : status //if error object
 		const m = messages[ mess ] ? formatMessage( messages[ mess ] ) : mess //if translation 
 
-		const clsForm = Classnames( style.form, {
+		/*const clsForm = Classnames( style.form, {
 
 			[ style.formJazz ]: jazzSupported
 
-		} )
+		} )*/
 
 		if( !jazzSupported ){
 
 			return(
 
-				<TOGGLE id="AskUs" title={ formatMessage( messages.one_more_question_title ) } priority={ 3 } text={ formatMessage( messages.one_more_question ) } className={ style.toggle } >
-					<FORM action="#" id="Ask" className={ clsForm } >
-						<COMMENT id="Comment" onChange={ this._validateForm } form="Ask" label={ formatMessage( messages.label_question ) } name="comment" placeholder={ formatMessage( messages.placeholder_question ) } />
-						<BR />
-						<EMAIL id="Email" onChange={ this._validateForm } form="Ask" label={ formatMessage( messages.label_email ) } name="email" placeholder={ formatMessage( messages.placeholder_email ) } />
-						<BR />
+				<DIV id="Contact" className={ style.noJazz } >
+					<H priority={ 3 } >{ formatMessage( messages.one_more_question ) }</H>
+					<FORM action="javascript:;" id="Ask" >
+						<COMMENT id="Comment" onChange={ this._validateForm } form="Ask" name="comment" label={ formatMessage( messages.label_question ) } placeholder={ formatMessage( messages.placeholder_question ) } />
+						<EMAIL id="Email" onChange={ this._validateForm } form="Ask" name="email" label={ formatMessage( messages.label_email ) } placeholder={ formatMessage( messages.placeholder_email ) } />
 						<SUBMIT onClick={ this._submit } form="Ask" name="submit" label={ formatMessage( messages.label_submit ) } disabled={ disabled } />
 						<DIV className={ style.status } >{ status && m }</DIV>
 					</FORM>
-				</TOGGLE>
+				</DIV>
 
 			)
 
@@ -145,7 +144,7 @@ class ask extends Component {
 				<DIV className={ style.ask } >
 					<DIV className={ style.box } >
 						<H priority={ 3 } >{ formatMessage( messages.one_more_question ) }</H>
-						<FORM action="#" id="Ask" className={ clsForm } >
+						<FORM action="javascript:;" id="Ask" >
 							<COMMENT id="Comment" onChange={ this._validateForm } form="Ask" label={ formatMessage( messages.label_question ) } name="comment" placeholder={ formatMessage( messages.placeholder_question ) } />
 							<BR />
 							<EMAIL id="Email" onChange={ this._validateForm } form="Ask" label={ formatMessage( messages.label_email ) } name="email" placeholder={ formatMessage( messages.placeholder_email ) } />

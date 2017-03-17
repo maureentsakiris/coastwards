@@ -5,11 +5,6 @@
     "defaultMessage": "Just any picture?"
   },
   {
-    "id": "any_picture_title",
-    "description": "Section header title - Some quick guidelines",
-    "defaultMessage": "Some quick guidelines"
-  },
-  {
     "id": "any_coast",
     "description": "Header -",
     "defaultMessage": "Any coast but not any picture. We need these pictures to get a closer look at coasts (not people) and we need to know where these coasts are. So these are our guidelines:"

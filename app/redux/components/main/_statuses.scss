@@ -1,6 +1,18 @@
 @import 'app/styles/base';
 
-.statuses{
+.noJazz{
+
+	@extend %screenInit;
+
+	&.show{
+
+		@extend %screenShow;
+
+	}
+
+}
+
+/* .statuses{
 
 	@extend %screenInit;
 
@@ -16,4 +28,4 @@
 
 	@extend %spinner;
 
-}
+} */

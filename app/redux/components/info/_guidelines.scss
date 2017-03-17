@@ -1,5 +1,33 @@
 @import 'app/styles/base';
 
+%headers{
+
+	h3{
+
+		@extend %sectionHeader;
+
+	}
+
+	ol li h4{
+
+		@extend %guidelineHeader;
+
+	}
+
+}
+
+
+.noJazz{
+
+	@extend %headers;
+
+}
+
+
+
+
+
+
 .guidelines{
 
 	@extend %flexcontainer;
