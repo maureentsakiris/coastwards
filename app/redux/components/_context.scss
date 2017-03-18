@@ -21,6 +21,12 @@
 
 }
 
+%intro{
+
+	text-align: center;
+
+}
+
 %headline{
 
 	font-family: "Roboto Slab";
@@ -98,7 +104,7 @@
 
 	.intro{
 
-		text-align: center;
+		@extend %intro;
 		margin-top: $section-margin;
 		margin-bottom: $section-margin;
 
@@ -139,11 +145,113 @@
 
 	}
 
-	.alert{
+}
 
-		margin-top: $mobile-margin-bottom;
-		@extend %alert;
-		
+.jazz{
+
+	.i18n{
+
+		@extend %i18n;
+		padding-top: 2vh;
+		background-color: $color-primary;
+
+		a{
+
+			color: #fff;
+
+		}
+
+	}
+
+	.intro{
+
+		@extend %intro;
+		background-color: $color-primary;
+		color: #fff;
+
+		@include portrait( ){
+
+			padding: 10vw 5vw;
+
+		}
+
+		@include landscape( ){
+
+			padding: 10vh 15vh;
+
+		}
+
+		.logo{
+
+			min-width: 160px;
+			width: 250px;
+			margin-bottom: 1em;
+
+			@include portrait( ){
+
+				max-width: 60vw;
+
+			}
+
+			@include landscape( ){
+
+				max-width: 60vh;
+
+			}
+
+			@include portraitMin( $tablet ){
+
+				max-width: 60vw;
+
+			}
+
+			@include landscapeMin( $tablet ){
+
+				max-width: 60vh;
+
+			}
+
+		}
+
+		.headline{
+
+			@extend %headline;
+
+		}
+
+		.tagline{
+
+			@extend %tagline;
+			margin-bottom: 0;
+
+		}
+
+		.more{
+
+			@extend %more;
+			border-color: #fff;
+			color: #fff;
+			
+			@include portrait( ){
+
+				margin-top: 10vw;
+
+			}
+
+			@include landscape( ){
+
+				margin-top: 10vh;
+
+			}
+
+		}
+
+	}
+
+	.info{
+
+		@extend %info;
+
 	}
 
 }

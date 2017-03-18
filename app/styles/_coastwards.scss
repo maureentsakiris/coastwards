@@ -32,7 +32,6 @@ $toggle-border: 1px solid rgba(0, 0, 0, 0.1);
 	h3{
 
 		position: relative;
-		//font-style: italic;
 		font-weight: 400;
 
 		span{
@@ -83,6 +82,7 @@ $toggle-border: 1px solid rgba(0, 0, 0, 0.1);
 	font-weight: 200;
 	margin-bottom: 0.5em;
 	line-height: 1.2em;
+	margin-top: 2em;
 
 	@include min( $tablet ){
 

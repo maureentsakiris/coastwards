@@ -32,12 +32,6 @@ import style from './_context'
 
 const messages = defineMessages( {
 
-	nojazz_text:{
-		id: "nojazz_text",
-		description: "P - ",
-		defaultMessage: "Hmm, looks like you are using an old browser (or a not so old Internet Explorer). This site will work on your browser BUT IT'S SOO MUCH MORE FUN if you switch to a modern browser, plus you can navegate the coasts of this world. Chrome, Firefox or Safari are safe choices, especially if updated to the latest versions."
-	},
-
 	arrow_up_title:{
 		id: "arrow_up_title",
 		description: "Title - ",
@@ -104,7 +98,6 @@ const context = ( { intl, lang, dir, jazzSupported, clipped, useraction, infosSt
 						<Ask />
 					</DIV>
 					<Main />
-					<P className={ style.alert } >{ formatMessage( messages.nojazz_text ) }</P>
 				</DIV>
 				<Snackbar />
 				<Dialog />
@@ -114,7 +107,54 @@ const context = ( { intl, lang, dir, jazzSupported, clipped, useraction, infosSt
 
 	}else{
 
-		let clsIntro = Classnames( style.intro, {
+		return(
+
+			<DIV lang={ lang } dir={ dir } >
+				<DIV className={ style.jazz } >
+					<I18nLinks availableLanguages={ i18nLocales.locales } className={ style.i18n } />
+					<DIV className={ style.intro } >
+						<IMG className={ style.logo } src="./assets/coastwards.svg" alt="Logo coastwards: A turtle on a mission" />
+						<H priority={ 1 } className={ style.headline } >{ formatMessage( messages.help_science ) } { formatMessage( messages.by ) }</H>
+						<H priority={ 2 } className={ style.tagline } >{ formatMessage( messages.no_account ) }</H>
+						<A className={ clsMore } onClick={ setInfosState.bind( this, !infosState ) } >{ formatMessage( messages.more_info ) }</A>
+					</DIV>
+					<DIV className={ clsInfo }>
+						<How />
+						<Guidelines />
+						<Team />
+						<Ask />
+					</DIV>
+				</DIV>
+				<Snackbar />
+				<Dialog />
+			</DIV>
+
+		)
+
+	}
+
+}
+
+context.propTypes = {
+
+	intl: intlShape.isRequired,
+	lang: PropTypes.string,
+	dir: PropTypes.string,
+	jazzSupported: PropTypes.bool,
+	clipped: PropTypes.bool,
+	useraction: PropTypes.string,
+	infosState: PropTypes.bool,
+	/*scrollY: PropTypes.number,*/
+
+	unclipPage: PropTypes.func,
+	/*scrollToMap: PropTypes.func*/
+	setInfosState: PropTypes.func
+
+}
+
+export default injectIntl( context )
+
+/*let clsIntro = Classnames( style.intro, {
 
 			[ style.hidden ]: clipped
 
@@ -145,13 +185,6 @@ const context = ( { intl, lang, dir, jazzSupported, clipped, useraction, infosSt
 
 		} )
 
-		/*<How />
-					<Guidelines />
-					<Team />
-					<FAQs />
-					<Ask />
-					<Logos />*/
-
 		return(
 
 			<DIV lang={ lang } dir={ dir } >
@@ -181,27 +214,4 @@ const context = ( { intl, lang, dir, jazzSupported, clipped, useraction, infosSt
 				<Dialog />
 			</DIV>
 
-		)
-
-	}
-
-}
-
-context.propTypes = {
-
-	intl: intlShape.isRequired,
-	lang: PropTypes.string,
-	dir: PropTypes.string,
-	jazzSupported: PropTypes.bool,
-	clipped: PropTypes.bool,
-	useraction: PropTypes.string,
-	infosState: PropTypes.bool,
-	/*scrollY: PropTypes.number,*/
-
-	unclipPage: PropTypes.func,
-	/*scrollToMap: PropTypes.func*/
-	setInfosState: PropTypes.func
-
-}
-
-export default injectIntl( context )
+		)*/

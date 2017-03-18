@@ -25,6 +25,11 @@ const messages = defineMessages( {
 		id: "unsupported",
 		description: "Warning - Warns the user that his browser does not support the image upload",
 		defaultMessage: "Oops nope ... looks like you're browser is even older than we thought. Sorry, you'll have to switch to a more modern browser to continue."
+	},
+	nojazz_text:{
+		id: "nojazz_text",
+		description: "P - ",
+		defaultMessage: "Hmm, looks like you are using an old browser (or a not so old Internet Explorer). This site will work on your browser BUT IT'S SOO MUCH MORE FUN if you switch to a modern browser, plus you can navegate the coasts of this world. Chrome, Firefox or Safari are safe choices, especially if updated to the latest versions."
 	}
 	
 } )
@@ -37,7 +42,7 @@ const main = ( { intl, uploadSupported, jazzSupported } ) => {
 
 		return(
 
-			<P>{ formatMessage( messages.unsupported ) }</P>
+			<P className={ style.alert } >{ formatMessage( messages.unsupported ) }</P>
 
 		)
 
@@ -51,6 +56,7 @@ const main = ( { intl, uploadSupported, jazzSupported } ) => {
 				<Statuses />
 				<Upload />
 				<Form />
+				<P className={ style.alert } >{ formatMessage( messages.nojazz_text ) }</P>
 			</DIV>
 
 		)

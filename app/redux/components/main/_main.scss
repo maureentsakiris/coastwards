@@ -1,6 +1,13 @@
 @import 'app/styles/base';
 
 
+.alert{
+
+	margin-top: $mobile-margin-bottom;
+	@extend %alert;
+	
+}
+
 .noJazz{
 
 	//text-align: center;

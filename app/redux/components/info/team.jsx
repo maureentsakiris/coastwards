@@ -118,7 +118,9 @@ const team = ( { intl, jazzSupported } ) => {
 					<P><A href="https://github.com/basselAlshK" target="_blank">Bassel Alsheekh Kassem</A> - { formatMessage( messages.bassel ) }</P>
 
 				</TOGGLE>
-				<Logos />
+				<TOGGLE className={ style.thanks } id="Team" priority={ 4 } text="!Imprint" >
+					<Logos />
+				</TOGGLE>
 			</DIV>
 
 		)
