@@ -1,5 +1,10 @@
 [
   {
+    "id": "project_by",
+    "description": "P -",
+    "defaultMessage": "A project by"
+  },
+  {
     "id": "legal_notice",
     "description": "A -",
     "defaultMessage": "Imprint"

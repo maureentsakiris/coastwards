@@ -1,12 +1,24 @@
 @import 'app/styles/base';
 
-.noJazz{
+%team{
 
 	h3{
 
 		@extend %sectionHeader;
 
 	}
+
+	.thanks{
+
+		margin-top: 1em;
+
+	}
+
+}
+
+.noJazz{
+
+	@extend %team;
 
 }
 

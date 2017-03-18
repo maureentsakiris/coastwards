@@ -15,20 +15,25 @@
 	&>div{
 
 		@extend %corset;
-		padding: 5% 1em 10% 1em;
+		padding: $mobile-margin $mobile-margin $mobile-margin-bottom $mobile-margin;
 
 		&>a{
 
-			display: inline-block;
-    		float: right;
-    		margin-bottom: 1em;
+			display: block;
+    		position: fixed;
+    		top: 0;
+    		left: 0;
+    		width: 100%;
+    		padding: $mobile-margin;
+    		background-color: rgba(255, 255, 255, 0.9);
     		font-size: 1.5em;
+    		text-align: right;
 
 		}
 
 		&>div{
 
-			clear: both;
+			margin-top: 70px;
 
 		}
 

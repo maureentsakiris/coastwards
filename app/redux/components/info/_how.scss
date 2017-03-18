@@ -1,15 +1,32 @@
 @import 'app/styles/base';
 
-
-.noJazz{
+%how{
 
 	.videoWrapper{
 
 		@extend %videoWrapper;
+
+	}
+
+	h3{
+
+		@extend %sectionHeader;
+
+	}
+
+}
+
+
+.noJazz{
+
+	@extend %how;
+	.videoWrapper{
+
 		margin-left: 0;
 		margin-right: 0;
 
 	}
+
 
 }
 

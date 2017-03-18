@@ -1,12 +1,47 @@
 @import 'app/styles/base';
 
-.noJazz{
+%upload{
 
 	display: none;
 
 	&.show{
 
 		display: block;
+
+	}
+
+	input{
+
+		display: none;
+
+	}
+
+
+}
+
+.noJazz{
+
+	@extend %upload;
+	text-align: center;
+
+	.uploadBtn{
+
+		@extend %labelBtn;
+		margin-left: auto;
+		margin-right: auto;
+		
+		button{
+
+			width: 86px;
+			height: 86px;
+
+			i{
+
+				font-size: 36px;
+
+			}
+
+		}
 
 	}
 

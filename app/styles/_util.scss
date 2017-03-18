@@ -145,10 +145,35 @@
 
 %alert{
 
+	border: 2px solid $color-primary;
 	border-radius: 3px;
 	padding: 1em;
+	color: $color-primary;
+
+}
+
+%bigButton{
+
+	border-radius: 2px;
+	padding: 0.5em 2em;
+	font-size: 1.5em;
+	border-width: 1px;
+	border-style: solid;
+	background-color: transparent;
+	border-color: $color-primary;
+	color: $color-primary;
+
+}
+
+%roundBtn{
+
+	border: none;
+	border-radius: 50%;
+	width: 66px;
+	height: 66px;
+	color: #ffffff;
+	box-shadow: 0 1px 1.5px 0 rgba(0,0,0,.12),0 1px 1px 0 rgba(0,0,0,.24);
 	background-color: $color-primary;
-	color: #fff;
 
 }
 

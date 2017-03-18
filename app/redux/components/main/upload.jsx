@@ -5,6 +5,7 @@ import Classnames from 'classnames'
 import FORM from 'components/tags/form'
 import DIV from 'components/tags/div'
 import INPUT from 'components/tags/input'
+import P from 'components/tags/p'
 import BR from 'components/tags/br'
 import BUTTON from 'components/tags/button'
 import I from 'components/tags/i'
@@ -111,6 +112,10 @@ class upload extends Component{
 			return(
 
 				<FORM id="Upload" action="javascript:;" className={ clsNoJazz } >
+					<DIV className={ style.uploadBtn }>
+						<BUTTON onClick={ openInput } ><I className="material-icons">&#xE439;</I></BUTTON>
+						<P>{ formatMessage( messages.uploadBtn_title ) }</P>
+					</DIV>
 					<INPUT id="images" name="images" onChange={ validateFile } form="Upload" type="file" multiple={ false } accept="image/*" />
 				</FORM>
 

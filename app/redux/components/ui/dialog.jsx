@@ -49,13 +49,13 @@ const dialog = ( { intl, component, active/*, jazzSupported*/, closeDialog } ) =
 
 			<DIV className={ style.dialog } >
 				<DIV>
-					<CLOSE onClick={ closeDialog } title={ formatMessage( messages.close_dialog ) } />
 					{ component == 'WHYIP' && <WHYIP /> }
 					{ component == 'DEFINEMATERIAL' && <DEFINEMATERIAL /> }
 					{ component == 'SHARE' && <SHARE /> }
 					{ component == 'IMPRINT' && <IMPRINT /> }
 					{ component == 'TERMS' && <TERMS /> }
 					{ component == 'REPORT' && <REPORT /> }
+					<CLOSE onClick={ closeDialog } title={ formatMessage( messages.close_dialog ) } />
 				</DIV>
 			</DIV>
 

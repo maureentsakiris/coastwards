@@ -1,8 +1,8 @@
 @import 'app/styles/base';
 
+%prompts{
 
-.noJazz{
-
+	@extend %screenNoJazz;
 	@extend %screenInit;
 
 	&.show{
@@ -10,6 +10,29 @@
 		@extend %screenShow;
 
 	}
+
+	h2{
+
+		font-size: 1.5em;
+
+	}
+
+	@include min( $tablet ){
+
+		h2{
+
+			font-size: 2.5em;
+
+		}
+
+	}
+
+}
+
+
+.noJazz{
+
+	@extend %prompts;
 
 }
 

@@ -116,6 +116,7 @@ class How extends Component {
 						<iframe src="https://player.vimeo.com/video/206066163?color=0076b7&title=0&byline=0&portrait=0" width="640" height="360" frameBorder="0" allowFullScreen ></iframe>
 					</DIV>
 					<TOGGLE priority={ 5 } text={ formatMessage( messages.show_transcript ) } >
+						<H priority={ 3 } >{ formatMessage( messages.how ) }</H>
 						<DIV>
 							<P>{ formatMessage( messages.in_a_nutshell ) }</P>
 							<P>{ formatMessage( messages.how_it_works ) }</P>

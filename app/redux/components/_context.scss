@@ -50,13 +50,8 @@
 
 %more{
 
+	@extend %bigButton;
 	display: none;
-
-	border-radius: 2px;
-	padding: 0.5em 2em;
-	font-size: 2em;
-	border-width: 1px;
-	border-style: solid;
 
 	&.show{
 
@@ -85,8 +80,7 @@
 	$section-margin: 10%;
 
 	@extend %corset;
-	margin-top: $mobile-margin;
-	margin-bottom: 50px;
+	margin-bottom: $mobile-margin-bottom;
 
 	&>*{
 
@@ -94,15 +88,10 @@
 
 	}
 
-	.alert{
-
-		@extend %alert;
-		
-	}
-
 	.i18n{
 
 		@extend %i18n;
+		margin-top: $mobile-margin;
 		margin-bottom: $mobile-margin;
 
 	}
@@ -129,6 +118,7 @@
 		.tagline{
 
 			@extend %tagline;
+			margin-bottom: 0;
 
 		}
 
@@ -136,8 +126,6 @@
 
 			@extend %more;
 			margin-top: $section-margin;
-			border-color: $color-primary;
-			color: $color-primary;
 
 		}
 
@@ -149,6 +137,13 @@
 		margin-top: $section-margin;
 		margin-bottom: $section-margin;
 
+	}
+
+	.alert{
+
+		margin-top: $mobile-margin-bottom;
+		@extend %alert;
+		
 	}
 
 }

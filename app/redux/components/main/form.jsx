@@ -187,7 +187,7 @@ const form = ( { intl, className, jazzSupported, show, image, checkedValue, mate
 				</RADIOGROUP>
 				<COMMENT form="Form" label={ formatMessage( messages.comment ) } preferPlaceholder={ false } placeholder={ formatMessage( messages.comment_placeholder ) } name="comment" onChange={ setComment } />
 				<FORMDATA />
-				<P>
+				<P className={ style.terms } >
 					<INPUT id="Terms" type="checkbox" value="1" form="Form" name="terms" />
 					<FormattedMessage id="accept_terms" values={ { terms: <A onClick={ showDialog.bind( this, 'TERMS' ) } >{  formatMessage( messages.terms ) }</A> } } />
 				</P>

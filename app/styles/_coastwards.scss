@@ -45,6 +45,18 @@ $toggle-border: 1px solid rgba(0, 0, 0, 0.1);
 
 }
 
+%screenNoJazz{
+
+	text-align: center;
+
+	h2{
+
+		font-weight: 200;
+
+	}
+
+}
+
 %screenInit{
 
 	visibility: hidden;
@@ -87,6 +99,27 @@ $toggle-border: 1px solid rgba(0, 0, 0, 0.1);
 
 }
 
+%labelBtn{
+
+	display: inline-block;
+
+	button{
+
+		margin: 0 1em;
+	    @extend %roundBtn;
+
+	}
+
+	p{
+
+		margin: 0.5em 0;
+		text-transform: uppercase;
+		font-size: 0.7em;
+
+	}
+
+}
+
 %screenOption{
 
 	display: inline-block;
@@ -95,7 +128,7 @@ $toggle-border: 1px solid rgba(0, 0, 0, 0.1);
 
 }
 
-%materialBtn{
+/* %materialBtn{
 
 	border: none;
 	border-radius: 50%;
@@ -106,9 +139,9 @@ $toggle-border: 1px solid rgba(0, 0, 0, 0.1);
 	cursor: pointer;
 	background-color: $color-primary;
 
-}
+} */
 
-%roundBtn{
+/* %roundBtn{
 
 	@extend %materialBtn;
 	position: absolute;
@@ -116,7 +149,7 @@ $toggle-border: 1px solid rgba(0, 0, 0, 0.1);
 	right: 20px;
 	z-index: 1;
 	
-}
+} */
 
 %drawershadow{
 

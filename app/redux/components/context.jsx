@@ -88,23 +88,24 @@ const context = ( { intl, lang, dir, jazzSupported, clipped, useraction, infosSt
 
 		return(
 
-			<DIV lang={ lang } dir={ dir } className={ style.noJazz } >
-				<I18nLinks availableLanguages={ i18nLocales.locales } className={ style.i18n } />
-				<P className={ style.alert } >{ formatMessage( messages.nojazz_text ) }</P>
-				<DIV className={ style.intro } >
-					<IMG className={ style.logo } src="./assets/coastwards.png" alt="Logo coastwards: A turtle on a mission" />
-					<H priority={ 1 } className={ style.headline } >{ formatMessage( messages.help_science ) } { formatMessage( messages.by ) }</H>
-					<H priority={ 2 } className={ style.tagline } >{ formatMessage( messages.no_account ) }</H>
-					<A className={ clsMore } onClick={ setInfosState.bind( this, !infosState ) } >{ formatMessage( messages.more_info ) }</A>
+			<DIV lang={ lang } dir={ dir } >
+				<DIV  className={ style.noJazz } >
+					<I18nLinks availableLanguages={ i18nLocales.locales } className={ style.i18n } />
+					<DIV className={ style.intro } >
+						<IMG className={ style.logo } src="./assets/coastwards.png" alt="Logo coastwards: A turtle on a mission" />
+						<H priority={ 1 } className={ style.headline } >{ formatMessage( messages.help_science ) } { formatMessage( messages.by ) }</H>
+						<H priority={ 2 } className={ style.tagline } >{ formatMessage( messages.no_account ) }</H>
+						<A className={ clsMore } onClick={ setInfosState.bind( this, !infosState ) } >{ formatMessage( messages.more_info ) }</A>
+					</DIV>
+					<DIV className={ clsInfo }>
+						<How />
+						<Guidelines />
+						<Team />
+						<Ask />
+					</DIV>
+					<Main />
+					<P className={ style.alert } >{ formatMessage( messages.nojazz_text ) }</P>
 				</DIV>
-				<DIV className={ clsInfo }>
-					<How />
-					<Guidelines />
-					<Team />
-					<Ask />
-					<Logos />
-				</DIV>
-				<Main />
 				<Snackbar />
 				<Dialog />
 			</DIV>
