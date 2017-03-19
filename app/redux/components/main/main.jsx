@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react'
 import { defineMessages, injectIntl, intlShape } from 'react-intl'
+import Classnames from 'classnames'
 
 import Errors from 'containers/main/errors'
 import Statuses from 'containers/main/statuses'
@@ -16,6 +17,8 @@ import Counter from 'containers/main/counter'
 
 import DIV from 'components/tags/div'
 import P from 'components/tags/p'
+import I from 'components/tags/i'
+import A from 'components/tags/a'
 
 import style from './_main'
 
@@ -30,11 +33,16 @@ const messages = defineMessages( {
 		id: "nojazz_text",
 		description: "P - ",
 		defaultMessage: "Hmm, looks like you are using an old browser (or a not so old Internet Explorer). This site will work on your browser BUT IT'S SOO MUCH MORE FUN if you switch to a modern browser, plus you can navegate the coasts of this world. Chrome, Firefox or Safari are safe choices, especially if updated to the latest versions."
+	},
+	arrow_up_title:{
+		id: "arrow_up_title",
+		description: "Title - ",
+		defaultMessage: "Show intro"
 	}
 	
 } )
 
-const main = ( { intl, uploadSupported, jazzSupported } ) => {
+const main = ( { intl, uploadSupported, jazzSupported, useraction, unclipPage } ) => {
 
 	const { formatMessage } = intl
 
@@ -66,20 +74,29 @@ const main = ( { intl, uploadSupported, jazzSupported } ) => {
 
 		/*<Satellite className={ style.satellite } />*/
 
+		const clsArrow = Classnames( style.arrow, {
+
+			[ style.show ]: useraction == 'browsing'
+
+		} )
+
 		return(
 
 			<DIV id="Main" className={ style.jazz } >
 				<Mapbox className={ style.mapbox } />
+				<Upload className={ style.fullscreen } />
 				<Loader className={ style.screen } />
 				<Locate key="locate" className={ style.screen } />
 				<Marker key="marker" className={ style.marker } />
-				<Prompts key="prompts" className={ style.screen } />
+				<Prompts className={ style.screen } />
 				<Statuses key="statuses" className={ style.screen } />
 				<Errors key="errors" className={ style.screen } />
-				<Form className={ style.form } />
-				<Upload className={ style.upload } />
+				<Form className={ style.fullscreen } />
 				<Counter />
 				<Popup />
+				<DIV className={ clsArrow } >
+					<A onClick={ unclipPage.bind( this ) } title={ formatMessage( messages.arrow_up_title ) } ><I className="material-icons">&#xE316;</I></A>
+				</DIV>
 			</DIV>
 
 		)
@@ -93,8 +110,22 @@ main.propTypes = {
 	intl: intlShape.isRequired,
 
 	uploadSupported: PropTypes.bool,
-	jazzSupported: PropTypes.bool
+	jazzSupported: PropTypes.bool,
+	useraction: PropTypes.string,
+
+	unclipPage: PropTypes.func
 	
 }
 
 export default injectIntl( main )
+
+/*<Loader className={ style.screen } />
+				<Locate key="locate" className={ style.screen } />
+				<Marker key="marker" className={ style.marker } />
+				<Prompts key="prompts" className={ style.screen } />
+				<Statuses key="statuses" className={ style.screen } />
+				<Errors key="errors" className={ style.screen } />
+				<Form className={ style.form } />
+				<Upload className={ style.upload } />
+				<Counter />
+				<Popup />*/

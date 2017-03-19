@@ -139,7 +139,22 @@ class ask extends Component {
 
 		}else{
 
-			return (
+			return(
+
+				<DIV id="Contact" className={ style.jazz } >
+					<H priority={ 3 } >{ formatMessage( messages.one_more_question ) }</H>
+					<FORM action="javascript:;" id="Ask" >
+						<COMMENT id="Comment" onChange={ this._validateForm } form="Ask" name="comment" label={ formatMessage( messages.label_question ) } placeholder={ formatMessage( messages.placeholder_question ) } />
+						<EMAIL id="Email" onChange={ this._validateForm } form="Ask" name="email" label={ formatMessage( messages.label_email ) } placeholder={ formatMessage( messages.placeholder_email ) } />
+						<SUBMIT onClick={ this._submit } form="Ask" name="submit" label={ formatMessage( messages.label_submit ) } disabled={ disabled } />
+						<DIV className={ style.status } >{ status && m }</DIV>
+					</FORM>
+				</DIV>
+
+			)
+			
+
+			/*return (
 
 				<DIV className={ style.ask } >
 					<DIV className={ style.box } >
@@ -155,7 +170,7 @@ class ask extends Component {
 					</DIV>
 				</DIV>
 
-			)
+			)*/
 
 		}
 

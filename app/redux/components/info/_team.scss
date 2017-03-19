@@ -22,7 +22,12 @@
 
 }
 
+.jazz{
 
+	@extend %team;
+	@extend %mobile-padding;
+
+}
 
 
 

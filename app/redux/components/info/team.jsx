@@ -129,6 +129,31 @@ const team = ( { intl, jazzSupported } ) => {
 
 		return (
 
+			<DIV id="Team" className={ style.jazz } >
+				<H priority={ 3 } >{ formatMessage( messages.who_are_you ) }</H>
+				<P><FormattedMessage
+					id="we_are"
+					values={ { 
+						crslr: <a href="http://www.crslr.uni-kiel.de/en/people/" target="_blank" title="Coastal Risks and Sea-level Rise Research Group" >Coastal Risks and Sea-level Rise Research Group</a>, 
+						future_ocean: <a href="http://www.futureocean.org" target="_blank" title="Cluster of Excellence 'The Future Ocean'" >Cluster of Excellence "The Future Ocean"</a>
+					} }
+				/></P>
+				<TOGGLE className={ style.thanks } id="Team" priority={ 4 } text={ formatMessage( messages.special_thanks ) } >
+
+					<P><A href="http://www.pholpo.net/" target="_blank">Nicola Scodellaro & Sara Zampieri • pholpo GbR</A> - { formatMessage( messages.pholpo ) }</P>
+					<P><A href="https://www.linkedin.com/in/claudio-molinari-4a9a472?trk=hp-identity-name" target="_blank">Claudio Molinari</A> - { formatMessage( messages.claudio ) }</P>
+					<P><A href="https://github.com/basselAlshK" target="_blank">Bassel Alsheekh Kassem</A> - { formatMessage( messages.bassel ) }</P>
+
+				</TOGGLE>
+				<TOGGLE className={ style.thanks } id="Team" priority={ 4 } text="!Imprint" >
+					<Logos />
+				</TOGGLE>
+			</DIV>
+
+		)
+
+		/*return (
+
 			<DIV className={ style.team }>
 				<DIV className={ style.box } >
 					<H priority={ 3 } >{ formatMessage( messages.who_are_you ) }</H>
@@ -144,7 +169,7 @@ const team = ( { intl, jazzSupported } ) => {
 				</DIV>
 			</DIV>
 
-		)
+		)*/
 
 	}
 

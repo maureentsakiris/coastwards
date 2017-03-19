@@ -54,26 +54,23 @@ const statuses = ( { intl, className, jazzSupported, show, status, progress } ) 
 
 	}else{
 
-		<DIV>status</DIV>
+		const clsJazz = Classnames( className, style.jazz, {
 
+			[ style.show ]: show
+
+		} )
+
+		return(
+
+			<DIV id="Statuses" className={ clsJazz } >
+				<H priority={ 2 }>{ stat }</H>
+				<DIV className={ style.spinner }></DIV>
+			</DIV>
+
+		)
+		
 	}
 
-	/*const cls = Classnames( className, style.statuses, {
-
-		[ style.show ]: show
-
-	} )
-
-	return(
-
-		<DIV id="Statuses" className={ cls } >
-			<H priority={ 2 }>{ stat }</H>
-			{ jazzSupported && <DIV className={ style.spinner }></DIV> }
-			{ !jazzSupported && <IMG src="assets/loader.gif" alt={ formatMessage( messages.loader ) } /> }
-		</DIV>
-
-	)*/
-	
 }
 
 statuses.propTypes = {

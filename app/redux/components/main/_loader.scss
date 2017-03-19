@@ -1,19 +1,27 @@
 @import 'app/styles/base';
 
-.loader{
+
+%loader{
 
 	@extend %screenInit;
 
+	&.show{
+
+		@extend %screenShow;
+
+	}
+
 }
 
-.show{
 
-	@extend %screenShow;
+.jazz{
 
-}
+	@extend %loader;
 
-.spinner{
+	.spinner{
 
-	@extend %spinner;
+		@extend %spinner;
+
+	}
 
 }

@@ -8,5 +8,10 @@
     "id": "nojazz_text",
     "description": "P -",
     "defaultMessage": "Hmm, looks like you are using an old browser (or a not so old Internet Explorer). This site will work on your browser BUT IT'S SOO MUCH MORE FUN if you switch to a modern browser, plus you can navegate the coasts of this world. Chrome, Firefox or Safari are safe choices, especially if updated to the latest versions."
+  },
+  {
+    "id": "arrow_up_title",
+    "description": "Title -",
+    "defaultMessage": "Show intro"
   }
 ]

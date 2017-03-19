@@ -123,9 +123,24 @@ class upload extends Component{
 
 		}else{
 
+			const clsJazz = Classnames( className, style.jazz, {
+
+				[ style.show ]: show
+
+			} )
+
+			const clsUploadBtn = Classnames( style.uploadBtn, {
+
+				[ style.show ]: useraction == 'browsing'
+
+			} )
+
 			return(
 
-				<DIV>upload</DIV>
+				<FORM id="Upload" action="javascript:;" className={ clsJazz } >
+					<BUTTON className={ clsUploadBtn } onClick={ openInput } ><I className="material-icons">&#xE439;</I></BUTTON>
+					<INPUT id="images" name="images" onChange={ validateFile } form="Upload" type="file" multiple={ false } accept="image/*" />
+				</FORM>
 
 			)
 

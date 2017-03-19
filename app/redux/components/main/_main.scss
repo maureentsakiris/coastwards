@@ -10,101 +10,86 @@
 
 .noJazz{
 
-	//text-align: center;
+	
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* .noupload, .barebones{
-
-	@extend %corset;
-	margin-top: 3em;
-	margin-bottom: $site-padding-bottom;
-	padding: 0 $site-padding-sides;
-
-} */
 
 .jazz{
 
+	%fullscreen{
+
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+
+	}
+
 	position: relative;
-	height: 100%;
-	width: 100%;
+	height: 100vh;
+	width: 100vw;
 	overflow: hidden;
 
-	//touch-action: none;
+	touch-action: none;
 
-}
+	.mapbox{
 
-.corset{
+		height: 100%;
+		top: 0;
 
-	@extend %corset;
+	}
 
-}
+	.fullscreen{
 
-.mapbox{
+		@extend %fullscreen;
 
-	height: 100%;
-	top: 0;
+	}
 
-}
+	.screen{
 
-%fullscreen{
+		@extend %fullscreen;
+		z-index: 1;
+		background-color: $screen-overlay-color;
 
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	top: 0;
-	left: 0;
+		@extend %flexcontainer;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
 
-}
+	}
 
-.upload{
+	.arrow{
 
-	@extend %fullscreen;
-	pointer-events: none;
+		@extend %nodrag;
+		position: fixed;
+		top: 0;
+		width: 100%;
+		pointer-events: none;
+		text-align: center;
+		display: none;
 
-	button{
+		&.show{
 
-		pointer-events: all;
+			display: block;
+
+		}
+
+		i{
+
+			pointer-events: all;
+			font-size: 72px;
+
+		}
 
 	}
 
 }
 
-.form{
 
-	@extend %fullscreen;
-	//background-color: rgba(255, 255, 255, 0.7);
-	background-color: rgba(0, 0, 0, 0.6);
 
-}
-
-.marker{
-
-	@extend %fullscreen;
-	@extend %flexcontainer;
-	justify-content: center;
-	align-items: center;
-	align-content: center;
-	flex-direction: column;
-	text-align: center;
-	padding: $fringe-height $site-padding-sides;
-
-}
-
-.screen{
+/* .screen{
 
 	@extend %fullscreen;
 	@extend %flexcontainer;
@@ -135,7 +120,83 @@
 
 	}
 
+} */
+
+
+
+
+
+
+
+
+/* .noupload, .barebones{
+
+	@extend %corset;
+	margin-top: 3em;
+	margin-bottom: $site-padding-bottom;
+	padding: 0 $site-padding-sides;
+
+} */
+
+
+/* .corset{
+
+	@extend %corset;
+
+} */
+
+/* .mapbox{
+
+	height: 100%;
+	top: 0;
+
+} */
+
+/* %fullscreen{
+
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+
+} */
+
+/* .upload{
+
+	@extend %fullscreen;
+	pointer-events: none;
+
+	button{
+
+		pointer-events: all;
+
+	}
+
+} */
+
+/* .form{
+
+	@extend %fullscreen;
+	//background-color: rgba(255, 255, 255, 0.7);
+	background-color: rgba(0, 0, 0, 0.6);
+
+} */
+/* 
+.marker{
+
+	@extend %fullscreen;
+	@extend %flexcontainer;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+	flex-direction: column;
+	text-align: center;
+	padding: $fringe-height $site-padding-sides;
+
 }
+
+
 
 
 .up{
@@ -153,7 +214,7 @@
 
     }
 
-}
+} */
 
 /* .toomany{
 
@@ -167,7 +228,7 @@
 } */
 
 
-.enter {
+/* .enter {
 
   opacity: 0.1;
 
@@ -191,5 +252,5 @@
   opacity: 0.1;
   transition: opacity 300ms ease-in;
   
-}
+} */
 

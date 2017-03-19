@@ -104,25 +104,6 @@
 
 }
 
-@mixin ltr(){
-
-	html[dir="ltr"]{
-
-		@content
-
-	}
-
-}
-
-@mixin rtl(){
-
-	html[dir="rtl"]{
-
-		@content
-
-	}
-
-}
 
 //############################################################################################ LAYOUT
 
@@ -177,6 +158,34 @@
 
 }
 
+%nodrag{
+
+	user-drag: none; 
+	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-drag: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+
+}
+
+%hide{
+
+	opacity: 0;
+	pointer-events: none;
+	display: none;
+	visibility: hidden;
+
+}
+
+%show{
+
+	opacity: 1;
+	pointer-events: all;
+	display: block;
+	visibility: visible;
+	
+}
 
 //############################################################################################ VIDEO
 

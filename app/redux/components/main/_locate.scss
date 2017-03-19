@@ -1,19 +1,27 @@
 @import 'app/styles/base';
 
-.locate{
+
+%locate{
 
 	@extend %screenInit;
 
+	&.show{
+
+		@extend %screenShow;
+
+	}
+
 }
 
-.show{
 
-	@extend %screenShow;
+.jazz{
 
-}
+	@extend %locate;
 
-.option{
+	.option{
 
-	@extend %screenOption;
+		@extend %screenOption;
+
+	}
 
 }

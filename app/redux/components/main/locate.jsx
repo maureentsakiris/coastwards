@@ -34,7 +34,7 @@ const main = ( { intl, className, showMarker, resetMain, show } ) => {
 
 	const { formatMessage } = intl
 
-	const cls = Classnames( className, style.locate, {
+	const clsJazz = Classnames( className, style.jazz, {
 
 		[ style.show ]: show
 
@@ -42,7 +42,7 @@ const main = ( { intl, className, showMarker, resetMain, show } ) => {
 
 	return(
 
-		<DIV className={ cls } >
+		<DIV className={ clsJazz } >
 			<H priority={ 2 }>{ formatMessage( messages.can_you_locate ) }</H>
 			<P>
 				<A onClick={ showMarker } className={ style.option } >{ formatMessage( messages.yes_location_known ) }</A>

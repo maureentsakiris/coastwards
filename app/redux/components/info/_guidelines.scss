@@ -10,7 +10,8 @@
 
 	ol li h4{
 
-		@extend %guidelineHeader;
+		font-family: "Roboto Slab";
+		font-size: 1.2em;
 
 	}
 
@@ -23,7 +24,12 @@
 
 }
 
+.jazz{
 
+	@extend %headers;
+	@extend %mobile-padding;
+
+}
 
 
 

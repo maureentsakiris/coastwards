@@ -149,108 +149,117 @@
 
 .jazz{
 
-	.i18n{
+	.top{
 
-		@extend %i18n;
-		padding-top: 2vh;
-		background-color: $color-primary;
+		display: none;
 
-		a{
+		&.show{
 
+			display: block;
+
+		}
+
+		.i18n{
+
+			@extend %i18n;
+			padding-top: 2vh;
+			background-color: $color-primary;
+
+			a{
+
+				color: #fff;
+
+			}
+
+		}
+
+		.intro{
+
+			@extend %intro;
+			background-color: $color-primary;
 			color: #fff;
+			padding: 10vh 5vw;
 
-		}
+			@include min( $tablet ){
 
-	}
-
-	.intro{
-
-		@extend %intro;
-		background-color: $color-primary;
-		color: #fff;
-
-		@include portrait( ){
-
-			padding: 10vw 5vw;
-
-		}
-
-		@include landscape( ){
-
-			padding: 10vh 15vh;
-
-		}
-
-		.logo{
-
-			min-width: 160px;
-			width: 250px;
-			margin-bottom: 1em;
-
-			@include portrait( ){
-
-				max-width: 60vw;
+				padding: 5vh 5vw;
 
 			}
 
-			@include landscape( ){
+			@include min( $huge ){
 
-				max-width: 60vh;
-
-			}
-
-			@include portraitMin( $tablet ){
-
-				max-width: 60vw;
+				padding: 5vh 10vw;
 
 			}
 
-			@include landscapeMin( $tablet ){
+			.logo{
 
-				max-width: 60vh;
+				min-width: 160px;
+				width: 250px;
 
-			}
+				@include portrait( ){
 
-		}
+					max-width: 60vw;
 
-		.headline{
+				}
 
-			@extend %headline;
+				@include landscape( ){
 
-		}
+					max-width: 60vh;
 
-		.tagline{
+				}
 
-			@extend %tagline;
-			margin-bottom: 0;
+				@include portraitMin( $tablet ){
 
-		}
+					max-width: 60vw;
 
-		.more{
+				}
 
-			@extend %more;
-			border-color: #fff;
-			color: #fff;
-			
-			@include portrait( ){
+				@include landscapeMin( $tablet ){
 
-				margin-top: 10vw;
+					max-width: 60vh;
+
+				}
 
 			}
 
-			@include landscape( ){
+			.headline{
 
+				@extend %headline;
+
+			}
+
+			.tagline{
+
+				@extend %tagline;
+				margin-bottom: 0;
+
+			}
+
+			.more{
+
+				@extend %more;
+				border-color: #fff;
+				color: #fff;
 				margin-top: 10vh;
+				
+				@include min( $tablet ){
+
+					margin-top: 5vh;
+
+				}
 
 			}
 
 		}
 
-	}
+		.info{
 
-	.info{
+			@extend %info;
+			@extend %corset;
+			padding-bottom: 10vh;
 
-		@extend %info;
+		}
 
 	}
 

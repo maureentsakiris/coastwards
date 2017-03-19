@@ -199,9 +199,9 @@ const form = ( { intl, className, jazzSupported, show, image, checkedValue, mate
 
 	}else{
 
-		const cls = Classnames( className, style.formJazz, {
+		const clsJazz = Classnames( className, style.jazz, {
 
-			[ style.showJazz ]: show
+			[ style.show ]: show
 
 		} )
 
@@ -209,35 +209,20 @@ const form = ( { intl, className, jazzSupported, show, image, checkedValue, mate
 
 		return(
 
-			<FORM id="Form" action="#" className={ cls } >
-				<DIV>
-					<DIV id="Sheet" className={ style.sheet } >
-						{ image.dataURL && <DIV className={ style.image } style={ { backgroundImage: 'url(' + image.dataURL + ')' } } ></DIV> }
-						<DIV id="Content" className={ style.content } >
-							<H priority={ 2 }>{ formatMessage( messages.hurray ) }</H>
-							<ICONRADIOGROUP checkedValue={ checkedValue } form="Form" label={ formatMessage( messages.select_material ) } name="material" options={ mats } onClick={ setMaterial } preferPlaceholder={ false } className={ style.iconradiogroup } >
-								{ " " }<SMALL><A onClick={ showDialog.bind( this, 'DEFINEMATERIAL' ) }>{ formatMessage( messages.define_material ) }</A></SMALL>
-							</ICONRADIOGROUP>
-							<COMMENT className={ style.comment } form="Form" label={ formatMessage( messages.comment ) }  preferPlaceholder={ false } placeholder={ formatMessage( messages.comment_placeholder ) } name="comment" onChange={ setComment } />
-							<FORMDATA />
-						</DIV>
-					</DIV>
-					<DIV className={ style.actions } >
-						<span className={ style.terms } >
-							<input id="Terms" type="checkbox" value="1" />
-							<FormattedMessage
-								id="accept_terms"
-								values={ { 
-									terms: <A id="TermsLabel" onClick={ showDialog.bind( this, 'TERMS' ) } >{  formatMessage( messages.terms ) }</A>
-								} }
-							/>
-						</span>
-						<span className={ style.action } >
-							<CANCEL className={ style.cancel } onClick={ resetMain } label={ formatMessage( messages.cancel ) } />
-							<GO onClick={ _checkTerms } label={ formatMessage( messages.upload_image ) } />
-						</span>
-					</DIV>
-				</DIV>
+			<FORM id="Form" action="javascript:;" className={ clsJazz } >
+				{ image.dataURL && <IMG src={ image.dataURL } alt={ formatMessage( messages.img_alt ) } /> }
+				<H priority={ 2 }>{ formatMessage( messages.hurray ) }</H>
+				<RADIOGROUP controlled={ false } form="Form" label={ formatMessage( messages.select_material ) } name="material" options={ mats } onChange={ setMaterial } preferPlaceholder={ false } >
+					{ " " }<A onClick={ showDialog.bind( this, 'DEFINEMATERIAL' ) }>{ formatMessage( messages.define_material ) }</A>
+				</RADIOGROUP>
+				<COMMENT form="Form" label={ formatMessage( messages.comment ) } preferPlaceholder={ false } placeholder={ formatMessage( messages.comment_placeholder ) } name="comment" onChange={ setComment } />
+				<FORMDATA />
+				<P className={ style.terms } >
+					<INPUT id="Terms" type="checkbox" value="1" form="Form" name="terms" />
+					<FormattedMessage id="accept_terms" values={ { terms: <A onClick={ showDialog.bind( this, 'TERMS' ) } >{  formatMessage( messages.terms ) }</A> } } />
+				</P>
+				<CANCEL className={ style.cancel } onClick={ resetMain } label={ formatMessage( messages.cancel ) } />
+				<GO onClick={ _checkTerms } label={ formatMessage( messages.upload_image ) } />
 			</FORM>
 
 		)
@@ -285,3 +270,34 @@ form.propTypes = {
 }
 
 export default injectIntl( form )
+
+/*<FORM id="Form" action="#" className={ cls } >
+				<DIV>
+					<DIV id="Sheet" className={ style.sheet } >
+						{ image.dataURL && <DIV className={ style.image } style={ { backgroundImage: 'url(' + image.dataURL + ')' } } ></DIV> }
+						<DIV id="Content" className={ style.content } >
+							<H priority={ 2 }>{ formatMessage( messages.hurray ) }</H>
+							<ICONRADIOGROUP checkedValue={ checkedValue } form="Form" label={ formatMessage( messages.select_material ) } name="material" options={ mats } onClick={ setMaterial } preferPlaceholder={ false } className={ style.iconradiogroup } >
+								{ " " }<SMALL><A onClick={ showDialog.bind( this, 'DEFINEMATERIAL' ) }>{ formatMessage( messages.define_material ) }</A></SMALL>
+							</ICONRADIOGROUP>
+							<COMMENT className={ style.comment } form="Form" label={ formatMessage( messages.comment ) }  preferPlaceholder={ false } placeholder={ formatMessage( messages.comment_placeholder ) } name="comment" onChange={ setComment } />
+							<FORMDATA />
+						</DIV>
+					</DIV>
+					<DIV className={ style.actions } >
+						<span className={ style.terms } >
+							<input id="Terms" type="checkbox" value="1" />
+							<FormattedMessage
+								id="accept_terms"
+								values={ { 
+									terms: <A id="TermsLabel" onClick={ showDialog.bind( this, 'TERMS' ) } >{  formatMessage( messages.terms ) }</A>
+								} }
+							/>
+						</span>
+						<span className={ style.action } >
+							<CANCEL className={ style.cancel } onClick={ resetMain } label={ formatMessage( messages.cancel ) } />
+							<GO onClick={ _checkTerms } label={ formatMessage( messages.upload_image ) } />
+						</span>
+					</DIV>
+				</DIV>
+			</FORM>*/

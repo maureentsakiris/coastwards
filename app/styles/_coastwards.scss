@@ -2,24 +2,6 @@ $fringe-height: 100px;
 $screen-overlay-color: rgba(255, 255, 255, 0.7);
 $toggle-border: 1px solid rgba(0, 0, 0, 0.1);
 
-/* %alert{
-
-	border: 3px solid $color-primary;
-	border-radius: 3px;
-	padding: 1em;
-	font-weight: bold;
-	color: $color-primary;
-
-} */
-
-
-
-/* %pad{
-
-	padding-right: $site-padding-sides;
-	padding-left: $site-padding-sides;
-	
-} */
 
 %toggle{
 
@@ -44,37 +26,6 @@ $toggle-border: 1px solid rgba(0, 0, 0, 0.1);
 
 }
 
-%screenNoJazz{
-
-	text-align: center;
-
-	h2{
-
-		font-weight: 200;
-
-	}
-
-}
-
-%screenInit{
-
-	visibility: hidden;
-	opacity: 0;
-	pointer-events: none;
-	//transition: opacity 200ms;
-	display: none;
-
-}
-
-%screenShow{
-
-	opacity: 1;
-	pointer-events: all;
-	display: block;
-	visibility: visible;
-
-}
-
 %sectionHeader{
 
 	font-size: 2.5em;
@@ -92,10 +43,44 @@ $toggle-border: 1px solid rgba(0, 0, 0, 0.1);
 
 }
 
-%guidelineHeader{
+%mobile-padding{
 
-	font-family: "Roboto Slab";
-	font-size: 1.2em;
+	padding-left: $mobile-margin;
+	padding-right: $mobile-margin;
+
+}
+
+
+
+%screenNoJazz{
+
+	text-align: center;
+
+	h2{
+
+		font-weight: 200;
+
+	}
+
+}
+
+%screenInit{
+
+	@extend %hide;
+	padding: 5vh 5vw;
+
+	h2{
+
+		max-width: $corset-width;
+		font-weight: 400;
+
+	}
+
+}
+
+%screenShow{
+
+	@extend %show;
 
 }
 
@@ -115,6 +100,7 @@ $toggle-border: 1px solid rgba(0, 0, 0, 0.1);
 		margin: 0.5em 0;
 		text-transform: uppercase;
 		font-size: 0.7em;
+		text-align: center;
 
 	}
 
@@ -127,29 +113,6 @@ $toggle-border: 1px solid rgba(0, 0, 0, 0.1);
 	text-transform: uppercase;
 
 }
-
-/* %materialBtn{
-
-	border: none;
-	border-radius: 50%;
-	width: 66px;
-	height: 66px;
-	color: #ffffff;
-	box-shadow: 0 1px 1.5px 0 rgba(0,0,0,.12),0 1px 1px 0 rgba(0,0,0,.24);
-	cursor: pointer;
-	background-color: $color-primary;
-
-} */
-
-/* %roundBtn{
-
-	@extend %materialBtn;
-	position: absolute;
-	top: 20px;
-	right: 20px;
-	z-index: 1;
-	
-} */
 
 %drawershadow{
 

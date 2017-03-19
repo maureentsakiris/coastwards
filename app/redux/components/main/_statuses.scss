@@ -22,6 +22,7 @@
 .jazz{
 
 	@extend %statuses;
+
 	.spinner{
 
 		@extend %spinner;
@@ -29,21 +30,3 @@
 	}
 
 }
-
-/* .statuses{
-
-	@extend %screenInit;
-
-}
-
-.show{
-
-	@extend %screenShow;
-
-}
-
-.spinner{
-
-	@extend %spinner;
-
-} */

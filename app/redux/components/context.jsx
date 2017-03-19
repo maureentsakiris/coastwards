@@ -32,12 +32,6 @@ import style from './_context'
 
 const messages = defineMessages( {
 
-	arrow_up_title:{
-		id: "arrow_up_title",
-		description: "Title - ",
-		defaultMessage: "Show intro"
-	},
-
 	// INTRO
 	help_science:{
 		id: "help_science",
@@ -107,23 +101,32 @@ const context = ( { intl, lang, dir, jazzSupported, clipped, useraction, infosSt
 
 	}else{
 
+		let clsTop = Classnames( style.top, {
+
+			[ style.show ]: !clipped
+
+		} )
+
 		return(
 
 			<DIV lang={ lang } dir={ dir } >
 				<DIV className={ style.jazz } >
-					<I18nLinks availableLanguages={ i18nLocales.locales } className={ style.i18n } />
-					<DIV className={ style.intro } >
-						<IMG className={ style.logo } src="./assets/coastwards.svg" alt="Logo coastwards: A turtle on a mission" />
-						<H priority={ 1 } className={ style.headline } >{ formatMessage( messages.help_science ) } { formatMessage( messages.by ) }</H>
-						<H priority={ 2 } className={ style.tagline } >{ formatMessage( messages.no_account ) }</H>
-						<A className={ clsMore } onClick={ setInfosState.bind( this, !infosState ) } >{ formatMessage( messages.more_info ) }</A>
+					<DIV className={ clsTop } >
+						<I18nLinks availableLanguages={ i18nLocales.locales } className={ style.i18n } />
+						<DIV className={ style.intro } >
+							<IMG className={ style.logo } src="./assets/coastwards.svg" alt="Logo coastwards: A turtle on a mission" />
+							<H priority={ 1 } className={ style.headline } >{ formatMessage( messages.help_science ) } { formatMessage( messages.by ) }</H>
+							<H priority={ 2 } className={ style.tagline } >{ formatMessage( messages.no_account ) }</H>
+							<A className={ clsMore } onClick={ setInfosState.bind( this, !infosState ) } >{ formatMessage( messages.more_info ) }</A>
+						</DIV>
+						<DIV className={ clsInfo }>
+							<How />
+							<Guidelines />
+							<Team />
+							<Ask />
+						</DIV>
 					</DIV>
-					<DIV className={ clsInfo }>
-						<How />
-						<Guidelines />
-						<Team />
-						<Ask />
-					</DIV>
+					<Main />
 				</DIV>
 				<Snackbar />
 				<Dialog />

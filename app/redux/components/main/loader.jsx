@@ -8,7 +8,7 @@ import style from './_loader'
 
 const loader = ( { className, show } ) => {
 
-	const cls = Classnames( className, style.loader, {
+	const clsJazz = Classnames( className, style.jazz, {
 
 		[ style.show ]: show
 
@@ -16,7 +16,7 @@ const loader = ( { className, show } ) => {
 
 	return(
 
-		<DIV id="Loader" className={ cls } >
+		<DIV id="Loader" className={ clsJazz } >
 			<DIV className={ style.spinner }></DIV>
 		</DIV>
 

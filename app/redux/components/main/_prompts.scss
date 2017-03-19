@@ -2,7 +2,6 @@
 
 %prompts{
 
-	@extend %screenNoJazz;
 	@extend %screenInit;
 
 	&.show{
@@ -32,71 +31,13 @@
 
 .noJazz{
 
+	@extend %screenNoJazz;
 	@extend %prompts;
 
 }
 
+.jazz{
 
-/* .prompts{
-
-	@extend %screenInit;
-
-	h2{
-
-		font-size: 2em;
-
-	}
-
-	@include min( $tablet ){
-
-		h2{
-
-			font-size: 2.5em !important;
-
-		}
-
-	}
-
-} */
-
-/* .show{
-
-	@extend %screenShow;
-
-} */
-
-
-/* .logo{
-
-	width: 220px;
-	margin: 0 auto;
-	display: block;
-	position: relative;
-	top: 15px;
+	@extend %prompts;
 
 }
-
-.option{
-
-	@extend %screenOption;
-}
-
-.toomany{
-
-	position: absolute;
-	bottom: $gutter-width;
-
-}
-
-.selecthelp{
-
-	margin-bottom: 1em;
-
-}
-
-.header{
-
-	margin-bottom: 0.3em;
-
-} */
-

@@ -1,5 +1,6 @@
 import { connect } from 'react-redux'
 import MAIN from 'components/main/main'
+import { unclipPage } from 'actions/main/main'
 
 
 const mapStateToProps = ( state ) => {
@@ -8,32 +9,33 @@ const mapStateToProps = ( state ) => {
 	return {
 
 		uploadSupported: state.browser.uploadSupported,
-		jazzSupported: state.browser.jazzSupported
+		jazzSupported: state.browser.jazzSupported,
+		useraction: state.useraction
 
 	}
 
 }
 
-/*const mapDispatchToProps = ( dispatch ) => {
+const mapDispatchToProps = ( dispatch ) => {
 
 	return {
 
-		scrollUp: ( e ) => {
+		unclipPage: ( e ) => {
 
 			e.preventDefault()
-			dispatch( scrollUp() )
+			dispatch( unclipPage() )
 
 		}
 
 	}
 
-}*/
+}
 
 
 const main = connect(
 
-	mapStateToProps/*,
-	mapDispatchToProps*/
+	mapStateToProps,
+	mapDispatchToProps
 
 )( MAIN )
 

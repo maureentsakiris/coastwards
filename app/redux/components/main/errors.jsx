@@ -127,26 +127,20 @@ const errors = ( { intl, className, jazzSupported, show, error, upload } ) => {
 
 	}else{
 
-		return (
-
-			<DIV>error</DIV>
-
-		)
-
-		/*const cls = Classnames( className, style.errors, {
+		const clsJazz = Classnames( className, style.jazz, {
 
 			[ style.show ]: show
 
 		} )
 
-		return(
+		return (
 
-			<DIV id="Errors" className={ cls } >
+			<DIV id="Errors" className={ clsJazz } >
 				<H priority={ 2 }>{ str }</H>
 				{ upload && <ACTIONS /> }
 			</DIV>
 
-		)*/
+		)
 
 	}
 	

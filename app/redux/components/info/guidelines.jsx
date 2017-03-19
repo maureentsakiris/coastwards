@@ -1,13 +1,11 @@
 import React, { PropTypes } from 'react'
 import { defineMessages, injectIntl, intlShape } from 'react-intl'
 
-//import TOGGLE from 'components/ui/toggle'
 import P from 'components/tags/p'
 import H from 'components/tags/h'
 import A from 'components/tags/a'
 import OL from 'components/tags/ol'
 import LI from 'components/tags/li'
-import IMG from 'components/tags/img'
 import DIV from 'components/tags/div'
 
 import style from './_guidelines'
@@ -76,11 +74,11 @@ const messages = defineMessages( {
 		description: "Guideline - Coasts",
 		defaultMessage: "Harbors, cliffs, promenades alongside the water ... anything that touches the oceans and seas."
 	},
-	guidelines_and:{
+	/*guidelines_and:{
 		id: "guidelines_and",
 		description: " - ",
 		defaultMessage: "and"
-	},
+	},*/
 	guideline_closer_header:{
 		id: "guideline_closer_header",
 		description: "Header - ",
@@ -94,7 +92,6 @@ const guidelines = ( { intl, jazzSupported, showDialog } ) => {
 	const { formatMessage } = intl
 
 	if( !jazzSupported ){
-
 
 		return(
 
@@ -118,65 +115,45 @@ const guidelines = ( { intl, jazzSupported, showDialog } ) => {
 						<H priority={ 4 } >{ formatMessage( messages.guideline_coasts_header ) }</H>
 						<P>{ formatMessage( messages.guideline_coasts_text ) }</P>
 					</LI>
+					<LI>
+						<H priority={ 4 } >{ formatMessage( messages.guideline_closer_header ) }</H>
+					</LI>
 				</OL>
 			</DIV>
 
 		)
-
 
 	}else{
 
-		/*style={ { backgroundImage: "url(assets/guidelines/guidelines-bg.png)" } }*/
-		/*<IMG src="assets/guidelines/popup.png" alt="Popup" />*/
-		//<A className={ style.read } >{ formatMessage( messages.any_picture_title ) }</A>
-		//<H priority={ 4 } >{ formatMessage( messages.any_picture_title ) }</H>
-
 		return(
 
-			<DIV className={ style.guidelines } >
-				<DIV className={ style.box } >
-					<H priority={ 3 } >{ formatMessage( messages.any_picture ) }</H>
-					<P className={ style.intro } >{ formatMessage( messages.any_coast ) }</P>
-				</DIV>
-				<OL className={ style.list } >
-					<LI className={ style.guideline } >
-						<IMG src="assets/guidelines/original.svg" alt={ formatMessage( messages.guideline_original_header ) } />
-						<DIV>
-							<H priority={ 4 } >{ formatMessage( messages.guideline_original_header ) }</H>
-							<P>{ formatMessage( messages.guideline_original_text ) }</P>
-						</DIV>
+			<DIV id="Guidelines" className={ style.jazz } >
+				<H priority={ 3 } >{ formatMessage( messages.any_picture ) }</H>
+				<P>{ formatMessage( messages.any_coast ) }</P>
+				<OL>
+					<LI>
+						<H priority={ 4 } >{ formatMessage( messages.guideline_original_header ) }</H>
+						<P>{ formatMessage( messages.guideline_original_text ) }</P>
 					</LI>
-					<LI className={ style.guideline } >
-						<IMG src="assets/guidelines/faces.svg" alt={ formatMessage( messages.guideline_faces_header ) } />
-						<DIV>
-							<H priority={ 4 } >{ formatMessage( messages.guideline_faces_header ) }</H>
-							<P>{ formatMessage( messages.guideline_faces_text ) }</P>
-						</DIV>
+					<LI>
+						<H priority={ 4 } >{ formatMessage( messages.guideline_faces_header ) }</H>
+						<P>{ formatMessage( messages.guideline_faces_text ) }</P>
 					</LI>
-					<LI className={ style.guideline } >
-						<IMG src="assets/guidelines/material.svg" alt={ formatMessage( messages.guideline_material_header ) } />
-						<DIV>
-							<H priority={ 4 } >{ formatMessage( messages.guideline_material_header ) }</H>
-							<P>{ formatMessage( messages.guideline_material_text ) } <A onClick={ showDialog.bind( this, 'DEFINEMATERIAL' ) }>{ formatMessage( messages.guideline_material_help ) }</A></P>
-						</DIV>
+					<LI>
+						<H priority={ 4 } >{ formatMessage( messages.guideline_material_header ) }</H>
+						<P>{ formatMessage( messages.guideline_material_text ) } <A onClick={ showDialog.bind( this, 'DEFINEMATERIAL' ) }>{ formatMessage( messages.guideline_material_help ) }</A></P>
 					</LI>
-					<LI className={ style.guideline } >
-						<IMG src="assets/guidelines/harbor.svg" alt={ formatMessage( messages.guideline_coasts_header ) } />
-						<DIV>
-							<H priority={ 4 } >{ formatMessage( messages.guideline_coasts_header ) }</H>
-							<P>{ formatMessage( messages.guideline_coasts_text ) }</P>
-						</DIV>
+					<LI>
+						<H priority={ 4 } >{ formatMessage( messages.guideline_coasts_header ) }</H>
+						<P>{ formatMessage( messages.guideline_coasts_text ) }</P>
 					</LI>
-					<LI className={ style.guideline } >
-						<DIV>
-							<H priority={ 4 } >{ formatMessage( messages.guideline_closer_header ) }</H>
-						</DIV>
+					<LI>
+						<H priority={ 4 } >{ formatMessage( messages.guideline_closer_header ) }</H>
 					</LI>
 				</OL>
 			</DIV>
 
 		)
-
 
 	}
 
@@ -191,40 +168,4 @@ guidelines.propTypes = {
 
 }
 
-export default injectIntl( guidelines ) 
-
-/*<TOGGLE id="Guidelines" title={ formatMessage( messages.any_picture_title ) } priority={ 3 } text={ formatMessage( messages.any_picture ) } className={ style.toggle } >
-				<P>{ formatMessage( messages.any_coast ) }</P>
-				<OL className={ style.guidelines } >
-					<LI className={ style.guideline } >
-						<IMG src="assets/guidelines/original.svg" alt={ formatMessage( messages.guideline_original_header ) } />
-						<DIV>
-							<H priority={ 4 } >{ formatMessage( messages.guideline_original_header ) }</H>
-							<P>{ formatMessage( messages.guideline_original_text ) }</P>
-						</DIV>
-					</LI>
-					<LI className={ style.guideline } >
-						<IMG src="assets/guidelines/faces.svg" alt={ formatMessage( messages.guideline_faces_header ) } />
-						<DIV>
-							<H priority={ 4 } >{ formatMessage( messages.guideline_faces_header ) }</H>
-							<P>{ formatMessage( messages.guideline_faces_text ) }</P>
-						</DIV>
-					</LI>
-					<LI className={ style.guideline } >
-						<IMG src="assets/guidelines/material.svg" alt={ formatMessage( messages.guideline_material_header ) } />
-						<DIV>
-							<H priority={ 4 } >{ formatMessage( messages.guideline_material_header ) }</H>
-							<P>{ formatMessage( messages.guideline_material_text ) } <A onClick={ showDialog.bind( this, 'DEFINEMATERIAL' ) }>{ formatMessage( messages.guideline_material_help ) }</A></P>
-						</DIV>
-					</LI>
-					<LI className={ style.guideline } >
-						<IMG src="assets/guidelines/harbor.svg" alt={ formatMessage( messages.guideline_coasts_header ) } />
-						<DIV>
-							<H priority={ 4 } >{ formatMessage( messages.guideline_coasts_header ) }</H>
-							<P>{ formatMessage( messages.guideline_coasts_text ) }</P>
-						</DIV>
-					</LI>
-				</OL>
-				<H priority={ 4 } className={ style.and } >{ formatMessage( messages.guidelines_and ) }</H>
-				<H priority={ 4 } className={ style.closer }>{ formatMessage( messages.guideline_closer_header ) }</H>
-			</TOGGLE>*/
+export default injectIntl( guidelines )

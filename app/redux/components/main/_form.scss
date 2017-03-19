@@ -1,6 +1,6 @@
 @import 'app/styles/base';
 
-%form{
+.noJazz{
 
 	display: none;
 
@@ -10,18 +10,24 @@
 
 	}
 
-}
-
-.noJazz{
-
-	@extend %form;
-
 	.terms{
 
 		margin: 1em 0 3em 0;
 
 	}
 
+}
+
+.jazz{
+
+	@extend %hide;
+
+	&.show{
+
+		@extend %show;
+
+	}
+	
 }
 
 /* $actions-height: 60px;

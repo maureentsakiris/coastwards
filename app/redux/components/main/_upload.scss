@@ -47,6 +47,33 @@
 
 }
 
+.jazz{
+
+	@extend %upload;
+	pointer-events: none;
+
+	.uploadBtn{
+
+		@extend %roundBtn;
+		pointer-events: all;
+		position: absolute;
+		top: $mobile-margin;
+		right: $mobile-margin;
+		display: none;
+
+		&.show{
+
+			position: fixed;
+			display: block;
+
+
+		}
+
+
+	}
+
+}
+
 /* .dropzone{
 
 	width: 100%;

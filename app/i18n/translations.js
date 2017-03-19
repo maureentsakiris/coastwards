@@ -223,14 +223,14 @@
 			"ar": "الموانئ، والمنحدرات، منتزهات جنبا إلى جنب مع الماء ... أي شيء يمس المحيطات والبحار.",
 			"pt": ""
 		},
-		"guidelines_and": {
+		/*"guidelines_and": {
 			"en": "-and-",
 			"de": "-und-",
 			"es": "-y-",
 			"ar": "-و-",
 			"pt": "-e-",
 			"zh": "-和-"
-		},
+		},*/
 		"guideline_closer_header": {
 			"en": "The closer, the better!",
 			"de": "Je näher, desto besser!",
@@ -1058,10 +1058,10 @@
 			"pt": ""
 		},
 		"share_header": {
-			"en": "Go coastwards! Share with friends and family.",
-			"de": "Go coastwards! Teile mit Freunden und Familie.",
+			"en": "Share with friends and family.",
+			"de": "Teile mit Freunden und Familie.",
 			"es": "¡Comparte con amigos y familia!",
-			"ar": "حظاً موفقاً كوستواردز! شارك مع الأصدقاء والعائلة.",
+			"ar": "شارك مع الأصدقاء والعائلة.", //حظاً موفقاً كوستواردز! 
 			"pt": ""
 		},
 		"share_text_intro": {

@@ -22,38 +22,6 @@ const messages = defineMessages( {
 		description: "Status - Informs user that his image was uploaded successfully",
 		defaultMessage: "WOHOO! Nice one! Your image was uploaded. Next one! :)"
 	},
-
-	/*upload_image_prompt:{
-		id: "upload_image_prompt",
-		description: "Prompt - ",
-		defaultMessage: "Upload an image"
-	},
-	upload_image_prompt_title:{
-		id: "upload_image_prompt_title",
-		description: "Title - ",
-		defaultMessage: "Choose an image from your device"
-	},
-	or:{
-		id: "or",
-		description: "Prompt - ",
-		defaultMessage: "or"
-	},
-	tell_friend:{
-		id: "tell_friend",
-		description: "Prompt - ",
-		defaultMessage: "tell a friend"
-	},
-	tell_friend_title:{
-		id: "tell_friend_title",
-		description: " - ",
-		defaultMessage: "Share this website with friends and family"
-	},
-	just_browse:{
-		id: "just_browse",
-		description: "Prompt - ",
-		defaultMessage: "Just browse"
-	},*/
-
 	uploadBtn_title:{
 		id: "uploadBtn_title",
 		description: "Title - ",
@@ -112,26 +80,20 @@ const prompts = ( { intl, className, prompt, jazzSupported, show } ) => {
 
 	}else{
 
-		return (
-
-			<DIV>promot</DIV>
-
-		)
-
-		/*const cls = Classnames( style.prompts, {
+		const clsJazz = Classnames( className, style.jazz, {
 
 			[ style.show ]: show
 
 		} )
 
-		return(
+		return (
 
-			<DIV id="Prompts" className={ cls } >
+			<DIV id="Prompts" className={ clsJazz } >
 				<H priority={ 2 }>{ str }</H>
 				<ACTIONS />
 			</DIV>
 
-		)*/
+		)
 
 	}
 	

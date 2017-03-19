@@ -1,6 +1,6 @@
 @import 'app/styles/base';
 
-.noJazz{
+%ask{
 
 	h3{
 
@@ -10,132 +10,15 @@
 
 }
 
+.noJazz{
 
-
-
-
-
-
-
-.ask{
-
-	@extend %flexcontainer;
-	flex-direction: row;
-	flex-wrap: wrap;
-	justify-content: space-around;
-	align-items: center;
-
-	@include portrait(){
-
-		padding: 10vw 5vw 0;
-
-	}
-
-	@include landscape(){
-
-		padding: 10vh 5vw 0;
-
-	}
-	
-
-	&>*{
-
-		@extend %flexitem;
-		flex-shrink: 1;
-
-	}
-
-	.box{
-
-		max-width: $corset-width;
-
-		h3{
-
-			font-size: 3em;
-			color: $color-primary;
-			margin: 0 0 0.3em 0;
-			line-height: 1.2em;
-			font-weight: 200;
-
-		}
-
-		.intro{
-
-			font-size: 1.2em;
-
-		}
-
-		.read{
-
-			border: 2px solid #0076b7;
-			padding: 0.5em 2em;
-			border-radius: 2px;
-			display: inline-block;
-			font-size: 1.5em;
-			margin: 1.5em 0;
-
-		}
-
-	}
+	@extend %ask;
 
 }
 
-.toggle{
+.jazz{
 
-	@extend %toggle;
-	border-top: $toggle-border;
-	border-bottom: $toggle-border;;
-
-}
-
-.status{
-
-	margin-top: 2em;
-	height: 20px;
+	@extend %ask;
+	@extend %mobile-padding;
 
 }
-
-/* .form{
-
-	button{
-
-		border-radius: 3px;
-
-	}
-
-}
-
-.formJazz{
-
-	button{
-
-		background-color: #fff;
-		color: $color-primary;
-		border-radius: 2px;
-
-	}
-
-	textarea, input[type=text], input[type=email]{
-
-		border: none;
-		background-color: rgba(255, 255, 255, 0.2);
-
-	}
-
-	::-webkit-input-placeholder {
-	   color: #fff;
-	}
-
-	:-moz-placeholder {
-	   color: #fff;  
-	}
-
-	::-moz-placeholder {
-	   color: #fff;  
-	}
-
-	:-ms-input-placeholder {  
-	   color: #fff;  
-	}
-
-} */

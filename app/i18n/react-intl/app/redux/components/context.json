@@ -1,10 +1,5 @@
 [
   {
-    "id": "arrow_up_title",
-    "description": "Title -",
-    "defaultMessage": "Show intro"
-  },
-  {
     "id": "help_science",
     "description": "Main Header. Line one",
     "defaultMessage": "Help Science study the risks of sea-level rise"
