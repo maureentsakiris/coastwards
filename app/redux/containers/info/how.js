@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 
-import HOW from 'components/info/HOW'
+import HOW from 'components/info/how'
 
 const mapStateToProps = ( state ) => {
 
