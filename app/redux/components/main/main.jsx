@@ -72,8 +72,6 @@ const main = ( { intl, uploadSupported, jazzSupported, useraction, unclipPage } 
 
 	}else if ( uploadSupported && jazzSupported ) {
 
-		/*<Satellite className={ style.satellite } />*/
-
 		const clsArrow = Classnames( style.arrow, {
 
 			[ style.show ]: useraction == 'browsing'
@@ -86,12 +84,12 @@ const main = ( { intl, uploadSupported, jazzSupported, useraction, unclipPage } 
 				<Mapbox className={ style.mapbox } />
 				<Upload className={ style.fullscreen } />
 				<Loader className={ style.screen } />
-				<Locate key="locate" className={ style.screen } />
-				<Marker key="marker" className={ style.marker } />
+				<Locate className={ style.screen } />
+				<Marker className={ style.marker } />
 				<Prompts className={ style.screen } />
-				<Statuses key="statuses" className={ style.screen } />
-				<Errors key="errors" className={ style.screen } />
-				<Form className={ style.fullscreen } />
+				<Statuses className={ style.screen } />
+				<Errors className={ style.screen } />
+				<Form />
 				<Counter />
 				<Popup />
 				<DIV className={ clsArrow } >
@@ -118,14 +116,3 @@ main.propTypes = {
 }
 
 export default injectIntl( main )
-
-/*<Loader className={ style.screen } />
-				<Locate key="locate" className={ style.screen } />
-				<Marker key="marker" className={ style.marker } />
-				<Prompts key="prompts" className={ style.screen } />
-				<Statuses key="statuses" className={ style.screen } />
-				<Errors key="errors" className={ style.screen } />
-				<Form className={ style.form } />
-				<Upload className={ style.upload } />
-				<Counter />
-				<Popup />*/

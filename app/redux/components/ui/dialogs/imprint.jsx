@@ -7,6 +7,8 @@ import H from 'components/tags/h'
 import P from 'components/tags/p'
 import BR from 'components/tags/br'
 
+import LOGOS from 'containers/info/logos'
+
 import style from './_imprint'
 
 const messages = defineMessages( {
@@ -106,6 +108,8 @@ const imprint = ( { intl, className } ) => {
 					<P>Um unserer Beweispflicht nachzukommen, wird beim Hochladen eines Fotos die IP-Adresse des Teilnehmenden in unserer Datenbank gespeichert und mit dem Foto verknüpft. Die Speicherung und Verarbeitung dieser Daten geschieht im Einklang mit dem Datenschutzgesetz. Die erhobenen IP-Adressen werden vertraulich behandelt, innerhalb der Universität nur für den angegebenen Zweck erhoben und verwendet und nicht an Dritte weitergegeben.</P>
 				</DIV>
 			</TOGGLE>
+
+			<LOGOS />
 
 		</DIV>
 

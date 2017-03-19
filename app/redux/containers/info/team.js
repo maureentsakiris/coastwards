@@ -1,5 +1,6 @@
 import { connect } from 'react-redux'
 import { setSnackbarMessage } from 'actions/ui/snackbar'
+import { showDialog } from 'actions/ui/dialog'
 
 import TEAM from 'components/info/team'
 
@@ -24,6 +25,12 @@ const mapDispatchToProps = ( dispatch ) => {
 
 			e.preventDefault()
 			dispatch( setSnackbarMessage( msg, 1500 ) )
+
+		},
+		showDialog: ( component, e ) => {
+
+			e.preventDefault()
+			dispatch( showDialog( component ) )
 
 		}
 

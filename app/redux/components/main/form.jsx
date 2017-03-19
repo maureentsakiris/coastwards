@@ -14,18 +14,17 @@ import A from 'components/tags/a'
 import INPUT from 'components/tags/input'
 import P from 'components/tags/p'
 import SPAN from 'components/tags/span'
+import SMALL from 'components/tags/small'
 
 import RADIOGROUP from 'components/form/radiogroup/radiogroup'
 import ICONRADIOGROUP from 'components/form/radiogroup/iconradiogroup'
 import COMMENT from 'components/form/input/comment'
-import CHECKBOX from 'components/form/input/checkbox'
+
 
 /*import HASHTAG from 'components/form/input/hashtag'*/
 import CANCEL from 'components/form/button/cancel'
 import GO from 'components/form/button/go'
 
-import BR from 'components/tags/br'
-import SMALL from 'components/tags/small'
 
 import style from './_form'
 
@@ -205,24 +204,30 @@ const form = ( { intl, className, jazzSupported, show, image, checkedValue, mate
 
 		} )
 
-		/*<HASHTAG className={ style.hashtag } preferPlaceholder={ false } label={ formatMessage( messages.hashtag ) } placeholder={ formatMessage( messages.hashtag_placeholder ) } form="Form" name="hashtag" onChange={ setHashtag } />*/
-
 		return(
 
 			<FORM id="Form" action="javascript:;" className={ clsJazz } >
-				{ image.dataURL && <IMG src={ image.dataURL } alt={ formatMessage( messages.img_alt ) } /> }
-				<H priority={ 2 }>{ formatMessage( messages.hurray ) }</H>
-				<RADIOGROUP controlled={ false } form="Form" label={ formatMessage( messages.select_material ) } name="material" options={ mats } onChange={ setMaterial } preferPlaceholder={ false } >
-					{ " " }<A onClick={ showDialog.bind( this, 'DEFINEMATERIAL' ) }>{ formatMessage( messages.define_material ) }</A>
-				</RADIOGROUP>
-				<COMMENT form="Form" label={ formatMessage( messages.comment ) } preferPlaceholder={ false } placeholder={ formatMessage( messages.comment_placeholder ) } name="comment" onChange={ setComment } />
-				<FORMDATA />
-				<P className={ style.terms } >
-					<INPUT id="Terms" type="checkbox" value="1" form="Form" name="terms" />
-					<FormattedMessage id="accept_terms" values={ { terms: <A onClick={ showDialog.bind( this, 'TERMS' ) } >{  formatMessage( messages.terms ) }</A> } } />
-				</P>
-				<CANCEL className={ style.cancel } onClick={ resetMain } label={ formatMessage( messages.cancel ) } />
-				<GO onClick={ _checkTerms } label={ formatMessage( messages.upload_image ) } />
+				<DIV id="Sheet" className={ style.sheet } >
+					{ image.dataURL && <DIV className={ style.image } style={ { backgroundImage: 'url(' + image.dataURL + ')' } } ></DIV> }
+					<DIV className={ style.content } >
+						<H priority={ 2 }>{ formatMessage( messages.hurray ) }</H>
+						<ICONRADIOGROUP className={ style.iconradiogroup } checkedValue={ checkedValue } form="Form" label={ formatMessage( messages.select_material ) } name="material" options={ mats } onClick={ setMaterial } preferPlaceholder={ false } >
+							{ " " }<SMALL><A onClick={ showDialog.bind( this, 'DEFINEMATERIAL' ) }>{ formatMessage( messages.define_material ) }</A></SMALL>
+						</ICONRADIOGROUP>
+						<COMMENT form="Form" label={ formatMessage( messages.comment ) } preferPlaceholder={ false } placeholder={ formatMessage( messages.comment_placeholder ) } name="comment" onChange={ setComment } />
+						<FORMDATA />
+					</DIV>
+				</DIV>
+				<DIV className={ style.actions } >
+					<SPAN className={ style.terms } >
+						<INPUT id="Terms" type="checkbox" value="1" form="Form" name="terms" />
+						<FormattedMessage id="accept_terms" values={ { terms: <A onClick={ showDialog.bind( this, 'TERMS' ) } >{  formatMessage( messages.terms ) }</A> } } />
+					</SPAN>
+					<SPAN className={ style.buttons } >
+						<CANCEL className={ style.cancel } onClick={ resetMain } label={ formatMessage( messages.cancel ) } />
+						<GO onClick={ _checkTerms } label={ formatMessage( messages.upload_image ) } />
+					</SPAN>
+				</DIV>
 			</FORM>
 
 		)
@@ -270,34 +275,3 @@ form.propTypes = {
 }
 
 export default injectIntl( form )
-
-/*<FORM id="Form" action="#" className={ cls } >
-				<DIV>
-					<DIV id="Sheet" className={ style.sheet } >
-						{ image.dataURL && <DIV className={ style.image } style={ { backgroundImage: 'url(' + image.dataURL + ')' } } ></DIV> }
-						<DIV id="Content" className={ style.content } >
-							<H priority={ 2 }>{ formatMessage( messages.hurray ) }</H>
-							<ICONRADIOGROUP checkedValue={ checkedValue } form="Form" label={ formatMessage( messages.select_material ) } name="material" options={ mats } onClick={ setMaterial } preferPlaceholder={ false } className={ style.iconradiogroup } >
-								{ " " }<SMALL><A onClick={ showDialog.bind( this, 'DEFINEMATERIAL' ) }>{ formatMessage( messages.define_material ) }</A></SMALL>
-							</ICONRADIOGROUP>
-							<COMMENT className={ style.comment } form="Form" label={ formatMessage( messages.comment ) }  preferPlaceholder={ false } placeholder={ formatMessage( messages.comment_placeholder ) } name="comment" onChange={ setComment } />
-							<FORMDATA />
-						</DIV>
-					</DIV>
-					<DIV className={ style.actions } >
-						<span className={ style.terms } >
-							<input id="Terms" type="checkbox" value="1" />
-							<FormattedMessage
-								id="accept_terms"
-								values={ { 
-									terms: <A id="TermsLabel" onClick={ showDialog.bind( this, 'TERMS' ) } >{  formatMessage( messages.terms ) }</A>
-								} }
-							/>
-						</span>
-						<span className={ style.action } >
-							<CANCEL className={ style.cancel } onClick={ resetMain } label={ formatMessage( messages.cancel ) } />
-							<GO onClick={ _checkTerms } label={ formatMessage( messages.upload_image ) } />
-						</span>
-					</DIV>
-				</DIV>
-			</FORM>*/

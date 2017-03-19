@@ -23,21 +23,16 @@ const messages = defineMessages( {
 
 } )
 
-const logos = ( { intl, jazzSupported, showDialog } ) => {
+const logos = ( { intl, jazzSupported } ) => {
 
 	const { formatMessage } = intl
-
-	/*<P>{ formatMessage( messages.project_by ) } | <A onClick={ showDialog.bind( this, 'IMPRINT' ) }>{ formatMessage( messages.legal_notice ) }</A></P>
-				<P>
-
-				</P>*/
 
 	if( !jazzSupported ){
 
 		return(
 
 			<DIV id="Logos" className={ style.noJazz } >
-				<P>{ formatMessage( messages.project_by ) } | <A onClick={ showDialog.bind( this, 'IMPRINT' ) } >{ formatMessage( messages.legal_notice ) }</A></P>
+				<P>{ formatMessage( messages.project_by ) }</P>
 				<A target="_blank" href="http://www.futureocean.org" ><IMG src="assets/Cluster-of-Excellence-The-Future-Ocean.jpg" alt="Cluster of Excellence The Future Ocean" /></A>
 				<A target="_blank" href="https://www.uni-kiel.de" ><IMG src="assets/Christian-Albrechts-Universitat-zu-Kiel.png" alt="Christian Albrechts Universität zu Kiel" /></A>
 				<A target="_blank" href="http://www.crslr.uni-kiel.de" ><IMG src="assets/Coastal-Risks-And-Sea-Level-Rise-Research-Group.png" alt="Coastal Risks and Sea-Level Rise Research Group" /></A>
@@ -49,24 +44,16 @@ const logos = ( { intl, jazzSupported, showDialog } ) => {
 
 		return (
 
-			<P>logos</P>
+			<DIV id="Logos" className={ style.jazz } >
+				<P>{ formatMessage( messages.project_by ) }</P>
+				<A target="_blank" href="http://www.futureocean.org" ><IMG src="assets/Cluster-of-Excellence-The-Future-Ocean.jpg" alt="Cluster of Excellence The Future Ocean" /></A>
+				<A target="_blank" href="https://www.uni-kiel.de" ><IMG src="assets/Christian-Albrechts-Universitat-zu-Kiel.png" alt="Christian Albrechts Universität zu Kiel" /></A>
+				<A target="_blank" href="http://www.crslr.uni-kiel.de" ><IMG src="assets/Coastal-Risks-And-Sea-Level-Rise-Research-Group.png" alt="Coastal Risks and Sea-Level Rise Research Group" /></A>
+			</DIV>
 
 		)
 
 	}
-
-	/*return(
-
-		<DIV className={ style.logos }>
-			<DIV className={ style.box }>
-				<DIV className={ style.links }>
-					<A target="_blank" href="http://www.futureocean.org"><IMG src="assets/Cluster-of-Excellence-The-Future-Ocean.jpg" alt="Cluster of Excellence The Future Ocean" /></A>
-					<A target="_blank" href="https://www.uni-kiel.de"><IMG src="assets/Christian-Albrechts-Universitat-zu-Kiel.png" alt="Christian Albrechts Universität zu Kiel" /></A>
-					<A target="_blank" href="http://www.crslr.uni-kiel.de"><IMG src="assets/Coastal-Risks-And-Sea-Level-Rise-Research-Group.png" alt="Coastal Risks and Sea-Level Rise Research Group" /></A>
-				</DIV>
-			</DIV>
-		</DIV>
-	)*/
 
 }
 
@@ -74,9 +61,7 @@ logos.propTypes = {
 
 	intl: intlShape.isRequired,
 
-	jazzSupported: PropTypes.bool,
-
-	showDialog: PropTypes.func
+	jazzSupported: PropTypes.bool
 
 }
 

@@ -15,36 +15,6 @@
     "defaultMessage": "We are the {crslr} at the University of Kiel in Germany and this project is funded by the {future_ocean}."
   },
   {
-    "id": "more",
-    "description": "Team",
-    "defaultMessage": "More"
-  },
-  {
-    "id": "more_title",
-    "description": "Title -",
-    "defaultMessage": "A bit more official ..."
-  },
-  {
-    "id": "nassos",
-    "description": "Team",
-    "defaultMessage": "Nassos is the group leader and a professor at the University of Kiel. He's Greek, has two little boys and his desk looks like hell."
-  },
-  {
-    "id": "claudia",
-    "description": "Team",
-    "defaultMessage": "Claudia is a Doctoral Researcher and the rising star who will turn your images into something meaningful. She's a charming tough questioner and eager to learn for herself. She's also always the first to laugh."
-  },
-  {
-    "id": "me",
-    "description": "Team",
-    "defaultMessage": "That's me. I created this website with a lot of love and endless hours of just staring at it. (Developers: Node, React and Redux ROCK!)"
-  },
-  {
-    "id": "contact_here",
-    "description": "Contact",
-    "defaultMessage": "Contact us here"
-  },
-  {
     "id": "special_thanks",
     "description": "H",
     "defaultMessage": "Special thanks to"
@@ -63,5 +33,10 @@
     "id": "pholpo",
     "description": "P -",
     "defaultMessage": "For the explanatory video and general support"
+  },
+  {
+    "id": "legal_notice",
+    "description": "A -",
+    "defaultMessage": "Imprint"
   }
 ]

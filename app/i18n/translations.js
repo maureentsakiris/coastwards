@@ -328,13 +328,13 @@
 			"ar": "لذلك فإن صورك ستساعد العلماء لتقديم أفضل نصائحهم حول كيفية حماية أنفسنا، أطفالنا وأحفادنا من ارتفاع مستوى سطح البحر.",
 			"pt": "Ou seja as tuas fotografias ajudam aos cientistas a tomar as melhores decisões para proteger nos a nós, os nossos filhos e netos da subida do nível do mar."
 		},
-		/*"project_by": {
+		"project_by": {
 			"en": "A project by",
 			"de": "Ein Projekt von",
 			"es": "Un proyecto de",
 			"ar": "مشروع تم تطويره من قبل",
 			"pt": ""
-		},*/
+		},
 		"legal_notice": {
 			"en": "Imprint",
 			"de": "Impressum",

@@ -26,12 +26,26 @@
 
 	}
 
+	%screen{
+
+		@extend %fullscreen;
+		z-index: 1;
+		background-color: $screen-overlay-color;
+
+		@extend %flexcontainer;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+
+	}
+
 	position: relative;
 	height: 100vh;
 	width: 100vw;
 	overflow: hidden;
 
-	touch-action: none;
+	//touch-action: none;
 
 	.mapbox{
 
@@ -48,15 +62,14 @@
 
 	.screen{
 
-		@extend %fullscreen;
-		z-index: 1;
-		background-color: $screen-overlay-color;
+		@extend %screen;
 
-		@extend %flexcontainer;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		text-align: center;
+	}
+
+	.marker{
+
+		@extend %screen;
+		background-color: transparent;
 
 	}
 
@@ -86,171 +99,3 @@
 	}
 
 }
-
-
-
-/* .screen{
-
-	@extend %fullscreen;
-	@extend %flexcontainer;
-	justify-content: center;
-	align-items: center;
-	align-content: center;
-	flex-direction: column;
-	text-align: center;
-	padding: $fringe-height $site-padding-sides;
-	background-color: $screen-overlay-color;
-	z-index: 1;
-
-	h2{
-
-		font-weight: 400;
-		max-width: 800px;
-		line-height: 1.5em;
-
-	}
-
-	@media ( min-width: #{ $tablet } ) {
-
-		h2{
-
-			font-size: 1.8em;
-
-		}
-
-	}
-
-} */
-
-
-
-
-
-
-
-
-/* .noupload, .barebones{
-
-	@extend %corset;
-	margin-top: 3em;
-	margin-bottom: $site-padding-bottom;
-	padding: 0 $site-padding-sides;
-
-} */
-
-
-/* .corset{
-
-	@extend %corset;
-
-} */
-
-/* .mapbox{
-
-	height: 100%;
-	top: 0;
-
-} */
-
-/* %fullscreen{
-
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	top: 0;
-	left: 0;
-
-} */
-
-/* .upload{
-
-	@extend %fullscreen;
-	pointer-events: none;
-
-	button{
-
-		pointer-events: all;
-
-	}
-
-} */
-
-/* .form{
-
-	@extend %fullscreen;
-	//background-color: rgba(255, 255, 255, 0.7);
-	background-color: rgba(0, 0, 0, 0.6);
-
-} */
-/* 
-.marker{
-
-	@extend %fullscreen;
-	@extend %flexcontainer;
-	justify-content: center;
-	align-items: center;
-	align-content: center;
-	flex-direction: column;
-	text-align: center;
-	padding: $fringe-height $site-padding-sides;
-
-}
-
-
-
-
-.up{
-
-	position: absolute;
-    bottom: $gutter-width;
-    left: $gutter-width;
-    z-index: 1;
-    text-transform: uppercase;
-    width: 65px;
-
-    i{
-
-    	vertical-align: text-bottom;
-
-    }
-
-} */
-
-/* .toomany{
-
-	position: absolute;
-	width: 100%;
-	bottom: 0;
-	left: 0;
-	padding: $gutter-width;
-	text-align: center;
-
-} */
-
-
-/* .enter {
-
-  opacity: 0.1;
-
-}
-
-.enterActive {
-  
-  opacity: 1;
-  transition: opacity 300ms ease-in;
-
-}
-
-.leave {
- 
- 	opacity: 1;
-
-}
-
-.leaveActive {
-
-  opacity: 0.1;
-  transition: opacity 300ms ease-in;
-  
-} */
-

@@ -69,6 +69,26 @@
 
 		}
 
+	}
+
+	.dropzone{
+
+		width: 100%;
+		height: 100%;
+		background-color:  rgba(0, 88, 230, 0);
+		transition: background-color 500ms;
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 0;
+		pointer-events: none;
+
+	}
+
+	.dropzoneActive{
+
+		pointer-events: all;
+		background-color:  rgba(0, 88, 230, 0.25);
 
 	}
 

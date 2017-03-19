@@ -6,7 +6,6 @@ import FORM from 'components/tags/form'
 import DIV from 'components/tags/div'
 import INPUT from 'components/tags/input'
 import P from 'components/tags/p'
-import BR from 'components/tags/br'
 import BUTTON from 'components/tags/button'
 import I from 'components/tags/i'
 
@@ -135,10 +134,17 @@ class upload extends Component{
 
 			} )
 
+			const clsDropzone = Classnames( style.dropzone, {
+
+				[ style.dropzoneActive ]: dropzoneActive
+
+			} )
+
 			return(
 
 				<FORM id="Upload" action="javascript:;" className={ clsJazz } >
 					<BUTTON className={ clsUploadBtn } onClick={ openInput } ><I className="material-icons">&#xE439;</I></BUTTON>
+					<DIV onDragLeave={ this._onDragLeave } onDrop={ this._onDrop.bind( this ) } className={ clsDropzone } ></DIV>
 					<INPUT id="images" name="images" onChange={ validateFile } form="Upload" type="file" multiple={ false } accept="image/*" />
 				</FORM>
 
