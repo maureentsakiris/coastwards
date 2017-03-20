@@ -35,6 +35,12 @@
 
 	@include min( $tablet ){
 
+		font-size: 48px;
+
+	}
+
+	@include min( $huge ){
+
 		font-size: 64px;
 
 	}
@@ -44,11 +50,17 @@
 %tagline{
 
 	font-weight: 200;
-	font-size: 18px;
+	font-size: 16px;
 
 	@include min( $tablet ){
 
 		font-size: 24px;
+
+	}
+
+	@include min( $huge ){
+
+		font-size: 36px;
 
 	}
 
@@ -233,6 +245,13 @@
 
 				@extend %tagline;
 				margin-bottom: 0;
+				margin-top: 10vh; //same as .more
+				
+				@include min( $tablet ){
+
+					margin-top: 5vh;
+
+				}
 
 			}
 
