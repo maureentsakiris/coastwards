@@ -1,7 +1,5 @@
 import React, { PropTypes } from 'react'
 import { defineMessages, injectIntl, intlShape } from 'react-intl'
-import 'actions/ui/scroll'
-/*import { scrollToId } from 'actions/context'*/
 import Classnames from 'classnames'
 
 
@@ -18,14 +16,11 @@ import How from 'containers/info/how'
 import Guidelines from 'containers/info/guidelines'
 import Team from 'containers/info/team'
 import Ask from 'containers/info/ask'
-import Logos from 'containers/info/logos'
  
 import DIV from 'components/tags/div'
 import A from 'components/tags/a'
-import I from 'components/tags/i'
 import H from 'components/tags/h'
 import IMG from 'components/tags/img'
-import P from 'components/tags/p'
 
 import style from './_context'
 
@@ -56,7 +51,7 @@ const messages = defineMessages( {
 
 } )
  
-const context = ( { intl, lang, dir, jazzSupported, clipped, useraction, infosState, /*scrollY,*/ unclipPage, setInfosState/*, scrollToMap*/ } ) => {
+const context = ( { intl, lang, dir, jazzSupported, clipped, infosState, setInfosState } ) => {
 
 	const { formatMessage } = intl
 
@@ -145,76 +140,10 @@ context.propTypes = {
 	dir: PropTypes.string,
 	jazzSupported: PropTypes.bool,
 	clipped: PropTypes.bool,
-	useraction: PropTypes.string,
 	infosState: PropTypes.bool,
-	/*scrollY: PropTypes.number,*/
 
-	unclipPage: PropTypes.func,
-	/*scrollToMap: PropTypes.func*/
 	setInfosState: PropTypes.func
 
 }
 
 export default injectIntl( context )
-
-/*let clsIntro = Classnames( style.intro, {
-
-			[ style.hidden ]: clipped
-
-		} )
-
-		const clsArrowMap = Classnames( style.arrow, {
-
-			[ style.fixed ]: clipped,
-			[ style.hidden ]: useraction == 'uploading'
-
-		} )
-
-		let clsInfoBtn = Classnames( style.infoBtn, {
-
-			[ style.collapse ]: infosState
-
-		} )
-
-		let clsInfo = Classnames( style.info, {
-
-			[ style.hidden ]: clipped 
-
-		} )
-
-		let clsInfos = Classnames( style.infos, {
-
-			[ style.expand ]: infosState 
-
-		} )
-
-		return(
-
-			<DIV lang={ lang } dir={ dir } >
-				<DIV id="Intro" className={ clsIntro }> 
-					<I18nLinks availableLanguages={ i18nLocales.locales } className={ style.i18n } />
-					<IMG className={ style.logo } src="./assets/coastwards.svg" alt="Logo coastwards: A turtle on a mission!" />
-					<H priority={ 1 } className={ style.headline} >{ formatMessage( messages.help_science ) } { formatMessage( messages.by ) }</H>
-					<H priority={ 3 } className={ style.tagline } >{ formatMessage( messages.no_account ) }</H>
-					<A className={ clsInfoBtn } onClick={ setInfosState.bind( this, !infosState ) } >{ formatMessage( messages.more_info ) }</A>
-				</DIV>
-				<DIV id="Info" className={ clsInfo } >
-					<DIV className={ clsInfos }>
-						<How />
-						<Guidelines />
-						<Team />
-						<Ask />
-						<Logos />
-					</DIV>
-				</DIV>
-				<DIV id="Main" className={ style.main }>
-					<A onClick={ unclipPage.bind( this ) } className={ clsArrowMap } title={ formatMessage( messages.arrow_up_title ) } >
-						<I className="material-icons">&#xE316;</I>
-					</A>
-					<Main />
-				</DIV>
-				<Snackbar />
-				<Dialog />
-			</DIV>
-
-		)*/

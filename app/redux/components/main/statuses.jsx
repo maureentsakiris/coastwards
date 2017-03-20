@@ -81,9 +81,7 @@ statuses.propTypes = {
 	jazzSupported: PropTypes.bool,
 	show: PropTypes.bool,
 	status: PropTypes.string,
-	progress: PropTypes.number,
-
-	resetForm: PropTypes.func
+	progress: PropTypes.number
 
 }
 

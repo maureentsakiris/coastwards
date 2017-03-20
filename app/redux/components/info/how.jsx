@@ -83,7 +83,6 @@ class How extends Component {
 	static propTypes = {
 
 		intl: intlShape.isRequired,
-
 		jazzSupported: PropTypes.bool
 
 	}
@@ -115,7 +114,7 @@ class How extends Component {
 					<DIV className={ style.videoWrapper } >
 						<iframe src="https://player.vimeo.com/video/206066163?color=0076b7&title=0&byline=0&portrait=0" width="640" height="360" frameBorder="0" allowFullScreen ></iframe>
 					</DIV>
-					<TOGGLE priority={ 5 } text={ formatMessage( messages.show_transcript ) } >
+					<TOGGLE priority={ 5 } text={ formatMessage( messages.show_transcript ) } title={ formatMessage( messages.how_title ) } >
 						<H priority={ 3 } >{ formatMessage( messages.how ) }</H>
 						<DIV>
 							<P>{ formatMessage( messages.in_a_nutshell ) }</P>
@@ -139,7 +138,7 @@ class How extends Component {
 					<DIV className={ style.videoWrapper } >
 						<iframe src="https://player.vimeo.com/video/206066163?color=0076b7&title=0&byline=0&portrait=0" width="640" height="360" frameBorder="0" allowFullScreen ></iframe>
 					</DIV>
-					<TOGGLE className={ style.toggle } priority={ 5 } text={ formatMessage( messages.show_transcript ) } >
+					<TOGGLE className={ style.toggle } priority={ 5 } text={ formatMessage( messages.show_transcript ) } title={ formatMessage( messages.how_title ) } >
 						<H priority={ 3 } >{ formatMessage( messages.how ) }</H>
 						<DIV>
 							<P>{ formatMessage( messages.in_a_nutshell ) }</P>
@@ -156,67 +155,6 @@ class How extends Component {
 			)
 
 		}
-		//const { expanded } = this.state
-
-		//const label = expanded ? formatMessage( messages.hide_transcript ) : formatMessage( messages.show_transcript );
-
-		/*<DIV id="Video" className={ style.videoWrapper }>
-					<iframe src="https://player.vimeo.com/video/201518019?title=0&byline=0&portrait=0" width="640" height="360" frameBorder="0" allowFullScreen></iframe>
-				</DIV>
-				<BR/>
-				<TOGGLE priority={ 5 } text={ formatMessage( messages.show_transcript ) } >
-					<DIV className={ style.script } >
-						<P>{ formatMessage( messages.in_a_nutshell ) }</P>
-						<P>{ formatMessage( messages.how_it_works ) }</P>
-						<P>{ formatMessage( messages.place_on_map ) }</P>
-						<P>{ formatMessage( messages.determine_coastal_type ) } { " " } { formatMessage( messages.the_more_the_better ) }</P>
-						<P>{ formatMessage( messages.computer_programs ) }</P>
-						<P>{ formatMessage( messages.policy_makers ) }</P>
-						<P>{ formatMessage( messages.best_advice ) }</P>
-					</DIV>
-				</TOGGLE>*/
-
-		/*<TOGGLE title={ formatMessage( messages.how_title ) } priority={ 3 } text={ formatMessage( messages.how ) } className={ style.toggle } >
-				<DIV className={ style.script } >
-					<P>{ formatMessage( messages.in_a_nutshell ) }</P>
-					<P>{ formatMessage( messages.how_it_works ) }</P>
-					<P>{ formatMessage( messages.place_on_map ) }</P>
-					<P>{ formatMessage( messages.determine_coastal_type ) } { " " } { formatMessage( messages.the_more_the_better ) }</P>
-					<P>{ formatMessage( messages.computer_programs ) }</P>
-					<P>{ formatMessage( messages.policy_makers ) }</P>
-					<P>{ formatMessage( messages.best_advice ) }</P>
-				</DIV>
-			</TOGGLE>*/
-
-			/*<TOGGLE title={ formatMessage( messages.how_title ) } priority={ 3 } text={ formatMessage( messages.how ) } className={ style.toggle } >
-				<DIV id="Video" className={ style.videoWrapper }>
-					<iframe src="https://player.vimeo.com/video/206066163?color=0076b7&title=0&byline=0&portrait=0" width="640" height="360" frameBorder="0"  allowFullScreen></iframe>
-				</DIV>
-				<TOGGLE className={ style.toggleScript } priority={ 6 } text={ formatMessage( messages.show_transcript ) } >
-					<DIV className={ style.script } >
-						<P>{ formatMessage( messages.in_a_nutshell ) }</P>
-						<P>{ formatMessage( messages.how_it_works ) }</P>
-						<P>{ formatMessage( messages.place_on_map ) }</P>
-						<P>{ formatMessage( messages.determine_coastal_type ) } { " " } { formatMessage( messages.the_more_the_better ) }</P>
-						<P>{ formatMessage( messages.computer_programs ) }</P>
-						<P>{ formatMessage( messages.policy_makers ) }</P>
-						<P>{ formatMessage( messages.best_advice ) }</P>
-					</DIV>
-				</TOGGLE>
-			</TOGGLE>*/
-
-		/*return(
-
-			<DIV className={ style.how } >
-				<DIV className={ style.videoDiv } >
-					<DIV id="Video" className={ style.videoWrapper }>
-						<iframe src="https://player.vimeo.com/video/206066163?color=0076b7&title=0&byline=0&portrait=0" width="640" height="360" frameBorder="0"  allowFullScreen></iframe>
-					</DIV>
-				</DIV>
-			</DIV>
-
-		)*/
-
 
 	}
 

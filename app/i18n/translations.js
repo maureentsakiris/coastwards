@@ -118,7 +118,7 @@
 			"ar": "نأسف لحدوث مشكلة أثناء ارسال البريد. الرجاء المحاولة من جديد",
 			"pt": ""
 		},
-		"other_questions": {
+		/*"other_questions": {
 			"en": "... ??",
 			"de": "... ??",
 			"es": "... ??",
@@ -138,7 +138,7 @@
 			"es": "Aquí vamos a necesitar tu ayuda. Háznos tu pregunta de modo de poder compilar montones de ellas en esta sección. Pincha en '¡Tengo una duda!' y envíanos tu pregunta. ¡Gracias!",
 			"ar": "حسنا، هذا هو الجزء الذي نريد مساعدتك فيه. من فضلك قل لي أسئلتك لكي أتمكن من وضعها مع قسم الأسئلة الشائعة. انقر على 'ما زال لديي سؤال!' وأرسل لي سؤالك. شكرا جزيلا!",
 			"pt": "Ora bem, esta é a parte onde preciso da tua ajuda. Coloca-me qualquer dúvida que tenhas a cerca do site ou projecto para eu poder criar a secção de Perguntas Mais Frequentes. Clica em “ainda tenho uma dúvida” e envia-a. Muito Obrigado!"
-		},
+		},*/
 		"any_picture": {
 			"en": "Just any picture?",
 			"de": "Irgendein Foto?",
@@ -363,7 +363,7 @@
 			"ar": "نحن {crslr} جامعة كييل في ألمانيا ويتم تمويل هذا المشروع من قبل {future_ocean}.",
 			"pt": "Somos o {crslr} na Universidade de Kiel na Alemanha e este projecto está subvencionado por {future_ocean}"
 		},
-		"more": {
+		/*"more": {
 			"en": "More",
 			"de": "Mehr",
 			"es": "Más información…",
@@ -404,7 +404,7 @@
 			"es": "Contáctanos aquí",
 			"ar": "تواصل معنا هنا",
 			"pt": "Contata-nos aqui"
-		},
+		},*/
 		"special_thanks": {
 			"en": "Special thanks to",
 			"de": "Besonderer Dank an",

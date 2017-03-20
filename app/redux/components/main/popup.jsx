@@ -67,7 +67,6 @@ const messages = defineMessages( {
 		description: "Title - ",
 		defaultMessage: "Report image"
 	},
-
 	toggle_comment:{
 		id: "toggle_comment",
 		description: "Title - ",
@@ -83,7 +82,6 @@ class popup extends Component {
 	static propTypes = {
 
 		intl: intlShape.isRequired,
-
 		feature: PropTypes.object,
 		materials: PropTypes.array,
 

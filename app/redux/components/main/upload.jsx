@@ -98,7 +98,7 @@ class upload extends Component{
 
 		const { formatMessage } = this.props.intl
 		const { className, jazzSupported, show, useraction, validateFile, openInput } = this.props
-		const { dropzoneActive, dropX, dropY/*, isDrop*/ } = this.state
+		const { dropzoneActive, /*dropX, dropY, isDrop*/ } = this.state
 
 		if( !jazzSupported ){
 
@@ -150,53 +150,9 @@ class upload extends Component{
 
 			)
 
-			/*const cls = Classnames( className, {
-
-				[ style.hidden ]: !show
-
-			} )
-
-			const clsDropzone = Classnames( style.dropzone, {
-
-				[ style.dropzoneActive ]: dropzoneActive
-
-			} )
-
-			const clsUploadBtn = Classnames( style.uploadBtn, {
-
-				[ style.fixed ]: useraction == 'browsing'
-
-			} )
-
-			const clsRippler = Classnames( style.rippler, {
-
-				//[ style.ripple ]: isDrop
-
-			} )
-
-
-			return(
-
-				<FORM id="Upload" action="#" className={ cls } >
-					<DIV className={ clsRippler } style={ { position: 'absolute', top: dropY, left: dropX } } ></DIV>
-					<DIV onDragLeave={ this._onDragLeave } onDrop={ this._onDrop.bind( this ) } className={ clsDropzone } ></DIV>
-					<BUTTON className={ clsUploadBtn } onClick={ openInput } title={ formatMessage( messages.uploadBtn_title ) }><I className="material-icons">&#xE439;</I></BUTTON>
-					<INPUT className={ style.hidden } id="images" name="images" onChange={ validateFile } form="Upload" type="file" multiple={ false } accept="image/*" />
-				</FORM>
-
-			)*/
-
 		}
 
 	}
-
-	/*_onDragEnter = ( ) => {
-
-		this.props.setLayerVisibility( 'prompts', false )
-		this.props.setLayerVisibility( 'errors', false )
-		this.props.setLayerVisibility( 'statuses', false )
-
-	}*/
 
 	_onDragLeave = ( ) => {
 

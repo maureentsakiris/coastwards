@@ -3,7 +3,6 @@ import { defineMessages, injectIntl, intlShape, FormattedMessage } from 'react-i
 import Classnames from 'classnames'
 import _ from 'underscore'
 
-
 import FORMDATA from 'containers/main/formdata'
 
 import H from 'components/tags/h'
@@ -19,9 +18,6 @@ import SMALL from 'components/tags/small'
 import RADIOGROUP from 'components/form/radiogroup/radiogroup'
 import ICONRADIOGROUP from 'components/form/radiogroup/iconradiogroup'
 import COMMENT from 'components/form/input/comment'
-
-
-/*import HASHTAG from 'components/form/input/hashtag'*/
 import CANCEL from 'components/form/button/cancel'
 import GO from 'components/form/button/go'
 
@@ -41,7 +37,6 @@ const messages = defineMessages( {
 		description: "Header - Informs user that his or her image has passed all the tests and is now ready for upload",
 		defaultMessage: "Your image is ready for upload! Just one more question ..."
 	},
-
 
 	//materials
 	select_material:{
@@ -98,7 +93,6 @@ const messages = defineMessages( {
 	},
 
 	//comment
-
 	comment:{
 		id: "comment",
 		description: "Label - ",
@@ -108,17 +102,6 @@ const messages = defineMessages( {
 		id: "comment_placeholder",
 		description: "Placeholder - ",
 		defaultMessage: "Tell us, how did this coast change in recent years...?"
-	},
-
-	hashtag:{
-		id: "hashtag",
-		description: "Label - ",
-		defaultMessage: "Sign your image with a hashtag!"
-	},
-	hashtag_placeholder:{
-		id: "hashtag_placeholder",
-		description: "Placeholder - ",
-		defaultMessage: "#iwashere"
 	},
 
 	//upload
@@ -145,7 +128,7 @@ const messages = defineMessages( {
 
 } )
 
-const form = ( { intl, className, jazzSupported, show, image, checkedValue, materials, setMaterial, setComment/*, setHashtag*/, uploadImage, resetMain, showDialog, setSnackbarMessage } ) => {
+const form = ( { intl, className, jazzSupported, show, image, checkedValue, materials, setMaterial, setComment, uploadImage, resetMain, showDialog, setSnackbarMessage } ) => {
 
 	const { formatMessage } = intl
 
@@ -266,7 +249,6 @@ form.propTypes = {
 
 	setMaterial: PropTypes.func,
 	setComment: PropTypes.func,
-	/*setHashtag: PropTypes.func,*/
 	uploadImage: PropTypes.func,
 	resetMain: PropTypes.func,
 	showDialog: PropTypes.func,

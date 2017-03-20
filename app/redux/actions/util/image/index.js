@@ -14,7 +14,7 @@ export const promiseType = ( file, type='image/*' ) => {
 
 		}else{
 
-			reject( Error( 'wrong_filetype' ) ) //YES
+			reject( Error( 'wrong_filetype' ) )
 
 		}
 
@@ -23,8 +23,6 @@ export const promiseType = ( file, type='image/*' ) => {
 }
 
 export const promiseEXIF = ( image ) => {
-
-	//console.log( "promiseEXIF" )
 
 	return new Promise( ( resolve, reject ) => {
 
@@ -47,8 +45,6 @@ export const promiseEXIF = ( image ) => {
 }
 
 export const promiseMinimumWidth = ( image, width ) => {
-
-	//console.log( "promiseMinimumBoxDimensions" )
 
 	return new Promise( ( resolve, reject ) => {
 
@@ -94,7 +90,7 @@ export const promiseMinimumWidth = ( image, width ) => {
 
 		}else{
 
-			reject( Error( 'dimensions_undefined' ) ) //YES
+			reject( Error( 'dimensions_undefined' ) )
 
 		}
 
@@ -103,8 +99,6 @@ export const promiseMinimumWidth = ( image, width ) => {
 }
 
 export const promiseMinimumBoxDimensions = ( image, boxlength ) => {
-
-	//console.log( "promiseMinimumBoxDimensions" )
 
 	return new Promise( ( resolve, reject ) => {
 
@@ -130,11 +124,7 @@ export const promiseMinimumBoxDimensions = ( image, boxlength ) => {
 
 		}
 
-		/*if( image.exifdata && image.exifdata.PixelXDimension && image.exifdata.PixelYDimension ){
-
-			_dotheMath( image.exifdata.PixelXDimension, image.exifdata.PixelYDimension )
-
-		}else */if( Modernirz.filereader ){
+		if( Modernirz.filereader ){
 
 			let reader = new FileReader()
 
@@ -165,7 +155,7 @@ export const promiseMinimumBoxDimensions = ( image, boxlength ) => {
 
 		}else{
 
-			reject( Error( 'dimensions_undefined' ) ) //YES
+			reject( Error( 'dimensions_undefined' ) )
 
 		}
 
@@ -174,8 +164,6 @@ export const promiseMinimumBoxDimensions = ( image, boxlength ) => {
 }
 
 export const promiseCanvasBoxResize = ( image, boxlength ) => {
-
-	//console.log( "promiseCanvasBoxResize" )
 
 	return new Promise ( ( resolve, reject ) => {
 
@@ -243,7 +231,7 @@ export const promiseCanvasBoxResize = ( image, boxlength ) => {
 				let orientation = image.exifdata.Orientation
 				if ( orientation > 8 ) {
 
-					reject( Error( "orientation_undefined" ) ) //YES
+					reject( Error( "orientation_undefined" ) )
 
 				}
 
@@ -315,8 +303,6 @@ export const promiseCanvasBoxResize = ( image, boxlength ) => {
 }
 
 export const promiseLocation = ( image ) => {
-
-	//console.log( "promiseLocation" )
 
 	return new Promise( ( resolve, reject ) => {
 

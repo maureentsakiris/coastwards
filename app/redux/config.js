@@ -4,7 +4,6 @@
 
 */
 
-//cbd836
 const materials = ( state= [ 
 
 	{ 

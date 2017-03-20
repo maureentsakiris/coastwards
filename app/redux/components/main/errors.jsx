@@ -8,10 +8,8 @@ import H from 'components/tags/h'
 
 import style from './_errors'
 
-
 const messages = defineMessages( {
 
-	//error messages
 	error_parsing_geojson:{
 		id: "error_parsing_geojson",
 		description: "Error - ",
@@ -32,11 +30,6 @@ const messages = defineMessages( {
 		description: "Error - Informs the user that the selected image has the wrong file type",
 		defaultMessage: "The file you selected is not an image. It should have of the following extensions: jpg, jpeg, tif, tiff, gif or png"
 	},
-	/*duplicate_file:{
-		id: "duplicate_file",
-		description: "Error - Informs user that the file has already been selected before",
-		defaultMessage: "You've already selected this file before!"
-	},*/
 	exifdata_empty:{
 		id: "exifdata_empty",
 		description: "Error - Informs user that exifdata is missing and why that could be",
@@ -72,11 +65,6 @@ const messages = defineMessages( {
 		description: "Error - Informs user that we couldn't extract the location from the metadata",
 		defaultMessage: "That's too bad. We need to know where the coast is located but we couldn't find that information in the metadata. Switch to a modern browser to locate the coast for us (unfortunately your browser doesn't support some of the features necessary to do that) or try uploading an image that was taken with a mobile or digital camera."
 	},
-	/*no_datetime:{
-		id: "no_datetime",
-		description: "Error - ",
-		defaultMessage: "We couldn't find the date and time you took this picture. Do you have the original? Try that one!"
-	},*/
 	problems_connecting:{
 		id: "problems_connecting",
 		description: "Error",
@@ -106,8 +94,6 @@ const errors = ( { intl, className, jazzSupported, show, error, upload } ) => {
 	const { formatMessage } = intl
 
 	const str = messages[ error ] ? formatMessage( messages[ error ] ) : error
-
-
 
 	if( !jazzSupported ){
 

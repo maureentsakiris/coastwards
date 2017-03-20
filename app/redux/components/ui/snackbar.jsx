@@ -13,6 +13,11 @@ import style from './_snackbar'
 
 const intlMessages = defineMessages( {
 
+	error_mail_sent:{
+		id: "error_mail_sent",
+		description: "Warning - ",
+		defaultMessage: "Sorry, an unknown error ocurred. We have been notified."
+	},
 	selected_truncated:{
 		id: "selected_truncated",
 		description: "Warning - Informs the user that more than one file have been dropped but we can only process one at a time",

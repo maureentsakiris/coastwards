@@ -2,8 +2,6 @@ import React, { PropTypes } from 'react'
 
 import OPTION from 'components/tags/option'
 
-//import style from './_select'
-
 const selectoption = ( { label, value } ) => {
 
 	return(

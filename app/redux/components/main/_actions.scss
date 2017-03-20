@@ -1,66 +1,8 @@
 @import 'app/styles/base';
 
-.actions{
-
-	//@extend %flexcontainer;
-
-}
-
-%labelBtn{
-
-	display: inline-block;
-
-	button{
-
-		margin: 0 1em;
-	    @extend %roundBtn;
-
-	}
-
-	p{
-
-		margin: 0.5em 0;
-		text-transform: uppercase;
-		font-size: 0.7em;
-
-	}
-
-}
-
-
-.uploadBtn{
+.labelBtn{
 
 	@extend %labelBtn;
-
-	button{
-
-		background: $color-primary;
-
-	}
-	
-}
-
-%secondaryBtn{
-
-	button{
-
-		background: $color-primary;
-
-	}
-
-}
-
-.shareBtn{
-
-	@extend %labelBtn;
-	@extend %secondaryBtn;
-
-}
-
-.browseBtn{
-
-	@extend %labelBtn;
-	@extend %secondaryBtn;
 
 }
 

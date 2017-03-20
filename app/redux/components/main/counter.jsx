@@ -6,18 +6,10 @@ import DIV from 'components/tags/div'
 
 import style from './_counter'
 
-/*const messages = defineMessages( {
-
-	
-
-} )*/
-
-
 class counter extends Component {
 
 	static propTypes = {
 
-		//intl: intlShape.isRequired,
 		count: PropTypes.number,
 		show: PropTypes.bool,
 
@@ -40,7 +32,6 @@ class counter extends Component {
 
 	render () {
 
-		//const { formatMessage } = this.props.intl
 		const { count, show } = this.props
 
 		if( !count || !show ){

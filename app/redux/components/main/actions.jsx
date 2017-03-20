@@ -5,13 +5,9 @@ import DIV from 'components/tags/div'
 import BUTTON from 'components/tags/button'
 import I from 'components/tags/i'
 import A from 'components/tags/a'
-
 import P from 'components/tags/p'
 
-
-
 import style from './_actions'
-
 
 const messages = defineMessages( {
 
@@ -60,16 +56,16 @@ const actions = ( { intl, hide, openInput, showDialog } ) => {
 	return(
 
 		<DIV>
-			<DIV className={ style.actions } >
-				<DIV className={ style.shareBtn }>
+			<DIV>
+				<DIV className={ style.labelBtn }>
 					<BUTTON onClick={ showDialog.bind( this, 'SHARE' ) } title={ formatMessage( messages.shareBtn_title ) }><I className="material-icons">&#xE80D;</I></BUTTON>
 					<P>{ formatMessage( messages.shareBtn_label ) }</P>
 				</DIV>
-				<DIV className={ style.uploadBtn }>
+				<DIV className={ style.labelBtn }>
 					<BUTTON onClick={ openInput } title={ formatMessage( messages.uploadBtn_title ) }><I className="material-icons">&#xE439;</I></BUTTON>
 					<P>{ formatMessage( messages.uploadBtn_label ) }</P>
 				</DIV>
-				<DIV className={ style.browseBtn }>
+				<DIV className={ style.labelBtn }>
 					<BUTTON onClick={ hide.bind( this ) } title={ formatMessage( messages.browseBtn_title ) }><I className="material-icons">&#xE417;</I></BUTTON>
 					<P>{ formatMessage( messages.browseBtn_label ) }</P>
 				</DIV>
@@ -79,7 +75,6 @@ const actions = ( { intl, hide, openInput, showDialog } ) => {
 
 	)
 
-	
 }
 
 actions.propTypes = {

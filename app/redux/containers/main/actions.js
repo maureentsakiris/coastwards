@@ -3,17 +3,6 @@ import { showDialog } from 'actions/ui/dialog'
 import { clipPage, openInput } from 'actions/main/main'
 import ACTIONS from 'components/main/actions'
 
-
-const mapStateToProps = ( ) => {
-
-	return {
-
-		
-
-	}
-
-}
-
 const mapDispatchToProps = ( dispatch ) => {
 
 	return {
@@ -47,7 +36,7 @@ const mapDispatchToProps = ( dispatch ) => {
 
 const actions = connect(
 
-	mapStateToProps,
+	null,
 	mapDispatchToProps
 
 )( ACTIONS )

@@ -115,8 +115,6 @@ class report extends Component {
 		const mess = typeof status === 'object' ? status.message : status //if error object
 		const m = messages[ mess ] ? formatMessage( messages[ mess ] ) : mess //if translation 
 
-		//console.log( "FEATURE TO REPORT: ", feature )
-
 		return(
 
 			<DIV>
@@ -125,11 +123,8 @@ class report extends Component {
 				<BR /><BR />
 				<FORM action="#" id="Report" >
 					<COMMENT id="Comment" onChange={ this._validateForm } form="Report" label={ formatMessage( messages.label_report_comment ) } name="comment" placeholder={ formatMessage( messages.placeholder_report_comment ) } />
-					<BR />
 					<INPUT type="hidden" id="Id" form="Report" name="id" value={ '' + feature.contribution_id } readOnly={ true } />
-					<BR />
 					<EMAIL id="Email" onChange={ this._validateForm } form="Report" label={ formatMessage( messages.label_email ) } name="email" placeholder={ formatMessage( messages.placeholder_email ) } />
-					<BR />
 					<SUBMIT onClick={ this._submit } form="Report" name="submit" label={ formatMessage( messages.label_submit ) } disabled={ disabled } />
 					<DIV className={ style.status } >{ status && m }</DIV>
 				</FORM>

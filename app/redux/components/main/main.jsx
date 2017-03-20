@@ -13,7 +13,6 @@ import Mapbox from 'containers/main/mapbox'
 import Popup from 'containers/main/popup'
 import Loader from 'containers/main/loader'
 import Counter from 'containers/main/counter'
-//import Satellite from 'containers/main/satellite'
 
 import DIV from 'components/tags/div'
 import P from 'components/tags/p'

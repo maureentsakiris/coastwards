@@ -1,7 +1,6 @@
 import { connect } from 'react-redux'
 import LOADER from 'components/main/loader'
 
-
 const mapStateToProps = ( state ) => {
 
 	return {
@@ -11,21 +10,6 @@ const mapStateToProps = ( state ) => {
 	}
 
 }
-
-/*const mapDispatchToProps = ( dispatch ) => {
-
-	return {
-
-		resetForm: ( ) => {
-
-			dispatch( resetForm() )
-
-		}
-
-	}
-
-}*/
-
 
 const loader = connect(
 

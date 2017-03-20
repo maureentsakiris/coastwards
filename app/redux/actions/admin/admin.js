@@ -1,5 +1,6 @@
 import * as types from 'types-admin'
 import { promiseXHR } from 'actions/util/request/xhr'
+import { sendErrorMail } from 'actions/util/error/error'
 
 
 export const setMaterial = ( e ) => {
@@ -83,7 +84,7 @@ export const fetch = ( ) => {
 		} )
 		.catch( ( error ) => {
 
-			console.log( error )
+			dispatch( sendErrorMail( error ) )
 
 		} )
 
@@ -125,7 +126,7 @@ export const deleteContribution = ( contribution_id, contribution_uid ) => {
 		} )
 		.catch( ( error ) => {
 
-			console.log( error )
+			dispatch( sendErrorMail( error ) )
 
 		} )
 
@@ -170,7 +171,7 @@ export const updateContribution = ( formID ) => {
 		} )
 		.catch( ( error ) => {
 
-			console.log( error )
+			dispatch( sendErrorMail( error ) )
 
 		} )
 

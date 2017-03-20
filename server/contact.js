@@ -203,4 +203,52 @@ router.post( '/report', function ( req, res ) {
 
 } )
 
+
+const _sendError = ( fields ) => {
+
+	return new Promise( ( resolve, reject ) => { 
+
+		let mailOptions = {
+
+			from: 'go@coastwards.org',
+			to: 'go@coastwards.org',
+			subject: 'Uncaught Error',
+			text: fields.error
+
+		}
+
+		transporter.sendMail( mailOptions, function ( error, info ){
+ 
+			if( error ){
+
+				reject( Error( error ) )
+
+			}
+
+			resolve( info.response )
+
+		} );
+
+	} )
+
+}
+
+router.post( '/error', function ( req, res ) {
+
+	_promiseFetchForm( req )
+	.then( _sendError )
+	.then( ( response ) => {
+
+		res.send( 'OK' )
+		return response
+
+	} )
+	.catch( ( error ) => {
+
+		res.send( error.message )
+
+	} )
+
+} )
+
 module.exports = router

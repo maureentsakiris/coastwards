@@ -1,7 +1,6 @@
 import { connect } from 'react-redux'
 import PROMPTS from 'components/main/prompts'
 
-
 const mapStateToProps = ( state ) => {
 
 	return {
@@ -14,20 +13,9 @@ const mapStateToProps = ( state ) => {
 
 }
 
-const mapDispatchToProps = ( ) => {
-
-	return {
-
-
-	}
-
-}
-
-
 const prompts = connect(
 
-	mapStateToProps,
-	mapDispatchToProps
+	mapStateToProps
 
 )( PROMPTS )
 

@@ -7,8 +7,6 @@ import H from 'components/tags/h'
 import A from 'components/tags/a'
 import DIV from 'components/tags/div'
 
-import Logos from 'containers/info/logos'
-
 import style from './_team'
 
 const messages = defineMessages( {
@@ -157,7 +155,6 @@ const team = ( { intl, jazzSupported, showDialog } ) => {
 team.propTypes = {
 
 	intl: intlShape.isRequired,
-
 	jazzSupported: PropTypes.bool,
 
 	showDialog: PropTypes.func

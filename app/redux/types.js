@@ -43,7 +43,6 @@ export const SET_UID = 'SET_UID'
 export const SET_ADAPTATION = 'SET_ADAPTATION'
 export const SET_UPLOAD_PROGRESS = 'SET_UPLOAD_PROGRESS'
 export const SET_COMMENT = 'SET_COMMENT'
-export const SET_HASHTAG = 'SET_HASHTAG'
 export const RESET_FORM = 'RESET_FORM'
 
 //selected
@@ -52,7 +51,6 @@ export const ADD_SELECTED = 'ADD_SELECTED'
 //mapbox
 export const SET_MAP = 'SET_MAP'
 export const SET_ZOOM = 'SET_ZOOM'
-export const SET_MODUS = 'SET_MODUS'
 
 //interactiveLayers
 export const ADD_INTERACTIVE_LAYER = 'ADD_INTERACTIVE_LAYER'

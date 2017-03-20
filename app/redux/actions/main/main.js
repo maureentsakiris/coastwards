@@ -1,11 +1,12 @@
 import * as types from 'types'
+import { sendErrorMail } from 'actions/util/error/error'
 import { promiseType, promiseEXIF, promiseMinimumWidth, promiseCanvasBoxResize, promiseLocation/*, promiseDateTime*/ } from 'actions/util/image'
 import { setSnackbarMessage, dismissSnackbar } from 'actions/ui/snackbar'
 import { promiseDataURLtoBlob } from 'actions/util/form'
-import { scrollToId } from 'actions/context'
+import { scrollToDiv } from 'actions/ui/scroll'
 import { promiseXHR } from 'actions/util/request/xhr'
 import { promiseGet, promiseJSONOK } from 'actions/util/request/get'
-import { fly, resetMap, hidePopup, /*switchModus,*/ addDropMarker, removeLastDrop, addUploadMarker, setMarkerVisibility, trackZoom/*, hideSatellite*/ } from 'actions/main/mapbox'
+import { fly, resetMap, hidePopup, addDropMarker, removeLastDrop, addUploadMarker, setMarkerVisibility, trackZoom } from 'actions/main/mapbox'
 import uuid from 'uuid'
 import _ from 'underscore'
 
@@ -23,14 +24,13 @@ export const getCount = ( ) => {
 		} )
 		.catch( ( error ) => {
 
-			console.log( error );
+			dispatch( sendErrorMail( error ) )
 
 		} )
 
 	}
 
 }
-
 
 const _promiseFiles = ( e ) => {
 
@@ -44,7 +44,7 @@ const _promiseFiles = ( e ) => {
 
 		}else{
 
-			reject( Error( 'files_undefined' ) ) //YES
+			reject( Error( 'files_undefined' ) )
 
 		}
 
@@ -127,17 +127,15 @@ const _promiseSafe = ( image ) => {
 
 			let annotations = response.responses[ 0 ]
 
-			console.log( annotations );
-
 			if( annotations.faceAnnotations ){
 
-				reject( Error( "faces_detected" ) ) //YES
+				reject( Error( "faces_detected" ) )
 
 			}
 
 			if( _.contains( annotations.safeSearchAnnotation, 'LIKELY' ) || _.contains( annotations.safeSearchAnnotation, 'VERY_LIKELY' ) ){
  
-				reject( Error( "spam_detected" ) ) //YES
+				reject( Error( "spam_detected" ) )
 
 			}
 
@@ -151,12 +149,12 @@ const _promiseSafe = ( image ) => {
 			let natural_environment = _.filter( annotations.labelAnnotations, { description: 'natural environment' } )
 			let geographical_feature = _.filter( annotations.labelAnnotations, { description: 'geographical feature' } )
 			let loch = _.filter( annotations.labelAnnotations, { description: 'loch' } )
-			/*let habitat = _.filter( annotations.labelAnnotations, { description: 'habitat' } )
-			let landform = _.filter( annotations.labelAnnotations, { description: 'landform' } )*/
+			let habitat = _.filter( annotations.labelAnnotations, { description: 'habitat' } )
+			let landform = _.filter( annotations.labelAnnotations, { description: 'landform' } )
 
-			if( !coast.length && !shore.length && !harbor.length && !beach.length && !sea.length && !natural_environment.length && !bodyofwater.length && !geographical_feature.length && !loch.length/*&& !habitat.length && !landform.length*/ ){
+			if( !coast.length && !shore.length && !harbor.length && !beach.length && !sea.length && !natural_environment.length && !bodyofwater.length && !geographical_feature.length && !loch.length && !habitat.length && !landform.length ){
 
-				reject( Error( "not_a_coast" ) ) //YES
+				reject( Error( "not_a_coast" ) )
 
 			}
 			
@@ -167,7 +165,6 @@ const _promiseSafe = ( image ) => {
 		} )
 		.catch( ( error ) => {
 
-			console.log( error )
 			reject( error )
 
 		} )
@@ -197,7 +194,6 @@ const _promiseLocation = ( image ) => {
 
 			}else{
 
-				console.log( error )
 				reject( error )
 
 			}
@@ -214,13 +210,11 @@ export const validateFile = ( e ) => {
 
 		let state = getState()
 		let map = state.mapbox.map
-		let jazzSupported = state.browser.jazzSupported
 
-		if( jazzSupported ) {
+		if( map ) {
 
 			map.stop()
 			dispatch( hidePopup() )
-			dispatch( clipPage() )
 
 		}
 
@@ -250,10 +244,10 @@ export const validateFile = ( e ) => {
 			return promiseType( file )
 
 		} )
-		.then( ( file ) => {
+		/*.then( ( file ) => {
 
 			//MATTHIAS
-			/*let index = state.selected.indexOf( file.name )
+			let index = state.selected.indexOf( file.name )
 
 			if( index == -1 ){
 
@@ -264,11 +258,11 @@ export const validateFile = ( e ) => {
 
 				throw Error( 'duplicate_file' ) //YES
 
-			}*/
+			}
 
 			return file
 
-		} )
+		} )*/
 		.then( promiseEXIF )
 		.then( ( image ) => {
 
@@ -308,7 +302,6 @@ export const validateFile = ( e ) => {
 
 			const uid = uuid.v1()
 			dispatch( { type: types.SET_UID, to: uid } )
-
 			dispatch( { type: types.SET_IMAGE_TO_UPLOAD, to: image } )
 			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'statuses', to: false } )
 
@@ -318,16 +311,10 @@ export const validateFile = ( e ) => {
 
 					dispatch( addDropMarker( image ) )
 					dispatch( setMarkerVisibility( 'none' ) )
-
 					dispatch( setSnackbarMessage( 'here_we_go', 4000 ) )
 					dispatch( fly( [ image.long, image.lat ], 14 ) )
 
 					map.once( 'moveend', () => {
-
-						//dispatch( showMarker() )
-
-						//dispatch( switchModus( 'locate' ) )
-						//dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'satellite', to: true } )
 						
 						dispatch( setSnackbarMessage( 'location_right', 0, { label: 'yes', action: showForm()  }, { label: 'no', action: showMarker( true ) } ) )
 
@@ -361,7 +348,8 @@ export const validateFile = ( e ) => {
 			dispatch( { type: types.SET_ERROR_MSG, to: msg } )
 			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'errors', to: true } )
 			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'prompts', to: false } )
-			console.log( error )
+			
+			dispatch( sendErrorMail( error ) )
 
 		} )
 
@@ -376,13 +364,10 @@ export const showForm = () => {
 		dispatch( dismissSnackbar() )
 		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'statuses', to: false } )
 		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'form', to: true } )
-		//dispatch( hideSatellite() )
-		//dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'satellite', to: false } )
 
 	}
 
 }
-
 
 export const showMarker = ( removeLastMarker = false ) => {
 
@@ -393,10 +378,9 @@ export const showMarker = ( removeLastMarker = false ) => {
 			dispatch( removeLastDrop() )
 
 		}
-		//dispatch( switchModus( 'locate' ) )
+		
 		dispatch( trackZoom( 'on' ) )
 		dispatch( setMarkerVisibility( 'none' ) )
-		//dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'satellite', to: true } )
 		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'locate', to: false } )
 		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'marker', to: true } )
 		dispatch( setSnackbarMessage( 'zoom_until', 0, { label: 'continue_upload', action: setLocation() }, { label: 'cancel_upload', action: resetMain() }  ) )
@@ -431,9 +415,6 @@ export const setLocation = ( ) => {
 			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'marker', to: false } )
 			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'form', to: true } )
 			dispatch( dismissSnackbar() )
-			//dispatch( hideSatellite() )
-			//dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'satellite', to: false } )
-			//dispatch( scrollToMap() )
 
 		}
 
@@ -468,16 +449,6 @@ export const setComment = ( e ) => {
 	return function ( dispatch ){
 
 		dispatch( { type: types.SET_COMMENT, to: e.currentTarget.value } )
-
-	}
-
-}
-
-export const setHashtag = ( e ) => {
-
-	return function ( dispatch ){
-
-		dispatch( { type: types.SET_HASHTAG, to: e.currentTarget.value } )
 
 	}
 
@@ -580,7 +551,8 @@ export const uploadImage = ( ) => {
 			dispatch( { type: types.SET_ERROR_MSG, to: 'upload_error' } )
 			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'errors', to: true } )
 			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'prompts', to: false } )
-			console.log( error )
+			
+			dispatch( sendErrorMail( error ) )
 
 		} )
 
@@ -594,19 +566,16 @@ export const resetMain = ( ) => {
 
 		const state = getState()
 
-		//console.log( "TOTAL RESET" );
-
 		document.getElementById( 'Upload' ).reset()
 		document.getElementById( 'Form' ).reset()
 		
-		//close what else toggle 
+		//TODO: close what else toggle 
+
 		dispatch( dismissSnackbar() )
 		dispatch( { type: types.SET_USER_ACTION, to: 'prompt' } )
 		dispatch( { type: types.SET_PROMPT_MSG, to: 'select_file' } )
 		dispatch( { type: types.RESET_FORM } )
 		dispatch( { type: types.RESET_LAYERS } )
-
-		
 
 		if( state.browser.jazzSupported ){
 
@@ -620,35 +589,6 @@ export const resetMain = ( ) => {
 
 }
 
-
-/*export const scrollUp = ( ) => {
-
-	return function ( dispatch, getState ) {
-
-		dispatch( unclipPage() )
-
-		let state = getState()
-		let { errors, form, geolocator, locate, prompts, statuses } = state.layers
-
-		window.scroll( {
-
-			top: 0, 
-			left: 0, 
-			behavior: 'smooth' 
-
-		} )
-
-		if( !errors && !form && !geolocator && !locate && !prompts && !statuses ){
-	
-			dispatch( { type: types.SET_PROMPT_MSG, to: 'select_file' } )
-			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'prompts', to: true } )
-
-		}
-
-	}
-
-}
-*/
 export const scrollToMap = ( ) => {
 
 	return function () {
@@ -717,10 +657,7 @@ export const unclipPage = ( ) => {
 		dispatch( hidePopup() )
 		dispatch( { type: 'UNCLIP_PAGE' } )
 		dispatch( { type: types.SET_USER_ACTION, to: 'prompt' } )
-		//dispatch( { type: types.SET_SCROLL_Y, to: 1 } )
-
-		//window.dispatchEvent( new Event( 'scroll' ) )
-		dispatch( scrollToId( 'Body' ) )
+		dispatch( scrollToDiv( 'Body' ) )
 
 	}
 
@@ -729,17 +666,6 @@ export const unclipPage = ( ) => {
 export const disableAndreasPinch = ( ) => {
 
 	return function ( dispatch ){
-
-		//let stage = document.getElementById( 'Body' )
-
-		/*var mc = new Hammer.Manager( stage, { touchAction: 'pan-y' } )
-		mc.add( new Hammer.Pinch( { event: 'AndreasPinch', pointers: 0, threshold: 0 } ) )
-
-		mc.on( 'AndreasPinch', ( e ) => {
-
-			e.preventDefault()
-
-		} )*/
 
 		//https://stackoverflow.com/questions/40345723/how-does-one-prevent-pinch-zooming-on-ios-10-devices-in-safari
 		document.documentElement.addEventListener( 'touchstart', function ( e ) {
@@ -750,7 +676,7 @@ export const disableAndreasPinch = ( ) => {
 
 			}
 
-			if ( e.touches.length > 2  && true ) { //map visible
+			if ( e.touches.length > 2 ) {
 
 				e.preventDefault()
 				dispatch( setSnackbarMessage( 'two_fingers' ) )

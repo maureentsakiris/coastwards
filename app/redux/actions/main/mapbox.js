@@ -1,4 +1,5 @@
 import * as types from 'types'
+import { sendErrorMail } from 'actions/util/error/error'
 import mapboxgl from 'mapbox-gl/dist/mapbox-gl.js'
 import MapboxGeocoder from 'mapbox-gl/plugins/src/mapbox-gl-geocoder/v2.0.0/mapbox-gl-geocoder.js'
 import _ from 'underscore'
@@ -11,8 +12,6 @@ const ZOOM = 1
 const MAXZOOM = 17
 
 const ACCESSTOKEN = 'pk.eyJ1IjoibWF1cmVlbnRzYWtpcmlzIiwiYSI6ImNpanB0NzgwMjAxZDB0b2tvamNpYXQyeTMifQ.HVQAxH-RQKZBss1u3zIoxA'
-const locateLayers = [ 'country_label_1', 'country_label_2', 'country_label_3', 'country_label_4', 'marine_label_point_1', 'marine_label_line_1', 'marine_label_point_2', 'marine_label_line_2', 'marine_label_point_3', 'marine_label_line_3', 'marine_label_4', 'marine_label_line_4', 'place_label_city', 'place_label_town', 'place_label_village', 'place_label_other', 'road_label_highway_shield', 'road_label', 'airport_label', 'poi_label_1', 'rail_station_label', 'poi_label_2', 'poi_label_3', 'poi_label_4', 'water_label'/*, 'admin_level_2_maritime', 'admin_level_3_maritime', 'admin_level_2_disputed', 'admin_level_2', 'admin_level_3'*/, 'bridge_major_rail_hatching', 'bridge_major_rail', 'bridge_motorway', 'bridge_trunk_primary', 'bridge_secondary_tertiary', 'bridge_street', 'bridge_link', 'bridge_service_track', 'bridge_motorway_link', 'bridge_path_pedestrian', 'bridge_motorway_casing', 'bridge_trunk_primary_casing', 'bridge_secondary_tertiary_casing', 'bridge_motorway_link_casing', 'road_major_rail_hatching', 'road_major_rail', 'road_motorway', 'road_trunk_primary', 'road_secondary_tertiary', 'road_street', 'road_link', 'road_service_track', 'road_motorway_link', 'road_path_pedestrian', 'road_motorway_casing', 'road_trunk_primary_casing', 'road_secondary_tertiary_casing', 'road_street_casing', 'road_link_casing', 'road_service_track_casing', 'road_motorway_link_casing', 'tunnel_major_rail_hatching', 'tunnel_major_rail', 'tunnel_motorway', 'tunnel_trunk_primary', 'tunnel_secondary_tertiary', 'tunnel_street', 'tunnel_link', 'tunnel_service_track', 'tunnel_motorway_link', 'tunnel_path_pedestrian', 'tunnel_motorway_casing', 'tunnel_trunk_primary_casing', 'tunnel_secondary_tertiary_casing', 'tunnel_street_casing', 'tunnel_link_casing', 'tunnel_service_track_casing', 'tunnel_motorway_link_casing', 'building_top', 'building', 'aeroway_taxiway', 'aeroway_runway', 'aeroway_fill', 'landuse_wood', 'landuse_school', 'landuse_hospital', 'landuse_cemetery', 'landuse_park', 'landuse_overlay_national_park' ]
-
 
 const _promiseInitMap = ( ) => {
 
@@ -50,50 +49,6 @@ const _promiseInitMap = ( ) => {
 			map.addControl( new mapboxgl.NavigationControl(), 'bottom-right' )
 
 		}
-
-		/*map.addControl( new mapboxgl.ScaleControl( {
-
-			maxWidth: 80,
-			unit: 'metric'
-
-		} ), 'bottom-right' )*/
-
-		/*let geocoder = new MapboxGeocoder( {
-
-			accessToken: ACCESSTOKEN,
-			placeholder: placeholder
-
-		} )
-
-		map.addControl( geocoder, 'top-left' )*/
-
-		/*geocoder._inputEl.addEventListener( 'focus', ( e ) => {
-
-			//window.scrollTo( 0, 0 )
-			//e.target.parentNode.style.position = 'fixed'
-			//e.target.parentNode.style.top = '20px'
-			let down = document.getElementsByClassName( '_index_down' )[ 0 ]
-			let top = document.getElementsByClassName( '_index_top' )[ 0 ]
-
-			down.style.display = 'none'
-			top.style.display = 'none'
-
-			let map = document.getElementsByClassName( '_main_jazz' )[ 0 ]
-			map.style.marginTop = '40px'
-
-		} )*/
-
-		/*geocoder._inputEl.parentNode.addEventListener( 'focus', ( e ) => {
-
-			e.preventDefault()
-
-		} )*/
-
-		/*geocoder.on( 'result', ( ) => {
-
-			window.scrollTo( 0, document.body.scrollHeight )
-
-		} )*/
 
 		map.on( 'load', ( ) => {
 
@@ -140,7 +95,7 @@ const _onMarkerClick = ( features ) => {
 		} )
 		.catch( ( error ) => {
 
-			console.log( error );
+			dispatch( sendErrorMail( error ) )
 
 		} )
 
@@ -174,16 +129,13 @@ export const displayMap = ( ) => {
 		_promiseInitMap()
 		.then( ( map ) => {
 
-			//Register map
 			dispatch( { type: types.SET_MAP, to: map } )
 
-			//Init and register popup
 			const popup = new mapboxgl.Popup( { closeButton: false, closeOnClick: false, anchor: 'bottom' } )
 			const featureDOM = document.getElementById( 'Popup' )
 			popup.setDOMContent( featureDOM )
 			dispatch( { type: types.SET_POPUP_INSTANCE, to: popup } )
 
-			//Init mouse events
 			map.on( 'mousemove', ( e ) => {
 
 				const state = getState()
@@ -261,12 +213,10 @@ export const displayMap = ( ) => {
 				source: 'geojson',
 				filter: [ '!has', 'point_count' ],
 				paint: {
-					// make circles larger as the user zooms from z12 to z22
 					'circle-radius': {
 						'base': 1.75,
 						'stops': [ [ 0, 8 ], [ 10, 15 ], [ 22, 50 ] ]
 					},
-					// color circles by ethnicity, using data-driven styles
 					'circle-color': {
 						property: 'materialverified',
 						type: 'categorical',
@@ -390,7 +340,8 @@ export const displayMap = ( ) => {
 			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'prompts', to: false } )
 			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'upload', to: false } )
 			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'loader', to: false } )
-			console.log( error )
+
+			dispatch( sendErrorMail( error ) )
 
 		} )
 
@@ -411,8 +362,8 @@ export const fly = ( center, zoom, offset = [ 0, 0 ] ) => {
 			zoom: zoom, 
 			offset: offset,
 			duration: 5000,
-			speed: 1.2, // make the flying slow
-			curve: 1.42, // change the speed at which it zooms out
+			speed: 1.2,
+			curve: 1.42,
 			easing: function ( t ) {
 
 				return t<.5 ? 16*t*t*t*t*t : 1+16*( --t ) *t*t*t*t
@@ -436,12 +387,15 @@ export const addDropMarker = ( image ) => {
 
 			"type": "Feature",
 			"geometry": {
+
 				"type": "Point",
 				"coordinates": [ image.long, image.lat ]
+
 			},
 			"properties": {
-				"marker-symbol": "marker-accent-flat"/*,
-				"image": image.dataURL*/
+
+				"marker-symbol": "marker-accent-flat"
+
 			}
 
 		}
@@ -528,27 +482,6 @@ export const addUploadMarker = ( image ) => {
 
 }
 
-/*export const removeLastUpload = () => {
-
-	return function ( dispatch, getState ){
-
-		dispatch( { type: types.REMOVE_LAST_UPLOAD } )
-
-		let state = getState()
-		
-		let data = {
-
-			"type": "FeatureCollection",
-			"features": state.uploads
-
-		}
-
-		state.mapbox.map.getSource( 'uploads' ).setData( data )
-
-	}
-
-}*/
-
 export const setMarkerVisibility = ( visibility ) => {
 
 	return function ( dispatch, getState ){
@@ -561,95 +494,6 @@ export const setMarkerVisibility = ( visibility ) => {
 	}
 
 }
-
-export const switchModus = ( modus ) => {
-
-	return function ( dispatch, getState ){
-
-		const state = getState()
-		const map = state.mapbox.map
-
-		
-
-		if( modus === 'locate' ){
-
-			map.setLayoutProperty( 'markers', 'visibility', 'none' )
-			/*map.setLayoutProperty( 'cluster-circles', 'visibility', 'none' )
-			map.setLayoutProperty( 'cluster-count', 'visibility', 'none' )*/
-			//map.setLayoutProperty( 'drops', 'visibility', 'none' )
-			/*map.setLayoutProperty( 'mapbox-mapbox-satellite', 'visibility', 'visible' )
-			map.setLayerZoomRange( 'mapbox-mapbox-satellite', 14, 20 )*/
-
-			_.each( locateLayers, ( layer ) => {
-
-				if( map.getLayer( layer ) ){
-
-					map.setLayoutProperty( layer, 'visibility', 'visible' )
-
-				}
-
-			} )
-
-		}else{
-
-			map.setLayoutProperty( 'markers', 'visibility', 'visible' )
-			/*map.setLayoutProperty( 'cluster-circles', 'visibility', 'visible' )
-			map.setLayoutProperty( 'cluster-count', 'visibility', 'visible' )*/
-			//map.setLayoutProperty( 'drops', 'visibility', 'visible' )
-			/*map.setLayoutProperty( 'mapbox-mapbox-satellite', 'visibility', 'none' )*/
-
-			_.each( locateLayers, ( layer ) => {
-				
-				if( map.getLayer( layer ) ){
-
-					map.setLayoutProperty( layer, 'visibility', 'none' )
-					
-				}
-
-			} )
-
-		}
-
-
-	}
-
-}
-
-/*export const toggleSatellite = ( ) => {
-
-	return function ( dispatch, getState ){
-
-		const state = getState()
-		const map = state.mapbox.map
-
-		if( map.getLayoutProperty( 'mapbox-mapbox-satellite', 'visibility' ) == 'none' ){
-
-			map.setLayoutProperty( 'mapbox-mapbox-satellite', 'visibility', 'visible' )
-			dispatch( { type: types.SET_MODUS, to: 'satellite' } )
-
-		}else{
-
-			map.setLayoutProperty( 'mapbox-mapbox-satellite', 'visibility', 'none' )
-			dispatch( { type: types.SET_MODUS, to: 'vector' } )
-
-		}
-
-	}
-
-}
-
-export const hideSatellite = ( ) => {
-
-	return function ( dispatch, getState ){
-
-		const state = getState()
-		const map = state.mapbox.map
-		map.setLayoutProperty( 'mapbox-mapbox-satellite', 'visibility', 'none' )
-		dispatch( { type: types.SET_MODUS, to: 'vector' } )
-
-	}
-
-}*/
 
 export const showPopup = ( feature ) => {
 
@@ -707,8 +551,6 @@ export const resetMap = ( ) => {
 
 		dispatch( fly( CENTER, ZOOM ) )
 		dispatch( setMarkerVisibility( 'visible' ) )
-		//dispatch( switchModus() )
-		//dispatch( hideSatellite() )
 
 	}
 
@@ -726,7 +568,6 @@ export const trackZoom = ( flag ) => {
 
 		const track = ( ) => {
 
-			//console.log( map.getZoom() );
 			dispatch( { type: types.SET_ZOOM, to: map.getZoom() } )
 
 		}
@@ -737,7 +578,7 @@ export const trackZoom = ( flag ) => {
 
 		}else{
 
-			map.off( 'zoom', track )
+			map.off( 'zoom', track ) //MATTHIAS
 
 		}
 

@@ -30,11 +30,11 @@ const messages = defineMessages( {
 
 } )
 
-const main = ( { intl, className, showMarker, resetMain, show } ) => {
+const main = ( { intl, className, show, showMarker, resetMain } ) => {
 
 	const { formatMessage } = intl
 
-	const clsJazz = Classnames( className, style.jazz, {
+	const cls = Classnames( className, style.locate, {
 
 		[ style.show ]: show
 
@@ -42,7 +42,7 @@ const main = ( { intl, className, showMarker, resetMain, show } ) => {
 
 	return(
 
-		<DIV className={ clsJazz } >
+		<DIV className={ cls } >
 			<H priority={ 2 }>{ formatMessage( messages.can_you_locate ) }</H>
 			<P>
 				<A onClick={ showMarker } className={ style.option } >{ formatMessage( messages.yes_location_known ) }</A>
@@ -57,7 +57,6 @@ const main = ( { intl, className, showMarker, resetMain, show } ) => {
 main.propTypes = {
 
 	intl: intlShape.isRequired,
-
 	className: PropTypes.string,
 	show: PropTypes.bool,
 

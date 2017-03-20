@@ -5,8 +5,6 @@ import DIV from 'components/tags/div'
 import H from 'components/tags/h'
 import UL from 'components/tags/ul'
 import LI from 'components/tags/li'
-/*import P from 'components/tags/p'
-import BR from 'components/tags/br'*/
 
 import style from './_terms'
 
@@ -50,10 +48,6 @@ const messages = defineMessages( {
 const terms = ( { intl, className } ) => {
 
 	const { formatMessage } = intl
-
-	/*<BR/><BR/>
-			<H priority={ 3 }>{ formatMessage( messages.warning_notice ) }</H>
-			<P>{ formatMessage( messages.no_liability ) }</P>*/
 
 	return(
 

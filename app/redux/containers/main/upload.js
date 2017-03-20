@@ -8,8 +8,8 @@ const mapStateToProps = ( state ) => {
 
 	return {
 
-		show: state.layers.upload,
 		jazzSupported: state.browser.jazzSupported,
+		show: state.layers.upload,
 		useraction: state.useraction
 
 	}

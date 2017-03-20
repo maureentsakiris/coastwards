@@ -1,6 +1,5 @@
 import { connect } from 'react-redux'
 
-import { resetForm } from 'actions/main/main'
 import STATUSES from 'components/main/statuses'
 
 
@@ -8,34 +7,18 @@ const mapStateToProps = ( state ) => {
 
 	return {
 
-		status: state.status,
-		progress: state.form.progress,
 		show: state.layers.statuses,
-		jazzSupported: state.browser.jazzSupported
+		jazzSupported: state.browser.jazzSupported,
+		status: state.status,
+		progress: state.form.progress
 
 	}
 
 }
-
-const mapDispatchToProps = ( dispatch ) => {
-
-	return {
-
-		resetForm: ( ) => {
-
-			dispatch( resetForm() )
-
-		}
-
-	}
-
-}
-
 
 const statuses = connect(
 
-	mapStateToProps,
-	mapDispatchToProps
+	mapStateToProps
 
 )( STATUSES )
 

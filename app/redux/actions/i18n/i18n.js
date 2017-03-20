@@ -1,5 +1,6 @@
 import * as types from 'types'
 import i18nLocales from './i18nLocales'
+import { sendErrorMail } from 'actions/util/error/error'
 
 
 export function loadLanguage ( locale ) {
@@ -10,7 +11,7 @@ export function loadLanguage ( locale ) {
 
 			if( error ){
 
-				console.log( error.message );
+				dispatch( sendErrorMail( error ) )
 
 			}else{
 

@@ -146,16 +146,14 @@ const snackbar = ( state = { message: "", timeout: 6000, yes: undefined, no: und
 
 }
 
-
-// IF YOU ADD A LAYER HERE YOU MIGHT HAVE TO CHANGE main.js/scrollUp
-const layers = ( state = { loader: true, upload: true, prompts: true, statuses: false, errors: false, locate: false, geolocater: false, form: false, marker: false/*, satellite: false*/ }, action ) => {
+const layers = ( state = { loader: true, upload: true, prompts: true, statuses: false, errors: false, locate: false, geolocater: false, form: false, marker: false }, action ) => {
 
 	switch ( action.type ){
 
 	case types.SET_LAYER_VISIBILITY:
 		return _.extend( {}, state, { [ action.layer ]: action.to } )
 	case types.RESET_LAYERS:
-		return { loader: false, upload: true, prompts: true, statuses: false, errors: false, locate: false, geolocater: false, form: false, marker: false/*, satellite: false*/ }
+		return { loader: false, upload: true, prompts: true, statuses: false, errors: false, locate: false, geolocater: false, form: false, marker: false }
 	default: 
 		return state
 
@@ -202,7 +200,7 @@ const error = ( state = '', action ) => {
 
 }
 
-const form = ( state = { image: {}, material: 'notset', uid: '', adaptation: '', comment: '', hashtag: '', progress: 0 }, action ) => {
+const form = ( state = { image: {}, material: 'notset', uid: '', adaptation: '', comment: '', progress: 0 }, action ) => {
 
 	switch ( action.type ){
 
@@ -216,12 +214,10 @@ const form = ( state = { image: {}, material: 'notset', uid: '', adaptation: '',
 		return _.extend( {}, state, { adaptation: action.to } )
 	case types.SET_COMMENT:
 		return _.extend( {}, state, { comment: action.to } )
-	case types.SET_HASHTAG:
-		return _.extend( {}, state, { hashtag: action.to } )
 	case types.SET_UPLOAD_PROGRESS:
 		return _.extend( {}, state, { progress: action.to } )
 	case types.RESET_FORM:
-		return _.extend( {}, state, { image: {}, material: 'notset', uid: '', comment: '', hashtag: '', progress: 0 } )
+		return _.extend( {}, state, { image: {}, material: 'notset', uid: '', comment: '', progress: 0 } )
 	default:
 		return state
 
@@ -229,7 +225,7 @@ const form = ( state = { image: {}, material: 'notset', uid: '', adaptation: '',
 
 } 
 
-const selected = ( state = [], action ) => {
+/*const selected = ( state = [], action ) => {
 
 	switch ( action.type ){
 
@@ -240,7 +236,7 @@ const selected = ( state = [], action ) => {
 
 	}
 
-}
+}*/
 
 const mapbox = ( state = { map: undefined, zoom: 0, modus: 'vector' }, action ) => {
 
@@ -250,8 +246,6 @@ const mapbox = ( state = { map: undefined, zoom: 0, modus: 'vector' }, action ) 
 		return _.extend( {}, state, { map: action.to } )
 	case types.SET_ZOOM:
 		return _.extend( {}, state, { zoom: action.to } )
-	case types.SET_MODUS:
-		return _.extend( {}, state, { modus: action.to } )
 	default:
 		return state
 
@@ -302,7 +296,7 @@ const uploads = ( state = [], action ) => {
 
 }
 
-const popup = ( state = { popup: undefined, feature: {}/*, coords: [], active: false*/ }, action ) => {
+const popup = ( state = { popup: undefined, feature: {} }, action ) => {
 
 	switch ( action.type ){
 
@@ -348,7 +342,7 @@ const coastwards = combineReducers( {
 	status,
 	error,
 	form,
-	selected,
+	/*selected,*/
 	mapbox,
 	interactiveLayers,
 	drops,

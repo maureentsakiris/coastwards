@@ -41,7 +41,6 @@ export default class MapboxGL extends Component {
 
 		)
 
-
 	}
 
 }

@@ -60,7 +60,6 @@ const logos = ( { intl, jazzSupported } ) => {
 logos.propTypes = {
 
 	intl: intlShape.isRequired,
-
 	jazzSupported: PropTypes.bool
 
 }

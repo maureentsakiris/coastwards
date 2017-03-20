@@ -2,22 +2,15 @@ import React, { Component, PropTypes } from 'react'
 import PureRenderMixin from 'react-addons-pure-render-mixin'
 import { defineMessages, injectIntl, intlShape } from 'react-intl'
 import { promiseXHR } from 'actions/util/request/xhr'
-
-import Classnames from 'classnames'
-
 import isEmail from 'validator/lib/isEmail'
 import isEmpty from 'validator/lib/isEmpty'
 
-import TOGGLE from 'components/ui/toggle'
-
 import FORM from 'components/tags/form'
-
 import EMAIL from 'components/form/input/email'
 import COMMENT from 'components/form/input/comment'
 import SUBMIT from  'components/form/button/submit'
 
 import H from 'components/tags/h'
-import BR from 'components/tags/br'
 import DIV from 'components/tags/div'
 
 import style from './_ask'
@@ -114,11 +107,6 @@ class ask extends Component {
 		const mess = typeof status === 'object' ? status.message : status //if error object
 		const m = messages[ mess ] ? formatMessage( messages[ mess ] ) : mess //if translation 
 
-		/*const clsForm = Classnames( style.form, {
-
-			[ style.formJazz ]: jazzSupported
-
-		} )*/
 
 		if( !jazzSupported ){
 
@@ -152,25 +140,6 @@ class ask extends Component {
 				</DIV>
 
 			)
-			
-
-			/*return (
-
-				<DIV className={ style.ask } >
-					<DIV className={ style.box } >
-						<H priority={ 3 } >{ formatMessage( messages.one_more_question ) }</H>
-						<FORM action="javascript:;" id="Ask" >
-							<COMMENT id="Comment" onChange={ this._validateForm } form="Ask" label={ formatMessage( messages.label_question ) } name="comment" placeholder={ formatMessage( messages.placeholder_question ) } />
-							<BR />
-							<EMAIL id="Email" onChange={ this._validateForm } form="Ask" label={ formatMessage( messages.label_email ) } name="email" placeholder={ formatMessage( messages.placeholder_email ) } />
-							<BR />
-							<SUBMIT onClick={ this._submit } form="Ask" name="submit" label={ formatMessage( messages.label_submit ) } disabled={ disabled } />
-							<DIV className={ style.status } >{ status && m }</DIV>
-						</FORM>
-					</DIV>
-				</DIV>
-
-			)*/
 
 		}
 

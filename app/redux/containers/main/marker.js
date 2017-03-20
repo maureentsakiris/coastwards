@@ -1,8 +1,6 @@
 import { connect } from 'react-redux'
-import { resetMain, setLocation } from 'actions/main/main'
-import { setSnackbarMessage } from 'actions/ui/snackbar'
-import MARKER from 'components/main/marker'
 
+import MARKER from 'components/main/marker'
 
 const mapStateToProps = ( state ) => {
 
@@ -16,38 +14,9 @@ const mapStateToProps = ( state ) => {
 
 }
 
-/*const mapDispatchToProps = ( dispatch ) => {
-
-	return {
-
-		resetMain: ( e ) => {
-
-			e.preventDefault()
-			dispatch( resetMain() )
-
-		},
-		setLocation: ( e ) => {
-
-			e.preventDefault()
-			dispatch( setLocation() )
-
-		},
-		setSnackbarMessage: ( msg, e ) => {
-
-			e.preventDefault()
-			dispatch( setSnackbarMessage( msg ) )
-
-		}
-
-	}
-
-}*/
-
-
 const marker = connect(
 
-	mapStateToProps/*,
-	mapDispatchToProps*/
+	mapStateToProps
 
 )( MARKER )
 

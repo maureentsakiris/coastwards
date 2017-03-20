@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { setSnackbarMessage } from 'actions/ui/snackbar'
-import { setMaterial, setComment, setHashtag, uploadImage, resetMain } from 'actions/main/main'
+import { setMaterial, setComment, uploadImage, resetMain } from 'actions/main/main'
 import { showDialog } from 'actions/ui/dialog'
 import FORM from 'components/main/form'
 
@@ -9,10 +9,10 @@ const mapStateToProps = ( state ) => {
 
 	return {
 
+		jazzSupported: state.browser.jazzSupported,
 		show: state.layers.form,
 		image: state.form.image,
 		checkedValue: state.form.material,
-		jazzSupported: state.browser.jazzSupported,
 		materials: state.materials
 
 	}
@@ -31,11 +31,6 @@ const mapDispatchToProps = ( dispatch ) => {
 		setComment: ( e ) => {
 
 			dispatch( setComment( e ) )
-
-		},
-		setHashtag: ( e ) => {
-
-			dispatch( setHashtag( e ) )
 
 		},
 		uploadImage: ( e ) => {

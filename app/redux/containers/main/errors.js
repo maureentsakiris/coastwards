@@ -6,30 +6,18 @@ const mapStateToProps = ( state ) => {
 
 	return {
 
-		error: state.error,
 		jazzSupported: state.browser.jazzSupported,
 		show: state.layers.errors,
+		error: state.error,
 		upload: state.layers.upload
 
 	}
 
 }
 
-const mapDispatchToProps = ( ) => {
-
-	return {
-
-		
-
-	}
-
-}
-
-
 const errors = connect(
 
-	mapStateToProps,
-	mapDispatchToProps
+	mapStateToProps
 
 )( ERRORS )
 

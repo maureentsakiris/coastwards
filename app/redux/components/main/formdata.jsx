@@ -103,6 +103,8 @@ const messages = defineMessages( {
 
 } )
 
+//TODO: SHOULD BE SPLIT INTO JAZZ AND NOJAZZ
+
 const formdata = ( { intl, image, uid, imageWidth, showDialog } ) => {
 
 	const { formatMessage } = intl
@@ -230,4 +232,3 @@ formdata.propTypes = {
 }
 
 export default injectIntl( formdata )
-
