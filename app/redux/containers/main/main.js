@@ -10,7 +10,8 @@ const mapStateToProps = ( state ) => {
 
 		uploadSupported: state.browser.uploadSupported,
 		jazzSupported: state.browser.jazzSupported,
-		useraction: state.useraction
+		useraction: state.useraction,
+		clipped: state.clipped
 
 	}
 

@@ -3,7 +3,7 @@ import { defineMessages, injectIntl, intlShape } from 'react-intl'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 
-import SPAN from 'components/tags/span'
+import P from 'components/tags/p'
 import DIV from 'components/tags/div'
 import GO from 'components/form/button/go'
 import CANCEL from 'components/form/button/cancel'
@@ -112,10 +112,10 @@ const snackbar = ( { intl, /*jazzSupported,*/ message, yes, no, dismissSnackbar 
 		>
 			{ m && <DIV>
 				{ m }
-				<SPAN>
+				<P>
 					{ no && <CANCEL onClick={ dismissSnackbar.bind( this, no.action ) } label={ formatMessage( intlMessages[ no.label ] ) } /> }
 					{ yes && <GO onClick={ dismissSnackbar.bind( this, yes.action ) } label={ formatMessage( intlMessages[ yes.label ] ) } /> }
-				</SPAN>
+				</P>
 			</DIV> }
 		</ReactCSSTransitionGroup>
 

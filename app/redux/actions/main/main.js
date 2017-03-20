@@ -683,7 +683,18 @@ export const clipPage = ( ) => {
 
 		dispatch( { type: 'CLIP_PAGE' } )
 		dispatch( scrollToMap() )
-		window.dispatchEvent( new Event( 'resize' ) )
+		//window.dispatchEvent( new Event( 'resize' ) ) <-- Throws error on fucking IE11
+		if ( navigator.userAgent.indexOf( 'MSIE' ) !== -1 || navigator.appVersion.indexOf( 'Trident/' ) > 0 ) {
+
+			var evt = document.createEvent( 'UIEvents' )
+			evt.initUIEvent( 'resize', true, false, window, 0 )
+			window.dispatchEvent( evt )
+
+		} else {
+
+			window.dispatchEvent( new Event( 'resize' ) )
+
+		}
 
 	}
 

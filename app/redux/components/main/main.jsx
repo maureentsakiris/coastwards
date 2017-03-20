@@ -42,7 +42,7 @@ const messages = defineMessages( {
 	
 } )
 
-const main = ( { intl, uploadSupported, jazzSupported, useraction, unclipPage } ) => {
+const main = ( { intl, uploadSupported, jazzSupported, useraction, clipped, unclipPage } ) => {
 
 	const { formatMessage } = intl
 
@@ -74,7 +74,7 @@ const main = ( { intl, uploadSupported, jazzSupported, useraction, unclipPage } 
 
 		const clsArrow = Classnames( style.arrow, {
 
-			[ style.show ]: useraction == 'browsing'
+			[ style.show ]: useraction !== 'uploading' && clipped
 
 		} )
 
@@ -110,6 +110,7 @@ main.propTypes = {
 	uploadSupported: PropTypes.bool,
 	jazzSupported: PropTypes.bool,
 	useraction: PropTypes.string,
+	clipped: PropTypes.bool,
 
 	unclipPage: PropTypes.func
 	
