@@ -7,3 +7,15 @@
 	border-top: $toggle-border;
 
 }
+
+.exampleToggle{
+
+	@extend %toggle;
+
+	h4{
+		/* padding: 1em;
+		font-weight: 200px; */
+		color: #fff;
+	}
+
+}

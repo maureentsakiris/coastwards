@@ -3,7 +3,7 @@ import { defineMessages, injectIntl, intlShape } from 'react-intl'
 /*import Classnames from 'classnames'*/
 
 import WHYIP from './dialogs/whyIP'
-import DEFINEMATERIAL from './dialogs/definematerial'
+import DEFINEMATERIAL from 'containers/ui/dialogs/definematerial'
 import SHARE from './dialogs/share'
 import IMPRINT from './dialogs/imprint'
 import TERMS from './dialogs/terms'

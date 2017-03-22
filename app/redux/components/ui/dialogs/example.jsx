@@ -1,7 +1,6 @@
 import React, { PropTypes, Component } from 'react'
 import PureRenderMixin from 'react-addons-pure-render-mixin'
 import _ from 'underscore'
-import Slider from 'react-slick'
 
 import DIV from 'components/tags/div'
 import IMG from 'components/tags/img'
@@ -52,22 +51,10 @@ class example extends Component {
 			const uids = examplesOfType.uids.split( ',' )
 			const images = _composeImages( uids, type )
 
-			var settings = {
-
-				dots: true,
-				infinite: true,
-				speed: 500,
-				slidesToShow: 2,
-				slidesToScroll: 2
-
-			}
-
 			return (
 				
 				<DIV className={ style.container } >
-					<Slider { ...settings } >
-						{ images }
-					</Slider>
+					{ images }
 				</DIV>
 
 			)

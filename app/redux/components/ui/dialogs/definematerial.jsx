@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react'
 import { defineMessages, injectIntl, intlShape } from 'react-intl'
+import _ from 'underscore'
 
 import TOGGLE from 'components/ui/toggle'
 import EXAMPLE from 'containers/ui/dialogs/example'
@@ -79,9 +80,16 @@ const messages = defineMessages( {
 } )
 
 
-const definematerial = ( { intl, className } ) => {
+const definematerial = ( { intl, className, materials } ) => {
 
 	const { formatMessage } = intl
+
+	const getColor = ( material ) => {
+
+		const obj = _.findWhere( materials, { value: material } )
+		return obj.color
+
+	}
 
 	return(
 
@@ -93,22 +101,22 @@ const definematerial = ( { intl, className } ) => {
 				<P>{ formatMessage( messages.multiple_materials_text ) }</P>
 			</TOGGLE>
 			<TOGGLE priority={ 3 } text={ formatMessage( messages.material_examples_header ) } className={ style.toggle } >
-				<TOGGLE priority={ 4 } text={ formatMessage( messages.sand ) } >
+				<TOGGLE priority={ 4 } text={ formatMessage( messages.sand ) } className={ style.exampleToggle } style={ { backgroundColor: getColor( 'sand' ) } } >
 					<EXAMPLE type="sand" />
 				</TOGGLE>
-				<TOGGLE priority={ 4 } text={ formatMessage( messages.pebble ) } >
+				<TOGGLE priority={ 4 } text={ formatMessage( messages.pebble ) } className={ style.exampleToggle } style={ { backgroundColor: getColor( 'pebble' ) } } >
 					<EXAMPLE type="pebble" />
 				</TOGGLE>
-				<TOGGLE priority={ 4 } text={ formatMessage( messages.rock ) } >
+				<TOGGLE priority={ 4 } text={ formatMessage( messages.rock ) } className={ style.exampleToggle } style={ { backgroundColor: getColor( 'rock' ) } } >
 					<EXAMPLE type="rock" />
 				</TOGGLE>
-				<TOGGLE priority={ 4 } text={ formatMessage( messages.mud ) } >
+				<TOGGLE priority={ 4 } text={ formatMessage( messages.mud ) } className={ style.exampleToggle } style={ { backgroundColor: getColor( 'mud' ) } } >
 					<EXAMPLE type="mud" />
 				</TOGGLE>
-				<TOGGLE priority={ 4 } text={ formatMessage( messages.ice ) } >
+				<TOGGLE priority={ 4 } text={ formatMessage( messages.ice ) } className={ style.exampleToggle } style={ { backgroundColor: getColor( 'ice' ) } } >
 					<EXAMPLE type="ice" />
 				</TOGGLE>
-				<TOGGLE priority={ 4 } text={ formatMessage( messages.manmade ) } >
+				<TOGGLE priority={ 4 } text={ formatMessage( messages.manmade ) } className={ style.exampleToggle } style={ { backgroundColor: getColor( 'manmade' ) } } >
 					<EXAMPLE type="manmade" />
 				</TOGGLE>
 			</TOGGLE>
@@ -121,7 +129,8 @@ const definematerial = ( { intl, className } ) => {
 definematerial.propTypes = {
 
 	intl: intlShape,
-	className: PropTypes.string
+	className: PropTypes.string,
+	materials: PropTypes.array
 
 }
 
