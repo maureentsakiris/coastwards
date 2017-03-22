@@ -67,7 +67,7 @@ const _fetch = ( fields ) => {
 
 	return new Promise( ( resolve, reject ) => { 
 
-		const { material, materialverified, verified, id } = fields
+		const { material, materialverified, verified, id, example } = fields
 
 		pool.getConnection( function ( error, connection ) {
 
@@ -77,14 +77,15 @@ const _fetch = ( fields ) => {
 
 			}else{
 
-				var sql = 'SELECT * FROM contributions WHERE contribution_material LIKE ? && contribution_material_verified LIKE ? && contribution_verified LIKE ? && contribution_id LIKE ?';
+				var sql = 'SELECT * FROM contributions WHERE contribution_material LIKE ? && contribution_material_verified LIKE ? && contribution_verified LIKE ? && contribution_id LIKE ? && contribution_example LIKE ?';
 
 				var inserts = [
 
 					material,
 					materialverified,
 					verified,
-					id
+					id,
+					example
 
 				]
 
@@ -227,11 +228,9 @@ router.post( '/delete', function ( req, res ) {
 
 const _update = ( fields ) => {
 
-	console.log( fields );
-
 	return new Promise( ( resolve, reject ) => { 
 
-		const { contribution_id, contribution_verified, contribution_material_verified } = fields
+		const { contribution_id, contribution_verified, contribution_material_verified, contribution_example } = fields
 
 		pool.getConnection( function ( error, connection ) {
 
@@ -241,7 +240,7 @@ const _update = ( fields ) => {
 
 			}else{
 
-				var sql = 'UPDATE ?? SET contribution_verified=?, contribution_material_verified=? WHERE contribution_id=?';
+				var sql = 'UPDATE ?? SET contribution_verified=?, contribution_material_verified=?, contribution_example=? WHERE contribution_id=?';
 
 				var inserts = [
 
@@ -249,6 +248,7 @@ const _update = ( fields ) => {
 
 					contribution_verified,
 					contribution_material_verified,
+					contribution_example,
 
 					contribution_id
 
@@ -289,6 +289,85 @@ router.post( '/update', function ( req, res ) {
 		res.json( { status: 'OK', affectedRows: affectedRows } )
 		
 		return affectedRows
+
+	} )
+	.catch( ( error ) => {
+
+		res.json( { status: 'KO', message: error.toString() } )
+
+	} )
+
+} )
+
+
+function promiseFetchExamples (){
+
+	return new Promise( function ( resolve, reject ) {
+
+		pool.getConnection( function ( error, connection ) {
+
+			if( error ){
+
+				reject( error )
+
+			}else{
+
+				var sql = 'SELECT GROUP_CONCAT(contribution_uid) as uids, ?? as type FROM ?? WHERE ??=? GROUP BY ??'
+				//var sql = 'SELECT CONCAT( \' { "type": \', contribution_material_verified, \', “images”: [\', GROUP_CONCAT(contribution_uid), \'] } \' ) as json FROM ?? WHERE ??=? GROUP BY ??'
+				var inserts = [
+
+					"contribution_material_verified",
+
+					"contributions",
+
+					"contribution_example",
+					"1",
+
+					"contribution_material_verified"
+
+				]
+
+				var query = mysql.format( sql, inserts )
+
+				connection.query( query, function ( err, results ) {
+
+					if( error ){
+
+						reject( error )
+
+					}else{
+
+						if( results === undefined ){
+
+							reject( Error( 'contributions/promiseFetchExamples/Could not read result from query (Update schema?)' ) )
+
+						}else{
+
+							resolve( results )
+
+						}
+
+					}
+					
+					connection.release()
+
+				} )
+
+			}
+
+		} )
+
+	} )
+
+}
+
+router.get( '/examples', function ( req, res ) {
+
+	promiseFetchExamples()
+	.then( ( json ) => {
+
+		res.json( { status: 'OK', json: json } )
+		return json;
 
 	} )
 	.catch( ( error ) => {

@@ -15,7 +15,7 @@ import CONTRIBUTION from 'containers/admin/contribution'
 
 import style from './_admin'
 
-const admin = ( { results, materials, material, materialverified, verified, id, setMaterial, setMaterialVerified, setVerified, setID, fetch } ) => {
+const admin = ( { results, materials, material, materialverified, verified, id, example, setMaterial, setMaterialVerified, setVerified, setID, setExample, fetch } ) => {
 
 	const all = [ { label: 'All', value: '%' } ]
 	const mats = _.map( materials, ( material ) => {
@@ -28,7 +28,7 @@ const admin = ( { results, materials, material, materialverified, verified, id, 
 
 	const list = _renderResults( results )
 
-	const verifiedOptions = [
+	const allYesNo = [
 
 		{ label: 'All', value: '%' },
 		{ label: 'Yes', value: '1' },
@@ -46,7 +46,8 @@ const admin = ( { results, materials, material, materialverified, verified, id, 
 				<INPUT form="Admin" label="ID: " name="id" preferPlaceholder={ false } placeholder="ID" onChange={ setID } value={ id } />
 				<SELECTGROUP form="Admin" label="Material: " name="material" preferPlaceholder={ false } options={ materialOptions } onChange={ setMaterial } value={ material } />
 				<SELECTGROUP form="Admin" label="Material verified: " name="materialverified" preferPlaceholder={ false } options={ materialOptions } onChange={ setMaterialVerified } value={ materialverified } />
-				<SELECTGROUP form="Admin" label="Verified: " name="verified" preferPlaceholder={ false } options={ verifiedOptions } onChange={ setVerified } value={ verified } />
+				<SELECTGROUP form="Admin" label="Verified: " name="verified" preferPlaceholder={ false } options={ allYesNo } onChange={ setVerified } value={ verified } />
+				<SELECTGROUP form="Admin" label="Example: " name="example" preferPlaceholder={ false } options={ allYesNo } onChange={ setExample } value={ example } />
 				<GO onClick={ fetch } label="GO" />
 			</FORM>
 			<UL>{ list }</UL>
@@ -79,11 +80,13 @@ admin.propTypes = {
 	materialverified: PropTypes.string,
 	verified: PropTypes.string,
 	id: PropTypes.string,
+	example: PropTypes.string,
 
 	setMaterial: PropTypes.func,
 	setMaterialVerified: PropTypes.func,
 	setVerified: PropTypes.func,
 	setID: PropTypes.func,
+	setExample: PropTypes.func,
 	fetch: PropTypes.func
 
 }

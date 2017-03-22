@@ -325,6 +325,19 @@ const count = ( state = 0, action ) => {
 
 }
 
+const examples = ( state = [], action ) => {
+
+	switch ( action.type ){
+
+	case types.SET_EXAMPLES:
+		return action.to
+	default:
+		return state
+
+	}
+
+}
+
 
 const coastwards = combineReducers( {
 
@@ -348,7 +361,8 @@ const coastwards = combineReducers( {
 	drops,
 	uploads,
 	popup,
-	count
+	count,
+	examples
 
 } )
 

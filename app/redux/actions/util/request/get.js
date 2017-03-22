@@ -43,7 +43,7 @@ export const promiseJSONOK = ( parsed ) => {
 
 		if( parsed.status == 'KO' ){
 
-			reject( Error( 'error_json' ) )
+			reject( Error( parsed.message ) )
 
 		}else{
 

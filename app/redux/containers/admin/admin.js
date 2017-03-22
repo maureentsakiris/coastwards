@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { fetch, setMaterial, setMaterialVerified, setVerified, setID } from 'actions/admin/admin'
+import { fetch, setMaterial, setMaterialVerified, setVerified, setID, setExample } from 'actions/admin/admin'
 
 import ADMIN from 'components/admin/admin'
 
@@ -13,6 +13,7 @@ const mapStateToProps = ( state ) => {
 		material: state.form.material,
 		materialverified: state.form.materialverified,
 		verified: state.form.verified,
+		example: state.form.example,
 		id: state.form.id
 
 	}
@@ -41,6 +42,11 @@ const mapDispatchToProps = ( dispatch ) => {
 		setID: ( e ) => {
 
 			dispatch( setID( e ) )
+
+		},
+		setExample: ( e ) => {
+
+			dispatch( setExample( e ) )
 
 		},
 		fetch: ( ) => {

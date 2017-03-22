@@ -688,3 +688,27 @@ export const disableAndreasPinch = ( ) => {
 	}
 
 }
+
+export const fetchExamples = () => {
+
+	return function ( dispatch ){
+
+		promiseGet( '/administrate/examples/' )
+		.then( JSON.parse )
+		.then( promiseJSONOK )
+		.then( ( parsed ) => {
+
+			const json = parsed.json
+			dispatch( { type: types.SET_EXAMPLES, to: json } )
+			return json
+
+		} )
+		.catch( ( error ) => {
+
+			dispatch( sendErrorMail( error ) )
+
+		} )
+
+	}
+
+}

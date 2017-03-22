@@ -52,6 +52,9 @@ store.dispatch( loadLanguage( negotiatedLocale || navigatorLocale ) )
 
 } )*/
 
+import { showDialog } from 'actions/ui/dialog'
+
+store.dispatch( showDialog( 'DEFINEMATERIAL' ) )
 
 ReactDom.render( 
 

@@ -2,6 +2,7 @@
  * TO ADD A LANGUAGE:
  * 1. Add in Locales (i18nLocales.js)
  * 2. Add loaders method (i18nLocales.js)
+ * 3. Add in i18n/locales/
  * 3. Add in acceptsLanguages (server.js)
 */
 
@@ -34,16 +35,22 @@ const Locales = [
 		locale: 'ar',
 		name: 'العربية',
 		en: 'Arabic'
-	}/*,
-	{
-		locale: 'hi',
-		name: 'हिन्दी, हिंदी',
-		en: 'Hindi'
 	},
 	{
 		locale: 'zh',
 		name: '中文',
 		en: 'Chinese'
+	},
+	{
+		locale: 'el',
+		name: 'Ελληνικά',
+		en: 'Chinese'
+	}
+	/*,
+	{
+		locale: 'hi',
+		name: 'हिन्दी, हिंदी',
+		en: 'Hindi'
 	},
 	{
 		locale: 'ru',
@@ -270,6 +277,87 @@ loaders.ar = ( done ) => {
 
 }
 
+loaders.zh = ( done ) => {
+
+	if ( !hasIntl ){
+
+		require.ensure(
+
+			[ 'intl/locale-data/jsonp/zh.js', 'react-intl/locale-data/zh', '../../../i18n/locales/zh' ],
+			( require ) => {
+
+				require( 'intl/locale-data/jsonp/zh.js' ); 
+				var localeData = require( 'react-intl/locale-data/zh' );
+				addLocaleData( localeData );
+				var i18n = require( '../../../i18n/locales/zh' );
+				done ( null, i18n );
+
+			},
+			'zh-polyfill'
+
+		);
+
+	}else{
+
+		require.ensure(
+
+			[ 'react-intl/locale-data/zh', '../../../i18n/locales/zh' ],
+			( require ) => {
+
+				var localeData = require( 'react-intl/locale-data/zh' );
+				addLocaleData( localeData );
+				var i18n = require( '../../../i18n/locales/zh' );
+				done ( null, i18n );
+
+			},
+			'zh'
+
+		);
+
+	}
+
+}
+
+loaders.el = ( done ) => {
+
+	if ( !hasIntl ){
+
+		require.ensure(
+
+			[ 'intl/locale-data/jsonp/el.js', 'react-intl/locale-data/el', '../../../i18n/locales/el' ],
+			( require ) => {
+
+				require( 'intl/locale-data/jsonp/el.js' ); 
+				var localeData = require( 'react-intl/locale-data/el' );
+				addLocaleData( localeData );
+				var i18n = require( '../../../i18n/locales/el' );
+				done ( null, i18n );
+
+			},
+			'el-polyfill'
+
+		);
+
+	}else{
+
+		require.ensure(
+
+			[ 'react-intl/locale-data/el', '../../../i18n/locales/el' ],
+			( require ) => {
+
+				var localeData = require( 'react-intl/locale-data/el' );
+				addLocaleData( localeData );
+				var i18n = require( '../../../i18n/locales/el' );
+				done ( null, i18n );
+
+			},
+			'el'
+
+		);
+
+	}
+
+}
 /*loaders.it = ( done ) => {
 
 	if ( !hasIntl ){
@@ -434,46 +522,7 @@ loaders.bn = ( done ) => {
 
 }
 
-loaders.zh = ( done ) => {
-
-	if ( !hasIntl ){
-
-		require.ensure(
-
-			[ 'intl/locale-data/jsonp/zh.js', 'react-intl/locale-data/zh', '../../../i18n/locales/zh' ],
-			( require ) => {
-
-				require( 'intl/locale-data/jsonp/zh.js' ); 
-				var localeData = require( 'react-intl/locale-data/zh' );
-				addLocaleData( localeData );
-				var i18n = require( '../../../i18n/locales/zh' );
-				done ( null, i18n );
-
-			},
-			'zh-polyfill'
-
-		);
-
-	}else{
-
-		require.ensure(
-
-			[ 'react-intl/locale-data/zh', '../../../i18n/locales/zh' ],
-			( require ) => {
-
-				var localeData = require( 'react-intl/locale-data/zh' );
-				addLocaleData( localeData );
-				var i18n = require( '../../../i18n/locales/zh' );
-				done ( null, i18n );
-
-			},
-			'zh'
-
-		);
-
-	}
-
-}*/
+*/
 
 const loadLocale = function ( locale, done ){
 

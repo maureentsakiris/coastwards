@@ -28,5 +28,35 @@
     "id": "material_examples_text",
     "description": "-",
     "defaultMessage": "I'm currently working on this section. Until then, have a look at the images that are already uploaded to get a better idea!"
+  },
+  {
+    "id": "sand",
+    "description": "Material - Sand",
+    "defaultMessage": "Sand"
+  },
+  {
+    "id": "pebble",
+    "description": "Material - Pebble",
+    "defaultMessage": "Pebble"
+  },
+  {
+    "id": "rock",
+    "description": "Material - Rock",
+    "defaultMessage": "Rock"
+  },
+  {
+    "id": "mud",
+    "description": "Material - Mud",
+    "defaultMessage": "Mud"
+  },
+  {
+    "id": "manmade",
+    "description": "Material - Man-made",
+    "defaultMessage": "Man-made"
+  },
+  {
+    "id": "ice",
+    "description": "Material - Ice",
+    "defaultMessage": "Ice"
   }
 ]

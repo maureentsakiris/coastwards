@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react'
 import { defineMessages, injectIntl, intlShape } from 'react-intl'
 
 import TOGGLE from 'components/ui/toggle'
+import EXAMPLE from 'containers/ui/dialogs/example'
 
 import DIV from 'components/tags/div'
 import H from 'components/tags/h'
@@ -42,6 +43,37 @@ const messages = defineMessages( {
 		id: "material_examples_text",
 		description: " - ",
 		defaultMessage: "I'm currently working on this section. Until then, have a look at the images that are already uploaded to get a better idea!"
+	},
+
+	sand:{
+		id: "sand",
+		description: "Material - Sand",
+		defaultMessage: "Sand"
+	},
+	pebble:{
+		id: "pebble",
+		description: "Material - Pebble",
+		defaultMessage: "Pebble"
+	},
+	rock:{
+		id: "rock",
+		description: "Material - Rock",
+		defaultMessage: "Rock"
+	},
+	mud:{
+		id: "mud",
+		description: "Material - Mud",
+		defaultMessage: "Mud"
+	},
+	manmade:{
+		id: "manmade",
+		description: "Material - Man-made",
+		defaultMessage: "Man-made"
+	},
+	ice:{
+		id: "ice",
+		description: "Material - Ice",
+		defaultMessage: "Ice"
 	}
 
 } )
@@ -61,7 +93,24 @@ const definematerial = ( { intl, className } ) => {
 				<P>{ formatMessage( messages.multiple_materials_text ) }</P>
 			</TOGGLE>
 			<TOGGLE priority={ 3 } text={ formatMessage( messages.material_examples_header ) } className={ style.toggle } >
-				<P>{ formatMessage( messages.material_examples_text ) }</P>
+				<TOGGLE priority={ 4 } text={ formatMessage( messages.sand ) } >
+					<EXAMPLE type="sand" />
+				</TOGGLE>
+				<TOGGLE priority={ 4 } text={ formatMessage( messages.pebble ) } >
+					<EXAMPLE type="pebble" />
+				</TOGGLE>
+				<TOGGLE priority={ 4 } text={ formatMessage( messages.rock ) } >
+					<EXAMPLE type="rock" />
+				</TOGGLE>
+				<TOGGLE priority={ 4 } text={ formatMessage( messages.mud ) } >
+					<EXAMPLE type="mud" />
+				</TOGGLE>
+				<TOGGLE priority={ 4 } text={ formatMessage( messages.ice ) } >
+					<EXAMPLE type="ice" />
+				</TOGGLE>
+				<TOGGLE priority={ 4 } text={ formatMessage( messages.manmade ) } >
+					<EXAMPLE type="manmade" />
+				</TOGGLE>
 			</TOGGLE>
 		</DIV>
 

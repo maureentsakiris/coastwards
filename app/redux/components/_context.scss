@@ -60,7 +60,7 @@
 
 	@include min( $huge ){
 
-		font-size: 36px;
+		font-size: 28px;
 
 	}
 
@@ -245,13 +245,7 @@
 
 				@extend %tagline;
 				margin-bottom: 0;
-				margin-top: 10vh; //same as .more
-				
-				@include min( $tablet ){
-
-					margin-top: 5vh;
-
-				}
+				margin-top: 5vh; //same as .more
 
 			}
 
@@ -260,13 +254,7 @@
 				@extend %more;
 				border-color: #fff;
 				color: #fff;
-				margin-top: 10vh;
-				
-				@include min( $tablet ){
-
-					margin-top: 5vh;
-
-				}
+				margin-top: 5vh;
 
 			}
 

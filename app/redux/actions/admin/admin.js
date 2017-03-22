@@ -43,6 +43,16 @@ export const setID = ( e ) => {
 
 }
 
+export const setExample = ( e ) => {
+
+	return function ( dispatch ){
+
+		dispatch( { type: types.SET_EXAMPLE, to: e.currentTarget.value } )
+
+	}
+
+}
+
 
 export const fetch = ( ) => {
 
@@ -50,13 +60,14 @@ export const fetch = ( ) => {
 
 		const state = getState()
 
-		const { material, verified, materialverified, id } = state.form
+		const { material, verified, materialverified, id, example } = state.form
 
 		let formData = new FormData()
 		formData.append( 'material', material )
 		formData.append( 'verified', verified )
 		formData.append( 'materialverified', materialverified )
 		formData.append( 'id', id )
+		formData.append( 'example', example )
 
 		let options = {
 

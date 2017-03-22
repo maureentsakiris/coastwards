@@ -5,7 +5,7 @@ export const sendErrorMail = ( error ) => {
 	return function () {
 
 		let formData = new FormData()
-		formData.append( 'error', error )
+		formData.append( 'error', error.stack )
 
 		let options = { 
 

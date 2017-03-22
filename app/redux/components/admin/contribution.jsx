@@ -33,7 +33,8 @@ class contribution extends Component {
 		this.setState( { 
 
 			verified: p.result.contribution_verified == 1 ? true : false,
-			materialVerified: p.result.contribution_material_verified ?  p.result.contribution_material_verified : p.result.contribution_material
+			materialVerified: p.result.contribution_material_verified ?  p.result.contribution_material_verified : p.result.contribution_material,
+			example: p.result.contribution_example == 1 ? true : false
 
 		} )
 
@@ -47,7 +48,8 @@ class contribution extends Component {
 		this.state = {
 
 			verified: this.props.result.contribution_verified == 1 ? "1" : "0",
-			materialVerified: this.props.result.contribution_material_verified ?  this.props.result.contribution_material_verified : this.props.result.contribution_material
+			materialVerified: this.props.result.contribution_material_verified ?  this.props.result.contribution_material_verified : this.props.result.contribution_material,
+			example: this.props.result.contribution_example == 1 ? "1" : "0"
 
 		}
 
@@ -58,7 +60,7 @@ class contribution extends Component {
 		const { result, materials, deleteContribution, updateContribution } = this.props
 		const { contribution_id, contribution_uid, contribution_material } = result
 
-		const { verified, materialVerified } = this.state
+		const { verified, materialVerified, example } = this.state
 
 
 		const options = _.map( materials, ( material ) => {
@@ -81,6 +83,7 @@ class contribution extends Component {
 					<P>Material user: { contribution_material }</P>
 					<P>Material verified: <SELECTGROUP form={ formID } label="Material verified" name="contribution_material_verified" options={ options } value={ materialVerified } onChange={ this._setMaterial.bind( this ) } /></P>
 					<RADIOGROUP preferPlaceholder={ false } checked={ verified } label="Verified" form={ formID } name="contribution_verified" options={ [ { label: "yes", value: "1" }, { label: "no", value: "0" } ] } value={ verified } onChange={ this._setVerified.bind( this ) } />
+					<RADIOGROUP preferPlaceholder={ false } checked={ example } label="Example" form={ formID } name="contribution_example" options={ [ { label: "yes", value: "1" }, { label: "no", value: "0" } ] } value={ example } onChange={ this._setExample.bind( this ) } />
 				</FORM>
 				<DIV className={ style.actions }>
 					<GO onClick={ updateContribution.bind( this, formID ) } label="UPDATE" className={ style.update } />
@@ -104,56 +107,12 @@ class contribution extends Component {
 
 	}
 
-}
+	_setExample = ( e ) => {
 
-/*const contribution = ( { result, materials, deleteContribution, updateContribution } ) => {
+		this.setState( { example: e.currentTarget.value } )
 
-	const { contribution_id, contribution_uid, contribution_material, contribution_verified } = result
-
-	const src = "uploads/" + contribution_uid + ".jpg"
-
-	const options = _.map( materials, ( material ) => {
-
-		let checked = material.value == contribution_material ? true : false
-		return { label: material.label, value: material.value, checked: checked }
-
-	} )
-
-	const formID = "contribution_" + contribution_id
-
-	<SELECTGROUP form="Admin" label="Material" name="material" preferPlaceholder={ true } options={ options } onChange={ deleteContribution } value={ contribution_material } />
-
-	return(
-
-		<LI className={ style.contribution }>
-			<IMG className={ style.image } src={ src } alt={ contribution_uid } />
-			<FORM id={ formID } action="#" className={ style.form }>
-				<INPUT form={ formID } type="hidden" name="contribution_id" value={ contribution_id + '' } />
-				<P>Material user: { contribution_material }</P>
-				<P>Material verified: <SELECTGROUPUC form={ formID } label="Material verified" name="contribution_material_verified" options={ options } defaultValue={ contribution_material } /></P>
-				<P>Verified: <SELECTGROUPUC form={ formID } label="Verified" name="contribution_verified" options={ [ { label: 'Yes', value: '1' }, { label: 'No', value: '0' } ] } defaultValue={ contribution_verified + '' } /></P>
-			</FORM>
-			<DIV className={ style.actions }>
-				<GO onClick={ updateContribution.bind( this, formID ) } label="UPDATE" className={ style.update } />
-				<GO onClick={ deleteContribution.bind( this, contribution_id ) } label="DELETE" className={ style.delete } />
-			</DIV>
-		</LI>
-
-	)
+	}
 
 }
-
-
-contribution.propTypes = {
-
-	result: PropTypes.object,
-
-	materials: PropTypes.array,
-
-	deleteContribution: PropTypes.func,
-	updateContribution: PropTypes.func,
-	updateMaterialVerified: PropTypes.func
-
-}*/
 
 export default contribution
