@@ -1,15 +1,33 @@
 @import 'app/styles/base';
 
-.container{
+%slide{
+
+	width: 100%;
+	background-size: cover;
+	background-position: center;
+	max-height: 400px;
+
+}
+
+.noJazz{
+
+	.slide{
+
+		@extend %slide;
+		height: 400px;
+		margin-bottom: 10px;
+
+	}
+
+}
+
+.jazz{
 
 	position: relative;
 
 	.slide{
 
-		width: 100%;
-		background-size: cover;
-		background-position: center;
-		max-height: 400px;
+		@extend %slide;
 
 		@include portrait(){
 

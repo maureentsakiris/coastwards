@@ -15,6 +15,7 @@ class example extends Component {
 
 	static propTypes = {
 
+		jazzSupported: PropTypes.bool, 
 		examples: PropTypes.array,
 		touchevents: PropTypes.bool,
 		type: PropTypes.string,
@@ -50,7 +51,8 @@ class example extends Component {
 
 	render () {
 
-		const { examples, touchevents, type } = this.props
+		const { jazzSupported, examples, /*touchevents,*/ type } = this.props
+
 
 		if( !examples.length ){
 
@@ -73,46 +75,61 @@ class example extends Component {
 				const { index } = this.state
 				const uids = examplesOfType.uids.split( ',' )
 				const images = _composeImages( uids )
-				const total = images.length - 1
 
-				const clsSwipeArrow = Classnames( style.swipeArrow, {
+				if( !jazzSupported ){
 
-					//[ style.touchevents ]: touchevents
+					return (
 
-				} )
-
-				const config = {
-
-					enableMouseEvents: true,
-					index: index
-
-				}
-				
-				const _prev = () => {
-
-					let newIndex = index == 0 ? total : index - 1
-					this.setState( { index: newIndex } )
-
-				}
-
-				const _next = () => {
-
-					let newIndex = index == total ? 0 : index + 1
-					this.setState( { index: newIndex } )
-
-				}
-
-				return (
-					
-					<DIV className={ style.container } >
-						<SwipeableViews { ...config } >
+						<DIV className={ style.noJazz } >
 							{ images }
-						</SwipeableViews>
-						{ total > 0 && <BUTTON className={ clsSwipeArrow } style={ { left: 0 } } onClick={ _prev }><I className="material-icons">&#xE314;</I></BUTTON> }
-						{ total > 0 && <BUTTON className={ clsSwipeArrow } style={ { right: 0 } } onClick={ _next }><I className="material-icons">&#xE315;</I></BUTTON> }
-					</DIV>
+						</DIV>
 
-				)
+					)
+
+				}else{
+
+					const total = images.length - 1
+
+					const clsSwipeArrow = Classnames( style.swipeArrow, {
+
+						//[ style.touchevents ]: touchevents
+
+					} )
+
+					const config = {
+
+						enableMouseEvents: true,
+						index: index
+
+					}
+					
+					const _prev = () => {
+
+						let newIndex = index == 0 ? total : index - 1
+						this.setState( { index: newIndex } )
+
+					}
+
+					const _next = () => {
+
+						let newIndex = index == total ? 0 : index + 1
+						this.setState( { index: newIndex } )
+
+					}
+
+					return (
+						
+						<DIV className={ style.jazz } >
+							<SwipeableViews { ...config } >
+								{ images }
+							</SwipeableViews>
+							{ total > 0 && <BUTTON className={ clsSwipeArrow } style={ { left: 0 } } onClick={ _prev }><I className="material-icons">&#xE314;</I></BUTTON> }
+							{ total > 0 && <BUTTON className={ clsSwipeArrow } style={ { right: 0 } } onClick={ _next }><I className="material-icons">&#xE315;</I></BUTTON> }
+						</DIV>
+
+					)
+
+				}
 
 			}
 
