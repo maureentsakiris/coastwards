@@ -1573,6 +1573,20 @@
 			"pt": "OK",
 			"zh": "",
 			"el": "Εντάξει"
+		},
+
+		//VIDEO
+		"together":{
+			"en": "Together we can create this global map of coasts"
+		},
+		"easy":{
+			"en": "It's easy"
+		},
+		"beautiful": {
+			"en": "It's beautiful"
+		},
+		"meaningful":{
+			"en": "And it will make a difference!"
 		}
 
 	}
