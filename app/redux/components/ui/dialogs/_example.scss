@@ -9,6 +9,7 @@
 		width: 100%;
 		background-size: cover;
 		background-position: center;
+		max-height: 400px;
 
 		@include portrait(){
 
