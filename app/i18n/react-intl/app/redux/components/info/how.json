@@ -5,11 +5,6 @@
     "defaultMessage": "How does my picture help?"
   },
   {
-    "id": "how_title",
-    "description": "Section header title - Watch a video (2min)",
-    "defaultMessage": "1min read.Tops"
-  },
-  {
     "id": "show_transcript",
     "description": "Section header",
     "defaultMessage": "Show transcript"

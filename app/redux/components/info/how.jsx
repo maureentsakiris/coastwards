@@ -16,11 +16,11 @@ const messages = defineMessages( {
 		description: "Section header - How does my picture help",
 		defaultMessage: "How does my picture help?"
 	},
-	how_title:{
+	/*how_title:{
 		id:"how_title",
 		description: "Section header title - Watch a video (2min)",
 		defaultMessage: "1min read.Tops"
-	},
+	},*/
 	show_transcript:{
 		id: "show_transcript",
 		description: "Section header",
@@ -114,7 +114,7 @@ class How extends Component {
 					<DIV className={ style.videoWrapper } >
 						<iframe src="https://player.vimeo.com/video/206066163?color=0076b7&title=0&byline=0&portrait=0" width="640" height="360" frameBorder="0" allowFullScreen ></iframe>
 					</DIV>
-					<TOGGLE priority={ 5 } text={ formatMessage( messages.show_transcript ) } title={ formatMessage( messages.how_title ) } >
+					<TOGGLE priority={ 5 } text={ formatMessage( messages.show_transcript ) } >
 						<H priority={ 3 } >{ formatMessage( messages.how ) }</H>
 						<DIV>
 							<P>{ formatMessage( messages.in_a_nutshell ) }</P>
@@ -138,7 +138,7 @@ class How extends Component {
 					<DIV className={ style.videoWrapper } >
 						<iframe src="https://player.vimeo.com/video/206066163?color=0076b7&title=0&byline=0&portrait=0" width="640" height="360" frameBorder="0" allowFullScreen ></iframe>
 					</DIV>
-					<TOGGLE className={ style.toggle } priority={ 5 } text={ formatMessage( messages.show_transcript ) } title={ formatMessage( messages.how_title ) } >
+					<TOGGLE className={ style.toggle } priority={ 5 } text={ formatMessage( messages.show_transcript ) } >
 						<H priority={ 3 } >{ formatMessage( messages.how ) }</H>
 						<DIV>
 							<P>{ formatMessage( messages.in_a_nutshell ) }</P>

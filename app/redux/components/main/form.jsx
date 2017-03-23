@@ -173,7 +173,7 @@ const form = ( { intl, className, jazzSupported, show, image, checkedValue, mate
 					<INPUT id="Terms" type="checkbox" value="1" form="Form" name="terms" />
 					<FormattedMessage id="accept_terms" values={ { terms: <A onClick={ showDialog.bind( this, 'TERMS' ) } >{  formatMessage( messages.terms ) }</A> } } />
 				</P>
-				<CANCEL className={ style.cancel } onClick={ resetMain } label={ formatMessage( messages.cancel ) } />
+				<CANCEL onClick={ resetMain } label={ formatMessage( messages.cancel ) } />
 				<GO onClick={ _checkTerms } label={ formatMessage( messages.upload_image ) } />
 			</FORM>
 
@@ -207,7 +207,7 @@ const form = ( { intl, className, jazzSupported, show, image, checkedValue, mate
 						<FormattedMessage id="accept_terms" values={ { terms: <A onClick={ showDialog.bind( this, 'TERMS' ) } >{  formatMessage( messages.terms ) }</A> } } />
 					</SPAN>
 					<SPAN className={ style.buttons } >
-						<CANCEL className={ style.cancel } onClick={ resetMain } label={ formatMessage( messages.cancel ) } />
+						<CANCEL onClick={ resetMain } label={ formatMessage( messages.cancel ) } />
 						<GO onClick={ _checkTerms } label={ formatMessage( messages.upload_image ) } />
 					</SPAN>
 				</DIV>
