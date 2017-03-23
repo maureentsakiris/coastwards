@@ -7,6 +7,7 @@ const mapStateToProps = ( state ) => {
 	return {
 
 		jazzSupported: state.browser.jazzSupported,
+		touchevents: state.browser.touchevents,
 		examples: state.examples
 
 	}

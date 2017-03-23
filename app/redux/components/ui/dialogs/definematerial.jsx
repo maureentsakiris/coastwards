@@ -101,24 +101,23 @@ const definematerial = ( { intl, className, materials } ) => {
 				<P>{ formatMessage( messages.multiple_materials_text ) }</P>
 			</TOGGLE>
 			<TOGGLE priority={ 3 } text={ formatMessage( messages.material_examples_header ) } className={ style.toggle } >
-				<TOGGLE priority={ 4 } text={ formatMessage( messages.sand ) } className={ style.exampleToggle } style={ { backgroundColor: getColor( 'sand' ) } } >
-					<EXAMPLE type="sand" />
-				</TOGGLE>
-				<TOGGLE priority={ 4 } text={ formatMessage( messages.pebble ) } className={ style.exampleToggle } style={ { backgroundColor: getColor( 'pebble' ) } } >
-					<EXAMPLE type="pebble" />
-				</TOGGLE>
-				<TOGGLE priority={ 4 } text={ formatMessage( messages.rock ) } className={ style.exampleToggle } style={ { backgroundColor: getColor( 'rock' ) } } >
-					<EXAMPLE type="rock" />
-				</TOGGLE>
-				<TOGGLE priority={ 4 } text={ formatMessage( messages.mud ) } className={ style.exampleToggle } style={ { backgroundColor: getColor( 'mud' ) } } >
-					<EXAMPLE type="mud" />
-				</TOGGLE>
-				<TOGGLE priority={ 4 } text={ formatMessage( messages.ice ) } className={ style.exampleToggle } style={ { backgroundColor: getColor( 'ice' ) } } >
-					<EXAMPLE type="ice" />
-				</TOGGLE>
-				<TOGGLE priority={ 4 } text={ formatMessage( messages.manmade ) } className={ style.exampleToggle } style={ { backgroundColor: getColor( 'manmade' ) } } >
-					<EXAMPLE type="manmade" />
-				</TOGGLE>
+				<H priority={ 4 } className={ style.typeHeader } style={ { color: getColor( 'sand' ) } } >{ formatMessage( messages.sand ) }</H>
+				<EXAMPLE type="sand" />
+
+				<H priority={ 4 } className={ style.typeHeader } style={ { color: getColor( 'pebble' ) } } >{ formatMessage( messages.pebble ) }</H>
+				<EXAMPLE type="pebble" />
+
+				<H priority={ 4 } className={ style.typeHeader } style={ { color: getColor( 'rock' ) } } >{ formatMessage( messages.rock ) }</H>
+				<EXAMPLE type="rock" />
+
+				<H priority={ 4 } className={ style.typeHeader } style={ { color: getColor( 'mud' ) } } >{ formatMessage( messages.mud ) }</H>
+				<EXAMPLE type="mud" />
+
+				<H priority={ 4 } className={ style.typeHeader } style={ { color: getColor( 'ice' ) } } >{ formatMessage( messages.ice ) }</H>
+				<EXAMPLE type="ice" />
+
+				<H priority={ 4 } className={ style.typeHeader } style={ { color: getColor( 'manmade' ) } } >{ formatMessage( messages.manmade ) }</H>
+				<EXAMPLE type="manmade" />
 			</TOGGLE>
 		</DIV>
 

@@ -2,6 +2,50 @@
 
 .container{
 
+	position: relative;
 
+	.slide{
+
+		width: 100%;
+		background-size: cover;
+		background-position: center;
+
+		@include portrait(){
+
+			height: 40vh;
+
+		}
+
+		@include landscape(){
+
+			height: 40vw;
+
+		}
+
+	}
+
+	.swipeArrow{
+
+		position: absolute;
+		background-color: rgba(0, 0, 0, 0.15);
+		color: #fff;
+		border: none;
+		border-radius: 2px;
+		height: 100%;
+		top: 0;
+
+		i{
+
+			font-size: 36px;
+
+		}
+
+		&.touchevents {
+
+			display: none;
+
+		}
+
+	}
 
 }
