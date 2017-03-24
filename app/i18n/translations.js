@@ -6,8 +6,8 @@
 			"es": "Hm. Parece que estás usando un navegador antiguo. Pero si cambias a uno moderno como Chrome, Firefox o Safari, la página funcionará MUUUCHO mejor. ¡Y podrás ver todas las fotos de costas que se han subido ya!",
 			"ar": "ممم، يبدو أنك تستخدم متصفح قديم. هذا الموقع يحتاج لمتصفح حديث، انه ايضا اكثر متعة أن يكون لديك متصفح حديث مثل كروم أو فاير فوكس أو سافاري، عندها يمكنك تصفح موقعنا ة الاستمتاع بتصفح امن",
 			"pt": "",
-			"zh": "",
-			"el": "Χμμ, φαίνεται σαν να χρησιμοποιείς ένα παλιό πρόγραμμα περιήγησης (ή όχι και τόσο παλιό Internet Explorer). Αυτή η ιστοσελίδα θα λειτουργήσει στο πρόγραμμα περιήγησής σου, αλλά είναι τόσο πολύ πιο διασκεδαστικό αν μπορείς να μεταβείς σε ένα σύγχρονο πρόγραμμα περιήγησης, καθώς έτσι μπορείς να διαπλεύσεις τις ακτές αυτού του κόσμου. Chrome, Firefox ή Safari είναι ασφαλείς επιλογές, ειδικά αν είναι ενημερωμένες με τις τελευταίες εκδόσεις."
+			"zh": "嗯，看起来您使用的是旧的浏览器（或者不是那么老）。这个网站将在您的浏览器上工作，但是如果您能切换到一个更流畅的浏览器，您会有更多的乐趣，您可以在全世界的海岸线巡航。Chrome, Firefox or Safari 是安全的选择，特别是您如果更新到他们的最新版本",
+			"el": "Χμμ, φαίνεται πως χρησιμοποιείς ένα παλιό πρόγραμμα περιήγησης (ή όχι και τόσο παλιό Internet Explorer). Αυτή η ιστοσελίδα θα λειτουργήσει στο πρόγραμμα περιήγησής σου, αλλά είναι πολύ πιο διασκεδαστικό αν μπορείς να μεταβείς σε ένα σύγχρονο πρόγραμμα περιήγησης, καθώς έτσι μπορείς να διαπλεύσεις τις ακτές αυτού του κόσμου. Chrome, Firefox ή Safari είναι ασφαλείς επιλογές, ειδικά αν είναι ενημερωμένες με τις τελευταίες εκδόσεις."
 		},
 		"arrow_up_title": {
 			"en": "Show intro",
@@ -15,7 +15,7 @@
 			"es": "Volver al principio",
 			"ar": "أعرض المقدمة",
 			"pt": "",
-			"zh": "",
+			"zh": "显示简介",
 			"el": "Εμφάνιση intro"
 		},
 		"help_science": {
@@ -24,7 +24,7 @@
 			"es": "Ayuda a que la ciencia estudie el ascenso",
 			"ar": "ساعد الدراسات العلمية لتحديد مخاطر ارتفاع منسوب المياه",
 			"pt": "Ajuda a ciênia estudar o rísco da subida do",
-			"zh": "",
+			"zh": "通过上传海岸线图片帮助科学工",
 			"el": "Βοηθήστε την Επιστήμη να μελετήσει τους κινδύνους από την άνοδο της στάθμης της"
 		},
 		"by": {
@@ -33,7 +33,7 @@
 			"es": "del nivel del mar subiendo fotos de costas",
 			"ar": "من خلال تحميل صور للشواطئ",
 			"pt": "nivel do mar subindo fotografias da costa",
-			"zh": "",
+			"zh": "作者研究预防海平面上升的风险",
 			"el": "θάλασσας ανεβάζοντας φωτογραφίες των ακτών"
 		},
 		/*"we_know": {
@@ -42,7 +42,7 @@
 			"es": "(suponemos que las tengan)",
 			"ar": "(باعتبار أنك تملك بعض منها)",
 			"pt": "(nós assumimos que você tem algum)",
-			"zh": "",
+			"zh": "（ 我们估计您有一些）",
 			"el": "(Υποθέτουμε ότι έχεις κάποιες)"
 		},*/
 		"no_account": {
@@ -51,7 +51,7 @@
 			"es": "(No necesitas crear una cuenta.)",
 			"ar": "(لا يوجد تسجيل حساب. فقط سحب وترك)", //Bassel
 			"pt": "(Sem conta. Só arrastar e largar.)",
-			"zh": "",
+			"zh": "无需注册帐户， 仅仅只是拖&放",
 			"el": "Δεν χρειάζεται  λογαριασμός. Απλά drag & drop"
 		},
 		"more_info": {
@@ -60,7 +60,7 @@
 			"es": "Más información",
 			"ar": "مزيد من بقية المقال",
 			"pt": "Mais informações",
-			"zh": "",
+			"zh": "更多信息",
 			"el": "Περισσότερες πληροφορίες"
 		},
 		"one_more_question": {
@@ -69,8 +69,8 @@
 			"es": "¡Tengo una duda!",
 			"ar": "هل يوجد لديك سؤال!",
 			"pt": "Ainda tenho uma dúvida!",
-			"zh": "",
-			"el": "Εξακολουθείς να έχεις μια ερώτηση!"
+			"zh": "还有问题？",
+			"el": "Εξακολουθείς να έχεις ερωτήσεις;"
 		},
 		"one_more_question_title": {
 			"en": "Ask us (in english please)",
@@ -78,8 +78,8 @@
 			"es": "Haznos tu pregunta (en inglés si puedes)",
 			"ar": "اطرح سؤالك (بالانكليزية لو سمحت)",
 			"pt": "",
-			"zh": "",
-			"el": "Ρώτησε μας (στα αγγλικά παρακαλώ)"
+			"zh": "问我们（ 请用英文）",
+			"el": "Ρώτησέ μας (στα αγγλικά παρακαλώ)"
 		},
 		"label_email": {
 			"en": "Your email",
@@ -87,7 +87,7 @@
 			"es": "Tu e-mail",
 			"ar": "برديك الالكتروني",
 			"pt": "",
-			"zh": "",
+			"zh": "您的邮件地址是",
 			"el": "Η διεύθυνση του ηλεκτρονικού σου ταχυδρομείου"
 		},
 		"placeholder_email": {
@@ -96,8 +96,8 @@
 			"es": "y tu e-mail",
 			"ar": " و برديك الالكتروني",
 			"pt": "",
-			"zh": "",
-			"el": "Και το email σας"
+			"zh": "您的邮件地址是",
+			"el": "Και το email σου"
 		},
 		"label_question": {
 			"en": "Tell us your question",
@@ -105,7 +105,7 @@
 			"es": "Planteanos tu duda",
 			"ar": "أخبرنا ما هو سؤالك",
 			"pt": "",
-			"zh": "",
+			"zh": "告诉我们您的问题是",
 			"el": "Πες μας την ερώτησή σου"
 		},
 		"placeholder_question": {
@@ -114,7 +114,7 @@
 			"es": "Planteanos tu duda",
 			"ar": "أخبرنا ما هو سؤالك",
 			"pt": "",
-			"zh": "",
+			"zh": "告诉我们您的问题是",
 			"el": "Πες μας την ερώτησή σου"
 		},
 		"label_submit": {
@@ -123,7 +123,7 @@
 			"es": "Enviar",
 			"ar": "سجل",
 			"pt": "",
-			"zh": "",
+			"zh": "提交",
 			"el": "υπόβαλλε"
 		},
 		"sending_mail": {
@@ -132,7 +132,7 @@
 			"es": "Paciencia... estamos enviando tu mail",
 			"ar": "لحظة من فضلك ... جاري ارسال البريد",
 			"pt": "",
-			"zh": "",
+			"zh": "仅仅需要一秒种。。。发送邮件",
 			"el": "Μισό λεπτό ... αποστολή μηνυμάτων ηλεκτρονικού ταχυδρομείου"
 		},
 		"mail_ok": {
@@ -141,7 +141,7 @@
 			"es": "¡Enviado! ¡Gracias por preguntar!",
 			"ar": "تم ارسال البريد، شكرا لاستفساركم",
 			"pt": "",
-			"zh": "",
+			"zh": "邮件已发送，感谢提问！",
 			"el": "Email αποστάλθηκε, ευχαριστώ για την ερώτηση!"
 		},
 		"mail_ko": {
@@ -150,7 +150,7 @@
 			"es": "Lo sentimos. Hubo un problema de envío. ¡Inténtalo de nuevo!",
 			"ar": "نأسف لحدوث مشكلة أثناء ارسال البريد. الرجاء المحاولة من جديد",
 			"pt": "",
-			"zh": "",
+			"zh": "抱歉，邮件发送有点问题。 请再试一次",
 			"el": "Συγνώμη, υπήρχε ένα πρόβλημα με την αποστολή του email. Παρακαλώ προσπάθησε ξανά"
 		},
 		/*"other_questions": {
@@ -159,7 +159,7 @@
 			"es": "... ??",
 			"ar": "...؟",
 			"pt": "",
-			"zh": "",
+			"zh": "。。。？?",
 			"el": "...?"
 		},
 		"other_questions_title": {
@@ -168,7 +168,7 @@
 			"es": "Lee las preguntas más frecuentes",
 			"ar": "اذهب إلى قسم الاسئلة المتكررة",
 			"pt": "",
-			"zh": "",
+			"zh": "常见问题",
 			"el": "Διάβασε τις συχνές ερωτήσεις"
 		},
 		"send_me_yours": {
@@ -177,8 +177,8 @@
 			"es": "Aquí vamos a necesitar tu ayuda. Háznos tu pregunta de modo de poder compilar montones de ellas en esta sección. Pincha en '¡Tengo una duda!' y envíanos tu pregunta. ¡Gracias!",
 			"ar": "حسنا، هذا هو الجزء الذي نريد مساعدتك فيه. من فضلك قل لي أسئلتك لكي أتمكن من وضعها مع قسم الأسئلة الشائعة. انقر على 'ما زال لديي سؤال!' وأرسل لي سؤالك. شكرا جزيلا!",
 			"pt": "Ora bem, esta é a parte onde preciso da tua ajuda. Coloca-me qualquer dúvida que tenhas a cerca do site ou projecto para eu poder criar a secção de Perguntas Mais Frequentes. Clica em “ainda tenho uma dúvida” e envia-a. Muito Obrigado!",
-			"zh": "",
-			"el": "Εντάξει, αυτό είναι το μέρος όπου χρειάζομαι τη βοήθειά σου. Παρακαλώ πες μου τις ερωτήσεις σου ώστε να μπορέσω να φτιάξω αυτή την ενότητα Συχνές ερωτήσεις. Κάνε κλικ στο «Ακόμα μια ερώτηση!» και στείλε μου την δικιά σου. Σε ευχαριστώ πάρα πολύ!"
+			"zh": "这部分我需要您的帮助。请告诉我您的问题，我可以把他们都放在常见问题部分。请点击“还有问题！”然后把您的问题寄给我。非常感谢！",
+			"el": "Αυτό είναι το σημείο όπου χρειάζομαι τη βοήθειά σου. Παρακαλώ πες μου τις ερωτήσεις σου ώστε να μπορέσω να φτιάξω αυτή την ενότητα Συχνές ερωτήσεις. Κάνε κλικ στο «Ακόμα μια ερώτηση!» και στείλε μου την δικιά σου. Σε ευχαριστώ πάρα πολύ!"
 		},*/
 		"any_picture": {
 			"en": "Just any picture?",
@@ -186,7 +186,7 @@
 			"es": "¿Puedo subir cualquier tipo de foto?",
 			"ar": "أي صورة؟",
 			"pt": "Qualquer fotografia serve?",
-			"zh": "",
+			"zh": "只是任何图片？",
 			"el": "Απλά κάθε εικόνα;"
 		}, 
 		/*"any_picture_title": {
@@ -195,7 +195,7 @@
 			"es": "Aquí van unos breves consejos.",
 			"ar": "بعض الإرشادات السريعة",
 			"pt": "",
-			"zh": "",
+			"zh": "快速指南",
 			"el": "Μερικές γρήγορες κατευθυντήριες γραμμές"
 		},*/
 		"any_coast": {
@@ -204,8 +204,8 @@
 			"es": "Pueden ser fotos de cualquier tipo de costa, pero no cualquier tipo de foto. Las fotos deben mostrar una imágen detallada de la costa (no de personas). Y tenemos que saber donde está ubicada. Éstas son nuestras pautas:",
 			"ar": "أي ساحل ولكن ليس أي صورة. نحن بحاجة لهذه الصور للحصول على نظرة ثاقبة عن السواحل (وليس الناس)، ونحن بحاجة لمعرفة أين هي هذه السواحل. لذلك هذه التوجيهيات التي نريدك الالتزام بها:",
 			"pt": "Qualquer costa mas não qualquer fotografia. Precisamos destas imagens que dêem para ver de perto as costas (não pessoas) e precisamos saber onde e que essas costas se encontram. Estas são as nossas recomendações:",
-			"zh": "",
-			"el": "Κάθε ακτή αλλά όχι κάθε εικόνα. Χρειαζόμαστε αυτές τις εικόνες για να δημιουργήσουμε μια πιο λεπτομερή βάση δεδομένων για τις ακτές (όχι άτομα) και πρέπει να γνωρίζουμε που είναι οι ακτές αυτές.  Παρακάτω είναι οι βασικές οδηγίες μας:"
+			"zh": "任何与海岸有关的图片但是不是任何图片都可以。我们需要那些能仔细观察海岸的照片（不是人文景观图片）， 我们需要知道这些海岸在那里。我们的指南：",
+			"el": "Κάθε ακτή αλλά όχι κάθε εικόνα. Χρειαζόμαστε αυτές τις εικόνες για να δημιουργήσουμε μια πιο λεπτομερή βάση δεδομένων για τις ακτές (όχι ανθρώπους) και πρέπει να γνωρίζουμε που είναι οι ακτές αυτές. Παρακάτω είναι οι βασικές οδηγίες μας:"
 		},
 		"guideline_original_header": {
 			"en": "We need the original image",
@@ -213,7 +213,7 @@
 			"es": "Necesitamos la foto original",
 			"ar": "نحتاج الصورة الاصلية",
 			"pt": "Precisamos da fotografia original",
-			"zh": "",
+			"zh": "原始图片",
 			"el": "Χρειαζόμαστε την αρχική εικόνα"
 		},
 		"guideline_original_text": {
@@ -222,7 +222,7 @@
 			"es": "Eso significa que no valen fotos de Facebook, Whatsapp u otras redes sociales. Tampoco sirven fotos escáneadas o capturas de pantalla.",
 			"ar": "وهذا يعني: أن الصور ليست مأخوذة من فيسبوك، واتس اب أو غيرها من وسائل التواصل الاجتماعية وليست مأخوذة من ماسح ضوئي.",
 			"pt": "Isto significa: Não servem imagens do Facebook, WhatsApp ou outros meios de comunicação social, scans ou capturas de ecrã.",
-			"zh": "",
+			"zh": "意味着：图片不是来自脸书，手机即时通讯软件和其他社交媒体的图像，图片不是扫描或屏幕截图",
 			"el": "Αυτό σημαίνει: Όχι εικόνες από το Facebook, Whatsapp ή άλλα Social Media και όχι σαρώσεις ή στιγμιότυπα από οθόνη."
 		},
 		"guideline_faces_header": {
@@ -231,7 +231,7 @@
 			"es": "No deben mostrar caras",
 			"ar": "بدون وجوه",
 			"pt": "Não retratos",
-			"zh": "",
+			"zh": "没有人脸",
 			"el": "Όχι πρόσωπα"
 		},
 		"guideline_faces_text": {
@@ -240,7 +240,7 @@
 			"es": "Por razones de privacidad, las fotos con caras no las podemos usar.",
 			"ar": "وهذه لا يمكن استخدامها لأسباب خصوصية البيانات.",
 			"pt": "Não pode ser por política de privacidade.",
-			"zh": "",
+			"zh": "这是由于数据隐私的原因",
 			"el": "Αυτός είναι ένας απαράβατος κανόνας  για λόγους προστασίας προσωπικών δεδομένων."
 		},
 		"guideline_material_header": {
@@ -249,7 +249,7 @@
 			"es": "Necesitamos ver de qué material está hecha la costa",
 			"ar": "نريد رؤية مكونات الساحل",
 			"pt": "Precisamos de ver o material da costa",
-			"zh": "",
+			"zh": "我们需要与海岸有关的材料",
 			"el": "Πρέπει το υλικό της ακτής να είναι ευδιάκριτο."
 		},
 		"guideline_material_help": {
@@ -258,7 +258,7 @@
 			"es": "(¿Qué quiere decir 'material de la costa'?)",
 			"ar": "(ماذا تقصد بمكونات الساحل؟)",
 			"pt": "(Que quero dizer com material da costa?)",
-			"zh": "",
+			"zh": "（与海岸有关的材料是什么意思？）",
 			"el": "(Τι εννοείς με το υλικό της ακτής;)"
 		},
 		"guideline_material_text": {
@@ -267,7 +267,7 @@
 			"es": "No importa que la imagen sea bonita (una puesta de sol) o fea (unos pies). Lo que importa es que podamos ver el material de la costa.",
 			"ar": "نحن بصراحة لا يهمنا كم الصورة جميلة (غروب الشمس) أو قبيحة (أصابع قدميك!)، طالما أنه يمكننا أن نرى مكونات الساحل.",
 			"pt": "Tenham em conta que a “beleza” da fotografia não nos interessa, um bonito por do Sol ou uma tarde cinzenta e chuvosa com má luz, no fundo o que nos interessa é perceber de como é e de que é feita a costa.",
-			"zh": "",
+			"zh": "老实说我们不关心图片是美（比如日落时分）或丑（比如您的脚趾头），只要海岸线清楚",
 			"el": "Εμείς ειλικρινά δεν νοιαζόμαστε για το πόσο όμορφη (ηλιοβασιλέματα) ή άσχημη (δάχτυλα των ποδιών σας!) είναι η εικόνα, εάν μπορούμε να δούμε το υλικό της ακτής."
 		},
 		"guideline_coasts_header": {
@@ -276,7 +276,7 @@
 			"es": "¡Las costas no son sólo playas!",
 			"ar": "سواحل ليس المقصود بها الشواطئ!",
 			"pt": "",
-			"zh": "",
+			"zh": "海岸线不仅仅是海滩！",
 			"el": "Ακτές δεν είναι μόνο παραλίες!"
 		},
 		"guideline_coasts_text": {
@@ -285,7 +285,7 @@
 			"es": "Hay acantilados, puertos y paseos marítimos... ¡todo tipo de costa que bordee oceanos y mares nos sirve!",
 			"ar": "الموانئ، والمنحدرات، منتزهات جنبا إلى جنب مع الماء ... أي شيء يمس المحيطات والبحار.",
 			"pt": "",
-			"zh": "",
+			"zh": "港口，峭壁，海滨长廊。。。只要是与海洋相接的部分。",
 			"el": "Λιμάνια, βράχια, διαβάσεις περιπάτου δίπλα στο νερό ... κάτι που αγγίζει τους ωκεανούς και τις θάλασσες."
 		},
 		/*"guidelines_and": {
@@ -303,7 +303,7 @@
 			"es": "¡Cuanto más cerca, mejor!",
 			"ar": "وأقرب، كان ذلك أفضل", // Bassel
 			"pt": "Quanto mais perto, melhor!",
-			"zh": "",
+			"zh": "越近越好！",
 			"el": "Όσο πιο κοντά, τόσο το καλύτερο!"
 		},
 		"how": {
@@ -312,7 +312,7 @@
 			"es": "¿Cómo puede ayudar mi foto?",
 			"ar": "كيف تساعد صورتي؟",
 			"pt": "Como pode ajudar a minha fotografia?",
-			"zh": "",
+			"zh": "我的图片能起什么作用？",
 			"el": "Πώς θα βοηθήσει η εικόνα μου;"
 		},
 		/*"how_title": {
@@ -321,7 +321,7 @@
 			"es": "Texto de 1 min",
 			"ar": "اقرأ لدقيقة فقط",
 			"pt": "",
-			"zh": "",
+			"zh": "1分钟阅读。置顶",
 			"el": "1min read.Tops"
 		},*/
 		"show_transcript": {
@@ -330,7 +330,7 @@
 			"es": "Mostrar transcripción",
 			"ar": "أظهر النص",
 			"pt": "",
-			"zh": "",
+			"zh": "显示记录",
 			"el": "Εμφάνιση μεταγραφή"
 		},
 		"hide_transcript": {
@@ -339,7 +339,7 @@
 			"es": "Ocultar transcripción",
 			"ar": "اخفاء النص",
 			"pt": "",
-			"zh": "",
+			"zh": "隐藏记录",
 			"el": "Απόκρυψη μεταγραφή"
 		},
 		"in_a_nutshell": {
@@ -348,7 +348,7 @@
 			"es": "Nos brinda algo que satélites no nos pueden mostrar: La imagen cercana de una costa. Y la posibilidad de estudiarla con el mayor detalle posible.",
 			"ar": "باختصار، الصور تعطي العلم ما لا يمكن للأقمار الصناعية أن تعطيه: صورة عن قرب للساحل. تعطي الامكانية لدراسة الساحل بتفاصيل أكثر دقة من صورة قمر صناعي.",
 			"pt": "",
-			"zh": "",
+			"zh": "简而言之，您的图片提供了卫星所没法做到的：近距离观察海岸。在一个相对大尺寸的图片里阅读到尽可能多的细节。",
 			"el": "Με λίγα λόγια, δίνει στην επιστήμη ότι οι δορυφόροι δεν μπορούν: Ένα κοντινό πλάνο της εικόνας μιας ακτής. Την δυνατότητα να μελετήσουμε τη μεγαλύτερη εικόνα, με όσο το δυνατόν περισσότερες λεπτομέρειες."
 		},
 		"how_it_works": {
@@ -357,8 +357,8 @@
 			"es": "Así es cómo funciona.",
 			"ar": "تجد هنا كيف تعمل.",
 			"pt": "Assim é como funciona.",
-			"zh": "",
-			"el": "Εδώ είναι πώς αυτό λειτουργεί."
+			"zh": "下面是它的工作原理",
+			"el": "Ετσι λειτουργεί."
 		},
 		"place_on_map": {
 			"en": "First, your image will be checked for information on the location it was taken, so we can place it on the map.",
@@ -366,7 +366,7 @@
 			"es": "Primero, obtendremos la localización de la imágen para posicionarla en el mapa.",
 			"ar": "أولا، وسيتم فحص الصور الخاصة بك للحصول على معلومات عن مكان التقاطها، حتى نتمكن من وضعها على الخريطة.",
 			"pt": "Em primeiro lugar a tua fotografia será analisada com a informação acerca da localização onde foi tirada para podermos situa-la no mapa.",
-			"zh": "",
+			"zh": "首先，系统会检查您的图片是在哪里拍摄的， 以便我们将其放置在地图上",
 			"el": "Κατ 'αρχάς, η εικόνα σου θα πρέπει να ελεγχθεί για πληροφορίες σχετικά με τη θέση που έχει ληφθεί, ώστε να μπορέσουμε να την τοποθετήσουμε στο χάρτη."
 		},
 		"determine_coastal_type": {
@@ -375,7 +375,7 @@
 			"es": "Después será analizada por nuestros científicos y colaboradores para determinar de qué tipo de costa se trata.",
 			"ar": "ثم، سوف يتم تحليلها من قبل العلماء لتحديد نوع الساحل في ذلك الموقع.",
 			"pt": "Depois será analisada por cientistas e cidadãos cientistas para determinar o tipo de costa em cada local.",
-			"zh": "",
+			"zh": "然后， 科学家和研究者将对其进行分析以确定该位置的沿海类型",
 			"el": "Στη συνέχεια, θα αναλυθεί από τους επιστήμονες και τους επιστήμονες των πολιτών για να καθοριστεί το παράκτιο είδος σε αυτή τη θέση."
 		},
 		"the_more_the_better": {
@@ -384,7 +384,7 @@
 			"es": "Cuantas más imagenes analizemos, más detallado será nuestro mapa global de los diferentes tipos de costas y sus localizaciones.",
 			"ar": "كلما قمنا بتحليل صور أكثر كلما استطعنا إضافة المزيد من التفاصيل إلى الخريطة العالمية وهذه التفاصيل هي أنواع السواحل وأماكن تواجدها.",
 			"pt": "",
-			"zh": "",
+			"zh": "能提供分析的图像越多，就会有更充分的细节添加到全球地图中，关于这是什么类型的海岸，它在那里",
 			"el": "Όσο περισσότερες εικόνες αναλύσουμε, τόσο μεγαλύτερη λεπτομέρεια προστίθεται σε ένα παγκόσμιο χάρτη με πληροφορίες για τι τύποι ακτών υπάρχουν και πού."
 		},
 		"computer_programs": {
@@ -393,7 +393,7 @@
 			"es": "Éste pasa a formar parte de 'modelos de evaluación integrados', que ayudan a los científicos a pronosticar cómo responden distintos tipos de costas frente a circunstancias diferentes.",
 			"ar": "ثم يتم ادخال هذه الخريطة لبرمجيات حاسوبية تسمى نماذج التقييم المتكامل، وهذه البرمجبات ستساعد العلماء بوضع تنبؤات عن مدى اختلاف استجابة السواحل في ظل الظروف المختلفة.",
 			"pt": "Este mapa será inserido em programas de computador, chamados modelos de avaliação integrados, que ajudam aos cientistas prever de como diferentes tipos de costas respondem a diferentes circunstâncias.",
-			"zh": "",
+			"zh": "然后该地图将被输入计算机程序，称为综合评估模型，帮助科学家预测不同海岸在不同情况下的反应。",
 			"el": "Αυτός ο χάρτης στη συνέχεια τροφοδοτείται σε προγράμματα ηλεκτρονικών υπολογιστών, που ονομάζονται ολοκληρωμένα μοντέλα εκτίμησης, ώστε να βοηθήσει τους επιστήμονες να κάνουν προβλέψεις σχετικά με το πώς διαφορετικές ακτές θα ανταποκριθούν κάτω από διαφορετικές συνθήκες."
 		},
 		"policy_makers": {
@@ -402,7 +402,7 @@
 			"es": "Estos pronósticos ayudan a formular políticas de respuesta locales e internaionales. Y a saber qué países podrían necesitar más asistencia.",
 			"ar": "هذه التنبؤات تساعد صناع السياسات على المستويين الوطني والدولي في اتخاذ الإجراءات اللازمة لدعم الدول الي بحاجة.",
 			"pt": "Estas previsões informam aos responsáveis a nível nacional e internacional que medidas tomar e que países precisam de apoio internacional.",
-			"zh": "",
+			"zh": "这些预测有助于国家和国际间相关的决策者采取相应的行动以及那些国家需要得到国际援助",
 			"el": "Αυτές οι προβλέψεις ενημερώνουν τους φορείς  χάραξης πολιτικής σε εθνικό και διεθνές επίπεδο και βοηθούν στην επιλογή των ενεργειών που πρέπει να ληφθούν και στον προσδιορισμό των χωρών που χρειάζονται διεθνή υποστήριξη."
 		},
 		"best_advice": {
@@ -411,7 +411,7 @@
 			"es": "Así que, tus imagenes ayudan a los científicos a precisar qué medidas a tomar ante el ascenso del nivel del mar. Por el bien de nuestros hijos y nietos.",
 			"ar": "لذلك فإن صورك ستساعد العلماء لتقديم أفضل نصائحهم حول كيفية حماية أنفسنا، أطفالنا وأحفادنا من ارتفاع مستوى سطح البحر.",
 			"pt": "Ou seja as tuas fotografias ajudam aos cientistas a tomar as melhores decisões para proteger nos a nós, os nossos filhos e netos da subida do nível do mar.",
-			"zh": "",
+			"zh": "所以，您的图片帮助科学家关于如何预防海平面的上升给出最好的建议，关于如何保护我们自己，我们的子女和我们的后代的后代",
 			"el": "Έτσι, οι εικόνες σου θα βοηθήσουν τους επιστήμονες να δώσουν καλύτερες συμβουλές για το πώς να προστατεύσουμε τους εαυτούς μας, τα παιδιά μας και τα εγγόνια μας από την άνοδο της στάθμης της θάλασσας."
 		},
 		"project_by": {
@@ -420,7 +420,7 @@
 			"es": "Un proyecto de",
 			"ar": "مشروع تم تطويره من قبل",
 			"pt": "",
-			"zh": "",
+			"zh": "项目",
 			"el": "Ένα έργο από"
 		},
 		"legal_notice": {
@@ -429,7 +429,7 @@
 			"es": "Aviso legal",
 			"ar": "بصمة",
 			"pt": "",
-			"zh": "",
+			"zh": "出版单位",
 			"el": "Αποτύπωμα"
 		},
 		"who_are_you": {
@@ -438,8 +438,8 @@
 			"es": "¿Quienes son los científicos?",
 			"ar": "من هو العلم؟",
 			"pt": "Quem é a Ciência?",
-			"zh": "",
-			"el": "Ποιος είναι επιστήμη;"
+			"zh": "谁的科学？",
+			"el": "Ποιος είναι “επιστήμη“;"
 		},
 		"who_are_you_title": {
 			"en": "Meet us!",
@@ -447,7 +447,7 @@
 			"es": "Quienes somos",
 			"ar": "تواصل معنا!",
 			"pt": "",
-			"zh": "",
+			"zh": "与我们相会！",
 			"el": "Γνώρισέ μας!"
 		},
 		"we_are": {
@@ -456,7 +456,7 @@
 			"es": "Somos el {crslr}, dependiente de la universidad de Kiel, Alemania. Y este proyecto está subvencionado por el {future_ocean}.",
 			"ar": "نحن {crslr} جامعة كييل في ألمانيا ويتم تمويل هذا المشروع من قبل {future_ocean}.",
 			"pt": "Somos o {crslr} na Universidade de Kiel na Alemanha e este projecto está subvencionado por {future_ocean}",
-			"zh": "",
+			"zh": "我们是德国基尔大学，这个项目由 {future_ocean} 赞助", //JING
 			"el": "Είμαστε {crslr} στο Πανεπιστήμιο του Κιέλου στη Γερμανία και το έργο αυτό χρηματοδοτείται από το {future_ocean}."
 		},
 		/*"more": {
@@ -465,7 +465,7 @@
 			"es": "Más información…",
 			"ar": "أكثر",
 			"pt": "",
-			"zh": "",
+			"zh": "更多",
 			"el": "Περισσότερα"
 		},
 		"more_title": {
@@ -474,7 +474,7 @@
 			"es": "Y un poco más de información oficial…",
 			"ar": "أكثر رسمية",
 			"pt": "",
-			"zh": "",
+			"zh": "更正式的。。。",
 			"el": "Λίγο πιο επίσημα ..."
 		},
 		"nassos": {
@@ -483,7 +483,7 @@
 			"es": "Nassos es el jefe del grupo, y profesor en la Uniersidad de Kiel. Es griego, tiene dos hijos pequeños y su escritorio es un desastre.",
 			"ar": "ناسوس هو رئيس المجموعة والأستاذ في جامعة كيل. انه من اليونان، ولديه صبيين صغار ومكتبه يشبه الجحيم.",
 			"pt": "Nassos é o líder do grupo e professor na Universidade de Kiel. Ele é grego, tem dois filhotes e a sua secretaria está sempre desarrumada.",
-			"zh": "",
+			"zh": " Nassos 是基尔大学的 教授和项目负责人。他来自希腊，有两个小孩子。他的办工桌看上去象极了地狱。",
 			"el": "Νάσος είναι ο επικεφαλής της ομάδας και καθηγητής στο Πανεπιστήμιο του Κιέλου. Είναι Έλληνας, έχει δύο μικρά αγόρια και το γραφείο του είναι σε αέναο χάος."
 		},
 		"claudia": {
@@ -492,7 +492,7 @@
 			"es": "Claudia está investigando para su doctorado. Es la científica estrella  que convertirá tus imagenes en algo significativo. Es encantadora, preguntona y ambiciosa. Y la primera en reírse.",
 			"ar": "كلوديا هي باحثة أكاديمية و هي النجمة الصاعدة التي ستقوم بتحويل صورك إلى شيء مفيد. وهي الشخص الذي يطرح الاسئلة الصعبة ويحرص على تعليم نفسه دئماَ، هي أيضا دائما أول من يبدأ بالضحك.",
 			"pt": "Claudia é uma Doutorada e a pessoa que vai tornar as tuas imagens em algo valioso. Ela é um encanto de pessoa, tem muitas questões e quer sempre aprender mais alguma coisa por si própria. É também a primeira pessoa em se rir.",
-			"zh": "",
+			"zh": "Claudia 是博士研究员和学术界的新星，她负责把您的图片阐释出意义。她是一个充满魅力的坚定提问者，渴望学习，热爱微笑。",
 			"el": "Claudia είναι ερευνητής και το ανερχόμενο αστέρι που θα μετατρέψει τις εικόνες σας σε κάτι ουσιαστικό. Είναι μια γοητευτική και διαπεραστική συνομιλήτρια πάντα πρόθυμη να εμπλουτίσει τις γνώσεις της. Είναι επίσης η πρώτη που αυθόρμητα θα γελάσει."
 		},
 		"me": {
@@ -501,7 +501,7 @@
 			"es": "Esa soy yo. He desarrollado este sitio web con mucho amor y muchas horas de mirarlo fijamente. (Developers: Node, React und Redux ROCK!)",
 			"ar": "هذه أنا. أنا الذي طورت هذا الموقع مع الكثير من الحب وصرفت الكثير من الوقت لمجرد البدء بتطويره. (المطورون: Node, React and Redux ROCK!)",
 			"pt": "Essa são eu.",
-			"zh": "",
+			"zh": "然后是我，我花费了不计其数的时间和爱建构了这个网站",
 			"el": "Αυτή είμαι εγώ. Δημιούργησα αυτή την ιστοσελίδα με πολλή αγάπη και ατελείωτες ώρες σκέψης και περισυλλογής. "
 		},
 		"contact_here": {
@@ -510,7 +510,7 @@
 			"es": "Contáctanos aquí",
 			"ar": "تواصل معنا هنا",
 			"pt": "Contata-nos aqui",
-			"zh": "",
+			"zh": "联系我们",
 			"el": "Επικοινώνησε μαζί μας εδώ"
 		},*/
 		"special_thanks": {
@@ -519,7 +519,7 @@
 			"es": "Agradecimientos especiales a",
 			"ar": "شكر جزيل لـ",
 			"pt": "",
-			"zh": "",
+			"zh": "特别感谢",
 			"el": "Ιδιαίτερες ευχαριστίες προς"
 		},
 		"claudio": {
@@ -528,7 +528,7 @@
 			"es": "Por la traducción de este sitio web al Español",
 			"ar": "للترجمة للاسبانية",
 			"pt": "",
-			"zh": "",
+			"zh": "把这个网站翻译为西班牙语",
 			"el": "Για τη μετάφραση αυτού του site στα ισπανικά"
 		},
 		"bassel": {
@@ -537,7 +537,7 @@
 			"es": "Por la traducción de este sitio web al Árabe",
 			"ar": "الترجمة إلى العربية",
 			"pt": "",
-			"zh": "",
+			"zh": "把这个网站翻译为阿拉伯语",
 			"el": "Για τη μετάφραση αυτού του site σε Αραβικά"
 		},
 		"jing":{
@@ -545,6 +545,8 @@
 			"de": "Für die Übersetzung dieser Seite ins Chinesische",
 			"es": "Por la traducción de este sitio web al Chino",
 			"ar": "ترجمة إلى الصينية",
+			"pt": "",
+			"zh": "把这个网站翻译为中文",
 			"el": "Για τη μετάφραση αυτού του site σε κινέζικα"
 		},
 		"pholpo": {
@@ -553,7 +555,7 @@
 			"es": "Por el video explicativo y su apoyo moral",
 			"ar": "فيديو والدعم",
 			"pt": "",
-			"zh": "",
+			"zh": "制作了说明视频和道义上的援助",
 			"el": "Για τη δημιουργία του επεξηγηματικού βίντεο και για την ηθική υποστήριξή τους"
 		},
 		"uploadBtn_title": {
@@ -562,7 +564,7 @@
 			"es": "Subir una imagen",
 			"ar": "حمّل الصورة",
 			"pt": "",
-			"zh": "",
+			"zh": "上传图片",
 			"el": "Ανέβασε μια εικόνα"
 		},
 		"uploadBtn_label": {
@@ -571,7 +573,7 @@
 			"es": "Subir",
 			"ar": "حمّل",
 			"pt": "",
-			"zh": "",
+			"zh": "上传中",
 			"el": "Μεταφόρτωση"
 		},
 		"browseBtn_title": {
@@ -580,7 +582,7 @@
 			"es": "Ver mapa",
 			"ar": "تصفح الخريطة",
 			"pt": "",
-			"zh": "",
+			"zh": "浏览地图",
 			"el": "Περιήγηση στο χάρτη"
 		},
 		"browseBtn_label": {
@@ -589,7 +591,7 @@
 			"es": "Mapa",
 			"ar": "تصفح",
 			"pt": "",
-			"zh": "",
+			"zh": "浏览中",
 			"el": "Ξεφυλλίζω"
 		},
 		"shareBtn_title": {
@@ -598,7 +600,7 @@
 			"es": "Compártelo con amigos y familia",
 			"ar": "أخبر صديقاً",
 			"pt": "Conta a um amigo",
-			"zh": "",
+			"zh": "告诉朋友",
 			"el": "Πες το σε ένα φίλο"
 		},
 		"shareBtn_label": {
@@ -607,7 +609,7 @@
 			"es": "Compártelo",
 			"ar": "شارك",
 			"pt": "",
-			"zh": "",
+			"zh": "分享",
 			"el": "Διάδωσε το"
 		},
 		"sign_up":{
@@ -616,7 +618,7 @@
 			"es": "Avísame cuando ...",
 			"ar": "ارسل تنبيهات حول",
 			"pt": "",
-			"zh": "",
+			"zh": "通知我",
 			"el": "Ειδοποίησε με σχετικά με ..."
 		},
 		"counting": {
@@ -625,7 +627,7 @@
 			"es": "{count} imagenes subidas",
 			"ar": "{count} الصور التي تم تحميلها حتى الآن",
 			"pt": "",
-			"zh": "",
+			"zh": "{count} 已上传的图片",
 			"el": "{count} εικόνες που έχουν αποσταλεί μέχρι στιγμής"
 		},
 		"error_parsing_geojson": {
@@ -634,7 +636,7 @@
 			"es": "¡Huy! Parece que no se cargan las fotos. !Inténta recargar la página entera!",
 			"ar": "تباً، الصور لم يتم تحميلها، حاول تحديث الصفحة",
 			"pt": "",
-			"zh": "",
+			"zh": "图片没有加载。请尝试刷新页面",
 			"el": "Κρίμα, οι εικόνες δεν φορτώνονται. Δοκίμασε να ανανεώσεις τη σελίδα!"
 		},
 		"error_loading_mapbox": {
@@ -643,7 +645,7 @@
 			"es": "¡Huy! Parece que no se carga el mapa mundi. !Inténta recargar la página entera!",
 			"ar": "تباً، الخريطة لا تعمل. حاول تحديث الصفحة!",
 			"pt": "",
-			"zh": "",
+			"zh": "地图没有加载。请尝试刷新页面",
 			"el": "Κρίμα, ο χάρτης δεν φορτώνεται. Δοκίμασε να ανανεώσεις τη σελίδα!"
 		},
 		"files_undefined": {
@@ -652,7 +654,7 @@
 			"es": "No se han seleccionado archivos",
 			"ar": "لم يتم اختيار أي ملف.",
 			"pt": "",
-			"zh": "",
+			"zh": "未选择任何文件",
 			"el": "Δεν επιλέχθηκαν αρχεία."
 		},
 		"wrong_filetype": {
@@ -661,7 +663,7 @@
 			"es": "El archivo seleccionado no es una foto. Elige una con una de las siguientes extensiones: jpg, jpeg, tif, tiff, gif o png.",
 			"ar": "الملف الذي حددته ليس صورة. وينبغي أن يكون واحد من الامتدادات التالية: JPG، JPEG، TIF، TIFF، GIF أو PNG",
 			"pt": "",
-			"zh": "",
+			"zh": "你的文件不是图片格式。它的格式应该是jpg, jpeg, tif, tiff, gif 或者 png",
 			"el": "Το αρχείο που επέλεξες δεν είναι μια εικόνα. Θα πρέπει να έχει μία από τις ακόλουθες επεκτάσεις: jpg, jpeg, tif, tiff, gif ή png"
 		},
 		"exifdata_empty": {
@@ -670,7 +672,7 @@
 			"es": "No hemos podido encontrar los datos exif en tu foto. A lo mejor  proviene de una red social. ¡Inténtalo de nuevo con la foto original!",
 			"ar": "لم نتمكن من العثور على أي معلومات تفصيلية في الصورة. أفضل تخمين لدينا هو أن تم إرسالها من خلال وسائل التواصل الاجتماعية، مثل الفيسبوك أو واتس اب. هل لديك الصورة الأصلية؟ حاول معها!",
 			"pt": "Não conseguimos encontrar a Metadata na tua imagem. Possivelmente porque foi enviada via Facebook ou Whatsapp, ou foi scaneada ou captura de ecrã. Tens a fotografia original? Experimenta com essa!",
-			"zh": "",
+			"zh": "我们不能在您的图片中找到任何元数据。    我们猜测它是通过社交媒体传送的，比如脸书和手机即时通讯软件， 或者是扫描图像也或者是屏幕截图？试试它！",
 			"el": "Δεν μπόρεσα να βρω κανένα από τα αναγκαία μεταδεδομένα στην εικόνα σου. Υποπτεύομαι ότι εστάλη μέσω των κοινωνικών μέσων μαζικής ενημέρωσης, όπως το Facebook ή το Whatsapp, ή, θα μπορούσε να είναι μια σάρωση ή ένα στιγμιότυπο οθόνης. Έχεις την αρχική εικόνα; Δοκίμασε αυτήν!"
 		},
 		"image_too_small": {
@@ -679,7 +681,7 @@
 			"es": "La foto es demasiado pequeña (Ancho mínimo 800px). ¿Tienes la original?",
 			"ar": "الصورة صغيرة جدا بالنسبة لنا لتحليلها. (الحد الأدنى عرض 800px) هل لديك الملف الأصلي في مكان ما؟ حاول معه!",
 			"pt": "",
-			"zh": "",
+			"zh": "您的图片太小无法进行分析 （最小800像素），您有原始的图片吗？ 试试它！",
 			"el": "Η εικόνα σου είναι πολύ μικρή για εμάς να την αναλύσουμε (Ελάχιστο 800px πλάτος). Έχεις το αρχικό αρχείο κάπου; Δοκίμασε αυτό!"
 		},
 		"orientation_undefined": {
@@ -688,7 +690,7 @@
 			"es": "Los datos exif de tu foto no están completos. Puede que hayas aplicado un filtro. ¡Inténtalo de nuevo con la foto original!",
 			"ar": "البيانات الوصفية ليست كاملة. هل قمت بفلترتها؟ حاول مع النسخة الأصلية!",
 			"pt": "",
-			"zh": "",
+			"zh": "我们不能在您的图片中找到任何元数据。    我们猜测它是通过社交媒体传送的，比如脸书和手机即时通讯软件， 或者是扫描图像也或者是屏幕截图？试试它！", //JING
 			"el": "Τα μεταδεδομένα δεν είναι πλήρη. Μήπως έχεις εφαρμόσει κάποιο φίλτρο; Δοκίμασε το πρωτότυπο αρχείο!"
 		},
 		"faces_detected": {
@@ -697,7 +699,7 @@
 			"es": "Lo sentimos. No podemos acceptar imagenes con caras.",
 			"ar": "آسف، لاعتبارات الخصوصية علينا أن نرفض الصور مع وجوه",
 			"pt": "",
-			"zh": "",
+			"zh": "对不起，出于保护隐私的原因，我们不接受图片中出现人脸。",
 			"el": "Συγγνώμη, για την προστασία της ιδιωτικής ζωής θα πρέπει να απορρίψουμε τις εικόνες με τα πρόσωπά"
 		},
 		"spam_detected": {
@@ -706,7 +708,7 @@
 			"es": "¿Seguro que se trata de una costa? Tenemos nuestras dudas...",
 			"ar": "أنت متأكد من أن هذه الصورة لساحل؟ لدينا شكوكنا ...",
 			"pt": "",
-			"zh": "",
+			"zh": "您确定这是一张海岸线图片吗？ 我们有些质疑。。。",
 			"el": "Είσαι σίγουρος ότι είναι μια εικόνα ακτής; Έχουμε τις αμφιβολίες μας ..."
 		},
 		"not_a_coast": {
@@ -715,8 +717,8 @@
 			"es": "No parece ser una costa o al menos el servicio de anotaciones no lo cree. Lo sentimos. ¿Tienes otra?",
 			"ar": "هذه الصورة لا تبدو وكأنها لساحل. أو على الأقل برنامج مسح الصور لا يعتقد ذلك. آسف، حاول مرة أخرى!",
 			"pt": "Isto não parece uma costa. Ou então o nosso Software de anotação de Imagens não o identificou como uma costa. Experimenta outra!",
-			"zh": "",
-			"el": "Αυτό δεν μοιάζει σαν ακτή. Ή τουλάχιστον το λογισμικό ελέγχου εικόνας δεν σκέφτεται έτσι. Συγνώμη, δοκίμασε μια άλλη!"
+			"zh": "这看起来不象海岸。至少图像注释软件不这么认为。对不起，请试试另外的",
+			"el": "Αυτό δεν μοιάζει σαν ακτή. Ή τουλάχιστον το λογισμικό ελέγχου εικόνας δεν καταλαβαίνει. Συγνώμη, δοκίμασε μια άλλη!"
 		},
 		"location_undefined": {
 			"en": "That's too bad. We need to know where the coast is located but we couldn't find that information in the metadata. Switch to a modern browser to locate the coast for us (unfortunately your browser doesn't support some of the features necessary to do that) or try uploading an image that was taken with a mobile or digital camera.",
@@ -724,8 +726,8 @@
 			"es": "Qué pena, no podemos encontrar la localización de la costa en los datos exif. ¡Cambia a un browser moderno para poder posicionarla!",
 			"ar": "إنه أمر سيئ للغاية. نحن بحاجة لمعرفة أين يقع الساحل ولكن لا يمكن أن نجد هذه المعلومة في البيانات الوصفية للصورة. حاول استخدام أحد المتصفحات الحديثة حتى يمكننا تحديد موقع الساحل (للأسف متصفحك لا يدعم بعض الميزات الضرورية للقيام بذلك) أو حاول تحميل صورة تم التقاطها باستخدام هاتفك الذكي أو كاميرة رقمية.",
 			"pt": "",
-			"zh": "",
-			"el": "Κρίμα. Πρέπει να γνωρίζουμε που ακριβώς βρίσκεται η ακτή, αλλά δεν μπορέσαμε να βρούμε αυτές τις πληροφορίες στα μεταδεδομένα. Μετέβη σε ένα σύγχρονο πρόγραμμα περιήγησης για να εντοπίσεις την ακτή για εμάς (δυστυχώς ο περιηγητής σου δεν υποστηρίζει μερικά από τα χαρακτηριστικά που απαιτούνται για να γίνει αυτό) ή δοκίμασε το φόρτωμα μιας εικόνας που λήφθηκε με ένα κινητό ή ψηφιακή φωτογραφική μηχανή."
+			"zh": "这太糟了。我们需要知道海岸的具体位置，但是我们在元数据中无法找到。请 换到更高级的浏览器（不幸的是您的浏览器不支持一些必要的功能）或者尝试上传使用移动设备或数码相机拍摄的图片。",
+			"el": "Κρίμα. Πρέπει να γνωρίζουμε που ακριβώς βρίσκεται η ακτή, αλλά δεν μπορέσαμε να βρούμε αυτές τις πληροφορίες στα μεταδεδομένα. Πήγαινε σε ένα σύγχρονο πρόγραμμα περιήγησης για να εντοπίσεις την ακτή για εμάς (δυστυχώς ο περιηγητής σου δεν υποστηρίζει μερικά από τα χαρακτηριστικά που απαιτούνται για να γίνει αυτό) ή δοκίμασε το φόρτωμα μιας εικόνας που λήφθηκε με ένα κινητό ή ψηφιακή φωτογραφική μηχανή."
 		},
 		"problems_connecting": {
 			"en": "We could not connect to the image annotation service. Please try again!",
@@ -733,7 +735,7 @@
 			"es": "Hubo un problema de conexión. Inténtalo de nuevo!",
 			"ar": "لم نتمكن من الاتصال بخدمة مسح الصور. حاول مرة اخرى!",
 			"pt": "",
-			"zh": "",
+			"zh": "我们无法连接到图片注释 请再试一次！",
 			"el": "Εμείς δεν μπορέσαμε να συνδεθούμε με την υπηρεσία έλεγχου εικόνας. Παρακαλώ προσπάθησε ξανά!"
 		},
 		"problems_from_google": {
@@ -742,7 +744,7 @@
 			"es": "Hubo un problema de conexión. Inténtalo de nuevo!",
 			"ar": "برنامج مسح الصور أعاد نتيجة خاطئة. حاول مرة اخرى!",
 			"pt": "",
-			"zh": "",
+			"zh": "图像注释软件出现错误。 请再试一次！",
 			"el": "Το λογισμικό έλεγχου εικόνας επέστρεψε ένα σφάλμα. Παρακαλώ προσπάθησε ξανά!"
 		},
 		"upload_error": {
@@ -751,7 +753,7 @@
 			"es": "¡Huy! Hubo un problema al subir la imágen. Seguramente es culpa mía (o tu conexión es mala). Inténtalo de nuevo, porfa!",
 			"ar": "تباً، حدث خطأ أثناء التحميل. أنا متأكد من أن هذا هو خطأي (أو ربما لديك اتصال سيئ). حاول ثانية؟",
 			"pt": "",
-			"zh": "",
+			"zh": "上传发生错误。 我确定是我的错误（或者您的连接不好）再试试？",
 			"el": "Κρίμα, κάτι πήγε στραβά κατά τη διάρκεια της αποστολής. Είμαι σίγουρη ότι αυτό είναι δικό μου λάθος (ή ίσως η σύνδεσή σου είναι κακή). Προσπάθησε ξανά?"
 		},
 		"make_blacklisted": {
@@ -760,7 +762,7 @@
 			"es": "Qué pena, no podemos acceptar fotos de Apps que aplican filtros de color, ej. Hipstamatic. ¿Tienes otra?",
 			"ar": "هم، يبدو أن الصورة التي تؤخذ مع تطبيق يستخدم مرشحات الألوان، على سبيل المثال Hipstamatic. عذرا، جرب آخر!", //Bassel
 			"pt": "",
-			"zh": "",
+			"zh": "嗨，看起来象是使用滤色镜应用程序拍摄的图片，比如hipstamatic. 抱歉，请试另外的图片！",
 			"el": "Χμ, μοιάζει ότι η εικόνα λήφθηκε με μια εφαρμογή που χρησιμοποιεί φίλτρα χρώματος, π.χ. Hipstamatic. Συγνώμη, δοκίμασε μία άλλη!"
 		},
 		"img_alt": {
@@ -769,7 +771,7 @@
 			"es": "Tu imágen",
 			"ar": "صورتك",
 			"pt": "",
-			"zh": "",
+			"zh": "您的图片",
 			"el": "Η εικόνα σου"
 		},
 		"hurray": {
@@ -778,7 +780,7 @@
 			"es": "¡Genial! Tu imágen está lista para subirse. Una preguntita más ...",
 			"ar": "صورتك جاهزة للتحميل! مجرد سؤال واحد ...",
 			"pt": "A tua imagem está pronta para ser subida! Só mais uma pergunta..",
-			"zh": "",
+			"zh": "您的图片准备上传！还有一个问题。。。",
 			"el": "Η εικόνα σου είναι έτοιμη για αποστολή! Μόνο ένα ακόμα ερώτημα ..."
 		},
 		"select_material": {
@@ -787,7 +789,7 @@
 			"es": "¿Cómo describirías el material de costa?",
 			"ar": "كيف تصف مكونات الساحل؟",
 			"pt": "",
-			"zh": "",
+			"zh": "您怎么描述海岸材质的？",
 			"el": "Πώς θα περιέγραφες το υλικό της ακτής;"
 		},
 		"define_material": {
@@ -796,7 +798,7 @@
 			"es": "(¿Qué quiere decir 'material de la costa'?)",
 			"ar": "(ماذا تقصد بمكونات الساحل؟)",
 			"pt": "",
-			"zh": "",
+			"zh": "（海岸材质的意思是？） ",
 			"el": "(Τι εννοείς με το υλικό της ακτής;)"
 		},
 		"sand": {
@@ -805,7 +807,7 @@
 			"es": "Arena",
 			"ar": "أرسل",
 			"pt": "",
-			"zh": "",
+			"zh": "沙滩",
 			"el": "Άμμος"
 		},
 		"pebble": {
@@ -814,7 +816,7 @@
 			"es": "Piedrecitas",
 			"ar": "حصاة",
 			"pt": "",
-			"zh": "",
+			"zh": "卵石",
 			"el": "Χαλίκι - Βότσαλα"
 		},
 		"rock": {
@@ -823,7 +825,7 @@
 			"es": "Roca",
 			"ar": "صخور",
 			"pt": "",
-			"zh": "",
+			"zh": "岩石",
 			"el": "Βράχος"
 		},
 		"mud": {
@@ -832,7 +834,7 @@
 			"es": "Barro",
 			"ar": "وحل",
 			"pt": "",
-			"zh": "",
+			"zh": "淤泥",
 			"el": "Λάσπη"
 		},
 		"manmade": {
@@ -841,7 +843,7 @@
 			"es": "Hecho por humanos",
 			"ar": "من صنع الإنسان",
 			"pt": "",
-			"zh": "",
+			"zh": "人工",
 			"el": "Τεχνητή παραλία"
 		},
 		"ice": {
@@ -850,7 +852,7 @@
 			"es": "Hielo",
 			"ar": "جليد",
 			"pt": "",
-			"zh": "",
+			"zh": "冰川",
 			"el": "Πάγος"
 		},
 		"notsure": {
@@ -859,7 +861,7 @@
 			"es": "No sé que poner",
 			"ar": "لست متأكد",
 			"pt": "",
-			"zh": "",
+			"zh": "不确定",
 			"el": "δεν είμαι σίγουρος"
 		},
 		"notset":{
@@ -868,7 +870,7 @@
 			"es": "Indefinido",
 			"ar": "غير محدد",
 			"pt": "Indefinido",
-			"zh": "",
+			"zh": "未定义",
 			"el": "Απροσδιόριστο"
 		},
 		"comment": {
@@ -877,7 +879,7 @@
 			"es": "¡Déjanos un comentario!",
 			"ar": "اترك تعليقاً",
 			"pt": "",
-			"zh": "",
+			"zh": "给我们留言",
 			"el": "Άφησε μας ένα σχόλιο!"
 		},
 		"comment_placeholder": {
@@ -886,7 +888,7 @@
 			"es": "Cuéntanos algo sobre esta costa ...",
 			"ar": "أخبرنا أكثر عن الساحل...",
 			"pt": "",
-			"zh": "",
+			"zh": "告诉我们关于这个海岸的情形",
 			"el": "Πες μας κάτι για αυτήν την ακτή ..."
 		},
 		"upload_image": {
@@ -895,7 +897,7 @@
 			"es": "Subir",
 			"ar": "حمّل",
 			"pt": "",
-			"zh": "",
+			"zh": "上传",
 			"el": "Μεταφόρτωση"
 		},
 		"cancel": {
@@ -904,7 +906,7 @@
 			"es": "Cancelar",
 			"ar": "الغاء",
 			"pt": "",
-			"zh": "",
+			"zh": "取消",
 			"el": "Ματαίωση"
 		},
 		"accept_terms": {
@@ -913,7 +915,7 @@
 			"es": "He leído los {terms} los acepto",
 			"ar": "أوفاق على {terms}",
 			"pt": "",
-			"zh": "",
+			"zh": "我已经阅读和接受 {terms}",
 			"el": "Έχω διαβάσει και αποδέχομαι τους {terms}"
 		},
 		"terms": {
@@ -922,7 +924,7 @@
 			"es": "términos",
 			"ar": "شروط الاستخدام",
 			"pt": "",
-			"zh": "",
+			"zh": "条款",
 			"el": "Όροι"
 		},
 		"data_privacy": {
@@ -931,7 +933,7 @@
 			"es": "¿Qué otra información guardan exactamente?",
 			"ar": "ما هي المعلومات الأخرى التي تجمعها؟",
 			"pt": "",
-			"zh": "",
+			"zh": "您还收集了哪些其他信息？",
 			"el": "Ποιες άλλες πληροφορίες έχεις συγκεντρώσει;"
 		},
 		"thats_it": {
@@ -940,7 +942,7 @@
 			"es": "Eso es todo. Lo juro. Nada de Google Analytics, ni siquiera cookies. Solamente lo que ves arriba.",
 			"ar": "هذا كل شيء. أقسم بذلك. لا كوكيز، وليس حتى تحليل جوجل، فقط ما تراه أعلاه.",
 			"pt": "",
-			"zh": "",
+			"zh": "我发誓。没有，甚至没有， 只是您在上面看到的",
 			"el": "Αυτό είναι. Το διαβεβαιώνω. Όχι cookies, δεν είναι καν το Google Analytics, ακριβώς αυτό που βλέπεις παραπάνω."
 		},
 		"ip_address": {
@@ -949,7 +951,7 @@
 			"es": "Dirección IP",
 			"ar": "عنوان الأي بي",
 			"pt": "",
-			"zh": "",
+			"zh": "IP 地址",
 			"el": "Διεύθυνση IP"
 		},
 		"save_ip": {
@@ -958,7 +960,7 @@
 			"es": "Guardamos tu dirección IP a la hora de subir la imágen.",
 			"ar": "سوف نخزن عنوان الأي بي الخاص بك فقط أثناء التحميل",
 			"pt": "",
-			"zh": "",
+			"zh": "我们将在上传时保存您的IP地址",
 			"el": "Θα διαφυλάξουμε τη IP διεύθυνση σου κατά τη μεταφόρτωση"
 		},
 		"save_ip_why": {
@@ -967,7 +969,7 @@
 			"es": "¿PORQUE?",
 			"ar": "لماذا؟",
 			"pt": "",
-			"zh": "",
+			"zh": "为什么？",
 			"el": "ΓΙΑΤΙ?"
 		},
 		"image": {
@@ -976,7 +978,7 @@
 			"es": "Imágen",
 			"ar": "صورة",
 			"pt": "",
-			"zh": "",
+			"zh": "图像",
 			"el": "Εικόνα"
 		},
 		"save_image": {
@@ -985,7 +987,7 @@
 			"es": "Guardamos la imágen a {imageWidth} píxeles de ancho y quitamos los datos exif.",
 			"ar": "نحن نحفظ الصورة في عرض {imageWidth} بكسل ونستخلص البيانات الوصفية",
 			"pt": "",
-			"zh": "",
+			"zh": "我们保存图像 {imageWidth} 提取元数据",
 			"el": "Εμείς αποθηκεύουμε την εικόνα σε πλάτος {imageWidth} pixels και αφαιρούμε τα μεταδεδομένα"
 		},
 		"uid": {
@@ -994,7 +996,7 @@
 			"es": "Identificación única",
 			"ar": "معرّف وحيد",
 			"pt": "",
-			"zh": "",
+			"zh": "唯一的标示",
 			"el": "Μοναδικό αναγνωριστικό"
 		},
 		"latitude": {
@@ -1003,7 +1005,7 @@
 			"es": "Latidud",
 			"ar": "خط العرض",
 			"pt": "",
-			"zh": "",
+			"zh": "纬度",
 			"el": "Γεωγραφικό πλάτος"
 		},
 		"longitude": {
@@ -1012,7 +1014,7 @@
 			"es": "Longitud",
 			"ar": "خط طول",
 			"pt": "",
-			"zh": "",
+			"zh": "经度",
 			"el": "Γεωγραφικό μήκος"
 		},
 		"location_manual": {
@@ -1021,7 +1023,7 @@
 			"es": "Localización manual",
 			"ar": "موقع يدوي",
 			"pt": "",
-			"zh": "",
+			"zh": "位置手册",
 			"el": "Χειρονακτική Τοποθέτηση"
 		},
 		"date_time": {
@@ -1030,7 +1032,7 @@
 			"es": "Fecha/Hora",
 			"ar": "التاريخ",
 			"pt": "",
-			"zh": "",
+			"zh": "日期／时间",
 			"el": "Ημερομηνία - ώρα"
 		},
 		"annotations": {
@@ -1039,7 +1041,7 @@
 			"es": "Anotaciones",
 			"ar": "وسوم",
 			"pt": "",
-			"zh": "",
+			"zh": "注释",
 			"el": "Σχόλια"
 		},
 		"score": {
@@ -1048,7 +1050,7 @@
 			"es": "Puntuación",
 			"ar": "النتيجة",
 			"pt": "",
-			"zh": "",
+			"zh": "得分",
 			"el": "Σκορ"
 		},
 		"exifdata": {
@@ -1057,7 +1059,7 @@
 			"es": "Datos exif",
 			"ar": "بيانات عن الصورة",
 			"pt": "",
-			"zh": "",
+			"zh": "Exifdata",
 			"el": "Exifdata"
 		},
 		"value": {
@@ -1066,7 +1068,7 @@
 			"es": "Valor",
 			"ar": "قيمة",
 			"pt": "",
-			"zh": "",
+			"zh": "价值",
 			"el": "Τιμή"
 		},
 		"can_you_locate": {
@@ -1075,8 +1077,8 @@
 			"es": "No podemos encontrar la localización de tu imágen. ¿Recuerdas exáctamente donde sacaste esta foto?",
 			"ar": "لم نتمكن من العثور على الموقع في البيانات الوصفية. هل تذكر بالضبط أين أخذت هذه الصورة؟",
 			"pt": "",
-			"zh": "",
-			"el": "Εμείς δεν μπορέσαμε να βρούμε τη τοποθεσία στα μεταδεδομένα. Θυμάσαι ακριβώς που πήρες αυτήν την φωτογραφία;"
+			"zh": "我们无法在元数据中找出地点。 您还记得图片是在哪里拍摄的吗？",
+			"el": "Δεν μπορέσαμε να βρούμε τη τοποθεσία στα μεταδεδομένα. Θυμάσαι ακριβώς που πήρες αυτήν την φωτογραφία;"
 		},
 		"yes_location_known": {
 			"en": "Yes, I can locate this coast",
@@ -1084,7 +1086,7 @@
 			"es": "Sí, lo recuerdo",
 			"ar": "نعم يمكنني تحديد مكان التقاط الصورة",
 			"pt": "",
-			"zh": "",
+			"zh": "是的，我可以确认海岸的位置",
 			"el": "Ναι, μπορώ να εντοπίσω αυτήν την ακτή"
 		},
 		"no_location_unknown": {
@@ -1093,7 +1095,7 @@
 			"es": "No, no me acuerdo",
 			"ar": "لا يمكنني تذكر ذلك",
 			"pt": "",
-			"zh": "",
+			"zh": "不，我不记得了",
 			"el": "Όχι, δεν θυμάμαι"
 		},
 		"unsupported": {
@@ -1102,7 +1104,7 @@
 			"es": "Ains. Parece que tu navegador es bastante antiguo. Lo siento, vas a tener que usar un navegador más moderno para continuar.",
 			"ar": "عفوا كلا ... يبدو أن متصفحك أقدم مما كنا نظن. عذرا، سيتوجب عليك التبديل إلى متصفح أكثر حداثة للمتابعة.",
 			"pt": "",
-			"zh": "",
+			"zh": "噢。。。看上去您的浏览器比我们设想的还要古老。抱歉，您需要一个更新版本的浏览器继续",
 			"el": "Ωχ ... μοιάζει ότι το πρόγραμμα περιήγησης είναι ακόμη παλαιότερο από ό, τι νομίζαμε. Λυπούμαστε, αλλά θα πρέπει να μεταβείς σε ένα πιο σύγχρονο πρόγραμμα περιήγησης για να συνεχίσεις."
 		},
 		/*"switch_to_satellite": {
@@ -1111,7 +1113,7 @@
 			"es": "Cambiar a vista satélite",
 			"ar": "بدل إلى عرض القمر الصناعي",
 			"pt": "",
-			"zh": "",
+			"zh": "切换到卫星视图",
 			"el": "Αλλαγή σε δορυφορική προβολή"
 		},
 		"switch_to_vector": {
@@ -1120,7 +1122,7 @@
 			"es": "Cambiar a vista vector",
 			"ar": "بدل إلى طريقة العرض الشعاعي",
 			"pt": "",
-			"zh": "",
+			"zh": "切换到矢量视图",
 			"el": "Αλλαγή σε διανυσματική προβολή "
 		},*/
 		"cancel_upload": {
@@ -1129,7 +1131,7 @@
 			"es": "Cancelar subida",
 			"ar": "أوقف التحميل",
 			"pt": "",
-			"zh": "",
+			"zh": "取消上传",
 			"el": "Ακύρωση μεταφόρτωσης"
 		},
 		"continue_upload": {
@@ -1138,7 +1140,7 @@
 			"es": "Situar imágen",
 			"ar": "استمر", //BASSEL
 			"pt": "",
-			"zh": "",
+			"zh": "继续", //JING
 			"el": "Συνέχισε" //BABA Συνέχισε (continue upload)
 		},
 		"notdefined": {
@@ -1147,7 +1149,7 @@
 			"es": "Sin definir",
 			"ar": "لم يتم التحديد بعد",
 			"pt": "",
-			"zh": "",
+			"zh": "尚未设置",
 			"el": "Δεν έχει οριστεί ακόμη"
 		},
 		"close_popup": {
@@ -1156,7 +1158,7 @@
 			"es": "Cerrar popup",
 			"ar": "أغلق البوب أب",
 			"pt": "",
-			"zh": "",
+			"zh": "关闭弹出窗口",
 			"el": "Κλείσιμο παραθύρου"
 		},
 		"report_image": {
@@ -1165,7 +1167,7 @@
 			"es": "Denuncia esta imágen",
 			"ar": "أبلغ عن صورة",
 			"pt": "",
-			"zh": "",
+			"zh": "报告图片",
 			"el": "Αναφορά εικόνας"
 		},
 		"toggle_comment": {
@@ -1174,7 +1176,7 @@
 			"es": "Mostrar/Ocultar comentario",
 			"ar": "أظهر التعليق",
 			"pt": "",
-			"zh": "",
+			"zh": "切换注释",
 			"el": "Εναλλαγή σχόλιο"
 		},
 		"select_file": {
@@ -1184,7 +1186,7 @@
 			//"ar": "هل لديك أي صور لسواحل؟ لماذا لا تقوم بتحميلها الآن؟",
 			"ar": "هل لديك أي صور لسواحل؟", //BASSEL
 			"pt": "",
-			"zh": "",
+			"zh": "您有与海岸线有关的图片？", //为什么不上传呢？
 			"el": "Έχεις κάποιες εικόνες από ακτές;" //Γιατί να μην τις φορτώσεις τώρα;
 		},
 		"upload_ok": {
@@ -1193,7 +1195,7 @@
 			"es": "¡¡GENIAL!! Tu imágen se ha subido. ¡Otra! :)",
 			"ar": "هذا لطيف! تم تحميل الصورة. التالي! :)",
 			"pt": "WOHOO! Boa! A tua imagem está Online. Seguinte! :)",
-			"zh": "",
+			"zh": "呕呕！漂亮！您的图片已经上传，再来一张！：）",
 			"el": "Μπράβο! Πολύ ωραία! Η εικόνα σου έχει φορτωθεί επιτυχώς. Επόμενη! :)"
 		},
 		"status_validating": {
@@ -1202,7 +1204,7 @@
 			"es": "Validando tu imágen ... (Esto llevará unos segundos nada más)",
 			"ar": "جاري التحقق من الصورة .. (بضع ثوان)",
 			"pt": "Validando a tua image... (só mais uns segundos)",
-			"zh": "",
+			"zh": "验证您的图片。。。（只需几秒钟）",
 			"el": "Επικύρωση της εικόνα σου .. (μόλις λίγα δευτερόλεπτα)"
 		},
 		"status_uploading": {
@@ -1211,7 +1213,7 @@
 			"es": "Subiendo... {progress}%",
 			"ar": "جاري التحميل... {progress}%",
 			"pt": "",
-			"zh": "",
+			"zh": "正在上传。。。{progress}％",
 			"el": "Ανέβασμα ... {progress}%"
 		},
 		"loader": {
@@ -1220,7 +1222,7 @@
 			"es": "Cargando",
 			"ar": "لولب التقدم",
 			"pt": "",
-			"zh": "",
+			"zh": "", //JING
 			"el": "Kλώστης προόδου"
 		},
 		"close_dialog": {
@@ -1229,7 +1231,7 @@
 			"es": "Cerrar diálogo",
 			"ar": "أغلق النافذة",
 			"pt": "",
-			"zh": "",
+			"zh": "关闭对话",
 			"el": "Κλείσε τον διάλογο"
 		},
 		"the_obvious_header": {
@@ -1238,7 +1240,7 @@
 			"es": "De qué está hecha la costa.",
 			"ar": "المواد التي يتكون منها الساحل",
 			"pt": "De que material é feita a costa.",
-			"zh": "",
+			"zh": "海岸是由什么形成的",
 			"el": "Το υλικό που αποτελείται  η ακτή."
 		},
 		"the_obvious_text": {
@@ -1247,7 +1249,7 @@
 			"es": "¿Si fueras agua del mar, con qué chocarías primero? ¿Contra una roca o con arena de una playa? ¿Igual es algo hecho por el humano como puede ser un muro de hormigón? El material de la costa es lo que encuentras en los primeros metros sobre tierra.",
 			"ar": "إذا كانت المياه  مياه محيط أو بحر، ما هي المواد التي سوف تواجها أولا؟ الصخور الصلبة من جرف أو رمال من الشاطئ؟ أو ربما هي من صنع الإنسان شيئ مثل جدار خرساني؟ مواد الساحل هي الاشياء تجدها في الأمتار الأولى من اليابسة.",
 			"pt": "Se fosses água do oceano ou do mar, qual é o material que primeiro encontras? Rocha dura de uma falésia ou areia de uma praia? Ou talvez algo feito pelo homen como uma parede de betão? O material da costa é esse material que se encontra nos primeiros metros de terra visto do mar.",
-			"zh": "",
+			"zh": "如果您是来自海洋的水，您会首先遇到什么？ 悬崖上的坚硬岩石还是沙滩？或者是人造的混凝土？海岸材质是指您在陆地一米内找到的东西",
 			"el": "Το νερό από τον ωκεανό ή θάλασσα, με ποιο υλικό θα ερχόταν πρώτα σε επαφή; Βράχο σε ένα γκρεμνό ή άμμο από την παραλία; Ή ίσως κάτι ανθρωπογενές σαν ένα τσιμεντένιο τοίχο; Το υλικό της ακτής είναι τα αυτό που βρίσκεται στα πρώτα μέτρα γης."
 		},
 		"multiple_materials_header": {
@@ -1256,8 +1258,8 @@
 			"es": "¿Y si la costa tiene más que un material?",
 			"ar": "ما هو الحل عندما يكون الساحل مكون من أكثر من مادة واحدة؟",
 			"pt": "E se a costa estiver feita de mais de um material?",
-			"zh": "",
-			"el": "Τι θα συμβεί αν η ακτή συνίσταται από περισσότερο από ένα μόνο υλικό;"
+			"zh": "如果海岸不只是一种材质组成的？",
+			"el": "Τι θα συμβεί αν η ακτή συνίσταται από περισσότερα από ένα υλικά;"
 		},
 		"multiple_materials_text": {
 			"en": "In that case, it's the material that predominates.",
@@ -1265,7 +1267,7 @@
 			"es": "En este caso es el material que predomina.",
 			"ar": "في هذه الحالة، فإنه يجب اختيار المواد التي تسود.",
 			"pt": "",
-			"zh": "",
+			"zh": "", //这种情况下 JING
 			"el": "Σε αυτή την περίπτωση, είναι το υλικό που είναι σε αφθονία."
 		},
 		"material_examples_header": {
@@ -1274,7 +1276,7 @@
 			"es": "¡Muéstrame ejemplos!",
 			"ar": "اريني بعض الأمثلة!",
 			"pt": "Mostra-me alguns exemplos!",
-			"zh": "",
+			"zh": "给我们展示一些例子！",
 			"el": "Δείξε μου μερικά παραδείγματα!"
 		},
 		/*"material_examples_text": {
@@ -1283,7 +1285,7 @@
 			"es": "Estoy todavía colocando esta sección. Hasta entonces puedes mirar las imagenes que ya están subidas para darte una idea.",
 			"ar": "أنا أعمل حاليا على هذا القسم. إلقي نظرة على الصور التي يتم تحميلها للحصول على فكرة أفضل!",
 			"pt": "Atualmente estou a trabalhar nesta secção. Até então, podes ir ver as imagens que já se encontram online no mapa para teres uma melhor ideia!",
-			"zh": "",
+			"zh": "我目前正在做这一部分的工作。在此之前，看看已经上传的图片，收获些好的主意",
 			"el": "Επί του παρόντος  εργάζομαι πάνω σε αυτή την ενότητα. Μέχρι τότε, ρίξε μια ματιά στις εικόνες που έχουν ήδη ανεβαστεί για να πάρεις μια καλύτερη ιδέα!"
 		},*/
 		"imprint": {
@@ -1292,7 +1294,7 @@
 			"es": "Imprenta",
 			"ar": "بصمة",
 			"pt": "",
-			"zh": "",
+			"zh": "出版单位",
 			"el": "Αποτύπωμα"
 		},
 		"disclaimer": {
@@ -1301,7 +1303,7 @@
 			"es": "Renuncia",
 			"ar": "تنازل",
 			"pt": "",
-			"zh": "",
+			"zh": "免责申明",
 			"el": "Αποποίηση ευθυνών"
 		},
 		"privacy_policy": {
@@ -1310,7 +1312,7 @@
 			"es": "Política de privacidad",
 			"ar": "سياسة الخصوصية",
 			"pt": "",
-			"zh": "",
+			"zh": "隐私保护",
 			"el": "Πολιτική Προστασίας Προσωπικών Δεδομένων"
 		},
 		"report_header": {
@@ -1319,7 +1321,7 @@
 			"es": "Denuncia esta imágen",
 			"ar": "أخبر عن هذه الصورة",
 			"pt": "",
-			"zh": "",
+			"zh": "举报此图片",
 			"el": "Αναφορά μιας εικόνας"
 		},
 		"report_text": {
@@ -1328,7 +1330,7 @@
 			"es": "Aquí puedes denunciar esta imágen para que se quite del sitio web.",
 			"ar": "هنا لديك إمكانية للإبلاغ عن الصورة التي تعتقد أنه لا يجب نشرها على الموقع الإلكتروني.",
 			"pt": "",
-			"zh": "",
+			"zh": "这里您可以举报您认为不应该在此网站发布的图片",
 			"el": "Εδώ έχεις τη δυνατότητα να υποδείξεις μια εικόνα που νομίζεις ότι δεν θα πρέπει να δημοσιευτεί στην ιστοσελίδα αυτή."
 		},
 		"label_report_comment": {
@@ -1337,7 +1339,7 @@
 			"es": "Comentario",
 			"ar": "تعليقك",
 			"pt": "",
-			"zh": "",
+			"zh": "您的评论",
 			"el": "Το σχόλιό σου"
 		},
 		"placeholder_report_comment": {
@@ -1346,7 +1348,7 @@
 			"es": "Planteanos porque se debe quitar esta imágen del sitio web...",
 			"ar": "أخبرنا لماذا تريد الإبلاغ عن هذه الصورة ...",
 			"pt": "",
-			"zh": "",
+			"zh": "告诉我们您为什么要举报此图片",
 			"el": "Πες μας γιατί υποδεικνύεις αυτή την εικόνα ..."
 		},
 		"report_ok": {
@@ -1355,7 +1357,7 @@
 			"es": "Tu informe ha sido enviado!",
 			"ar": "تم إرسال الابلاغ الخاص بك!",
 			"pt": "",
-			"zh": "",
+			"zh": "您的报告已发送！",
 			"el": "Η αναφορά σου εστάλη!"
 		},
 		"share_header": {
@@ -1364,7 +1366,7 @@
 			"es": "¡Comparte con amigos y familia!",
 			"ar": "شارك مع الأصدقاء والعائلة.", //حظاً موفقاً كوستواردز! 
 			"pt": "",
-			"zh": "",
+			"zh": "与朋友和家人分享",
 			"el": "Διάνεμε  στους φίλους και την οικογένεια."
 		},
 		"share_text_intro": {
@@ -1373,7 +1375,7 @@
 			"es": "Hay muchas formas de compartir. Obviamente existe {facebook} y {twitter}. Y si eres de la nueva generación tal vez prefieras {whatsapp} o algún otro programa que no conozco, porque soy mayor, o porque existen otras plataformas en tu país.",
 			"ar": "هناك العديد من الطرق للمشاركة. بالطبع، هناك {facebook} و {twitter}. إذا كنت من جيل المستقبل قد تفضل {whatsapp} أو بعض البرنامج الاخرة وأنا لا أعرف ما هي المنصات التي تستخدمها في بلدك.",
 			"pt": "",
-			"zh": "",
+			"zh": "有很多方法可以共享。 当然，有 {facebook} 和 {twitter}。 如果你是下一代，你可能更喜欢 {whatsapp} 或一些其他程序，我不知道，因为我年纪太大或不熟悉在您的国家使用的平台。",
 			"el": "Υπάρχουν πολλοί τρόποι για να διανείμεις την ιστοσελίδα. Φυσικά, υπάρχει {facebook} και {twitter}. Εάν είσαι η επόμενη γενιά ίσως προτιμάς {whatsapp} ή κάποιο άλλη εφαρμογή που δεν ξέρω επειδή είμαι ποιό μεγάλη ή δεν είμαι εξοικειωμένη με τις πλατφόρμες που χρησιμοποιείς στη χώρα σου."
 		},
 		"share_text_but": {
@@ -1382,7 +1384,7 @@
 			"es": "Pero todos sabemos como funcionan las redes sociales. Si realmente quieres contactar con alguien, lo más efectivo sigue siendo hablan con esa persona.",
 			"ar": "لكننا نعلم جميعا كيف تعمل وسائل التواصل الاجتماعية. إذا كنت تريد حقا أن تصل إلى شخص ما، والتحدث إلى هذا الشخص، فإن تلك الوسائل هي الأكثر فعالية.",
 			"pt": "",
-			"zh": "",
+			"zh": "但我们都知道社交媒体是如何工作的。 如果您真的想接触某人，跟那个人直接对话仍然是最有效的。",
 			"el": "Αλλά όλοι ξέρουμε πώς λειτουργούν τα κοινωνική μέσα ενημέρωσης. Αν θέλεις όμως πραγματικά να πλησιάσεις κάποιον, μιλώντας του κατά πρόσωπο αυτό εξακολουθεί να είναι η πιο αποτελεσματική μέθοδος."
 		},
 		"know_anyone": {
@@ -1391,7 +1393,7 @@
 			"es": "¿Conoces a alguien que vive cerca de una costa?",
 			"ar": "هل تعرف أي شخص يعيش قرب الساحل؟",
 			"pt": "",
-			"zh": "",
+			"zh": "认识住在海岸线上的人？",
 			"el": "Ξέρεις κανέναν που ζει στην ακτή;"
 		},
 		"terms_header": {
@@ -1400,7 +1402,7 @@
 			"es": "Términos",
 			"ar": "شروط",
 			"pt": "",
-			"zh": "",
+			"zh": "条款",
 			"el": "Όροι"
 		},
 		"terms_author": {
@@ -1409,7 +1411,7 @@
 			"es": "Al subir la imágen confirmas tener los derechos de autor.",
 			"ar": "عن طريق تحميل هذه الصورة فأنت تؤكد أنك تملك حقوق التأليف والنشر هذه الصورة.",
 			"pt": "",
-			"zh": "",
+			"zh": "上传此图片意味着此图片的版权归您",
 			"el": "Με τη μεταφόρτωση αυτής της εικόνας επιβεβαιώνεις ότι είσαι κάτοχος των πνευματικών δικαιωμάτων της εικόνας αυτής."
 		},
 		"terms_cc0": {
@@ -1418,7 +1420,7 @@
 			"es": "Al subir la imágen confirmas que cedes los derechos de autor y colocas la imágen en el dominio público bajo la licencia {license}.",
 			"ar": "بتحميل هذه الصورة فإنك توافق على التنازل عن حقوق النشر الخاصة بك ووضعها في المجال العام تحت {license}.",
 			"pt": "",
-			"zh": "",
+			"zh": "上传此图片即表示您同意放弃您的版权，并将图片放置在{license}下的公共领域。",
 			"el": "Με τη μεταφόρτωση αυτής της εικόνας  συμφωνείς και παραιτείσαι από τα δικαιώματα πνευματικής ιδιοκτησίας και τοποθετείς την εικόνα αυτή στον δημόσιο τομέα υπό την {license}."
 		},
 		"license": {
@@ -1445,7 +1447,7 @@
 			"es": "Al subir la imágen confirmas que no contiene información personal.",
 			"ar": "بتحميل هذه الصورة فإنك تؤكد أنها لا تحتوي على أية بيانات شخصية.",
 			"pt": "",
-			"zh": "",
+			"zh": "上传此图片即表示您确认该图片不包含任何个人资料。",
 			"el": "Με τη μεταφόρτωση αυτής της εικόνας επιβεβαιώνεις ότι δεν περιέχει προσωπικά δεδομένα."
 		},
 		"whyIP_header": {
@@ -1454,7 +1456,7 @@
 			"es": "¿Porque es necesario conocer mi dirección IP?",
 			"ar": "لماذا تحتاج عنوان الاي بي الخاص بي؟",
 			"pt": "",
-			"zh": "",
+			"zh": "为什么您需要我的IP 地址？",
 			"el": "Γιατί χρειάζεστε τη διεύθυνση IP μου;"
 		},
 		"whyIP_text": {
@@ -1463,7 +1465,7 @@
 			"es": "Tenemos que poder demostrar que no suministramos las imagenes. Básicamente nos estamos cubriendo la espalda. Sólo indicaremos tu dirección IP, no a ti.",
 			"ar": "نحن بحاجة إلى أن نكون قادرين على إثبات أننا لسنا مصدر الصورة. وذلك باعطاء مصادقية لنا بأن نشير فقط إلى عنوان الاي بي الخاص بك، وليس لك.",
 			"pt": "",
-			"zh": "",
+			"zh": "我们需要能够证明我们不是图像的来源。 基本上，我们覆盖我们自己，但我们只能指向您的IP地址，而不是你。",
 			"el": "Πρέπει να είμαστε σε θέση να αποδείξουμε ότι δεν είμαστε η πηγή της εικόνας. Βασικά, καλύπτουμε τους εαυτούς μας, αν και μπορούμε να επισημάνουμε μόνο την IP διεύθυνση σου και όχι προσωπικά εσένα. "
 		},
 		"ip_address_learn_more": {
@@ -1472,7 +1474,7 @@
 			"es": "Lee más sobre las direcciones IP y la información que contienen.",
 			"ar": "إقرأ المزيد عن عناوين بروتوكول الإنترنت وعن المعلومات التي تحتويها",
 			"pt": "",
-			"zh": "",
+			"zh": "阅读更多关于IP地址及其包含的信息",
 			"el": "Διάβασε περισσότερα σχετικά με τις IP διευθύνσεις και τις πληροφορίες που περιέχουν"
 		},
 		"ip_address_learn_more_href": {
@@ -1490,7 +1492,7 @@
 			"es": "¡Aún no podemos procesar más que una foto a la vez!",
 			"ar": "آسف، يمكننا معالجة صورة واحدة فقط في وقت واحد!",
 			"pt": "",
-			"zh": "",
+			"zh": "很抱歉，目前我们一次只能处理一张图片！",
 			"el": "Λυπούμαστε, αλλά αυτή τη στιγμή μπορούμε να επεξεργαστούμε μόνο μία εικόνα κάθε φορά!"
 		},
 		"here_we_go": {
@@ -1499,7 +1501,7 @@
 			"es": "¡¡Encontramos el sitio!! ¡Ahí vamos!",
 			"ar": "عثرنا على الموقع !! ها نحن ذا!",
 			"pt": "Encontrámos o local da foto! Vamos embora!",
-			"zh": "",
+			"zh": "找出所属位置！开始！",
 			"el": "Βρέθηκε η τοποθεσία !! Ορίστε!"
 		},
 		"zoom_until": {
@@ -1508,7 +1510,7 @@
 			"es": "¡Acércate hasta que el color del marcador cambie a verde, y apunta al sitio donde sacaste la foto!",
 			"ar": "قم بالتكبير حتى علامة اللون الأخضر وأشر إلى الموقع الذي تم التقاط هذه الصورة فيه!",
 			"pt": "",
-			"zh": "",
+			"zh": "缩放，直到标记变为绿色，并指向您拍摄这张照片的位置！",
 			"el": "Μεγέθυνε  μέχρι ο δείκτης να γίνει πράσινος και δείχνει την θέση που ελήφθη αυτή η φωτογραφία!"
 		},
 		"zoom_closer": {
@@ -1517,7 +1519,7 @@
 			"es": "¡Tienes que acercarte hasta el marcardor cambie a verde!",
 			"ar": "انت يجب أن تقوم بالتكبير حتى تتحول العلامة إلى خضراء!",
 			"pt": "",
-			"zh": "",
+			"zh": "你必须放大，直到标记变绿！",
 			"el": "Πρέπει να μεγεθύνεις μέχρι ο δείκτης να γίνει πράσινος!"
 		},
 		"two_fingers": {
@@ -1526,7 +1528,7 @@
 			"es": "Utiliza dos dedos para hacer zoom.",
 			"ar": "استخدام إصبعين للتكبير",
 			"pt": "",
-			"zh": "",
+			"zh": "使用两根手指进行缩放",
 			"el": "Χρησιμοποίησε δύο δάχτυλα για να μεγεθύνεις"
 		},
 		"accept_terms_first": {
@@ -1535,7 +1537,7 @@
 			"es": "Tienes que acceptar los términos para continuar!",
 			"ar": "لا يزال عليك قبول الشروط!",
 			"pt": "",
-			"zh": "",
+			"zh": "您仍然必须接受条款！",
 			"el": "Πρέπει ακόμα να αποδεχτείς τους όρους!"
 		},
 		"location_right":{
@@ -1544,7 +1546,7 @@
 			"es": "Está bien situado?",
 			"ar": "إضافة إلى أنها تقع؟", //BASSEL
 			"pt": "É bem localizado?",
-			"zh": "",
+			"zh": "正确的位置？", //JING
 			"el": "Είναι σωστή η θέση;" //BABA
 		},
 		"yes": {
@@ -1553,7 +1555,7 @@
 			"es": "Sí",
 			"ar": "بلى",
 			"pt": "Sim",
-			"zh": "",
+			"zh": "是",
 			"el": "Ναί"
 		},
 		"no": {
@@ -1562,7 +1564,7 @@
 			"es": "No",
 			"ar": "لا",
 			"pt": "Não",
-			"zh": "",
+			"zh": "没有",
 			"el": "Οχι"
 		},
 		"ok": {
@@ -1571,22 +1573,22 @@
 			"es": "OK",
 			"ar": "حسنا",
 			"pt": "OK",
-			"zh": "",
+			"zh": "好",
 			"el": "Εντάξει"
 		},
 
 		//VIDEO
 		"together":{
-			"en": "Together we can create this global map of coasts"
+			"en": "Together we can create this global map of coasts" //JING, BASSEL, BABA
 		},
 		"easy":{
-			"en": "It's easy"
+			"en": "It's easy" //JING, BASSEL, BABA
 		},
 		"beautiful": {
-			"en": "It's beautiful"
+			"en": "It's beautiful" //JING, BASSEL, BABA
 		},
 		"meaningful":{
-			"en": "And it will make a difference!"
+			"en": "And it will make a difference!" //JING, BASSEL, BABA
 		}
 
 	}

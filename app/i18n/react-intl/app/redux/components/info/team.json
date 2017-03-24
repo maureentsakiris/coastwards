@@ -35,6 +35,11 @@
     "defaultMessage": "For the explanatory video and general support"
   },
   {
+    "id": "jing",
+    "description": "P -",
+    "defaultMessage": "For translating this site into Chinese"
+  },
+  {
     "id": "legal_notice",
     "description": "A -",
     "defaultMessage": "Imprint"

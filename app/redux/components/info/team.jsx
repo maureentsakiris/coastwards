@@ -86,6 +86,11 @@ const messages = defineMessages( {
 		description: "P - ",
 		defaultMessage: "For the explanatory video and general support"
 	},
+	jing:{
+		id: "jing",
+		description: "P - ",
+		defaultMessage: "For translating this site into Chinese"
+	},
 	legal_notice:{
 		id: "legal_notice",
 		description: "A - ",
@@ -116,6 +121,7 @@ const team = ( { intl, jazzSupported, showDialog } ) => {
 					<P><A href="http://www.pholpo.net/" target="_blank">Nicola Scodellaro & Sara Zampieri • pholpo GbR</A> - { formatMessage( messages.pholpo ) }</P>
 					<P><A href="https://www.linkedin.com/in/claudio-molinari-4a9a472?trk=hp-identity-name" target="_blank">Claudio Molinari</A> - { formatMessage( messages.claudio ) }</P>
 					<P><A href="https://github.com/basselAlshK" target="_blank">Bassel Alsheekh Kassem</A> - { formatMessage( messages.bassel ) }</P>
+					<P><A href="https://www.facebook.com/jing.liu.127" target="_blank">Jing Liu</A> - { formatMessage( messages.jing ) }</P>
 
 				</TOGGLE>
 				<A className={ style.imprint } onClick={ showDialog.bind( this, 'IMPRINT' ) } >{ formatMessage( messages.legal_notice ) }</A>
@@ -141,6 +147,7 @@ const team = ( { intl, jazzSupported, showDialog } ) => {
 					<P><A href="http://www.pholpo.net/" target="_blank">Nicola Scodellaro & Sara Zampieri • pholpo GbR</A> - { formatMessage( messages.pholpo ) }</P>
 					<P><A href="https://www.linkedin.com/in/claudio-molinari-4a9a472?trk=hp-identity-name" target="_blank">Claudio Molinari</A> - { formatMessage( messages.claudio ) }</P>
 					<P><A href="https://github.com/basselAlshK" target="_blank">Bassel Alsheekh Kassem</A> - { formatMessage( messages.bassel ) }</P>
+					<P><A href="https://www.facebook.com/jing.liu.127" target="_blank">Jing Liu</A> - { formatMessage( messages.jing ) }</P>
 
 				</TOGGLE>
 				<A className={ style.imprint } onClick={ showDialog.bind( this, 'IMPRINT' ) } >{ formatMessage( messages.legal_notice ) }</A>

@@ -143,7 +143,7 @@ class upload extends Component{
 			return(
 
 				<FORM id="Upload" action="javascript:;" className={ clsJazz } >
-					<BUTTON className={ clsUploadBtn } onClick={ openInput } ><I className="material-icons">&#xE439;</I></BUTTON>
+					<BUTTON className={ clsUploadBtn } onClick={ openInput } title={ formatMessage( messages.uploadBtn_title ) } ><I className="material-icons">&#xE439;</I></BUTTON>
 					<DIV onDragLeave={ this._onDragLeave } onDrop={ this._onDrop.bind( this ) } className={ clsDropzone } ></DIV>
 					<INPUT id="images" name="images" onChange={ validateFile } form="Upload" type="file" multiple={ false } accept="image/*" />
 				</FORM>
