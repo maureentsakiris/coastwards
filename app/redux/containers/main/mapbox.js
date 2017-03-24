@@ -3,6 +3,15 @@ import { displayMap } from 'actions/main/mapbox'
 import { disableAndreasPinch } from 'actions/main/main'
 import MAPBOX from 'components/main/mapbox'
 
+const mapStateToProps = ( state ) => {
+
+	return {
+
+		map: state.mapbox.map
+
+	}
+
+}
 
 const mapDispatchToProps = ( dispatch ) => {
 
@@ -26,7 +35,7 @@ const mapDispatchToProps = ( dispatch ) => {
 
 const mapbox = connect(
 
-	null,
+	mapStateToProps,
 	mapDispatchToProps
 
 )( MAPBOX )

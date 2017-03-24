@@ -6,6 +6,7 @@ export default class MapboxGL extends Component {
 	static propTypes = {
 
 		className: PropTypes.string,
+		map: PropTypes.object,
 
 		displayMap: PropTypes.func,
 		disableAndreasPinch: PropTypes.func
