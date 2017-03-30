@@ -211,9 +211,9 @@ const _sendError = ( fields ) => {
 		let mailOptions = {
 
 			from: 'go@coastwards.org',
-			to: 'go@coastwards.org',
-			subject: 'Uncaught Error',
-			text: fields.error
+			to: 'error@coastwards.org',
+			subject: fields.message,
+			text: fields.stack
 
 		}
 

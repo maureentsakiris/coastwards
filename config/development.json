@@ -5,7 +5,7 @@
 		"password": "c0a37ward3!",
 		"database" : "coastwards",
 		"multipleStatements": true
-	}, 
+	},
 	"server": {
 		"port": 3000, 
 		"ip": "127.0.0.1"
