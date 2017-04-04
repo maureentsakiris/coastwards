@@ -2,7 +2,6 @@ import React, { PropTypes } from 'react'
 import { defineMessages, injectIntl, intlShape } from 'react-intl'
 import Classnames from 'classnames'
 
-
 //TODO: i18nLinks should handle that itself?
 import i18nLocales from 'actions/i18n/i18nLocales'
 import I18nLinks from 'components/i18n/i18nLinks'
@@ -11,7 +10,7 @@ import Main from 'containers/main/main'
 import Snackbar from 'containers/ui/snackbar'
 import Dialog from 'containers/ui/dialog'
 
-
+import Intro from 'containers/intro/intro'
 import How from 'containers/info/how'
 import Guidelines from 'containers/info/guidelines'
 import Team from 'containers/info/team'
@@ -107,6 +106,7 @@ const context = ( { intl, lang, dir, jazzSupported, clipped, infosState, setInfo
 			<DIV lang={ lang } dir={ dir } >
 				<DIV className={ style.jazz } >
 					<DIV className={ clsTop } >
+						<Intro />
 						<I18nLinks availableLanguages={ i18nLocales.locales } className={ style.i18n } />
 						<DIV className={ style.intro } >
 							<IMG className={ style.logo } src="./assets/coastwards.svg" alt="Logo coastwards: A turtle on a mission" />

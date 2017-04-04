@@ -123,8 +123,8 @@ class example extends Component {
 							<SwipeableViews { ...config } >
 								{ images }
 							</SwipeableViews>
-							{ total > 0 && <BUTTON className={ clsSwipeArrow } style={ { left: 0 } } onClick={ _prev }><I className="material-icons">&#xE314;</I></BUTTON> }
-							{ total > 0 && <BUTTON className={ clsSwipeArrow } style={ { right: 0 } } onClick={ _next }><I className="material-icons">&#xE315;</I></BUTTON> }
+							{ index != 0 && <BUTTON className={ clsSwipeArrow } style={ { left: 0 } } onClick={ _prev }><I className="material-icons">&#xE314;</I></BUTTON> }
+							{ index != total && <BUTTON className={ clsSwipeArrow } style={ { right: 0 } } onClick={ _next }><I className="material-icons">&#xE315;</I></BUTTON> }
 						</DIV>
 
 					)

@@ -32,6 +32,29 @@ export const getCount = ( ) => {
 
 }
 
+export const getIntro = ( ) => {
+
+	return function ( dispatch ){
+
+		promiseGet( '/contribute/intro' )
+		.then( JSON.parse )
+		.then( promiseJSONOK )
+		.then( ( parsed ) => {
+			
+			dispatch( { type: types.SET_INTRO, to: parsed.intro } )
+			return parsed.intro
+
+		} )
+		.catch( ( error ) => {
+
+			dispatch( sendErrorMail( error ) )
+
+		} )
+
+	}
+
+}
+
 const _promiseFiles = ( e ) => {
 
 	return new Promise( ( resolve, reject ) => {

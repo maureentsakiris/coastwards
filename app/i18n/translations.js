@@ -1576,6 +1576,15 @@
 			"zh": "好",
 			"el": "Εντάξει"
 		},
+		"show_your_love": {
+			"en": "Show your love.",
+			"de": "Show your love.",
+			"es": "Show your love.",
+			"ar": "Show your love.",
+			"pt": "Show your love.",
+			"zh": "Show your love.",
+			"el": "Show your love."
+		},
 
 		//VIDEO
 		"together":{

@@ -340,6 +340,20 @@ const examples = ( state = [], action ) => {
 }
 
 
+const intro = ( state = [], action ) => {
+
+	switch ( action.type ){
+
+	case types.SET_INTRO:
+		return action.to
+	default:
+		return state;
+
+	}
+
+}
+
+
 const coastwards = combineReducers( {
 
 	browser,
@@ -363,7 +377,8 @@ const coastwards = combineReducers( {
 	uploads,
 	popup,
 	count,
-	examples
+	examples,
+	intro
 
 } )
 

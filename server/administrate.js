@@ -67,7 +67,7 @@ const _fetch = ( fields ) => {
 
 	return new Promise( ( resolve, reject ) => { 
 
-		const { material, materialverified, verified, id, example } = fields
+		const { material, materialverified, verified, id, example, intro } = fields
 
 		pool.getConnection( function ( error, connection ) {
 
@@ -77,7 +77,7 @@ const _fetch = ( fields ) => {
 
 			}else{
 
-				var sql = 'SELECT * FROM contributions WHERE contribution_material LIKE ? && contribution_material_verified LIKE ? && contribution_verified LIKE ? && contribution_id LIKE ? && contribution_example LIKE ?';
+				var sql = 'SELECT * FROM contributions WHERE contribution_material LIKE ? && contribution_material_verified LIKE ? && contribution_verified LIKE ? && contribution_id LIKE ? && contribution_example LIKE ? && contribution_intro LIKE ?';
 
 				var inserts = [
 
@@ -85,13 +85,14 @@ const _fetch = ( fields ) => {
 					materialverified,
 					verified,
 					id,
-					example
+					example,
+					intro
 
 				]
 
 				var query = mysql.format( sql, inserts )
 
-				console.log( query );
+				//console.log( query );
 
 				connection.query( query, function ( err, results ) {
 
@@ -230,7 +231,7 @@ const _update = ( fields ) => {
 
 	return new Promise( ( resolve, reject ) => { 
 
-		const { contribution_id, contribution_verified, contribution_material_verified, contribution_example } = fields
+		const { contribution_id, contribution_verified, contribution_material_verified, contribution_example, contribution_intro } = fields
 
 		pool.getConnection( function ( error, connection ) {
 
@@ -240,7 +241,7 @@ const _update = ( fields ) => {
 
 			}else{
 
-				var sql = 'UPDATE ?? SET contribution_verified=?, contribution_material_verified=?, contribution_example=? WHERE contribution_id=?';
+				var sql = 'UPDATE ?? SET contribution_verified=?, contribution_material_verified=?, contribution_example=?, contribution_intro=? WHERE contribution_id=?';
 
 				var inserts = [
 
@@ -249,6 +250,7 @@ const _update = ( fields ) => {
 					contribution_verified,
 					contribution_material_verified,
 					contribution_example,
+					contribution_intro,
 
 					contribution_id
 

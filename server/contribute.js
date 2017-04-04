@@ -259,7 +259,6 @@ const _promiseInsertContribution = ( formData ) => {
 
 }
 
-
 router.post( '/upload', ( req, res ) => {
 
 	_promiseFetchForm( req )
@@ -277,7 +276,6 @@ router.post( '/upload', ( req, res ) => {
 	} )
 
 } )
-
 
 function promiseFetchGeojson ( ){
 
@@ -412,6 +410,72 @@ router.get( '/count', function ( req, res ) {
 	} )
 
 } )
+
+function promiseFetchIntro ( ){
+
+	return new Promise( function ( resolve, reject ) {
+
+		pool.getConnection( function ( error, connection ) {
+
+			if( error ){
+
+				reject( error )
+
+			}else{
+
+				//var query = 'SELECT GROUP_CONCAT(contribution_uid) as uids from contributions WHERE contribution_intro="1" ORDER BY RAND()'
+
+				var query = 'SELECT contribution_uid from contributions WHERE contribution_intro="1" ORDER BY RAND() LIMIT 30'
+
+				connection.query( query, function ( err, results ) {
+
+					if( error ){
+
+						reject( error )
+
+					}else{
+
+						if( results === undefined ){
+
+							reject( Error( 'contributions/promiseFetchIntro/Could not read result from query (Update schema?)' ) )
+
+						}else{
+
+							resolve( results )
+
+						}
+
+					}
+					
+					connection.release()
+
+				} )
+
+			}
+
+		} )
+
+	} )
+
+}
+
+router.get( '/intro', function ( req, res ) {
+
+	promiseFetchIntro()
+	.then( ( intro ) => {
+
+		res.json( { status: 'OK', intro: intro } )
+		return intro;
+
+	} )
+	.catch( ( error ) => {
+
+		res.json( { status: 'KO', message: error.toString() } )
+
+	} )
+
+} )
+
 
 function promiseFetchContribution ( id ){
 

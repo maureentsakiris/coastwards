@@ -72,3 +72,6 @@ export const SET_COUNT = 'SET_COUNT'
 
 //examples
 export const SET_EXAMPLES = 'SET_EXAMPLES'
+
+//intro
+export const SET_INTRO = 'SET_INTRO'

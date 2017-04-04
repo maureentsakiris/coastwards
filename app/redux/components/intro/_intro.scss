@@ -1,0 +1,37 @@
+@import 'app/styles/base';
+
+
+.intro{
+
+	@extend %flexcontainer;
+	flex-wrap: wrap;
+	max-height: 60vw;
+    overflow: hidden;
+
+
+	.image{
+
+		@extend %flexitem;
+		width: 20vw;
+		height: 20vw;
+		background-size: cover;
+		background-position: center;
+
+		@include landscape(){
+
+			width: 10vw;
+			height: 10vw;
+
+		}
+
+
+		/* @include min( $desktop ){
+
+			width: 10vw;
+			height: 10vw;
+
+		}
+ */
+	}
+
+}
