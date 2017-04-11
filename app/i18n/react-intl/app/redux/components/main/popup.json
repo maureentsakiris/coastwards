@@ -40,6 +40,11 @@
     "defaultMessage": "Not set yet"
   },
   {
+    "id": "notclose",
+    "description": "-",
+    "defaultMessage": "Not close enough"
+  },
+  {
     "id": "close_popup",
     "description": "Title -",
     "defaultMessage": "Close popup"

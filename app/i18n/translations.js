@@ -864,6 +864,15 @@
 			"zh": "不确定",
 			"el": "δεν είμαι σίγουρος"
 		},
+		"notclose": {
+			"en": "Not close enough",
+			"de": "Keine Nahaufnahme",
+			"es": "No lo suficientemente cerca",
+			"ar": "ليست قريبة بما فيه الكفاية",
+			"pt": "Não perto o suficiente",
+			"zh": "不够接近",
+			"el": "Δεν υπάρχουν αρκετά κοντά"
+		},
 		"notset":{
 			"en": "Undefined",
 			"de": "Undefiniert",

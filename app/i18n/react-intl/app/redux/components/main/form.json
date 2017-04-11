@@ -60,6 +60,11 @@
     "defaultMessage": "undefined"
   },
   {
+    "id": "notclose",
+    "description": "-",
+    "defaultMessage": "Not close enough"
+  },
+  {
     "id": "comment",
     "description": "Label -",
     "defaultMessage": "Leave us a comment!"

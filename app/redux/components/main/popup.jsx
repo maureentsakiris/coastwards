@@ -56,6 +56,11 @@ const messages = defineMessages( {
 		description: "Material",
 		defaultMessage: "Not set yet"
 	},
+	notclose:{
+		id: "notclose",
+		description: " - ",
+		defaultMessage: "Not close enough"
+	},
 
 	close_popup:{
 		id: "close_popup",
@@ -138,6 +143,8 @@ class popup extends Component {
 
 			const clsVerified = Classnames( "material-icons", style.verified )
 
+			const showVerified = contribution_verified == 1 && material != 'notclose' && material != 'notsure'
+
 			return(
 
 				<DIV id="Popup" className={ style.popup } >
@@ -155,7 +162,7 @@ class popup extends Component {
 						{ showcomment && <P className={ style.comment } >{ usercomment }</P> }
 					</DIV>
 					<DIV className={ style.actions }>
-						{ material != 'notset' && <P className={ style.label } style={ { backgroundColor: color } } >{ formatMessage( messages[ material ] ) }{ contribution_verified == 1 && <I className={ clsVerified } >check_circle</I> }</P> }
+						{ material != 'notset' && <P className={ style.label } style={ { backgroundColor: color } } >{ formatMessage( messages[ material ] ) }{ showVerified && <I className={ clsVerified } >check_circle</I> }</P> }
 						
 						{ hascomment && <A onClick={ this._toggleComment } className={ style.showcomment } title={ formatMessage( messages.toggle_comment ) } >
 							<I className="material-icons">{ commentIcon }</I>

@@ -91,6 +91,11 @@ const messages = defineMessages( {
 		description: "Material - Not set",
 		defaultMessage: "undefined"
 	},
+	notclose:{
+		id: "notclose",
+		description: " - ",
+		defaultMessage: "Not close enough"
+	},
 
 	//comment
 	comment:{

@@ -1,8 +1,6 @@
-CREATE DATABASE  IF NOT EXISTS `coastwards` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `coastwards`;
 -- MySQL dump 10.13  Distrib 5.7.9, for osx10.9 (x86_64)
 --
--- Host: localhost    Database: coastwards
+-- Host: 127.0.0.1    Database: coastwards
 -- ------------------------------------------------------
 -- Server version	5.7.13
 
@@ -28,21 +26,22 @@ CREATE TABLE `contributions` (
   `contribution_id` int(11) NOT NULL AUTO_INCREMENT,
   `contribution_point` point NOT NULL,
   `contribution_point_manual` tinyint(4) NOT NULL,
-  `contribution_uid` varchar(255) NOT NULL,
+  `contribution_uid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `contribution_exif_datetime` datetime DEFAULT NULL,
   `contribution_labels` json NOT NULL,
   `contribution_exif` json DEFAULT NULL,
-  `contribution_ip` varchar(45) NOT NULL,
   `contribution_timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `contribution_material` varchar(45) DEFAULT NULL,
-  `contribution_adaptation` varchar(45) DEFAULT NULL,
-  `contribution_comment` mediumtext,
-  `contribution_hashtag` varchar(255) DEFAULT NULL,
-  `contribution_verified` tinyint(4) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`contribution_id`,`contribution_point`(25)),
-  UNIQUE KEY `contributions_id_UNIQUE` (`contribution_id`),
-  UNIQUE KEY `contribution_id_UNIQUE` (`contribution_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+  `contribution_comment` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `contribution_material` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `contribution_adaptation` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `contribution_hashtag` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `contribution_verified` tinyint(4) DEFAULT '0',
+  `contribution_material_verified` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT 'notset',
+  `contribution_ip` varbinary(16) NOT NULL,
+  `contribution_example` tinyint(4) NOT NULL DEFAULT '0',
+  `contribution_intro` tinyint(4) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`contribution_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -54,4 +53,4 @@ CREATE TABLE `contributions` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-09-01 11:40:50
+-- Dump completed on 2017-04-05 18:22:01
