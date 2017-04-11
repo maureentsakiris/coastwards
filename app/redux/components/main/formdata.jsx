@@ -75,6 +75,11 @@ const messages = defineMessages( {
 		description: "Note",
 		defaultMessage: "Location manual"
 	},
+	location_corrected:{
+		id: "location_corrected",
+		description: "Note",
+		defaultMessage: "Location corrected"
+	},
 	date_time:{
 		id: "date_time",
 		description: "Note",
@@ -185,6 +190,10 @@ const formdata = ( { intl, image, uid, imageWidth, showDialog } ) => {
 					<TR>
 						<TD>{ formatMessage( messages.location_manual ) }</TD>
 						<TD>{ image.manual }</TD>
+					</TR>
+					<TR>
+						<TD>{ formatMessage( messages.location_corrected ) }</TD>
+						<TD>{ image.corrected }</TD>
 					</TR>
 					<TR>
 						<TD>{ formatMessage( messages.date_time ) }</TD>

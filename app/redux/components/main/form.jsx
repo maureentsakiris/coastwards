@@ -144,6 +144,12 @@ const form = ( { intl, className, jazzSupported, show, image, checkedValue, mate
 		return value !== 'notset'
 
 	} )
+	.filter( ( material ) => {
+
+		let { value } = material
+		return value !== 'notclose'
+
+	} )
 	.map( ( material ) => {
 
 		let { value, color } = material

@@ -868,10 +868,10 @@
 			"en": "Not close enough",
 			"de": "Keine Nahaufnahme",
 			"es": "No lo suficientemente cerca",
-			"ar": "ليست قريبة بما فيه الكفاية",
-			"pt": "Não perto o suficiente",
-			"zh": "不够接近",
-			"el": "Δεν υπάρχουν αρκετά κοντά"
+			"ar": "ليست قريبة بما فيه الكفاية", //Bassel
+			"pt": "Não perto o suficiente", //Felix
+			"zh": "不够接近",	//Jing
+			"el": "Δεν υπάρχουν αρκετά κοντά" //Baba
 		},
 		"notset":{
 			"en": "Undefined",
@@ -1034,6 +1034,15 @@
 			"pt": "",
 			"zh": "位置手册",
 			"el": "Χειρονακτική Τοποθέτηση"
+		},
+		"location_corrected": {
+			"en": "Location corrected",
+			"de": "Standort korrigiert",
+			"es": "Localización corregido",
+			"ar": "تم تصحيح الموقع", //Bassel
+			"pt": "Localização corrigida", //Felix
+			"zh": "位置更正", //Jing
+			"el": "Τοποθεσία διορθωθεί" //BABA
 		},
 		"date_time": {
 			"en": "Date/Time",

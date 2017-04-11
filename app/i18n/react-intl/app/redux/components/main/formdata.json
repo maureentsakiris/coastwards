@@ -55,6 +55,11 @@
     "defaultMessage": "Location manual"
   },
   {
+    "id": "location_corrected",
+    "description": "Note",
+    "defaultMessage": "Location corrected"
+  },
+  {
     "id": "date_time",
     "description": "Note",
     "defaultMessage": "Date/Time"

@@ -174,7 +174,7 @@ const _promiseInsertContribution = ( formData ) => {
 	return new Promise( function ( resolve, reject ) {
 
 		const { ip, fields, validDate } = formData
-		const { long, lat, manual, uid, labels, exifdata, material, adaptation, comment, hashtag } = fields
+		const { long, lat, manual, corrected, uid, labels, exifdata, material, adaptation, comment, hashtag } = fields
 		const point = util.format( 'POINT(%s %s)', long, lat )
 
 		const sanitizedComment = DOMPurify.sanitize( comment )
@@ -186,8 +186,8 @@ const _promiseInsertContribution = ( formData ) => {
 
 		// Truncate table coastwards.contributions
 		//(INET6_ATON(?))
-		var sql = 'INSERT INTO ??.?? ( ??, ??, ??, ??, ??, ??, ??, ??, ??, ??, ?? ) VALUES ( (ST_PointFromText(?)), ?, ?, ?, ?,(INET6_ATON(?)) , ?, ?, ?, ?, ? )'
-		//var sql = 'INSERT INTO ??.?? ( ??, ??, ??, ??, ??, ??, ??, ??, ??, ??, ?? ) VALUES ( (ST_PointFromText(?)), ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )'
+		var sql = 'INSERT INTO ??.?? ( ??, ??, ??, ??, ??, ??, ??, ??, ??, ??, ??, ?? ) VALUES ( (ST_PointFromText(?)), ?, ?, ?, ?, ?,(INET6_ATON(?)) , ?, ?, ?, ?, ? )'
+		//var sql = 'INSERT INTO ??.?? ( ??, ??, ??, ??, ??, ??, ??, ??, ??, ??, ??, ?? ) VALUES ( (ST_PointFromText(?)), ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )'
 		var inserts = [ 
 			'coastwards', 
 			'contributions',
@@ -196,6 +196,7 @@ const _promiseInsertContribution = ( formData ) => {
 			'contribution_point',
 
 			'contribution_point_manual',
+			'contribution_point_corrected',
 			'contribution_uid',
 			'contribution_labels',
 			'contribution_exif',
@@ -209,6 +210,7 @@ const _promiseInsertContribution = ( formData ) => {
 
 			point,
 			manual,
+			corrected,
 			uid,
 			labels,
 			exifdata,

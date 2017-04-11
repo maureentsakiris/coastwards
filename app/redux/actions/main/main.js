@@ -392,12 +392,16 @@ export const showForm = () => {
 
 }
 
-export const showMarker = ( removeLastMarker = false ) => {
+export const showMarker = ( isCorrection = false ) => {
 
-	return function ( dispatch ){
+	return function ( dispatch, getState ){
 
-		if( removeLastMarker ){
+		let state = getState()
+		let image = state.form.image
 
+		if( isCorrection ){
+
+			image.corrected = 1
 			dispatch( removeLastDrop() )
 
 		}
@@ -489,7 +493,7 @@ export const uploadImage = ( ) => {
 
 			const { image, material, adaptation, comment, hashtag, uid } = state.form
 
-			const { exifdata, lat, long, manual, labels } = image
+			const { exifdata, lat, long, manual, labels, corrected } = image
 
 			//UPDATE ALSO IN FORMDATA.JSX
 			const cleanExif = _.omit( image.exifdata, [ 'MakerNote', 'undefined', 'Artist', 'Copyright' ] )
@@ -504,6 +508,7 @@ export const uploadImage = ( ) => {
 			formData.append( 'lat', lat )
 			formData.append( 'long', long )
 			formData.append( 'manual', manual )
+			formData.append( 'corrected', corrected )
 			formData.append( 'uid', uid )
 			formData.append( 'datetime', datetime )
 			formData.append( 'labels', JSON.stringify( devLabels ) )
