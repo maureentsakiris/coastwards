@@ -328,6 +328,8 @@ export const validateFile = ( e ) => {
 			dispatch( { type: types.SET_IMAGE_TO_UPLOAD, to: image } )
 			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'statuses', to: false } )
 
+			image.corrected = 0
+
 			if( image.manual == 0 ){
 
 				if( state.browser.jazzSupported ){
