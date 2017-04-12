@@ -5,6 +5,7 @@ const formidable = require( 'formidable' )
 const _ = require( 'underscore' )
 const fs = require( 'fs' )
 const path = require( 'path' )
+const stringify = require('csv-stringify')
 
 const PROJECT_ROOT = path.resolve( './' )
 const UPLOADS = path.join( PROJECT_ROOT, 'public/uploads/' )
@@ -370,6 +371,98 @@ router.get( '/examples', function ( req, res ) {
 
 		res.json( { status: 'OK', json: json } )
 		return json;
+
+	} )
+	.catch( ( error ) => {
+
+		res.json( { status: 'KO', message: error.toString() } )
+
+	} )
+
+} )
+
+
+function promiseFetchCSV (){
+
+	return new Promise( function ( resolve, reject ) {
+
+		pool.getConnection( function ( error, connection ) {
+
+			if( error ){
+
+				reject( error )
+
+			}else{
+
+				var sql = 'SELECT ST_AsText(??) as Point, ?? as Material FROM ??'
+				var inserts = [
+
+					"contribution_point",
+					"contribution_material_verified",
+
+
+					"contributions"
+
+				]
+
+				var query = mysql.format( sql, inserts )
+
+				connection.query( query, function ( err, results ) {
+
+					if( error ){
+
+						reject( error )
+
+					}else{
+
+						if( results === undefined ){
+
+							reject( Error( 'contributions/promiseFetchCSV/Could not read result from query (Update schema?)' ) )
+
+						}else{
+
+							resolve( results )
+
+						}
+
+					}
+					
+					connection.release()
+
+				} )
+
+			}
+
+		} )
+
+	} )
+
+}
+
+router.get( '/csv', function ( req, res ) {
+
+	promiseFetchCSV()
+	.then( ( results ) => {
+
+		//res.send( new Buffer( results ) )
+		let columns = {
+
+			point: "Point",
+			material: "Material"
+
+		}
+
+		stringify( results, { header: true }, function( err, output ){
+
+			const date = new Date()
+
+			res.set('Content-Type', 'text/csv')
+			res.set( { "Content-Disposition": "attachment; filename=coastwards" + "-" + date.getFullYear() + "-" + ( date.getMonth() + 1 ) + "-" + date.getDate() + "_" + date.getHours() + "-" + date.getMinutes() + "-" + date.getSeconds() + ".csv" } )
+			res.send( output )
+
+		} )
+
+		return results;
 
 	} )
 	.catch( ( error ) => {
