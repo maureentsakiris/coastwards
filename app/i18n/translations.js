@@ -306,6 +306,15 @@
 			"zh": "越近越好！",
 			"el": "Όσο πιο κοντά, τόσο το καλύτερο!"
 		},
+		"guideline_closer_text": {
+			"en": "We need close-up pictures of coasts. Basically, the coast you see in the picture should be the same as the coast you stood on when you took the picture.",
+			"de": "Wir brauchen Küstenselfies. Wichtig ist, dass die Küste im Foto dieselbe Küste ist auf der Du standest, als Du das Foto gemacht hast.",
+			"es": "", // Claudio
+			"ar": "", // Bassel
+			"pt": "", // Felix
+			"zh": "", // Jing
+			"el": "" // Baba
+		},
 		"how": {
 			"en": "How does my picture help?",
 			"de": "Wie hilft mein Foto?",

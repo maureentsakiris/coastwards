@@ -83,6 +83,11 @@ const messages = defineMessages( {
 		id: "guideline_closer_header",
 		description: "Header - ",
 		defaultMessage: "The closer, the BETTER!"
+	},
+	guideline_closer_text:{
+		id: "guideline_closer_text",
+		description: "Header - ",
+		defaultMessage: "We need close-up pictures of coasts. Basically, the coast you see in the picture should be the same as the coast you stood on when you took the picture."
 	}
 
 } )
@@ -100,6 +105,14 @@ const guidelines = ( { intl, jazzSupported, showDialog } ) => {
 				<P>{ formatMessage( messages.any_coast ) }</P>
 				<OL>
 					<LI>
+						<H priority={ 4 } >{ formatMessage( messages.guideline_closer_header ) }</H>
+						<P>{ formatMessage( messages.guideline_closer_text ) }</P>
+					</LI>
+					<LI>
+						<H priority={ 4 } >{ formatMessage( messages.guideline_material_header ) }</H>
+						<P>{ formatMessage( messages.guideline_material_text ) } <A onClick={ showDialog.bind( this, 'DEFINEMATERIAL' ) }>{ formatMessage( messages.guideline_material_help ) }</A></P>
+					</LI>
+					<LI>
 						<H priority={ 4 } >{ formatMessage( messages.guideline_original_header ) }</H>
 						<P>{ formatMessage( messages.guideline_original_text ) }</P>
 					</LI>
@@ -108,15 +121,8 @@ const guidelines = ( { intl, jazzSupported, showDialog } ) => {
 						<P>{ formatMessage( messages.guideline_faces_text ) }</P>
 					</LI>
 					<LI>
-						<H priority={ 4 } >{ formatMessage( messages.guideline_material_header ) }</H>
-						<P>{ formatMessage( messages.guideline_material_text ) } <A onClick={ showDialog.bind( this, 'DEFINEMATERIAL' ) }>{ formatMessage( messages.guideline_material_help ) }</A></P>
-					</LI>
-					<LI>
 						<H priority={ 4 } >{ formatMessage( messages.guideline_coasts_header ) }</H>
 						<P>{ formatMessage( messages.guideline_coasts_text ) }</P>
-					</LI>
-					<LI>
-						<H priority={ 4 } >{ formatMessage( messages.guideline_closer_header ) }</H>
 					</LI>
 				</OL>
 			</DIV>
@@ -132,6 +138,14 @@ const guidelines = ( { intl, jazzSupported, showDialog } ) => {
 				<P>{ formatMessage( messages.any_coast ) }</P>
 				<OL>
 					<LI>
+						<H priority={ 4 } >{ formatMessage( messages.guideline_closer_header ) }</H>
+						<P>{ formatMessage( messages.guideline_closer_text ) }</P>
+					</LI>
+					<LI>
+						<H priority={ 4 } >{ formatMessage( messages.guideline_material_header ) }</H>
+						<P>{ formatMessage( messages.guideline_material_text ) } <A onClick={ showDialog.bind( this, 'DEFINEMATERIAL' ) }>{ formatMessage( messages.guideline_material_help ) }</A></P>
+					</LI>
+					<LI>
 						<H priority={ 4 } >{ formatMessage( messages.guideline_original_header ) }</H>
 						<P>{ formatMessage( messages.guideline_original_text ) }</P>
 					</LI>
@@ -140,15 +154,8 @@ const guidelines = ( { intl, jazzSupported, showDialog } ) => {
 						<P>{ formatMessage( messages.guideline_faces_text ) }</P>
 					</LI>
 					<LI>
-						<H priority={ 4 } >{ formatMessage( messages.guideline_material_header ) }</H>
-						<P>{ formatMessage( messages.guideline_material_text ) } <A onClick={ showDialog.bind( this, 'DEFINEMATERIAL' ) }>{ formatMessage( messages.guideline_material_help ) }</A></P>
-					</LI>
-					<LI>
 						<H priority={ 4 } >{ formatMessage( messages.guideline_coasts_header ) }</H>
 						<P>{ formatMessage( messages.guideline_coasts_text ) }</P>
-					</LI>
-					<LI>
-						<H priority={ 4 } >{ formatMessage( messages.guideline_closer_header ) }</H>
 					</LI>
 				</OL>
 			</DIV>

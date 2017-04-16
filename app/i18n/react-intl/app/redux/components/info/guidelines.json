@@ -58,5 +58,10 @@
     "id": "guideline_closer_header",
     "description": "Header -",
     "defaultMessage": "The closer, the BETTER!"
+  },
+  {
+    "id": "guideline_closer_text",
+    "description": "Header -",
+    "defaultMessage": "We need close-up pictures of coasts. Basically, the coast you see in the picture should be the same as the coast you stood on when you took the picture."
   }
 ]
