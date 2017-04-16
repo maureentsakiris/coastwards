@@ -12,6 +12,7 @@ import SELECTGROUP from 'components/form/selectgroup/selectgroup'
 import GO from 'components/form/button/go'
 
 import CONTRIBUTION from 'containers/admin/contribution'
+import Mapbox from 'containers/admin/mapbox'
 
 import style from './_admin'
 
@@ -40,18 +41,21 @@ const admin = ( { results, materials, material, materialverified, verified, id, 
 
 	return(
 
-		<DIV className={ style.corset } >
-			<A target="_self" href="/logout" className={ style.logger }>Logout</A>
-			<FORM className={ style.form } id="Admin" action="javascript:;" onSubmit={ fetch } >
-				<INPUT form="Admin" label="ID: " name="id" preferPlaceholder={ false } placeholder="ID" onChange={ setID } value={ id } />
-				<SELECTGROUP form="Admin" label="Material: " name="material" preferPlaceholder={ false } options={ materialOptions } onChange={ setMaterial } value={ material } />
-				<SELECTGROUP form="Admin" label="Material verified: " name="materialverified" preferPlaceholder={ false } options={ materialOptions } onChange={ setMaterialVerified } value={ materialverified } />
-				<SELECTGROUP form="Admin" label="Verified: " name="verified" preferPlaceholder={ false } options={ allYesNo } onChange={ setVerified } value={ verified } />
-				<SELECTGROUP form="Admin" label="Example: " name="example" preferPlaceholder={ false } options={ allYesNo } onChange={ setExample } value={ example } />
-				<SELECTGROUP form="Admin" label="Intro: " name="intro" preferPlaceholder={ false } options={ allYesNo } onChange={ setIntro } value={ intro } />
-				<GO onClick={ fetch } label="GO" />
-			</FORM>
-			<UL>{ list }</UL>
+		<DIV>
+			<DIV className={ style.corset } >
+				<A target="_self" href="/logout" className={ style.logger }>Logout</A>
+				<FORM className={ style.form } id="Admin" action="javascript:;" onSubmit={ fetch } >
+					<INPUT form="Admin" label="ID: " name="id" preferPlaceholder={ false } placeholder="ID" onChange={ setID } value={ id } />
+					<SELECTGROUP form="Admin" label="Material: " name="material" preferPlaceholder={ false } options={ materialOptions } onChange={ setMaterial } value={ material } />
+					<SELECTGROUP form="Admin" label="Material verified: " name="materialverified" preferPlaceholder={ false } options={ materialOptions } onChange={ setMaterialVerified } value={ materialverified } />
+					<SELECTGROUP form="Admin" label="Verified: " name="verified" preferPlaceholder={ false } options={ allYesNo } onChange={ setVerified } value={ verified } />
+					<SELECTGROUP form="Admin" label="Example: " name="example" preferPlaceholder={ false } options={ allYesNo } onChange={ setExample } value={ example } />
+					<SELECTGROUP form="Admin" label="Intro: " name="intro" preferPlaceholder={ false } options={ allYesNo } onChange={ setIntro } value={ intro } />
+					<GO onClick={ fetch } label="GO" />
+				</FORM>
+				<UL>{ list }</UL>
+			</DIV>
+			<Mapbox className={ style.mapbox } />
 		</DIV>
 
 	)

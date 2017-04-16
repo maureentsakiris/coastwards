@@ -4,8 +4,8 @@
 
 .corset{
 
-	@extend %corset;
-	max-width: 900px;
+	width: 80vw;
+	margin: 0 10vw;
 	padding-top: 5vh;
 
 }
@@ -39,5 +39,13 @@
 		display: inline-block;
 
 	}
+
+}
+
+.mapbox{
+
+	width: 80vw;
+	height: 100vh;
+	margin: 10vh 10vw;
 
 }

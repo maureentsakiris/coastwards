@@ -29,11 +29,25 @@ const form = ( state = { results: [], material: '%', materialverified: '%', veri
 
 } 
 
+const mapbox = ( state = { map: undefined }, action ) => {
+
+	switch ( action.type ){
+
+	case types.SET_MAP:
+		return _.extend( {}, state, { map: action.to } )
+	default:
+		return state
+
+	}
+
+}
+
 
 const admin = combineReducers( {
 
 	form,
-	materials
+	materials,
+	mapbox
 
 } )
 
