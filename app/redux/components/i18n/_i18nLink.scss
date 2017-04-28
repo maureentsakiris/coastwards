@@ -2,6 +2,13 @@
 
 .active{
 
-	color: $color-text;
+	//color: $color-text; Get's overriden in _context.scss
+
+}
+
+.loading{
+
+	pointer-events: none;
+	opacity: 0.5;
 
 }

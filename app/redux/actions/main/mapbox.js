@@ -103,26 +103,11 @@ const _onMarkerClick = ( features ) => {
 
 }
 
-/*const _onClusterClick = ( features ) => {
-
-	return function ( dispatch, getState ){
-
-		const state = getState()
-		const map = state.mapbox.map
-
-		let point = features[ 0 ].geometry.coordinates
-		let z = map.getZoom()
-
-		map.flyTo( { center: point, zoom: z + 4 } )
-
-	}
-
-}*/
-
 export const displayMap = ( ) => {
 
 	return function ( dispatch, getState ){
 
+		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'loader', to: true } )
 		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'upload', to: false } )
 		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'prompts', to: false } )
 
@@ -227,45 +212,8 @@ export const displayMap = ( ) => {
 
 			}, 'water_label' )
 
-			/*map.addLayer( {
-			
-				id: 'cluster-circles',
-				type: 'circle',
-				source: 'geojson',
-				paint: {
-					'circle-radius': 15,
-					'circle-color': '#396dc1'
-				},
-				filter: [ '>', 'point_count', 1 ]
-
-			}, 'water_label' )
-
-			map.addLayer( {
-
-				id: 'cluster-count',
-				type: 'symbol',
-				source: 'geojson',
-				layout: {
-
-					'text-field': '{point_count}',
-					'text-font': [
-						'DIN Offc Pro Medium',
-						'Arial Unicode MS Bold'
-					],
-					'text-size': 12
-
-				},
-				paint: {
-
-					'text-color': '#ffffff'
-
-				}
-
-			}, 'water_label' )*/
 
 			dispatch( { type: types.ADD_INTERACTIVE_LAYER, layer: { layer: 'markers', onClick: _onMarkerClick } } )
-			/*dispatch( { type: types.ADD_INTERACTIVE_LAYER, layer: { layer: 'cluster-circles', onClick: _onClusterClick } } )
-			dispatch( { type: types.ADD_INTERACTIVE_LAYER, layer: { layer: 'cluster-count', onClick: _onClusterClick } } )*/
 
 			let dataDrops = {
 

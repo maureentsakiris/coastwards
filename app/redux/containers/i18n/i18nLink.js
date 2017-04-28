@@ -10,7 +10,8 @@ const mapStateToProps = ( state, ownProps ) => {
 	return {
 
 		active: locale === state.i18n.locale,
-		hrefLang: locale
+		hrefLang: locale,
+		loading: state.layers.loader
 
 	}
 

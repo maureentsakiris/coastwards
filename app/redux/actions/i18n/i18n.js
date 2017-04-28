@@ -20,6 +20,8 @@ export function loadLanguage ( locale ) {
 				document.getElementsByTagName( 'html' )[ 0 ].setAttribute( 'lang', locale )
 				document.getElementsByTagName( 'html' )[ 0 ].setAttribute( 'dir', dir )
 
+				dispatch( { type: types.RESET_LAYERS } )
+
 				dispatch( {
 
 					type: types.LOAD_LANGUAGE,

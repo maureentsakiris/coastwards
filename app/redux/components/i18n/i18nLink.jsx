@@ -5,11 +5,12 @@ import A from 'components/tags/a'
 
 import style from './_i18nLink'
 
-const i18nLinks = ( { children, className, active, hrefLang, onClick } ) => { 
+const i18nLinks = ( { children, className, active, hrefLang, loading, onClick } ) => { 
 
 	const cls = Classnames( className, {
 
-		[ style.active ]: active
+		[ style.active ]: active,
+		[ style.loading ]: loading
 
 	} )
 
@@ -28,6 +29,7 @@ i18nLinks.propTypes = {
 
 	active: PropTypes.bool,
 	hrefLang: PropTypes.string,
+	loading: PropTypes.bool,
 
 	onClick: PropTypes.func
 
