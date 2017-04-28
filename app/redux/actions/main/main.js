@@ -162,8 +162,6 @@ const _promiseSafe = ( image ) => {
 
 			}
 
-			console.log( annotations );
-
 			let coast = _.filter( annotations.labelAnnotations, { description: 'coast' } )
 			let shore = _.filter( annotations.labelAnnotations, { description: 'shore' } )
 			let harbor = _.filter( annotations.labelAnnotations, { description: 'harbor' } )
