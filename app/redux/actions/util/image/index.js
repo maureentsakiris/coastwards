@@ -328,7 +328,15 @@ export const promiseLocation = ( image ) => {
 			image.lat = _toDecimal( exif.GPSLatitude, exif.GPSLatitudeRef, 'lat' )
 			image.long = _toDecimal( exif.GPSLongitude, exif.GPSLongitudeRef, 'long' )
 
-			resolve( image )
+			if( image.lat >= -90 && image.lat <= 90 && image.long >= -180 && image.ling <= 180 ){
+
+				resolve( image )
+
+			}else{
+
+				reject( Error( 'invalid_long_lat' ) )
+
+			}
 
 		}else{
 

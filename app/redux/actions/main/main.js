@@ -210,7 +210,7 @@ const _promiseLocation = ( image ) => {
 		} )
 		.catch( ( error ) => {
 
-			if( error.message == 'location_undefined' ){
+			if( error.message == 'location_undefined' || error.message == 'invalid_long_lat' ){
 
 				image.manual = 1
 				resolve( image )
