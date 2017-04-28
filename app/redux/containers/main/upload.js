@@ -1,6 +1,5 @@
 import { connect } from 'react-redux'
-import { validateFile, openInput } from 'actions/main/main'
-import { setLayerVisibility } from 'actions/layers'
+import { validateFile, openInput, clipPage, resetMain } from 'actions/main/main'
 import UPLOAD from 'components/main/upload'
 
 
@@ -25,15 +24,23 @@ const mapDispatchToProps = ( dispatch ) => {
 			dispatch( validateFile( e ) )
 
 		},
-		setLayerVisibility: ( options ) => {
-
-			dispatch( setLayerVisibility( options ) )
-
-		},
 		openInput: ( e ) => {
 
 			e.preventDefault()
 			dispatch( openInput( ) )
+
+		},
+		clipPage: ( ) => {
+
+			dispatch( clipPage() )
+			dispatch( { type: 'SET_LAYER_VISIBILITY', layer: 'prompts', to: false } )
+			dispatch( { type: 'SET_LAYER_VISIBILITY', layer: 'errors', to: false } )
+			dispatch( { type: 'SET_USER_ACTION', to: 'browsing' } )
+
+		},
+		resetMain: () => {
+
+			dispatch( resetMain() )
 
 		}
 

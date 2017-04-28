@@ -255,7 +255,7 @@ export const validateFile = ( e ) => {
 
 			if( selected.length > 1 ){
 
-				dispatch( setSnackbarMessage( 'selected_truncated' ) )
+				dispatch( setSnackbarMessage( 'selected_truncated', 3000 ) )
 
 			}
 
@@ -601,7 +601,7 @@ export const resetMain = ( ) => {
 		
 		//TODO: close what else toggle 
 
-		dispatch( dismissSnackbar() )
+		//dispatch( dismissSnackbar() )
 		dispatch( { type: types.SET_USER_ACTION, to: 'prompt' } )
 		dispatch( { type: types.SET_PROMPT_MSG, to: 'select_file' } )
 		dispatch( { type: types.RESET_FORM } )

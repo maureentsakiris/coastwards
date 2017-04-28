@@ -39,8 +39,9 @@ class upload extends Component{
 		useraction: PropTypes.string,
 
 		validateFile: PropTypes.func,
-		setLayerVisibility: PropTypes.func,
-		openInput: PropTypes.func
+		openInput: PropTypes.func,
+		clipPage: PropTypes.func,
+		resetMain: PropTypes.func
 
 	}
 
@@ -61,9 +62,10 @@ class upload extends Component{
 			if( this.props.show ){
 
 				this.setState( { dropzoneActive: true, isDrop: false } )
-				this.props.setLayerVisibility( 'prompts', false )
+				this.props.clipPage()
+				/*this.props.setLayerVisibility( 'prompts', false )
 				this.props.setLayerVisibility( 'errors', false )
-				this.props.setLayerVisibility( 'statuses', false )
+				this.props.setLayerVisibility( 'statuses', false )*/
 
 			}
 
@@ -86,8 +88,8 @@ class upload extends Component{
 		this.state = {
 
 			dropzoneActive: false,
-			dropX: 0,
-			dropY: 0,
+			/*dropX: 0,
+			dropY: 0,*/
 			isDrop: false
 
 		}
@@ -157,20 +159,21 @@ class upload extends Component{
 	_onDragLeave = ( ) => {
 
 		this.setState( { dropzoneActive: false } )
+		this.props.resetMain()
 
 	}
 
 	_onDrop = ( e ) => {
 
-		e.persist()
+		/*e.persist()*/
 		e.preventDefault()
 		
-		let { left, top } = document.getElementById( "Upload" ).getBoundingClientRect()
+		/*let { left, top } = document.getElementById( "Upload" ).getBoundingClientRect()
 		let { pageX, pageY } = e
 		let dropX = pageX - left - window.scrollX
-		let dropY = pageY - top - window.scrollY
+		let dropY = pageY - top - window.scrollY*/
 
-		this.setState( { dropX: dropX, dropY: dropY, isDrop: true, dropzoneActive: false } )
+		this.setState( { /*dropX: dropX, dropY: dropY, */isDrop: true, dropzoneActive: false } )
 
 		this.props.validateFile( e )
 
