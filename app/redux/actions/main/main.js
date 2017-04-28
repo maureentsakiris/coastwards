@@ -162,6 +162,7 @@ const _promiseSafe = ( image ) => {
 
 			}
 
+			console.log( annotations );
 
 			let coast = _.filter( annotations.labelAnnotations, { description: 'coast' } )
 			let shore = _.filter( annotations.labelAnnotations, { description: 'shore' } )
@@ -174,8 +175,10 @@ const _promiseSafe = ( image ) => {
 			let loch = _.filter( annotations.labelAnnotations, { description: 'loch' } )
 			let habitat = _.filter( annotations.labelAnnotations, { description: 'habitat' } )
 			let landform = _.filter( annotations.labelAnnotations, { description: 'landform' } )
+			let skyline = _.filter( annotations.labelAnnotations, { description: 'skyline' } )
+			let horizon = _.filter( annotations.labelAnnotations, { description: 'horizon' } )
 
-			if( !coast.length && !shore.length && !harbor.length && !beach.length && !sea.length && !natural_environment.length && !bodyofwater.length && !geographical_feature.length && !loch.length && !habitat.length && !landform.length ){
+			if( !coast.length && !shore.length && !harbor.length && !beach.length && !sea.length && !natural_environment.length && !bodyofwater.length && !geographical_feature.length && !loch.length && !habitat.length && !landform.length && !skyline.length && !horizon.length ){
 
 				reject( Error( "not_a_coast" ) )
 
