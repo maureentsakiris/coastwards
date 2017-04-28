@@ -75,8 +75,13 @@ const _promiseFetchForm = ( req ) => {
 				//var ip = req.ip
 
 				// https://github.com/indutny/node-ip
-				var ip = req.headers[ 'x-forwarded-for' ] || req.connection.remoteAddress
-				formData.ip = ip
+				var ip = req.headers[ 'x-forwarded-for' ] || req.connection.remoteAddress || req.socket.remoteAddress || req.connection.socket.remoteAddress
+
+				//var ip = "192.168.100.87, 195.90.21.11"
+				//http://stackoverflow.com/questions/8107856/how-to-determine-a-users-ip-address-in-node
+				var ip_array = ip.split( ',' )
+
+				formData.ip = ip_array[ 0 ]
 
 				formData.fields = fields
 				formData.files = files
