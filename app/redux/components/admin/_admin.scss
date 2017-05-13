@@ -2,50 +2,81 @@
 @import 'app/styles/tags';
 
 
-.corset{
+.toolbar{
 
-	width: 80vw;
-	margin: 0 10vw;
-	padding-top: 5vh;
+	position: fixed;
+	bottom: 0;
+    z-index: 2;
+    padding: 1em;
+    width: 100%;
+    background-color: $color-primary;
+    color: #fff;
 
-}
-
-.logger{
-
-	display: block;
-	text-align: right;
-
-}
-
-.form{
-
-	margin: 2em 0;
-
-	button{
-
-		margin-top: 2em;
-
-	}
-
-	label{
+	.logger{
 
 		display: block;
-		margin-bottom: 1em;
+		text-align: right;
+		color: #fff;
 
 	}
 
-	input[type='text']{
+}
 
-		display: inline-block;
+.corset{
 
-	}
+	width: 100%;
+	min-height: 100vh;
+	padding: 5vh 5vh 10vh 5vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background-color: rgba(255, 255, 255, 0.9);
+
+
+    .form{
+
+    	margin: 2em 0;
+
+    	&>button{
+
+    		margin-top: 2em;
+    		padding: 0.7em 1em;
+    		font-size: 1.2em;
+
+    	}
+
+    	.noresults{
+
+    		margin-top: 2em;
+
+    	}
+
+    	&>label{
+
+    		display: block;
+    		margin-bottom: 1em;
+
+    	}
+
+    	.toggle{
+
+    		@extend %toggle;
+    		//border-bottom: $toggle-border;
+    		max-width: none;
+
+    	}
+
+    }
 
 }
 
 .mapbox{
 
-	width: 80vw;
 	height: 100vh;
-	margin: 10vh 10vw;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
 
 }

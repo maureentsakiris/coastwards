@@ -5,7 +5,7 @@ const formidable = require( 'formidable' )
 const _ = require( 'underscore' )
 const fs = require( 'fs' )
 const path = require( 'path' )
-const stringify = require('csv-stringify')
+const stringify = require( 'csv-stringify' )
 
 const PROJECT_ROOT = path.resolve( './' )
 const UPLOADS = path.join( PROJECT_ROOT, 'public/uploads/' )
@@ -68,7 +68,7 @@ const _fetch = ( fields ) => {
 
 	return new Promise( ( resolve, reject ) => { 
 
-		const { material, materialverified, verified, id, example, intro } = fields
+		const { material, materialverified, verified, id, example, intro, closeup } = fields
 
 		pool.getConnection( function ( error, connection ) {
 
@@ -78,7 +78,7 @@ const _fetch = ( fields ) => {
 
 			}else{
 
-				var sql = 'SELECT * FROM contributions WHERE contribution_material LIKE ? && contribution_material_verified LIKE ? && contribution_verified LIKE ? && contribution_id LIKE ? && contribution_example LIKE ? && contribution_intro LIKE ?';
+				var sql = 'SELECT * FROM contributions WHERE contribution_material LIKE ? && contribution_material_verified LIKE ? && contribution_verified LIKE ? && contribution_id LIKE ? && contribution_example LIKE ? && contribution_intro LIKE ? && contribution_closeup LIKE ?';
 
 				var inserts = [
 
@@ -87,13 +87,12 @@ const _fetch = ( fields ) => {
 					verified,
 					id,
 					example,
-					intro
+					intro,
+					closeup
 
 				]
 
 				var query = mysql.format( sql, inserts )
-
-				//console.log( query );
 
 				connection.query( query, function ( err, results ) {
 
@@ -162,7 +161,7 @@ const _delete = ( fields ) => {
 
 				var query = mysql.format( sql, inserts )
 
-				connection.query( query, function ( err, result ) {
+				connection.query( query, function ( error ) {
 
 					if( error ){
 
@@ -232,7 +231,7 @@ const _update = ( fields ) => {
 
 	return new Promise( ( resolve, reject ) => { 
 
-		const { contribution_id, contribution_verified, contribution_material_verified, contribution_example, contribution_intro } = fields
+		const { contribution_id, contribution_verified, contribution_material_verified, contribution_example, contribution_intro, contribution_closeup } = fields
 
 		pool.getConnection( function ( error, connection ) {
 
@@ -242,7 +241,7 @@ const _update = ( fields ) => {
 
 			}else{
 
-				var sql = 'UPDATE ?? SET contribution_verified=?, contribution_material_verified=?, contribution_example=?, contribution_intro=? WHERE contribution_id=?';
+				var sql = 'UPDATE ?? SET contribution_verified=?, contribution_material_verified=?, contribution_example=?, contribution_intro=?, contribution_closeup=? WHERE contribution_id=?';
 
 				var inserts = [
 
@@ -252,6 +251,7 @@ const _update = ( fields ) => {
 					contribution_material_verified,
 					contribution_example,
 					contribution_intro,
+					contribution_closeup,
 
 					contribution_id
 

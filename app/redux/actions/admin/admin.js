@@ -5,9 +5,11 @@ import { sendErrorMail } from 'actions/util/error/error'
 
 export const setMaterial = ( e ) => {
 
+	const value = typeof( e ) === 'string' ? e : e.currentTarget.value
+
 	return function ( dispatch ){
 
-		dispatch( { type: types.SET_MATERIAL, to: e.currentTarget.value } )
+		dispatch( { type: types.SET_MATERIAL, to: value } )
 
 	}
 
@@ -15,9 +17,11 @@ export const setMaterial = ( e ) => {
 
 export const setMaterialVerified = ( e ) => {
 
+	const value = typeof( e ) === 'string' ? e : e.currentTarget.value
+
 	return function ( dispatch ){
 
-		dispatch( { type: types.SET_MATERIAL_VERIFIED, to: e.currentTarget.value } )
+		dispatch( { type: types.SET_MATERIAL_VERIFIED, to: value } )
 
 	}
 
@@ -25,9 +29,11 @@ export const setMaterialVerified = ( e ) => {
 
 export const setVerified = ( e ) => {
 
+	const value = typeof( e ) === 'string' ? e : e.currentTarget.value
+
 	return function ( dispatch ){
 
-		dispatch( { type: types.SET_VERIFIED, to: e.currentTarget.value } )
+		dispatch( { type: types.SET_VERIFIED, to: value } )
 
 	}
 
@@ -45,9 +51,11 @@ export const setID = ( e ) => {
 
 export const setExample = ( e ) => {
 
+	const value = typeof( e ) === 'string' ? e : e.currentTarget.value
+
 	return function ( dispatch ){
 
-		dispatch( { type: types.SET_EXAMPLE, to: e.currentTarget.value } )
+		dispatch( { type: types.SET_EXAMPLE, to: value } )
 
 	}
 
@@ -55,9 +63,23 @@ export const setExample = ( e ) => {
 
 export const setIntro = ( e ) => {
 
+	const value = typeof( e ) === 'string' ? e : e.currentTarget.value
+
 	return function ( dispatch ){
 
-		dispatch( { type: types.SET_INTRO, to: e.currentTarget.value } )
+		dispatch( { type: types.SET_INTRO, to: value } )
+
+	}
+
+}
+
+export const setCloseup = ( e ) => {
+
+	const value = typeof( e ) === 'string' ? e : e.currentTarget.value
+
+	return function ( dispatch ){
+
+		dispatch( { type: types.SET_CLOSEUP, to: value } )
 
 	}
 
@@ -70,7 +92,9 @@ export const fetch = ( ) => {
 
 		const state = getState()
 
-		const { material, verified, materialverified, id, example, intro } = state.form
+		console.log( state )
+
+		const { material, verified, materialverified, id, example, intro, closeup } = state.form
 
 		let formData = new FormData()
 		formData.append( 'material', material )
@@ -79,6 +103,7 @@ export const fetch = ( ) => {
 		formData.append( 'id', id )
 		formData.append( 'example', example )
 		formData.append( 'intro', intro )
+		formData.append( 'closeup', closeup )
 
 		let options = {
 
@@ -106,6 +131,7 @@ export const fetch = ( ) => {
 		} )
 		.catch( ( error ) => {
 
+			console.log( error )
 			dispatch( sendErrorMail( error ) )
 
 		} )

@@ -35,7 +35,8 @@ class contribution extends Component {
 			verified: p.result.contribution_verified == 1 ? true : false,
 			materialVerified: p.result.contribution_material_verified ?  p.result.contribution_material_verified : p.result.contribution_material,
 			example: p.result.contribution_example == 1 ? true : false,
-			intro: p.result.contribution_intro == 1 ? true : false
+			intro: p.result.contribution_intro == 1 ? true : false,
+			closeup: p.result.contribution_closeup == 1 ? true : false,
 
 		} )
 
@@ -51,7 +52,8 @@ class contribution extends Component {
 			verified: this.props.result.contribution_verified == 1 ? "1" : "0",
 			materialVerified: this.props.result.contribution_material_verified ?  this.props.result.contribution_material_verified : this.props.result.contribution_material,
 			example: this.props.result.contribution_example == 1 ? "1" : "0",
-			intro: this.props.result.contribution_intro == 1 ? "1" : "0"
+			intro: this.props.result.contribution_intro == 1 ? "1" : "0",
+			closeup: this.props.result.contribution_closeup == 1 ? "1" : "0"
 
 		}
 
@@ -62,7 +64,7 @@ class contribution extends Component {
 		const { result, materials, deleteContribution, updateContribution } = this.props
 		const { contribution_id, contribution_uid, contribution_material } = result
 
-		const { verified, materialVerified, example, intro } = this.state
+		const { verified, materialVerified, example, intro, closeup } = this.state
 
 
 		const options = _.map( materials, ( material ) => {
@@ -87,6 +89,7 @@ class contribution extends Component {
 					<RADIOGROUP preferPlaceholder={ false } checked={ verified } label="Verified" form={ formID } name="contribution_verified" options={ [ { label: "yes", value: "1" }, { label: "no", value: "0" } ] } value={ verified } onChange={ this._setVerified.bind( this ) } />
 					<RADIOGROUP preferPlaceholder={ false } checked={ example } label="Example" form={ formID } name="contribution_example" options={ [ { label: "yes", value: "1" }, { label: "no", value: "0" } ] } value={ example } onChange={ this._setExample.bind( this ) } />
 					<RADIOGROUP preferPlaceholder={ false } checked={ intro } label="Intro" form={ formID } name="contribution_intro" options={ [ { label: "yes", value: "1" }, { label: "no", value: "0" } ] } value={ intro } onChange={ this._setIntro.bind( this ) } />
+					<RADIOGROUP preferPlaceholder={ false } checked={ closeup } label="Closeup" form={ formID } name="contribution_closeup" options={ [ { label: "yes", value: "1" }, { label: "no", value: "0" } ] } value={ closeup } onChange={ this._setCloseup.bind( this ) } />
 				</FORM>
 				<DIV className={ style.actions }>
 					<GO onClick={ updateContribution.bind( this, formID ) } label="UPDATE" className={ style.update } />
@@ -121,6 +124,13 @@ class contribution extends Component {
 		this.setState( { intro: e.currentTarget.value } )
 
 	}
+
+	_setCloseup = ( e ) => {
+
+		this.setState( { closeup: e.currentTarget.value } )
+
+	}
+
 
 }
 
