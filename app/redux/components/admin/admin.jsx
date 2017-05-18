@@ -1,9 +1,11 @@
 import React, { PropTypes } from 'react'
 import _ from 'underscore'
+import ClassNames from 'classnames'
 
 import DIV from 'components/tags/div'
 import A from 'components/tags/a'
 import P from 'components/tags/p'
+import I from 'components/tags/i'
 import H from 'components/tags/h'
 
 import FORM from 'components/tags/form'
@@ -12,12 +14,12 @@ import TOGGLE from 'components/ui/toggle'
 import ICONRADIOGROUP from 'components/form/radiogroup/iconradiogroup'
 import GO from 'components/form/button/go'
 
-import CONTRIBUTION from 'containers/admin/contribution'
+//import CONTRIBUTION from 'containers/admin/contribution'
 import Mapbox from 'containers/admin/mapbox'
 
 import style from './_admin'
 
-const admin = ( { results, materials, material, materialverified, verified, id, example, intro, closeup, setMaterial, setMaterialVerified, setVerified, setID, setExample, setIntro, setCloseup, fetch } ) => {
+const admin = ( { showForm, results, materials, material, materialverified, verified, id, example, intro, closeup, setMaterial, setMaterialVerified, setVerified, setID, setExample, setIntro, setCloseup, fetch, toggleFormVisibility } ) => {
 
 	const all = [ { label: 'All', value: '%' } ]
 	const mats = _.chain( materials )
@@ -51,9 +53,22 @@ const admin = ( { results, materials, material, materialverified, verified, id, 
 
 	]
 
-	const list = _renderResults( results )
+	const clsForm = ClassNames( style.corset, {
 
-	const noresults = results && list.length == 0
+		[ style.show ]: showForm
+
+	} )
+
+	const clsLogger = ClassNames( style.link, style.logger )
+	const clsToggle = ClassNames( style.link, style.toggle )
+
+	//console.log( results );
+
+	const noresults = results === null ? true : false;
+
+	/*const list = _renderResults( results )
+
+	const noresults = results && list.length == 0*/
 
 
 	/*<CHECKBOX form="Admin" label="Verified" name="verified" preferPlaceholder={ false } value="1" onChange={ setVerified } />*/
@@ -62,11 +77,12 @@ const admin = ( { results, materials, material, materialverified, verified, id, 
 
 		<DIV>
 			<DIV className={ style.toolbar } >
-				<A target="_self" href="/logout" className={ style.logger }>Logout</A>
+				<A target="_self" href="/logout" className={ clsLogger } >Logout</A>
+				<A target="_self" onClick={ toggleFormVisibility } className={ clsToggle } >Show/Hide Form</A>
 			</DIV>
-			<DIV className={ style.corset } >
+			<DIV className={ clsForm } >
 				<FORM className={ style.form } id="Admin" action="javascript:;" onSubmit={ fetch } >
-				<H priority={ 1 } >Hi there! Go ahead, make your selection...</H>
+					<H priority={ 1 } >Hi there! Go ahead, make your selection...</H>
 					<ICONRADIOGROUP form="Admin" label="Verified: " name="verified" preferPlaceholder={ false } options={ allYesNo } onClick={ setVerified } checkedValue={ verified } />
 					<TOGGLE priority={ 4 } className={ style.toggle } text="Other filters" >
 						<INPUT form="Admin" label="ID: " name="id" preferPlaceholder={ false } placeholder="ID" onClick={ setID } checkedValue={ id } />
@@ -76,7 +92,7 @@ const admin = ( { results, materials, material, materialverified, verified, id, 
 						<ICONRADIOGROUP form="Admin" label="Intro: " name="intro" preferPlaceholder={ false } options={ allYesNo } onClick={ setIntro } checkedValue={ intro } />
 						<ICONRADIOGROUP form="Admin" label="Closeup: " name="closeup" preferPlaceholder={ false } options={ allYesNo } onClick={ setCloseup } checkedValue={ closeup } />
 					</TOGGLE>
-					{ !noresults && <GO className={ style.go } onClick={ fetch } label="GO" /> }
+					<GO className={ style.go } onClick={ fetch } label="GO" />
 					{ noresults && <P className={ style.noresults } >Sorry, no results</P> }
 				</FORM>
 			</DIV>
@@ -87,7 +103,7 @@ const admin = ( { results, materials, material, materialverified, verified, id, 
 
 }
 
-const _renderResults = ( results ) => {
+/*const _renderResults = ( results ) => {
 
 	return _.map( results, ( result, key ) => {
 
@@ -100,11 +116,12 @@ const _renderResults = ( results ) => {
 
 	} )
 
-}
+}*/
 
 admin.propTypes = {
 
-	results: PropTypes.array,
+	showForm: PropTypes.bool,
+	results: PropTypes.object,
 	materials: PropTypes.array,
 	material: PropTypes.string,
 	materialverified: PropTypes.string,
@@ -121,7 +138,8 @@ admin.propTypes = {
 	setExample: PropTypes.func,
 	setIntro: PropTypes.func,
 	setCloseup: PropTypes.func,
-	fetch: PropTypes.func
+	fetch: PropTypes.func,
+	toggleFormVisibility: PropTypes.func
 
 }
 

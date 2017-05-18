@@ -7,7 +7,6 @@ export default class MapboxGL extends Component {
 
 		className: PropTypes.string,
 		map: PropTypes.object,
-
 		displayMap: PropTypes.func
 
 	}

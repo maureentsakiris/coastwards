@@ -4,10 +4,12 @@ import _ from 'underscore'
 
 import materials from 'config'
 
-const form = ( state = { results: undefined, material: '%', materialverified: '%', verified: '0', id: '%', example:'%', intro:'%', closeup: '%' }, action ) => {
+const form = ( state = { show: true, results: undefined, material: '%', materialverified: '%', verified: '0', id: '%', example:'%', intro:'%', closeup: '%' }, action ) => {
 
 	switch ( action.type ){
 
+	case types.SET_FORM_VISIBILITY:
+		return _.extend( {}, state, { show: action.to } )
 	case types.SET_RESULTS:
 		return _.extend( {}, state, { results: action.to } )
 	case types.SET_MATERIAL:

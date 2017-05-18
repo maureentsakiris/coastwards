@@ -1,6 +1,7 @@
 import * as types from 'types-admin'
 import { promiseXHR } from 'actions/util/request/xhr'
 import { sendErrorMail } from 'actions/util/error/error'
+import { setMapData } from 'actions/admin/mapbox'
 
 
 export const setMaterial = ( e ) => {
@@ -85,14 +86,25 @@ export const setCloseup = ( e ) => {
 
 }
 
+export const toggleFormVisibility = ( ) => {
+
+	return function ( dispatch, getState ){
+
+		const state = getState()
+		const showForm = state.form.show
+
+		dispatch( { type: types.SET_FORM_VISIBILITY, to: !showForm } )
+
+	}
+
+}
+
 
 export const fetch = ( ) => {
 
 	return function ( dispatch, getState ){
 
 		const state = getState()
-
-		console.log( state )
 
 		const { material, verified, materialverified, id, example, intro, closeup } = state.form
 
@@ -122,7 +134,9 @@ export const fetch = ( ) => {
 
 			}else{
 
-				dispatch( { type: types.SET_RESULTS, to: parsed.results } )
+				dispatch( { type: types.SET_RESULTS, to: parsed.json } )
+				dispatch( { type: types.SET_FORM_VISIBILITY, to: false } )
+				dispatch( setMapData( parsed.json ) )
 
 			}
 

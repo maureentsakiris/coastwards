@@ -78,7 +78,7 @@ const _fetch = ( fields ) => {
 
 			}else{
 
-				var sql = 'SELECT * FROM contributions WHERE contribution_material LIKE ? && contribution_material_verified LIKE ? && contribution_verified LIKE ? && contribution_id LIKE ? && contribution_example LIKE ? && contribution_intro LIKE ? && contribution_closeup LIKE ?';
+				var sql = 'SET group_concat_max_len = 100000000; SELECT CONCAT( \'{ "type": "FeatureCollection", "features": [\', GROUP_CONCAT(\' { "type": "Feature", "geometry": \', ST_AsGeoJSON(contribution_point), \', "properties": { "id": "\',contribution_id,\'", "materialverified": "\',IFNULL(contribution_material_verified, "notset" ),\'" } } \'), \'] }\' ) as geojson FROM contributions WHERE contribution_material LIKE ? && contribution_material_verified LIKE ? && contribution_verified LIKE ? && contribution_id LIKE ? && contribution_example LIKE ? && contribution_intro LIKE ? && contribution_closeup LIKE ?';
 
 				var inserts = [
 
@@ -94,6 +94,8 @@ const _fetch = ( fields ) => {
 
 				var query = mysql.format( sql, inserts )
 
+				console.log( query );
+
 				connection.query( query, function ( err, results ) {
 
 					if( error ){
@@ -102,7 +104,15 @@ const _fetch = ( fields ) => {
 
 					}else{
 
-						resolve( results )
+						if( results[ 1 ][ 0 ].geojson === undefined ){
+
+							reject( Error( 'administrate/_fetch/Could not read result from query (Update schema?)' ) )
+
+						}else{
+
+							resolve( results[ 1 ][ 0 ].geojson )
+
+						}
 
 					}
 					
@@ -122,10 +132,11 @@ router.post( '/fetch', function ( req, res ) {
 
 	_promiseFetchForm( req )
 	.then( _fetch )
-	.then( ( results ) => {
+	.then( JSON.parse )
+	.then( ( geojson ) => {
 
-		res.json( { status: 'OK', results: results } )
-		return results
+		res.json( { status: 'OK', json: geojson } )
+		return geojson;
 
 	} )
 	.catch( ( error ) => {
@@ -452,11 +463,11 @@ router.get( '/csv', function ( req, res ) {
 
 		}
 
-		stringify( results, { header: true }, function( err, output ){
+		stringify( results, { header: true }, function ( err, output ){
 
 			const date = new Date()
 
-			res.set('Content-Type', 'text/csv')
+			res.set( 'Content-Type', 'text/csv' )
 			res.set( { "Content-Disposition": "attachment; filename=coastwards" + "-" + date.getFullYear() + "-" + ( date.getMonth() + 1 ) + "-" + date.getDate() + "_" + date.getHours() + "-" + date.getMinutes() + "-" + date.getSeconds() + ".csv" } )
 			res.send( output )
 

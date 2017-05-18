@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { fetch, setMaterial, setMaterialVerified, setVerified, setID, setExample, setIntro, setCloseup } from 'actions/admin/admin'
+import { fetch, setMaterial, setMaterialVerified, setVerified, setID, setExample, setIntro, setCloseup, toggleFormVisibility } from 'actions/admin/admin'
 
 import ADMIN from 'components/admin/admin'
 
@@ -8,6 +8,7 @@ const mapStateToProps = ( state ) => {
 
 	return {
 
+		showForm: state.form.show,
 		results: state.form.results,
 		materials: state.materials, 
 		material: state.form.material,
@@ -64,6 +65,11 @@ const mapDispatchToProps = ( dispatch ) => {
 		fetch: ( ) => {
 
 			dispatch( fetch() )
+
+		},
+		toggleFormVisibility: ( ) => {
+
+			dispatch( toggleFormVisibility() )
 
 		}
 
