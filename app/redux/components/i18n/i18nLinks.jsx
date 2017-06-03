@@ -1,5 +1,5 @@
-import React, { PropTypes } from 'react'
-
+import React from 'react'
+import { PropTypes } from 'prop-types'
 import UL from 'components/tags/ul'
 import LI from 'components/tags/li'
 import I18nLink from 'containers/i18n/i18nLink'

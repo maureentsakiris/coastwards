@@ -1,24 +1,26 @@
-// http://www.christianalfoni.com/articles/2015_04_19_The-ultimate-webpack-setup
-
 const express = require( 'express' );
 const path = require( 'path' );
-const httpProxy = require( 'http-proxy' );
 const helmet = require( 'helmet' );
 
 const globalConfigs = require ( './config/' );
-const isProduction = globalConfigs.env === 'production';
-const server = globalConfigs.server;
-const portToListen = isProduction ? server.port : 8888;
 
-//const validate = require( './server/validate' );
 const contribute = require( './server/contribute' );
 const contact = require( './server/contact' );
 const administrate = require( './server/administrate' );
 
 const publicPath = path.resolve( __dirname, 'public' );
-//const uploadsPath = path.resolve( __dirname, 'uploads' );
 
-const proxy = httpProxy.createProxyServer();
+const webpackDevMiddleware = require( "webpack-dev-middleware" );
+const webpackHotMiddleware = require( "webpack-hot-middleware" );
+const webpack = require( "webpack" );
+const webpackConfig = require( "./webpack.dev.config.js" );
+
+const isProduction = globalConfigs.env === 'production';
+const server = globalConfigs.server;
+const portToListen = isProduction ? server.port : 8888;
+
+
+
 const app = express();
 
 app.enable( 'trust proxy' );
@@ -35,17 +37,9 @@ app.get( '/', function ( req, res ) {
 
 } );
 
-//app.use( '/validate', validate );
 app.use( '/contribute', contribute );
 app.use( '/contact', contact );
 app.use( '/administrate', administrate );
-
-/*app.get( '/newsletter', ( req, res ) => {
-
-	var lang = req.acceptsLanguages( [ 'en', 'es', 'de' ] );
-	res.render( 'newsletter', { lang: lang } );
-
-} );*/
 
 
 const passport = require( 'passport' )
@@ -158,34 +152,28 @@ function ensureAuthenticated ( req, res, next ) {
 }
 
 
+if( !isProduction ){
 
+	const compiler = webpack( webpackConfig );
 
-if ( !isProduction ) {
+	app.use( webpackDevMiddleware( compiler, {
 
-	var bundle = require( './server/bundle.js' );
-	bundle();
+		publicPath: "/build/", // Same as `output.publicPath` in most cases.
+		stats: "errors-only"
+		
+	} ) );
 
-	app.all( '/build/*', function ( req, res ) {
+	app.use( webpackHotMiddleware( compiler, {
 
-		proxy.web( req, res, {
-
-			target: 'http://' + server.ip + ':' + server.port
-
-		} );
-
-	} );
-
-	proxy.on( 'error', function ( ) {
-
-		console.log( 'Could not connect to proxy, please try again...' );
-
-	} );
+		log: console.log
+		
+	} ) );
 
 }
 
-// And run the server
+
 app.listen( portToListen, function () {
 
-	console.log( 'Server running on port: ' + portToListen );
+	console.log( "Listening on port " + portToListen );
 
-} ); 
+} );

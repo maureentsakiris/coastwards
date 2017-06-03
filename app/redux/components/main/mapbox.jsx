@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
+import { PropTypes } from 'prop-types'
 import DIV from 'components/tags/div'
 
 export default class MapboxGL extends Component {

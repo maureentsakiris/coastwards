@@ -1,24 +1,24 @@
 {
-  "minify": true,
-  "enableJSClass": true,
-  "options": [
-    "setClasses",
-    "addTest"
-  ],
-  "feature-detects": [ 
-    "network/xhr2",
-    "touchevents",
-    "file/api",
-    "blob",
-    "canvas",
-    "css/flexbox",
-    "css/flexwrap",
-    "css/pointerevents",
-    "css/animations",
-    "css/transitions",
-    "forms/placeholder",
-    "css/vhunit",
-    "css/vwunit",
-    "svg"
-  ]
+	"minify": true,
+	"enableJSClass": true,
+	"options": [
+		"setClasses",
+		"addTest"
+	],
+	"feature-detects": [ 
+		"network/xhr2",
+		"touchevents",
+		"file/api",
+		"blob",
+		"canvas",
+		"css/flexbox",
+		"css/flexwrap",
+		"css/pointerevents",
+		"css/animations",
+		"css/transitions",
+		"forms/placeholder",
+		"css/vhunit",
+		"css/vwunit",
+		"svg"
+	]
 }

@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
+import { PropTypes } from 'prop-types'
 import { defineMessages, injectIntl, intlShape, FormattedMessage } from 'react-intl'
 
 import TOGGLE from 'components/ui/toggle'
@@ -112,8 +113,8 @@ const team = ( { intl, jazzSupported, showDialog } ) => {
 				<P><FormattedMessage
 					id="we_are"
 					values={ { 
-						crslr: <a href="http://www.crslr.uni-kiel.de/en/people/" target="_blank" title="Coastal Risks and Sea-level Rise Research Group" >Coastal Risks and Sea-level Rise Research Group</a>, 
-						future_ocean: <a href="http://www.futureocean.org" target="_blank" title="Cluster of Excellence 'The Future Ocean'" >Cluster of Excellence "The Future Ocean"</a>
+						crslr: <a href="http://www.crslr.uni-kiel.de/en/people/" target="_blank" rel="noopener noreferrer" title="Coastal Risks and Sea-level Rise Research Group" >Coastal Risks and Sea-level Rise Research Group</a>, 
+						future_ocean: <a href="http://www.futureocean.org" target="_blank" rel="noopener noreferrer" title="Cluster of Excellence 'The Future Ocean'" >Cluster of Excellence "The Future Ocean"</a>
 					} }
 				/></P>
 				<TOGGLE className={ style.thanks } id="Team" priority={ 4 } text={ formatMessage( messages.special_thanks ) } >
@@ -138,8 +139,8 @@ const team = ( { intl, jazzSupported, showDialog } ) => {
 				<P><FormattedMessage
 					id="we_are"
 					values={ { 
-						crslr: <a href="http://www.crslr.uni-kiel.de/en/people/" target="_blank" title="Coastal Risks and Sea-level Rise Research Group" >Coastal Risks and Sea-level Rise Research Group</a>, 
-						future_ocean: <a href="http://www.futureocean.org" target="_blank" title="Cluster of Excellence 'The Future Ocean'" >Cluster of Excellence "The Future Ocean"</a>
+						crslr: <a href="http://www.crslr.uni-kiel.de/en/people/" target="_blank" rel="noopener noreferrer" title="Coastal Risks and Sea-level Rise Research Group" >Coastal Risks and Sea-level Rise Research Group</a>, 
+						future_ocean: <a href="http://www.futureocean.org" target="_blank" rel="noopener noreferrer" title="Cluster of Excellence 'The Future Ocean'" >Cluster of Excellence "The Future Ocean"</a>
 					} }
 				/></P>
 				<TOGGLE className={ style.thanks } id="Team" priority={ 4 } text={ formatMessage( messages.special_thanks ) } >

@@ -68,7 +68,7 @@ const _fetch = ( fields ) => {
 
 	return new Promise( ( resolve, reject ) => { 
 
-		const { material, materialverified, verified, id, example, intro, closeup } = fields
+		const { material, materialverified, verified, id, example, intro, closeup, pointmanual, pointcorrected } = fields
 
 		pool.getConnection( function ( error, connection ) {
 
@@ -78,7 +78,7 @@ const _fetch = ( fields ) => {
 
 			}else{
 
-				var sql = 'SET group_concat_max_len = 100000000; SELECT CONCAT( \'{ "type": "FeatureCollection", "features": [\', GROUP_CONCAT(\' { "type": "Feature", "geometry": \', ST_AsGeoJSON(contribution_point), \', "properties": { "id": "\',contribution_id,\'", "materialverified": "\',IFNULL(contribution_material_verified, "notset" ),\'" } } \'), \'] }\' ) as geojson FROM contributions WHERE contribution_material LIKE ? && contribution_material_verified LIKE ? && contribution_verified LIKE ? && contribution_id LIKE ? && contribution_example LIKE ? && contribution_intro LIKE ? && contribution_closeup LIKE ?';
+				var sql = 'SET group_concat_max_len = 100000000; SELECT CONCAT( \'{ "type": "FeatureCollection", "features": [\', GROUP_CONCAT(\' { "type": "Feature", "geometry": \', ST_AsGeoJSON(contribution_point), \', "properties": { "id": "\',contribution_id,\'", "materialverified": "\',IFNULL(contribution_material_verified, "notset" ),\'" } } \'), \'] }\' ) as geojson FROM contributions WHERE contribution_material LIKE ? && contribution_material_verified LIKE ? && contribution_verified LIKE ? && contribution_id LIKE ? && contribution_example LIKE ? && contribution_intro LIKE ? && contribution_closeup LIKE ? && contribution_point_manual LIKE ? && contribution_point_corrected LIKE ?';
 
 				var inserts = [
 
@@ -88,7 +88,9 @@ const _fetch = ( fields ) => {
 					id,
 					example,
 					intro,
-					closeup
+					closeup,
+					pointmanual,
+					pointcorrected
 
 				]
 
@@ -474,6 +476,92 @@ router.get( '/csv', function ( req, res ) {
 		} )
 
 		return results;
+
+	} )
+	.catch( ( error ) => {
+
+		res.json( { status: 'KO', message: error.toString() } )
+
+	} )
+
+} )
+
+function promiseFetchContribution ( id ){
+
+	return new Promise( function ( resolve, reject ) {
+
+		pool.getConnection( function ( error, connection ) {
+
+			if( error ){
+
+				reject( error )
+
+			}else{
+
+				var sql = 'SELECT ??, ??, ??, ??, ??, ??, ??, ??, ??, ??, ??, ?? FROM ?? WHERE ??=?'
+				var inserts = [
+
+					"contribution_uid",
+					"contribution_comment",
+					"contribution_verified",
+					"contribution_material",
+					"contribution_material_verified",
+					"contribution_exif_datetime",
+					"contribution_point",
+					"contribution_id",
+					"contribution_hashtag",
+					"contribution_point_manual",
+					"contribution_point_corrected",
+					"contribution_closeup",
+
+					"contributions",
+
+					"contribution_id",
+					id
+
+				]
+
+				var query = mysql.format( sql, inserts )
+
+				connection.query( query, function ( err, results ) {
+
+					if( error ){
+
+						reject( error )
+
+					}else{
+
+						if( results[ 0 ] === undefined ){
+
+							reject( Error( 'contributions/promiseFetchContribution/Could not read result from query (Update schema?)' ) )
+
+						}else{
+
+							resolve( results[ 0 ] )
+
+						}
+
+					}
+					
+					connection.release()
+
+				} )
+
+			}
+
+		} )
+
+	} )
+
+}
+
+router.get( '/:contribution_id', function ( req, res ) {
+
+	promiseFetchContribution( req.params.contribution_id )
+	.then( ( json ) => {
+
+		res.json( { status: 'OK', json: json } )
+		return json;
 
 	} )
 	.catch( ( error ) => {

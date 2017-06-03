@@ -1,0 +1,205 @@
+@import 'app/styles/base';
+
+$action-height: 45px;
+
+%action{
+
+	margin-right: 0.5em;
+
+}
+
+.popup{
+
+	@extend %flexcontainer;
+	flex-direction: column;
+	align-items: center;
+    justify-content: center;
+	max-width: 600px;
+	max-height: 600px;
+	padding-bottom: $action-height;
+
+}
+
+.bar{
+
+	position: absolute;
+	width: 100%;
+	top: 0;
+	left: 0;
+	background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%,rgba(0,0,0,0) 100%);
+	padding: 10px 10px 20px 10px;
+	color: #fff;
+	direction: ltr;
+
+	span{
+
+		text-transform: capitalize;
+
+	}
+
+}
+
+.spinner{
+
+	@extend %spinner;
+
+}
+
+.date{
+
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	color: #fff;
+
+}
+
+.top{
+
+	background-size: cover;
+	background-position: center;
+	height: 100%;
+	width: 100%;
+
+	.comment{
+
+		width: 100%;
+		height: 100%;
+		background-color: rgba(0, 0, 0, 0.5);
+		padding: 1em;
+		color: white;
+		overflow-y: auto;
+		-webkit-overflow-scrolling: touch;
+		white-space: pre-wrap;
+
+	}
+
+}
+
+.actions{
+
+	/* @extend %flexitem;
+	flex-grow: 0;
+	width: 100%;
+	padding: 10px; */
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	background-color: #fff;
+	width: 100%;
+	height: $action-height;
+    padding: 10px;
+
+}
+
+@media all and (orientation:landscape) {
+
+	.popup{
+
+		width: 80vh;
+		height: 80vh;
+
+	}
+
+	.top{
+
+		min-height: 20vh;
+
+	}
+
+}
+
+@media all and (orientation:portrait) {
+
+	.popup{
+
+		width: 80vw;
+		height: 80vw;
+
+	}
+
+	.top{
+
+		min-height: 20vw;
+
+	}
+
+}
+
+.showcomment{
+
+	float: left;
+	margin-left: 0.7em;
+
+}
+
+.report{
+
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	color: #fff;
+	opacity: 0.5;
+
+	&:hover{
+
+		opacity: 1;
+
+	}
+
+}
+
+.close{
+
+	float: right;
+
+	i{
+
+		font-weight: bold;
+
+	}
+
+}
+
+.label{
+
+	float: left;
+	display: inline-block;
+    background-color: #fff;
+    color: white;
+    padding: 0.1em 1em;
+    border-radius: 2px;
+    position: relative;
+
+}
+
+.verified{
+
+	font-size: 18px;
+	color: green;
+	position: absolute;
+	right: -9px;
+	top: -6px;
+	background: white;
+	border-radius: 50%;
+	
+}
+
+.notdefined{
+
+	display: none;
+
+}
+
+.send{
+
+	@extend %action;
+
+}
+
+.favorite{
+
+	@extend %action;
+	color: #f46e36;
+
+}

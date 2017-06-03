@@ -1,5 +1,5 @@
-import React, { PropTypes } from 'react'
-
+import React from 'react'
+import { PropTypes } from 'prop-types'
 import hoc from 'components/form/hoc'
 import INPUT from 'components/tags/input'
 

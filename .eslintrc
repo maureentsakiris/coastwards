@@ -38,7 +38,8 @@
 		"no-unused-vars": 1,
 		"promise/param-names": 2,
         "promise/always-return": 2,
-        "promise/catch-or-return": 2
+        "promise/catch-or-return": 2,
+        "react/no-unescaped-entities": 0
 	},
 	"globals": {
 		"Promise": true

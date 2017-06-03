@@ -1,41 +1,22 @@
-import React from 'react'
-import ReactDom from 'react-dom'
+/*import React from 'react'
+import ReactDOM from 'react-dom'
 import { createStore, applyMiddleware, compose } from 'redux'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
-import 'babel-polyfill'
-
-require( 'smoothscroll-polyfill' ).polyfill()
-
 import coastwards from 'reducers'
 import { loadLanguage } from 'actions/i18n/i18n'
-
 import I18nProvider from 'containers/i18n/i18nProvider'
 import Context from 'containers/context'
+
+import 'babel-polyfill'
+require( 'smoothscroll-polyfill' ).polyfill()
 
 
 const store = createStore( coastwards, compose(
 
-	applyMiddleware( thunk )/*,
-	window.devToolsExtension ? window.devToolsExtension() : ( f ) => f*/
+	applyMiddleware( thunk )
 
 ) )
-
-//https://github.com/reactjs/react-redux/releases/tag/v2.0.0
-
-/*console.log( module.hot )
-
-if ( module.hot ) {
-
-	// Enable Webpack hot module replacement for reducers
-	module.hot.accept( 'reducers', () => {
-
-		const nextRootReducer = require( 'reducers' )
-		store.replaceReducer( nextRootReducer )
-
-	} )
-
-}*/
 
 
 //load negotiated language
@@ -43,22 +24,75 @@ const [ navigatorLocale ] = window.navigator.language.split ( '-' )
 const negotiatedLocale = document.documentElement.getAttribute( 'lang' )
 store.dispatch( loadLanguage( negotiatedLocale || navigatorLocale ) )
 
-//store.dispatch( setSnackbarMessage( 'zoom_until', 0, { label: "yes", action: loadLanguage( "es" ) }, { label: "no", action: loadLanguage( "es" ) } ) )
+console.log( "!!!heyadsfasdfg" );
 
-/*window.addEventListener( 'scroll', ( ) => {
-
-	let scroll = window.scrollY || window.pageYOffset
-	store.dispatch( setScrollY( scroll ) )
-
-} )*/
-
-ReactDom.render( 
-
+ReactDOM.render(
+	
 	<Provider store={ store } >
 		<I18nProvider>
 			<Context />
 		</I18nProvider>
-	</Provider>, 
-	document.getElementById( 'Body' ) 
+	</Provider>,
 
-); 
+	document.getElementById( 'Body' )
+
+)*/
+
+
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { AppContainer } from 'react-hot-loader'
+//import Storeprovider from 'components/storeprovider'
+import { createStore, applyMiddleware, compose } from 'redux'
+import { Provider } from 'react-redux'
+import thunk from 'redux-thunk'
+import coastwards from 'reducers'
+import { loadLanguage } from 'actions/i18n/i18n'
+import I18nProvider from 'containers/i18n/i18nProvider'
+import Context from 'containers/context'
+
+import 'babel-polyfill'
+require( 'smoothscroll-polyfill' ).polyfill()
+
+const store = createStore( coastwards, compose(
+
+	applyMiddleware( thunk )
+
+) )
+
+
+//load negotiated language
+const [ navigatorLocale ] = window.navigator.language.split ( '-' )
+const negotiatedLocale = document.documentElement.getAttribute( 'lang' )
+store.dispatch( loadLanguage( negotiatedLocale || navigatorLocale ) )
+
+
+const render = ( ) => {
+	
+	ReactDOM.render(
+		<AppContainer>
+			<Provider store={ store } >
+				<I18nProvider>
+					<Context />
+				</I18nProvider>
+			</Provider>
+		</AppContainer>,
+
+	document.getElementById( 'Body' )
+
+	)
+
+}
+
+render( )
+
+// Hot Module Replacement API
+if ( module.hot ) {
+
+	module.hot.accept( 'containers/context', () => {
+
+		render( )
+
+	} )
+
+}

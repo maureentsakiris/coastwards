@@ -13,19 +13,7 @@ const _ = require( 'underscore' )
 const util = require( 'util' )
 const validator = require( 'validator' )
 
-const createDOMPurify = require( 'dompurify' )
-const jsdom = require( 'jsdom' )
-const window = jsdom.jsdom( '', {
-	features: {
-
-		FetchExternalResources: false, // disables resource loading over HTTP / filesystem
-		ProcessExternalResources: false // do not execute JS within script blocks
-
-	}
-} ).defaultView
-const DOMPurify = createDOMPurify( window )
-
-
+const xss = require( 'xss' )
 
 const globalConfigs = require ( '../config/' )
 const config = globalConfigs.mysql;
@@ -182,7 +170,8 @@ const _promiseInsertContribution = ( formData ) => {
 		const { long, lat, manual, corrected, uid, labels, exifdata, material, adaptation, comment, hashtag } = fields
 		const point = util.format( 'POINT(%s %s)', long, lat )
 
-		const sanitizedComment = DOMPurify.sanitize( comment )
+		const sanitizedComment = xss( comment )
+		console.log( sanitizedComment );
 		const trimmedComment = validator.trim( sanitizedComment )
 		const lowComment = validator.stripLow( trimmedComment, true ) //true -> keep new lines
 		const escapedComment = validator.escape( lowComment )

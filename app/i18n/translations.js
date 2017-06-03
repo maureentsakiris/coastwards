@@ -288,15 +288,6 @@
 			"zh": "港口，峭壁，海滨长廊。。。只要是与海洋相接的部分。",
 			"el": "Λιμάνια, βράχια, διαβάσεις περιπάτου δίπλα στο νερό ... κάτι που αγγίζει τους ωκεανούς και τις θάλασσες."
 		},
-		/*"guidelines_and": {
-			"en": "-and-",
-			"de": "-und-",
-			"es": "-y-",
-			"ar": "-و-",
-			"pt": "-e-",
-			"zh": "-和-",
-			"el": "-και-"
-		},*/
 		"guideline_closer_header": {
 			"en": "The closer, the better!",
 			"de": "Je näher, desto besser!",
@@ -476,42 +467,6 @@
 			"pt": "",
 			"zh": "更多",
 			"el": "Περισσότερα"
-		},
-		"more_title": {
-			"en": "A bit more official ...",
-			"de": "Offizieller...",
-			"es": "Y un poco más de información oficial…",
-			"ar": "أكثر رسمية",
-			"pt": "",
-			"zh": "更正式的。。。",
-			"el": "Λίγο πιο επίσημα ..."
-		},
-		"nassos": {
-			"en": "Nassos is the group leader and a professor at the University of Kiel. He's Greek, has two little boys and his desk looks like hell.",
-			"de": "Nassos ist der Gruppenleiter und Professor an der Uni Kiel. Er ist Grieche, hat zwei kleine Jungs und sein Schreibtisch ist ein Desaster.",
-			"es": "Nassos es el jefe del grupo, y profesor en la Uniersidad de Kiel. Es griego, tiene dos hijos pequeños y su escritorio es un desastre.",
-			"ar": "ناسوس هو رئيس المجموعة والأستاذ في جامعة كيل. انه من اليونان، ولديه صبيين صغار ومكتبه يشبه الجحيم.",
-			"pt": "Nassos é o líder do grupo e professor na Universidade de Kiel. Ele é grego, tem dois filhotes e a sua secretaria está sempre desarrumada.",
-			"zh": " Nassos 是基尔大学的 教授和项目负责人。他来自希腊，有两个小孩子。他的办工桌看上去象极了地狱。",
-			"el": "Νάσος είναι ο επικεφαλής της ομάδας και καθηγητής στο Πανεπιστήμιο του Κιέλου. Είναι Έλληνας, έχει δύο μικρά αγόρια και το γραφείο του είναι σε αέναο χάος."
-		},
-		"claudia": {
-			"en": "Claudia is a Doctoral Researcher and the rising star who will turn your images into something meaningful. She's a charming tough questioner and eager to learn for herself. She's also always the first to laugh.",
-			"de": "Claudia ist die vielversprechende Doktorandin, die deine Fotos in etwas Aufschlußreiches verwandeln wird. Sie ist eine zähe aber charmante Fragestellerin. Sie lacht auch sehr gerne und viel.",
-			"es": "Claudia está investigando para su doctorado. Es la científica estrella  que convertirá tus imagenes en algo significativo. Es encantadora, preguntona y ambiciosa. Y la primera en reírse.",
-			"ar": "كلوديا هي باحثة أكاديمية و هي النجمة الصاعدة التي ستقوم بتحويل صورك إلى شيء مفيد. وهي الشخص الذي يطرح الاسئلة الصعبة ويحرص على تعليم نفسه دئماَ، هي أيضا دائما أول من يبدأ بالضحك.",
-			"pt": "Claudia é uma Doutorada e a pessoa que vai tornar as tuas imagens em algo valioso. Ela é um encanto de pessoa, tem muitas questões e quer sempre aprender mais alguma coisa por si própria. É também a primeira pessoa em se rir.",
-			"zh": "Claudia 是博士研究员和学术界的新星，她负责把您的图片阐释出意义。她是一个充满魅力的坚定提问者，渴望学习，热爱微笑。",
-			"el": "Claudia είναι ερευνητής και το ανερχόμενο αστέρι που θα μετατρέψει τις εικόνες σας σε κάτι ουσιαστικό. Είναι μια γοητευτική και διαπεραστική συνομιλήτρια πάντα πρόθυμη να εμπλουτίσει τις γνώσεις της. Είναι επίσης η πρώτη που αυθόρμητα θα γελάσει."
-		},
-		"me": {
-			"en": "That's me. I created this website with a lot of love and endless hours of just staring at it. (Developers: Node, React and Redux ROCK!)",
-			"de": "Das bin ich. Ich habe diese Webseite mit viel Liebe und viel zu viel endlosem Draufstarren entwickelt. (Developers: Node, React und Redux ROCK!)",
-			"es": "Esa soy yo. He desarrollado este sitio web con mucho amor y muchas horas de mirarlo fijamente. (Developers: Node, React und Redux ROCK!)",
-			"ar": "هذه أنا. أنا الذي طورت هذا الموقع مع الكثير من الحب وصرفت الكثير من الوقت لمجرد البدء بتطويره. (المطورون: Node, React and Redux ROCK!)",
-			"pt": "Essa são eu.",
-			"zh": "然后是我，我花费了不计其数的时间和爱建构了这个网站",
-			"el": "Αυτή είμαι εγώ. Δημιούργησα αυτή την ιστοσελίδα με πολλή αγάπη και ατελείωτες ώρες σκέψης και περισυλλογής. "
 		},
 		"contact_here": {
 			"en": "Contact us here",
@@ -1306,15 +1261,6 @@
 			"zh": "给我们展示一些例子！",
 			"el": "Δείξε μου μερικά παραδείγματα!"
 		},
-		/*"material_examples_text": {
-			"en": "I'm currently working on this section. Until then, have a look at the images that are already uploaded to get a better idea!",
-			"de": "Ich arbeite daran .. bis dahin kannst Du Dir die Fotos auf der Karte ansehen, um eine bessere Vorstellung davon zu bekommen.",
-			"es": "Estoy todavía colocando esta sección. Hasta entonces puedes mirar las imagenes que ya están subidas para darte una idea.",
-			"ar": "أنا أعمل حاليا على هذا القسم. إلقي نظرة على الصور التي يتم تحميلها للحصول على فكرة أفضل!",
-			"pt": "Atualmente estou a trabalhar nesta secção. Até então, podes ir ver as imagens que já se encontram online no mapa para teres uma melhor ideia!",
-			"zh": "我目前正在做这一部分的工作。在此之前，看看已经上传的图片，收获些好的主意",
-			"el": "Επί του παρόντος  εργάζομαι πάνω σε αυτή την ενότητα. Μέχρι τότε, ρίξε μια ματιά στις εικόνες που έχουν ήδη ανεβαστεί για να πάρεις μια καλύτερη ιδέα!"
-		},*/
 		"imprint": {
 			"en": "Imprint",
 			"de": "Impressum",

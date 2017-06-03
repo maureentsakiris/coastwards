@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { fetch, setMaterial, setMaterialVerified, setVerified, setID, setExample, setIntro, setCloseup, toggleFormVisibility } from 'actions/admin/admin'
+import { /*fetch,*/ setMaterial, setMaterialVerified, setVerified, setID, setExample, setIntro, setCloseup, setPointManual, setPointCorrected/*, toggleFormVisibility*/ } from 'actions/admin/admin'
 
 import ADMIN from 'components/admin/admin'
 
@@ -17,7 +17,9 @@ const mapStateToProps = ( state ) => {
 		example: state.form.example,
 		intro: state.form.intro,
 		id: state.form.id,
-		closeup: state.form.closeup
+		closeup: state.form.closeup,
+		pointmanual: state.form.pointmanual,
+		pointcorrected: state.form.pointcorrected
 
 	}
 
@@ -62,16 +64,26 @@ const mapDispatchToProps = ( dispatch ) => {
 			dispatch( setCloseup( e ) )
 
 		},
-		fetch: ( ) => {
+		setPointManual: ( e ) => {
+
+			dispatch( setPointManual( e ) )
+
+		},
+		setPointCorrected: ( e ) => {
+
+			dispatch( setPointCorrected( e ) )
+
+		},
+		/*fetch: ( ) => {
 
 			dispatch( fetch() )
 
-		},
-		toggleFormVisibility: ( ) => {
+		},*/
+		/*toggleFormVisibility: ( ) => {
 
 			dispatch( toggleFormVisibility() )
 
-		}
+		}*/
 
 	}
 

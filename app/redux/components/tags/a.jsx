@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
+import { PropTypes } from 'prop-types'
 import _ from 'underscore'
 import hoc from './hoc'
 import { globalAttr, aAttr } from './attributes'
@@ -10,7 +11,7 @@ const a = ( { hocProps } ) => {
 
 	return(
 
-		<a target="_blank" { ...allowedProps } >{ children }</a>
+		<a target="_blank" rel="noopener noreferrer" { ...allowedProps } >{ children }</a>
 
 	)
 

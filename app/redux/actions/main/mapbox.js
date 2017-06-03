@@ -1,7 +1,8 @@
 import * as types from 'types'
 import { sendErrorMail } from 'actions/util/error/error'
-import mapboxgl from 'mapbox-gl/dist/mapbox-gl.js'
-import MapboxGeocoder from 'mapbox-gl/plugins/src/mapbox-gl-geocoder/v2.0.0/mapbox-gl-geocoder.js'
+import { promiseInitMapbox, mapboxPopup, mapboxLngLatConvert, mapboxNavigationControl, mapboxGeocoder } from 'actions/mapbox/mapbox'
+//import mapboxgl from 'mapbox-gl/dist/mapbox-gl.js'
+//import MapboxGeocoder from 'mapbox-gl/plugins/src/mapbox-gl-geocoder/v2.0.0/mapbox-gl-geocoder.js'
 import _ from 'underscore'
 import { promiseGet, promiseJSONOK } from 'actions/util/request/get'
 //import { resetMain } from 'actions/main/main'
@@ -9,62 +10,22 @@ import Modernizr from 'modernizr'
 
 const CENTER = [ 0, 39 ]
 const ZOOM = 1
-const MAXZOOM = 17
-
 const ACCESSTOKEN = 'pk.eyJ1IjoibWF1cmVlbnRzYWtpcmlzIiwiYSI6ImNpanB0NzgwMjAxZDB0b2tvamNpYXQyeTMifQ.HVQAxH-RQKZBss1u3zIoxA'
+const OPTIONS = {
 
-const _promiseInitMap = ( ) => {
-
-	return new Promise( ( resolve, reject ) => {
-
-		mapboxgl.accessToken = ACCESSTOKEN 
-		const map = new mapboxgl.Map( {
-
-			container: 'Mapbox',
-			style: 'mapbox://styles/maureentsakiris/cj04f0nru00ai2rmv7kb1b0s2',
-			zoom: ZOOM,
-			maxZoom: MAXZOOM,
-			center: CENTER,
-			maxBounds: [ [ -360, -70 ], [ 360, 84 ] ],
-			attributionControl: false,
-			boxZoom: false,
-			dragRotate: false,
-			dragPan: true,
-			keyboard: false,
-			doubleClickZoom: true,
-			touchZoomRotate: true
-
-		} )
-
-		if( !Modernizr.touchevents ){
-
-			let geocoder = new MapboxGeocoder( {
-
-				accessToken: ACCESSTOKEN/*,
-				placeholder: "sdfg"*/
-
-			} )
-
-			map.addControl( geocoder, 'top-left' )
-			map.addControl( new mapboxgl.NavigationControl(), 'bottom-right' )
-
-		}
-
-		map.on( 'load', ( ) => {
-
-			map.dragRotate.disable()
-			map.touchZoomRotate.disableRotation()
-			resolve( map )
-
-		} )
-
-		map.on( 'error', ( ) => {
-
-			reject( Error( 'error_loading_mapbox' ) )  
-
-		} )
-
-	} )
+	container: 'Mapbox',
+	style: 'mapbox://styles/maureentsakiris/cj04f0nru00ai2rmv7kb1b0s2',
+	zoom: ZOOM,
+	maxZoom: 17,
+	center: CENTER,
+	maxBounds: [ [ -360, -70 ], [ 360, 84 ] ],
+	attributionControl: false,
+	boxZoom: false,
+	dragRotate: false,
+	dragPan: true,
+	keyboard: false,
+	doubleClickZoom: true,
+	touchZoomRotate: true
 
 }
 
@@ -111,12 +72,21 @@ export const displayMap = ( ) => {
 		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'upload', to: false } )
 		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'prompts', to: false } )
 
-		_promiseInitMap()
+
+		promiseInitMapbox( ACCESSTOKEN, OPTIONS )
 		.then( ( map ) => {
 
 			dispatch( { type: types.SET_MAP, to: map } )
+			map.dragRotate.disable()
+			map.touchZoomRotate.disableRotation()
+			if( !Modernizr.touchevents ){
 
-			const popup = new mapboxgl.Popup( { closeButton: false, closeOnClick: false, anchor: 'bottom' } )
+				map.addControl( mapboxGeocoder( { accessToken: ACCESSTOKEN/*, placeholder: "sdfg"*/ } ), 'top-left' )
+				map.addControl( mapboxNavigationControl(), 'bottom-right' )
+
+			} 
+
+			const popup = mapboxPopup( { closeButton: false, closeOnClick: false, anchor: 'bottom' } )
 			const featureDOM = document.getElementById( 'Popup' )
 			popup.setDOMContent( featureDOM )
 			dispatch( { type: types.SET_POPUP_INSTANCE, to: popup } )
@@ -457,7 +427,7 @@ export const showPopup = ( feature ) => {
 
 		}
 
-		let ll = new mapboxgl.LngLat.convert( [ feature.contribution_point.x, feature.contribution_point.y ] )
+		let ll = mapboxLngLatConvert( feature.contribution_point.x, feature.contribution_point.y )
 		let wrapped = ll.wrap()
 
 		dispatch( { type: types.SET_POPUP_FEATURE, to: feature } )

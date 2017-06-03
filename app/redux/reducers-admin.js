@@ -4,7 +4,7 @@ import _ from 'underscore'
 
 import materials from 'config'
 
-const form = ( state = { show: true, results: undefined, material: '%', materialverified: '%', verified: '0', id: '%', example:'%', intro:'%', closeup: '%' }, action ) => {
+const form = ( state = { show: true, results: undefined, material: '%', materialverified: '%', verified: '0', id: '%', example:'%', intro:'%', closeup: '%', pointmanual: '%', pointcorrected: '%' }, action ) => {
 
 	switch ( action.type ){
 
@@ -26,6 +26,10 @@ const form = ( state = { show: true, results: undefined, material: '%', material
 		return _.extend( {}, state, { id: action.to } )
 	case types.SET_CLOSEUP:
 		return _.extend( {}, state, { closeup: action.to } )
+	case types.SET_POINTMANUAL:
+		return _.extend( {}, state, { pointmanual: action.to } )
+	case types.SET_POINTCORRECTED:
+		return _.extend( {}, state, { pointcorrected: action.to } )
 	default:
 		return state
 
@@ -46,12 +50,27 @@ const mapbox = ( state = { map: undefined }, action ) => {
 
 }
 
+const popup = ( state = { popup: undefined, feature: {} }, action ) => {
+
+	switch ( action.type ){
+
+	case types.SET_POPUP_INSTANCE:
+		return _.extend( {}, state, { popup: action.to } )
+	case types.SET_POPUP_FEATURE:
+		return _.extend( {}, state, { feature: action.to } )
+	default:
+		return state
+
+	}
+
+}
 
 const admin = combineReducers( {
 
 	form,
 	materials,
-	mapbox
+	mapbox,
+	popup
 
 } )
 

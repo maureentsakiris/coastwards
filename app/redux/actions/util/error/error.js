@@ -4,6 +4,8 @@ export const sendErrorMail = ( error ) => {
 
 	return function () {
 
+		console.log( error );
+
 		let formData = new FormData()
 		formData.append( 'stack', error.stack )
 		formData.append( 'message', error.message )

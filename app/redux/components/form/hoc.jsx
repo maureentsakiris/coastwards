@@ -1,4 +1,5 @@
-import React, { PropTypes, Component } from 'react'
+import React, { Component } from 'react'
+import { PropTypes } from 'prop-types'
 import Classnames from 'classnames'
 import Modernizr from 'modernizr'
 import LABEL from 'components/tags/label'

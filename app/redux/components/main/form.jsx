@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
+import { PropTypes } from 'prop-types'
 import { defineMessages, injectIntl, intlShape, FormattedMessage } from 'react-intl'
 import Classnames from 'classnames'
 import _ from 'underscore'

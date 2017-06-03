@@ -1,0 +1,62 @@
+[
+  {
+    "id": "sand",
+    "description": "Material - Sand",
+    "defaultMessage": "Sand"
+  },
+  {
+    "id": "pebble",
+    "description": "Material - Pebble",
+    "defaultMessage": "Pebble"
+  },
+  {
+    "id": "rock",
+    "description": "Material - Rock",
+    "defaultMessage": "Rock"
+  },
+  {
+    "id": "mud",
+    "description": "Material - Mud",
+    "defaultMessage": "Mud"
+  },
+  {
+    "id": "manmade",
+    "description": "Material - Man-made",
+    "defaultMessage": "Man-made"
+  },
+  {
+    "id": "ice",
+    "description": "Material - Ice",
+    "defaultMessage": "Ice"
+  },
+  {
+    "id": "notsure",
+    "description": "Material - Not sure",
+    "defaultMessage": "Not sure"
+  },
+  {
+    "id": "notset",
+    "description": "Material",
+    "defaultMessage": "Not set yet"
+  },
+  {
+    "id": "notclose",
+    "description": "-",
+    "defaultMessage": "Not close enough"
+  },
+  {
+    "id": "close_popup",
+    "description": "Title -",
+    "defaultMessage": "Close popup"
+  },
+  {
+    "id": "report_image",
+    "description": "Title -",
+    "defaultMessage": "Report image"
+  },
+  {
+    "id": "toggle_comment",
+    "description": "Title -",
+    "defaultMessage": "Toggle comment"
+  }
+]

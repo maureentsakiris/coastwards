@@ -1,95 +1,143 @@
+//https://stackoverflow.com/questions/42286331/how-to-get-react-hot-loader-working-with-webpack-2-and-webpackdevmiddleware
+
 const webpack = require( 'webpack' )
-const path = require( 'path' )
-
-const globalConfigs = require ( './config/' )
-const server = globalConfigs.server
-
-const PROJECT_ROOT = path.resolve( './' )
-const APP_ROOT = path.join( PROJECT_ROOT, 'app' )
-const BUILD_ROOT = path.join( PROJECT_ROOT, 'public/build' )
-const ENTRY_INDEX = path.join( PROJECT_ROOT, 'app/entries/index.jsx' )
-const ENTRY_LOGIN = path.join( PROJECT_ROOT, 'app/entries/login.jsx' )
-const ENTRY_ADMIN = path.join( PROJECT_ROOT, 'app/entries/admin.jsx' )
-
-const ASSETS = path.join( PROJECT_ROOT, 'app/assets/' )
-const I18N = path.join( PROJECT_ROOT, 'app/i18n/' )
-const REDUX = path.join( PROJECT_ROOT, 'app/redux/' )
-const STYLES = path.join( PROJECT_ROOT, 'app/styles/' )
-
-const autoprefixer = require( 'autoprefixer' )
 const ExtractTextPlugin = require( 'extract-text-webpack-plugin' )
-const extractStyles = new ExtractTextPlugin( '[name].css' )
+const { resolve } = require( 'path' )
 
-const config = {
 
-	server: server,
-	devtool: 'source-map',
-	entry: { 
+const BUILD_ROOT = resolve( __dirname, 'public/build' )
 
-		index: ENTRY_INDEX,
-		login: ENTRY_LOGIN,
-		admin: ENTRY_ADMIN
+const NODEMODULES = resolve( __dirname, 'node_modules/' )
+const APP = resolve( __dirname, 'app/' )
+const ASSETS = resolve( __dirname, 'app/assets/' )
+const I18N = resolve( __dirname, 'app/i18n/' )
+const REDUX = resolve( __dirname, 'app/redux/' )
+const STYLES = resolve( __dirname, 'app/styles/' )
+
+module.exports = {
+
+	context: resolve( __dirname, 'app' ),
+
+	//stats: "normal",
+
+	entry: {
+
+		//vendor: [ 'mapbox-gl' ],
+		index: './entries/index.jsx'/*,
+		login: './entries/login.jsx',
+		admin: './entries/admin.jsx'*/
 
 	},
-	resolve: {
-		root: [ REDUX, I18N, ASSETS, STYLES ],
-		alias: {
-			modernizr$:  path.join( PROJECT_ROOT, '.modernizrrc' )
-		},
-		extensions: [ '', '.js', '.jsx', '.scss' ]
-	},
+
 	output: {
-		filename: '[name].bundle.js',
+
+		filename: '[name].bundle.js', // the output bundle
 		path: BUILD_ROOT,
-		publicPath: '/build/',
+		publicPath: '/build/', // necessary for HMR to know where to load the hot update chunks
 		chunkFilename: '[name].js'
+
 	},
+
+	resolve: {
+
+		modules: [ NODEMODULES, REDUX, I18N, ASSETS, STYLES ],
+		alias: {
+			modernizr$:  resolve( __dirname, '.modernizrrc' )
+		},
+		extensions: [ '.js', '.jsx', '.scss' ]
+
+	},
+
+	devtool: 'nosources-source-map',
+
 	module: {
-		loaders: [ 
+
+		rules: [
+
 			{
+
 				test: /\.jsx?$/,
-				include: APP_ROOT,
-				loaders: [ 'babel?cacheDirectory', 'eslint-loader' ]
+				include: APP,
+				use: [ 
+
+					{ loader: 'babel-loader', options: { cacheDirectory: true } },
+					{ loader: 'eslint-loader' } 
+
+				]
+
 			},
 			{
+
 				test: /\.modernizrrc$/,
-				loader: 'modernizr'
+				use: [ 
+
+					{ loader: 'modernizr-loader' },
+					{ loader: 'json-loader' } 
+
+				]
+
 			},
 			{ 
+
 				test: /\.(jpe?g|png|gif|svg)$/i,
 				include: ASSETS,
-				loader: 'url?limit=10000!img?progressive=true' 
+				use: [ 
+
+					{ loader: 'url-loader', options: { limit: 10000 } },
+					{ loader: 'img-loader', options: { progressive: true } }
+					
+				]
+
 			},
 			{
+
 				test: /\.scss$/,
-				include: APP_ROOT,
-				loader: extractStyles.extract( 'style', 'css?modules&importLoaders=1&localIdentName=[name]_[local]!postcss!sass' )
+				include: APP,
+				use: ExtractTextPlugin.extract( { 
+
+					fallback: "style-loader",
+					use: [
+
+						{ loader: 'css-loader', options: { modules: true, importLoaders: 1, localIdentName: '[name]_[local]' } },
+						{ loader: 'postcss-loader' },
+						{ loader: 'sass-loader' }
+
+					]
+
+				} )
+
 			}
+
 		]
 	},
-	postcss: [ autoprefixer ],
+
 	plugins: [
-		extractStyles,
-		new webpack.optimize.DedupePlugin(),
-		new webpack.optimize.UglifyJsPlugin( {
 
-			minimize: true,
-			compress: {
-				warnings: true
-			}
-
-		} ),
 		new webpack.DefinePlugin( {
 
-			'process.env': {
+			'process.env.NODE_ENV': JSON.stringify( 'production' )
 
-				'NODE_ENV': JSON.stringify( 'production' )
+		} ),
+		new webpack.LoaderOptionsPlugin( {
 
-			}
+			minimize: true,
+			debug: false
+
+		} ),
+		/*new webpack.optimize.CommonsChunkPlugin( {
+
+			name: 'commons',
+			filename: 'commons.bundle.js'
+
+		} ),*/
+		//new webpack.optimize.UglifyJsPlugin(),
+		new ExtractTextPlugin( {
+
+			filename: "[name].css",
+			allChunks: true 
 
 		} )
+		
 	]
-	
-}
 
-module.exports = config
+}

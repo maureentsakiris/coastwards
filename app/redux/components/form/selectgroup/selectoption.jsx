@@ -1,5 +1,5 @@
-import React, { PropTypes } from 'react'
-
+import React from 'react'
+import { PropTypes } from 'prop-types'
 import OPTION from 'components/tags/option'
 
 const selectoption = ( { label, value } ) => {

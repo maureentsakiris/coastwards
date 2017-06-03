@@ -1,52 +1,29 @@
 import * as types from 'types'
-import mapboxgl from 'mapbox-gl/dist/mapbox-gl.js'
+import { promiseInitMapbox, mapboxPopup, mapboxLngLatConvert } from 'actions/mapbox/mapbox'
 import _ from 'underscore'
+import { fetch } from 'actions/admin/admin'
+import { promiseGet, promiseJSONOK } from 'actions/util/request/get'
 //import { promiseGet, promiseJSONOK } from 'actions/util/request/get'
 
-const CENTER = [ 0, 39 ]
 const ZOOM = 1
-const MAXZOOM = 17
-
+const CENTER = [ 0, 39 ]
 const ACCESSTOKEN = 'pk.eyJ1IjoibWF1cmVlbnRzYWtpcmlzIiwiYSI6ImNpanB0NzgwMjAxZDB0b2tvamNpYXQyeTMifQ.HVQAxH-RQKZBss1u3zIoxA'
 
-const _promiseInitMap = ( ) => {
+const OPTIONS = {
 
-	return new Promise( ( resolve, reject ) => {
-
-		mapboxgl.accessToken = ACCESSTOKEN 
-		const map = new mapboxgl.Map( {
-
-			container: 'Mapbox',
-			style: 'mapbox://styles/mapbox/satellite-streets-v10',
-			zoom: ZOOM,
-			maxZoom: MAXZOOM,
-			center: CENTER,
-			maxBounds: [ [ -360, -70 ], [ 360, 84 ] ],
-			attributionControl: false,
-			boxZoom: false,
-			dragRotate: false,
-			dragPan: true,
-			keyboard: false,
-			doubleClickZoom: true,
-			touchZoomRotate: true
-
-		} )
-
-		map.on( 'load', ( ) => {
-
-			map.dragRotate.disable()
-			map.touchZoomRotate.disableRotation()
-			resolve( map )
-
-		} )
-
-		map.on( 'error', ( ) => {
-
-			reject( Error( 'error_loading_mapbox' ) )  
-
-		} )
-
-	} )
+	container: 'Mapbox',
+	style: 'mapbox://styles/mapbox/satellite-streets-v10',
+	zoom: ZOOM,
+	maxZoom: 17,
+	center: CENTER,
+	maxBounds: [ [ -360, -70 ], [ 360, 84 ] ],
+	attributionControl: false,
+	boxZoom: false,
+	dragRotate: false,
+	dragPan: true,
+	keyboard: false,
+	doubleClickZoom: true,
+	touchZoomRotate: true
 
 }
 
@@ -54,21 +31,44 @@ export const displayMap = ( ) => {
 
 	return function ( dispatch, getState ){
 
-		_promiseInitMap()
+		promiseInitMapbox( ACCESSTOKEN, OPTIONS )
 		.then( ( map ) => {
 
 			const state = getState()
 
 			dispatch( { type: types.SET_MAP, to: map } )
 
-			map.on( 'mousemove', ( e ) => {
+			map.dragRotate.disable()
+			map.touchZoomRotate.disableRotation()
 
-				const state = getState()
-				const interactiveLayers = state.interactiveLayers
+			const popup = mapboxPopup( { closeButton: false, closeOnClick: false, anchor: 'bottom' } )
+			const featureDOM = document.getElementById( 'Popup' )
+			popup.setDOMContent( featureDOM )
+			dispatch( { type: types.SET_POPUP_INSTANCE, to: popup } )
+
+			map.on( 'mousemove', ( e ) => {
 				
-				let features = map.queryRenderedFeatures( e.point, { layers: _.pluck( interactiveLayers, 'layer' ) } )
+				let features = map.queryRenderedFeatures( e.point, { layers: [ 'markers' ] } )
 				map.getCanvas().style.cursor = ( features.length ) ? 'pointer' : ''
 			
+			} )
+
+			map.on( 'click', ( e ) => {
+
+				let features = map.queryRenderedFeatures( e.point, { layers: [ 'markers' ] } )
+
+				if( !features.length ){
+
+					dispatch( hidePopup() )
+					return
+
+				}
+
+				/*let feature = features[ 0 ]
+				feature.point = e.point*/
+
+				dispatch( _onMarkerClick( features ) )
+
 			} )
 
 			let geojson = {
@@ -117,63 +117,12 @@ export const displayMap = ( ) => {
 
 
 		} )
-		/*.then( _promiseFetchGeojson )
-		.then( JSON.parse )
-		.then( promiseJSONOK )
-		.then( ( parsed ) => {
+		.then( ( map ) => {
 
-			const geojson = parsed.json
+			dispatch( fetch() )
+			return map
 
-			if( _.isNull( geojson ) ){
-
-				dispatch( { type: types.SET_PROMPT_MSG, to: 'be_the_first' } )
-
-			}
-
-			const state = getState()
-			const map = state.mapbox.map
-
-			map.addSource( 'geojson', {
-
-				type: 'geojson',
-				data: geojson,
-				cluster: false,
-				clusterMaxZoom: 10, // Max zoom to cluster points on
-				clusterRadius: 20 // Radius of each cluster when clustering points (defaults to 50)
-				
-			} )
-
-			const stops = _.map( state.materials, ( material ) => {
-
-				let { value, color } = material
-				return [ value, color ]
-
-			} )
-
-			map.addLayer( {
-			
-				id: 'markers',
-				type: 'circle',
-				source: 'geojson',
-				filter: [ '!has', 'point_count' ],
-				paint: {
-					'circle-radius': {
-						'base': 1.75,
-						'stops': [ [ 0, 7 ], [ 10, 15 ], [ 22, 50 ] ]
-					},
-					'circle-color': {
-						property: 'materialverified',
-						type: 'categorical',
-						stops: stops
-					}
-
-				}
-
-			}, 'water_label' )
-
-			return geojson
-
-		} )*/
+		} )
 		.catch( ( error ) => {
 
 			let msg = error.message ? error.message : 'an_error_occurred'
@@ -194,10 +143,99 @@ export const setMapData = ( data ) => {
 		const state = getState()
 		const map = state.mapbox.map
 
-		map.getSource( 'geojson' ).setData( data )
+		dispatch( hidePopup() )
 
+		let empty = {
+
+			"type": "FeatureCollection",
+			"features": []
+
+		}
+
+		const json = data === null ? empty : data
+
+		map.getSource( 'geojson' ).setData( json )
+		//map.flyTo( { speed: 1, center: CENTER, zoom: ZOOM } )
 
 	}
 
+
+}
+
+const _onMarkerClick = ( features ) => {
+
+	return function ( dispatch ){
+
+		let feature = features[ 0 ]
+
+		dispatch( { type: types.SET_POPUP_FEATURE, to: {} } )
+
+		promiseGet( '/administrate/' + feature.properties.id )
+		.then( JSON.parse )
+		.then( promiseJSONOK )
+		.then( ( parsed ) => {
+
+			const json = parsed.json
+			dispatch( showPopup( json ) )
+			return json
+
+		} )
+		.catch( ( error ) => {
+
+			console.log( error )
+
+		} )
+
+	}
+
+}
+
+export const showPopup = ( feature ) => {
+
+	return function ( dispatch, getState ){
+
+		const state = getState()
+		const map = state.mapbox.map
+		let popup = state.popup.popup
+
+		if( popup && popup._container ){
+
+			popup._container.setAttribute( 'style', '' )
+
+		}
+
+		let ll = mapboxLngLatConvert( feature.contribution_point.x, feature.contribution_point.y )
+		let wrapped = ll.wrap()
+
+		dispatch( { type: types.SET_POPUP_FEATURE, to: feature } )
+		popup.setLngLat( wrapped ).addTo( map )
+
+		/*let cz = map.getZoom();
+		let z = cz < 2.5 ? 2.5 : cz;*/
+
+
+		const featureDOM = document.getElementById( 'Popup' )
+		let offsetY = featureDOM.clientHeight / 2
+
+		map.flyTo( { speed: 1, center: wrapped, offset: [ 0, offsetY ], zoom: 16 } )
+
+	}
+
+}
+
+export const hidePopup = ( ) => {
+
+	return function ( dispatch, getState ){
+
+		const state = getState()
+		const popup = state.popup.popup
+
+		if( popup && popup._container ){
+
+			popup._container.setAttribute( 'style', 'display: none' )
+
+		}
+
+	}
 
 }

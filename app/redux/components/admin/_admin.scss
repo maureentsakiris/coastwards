@@ -1,8 +1,42 @@
 @import 'app/styles/reset';
 @import 'app/styles/tags';
 
+$padding: 5vh 5vh 10vh 5vh;
 
-.toolbar{
+.login{
+
+    padding: $padding;
+
+}
+
+.admin{
+
+    @extend %flexcontainer;
+    height: 100vh;
+
+    .form{
+
+        @extend %flexitem;
+        flex-grow: 0;
+        flex-basis: 30vw;
+        height: 100vh;
+        overflow-y: scroll;
+        padding: $padding;
+
+    }
+
+    .mapbox{
+
+        @extend %flexitem;
+        flex-grow: 3;
+        //width: 1000px;
+        height: 100%;
+
+    }
+
+}
+
+/* .toolbar{
 
 	position: fixed;
 	bottom: 0;
@@ -34,7 +68,7 @@
 
 .corset{
 
-    @extend %hide;
+    @extend %show;
 	width: 100%;
 	min-height: 100vh;
 	padding: 5vh 5vh 10vh 5vh;
@@ -44,9 +78,9 @@
     z-index: 1;
     background-color: rgba(255, 255, 255, 0.9);
 
-    &.show{
+    &.hide{
 
-        @extend %show;
+        @extend %hide;
 
     }
 
@@ -96,4 +130,4 @@
     top: 0;
     left: 0;
 
-}
+} */

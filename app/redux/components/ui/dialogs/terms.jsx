@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
+import { PropTypes } from 'prop-types'
 import { defineMessages, injectIntl, intlShape, FormattedMessage } from 'react-intl'
 
 import DIV from 'components/tags/div'
@@ -59,7 +60,7 @@ const terms = ( { intl, className } ) => {
 				<LI>3) <FormattedMessage
 						id="terms_cc0"
 						values={ { 
-							license: <a target="_blank" href={ formatMessage( messages.http_license ) }>{ formatMessage( messages.license ) }</a>
+							license: <a target="_blank" rel="noopener noreferrer" href={ formatMessage( messages.http_license ) }>{ formatMessage( messages.license ) }</a>
 						} }
 					/>
 				</LI>

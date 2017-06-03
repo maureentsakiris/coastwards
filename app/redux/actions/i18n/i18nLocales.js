@@ -10,7 +10,7 @@ import { addLocaleData } from 'react-intl';
 
 const DEFAULTLOCALE = 'en'
 
-const Locales = [
+export const Locales = [
 	{
 		locale: 'en',
 		name: 'English',
@@ -524,7 +524,7 @@ loaders.bn = ( done ) => {
 
 */
 
-const loadLocale = function ( locale, done ){
+const loadLocaleInternal = ( locale, done ) => {
 
 	var loader;
 	loader = loaders[ locale ];
@@ -540,7 +540,7 @@ const loadLocale = function ( locale, done ){
 
 }
 
-module.exports.loadLocale = ( locale, done ) => {
+const loadLocale = ( locale, done ) => {
 
 	if( !hasIntl ){
 
@@ -548,7 +548,7 @@ module.exports.loadLocale = ( locale, done ) => {
 			( require ) => {
 
 				global.Intl = require( 'intl' );
-				loadLocale( locale, done );
+				loadLocaleInternal( locale, done );
 
 			}, 
 			'intl-polyfill'
@@ -556,10 +556,17 @@ module.exports.loadLocale = ( locale, done ) => {
 
 	}else{
 
-		loadLocale( locale, done );
+		loadLocaleInternal( locale, done );
 
 	}
 
 }
 
-module.exports.locales = Locales;
+const i18nLocales = {
+
+	loadLocale: loadLocale,
+	locales: Locales
+
+}
+
+export default i18nLocales;

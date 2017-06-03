@@ -1,6 +1,13 @@
 {
-
-	"presets": [ "es2015", "stage-0", "react" ],
-	"plugins": [ "react-hot-loader/babel", [ "react-intl", { "messagesDir": "./app/i18n/react-intl/", "enforceDescriptions": true } ] ] 
-
+  "presets": [
+    ["es2015", {"modules": false}],
+    // webpack understands the native import syntax, and uses it for tree shaking
+    "stage-0",
+    "react"
+    // Transpile React components to JavaScript
+  ],
+  "plugins": [
+    "react-hot-loader/babel"
+    // Enables React code to work with HMR.
+  ]
 }
