@@ -1,4 +1,4 @@
-import mapboxgl from 'mapbox-gl/dist/mapbox-gl.js'
+import mapboxgl from 'mapbox-gl'
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder'
 
 

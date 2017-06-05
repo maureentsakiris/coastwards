@@ -24,19 +24,18 @@ module.exports = {
 
 	},
 
-	context: resolve( __dirname, 'app' ),
-
 	entry: {
 
+		vendor: 'mapbox-gl',
 		index: [
 
 			'react-hot-loader/patch',
 			'webpack-hot-middleware/client',
-			'./entries/index.jsx'
+			'./app/entries/index.jsx'
 
 		],
-		login: './entries/login.jsx',
-		admin: './entries/admin.jsx'
+		login: './app/entries/login.jsx',
+		admin: './app/entries/admin.jsx'
 
 	},
 
@@ -60,6 +59,8 @@ module.exports = {
 	},
 
 	module: {
+
+		noParse: /(mapbox-gl)\.js$/,
 
 		rules: [
 
@@ -134,7 +135,11 @@ module.exports = {
 			debug: false
 
 		} ),
+		new webpack.optimize.CommonsChunkPlugin( {
 
+			names: [ 'vendor', 'manifest' ]
+
+		} ),
 		new ExtractTextPlugin( {
 
 			filename: "[name].css",

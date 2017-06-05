@@ -2,6 +2,7 @@
 
 const webpack = require( 'webpack' )
 const ExtractTextPlugin = require( 'extract-text-webpack-plugin' )
+//const BundleAnalyzerPlugin = require( 'webpack-bundle-analyzer' ).BundleAnalyzerPlugin
 const { resolve } = require( 'path' )
 
 
@@ -16,16 +17,22 @@ const STYLES = resolve( __dirname, 'app/styles/' )
 
 module.exports = {
 
-	context: resolve( __dirname, 'app' ),
+	devtool: 'nosources-source-map',
 
-	//stats: "normal",
+	stats: {
+
+		cached: false,
+		modules: false,
+		chunks: false
+
+	},
 
 	entry: {
 
-		//vendor: [ 'mapbox-gl' ],
-		index: './entries/index.jsx'/*,
-		login: './entries/login.jsx',
-		admin: './entries/admin.jsx'*/
+		vendor: 'mapbox-gl',
+		index: './app/entries/index.jsx',
+		login: './app/entries/login.jsx',
+		admin: './app/entries/admin.jsx'
 
 	},
 
@@ -48,9 +55,9 @@ module.exports = {
 
 	},
 
-	devtool: 'nosources-source-map',
-
 	module: {
+
+		noParse: /(mapbox-gl)\.js$/,
 
 		rules: [
 
@@ -124,19 +131,18 @@ module.exports = {
 			debug: false
 
 		} ),
-		/*new webpack.optimize.CommonsChunkPlugin( {
+		new webpack.optimize.CommonsChunkPlugin( {
 
-			name: 'commons',
-			filename: 'commons.bundle.js'
+			names: [ 'vendor', 'manifest' ]
 
-		} ),*/
-		//new webpack.optimize.UglifyJsPlugin(),
+		} ),
 		new ExtractTextPlugin( {
 
 			filename: "[name].css",
 			allChunks: true 
 
-		} )
+		} ),
+		//new BundleAnalyzerPlugin()
 		
 	]
 

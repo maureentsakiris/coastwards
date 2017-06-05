@@ -2,7 +2,7 @@ import { combineReducers } from 'redux'
 import * as types from 'types'
 import _ from 'underscore'
 import Modernizr from 'modernizr'
-import mapboxgl from 'mapbox-gl/dist/mapbox-gl.js'
+import mapboxgl from 'mapbox-gl'
 
 import materials from 'config'
 

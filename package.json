@@ -8,8 +8,8 @@
   },
   "main": "index.js",
   "scripts": {
-    "build": "webpack",
-    "production": "webpack && node server",
+    "build": "webpack -p",
+    "production": "webpack -p && node server",
     "reset": "NODE_ENV=development node reset.js && NODE_ENV=development node server",
     "dev": "NODE_ENV=development node server",
     "translate": "NODE_ENV=development node ./app/i18n/translate.js"
@@ -88,6 +88,7 @@
     "url-loader": "^0.5.8",
     "uuid": "^3.0.1",
     "validator": "^7.0.0",
-    "webpack": "^2.6.1"
+    "webpack": "^2.6.1",
+    "webpack-bundle-analyzer": "^2.8.2"
   }
 }

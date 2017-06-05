@@ -1,8 +1,6 @@
 import * as types from 'types'
 import { sendErrorMail } from 'actions/util/error/error'
 import { promiseInitMapbox, mapboxPopup, mapboxLngLatConvert, mapboxNavigationControl, mapboxGeocoder } from 'actions/mapbox/mapbox'
-//import mapboxgl from 'mapbox-gl/dist/mapbox-gl.js'
-//import MapboxGeocoder from 'mapbox-gl/plugins/src/mapbox-gl-geocoder/v2.0.0/mapbox-gl-geocoder.js'
 import _ from 'underscore'
 import { promiseGet, promiseJSONOK } from 'actions/util/request/get'
 //import { resetMain } from 'actions/main/main'
