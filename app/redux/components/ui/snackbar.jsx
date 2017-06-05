@@ -1,7 +1,7 @@
 import React from 'react'
 import { PropTypes } from 'prop-types'
 import { defineMessages, injectIntl, intlShape } from 'react-intl'
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+import { CSSTransitionGroup } from 'react-transition-group'
 
 
 import P from 'components/tags/p'
@@ -96,7 +96,7 @@ const snackbar = ( { intl, /*jazzSupported,*/ message, yes, no, dismissSnackbar 
 
 	return(
 
-		<ReactCSSTransitionGroup 
+		<CSSTransitionGroup 
 
 			component="div"
 			className={ style.snackbar }
@@ -123,7 +123,7 @@ const snackbar = ( { intl, /*jazzSupported,*/ message, yes, no, dismissSnackbar 
 					{ yes && <GO onClick={ dismissSnackbar.bind( this, yes.action ) } label={ formatMessage( intlMessages[ yes.label ] ) } /> }
 				</P>
 			</DIV> }
-		</ReactCSSTransitionGroup>
+		</CSSTransitionGroup>
 
 	)
 
@@ -131,7 +131,7 @@ const snackbar = ( { intl, /*jazzSupported,*/ message, yes, no, dismissSnackbar 
 
 		return(
 
-			<ReactCSSTransitionGroup 
+			<CSSTransitionGroup 
 
 				component="div"
 				className={ style.snackbarNoJazz }
@@ -158,7 +158,7 @@ const snackbar = ( { intl, /*jazzSupported,*/ message, yes, no, dismissSnackbar 
 						{ yes && <GO onClick={ dismissSnackbar.bind( this, yes.action ) } label={ formatMessage( intlMessages[ yes.label ] ) } /> }
 					</SPAN>
 				</DIV> }
-			</ReactCSSTransitionGroup>
+			</CSSTransitionGroup>
 
 		)
 
@@ -166,7 +166,7 @@ const snackbar = ( { intl, /*jazzSupported,*/ message, yes, no, dismissSnackbar 
 
 		return(
 
-			<ReactCSSTransitionGroup 
+			<CSSTransitionGroup 
 
 				component="div"
 				className={ style.snackbar }
@@ -193,7 +193,7 @@ const snackbar = ( { intl, /*jazzSupported,*/ message, yes, no, dismissSnackbar 
 						{ yes && <GO onClick={ dismissSnackbar.bind( this, yes.action ) } label={ formatMessage( intlMessages[ yes.label ] ) } /> }
 					</SPAN>
 				</DIV> }
-			</ReactCSSTransitionGroup>
+			</CSSTransitionGroup>
 
 		)
 

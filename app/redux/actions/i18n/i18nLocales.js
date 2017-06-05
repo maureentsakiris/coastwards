@@ -45,13 +45,12 @@ export const Locales = [
 		locale: 'el',
 		name: 'Ελληνικά',
 		en: 'Chinese'
-	}
-	/*,
+	},
 	{
 		locale: 'hi',
 		name: 'हिन्दी, हिंदी',
 		en: 'Hindi'
-	},
+	}/*,
 	{
 		locale: 'ru',
 		name: 'русский',
@@ -358,6 +357,48 @@ loaders.el = ( done ) => {
 	}
 
 }
+
+loaders.hi = ( done ) => {
+
+	if ( !hasIntl ){
+
+		require.ensure(
+
+			[ 'intl/locale-data/jsonp/hi.js', 'react-intl/locale-data/hi', '../../../i18n/locales/hi' ],
+			( require ) => {
+
+				require( 'intl/locale-data/jsonp/hi.js' ); 
+				var localeData = require( 'react-intl/locale-data/hi' );
+				addLocaleData( localeData );
+				var i18n = require( '../../../i18n/locales/hi' );
+				done ( null, i18n );
+
+			},
+			'hi-polyfill'
+
+		);
+
+	}else{
+
+		require.ensure(
+
+			[ 'react-intl/locale-data/hi', '../../../i18n/locales/hi' ],
+			( require ) => {
+
+				var localeData = require( 'react-intl/locale-data/hi' );
+				addLocaleData( localeData );
+				var i18n = require( '../../../i18n/locales/hi' );
+				done ( null, i18n );
+
+			},
+			'hi'
+
+		);
+
+	}
+
+}
+
 /*loaders.it = ( done ) => {
 
 	if ( !hasIntl ){
@@ -440,46 +481,7 @@ loaders.ru = ( done ) => {
 
 }
 
-loaders.hi = ( done ) => {
 
-	if ( !hasIntl ){
-
-		require.ensure(
-
-			[ 'intl/locale-data/jsonp/hi.js', 'react-intl/locale-data/hi', '../../../i18n/locales/hi' ],
-			( require ) => {
-
-				require( 'intl/locale-data/jsonp/hi.js' ); 
-				var localeData = require( 'react-intl/locale-data/hi' );
-				addLocaleData( localeData );
-				var i18n = require( '../../../i18n/locales/hi' );
-				done ( null, i18n );
-
-			},
-			'hi-polyfill'
-
-		);
-
-	}else{
-
-		require.ensure(
-
-			[ 'react-intl/locale-data/hi', '../../../i18n/locales/hi' ],
-			( require ) => {
-
-				var localeData = require( 'react-intl/locale-data/hi' );
-				addLocaleData( localeData );
-				var i18n = require( '../../../i18n/locales/hi' );
-				done ( null, i18n );
-
-			},
-			'hi'
-
-		);
-
-	}
-
-}
 
 loaders.bn = ( done ) => {
 

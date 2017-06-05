@@ -92,6 +92,11 @@ const messages = defineMessages( {
 		description: "P - ",
 		defaultMessage: "For translating this site into Chinese"
 	},
+	atul:{
+		id: "atul",
+		description: "P - ",
+		defaultMessage: "For translating this site into Hindi"
+	},
 	legal_notice:{
 		id: "legal_notice",
 		description: "A - ",
@@ -123,6 +128,7 @@ const team = ( { intl, jazzSupported, showDialog } ) => {
 					<P><A href="https://www.linkedin.com/in/claudio-molinari-4a9a472?trk=hp-identity-name" target="_blank">Claudio Molinari</A> - { formatMessage( messages.claudio ) }</P>
 					<P><A href="https://github.com/basselAlshK" target="_blank">Bassel Alsheekh Kassem</A> - { formatMessage( messages.bassel ) }</P>
 					<P><A href="https://www.facebook.com/jing.liu.127" target="_blank">Jing Liu</A> - { formatMessage( messages.jing ) }</P>
+					<P><A href="https://www.linkedin.com/in/atul-kumar/" target="_blank">Atul Kumar Yadav</A> - { formatMessage( messages.atul ) }</P>
 
 				</TOGGLE>
 				<A className={ style.imprint } onClick={ showDialog.bind( this, 'IMPRINT' ) } >{ formatMessage( messages.legal_notice ) }</A>
@@ -149,6 +155,7 @@ const team = ( { intl, jazzSupported, showDialog } ) => {
 					<P><A href="https://www.linkedin.com/in/claudio-molinari-4a9a472?trk=hp-identity-name" target="_blank">Claudio Molinari</A> - { formatMessage( messages.claudio ) }</P>
 					<P><A href="https://github.com/basselAlshK" target="_blank">Bassel Alsheekh Kassem</A> - { formatMessage( messages.bassel ) }</P>
 					<P><A href="https://www.facebook.com/jing.liu.127" target="_blank">Jing Liu</A> - { formatMessage( messages.jing ) }</P>
+					<P><A href="https://www.linkedin.com/in/atul-kumar/" target="_blank">Atul Kumar Yadav</A> - { formatMessage( messages.atul ) }</P>
 
 				</TOGGLE>
 				<A className={ style.imprint } onClick={ showDialog.bind( this, 'IMPRINT' ) } >{ formatMessage( messages.legal_notice ) }</A>
