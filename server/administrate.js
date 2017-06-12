@@ -96,8 +96,6 @@ const _fetch = ( fields ) => {
 
 				var query = mysql.format( sql, inserts )
 
-				console.log( query );
-
 				connection.query( query, function ( err, results ) {
 
 					if( error ){
@@ -498,21 +496,8 @@ function promiseFetchContribution ( id ){
 
 			}else{
 
-				var sql = 'SELECT ??, ??, ??, ??, ??, ??, ??, ??, ??, ??, ??, ?? FROM ?? WHERE ??=?'
+				var sql = 'SELECT * FROM ?? WHERE ??=?'
 				var inserts = [
-
-					"contribution_uid",
-					"contribution_comment",
-					"contribution_verified",
-					"contribution_material",
-					"contribution_material_verified",
-					"contribution_exif_datetime",
-					"contribution_point",
-					"contribution_id",
-					"contribution_hashtag",
-					"contribution_point_manual",
-					"contribution_point_corrected",
-					"contribution_closeup",
 
 					"contributions",
 

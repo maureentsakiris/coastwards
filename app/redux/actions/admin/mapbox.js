@@ -210,14 +210,14 @@ export const showPopup = ( feature ) => {
 		dispatch( { type: types.SET_POPUP_FEATURE, to: feature } )
 		popup.setLngLat( wrapped ).addTo( map )
 
-		/*let cz = map.getZoom();
-		let z = cz < 2.5 ? 2.5 : cz;*/
+		let cz = map.getZoom();
+		let z = cz < 2.5 ? 2.5 : cz;
 
 
 		const featureDOM = document.getElementById( 'Popup' )
 		let offsetY = featureDOM.clientHeight / 2
 
-		map.flyTo( { speed: 1, center: wrapped, offset: [ 0, offsetY ], zoom: 16 } )
+		map.flyTo( { speed: 1, center: wrapped, offset: [ 0, offsetY ], zoom: z } )
 
 	}
 

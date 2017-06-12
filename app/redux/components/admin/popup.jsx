@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
 import { PropTypes } from 'prop-types'
-import PureRenderMixin from 'react-addons-pure-render-mixin'
 import _ from 'underscore'
 
 import DIV from 'components/tags/div'
 import P from 'components/tags/p'
-import IMG from 'components/tags/img'
+import BR from 'components/tags/br'
 
 import FORM from 'components/tags/form'
 import INPUT from 'components/tags/input'
@@ -29,10 +28,25 @@ class popup extends Component {
 
 	}
 
+	componentWillReceiveProps ( p ){
+
+		console.log( p );
+
+		this.setState( { 
+
+			verified: p.feature.contribution_verified == 1 ? true : false,
+			materialVerified: p.feature.contribution_material_verified ?  p.feature.contribution_material_verified : p.feature.contribution_material,
+			example: p.feature.contribution_example == 1 ? true : false,
+			intro: p.feature.contribution_intro == 1 ? true : false,
+			closeup: p.feature.contribution_closeup == 1 ? true : false,
+
+		} )
+
+	}
+
 	constructor ( props ) {
 
 		super ( props )
-		this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind( this )
 
 		this.state = {
 
@@ -53,14 +67,19 @@ class popup extends Component {
 
 		const { verified, materialVerified, example, intro, closeup } = this.state
 
-		console.log( feature );
-
 		const options = _.map( materials, ( material ) => {
 
 			let checked = material.value == contribution_material ? true : false
 			return { label: material.label, value: material.value, checked: checked }
 
 		} )
+
+		const yesNo = [
+
+			{ label: 'Yes', value: '1' },
+			{ label: 'No', value: '0' }
+
+		]
 
 		const formID = "contribution_" + contribution_id
 
@@ -80,15 +99,16 @@ class popup extends Component {
 			return(
 
 				<DIV id="Popup" className={ style.popup } >
-					<IMG className={ style.image } src={ "uploads/" + contribution_uid + ".jpg" } alt={ contribution_uid } />
+					<DIV className={ style.top } style={ { backgroundImage: 'url("uploads/' + contribution_uid +'.jpg")' } } ></DIV>
 					<FORM id={ formID } action="#" className={ style.form }>
 						<INPUT form={ formID } type="hidden" name="contribution_id" value={ contribution_id + '' } />
+						<P>ID: { contribution_id }</P>
 						<P>Material user: { contribution_material }</P>
-						<P>Material verified: <SELECTGROUP form={ formID } label="Material verified" name="contribution_material_verified" options={ options } value={ materialVerified } onChange={ this._setMaterial.bind( this ) } /></P>
-						<RADIOGROUP preferPlaceholder={ false } checked={ verified } label="Verified" form={ formID } name="contribution_verified" options={ [ { label: "yes", value: "1" }, { label: "no", value: "0" } ] } value={ verified } onChange={ this._setVerified.bind( this ) } />
-						<RADIOGROUP preferPlaceholder={ false } checked={ example } label="Example" form={ formID } name="contribution_example" options={ [ { label: "yes", value: "1" }, { label: "no", value: "0" } ] } value={ example } onChange={ this._setExample.bind( this ) } />
-						<RADIOGROUP preferPlaceholder={ false } checked={ intro } label="Intro" form={ formID } name="contribution_intro" options={ [ { label: "yes", value: "1" }, { label: "no", value: "0" } ] } value={ intro } onChange={ this._setIntro.bind( this ) } />
-						<RADIOGROUP preferPlaceholder={ false } checked={ closeup } label="Closeup" form={ formID } name="contribution_closeup" options={ [ { label: "yes", value: "1" }, { label: "no", value: "0" } ] } value={ closeup } onChange={ this._setCloseup.bind( this ) } />
+						<SELECTGROUP preferPlaceholder={ false } form={ formID } label="Material verified" name="contribution_material_verified" options={ options } value={ materialVerified } onChange={ this._setMaterial.bind( this ) } /><BR/>
+						<RADIOGROUP preferPlaceholder={ false } checked={ verified } label="Verified" form={ formID } name="contribution_verified" options={ yesNo } value={ verified } onChange={ this._setVerified.bind( this ) } /><BR/>
+						<RADIOGROUP preferPlaceholder={ false } checked={ closeup } label="Closeup" form={ formID } name="contribution_closeup" options={ yesNo } value={ closeup } onChange={ this._setCloseup.bind( this ) } /><BR/>
+						<RADIOGROUP preferPlaceholder={ false } checked={ example } label="Example" form={ formID } name="contribution_example" options={ yesNo } value={ example } onChange={ this._setExample.bind( this ) } /><BR/>
+						<RADIOGROUP preferPlaceholder={ false } checked={ intro } label="Intro" form={ formID } name="contribution_intro" options={ yesNo } value={ intro } onChange={ this._setIntro.bind( this ) } /><BR/>
 					</FORM>
 					<DIV className={ style.actions }>
 						<GO onClick={ updateContribution.bind( this, formID ) } label="UPDATE" className={ style.update } />
@@ -100,64 +120,6 @@ class popup extends Component {
 			)
 
 		}
-
-	
-
-		/*if( !feature.contribution_uid ){
-
-			return (
-				
-				<DIV id="Popup" className={ style.popup } >
-					<DIV className={ style.spinner }></DIV>
-				</DIV>
-
-			)
-
-		}else{
-
-			const { contribution_verified, contribution_material, contribution_material_verified, contribution_comment, contribution_uid, contribution_exif_datetime } = feature
-
-
-			const material = contribution_verified ? contribution_material_verified : contribution_material
-			const m = _.findWhere( materials, { value: contribution_material_verified } )
-			const color = m.color
-			
-
-			const usercomment = validator.unescape( contribution_comment )
-			const hascomment = usercomment != ''
-			const showcomment = commentToggled && hascomment
-			const commentIcon = showcomment ? 'insert_comment' : 'mode_comment'
-
-			const date = contribution_exif_datetime == '0999-12-31T23:00:00.000Z' ? false : contribution_exif_datetime
-
-			const clsVerified = Classnames( "material-icons", style.verified )
-
-			const showVerified = contribution_verified == 1 && material != 'notclose' && material != 'notsure'
-
-			return(
-
-				<DIV id="Popup" className={ style.popup } >
-					{ !showcomment && <DIV className={ style.bar }>
-						{ date && <p>{ new Date( contribution_exif_datetime ) } </p> }
-					</DIV> }
-					<DIV className={ style.top } style={ { backgroundImage: 'url("uploads/' + contribution_uid +'.jpg")' } } >
-						{ showcomment && <P className={ style.comment } >{ usercomment }</P> }
-					</DIV>
-					<DIV className={ style.actions }>
-						{ material != 'notset' && <P className={ style.label } style={ { backgroundColor: color } } >{ material }{ showVerified && <I className={ clsVerified } >check_circle</I> }</P> }
-						
-						{ hascomment && <A onClick={ this._toggleComment } className={ style.showcomment } title="Toggle comment" >
-							<I className="material-icons">{ commentIcon }</I>
-						</A> }
-						<A onClick={ hidePopup } className={ style.close } title="Close popup" >
-							<I className="material-icons">clear</I>
-						</A>
-					</DIV>
-				</DIV>
-
-			)
-
-		}*/
 
 	}
 
