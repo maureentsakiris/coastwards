@@ -24,25 +24,25 @@ const admin = ( { /*showForm,*/ /*results,*/ materials, material, materialverifi
 
 	const all = [ { label: 'All', value: '%' } ]
 	const mats = _.chain( materials )
-	.filter( ( material ) => {
+		.filter( ( material ) => {
 
-		let { value } = material
-		return value !== 'notset'
+			let { value } = material
+			return value !== 'notset'
 
-	} )
-	.filter( ( material ) => {
+		} )
+		.filter( ( material ) => {
 
-		let { value } = material
-		return value !== 'notclose'
+			let { value } = material
+			return value !== 'notclose'
 
-	} )
-	.map( ( material ) => {
+		} )
+		.map( ( material ) => {
 
-		let { value, color, label } = material
-		return { label: label, value: value, color: color }
+			let { value, color, label } = material
+			return { label: label, value: value, color: color }
 
-	} )
-	.value()
+		} )
+		.value()
 
 	const materialOptions = all.concat( mats )
 

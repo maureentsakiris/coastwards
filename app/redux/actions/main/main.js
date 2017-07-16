@@ -15,18 +15,18 @@ export const getCount = ( ) => {
 	return function ( dispatch ){
 
 		promiseGet( '/contribute/count' )
-		.then( JSON.parse )
-		.then( ( parsed ) => {
+			.then( JSON.parse )
+			.then( ( parsed ) => {
 
-			dispatch( { type: types.SET_COUNT, to: parsed.count } )
-			return parsed.count
+				dispatch( { type: types.SET_COUNT, to: parsed.count } )
+				return parsed.count
 
-		} )
-		.catch( ( error ) => {
+			} )
+			.catch( ( error ) => {
 
-			dispatch( sendErrorMail( error ) )
+				dispatch( sendErrorMail( error ) )
 
-		} )
+			} )
 
 	}
 
@@ -37,19 +37,19 @@ export const getIntro = ( ) => {
 	return function ( dispatch ){
 
 		promiseGet( '/contribute/intro' )
-		.then( JSON.parse )
-		.then( promiseJSONOK )
-		.then( ( parsed ) => {
+			.then( JSON.parse )
+			.then( promiseJSONOK )
+			.then( ( parsed ) => {
 			
-			dispatch( { type: types.SET_INTRO, to: parsed.intro } )
-			return parsed.intro
+				dispatch( { type: types.SET_INTRO, to: parsed.intro } )
+				return parsed.intro
 
-		} )
-		.catch( ( error ) => {
+			} )
+			.catch( ( error ) => {
 
-			dispatch( sendErrorMail( error ) )
+				dispatch( sendErrorMail( error ) )
 
-		} )
+			} )
 
 	}
 
@@ -139,59 +139,59 @@ const _promiseSafe = ( image ) => {
 		}
 
 		promiseXHR( options )
-		.then( JSON.parse )
-		.then( ( response ) => {
+			.then( JSON.parse )
+			.then( ( response ) => {
 
-			if( response.error ){
+				if( response.error ){
 
-				reject( Error( "problems_from_google" ) )
+					reject( Error( "problems_from_google" ) )
 
-			}
+				}
 
-			let annotations = response.responses[ 0 ]
+				let annotations = response.responses[ 0 ]
 
-			if( annotations.faceAnnotations ){
+				if( annotations.faceAnnotations ){
 
-				reject( Error( "faces_detected" ) )
+					reject( Error( "faces_detected" ) )
 
-			}
+				}
 
-			if( _.contains( annotations.safeSearchAnnotation, 'LIKELY' ) || _.contains( annotations.safeSearchAnnotation, 'VERY_LIKELY' ) ){
+				if( _.contains( annotations.safeSearchAnnotation, 'LIKELY' ) || _.contains( annotations.safeSearchAnnotation, 'VERY_LIKELY' ) ){
  
-				reject( Error( "spam_detected" ) )
+					reject( Error( "spam_detected" ) )
 
-			}
+				}
 
-			let coast = _.filter( annotations.labelAnnotations, { description: 'coast' } )
-			let shore = _.filter( annotations.labelAnnotations, { description: 'shore' } )
-			let harbor = _.filter( annotations.labelAnnotations, { description: 'harbor' } )
-			let beach = _.filter( annotations.labelAnnotations, { description: 'beach' } )
-			let sea = _.filter( annotations.labelAnnotations, { description: 'sea' } )
-			let bodyofwater = _.filter( annotations.labelAnnotations, { description: 'body of water' } )
-			let natural_environment = _.filter( annotations.labelAnnotations, { description: 'natural environment' } )
-			let geographical_feature = _.filter( annotations.labelAnnotations, { description: 'geographical feature' } )
-			let loch = _.filter( annotations.labelAnnotations, { description: 'loch' } )
-			//let habitat = _.filter( annotations.labelAnnotations, { description: 'habitat' } )
-			let landform = _.filter( annotations.labelAnnotations, { description: 'landform' } )
-			let skyline = _.filter( annotations.labelAnnotations, { description: 'skyline' } )
-			let horizon = _.filter( annotations.labelAnnotations, { description: 'horizon' } )
+				let coast = _.filter( annotations.labelAnnotations, { description: 'coast' } )
+				let shore = _.filter( annotations.labelAnnotations, { description: 'shore' } )
+				let harbor = _.filter( annotations.labelAnnotations, { description: 'harbor' } )
+				let beach = _.filter( annotations.labelAnnotations, { description: 'beach' } )
+				let sea = _.filter( annotations.labelAnnotations, { description: 'sea' } )
+				let bodyofwater = _.filter( annotations.labelAnnotations, { description: 'body of water' } )
+				let natural_environment = _.filter( annotations.labelAnnotations, { description: 'natural environment' } )
+				let geographical_feature = _.filter( annotations.labelAnnotations, { description: 'geographical feature' } )
+				let loch = _.filter( annotations.labelAnnotations, { description: 'loch' } )
+				//let habitat = _.filter( annotations.labelAnnotations, { description: 'habitat' } )
+				let landform = _.filter( annotations.labelAnnotations, { description: 'landform' } )
+				let skyline = _.filter( annotations.labelAnnotations, { description: 'skyline' } )
+				let horizon = _.filter( annotations.labelAnnotations, { description: 'horizon' } )
 
-			if( !coast.length && !shore.length && !harbor.length && !beach.length && !sea.length && !natural_environment.length && !bodyofwater.length && !geographical_feature.length && !loch.length /*&& !habitat.length*/ && !landform.length && !skyline.length && !horizon.length ){
+				if( !coast.length && !shore.length && !harbor.length && !beach.length && !sea.length && !natural_environment.length && !bodyofwater.length && !geographical_feature.length && !loch.length /*&& !habitat.length*/ && !landform.length && !skyline.length && !horizon.length ){
 
-				reject( Error( "not_a_coast" ) )
+					reject( Error( "not_a_coast" ) )
 
-			}
+				}
 			
-			image.labels = annotations.labelAnnotations
-			resolve( image )
-			return image
+				image.labels = annotations.labelAnnotations
+				resolve( image )
+				return image
 
-		} )
-		.catch( ( error ) => {
+			} )
+			.catch( ( error ) => {
 
-			reject( error )
+				reject( error )
 
-		} )
+			} )
 
 	} )
 
@@ -202,27 +202,27 @@ const _promiseLocation = ( image ) => {
 	return new Promise( ( resolve, reject ) => {
 
 		promiseLocation( image )
-		.then( ( image ) => {
+			.then( ( image ) => {
 
-			image.manual = 0
-			resolve( image )
-			return image
-
-		} )
-		.catch( ( error ) => {
-
-			if( error.message == 'location_undefined' || error.message == 'invalid_long_lat' ){
-
-				image.manual = 1
+				image.manual = 0
 				resolve( image )
+				return image
 
-			}else{
+			} )
+			.catch( ( error ) => {
 
-				reject( error )
+				if( error.message == 'location_undefined' || error.message == 'invalid_long_lat' ){
 
-			}
+					image.manual = 1
+					resolve( image )
 
-		} )
+				}else{
+
+					reject( error )
+
+				}
+
+			} )
 
 	} )
 
@@ -252,22 +252,22 @@ export const validateFile = ( e ) => {
 
 
 		_promiseFiles( e ) //eslint-disable-line promise/always-return
-		.then( ( selected ) => {
+			.then( ( selected ) => {
 
-			if( selected.length > 1 ){
+				if( selected.length > 1 ){
 
-				dispatch( setSnackbarMessage( 'selected_truncated', 3000 ) )
+					dispatch( setSnackbarMessage( 'selected_truncated', 3000 ) )
 
-			}
+				}
 
-			return selected[ 0 ]
+				return selected[ 0 ]
 
-		} )
-		.then( ( file ) => {
+			} )
+			.then( ( file ) => {
 
-			return promiseType( file )
+				return promiseType( file )
 
-		} )
+			} )
 		/*.then( ( file ) => {
 
 			//MATTHIAS
@@ -287,97 +287,97 @@ export const validateFile = ( e ) => {
 			return file
 
 		} )*/
-		.then( promiseEXIF )
-		.then( ( image ) => {
+			.then( promiseEXIF )
+			.then( ( image ) => {
 
-			return promiseMinimumWidth( image, state.config.imageWidth )
+				return promiseMinimumWidth( image, state.config.imageWidth )
 
-		} )
-		.then( ( image ) => {
+			} )
+			.then( ( image ) => {
 
-			return _promiseMake( image, state.config.makeBlacklist )
+				return _promiseMake( image, state.config.makeBlacklist )
 
-		} )
+			} )
 		/*.then( ( image ) => {
 
 			return promiseDateTime( image )
 
 		} )*/
-		.then( ( image ) => {
+			.then( ( image ) => {
 
-			return promiseCanvasBoxResize( image, state.config.imageWidth )
+				return promiseCanvasBoxResize( image, state.config.imageWidth )
 
-		} )
-		.then( ( image ) => {
+			} )
+			.then( ( image ) => {
 
-			if( state.config.google ){
+				if( state.config.google ){
 
-				return _promiseSafe( image )
-
-			}else{
-
-				return image
-
-			}
-
-		} )
-		.then( _promiseLocation )
-		.then( ( image ) => {
-
-			const uid = uuid.v1()
-			dispatch( { type: types.SET_UID, to: uid } )
-			dispatch( { type: types.SET_IMAGE_TO_UPLOAD, to: image } )
-			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'statuses', to: false } )
-
-			image.corrected = 0
-
-			if( image.manual == 0 ){
-
-				if( state.browser.jazzSupported ){
-
-					dispatch( addDropMarker( image ) )
-					dispatch( setMarkerVisibility( 'none' ) )
-					dispatch( setSnackbarMessage( 'here_we_go', 4000 ) )
-					dispatch( fly( [ image.long, image.lat ], 14 ) )
-
-					map.once( 'moveend', () => {
-						
-						dispatch( setSnackbarMessage( 'location_right', 0, { label: 'yes', action: showForm()  }, { label: 'no', action: showMarker( true ) } ) )
-
-					} )
+					return _promiseSafe( image )
 
 				}else{
 
-					dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'statuses', to: false } )
-					dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'form', to: true } )
+					return image
 
 				}
 
-			} else if ( image.manual == 1 && state.browser.jazzSupported ){
+			} )
+			.then( _promiseLocation )
+			.then( ( image ) => {
 
-				dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'locate', to: true } )
+				const uid = uuid.v1()
+				dispatch( { type: types.SET_UID, to: uid } )
+				dispatch( { type: types.SET_IMAGE_TO_UPLOAD, to: image } )
+				dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'statuses', to: false } )
 
-			}else{
+				image.corrected = 0
 
-				throw Error( 'location_undefined' )
+				if( image.manual == 0 ){
 
-			}
+					if( state.browser.jazzSupported ){
 
-			return image
+						dispatch( addDropMarker( image ) )
+						dispatch( setMarkerVisibility( 'none' ) )
+						dispatch( setSnackbarMessage( 'here_we_go', 4000 ) )
+						dispatch( fly( [ image.long, image.lat ], 14 ) )
 
-		} )
-		.catch( ( error ) => {
+						map.once( 'moveend', () => {
+						
+							dispatch( setSnackbarMessage( 'location_right', 0, { label: 'yes', action: showForm()  }, { label: 'no', action: showMarker( true ) } ) )
 
-			dispatch( resetMain() )
+						} )
 
-			let msg = error.message ? error.message : 'an_error_occurred'
-			dispatch( { type: types.SET_ERROR_MSG, to: msg } )
-			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'errors', to: true } )
-			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'prompts', to: false } )
+					}else{
+
+						dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'statuses', to: false } )
+						dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'form', to: true } )
+
+					}
+
+				} else if ( image.manual == 1 && state.browser.jazzSupported ){
+
+					dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'locate', to: true } )
+
+				}else{
+
+					throw Error( 'location_undefined' )
+
+				}
+
+				return image
+
+			} )
+			.catch( ( error ) => {
+
+				dispatch( resetMain() )
+
+				let msg = error.message ? error.message : 'an_error_occurred'
+				dispatch( { type: types.SET_ERROR_MSG, to: msg } )
+				dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'errors', to: true } )
+				dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'prompts', to: false } )
 			
-			dispatch( sendErrorMail( error ) )
+				dispatch( sendErrorMail( error ) )
 
-		} )
+			} )
 
 	}
 
@@ -492,100 +492,100 @@ export const uploadImage = ( ) => {
 		const { image } = state.form
 
 		promiseDataURLtoBlob( image.dataURL )
-		.then( ( blob ) => {
+			.then( ( blob ) => {
 
-			const { image, material, adaptation, comment, hashtag, uid } = state.form
+				const { image, material, adaptation, comment, hashtag, uid } = state.form
 
-			const { exifdata, lat, long, manual, labels, corrected } = image
+				const { exifdata, lat, long, manual, labels, corrected } = image
 
-			//UPDATE ALSO IN FORMDATA.JSX
-			const cleanExif = _.omit( image.exifdata, [ 'MakerNote', 'undefined', 'Artist', 'Copyright' ] )
+				//UPDATE ALSO IN FORMDATA.JSX
+				const cleanExif = _.omit( image.exifdata, [ 'MakerNote', 'undefined', 'Artist', 'Copyright' ] )
 
-			const devLabels = labels ? labels : {}
-			const datetime = exifdata.DateTimeOriginal || exifdata.DateTimeDigitized || exifdata.DateTime
+				const devLabels = labels ? labels : {}
+				const datetime = exifdata.DateTimeOriginal || exifdata.DateTimeDigitized || exifdata.DateTime
 
-			let formData = new FormData()
+				let formData = new FormData()
 
-			formData.append( 'file', blob, uid + '.jpg' )
-			formData.append( 'exifdata', JSON.stringify( cleanExif ) )
-			formData.append( 'lat', lat )
-			formData.append( 'long', long )
-			formData.append( 'manual', manual )
-			formData.append( 'corrected', corrected )
-			formData.append( 'uid', uid )
-			formData.append( 'datetime', datetime )
-			formData.append( 'labels', JSON.stringify( devLabels ) )
-			formData.append( 'material', material )
-			formData.append( 'adaptation', adaptation )
-			formData.append( 'comment', comment )
-			formData.append( 'hashtag', hashtag )
+				formData.append( 'file', blob, uid + '.jpg' )
+				formData.append( 'exifdata', JSON.stringify( cleanExif ) )
+				formData.append( 'lat', lat )
+				formData.append( 'long', long )
+				formData.append( 'manual', manual )
+				formData.append( 'corrected', corrected )
+				formData.append( 'uid', uid )
+				formData.append( 'datetime', datetime )
+				formData.append( 'labels', JSON.stringify( devLabels ) )
+				formData.append( 'material', material )
+				formData.append( 'adaptation', adaptation )
+				formData.append( 'comment', comment )
+				formData.append( 'hashtag', hashtag )
 
-			//UPDATE the table in formdata.jsx if something changes here!!!!
-			
+				//UPDATE the table in formdata.jsx if something changes here!!!!
+				
 
-			return formData
+				return formData
 
-		} )
-		.then( ( formData ) => {
+			} )
+			.then( ( formData ) => {
 
-			/*for ( var pair of formData.entries() ) {
+				/*for ( var pair of formData.entries() ) {
 
-				console.log( pair[ 0 ]+ ', ' + pair[ 1 ] )
+					console.log( pair[ 0 ]+ ', ' + pair[ 1 ] )
 
-			}*/
+				}*/
 
-			let options = {
+				let options = {
 
-				data: formData,
-				url: '/contribute/upload',
-				onProgress: function ( e ) {
+					data: formData,
+					url: '/contribute/upload',
+					onProgress: function ( e ) {
 
-					let percent = parseInt( e.loaded / e.total * 100 )
-					dispatch( { type: types.SET_UPLOAD_PROGRESS, to: percent } )
+						let percent = parseInt( e.loaded / e.total * 100 )
+						dispatch( { type: types.SET_UPLOAD_PROGRESS, to: percent } )
+
+					}
 
 				}
 
-			}
+				dispatch( { type: types.SET_STATUS_MSG, to: 'status_uploading' } )
+				dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'statuses', to: true } )
+				dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'form', to: false } )
 
-			dispatch( { type: types.SET_STATUS_MSG, to: 'status_uploading' } )
-			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'statuses', to: true } )
-			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'form', to: false } )
+				return promiseXHR( options )
 
-			return promiseXHR( options )
+			} )
+			.then( JSON.parse )
+			.then( promiseJSONOK )
+			.then( ( parsed ) => {
 
-		} )
-		.then( JSON.parse )
-		.then( promiseJSONOK )
-		.then( ( parsed ) => {
+				dispatch( resetMain() )
 
-			dispatch( resetMain() )
+				const upload = JSON.parse( parsed.formData )
+				const image = {
 
-			const upload = JSON.parse( parsed.formData )
-			const image = {
+					lat: upload.fields.lat,
+					long: upload.fields.long,
+					id: upload.insertId
 
-				lat: upload.fields.lat,
-				long: upload.fields.long,
-				id: upload.insertId
+				}
 
-			}
+				dispatch( addUploadMarker( image ) )
+				dispatch( { type: types.SET_PROMPT_MSG, to: 'upload_ok' } )
+				dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'prompts', to: true } )
 
-			dispatch( addUploadMarker( image ) )
-			dispatch( { type: types.SET_PROMPT_MSG, to: 'upload_ok' } )
-			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'prompts', to: true } )
+				return parsed
 
-			return parsed
+			} )
+			.catch( ( error ) => {
 
-		} )
-		.catch( ( error ) => {
+				dispatch( resetMain() )
+				dispatch( { type: types.SET_ERROR_MSG, to: 'upload_error' } )
+				dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'errors', to: true } )
+				dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'prompts', to: false } )
+				
+				dispatch( sendErrorMail( error ) )
 
-			dispatch( resetMain() )
-			dispatch( { type: types.SET_ERROR_MSG, to: 'upload_error' } )
-			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'errors', to: true } )
-			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'prompts', to: false } )
-			
-			dispatch( sendErrorMail( error ) )
-
-		} )
+			} )
 
 	}
 
@@ -725,20 +725,20 @@ export const fetchExamples = () => {
 	return function ( dispatch ){
 
 		promiseGet( '/administrate/examples/' )
-		.then( JSON.parse )
-		.then( promiseJSONOK )
-		.then( ( parsed ) => {
+			.then( JSON.parse )
+			.then( promiseJSONOK )
+			.then( ( parsed ) => {
 
-			const json = parsed.json
-			dispatch( { type: types.SET_EXAMPLES, to: json } )
-			return json
+				const json = parsed.json
+				dispatch( { type: types.SET_EXAMPLES, to: json } )
+				return json
 
-		} )
-		.catch( ( error ) => {
+			} )
+			.catch( ( error ) => {
 
-			dispatch( sendErrorMail( error ) )
+				dispatch( sendErrorMail( error ) )
 
-		} )
+			} )
 
 	}
 

@@ -273,6 +273,7 @@ export const promiseCanvasBoxResize = ( image, boxlength ) => {
 					ctx.rotate( -0.5 * Math.PI )
 					ctx.translate ( -width, 0 )
 					break
+				
 				}
 
 				ctx.drawImage( img, 0, 0, width, height )

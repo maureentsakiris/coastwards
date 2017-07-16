@@ -31,6 +31,12 @@ export const mapboxNavigationControl = () => {
 
 }
 
+export const mapboxAttributionControl = () => {
+
+	return new mapboxgl.AttributionControl()
+
+}
+
 export const mapboxPopup = ( options ) => {
 
 	return new mapboxgl.Popup( options )

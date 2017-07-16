@@ -139,25 +139,25 @@ const form = ( { intl, className, jazzSupported, show, image, checkedValue, mate
 	const { formatMessage } = intl
 
 	const mats = _.chain( materials )
-	.filter( ( material ) => {
+		.filter( ( material ) => {
 
-		let { value } = material
-		return value !== 'notset'
+			let { value } = material
+			return value !== 'notset'
 
-	} )
-	.filter( ( material ) => {
+		} )
+		.filter( ( material ) => {
 
-		let { value } = material
-		return value !== 'notclose'
+			let { value } = material
+			return value !== 'notclose'
 
-	} )
-	.map( ( material ) => {
+		} )
+		.map( ( material ) => {
 
-		let { value, color } = material
-		return { label: formatMessage( messages[ value ] ), value: value, color: color }
+			let { value, color } = material
+			return { label: formatMessage( messages[ value ] ), value: value, color: color }
 
-	} )
-	.value()
+		} )
+		.value()
 
 
 	if( !jazzSupported ){

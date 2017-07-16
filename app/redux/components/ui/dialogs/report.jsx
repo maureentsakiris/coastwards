@@ -162,28 +162,28 @@ class report extends Component {
 		this.setState( { sending: true, status: 'sending_mail' } )
 
 		promiseXHR( options )
-		.then( ( response ) => {
+			.then( ( response ) => {
 
-			document.getElementById( 'Report' ).reset()
+				document.getElementById( 'Report' ).reset()
 
-			if( response == 'OK' ){
+				if( response == 'OK' ){
 
-				this.setState( { status: 'report_ok', sending: false } )
+					this.setState( { status: 'report_ok', sending: false } )
 
-			}else{
+				}else{
 
-				this.setState( { status: 'mail_ko', sending: false } )
+					this.setState( { status: 'mail_ko', sending: false } )
 
-			}
+				}
 
-			return response
+				return response
 
-		} )
-		.catch( ( error ) => {
+			} )
+			.catch( ( error ) => {
 
-			this.setState( { status: error, sending: false } )
+				this.setState( { status: error, sending: false } )
 
-		} )
+			} )
 
 	}
 

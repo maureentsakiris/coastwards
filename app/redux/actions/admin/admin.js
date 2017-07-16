@@ -163,30 +163,30 @@ export const fetch = ( ) => {
 		}
 
 		promiseXHR( options )
-		.then( JSON.parse )
-		.then( ( parsed ) => {
+			.then( JSON.parse )
+			.then( ( parsed ) => {
 
-			if( parsed.status == 'KO' ){
+				if( parsed.status == 'KO' ){
 
-				throw Error( parsed.message )
+					throw Error( parsed.message )
 
-			}else{
+				}else{
 
-				dispatch( { type: types.SET_RESULTS, to: parsed.json } )
-				//dispatch( { type: types.SET_FORM_VISIBILITY, to: false } )
-				dispatch( setMapData( parsed.json ) )
+					dispatch( { type: types.SET_RESULTS, to: parsed.json } )
+					//dispatch( { type: types.SET_FORM_VISIBILITY, to: false } )
+					dispatch( setMapData( parsed.json ) )
 
-			}
+				}
 
-			return parsed
+				return parsed
 
-		} )
-		.catch( ( error ) => {
+			} )
+			.catch( ( error ) => {
 
-			console.log( error )
-			dispatch( sendErrorMail( error ) )
+				console.log( error )
+				dispatch( sendErrorMail( error ) )
 
-		} )
+			} )
 
 	}
 
@@ -208,27 +208,27 @@ export const deleteContribution = ( contribution_id, contribution_uid ) => {
 		}
 
 		promiseXHR( options )
-		.then( JSON.parse )
-		.then( ( parsed ) => {
+			.then( JSON.parse )
+			.then( ( parsed ) => {
 
-			if( parsed.status == 'KO' ){
+				if( parsed.status == 'KO' ){
 
-				throw Error( parsed.message )
+					throw Error( parsed.message )
 
-			}else{
+				}else{
 
-				dispatch( fetch() )
+					dispatch( fetch() )
 
-			}
+				}
 
-			return parsed
+				return parsed
 
-		} )
-		.catch( ( error ) => {
+			} )
+			.catch( ( error ) => {
 
-			dispatch( sendErrorMail( error ) )
+				dispatch( sendErrorMail( error ) )
 
-		} )
+			} )
 
 	}
 
@@ -249,31 +249,31 @@ export const updateContribution = ( formID ) => {
 		}
 
 		promiseXHR( options )
-		.then( JSON.parse )
-		.then( ( parsed ) => {
+			.then( JSON.parse )
+			.then( ( parsed ) => {
 
-			if( parsed.status == 'KO' ){
+				if( parsed.status == 'KO' ){
 
-				throw Error( parsed.message )
+					throw Error( parsed.message )
 
-			}else{
+				}else{
 
-				if( parsed.affectedRows == 1 ){
+					if( parsed.affectedRows == 1 ){
 
-					dispatch( fetch() )
+						dispatch( fetch() )
+
+					}
 
 				}
 
-			}
+				return parsed
 
-			return parsed
+			} )
+			.catch( ( error ) => {
 
-		} )
-		.catch( ( error ) => {
+				dispatch( sendErrorMail( error ) )
 
-			dispatch( sendErrorMail( error ) )
-
-		} )
+			} )
 
 	}
 

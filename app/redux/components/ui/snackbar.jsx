@@ -1,7 +1,8 @@
 import React from 'react'
 import { PropTypes } from 'prop-types'
 import { defineMessages, injectIntl, intlShape } from 'react-intl'
-import { CSSTransitionGroup } from 'react-transition-group'
+//import Classnames from 'classnames'
+//import { CSSTransitionGroup } from 'react-transition-group'
 
 
 import P from 'components/tags/p'
@@ -94,13 +95,34 @@ const snackbar = ( { intl, /*jazzSupported,*/ message, yes, no, dismissSnackbar 
 
 	} )*/
 
+	/*const clsMsg = Classnames( style.hide, {
+
+		[ style.show ]: m
+
+	} )*/
+
+
 	return(
+
+		<DIV className={ style.snackbar }>
+			{ m && <DIV key="snackbar" >
+				{ m }
+				<P>
+					{ no && <CANCEL onClick={ dismissSnackbar.bind( this, no.action ) } label={ formatMessage( intlMessages[ no.label ] ) } /> }
+					{ yes && <GO onClick={ dismissSnackbar.bind( this, yes.action ) } label={ formatMessage( intlMessages[ yes.label ] ) } /> }
+				</P>
+			</DIV> }
+		</DIV>
+
+	)
+
+	/*return(
 
 		<CSSTransitionGroup 
 
 			component="div"
 			className={ style.snackbar }
-			transitionAppear={true} 
+			transitionAppear={ true } 
 			transitionName={ {
 
 				enter: style.enter,
@@ -116,7 +138,7 @@ const snackbar = ( { intl, /*jazzSupported,*/ message, yes, no, dismissSnackbar 
 			transitionAppearTimeout={ 300 }
 
 		>
-			{ m && <DIV>
+			{ m && <DIV key="snackbar">
 				{ m }
 				<P>
 					{ no && <CANCEL onClick={ dismissSnackbar.bind( this, no.action ) } label={ formatMessage( intlMessages[ no.label ] ) } /> }
@@ -125,7 +147,8 @@ const snackbar = ( { intl, /*jazzSupported,*/ message, yes, no, dismissSnackbar 
 			</DIV> }
 		</CSSTransitionGroup>
 
-	)
+	)*/
+
 
 	/*if( jazzSupported ){
 

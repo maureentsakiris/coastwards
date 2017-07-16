@@ -71,7 +71,7 @@ module.exports = {
 				use: [ 
 
 					{ loader: 'babel-loader', options: { cacheDirectory: true } },
-					{ loader: 'eslint-loader' } 
+					{ loader: 'eslint-loader', options: { fix: true } } 
 
 				]
 

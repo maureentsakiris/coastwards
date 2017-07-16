@@ -173,28 +173,28 @@ class ask extends Component {
 		this.setState( { sending: true, status: 'sending_mail' } )
 
 		promiseXHR( options )
-		.then( ( response ) => {
+			.then( ( response ) => {
 
-			document.getElementById( 'Ask' ).reset()
+				document.getElementById( 'Ask' ).reset()
 
-			if( response == 'OK' ){
+				if( response == 'OK' ){
 
-				this.setState( { status: 'mail_ok', sending: false } )
+					this.setState( { status: 'mail_ok', sending: false } )
 
-			}else{
+				}else{
 
-				this.setState( { status: 'mail_ko', sending: false } )
+					this.setState( { status: 'mail_ko', sending: false } )
 
-			}
+				}
 
-			return response
+				return response
 
-		} )
-		.catch( ( error ) => {
+			} )
+			.catch( ( error ) => {
 
-			this.setState( { status: error, sending: false } )
+				this.setState( { status: error, sending: false } )
 
-		} )
+			} )
 
 	}
 

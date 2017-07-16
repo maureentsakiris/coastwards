@@ -1,6 +1,6 @@
 import * as types from 'types'
 import { sendErrorMail } from 'actions/util/error/error'
-import { promiseInitMapbox, mapboxPopup, mapboxLngLatConvert, mapboxNavigationControl, mapboxGeocoder } from 'actions/mapbox/mapbox'
+import { promiseInitMapbox, mapboxPopup, mapboxLngLatConvert, mapboxNavigationControl, mapboxAttributionControl, mapboxGeocoder } from 'actions/mapbox/mapbox'
 import _ from 'underscore'
 import { promiseGet, promiseJSONOK } from 'actions/util/request/get'
 //import { resetMain } from 'actions/main/main'
@@ -43,20 +43,20 @@ const _onMarkerClick = ( features ) => {
 		dispatch( { type: types.SET_POPUP_FEATURE, to: {} } )
 
 		promiseGet( '/contribute/' + feature.properties.id )
-		.then( JSON.parse )
-		.then( promiseJSONOK )
-		.then( ( parsed ) => {
+			.then( JSON.parse )
+			.then( promiseJSONOK )
+			.then( ( parsed ) => {
 
-			const json = parsed.json
-			dispatch( showPopup( json ) )
-			return json
+				const json = parsed.json
+				dispatch( showPopup( json ) )
+				return json
 
-		} )
-		.catch( ( error ) => {
+			} )
+			.catch( ( error ) => {
 
-			dispatch( sendErrorMail( error ) )
+				dispatch( sendErrorMail( error ) )
 
-		} )
+			} )
 
 	}
 
@@ -72,194 +72,195 @@ export const displayMap = ( ) => {
 
 
 		promiseInitMapbox( ACCESSTOKEN, OPTIONS )
-		.then( ( map ) => {
+			.then( ( map ) => {
 
-			dispatch( { type: types.SET_MAP, to: map } )
-			map.dragRotate.disable()
-			map.touchZoomRotate.disableRotation()
-			if( !Modernizr.touchevents ){
+				dispatch( { type: types.SET_MAP, to: map } )
+				map.dragRotate.disable()
+				map.touchZoomRotate.disableRotation()
+				map.addControl( mapboxAttributionControl(), 'bottom-left' );
+				if( !Modernizr.touchevents ){
 
-				map.addControl( mapboxGeocoder( { accessToken: ACCESSTOKEN/*, placeholder: "sdfg"*/ } ), 'top-left' )
-				map.addControl( mapboxNavigationControl(), 'bottom-right' )
+					map.addControl( mapboxGeocoder( { accessToken: ACCESSTOKEN/*, placeholder: "sdfg"*/ } ), 'top-left' )
+					map.addControl( mapboxNavigationControl(), 'bottom-right' )
 
-			} 
+				} 
 
-			const popup = mapboxPopup( { closeButton: false, closeOnClick: false, anchor: 'bottom' } )
-			const featureDOM = document.getElementById( 'Popup' )
-			popup.setDOMContent( featureDOM )
-			dispatch( { type: types.SET_POPUP_INSTANCE, to: popup } )
+				const popup = mapboxPopup( { closeButton: false, closeOnClick: false, anchor: 'bottom' } )
+				const featureDOM = document.getElementById( 'Popup' )
+				popup.setDOMContent( featureDOM )
+				dispatch( { type: types.SET_POPUP_INSTANCE, to: popup } )
 
-			map.on( 'mousemove', ( e ) => {
+				map.on( 'mousemove', ( e ) => {
 
-				const state = getState()
-				const interactiveLayers = state.interactiveLayers
+					const state = getState()
+					const interactiveLayers = state.interactiveLayers
 				
-				let features = map.queryRenderedFeatures( e.point, { layers: _.pluck( interactiveLayers, 'layer' ) } )
-				map.getCanvas().style.cursor = ( features.length ) ? 'pointer' : ''
+					let features = map.queryRenderedFeatures( e.point, { layers: _.pluck( interactiveLayers, 'layer' ) } )
+					map.getCanvas().style.cursor = ( features.length ) ? 'pointer' : ''
 			
-			} )
+				} )
 
-			map.on( 'click', ( e ) => {
+				map.on( 'click', ( e ) => {
 
-				const state = getState()
-				const interactiveLayers = state.interactiveLayers
+					const state = getState()
+					const interactiveLayers = state.interactiveLayers
 
-				let features = map.queryRenderedFeatures( e.point, { layers: _.pluck( interactiveLayers, 'layer' ) } )
+					let features = map.queryRenderedFeatures( e.point, { layers: _.pluck( interactiveLayers, 'layer' ) } )
 
-				if( !features.length ){
+					if( !features.length ){
 
-					dispatch( hidePopup() )
-					return
+						dispatch( hidePopup() )
+						return
 
-				}
-
-				let feature = features[ 0 ]
-				feature.point = e.point
-				let interactiveLayer = _.findWhere( interactiveLayers, { layer: feature.layer.id } )
-				let onClick = interactiveLayer.onClick
-
-				dispatch( onClick( features ) )
-
-			} )
-
-			return map
-
-
-		} )
-		.then( _promiseFetchGeojson )
-		.then( JSON.parse )
-		.then( promiseJSONOK )
-		.then( ( parsed ) => {
-
-			const geojson = parsed.json
-
-			if( _.isNull( geojson ) ){
-
-				dispatch( { type: types.SET_PROMPT_MSG, to: 'be_the_first' } )
-
-			}
-
-			const state = getState()
-			const map = state.mapbox.map
-
-			map.addSource( 'geojson', {
-
-				type: 'geojson',
-				data: geojson,
-				cluster: false,
-				clusterMaxZoom: 10, // Max zoom to cluster points on
-				clusterRadius: 20 // Radius of each cluster when clustering points (defaults to 50)
-				
-			} )
-
-			const stops = _.map( state.materials, ( material ) => {
-
-				let { value, color } = material
-				return [ value, color ]
-
-			} )
-
-			map.addLayer( {
-			
-				id: 'markers',
-				type: 'circle',
-				source: 'geojson',
-				filter: [ '!has', 'point_count' ],
-				paint: {
-					'circle-radius': {
-						'base': 1.75,
-						'stops': [ [ 0, 6 ], [ 10, 15 ], [ 22, 50 ] ]
-					},
-					'circle-color': {
-						property: 'materialverified',
-						type: 'categorical',
-						stops: stops
 					}
 
-				}
+					let feature = features[ 0 ]
+					feature.point = e.point
+					let interactiveLayer = _.findWhere( interactiveLayers, { layer: feature.layer.id } )
+					let onClick = interactiveLayer.onClick
 
-			}, 'water_label' )
+					dispatch( onClick( features ) )
+
+				} )
+
+				return map
 
 
-			dispatch( { type: types.ADD_INTERACTIVE_LAYER, layer: { layer: 'markers', onClick: _onMarkerClick } } )
-
-			let dataDrops = {
-
-				"type": "FeatureCollection",
-				"features": []
-
-			}
-
-			map.addSource( 'drops', {
-
-				type: 'geojson',
-				data: dataDrops
-				
 			} )
+			.then( _promiseFetchGeojson )
+			.then( JSON.parse )
+			.then( promiseJSONOK )
+			.then( ( parsed ) => {
 
-			map.addLayer( {
-			
-				id: 'drops',
-				type: 'symbol',
-				source: 'drops',
-				layout: {
+				const geojson = parsed.json
 
-					'icon-image': '{marker-symbol}'
+				if( _.isNull( geojson ) ){
+
+					dispatch( { type: types.SET_PROMPT_MSG, to: 'be_the_first' } )
 
 				}
 
-			}, 'country_label_1' )
+				const state = getState()
+				const map = state.mapbox.map
 
-			//UPLOADS
-			let dataUploads = {
+				map.addSource( 'geojson', {
 
-				"type": "FeatureCollection",
-				"features": []
-
-			}
-
-			map.addSource( 'uploads', {
-
-				type: 'geojson',
-				data: dataUploads
+					type: 'geojson',
+					data: geojson,
+					cluster: false,
+					clusterMaxZoom: 10, // Max zoom to cluster points on
+					clusterRadius: 20 // Radius of each cluster when clustering points (defaults to 50)
 				
-			} )
+				} )
 
-			map.addLayer( {
+				const stops = _.map( state.materials, ( material ) => {
+
+					let { value, color } = material
+					return [ value, color ]
+
+				} )
+
+				map.addLayer( {
 			
-				id: 'uploads',
-				type: 'symbol',
-				source: 'uploads',
-				layout: {
+					id: 'markers',
+					type: 'circle',
+					source: 'geojson',
+					filter: [ '!has', 'point_count' ],
+					paint: {
+						'circle-radius': {
+							'base': 1.75,
+							'stops': [ [ 0, 6 ], [ 10, 15 ], [ 22, 50 ] ]
+						},
+						'circle-color': {
+							property: 'materialverified',
+							type: 'categorical',
+							stops: stops
+						}
 
-					'icon-image': '{marker-symbol}'
+					}
+
+				}, 'water_label' )
+
+
+				dispatch( { type: types.ADD_INTERACTIVE_LAYER, layer: { layer: 'markers', onClick: _onMarkerClick } } )
+
+				let dataDrops = {
+
+					"type": "FeatureCollection",
+					"features": []
 
 				}
 
-			}, 'country_label_1' )
+				map.addSource( 'drops', {
 
-			dispatch( { type: types.ADD_INTERACTIVE_LAYER, layer: { layer: 'uploads', onClick: _onMarkerClick } } )
+					type: 'geojson',
+					data: dataDrops
+				
+				} )
 
-			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'prompts', to: true } )
-			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'upload', to: true } )
-			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'loader', to: false } )
+				map.addLayer( {
+			
+					id: 'drops',
+					type: 'symbol',
+					source: 'drops',
+					layout: {
 
-			return geojson
+						'icon-image': '{marker-symbol}'
 
-		} )
-		.catch( ( error ) => {
+					}
 
-			let msg = error.message ? error.message : 'an_error_occurred'
-			dispatch( { type: types.SET_ERROR_MSG, to: msg } )
+				}, 'country_label_1' )
 
-			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'errors', to: true } )
-			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'prompts', to: false } )
-			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'upload', to: false } )
-			dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'loader', to: false } )
+				//UPLOADS
+				let dataUploads = {
 
-			dispatch( sendErrorMail( error ) )
+					"type": "FeatureCollection",
+					"features": []
 
-		} )
+				}
+
+				map.addSource( 'uploads', {
+
+					type: 'geojson',
+					data: dataUploads
+				
+				} )
+
+				map.addLayer( {
+			
+					id: 'uploads',
+					type: 'symbol',
+					source: 'uploads',
+					layout: {
+
+						'icon-image': '{marker-symbol}'
+
+					}
+
+				}, 'country_label_1' )
+
+				dispatch( { type: types.ADD_INTERACTIVE_LAYER, layer: { layer: 'uploads', onClick: _onMarkerClick } } )
+
+				dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'prompts', to: true } )
+				dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'upload', to: true } )
+				dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'loader', to: false } )
+
+				return geojson
+
+			} )
+			.catch( ( error ) => {
+
+				let msg = error.message ? error.message : 'an_error_occurred'
+				dispatch( { type: types.SET_ERROR_MSG, to: msg } )
+
+				dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'errors', to: true } )
+				dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'prompts', to: false } )
+				dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'upload', to: false } )
+				dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'loader', to: false } )
+
+				dispatch( sendErrorMail( error ) )
+
+			} )
 
 	}
 

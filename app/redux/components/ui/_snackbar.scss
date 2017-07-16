@@ -21,6 +21,18 @@
 		box-shadow: 3px -4px 10px -4px rgba(0, 0, 0, 0.3), -3px 4px 10px -4px rgba(0, 0, 0, 0.3);
 		padding: 1em 2em;
 
+		/* &.hide{
+
+			bottom: -100px;
+			transition: bottom 300ms;
+
+		}
+
+		&.show{
+
+			bottom: 0;
+		} */
+
 		span{
 
 			white-space: nowrap;
@@ -132,7 +144,7 @@
 
 } */
 
-.enter{
+/* .enter{
 
 	bottom: -50px;
 
@@ -156,4 +168,4 @@
 	bottom: -50px;
 	transition: bottom 300ms;
 
-}
+} */

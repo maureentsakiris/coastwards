@@ -78,7 +78,7 @@ const render = ( ) => {
 			</Provider>
 		</AppContainer>,
 
-	document.getElementById( 'Body' )
+		document.getElementById( 'Body' )
 
 	)
 

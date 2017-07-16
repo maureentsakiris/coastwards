@@ -32,105 +32,105 @@ export const displayMap = ( ) => {
 	return function ( dispatch, getState ){
 
 		promiseInitMapbox( ACCESSTOKEN, OPTIONS )
-		.then( ( map ) => {
+			.then( ( map ) => {
 
-			const state = getState()
+				const state = getState()
 
-			dispatch( { type: types.SET_MAP, to: map } )
+				dispatch( { type: types.SET_MAP, to: map } )
 
-			map.dragRotate.disable()
-			map.touchZoomRotate.disableRotation()
+				map.dragRotate.disable()
+				map.touchZoomRotate.disableRotation()
 
-			const popup = mapboxPopup( { closeButton: false, closeOnClick: false, anchor: 'bottom' } )
-			const featureDOM = document.getElementById( 'Popup' )
-			popup.setDOMContent( featureDOM )
-			dispatch( { type: types.SET_POPUP_INSTANCE, to: popup } )
+				const popup = mapboxPopup( { closeButton: false, closeOnClick: false, anchor: 'bottom' } )
+				const featureDOM = document.getElementById( 'Popup' )
+				popup.setDOMContent( featureDOM )
+				dispatch( { type: types.SET_POPUP_INSTANCE, to: popup } )
 
-			map.on( 'mousemove', ( e ) => {
+				map.on( 'mousemove', ( e ) => {
 				
-				let features = map.queryRenderedFeatures( e.point, { layers: [ 'markers' ] } )
-				map.getCanvas().style.cursor = ( features.length ) ? 'pointer' : ''
+					let features = map.queryRenderedFeatures( e.point, { layers: [ 'markers' ] } )
+					map.getCanvas().style.cursor = ( features.length ) ? 'pointer' : ''
 			
-			} )
+				} )
 
-			map.on( 'click', ( e ) => {
+				map.on( 'click', ( e ) => {
 
-				let features = map.queryRenderedFeatures( e.point, { layers: [ 'markers' ] } )
+					let features = map.queryRenderedFeatures( e.point, { layers: [ 'markers' ] } )
 
-				if( !features.length ){
+					if( !features.length ){
 
-					dispatch( hidePopup() )
-					return
+						dispatch( hidePopup() )
+						return
 
-				}
-
-				/*let feature = features[ 0 ]
-				feature.point = e.point*/
-
-				dispatch( _onMarkerClick( features ) )
-
-			} )
-
-			let geojson = {
-
-				"type": "FeatureCollection",
-				"features": []
-
-			}
-
-			map.addSource( 'geojson', {
-
-				type: 'geojson',
-				data: geojson
-
-			} )
-
-			const stops = _.map( state.materials, ( material ) => {
-
-				let { value, color } = material
-				return [ value, color ]
-
-			} )
-
-			map.addLayer( {
-			
-				id: 'markers',
-				type: 'circle',
-				source: 'geojson',
-				filter: [ '!has', 'point_count' ],
-				paint: {
-					'circle-radius': {
-						'base': 1.75,
-						'stops': [ [ 0, 7 ], [ 10, 15 ], [ 22, 50 ] ]
-					},
-					'circle-color': {
-						property: 'materialverified',
-						type: 'categorical',
-						stops: stops
 					}
 
+					/*let feature = features[ 0 ]
+				feature.point = e.point*/
+
+					dispatch( _onMarkerClick( features ) )
+
+				} )
+
+				let geojson = {
+
+					"type": "FeatureCollection",
+					"features": []
+
 				}
 
+				map.addSource( 'geojson', {
+
+					type: 'geojson',
+					data: geojson
+
+				} )
+
+				const stops = _.map( state.materials, ( material ) => {
+
+					let { value, color } = material
+					return [ value, color ]
+
+				} )
+
+				map.addLayer( {
+			
+					id: 'markers',
+					type: 'circle',
+					source: 'geojson',
+					filter: [ '!has', 'point_count' ],
+					paint: {
+						'circle-radius': {
+							'base': 1.75,
+							'stops': [ [ 0, 7 ], [ 10, 15 ], [ 22, 50 ] ]
+						},
+						'circle-color': {
+							property: 'materialverified',
+							type: 'categorical',
+							stops: stops
+						}
+
+					}
+
+				} )
+
+				return map
+
+
 			} )
+			.then( ( map ) => {
 
-			return map
+				dispatch( fetch() )
+				return map
 
+			} )
+			.catch( ( error ) => {
 
-		} )
-		.then( ( map ) => {
+				let msg = error.message ? error.message : 'an_error_occurred'
+				dispatch( { type: types.SET_ERROR_MSG, to: msg } )
 
-			dispatch( fetch() )
-			return map
+				console.log( error );
 
-		} )
-		.catch( ( error ) => {
-
-			let msg = error.message ? error.message : 'an_error_occurred'
-			dispatch( { type: types.SET_ERROR_MSG, to: msg } )
-
-			console.log( error );
-
-		} )
+			} )
 
 	}
 
@@ -171,20 +171,20 @@ const _onMarkerClick = ( features ) => {
 		dispatch( { type: types.SET_POPUP_FEATURE, to: {} } )
 
 		promiseGet( '/administrate/' + feature.properties.id )
-		.then( JSON.parse )
-		.then( promiseJSONOK )
-		.then( ( parsed ) => {
+			.then( JSON.parse )
+			.then( promiseJSONOK )
+			.then( ( parsed ) => {
 
-			const json = parsed.json
-			dispatch( showPopup( json ) )
-			return json
+				const json = parsed.json
+				dispatch( showPopup( json ) )
+				return json
 
-		} )
-		.catch( ( error ) => {
+			} )
+			.catch( ( error ) => {
 
-			console.log( error )
+				console.log( error )
 
-		} )
+			} )
 
 	}
 

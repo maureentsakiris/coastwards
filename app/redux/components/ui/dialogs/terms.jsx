@@ -58,11 +58,11 @@ const terms = ( { intl, className } ) => {
 				<LI>1) { formatMessage( messages.terms_author ) }</LI>
 				<LI>2) { formatMessage( messages.honor_privacy ) }</LI>
 				<LI>3) <FormattedMessage
-						id="terms_cc0"
-						values={ { 
-							license: <a target="_blank" rel="noopener noreferrer" href={ formatMessage( messages.http_license ) }>{ formatMessage( messages.license ) }</a>
-						} }
-					/>
+					id="terms_cc0"
+					values={ { 
+						license: <a target="_blank" rel="noopener noreferrer" href={ formatMessage( messages.http_license ) }>{ formatMessage( messages.license ) }</a>
+					} }
+				/>
 				</LI>
 			</UL>
 		</DIV>
