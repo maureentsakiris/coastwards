@@ -13,7 +13,7 @@ import Form from 'containers/main/form'
 import Mapbox from 'containers/main/mapbox'
 import Popup from 'containers/main/popup'
 import Loader from 'containers/main/loader'
-import Counter from 'containers/main/counter'
+import Legend from 'containers/main/legend'
 
 import DIV from 'components/tags/div'
 import P from 'components/tags/p'
@@ -90,7 +90,7 @@ const main = ( { intl, uploadSupported, jazzSupported, useraction, clipped, uncl
 				<Statuses className={ style.screen } />
 				<Errors className={ style.screen } />
 				<Form />
-				<Counter />
+				<Legend />
 				<Popup />
 				<DIV className={ clsArrow } >
 					<A onClick={ unclipPage.bind( this ) } title={ formatMessage( messages.arrow_up_title ) } ><I className="material-icons">&#xE316;</I></A>

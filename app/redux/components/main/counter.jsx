@@ -12,7 +12,6 @@ class counter extends Component {
 	static propTypes = {
 
 		count: PropTypes.number,
-		show: PropTypes.bool,
 
 		getCount: PropTypes.func
 
@@ -33,9 +32,9 @@ class counter extends Component {
 
 	render () {
 
-		const { count, show } = this.props
+		const { count } = this.props
 
-		if( !count || !show ){
+		if( !count ){
 
 			return null
 

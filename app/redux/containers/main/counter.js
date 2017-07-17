@@ -7,8 +7,7 @@ const mapStateToProps = ( state ) => {
 
 	return {
 
-		count: state.count,
-		show: state.useraction == 'browsing'
+		count: state.count
 
 	}
 

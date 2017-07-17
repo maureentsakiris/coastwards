@@ -1,0 +1,57 @@
+@import 'app/styles/base';
+
+.legend{
+
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	pointer-events: none;
+	padding: $mobile-margin;
+	z-index: 1;
+
+	@extend %hide;
+
+	&.show{
+
+		@extend %show;
+
+	}
+
+	.materials{
+
+		display: none;
+		//margin-left: $mobile-margin;
+		@extend %flexcontainer;
+		flex-direction: row;
+		align-items: center;
+		margin-bottom: $mobile-margin;
+
+		@include min( $tablet ){
+
+			display: inline-block;
+
+		}
+
+		.material{
+
+			margin: 0.3em 1em 0 0;
+			@extend %flexcontainer;
+			flex-direction: row;
+			align-items: center;
+			color: $color-primary;
+
+			.dot{
+
+				width: 1.5em;
+				height: 1.5em;
+				border-radius: 50%;
+				margin-right: 0.5em;
+				display: inline-block;
+
+			}
+
+		}
+
+	}
+
+}
