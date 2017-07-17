@@ -1,6 +1,6 @@
 import React from 'react'
 import { PropTypes } from 'prop-types'
-import _ from 'underscore'
+import { chain } from 'underscore'
 import ClassNames from 'classnames'
 
 import DIV from 'components/tags/div'
@@ -23,7 +23,7 @@ import style from './_admin'
 const admin = ( { /*showForm,*/ /*results,*/ materials, material, materialverified, verified, id, example, intro, closeup, pointmanual, pointcorrected, setMaterial, setMaterialVerified, setVerified, setID, setExample, setIntro, setCloseup, setPointManual, setPointCorrected, fetch/*, toggleFormVisibility*/ } ) => {
 
 	const all = [ { label: 'All', value: '%' } ]
-	const mats = _.chain( materials )
+	const mats = chain( materials )
 		.filter( ( material ) => {
 
 			let { value } = material

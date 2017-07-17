@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { PropTypes } from 'prop-types'
 import PureRenderMixin from 'react-addons-pure-render-mixin'
 import { defineMessages, injectIntl, intlShape } from 'react-intl'
-import _ from 'underscore'
+import { map } from 'underscore'
 
 import DIV from 'components/tags/div'
 import style from './_intro'
@@ -70,7 +70,7 @@ class intro extends Component {
 
 const _composeGrid = ( images ) => {
 
-	return _.map( images, ( image, key ) => {
+	return map( images, ( image, key ) => {
 
 		let bg = 'url(./uploads/' + image.contribution_uid + '.jpg)'
 

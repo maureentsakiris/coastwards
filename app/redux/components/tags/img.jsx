@@ -1,12 +1,12 @@
 import React from 'react'
 import { PropTypes } from 'prop-types'
-import _ from 'underscore'
+import { pick, union } from 'underscore'
 import hoc from './hoc'
 import { globalAttr, imgAttr } from './attributes'
 
 const img = ( { hocProps } ) => {
 
-	const allowedProps = _.pick( hocProps, _.union( globalAttr, imgAttr ) )
+	const allowedProps = pick( hocProps, union( globalAttr, imgAttr ) )
 
 	return(
 

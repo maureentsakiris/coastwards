@@ -1,13 +1,13 @@
 import React from 'react'
 import { PropTypes } from 'prop-types'
-import _ from 'underscore'
+import { pick, union } from 'underscore'
 import hoc from './hoc'
 import { globalAttr, smallAttr } from './attributes'
 
 const small = ( { hocProps } ) => {
 
 	const { children, ...restProps } = hocProps
-	const allowedProps = _.pick( restProps, _.union( globalAttr, smallAttr ) )
+	const allowedProps = pick( restProps, union( globalAttr, smallAttr ) )
 
 	return(
 

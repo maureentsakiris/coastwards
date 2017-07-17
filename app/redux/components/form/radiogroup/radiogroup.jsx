@@ -1,6 +1,6 @@
 import React from 'react'
 import { PropTypes } from 'prop-types'
-import _ from 'underscore'
+import { map } from 'underscore'
 
 import hoc from 'components/form/hoc'
 import DIV from 'components/tags/div'
@@ -25,7 +25,7 @@ const radiogroup = ( { hocProps } ) => {
 
 const _renderOptions = ( form, name, options, checked, onChange, controlled ) => {
 
-	return _.map( options, ( option, key ) => {
+	return map( options, ( option, key ) => {
 
 		let { label, value } = option
 		let isChecked = value == checked ? true : false

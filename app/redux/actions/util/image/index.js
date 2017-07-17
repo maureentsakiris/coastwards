@@ -1,5 +1,5 @@
 import EXIF from './exif'
-import _ from 'underscore'
+import { isEmpty, isArray } from 'underscore'
 import accepts from 'attr-accept'
 import Modernirz from 'modernizr'
 
@@ -28,7 +28,7 @@ export const promiseEXIF = ( image ) => {
 
 		EXIF.getData( image, function ( ) {
 
-			if( _.isEmpty( image.exifdata ) ){
+			if( isEmpty( image.exifdata ) ){
 
 				reject( Error( 'exifdata_empty' ) )
 
@@ -324,7 +324,7 @@ export const promiseLocation = ( image ) => {
 
 		let exif = image.exifdata
 
-		if( _.isArray( exif.GPSLatitude ) && _.isArray( exif.GPSLongitude ) ){
+		if( isArray( exif.GPSLatitude ) && isArray( exif.GPSLongitude ) ){
 
 			image.lat = _toDecimal( exif.GPSLatitude, exif.GPSLatitudeRef, 'lat' )
 			image.long = _toDecimal( exif.GPSLongitude, exif.GPSLongitudeRef, 'long' )

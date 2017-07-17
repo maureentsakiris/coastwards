@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { PropTypes } from 'prop-types'
 import PureRenderMixin from 'react-addons-pure-render-mixin'
-import _ from 'underscore'
+import { findWhere, map } from 'underscore'
 import SwipeableViews from 'react-swipeable-views'
 import Classnames from 'classnames'
 
@@ -61,7 +61,7 @@ class example extends Component {
 
 		}else{
 			
-			const examplesOfType = _.findWhere( examples, { type: type } )
+			const examplesOfType = findWhere( examples, { type: type } )
 			
 			if( !examplesOfType ){
 
@@ -143,7 +143,7 @@ class example extends Component {
 
 const _composeImages = ( uids ) => {
 
-	return _.map( uids, ( uid, key ) => {
+	return map( uids, ( uid, key ) => {
 
 		let bg = 'url(./uploads/' + uid + '.jpg)'
 

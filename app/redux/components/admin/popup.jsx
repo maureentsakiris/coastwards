@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { PropTypes } from 'prop-types'
-import _ from 'underscore'
+import { map } from 'underscore'
 
 import DIV from 'components/tags/div'
 import P from 'components/tags/p'
@@ -29,8 +29,6 @@ class popup extends Component {
 	}
 
 	componentWillReceiveProps ( p ){
-
-		console.log( p );
 
 		this.setState( { 
 
@@ -67,7 +65,7 @@ class popup extends Component {
 
 		const { verified, materialVerified, example, intro, closeup } = this.state
 
-		const options = _.map( materials, ( material ) => {
+		const options = map( materials, ( material ) => {
 
 			let checked = material.value == contribution_material ? true : false
 			return { label: material.label, value: material.value, checked: checked }

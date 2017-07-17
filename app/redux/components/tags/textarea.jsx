@@ -1,13 +1,13 @@
 import React from 'react'
 import { PropTypes } from 'prop-types'
-import _ from 'underscore'
+import { pick, union } from 'underscore'
 import hoc from './hoc'
 import { globalAttr, textareaAttr } from './attributes'
 
 const textarea = ( { hocProps } ) => {
 
 	const { children, ...restProps } = hocProps
-	const allowedProps = _.pick( restProps, _.union( globalAttr, textareaAttr ) )
+	const allowedProps = pick( restProps, union( globalAttr, textareaAttr ) )
 
 	return(
 

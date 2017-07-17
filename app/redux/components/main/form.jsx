@@ -2,7 +2,7 @@ import React from 'react'
 import { PropTypes } from 'prop-types'
 import { defineMessages, injectIntl, intlShape, FormattedMessage } from 'react-intl'
 import Classnames from 'classnames'
-import _ from 'underscore'
+import { chain } from 'underscore'
 
 import FORMDATA from 'containers/main/formdata'
 
@@ -138,7 +138,7 @@ const form = ( { intl, className, jazzSupported, show, image, checkedValue, mate
 
 	const { formatMessage } = intl
 
-	const mats = _.chain( materials )
+	const mats = chain( materials )
 		.filter( ( material ) => {
 
 			let { value } = material

@@ -1,7 +1,7 @@
 import React from 'react'
 import { PropTypes } from 'prop-types'
 import { defineMessages, injectIntl, intlShape } from 'react-intl'
-import _ from 'underscore'
+import { omit, map } from 'underscore'
 
 import TABLE from 'components/tags/table'
 import THEAD from 'components/tags/thead'
@@ -116,9 +116,9 @@ const formdata = ( { intl, image, uid, imageWidth, showDialog } ) => {
 	const { formatMessage } = intl
 
 	//UPDATE ALSO IN MAIN.JS (uploadImage)
-	const cleanExif = _.omit( image.exifdata, [ 'MakerNote', 'undefined', 'Artist', 'Copyright' ] )
+	const cleanExif = omit( image.exifdata, [ 'MakerNote', 'undefined', 'Artist', 'Copyright' ] )
 
-	const exifTable = _.map( cleanExif, ( exif, key ) => {
+	const exifTable = map( cleanExif, ( exif, key ) => {
 
 		const data = exif !== undefined ? exif.toString() : 'undefined'
 
@@ -134,7 +134,7 @@ const formdata = ( { intl, image, uid, imageWidth, showDialog } ) => {
 	} )
 
 
-	const labelsTable = _.map( image.labels, ( label, key ) => {
+	const labelsTable = map( image.labels, ( label, key ) => {
 
 		return(
 

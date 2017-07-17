@@ -1,7 +1,7 @@
 import React from 'react'
 import { PropTypes } from 'prop-types'
 import { defineMessages, injectIntl, intlShape } from 'react-intl'
-import _ from 'underscore'
+import { findWhere } from 'underscore'
 
 import TOGGLE from 'components/ui/toggle'
 import EXAMPLE from 'containers/ui/dialogs/example'
@@ -87,7 +87,7 @@ const definematerial = ( { intl, className, materials } ) => {
 
 	const getColor = ( material ) => {
 
-		const obj = _.findWhere( materials, { value: material } )
+		const obj = findWhere( materials, { value: material } )
 		return obj.color
 
 	}

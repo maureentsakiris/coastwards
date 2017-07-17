@@ -1,9 +1,11 @@
 import * as types from 'types'
 import { promiseInitMapbox, mapboxPopup, mapboxLngLatConvert } from 'actions/mapbox/mapbox'
-import _ from 'underscore'
+import { map } from 'underscore'
 import { fetch } from 'actions/admin/admin'
 import { promiseGet, promiseJSONOK } from 'actions/util/request/get'
 //import { promiseGet, promiseJSONOK } from 'actions/util/request/get'
+
+const _map = map
 
 const ZOOM = 1
 const CENTER = [ 0, 39 ]
@@ -85,7 +87,7 @@ export const displayMap = ( ) => {
 
 				} )
 
-				const stops = _.map( state.materials, ( material ) => {
+				const stops = _map( state.materials, ( material ) => {
 
 					let { value, color } = material
 					return [ value, color ]

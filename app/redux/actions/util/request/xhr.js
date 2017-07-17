@@ -1,4 +1,4 @@
-import _ from 'underscore'
+import { extend } from 'underscore'
 
 export const promiseXHR = ( options ) => {
 
@@ -9,7 +9,7 @@ export const promiseXHR = ( options ) => {
 
 	}
 
-	var opts = _.extend( defaultOptions, options );
+	var opts = extend( defaultOptions, options );
 	
 	return new Promise( ( resolve, reject ) => {
 

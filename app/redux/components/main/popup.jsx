@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { PropTypes } from 'prop-types'
 import PureRenderMixin from 'react-addons-pure-render-mixin'
 import { defineMessages, injectIntl, intlShape, FormattedDate } from 'react-intl'
-import _ from 'underscore'
-import validator from 'validator'
+import { findWhere } from 'underscore'
+import { unescape } from 'validator'
 import Classnames from 'classnames'
 
 import DIV from 'components/tags/div'
@@ -131,11 +131,11 @@ class popup extends Component {
 
 
 			const material = contribution_verified ? contribution_material_verified : contribution_material
-			const m = _.findWhere( materials, { value: contribution_material_verified } )
+			const m = findWhere( materials, { value: contribution_material_verified } )
 			const color = m.color
 			
 
-			const usercomment = validator.unescape( contribution_comment )
+			const usercomment = unescape( contribution_comment )
 			const hascomment = usercomment != ''
 			const showcomment = commentToggled && hascomment
 			const commentIcon = showcomment ? 'insert_comment' : 'mode_comment'

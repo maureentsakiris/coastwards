@@ -171,17 +171,15 @@ const _promiseInsertContribution = ( formData ) => {
 		const point = util.format( 'POINT(%s %s)', long, lat )
 
 		const sanitizedComment = xss( comment )
-		console.log( sanitizedComment );
 		const trimmedComment = validator.trim( sanitizedComment )
 		const lowComment = validator.stripLow( trimmedComment, true ) //true -> keep new lines
 		const escapedComment = validator.escape( lowComment )
 		//const linedComment = escapedComment.replace( /(?:\r\n|\r|\n)/g, '\\n' )
 
-
 		// Truncate table coastwards.contributions
 		//(INET6_ATON(?))
-		var sql = 'INSERT INTO ??.?? ( ??, ??, ??, ??, ??, ??, ??, ??, ??, ??, ??, ?? ) VALUES ( (ST_PointFromText(?)), ?, ?, ?, ?, ?,(INET6_ATON(?)) , ?, ?, ?, ?, ? )'
-		//var sql = 'INSERT INTO ??.?? ( ??, ??, ??, ??, ??, ??, ??, ??, ??, ??, ??, ?? ) VALUES ( (ST_PointFromText(?)), ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )'
+		//var sql = 'INSERT INTO ??.?? ( ??, ??, ??, ??, ??, ??, ??, ??, ??, ??, ??, ?? ) VALUES ( (ST_PointFromText(?)), ?, ?, ?, ?, ?,(INET6_ATON(?)) , ?, ?, ?, ?, ? )'
+		var sql = 'INSERT INTO ??.?? ( ??, ??, ??, ??, ??, ??, ??, ??, ??, ??, ?? ) VALUES ( (ST_PointFromText(?)), ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )'
 		var inserts = [ 
 			'coastwards', 
 			'contributions',
@@ -194,7 +192,7 @@ const _promiseInsertContribution = ( formData ) => {
 			'contribution_uid',
 			'contribution_labels',
 			'contribution_exif',
-			'contribution_ip',
+			//'contribution_ip',
 			'contribution_material',
 
 			'contribution_exif_datetime',
@@ -208,7 +206,7 @@ const _promiseInsertContribution = ( formData ) => {
 			uid,
 			labels,
 			exifdata,
-			ip,
+			//ip,
 			material,
 
 
@@ -258,18 +256,18 @@ const _promiseInsertContribution = ( formData ) => {
 router.post( '/upload', ( req, res ) => {
 
 	_promiseFetchForm( req )
-	.then( _promiseValidDate )
-	.then( _promiseInsertContribution )
-	.then( ( formData ) => {
+		.then( _promiseValidDate )
+		.then( _promiseInsertContribution )
+		.then( ( formData ) => {
 
-		res.json( { status: 'OK', formData: JSON.stringify( formData ) } )
-		return formData;
+			res.json( { status: 'OK', formData: JSON.stringify( formData ) } )
+			return formData;
 
-	} ).catch( ( error ) => {
+		} ).catch( ( error ) => {
 
-		res.json( { status: 'KO', message: error.toString() } )
+			res.json( { status: 'KO', message: error.toString() } )
 
-	} )
+		} )
 
 } )
 
@@ -329,18 +327,18 @@ function promiseFetchGeojson ( ){
 router.get( '/geojson', function ( req, res ) {
 
 	promiseFetchGeojson()
-	.then( JSON.parse )
-	.then( ( geojson ) => {
+		.then( JSON.parse )
+		.then( ( geojson ) => {
 
-		res.json( { status: 'OK', json: geojson } )
-		return geojson;
+			res.json( { status: 'OK', json: geojson } )
+			return geojson;
 
-	} )
-	.catch( ( error ) => {
+		} )
+		.catch( ( error ) => {
 
-		res.json( { status: 'KO', message: error.toString() } )
+			res.json( { status: 'KO', message: error.toString() } )
 
-	} )
+		} )
 
 } )
 
@@ -393,17 +391,17 @@ function promiseFetchCount ( ){
 router.get( '/count', function ( req, res ) {
 
 	promiseFetchCount()
-	.then( ( count ) => {
+		.then( ( count ) => {
 
-		res.json( { status: 'OK', count: count } )
-		return count;
+			res.json( { status: 'OK', count: count } )
+			return count;
 
-	} )
-	.catch( ( error ) => {
+		} )
+		.catch( ( error ) => {
 
-		res.json( { status: 'KO', message: error.toString() } )
+			res.json( { status: 'KO', message: error.toString() } )
 
-	} )
+		} )
 
 } )
 
@@ -458,17 +456,17 @@ function promiseFetchIntro ( ){
 router.get( '/intro', function ( req, res ) {
 
 	promiseFetchIntro()
-	.then( ( intro ) => {
+		.then( ( intro ) => {
 
-		res.json( { status: 'OK', intro: intro } )
-		return intro;
+			res.json( { status: 'OK', intro: intro } )
+			return intro;
 
-	} )
-	.catch( ( error ) => {
+		} )
+		.catch( ( error ) => {
 
-		res.json( { status: 'KO', message: error.toString() } )
+			res.json( { status: 'KO', message: error.toString() } )
 
-	} )
+		} )
 
 } )
 
@@ -542,17 +540,17 @@ function promiseFetchContribution ( id ){
 router.get( '/:contribution_id', function ( req, res ) {
 
 	promiseFetchContribution( req.params.contribution_id )
-	.then( ( json ) => {
+		.then( ( json ) => {
 
-		res.json( { status: 'OK', json: json } )
-		return json;
+			res.json( { status: 'OK', json: json } )
+			return json;
 
-	} )
-	.catch( ( error ) => {
+		} )
+		.catch( ( error ) => {
 
-		res.json( { status: 'KO', message: error.toString() } )
+			res.json( { status: 'KO', message: error.toString() } )
 
-	} )
+		} )
 
 } )
 

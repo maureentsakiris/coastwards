@@ -1,13 +1,13 @@
 import React from 'react'
 import { PropTypes } from 'prop-types'
-import _ from 'underscore'
+import { pick, union } from 'underscore'
 import hoc from './hoc'
 import { globalAttr, formAttr } from './attributes'
 
 const form = ( { hocProps } ) => {
 
 	const { children, ...restProps } = hocProps
-	const allowedProps = _.pick( restProps, _.union( globalAttr, formAttr ) )
+	const allowedProps = pick( restProps, union( globalAttr, formAttr ) )
 
 	return(
 

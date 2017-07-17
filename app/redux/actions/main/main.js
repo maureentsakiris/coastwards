@@ -8,7 +8,7 @@ import { promiseXHR } from 'actions/util/request/xhr'
 import { promiseGet, promiseJSONOK } from 'actions/util/request/get'
 import { fly, resetMap, hidePopup, addDropMarker, removeLastDrop, addUploadMarker, setMarkerVisibility, trackZoom } from 'actions/main/mapbox'
 import uuid from 'uuid'
-import _ from 'underscore'
+import { indexOf, contains, filter, omit } from 'underscore'
 
 export const getCount = ( ) => {
 
@@ -81,7 +81,7 @@ const _promiseMake = ( image, blacklist ) => {
 
 		if( image.exifdata.Make ){
 
-			let filtered = _.indexOf( blacklist, image.exifdata.Make )
+			let filtered = indexOf( blacklist, image.exifdata.Make )
 
 			if( filtered != -1 ){
 
@@ -156,25 +156,25 @@ const _promiseSafe = ( image ) => {
 
 				}
 
-				if( _.contains( annotations.safeSearchAnnotation, 'LIKELY' ) || _.contains( annotations.safeSearchAnnotation, 'VERY_LIKELY' ) ){
+				if( contains( annotations.safeSearchAnnotation, 'LIKELY' ) || contains( annotations.safeSearchAnnotation, 'VERY_LIKELY' ) ){
  
 					reject( Error( "spam_detected" ) )
 
 				}
 
-				let coast = _.filter( annotations.labelAnnotations, { description: 'coast' } )
-				let shore = _.filter( annotations.labelAnnotations, { description: 'shore' } )
-				let harbor = _.filter( annotations.labelAnnotations, { description: 'harbor' } )
-				let beach = _.filter( annotations.labelAnnotations, { description: 'beach' } )
-				let sea = _.filter( annotations.labelAnnotations, { description: 'sea' } )
-				let bodyofwater = _.filter( annotations.labelAnnotations, { description: 'body of water' } )
-				let natural_environment = _.filter( annotations.labelAnnotations, { description: 'natural environment' } )
-				let geographical_feature = _.filter( annotations.labelAnnotations, { description: 'geographical feature' } )
-				let loch = _.filter( annotations.labelAnnotations, { description: 'loch' } )
-				//let habitat = _.filter( annotations.labelAnnotations, { description: 'habitat' } )
-				let landform = _.filter( annotations.labelAnnotations, { description: 'landform' } )
-				let skyline = _.filter( annotations.labelAnnotations, { description: 'skyline' } )
-				let horizon = _.filter( annotations.labelAnnotations, { description: 'horizon' } )
+				let coast = filter( annotations.labelAnnotations, { description: 'coast' } )
+				let shore = filter( annotations.labelAnnotations, { description: 'shore' } )
+				let harbor = filter( annotations.labelAnnotations, { description: 'harbor' } )
+				let beach = filter( annotations.labelAnnotations, { description: 'beach' } )
+				let sea = filter( annotations.labelAnnotations, { description: 'sea' } )
+				let bodyofwater = filter( annotations.labelAnnotations, { description: 'body of water' } )
+				let natural_environment = filter( annotations.labelAnnotations, { description: 'natural environment' } )
+				let geographical_feature = filter( annotations.labelAnnotations, { description: 'geographical feature' } )
+				let loch = filter( annotations.labelAnnotations, { description: 'loch' } )
+				//let habitat = filter( annotations.labelAnnotations, { description: 'habitat' } )
+				let landform = filter( annotations.labelAnnotations, { description: 'landform' } )
+				let skyline = filter( annotations.labelAnnotations, { description: 'skyline' } )
+				let horizon = filter( annotations.labelAnnotations, { description: 'horizon' } )
 
 				if( !coast.length && !shore.length && !harbor.length && !beach.length && !sea.length && !natural_environment.length && !bodyofwater.length && !geographical_feature.length && !loch.length /*&& !habitat.length*/ && !landform.length && !skyline.length && !horizon.length ){
 
@@ -499,7 +499,7 @@ export const uploadImage = ( ) => {
 				const { exifdata, lat, long, manual, labels, corrected } = image
 
 				//UPDATE ALSO IN FORMDATA.JSX
-				const cleanExif = _.omit( image.exifdata, [ 'MakerNote', 'undefined', 'Artist', 'Copyright' ] )
+				const cleanExif = omit( image.exifdata, [ 'MakerNote', 'undefined', 'Artist', 'Copyright' ] )
 
 				const devLabels = labels ? labels : {}
 				const datetime = exifdata.DateTimeOriginal || exifdata.DateTimeDigitized || exifdata.DateTime

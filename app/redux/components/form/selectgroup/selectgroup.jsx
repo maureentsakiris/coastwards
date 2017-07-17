@@ -1,6 +1,6 @@
 import React from 'react'
 import { PropTypes } from 'prop-types'
-import _ from 'underscore'
+import { map } from 'underscore'
 
 import hoc from 'components/form/hoc'
 import SELECT from 'components/tags/select'
@@ -25,7 +25,7 @@ const selectgroup = ( { hocProps } ) => {
 
 const _renderOptions = ( options ) => {
 
-	return _.map( options, ( option, key ) => {
+	return map( options, ( option, key ) => {
 
 		let { label, value } = option
 

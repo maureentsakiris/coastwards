@@ -1,10 +1,12 @@
 import * as types from 'types'
 import { sendErrorMail } from 'actions/util/error/error'
 import { promiseInitMapbox, mapboxPopup, mapboxLngLatConvert, mapboxNavigationControl, mapboxAttributionControl, mapboxGeocoder } from 'actions/mapbox/mapbox'
-import _ from 'underscore'
+import { isNull, findWhere, pluck, map } from 'underscore'
 import { promiseGet, promiseJSONOK } from 'actions/util/request/get'
 //import { resetMain } from 'actions/main/main'
 import Modernizr from 'modernizr'
+
+const _map = map
 
 const CENTER = [ 0, 39 ]
 const ZOOM = 1
@@ -95,7 +97,7 @@ export const displayMap = ( ) => {
 					const state = getState()
 					const interactiveLayers = state.interactiveLayers
 				
-					let features = map.queryRenderedFeatures( e.point, { layers: _.pluck( interactiveLayers, 'layer' ) } )
+					let features = map.queryRenderedFeatures( e.point, { layers: pluck( interactiveLayers, 'layer' ) } )
 					map.getCanvas().style.cursor = ( features.length ) ? 'pointer' : ''
 			
 				} )
@@ -105,7 +107,7 @@ export const displayMap = ( ) => {
 					const state = getState()
 					const interactiveLayers = state.interactiveLayers
 
-					let features = map.queryRenderedFeatures( e.point, { layers: _.pluck( interactiveLayers, 'layer' ) } )
+					let features = map.queryRenderedFeatures( e.point, { layers: pluck( interactiveLayers, 'layer' ) } )
 
 					if( !features.length ){
 
@@ -116,7 +118,7 @@ export const displayMap = ( ) => {
 
 					let feature = features[ 0 ]
 					feature.point = e.point
-					let interactiveLayer = _.findWhere( interactiveLayers, { layer: feature.layer.id } )
+					let interactiveLayer = findWhere( interactiveLayers, { layer: feature.layer.id } )
 					let onClick = interactiveLayer.onClick
 
 					dispatch( onClick( features ) )
@@ -134,7 +136,7 @@ export const displayMap = ( ) => {
 
 				const geojson = parsed.json
 
-				if( _.isNull( geojson ) ){
+				if( isNull( geojson ) ){
 
 					dispatch( { type: types.SET_PROMPT_MSG, to: 'be_the_first' } )
 
@@ -153,7 +155,7 @@ export const displayMap = ( ) => {
 				
 				} )
 
-				const stops = _.map( state.materials, ( material ) => {
+				const stops = _map( state.materials, ( material ) => {
 
 					let { value, color } = material
 					return [ value, color ]

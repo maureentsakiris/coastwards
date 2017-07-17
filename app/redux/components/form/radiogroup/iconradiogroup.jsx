@@ -1,6 +1,6 @@
 import React  from 'react'
 import { PropTypes } from 'prop-types'
-import _ from 'underscore'
+import { map } from 'underscore'
 import hoc from 'components/form/hoc'
 import DIV from 'components/tags/div'
 import ICONRADIO from 'components/form/radiogroup/iconradio'
@@ -22,7 +22,7 @@ const iconradiogroup = ( { hocProps } ) => {
 
 const _renderOptions = ( form, name, options, checkedValue, onClick ) => {
 
-	return _.map( options, ( option, key ) => {
+	return map( options, ( option, key ) => {
 
 		let { label, value, color } = option
 		let checked = checkedValue == value ? true : false

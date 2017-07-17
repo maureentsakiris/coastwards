@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 import * as types from 'types'
-import _ from 'underscore'
+import { extend } from 'underscore'
 import Modernizr from 'modernizr'
 import mapboxgl from 'mapbox-gl'
 
@@ -152,7 +152,7 @@ const layers = ( state = { loader: true, upload: true, prompts: true, statuses: 
 	switch ( action.type ){
 
 	case types.SET_LAYER_VISIBILITY:
-		return _.extend( {}, state, { [ action.layer ]: action.to } )
+		return extend( {}, state, { [ action.layer ]: action.to } )
 	case types.RESET_LAYERS:
 		return { loader: false, upload: true, prompts: true, statuses: false, errors: false, locate: false, geolocater: false, form: false, marker: false }
 	default: 
@@ -206,19 +206,19 @@ const form = ( state = { image: {}, material: 'notset', uid: '', adaptation: '',
 	switch ( action.type ){
 
 	case types.SET_IMAGE_TO_UPLOAD:
-		return _.extend( {}, state, { image: action.to } )
+		return extend( {}, state, { image: action.to } )
 	case types.SET_MATERIAL:
-		return _.extend( {}, state, { material: action.to } )
+		return extend( {}, state, { material: action.to } )
 	case types.SET_UID:
-		return _.extend( {}, state, { uid: action.to } )
+		return extend( {}, state, { uid: action.to } )
 	case types.SET_ADAPTATION:
-		return _.extend( {}, state, { adaptation: action.to } )
+		return extend( {}, state, { adaptation: action.to } )
 	case types.SET_COMMENT:
-		return _.extend( {}, state, { comment: action.to } )
+		return extend( {}, state, { comment: action.to } )
 	case types.SET_UPLOAD_PROGRESS:
-		return _.extend( {}, state, { progress: action.to } )
+		return extend( {}, state, { progress: action.to } )
 	case types.RESET_FORM:
-		return _.extend( {}, state, { image: {}, material: 'notset', uid: '', comment: '', progress: 0 } )
+		return extend( {}, state, { image: {}, material: 'notset', uid: '', comment: '', progress: 0 } )
 	default:
 		return state
 
@@ -244,9 +244,9 @@ const mapbox = ( state = { map: undefined, zoom: 0, modus: 'vector' }, action ) 
 	switch ( action.type ){
 
 	case types.SET_MAP:
-		return _.extend( {}, state, { map: action.to } )
+		return extend( {}, state, { map: action.to } )
 	case types.SET_ZOOM:
-		return _.extend( {}, state, { zoom: action.to } )
+		return extend( {}, state, { zoom: action.to } )
 	default:
 		return state
 
@@ -302,9 +302,9 @@ const popup = ( state = { popup: undefined, feature: {} }, action ) => {
 	switch ( action.type ){
 
 	case types.SET_POPUP_INSTANCE:
-		return _.extend( {}, state, { popup: action.to } )
+		return extend( {}, state, { popup: action.to } )
 	case types.SET_POPUP_FEATURE:
-		return _.extend( {}, state, { feature: action.to } )
+		return extend( {}, state, { feature: action.to } )
 	default:
 		return state
 

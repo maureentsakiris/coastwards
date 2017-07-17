@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { PropTypes } from 'prop-types'
 //import PureRenderMixin from 'react-addons-pure-render-mixin'
-import _ from 'underscore'
+import { map } from 'underscore'
 
 import LI from 'components/tags/li'
 import DIV from 'components/tags/div'
@@ -68,7 +68,7 @@ class contribution extends Component {
 		const { verified, materialVerified, example, intro, closeup } = this.state
 
 
-		const options = _.map( materials, ( material ) => {
+		const options = map( materials, ( material ) => {
 
 			let checked = material.value == contribution_material ? true : false
 			return { label: material.label, value: material.value, checked: checked }
