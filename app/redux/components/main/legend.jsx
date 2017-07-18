@@ -106,7 +106,7 @@ const legend = ( { intl, className, show, materials } ) => {
 
 	return(
 
-		<DIV className={ clsLegend }>
+		<DIV className={ clsLegend } dir="ltr">
 			<DIV className={ style.materials } >{ matLegend }</DIV>
 			<Counter />
 		</DIV>
