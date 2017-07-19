@@ -3,19 +3,26 @@
 .legend{
 
 	position: absolute;
-	bottom: $mobile-margin;
-	left: $mobile-margin;
+	bottom: 0;
+	left: 0;
 	pointer-events: none;
 	padding: 10px;
 	z-index: 1;
-	background-color: rgba(255, 255, 255, 0.7);
-	border-radius: $border-radius;
 
 	@extend %hide;
 
 	&.show{
 
 		@extend %show;
+
+	}
+
+	@include min( $tablet ){
+
+		bottom: $mobile-margin;
+		left: $mobile-margin;
+		background-color: rgba(255, 255, 255, 0.7);
+		border-radius: $border-radius;
 
 	}
 
@@ -36,7 +43,7 @@
 
 		.material{
 
-			margin: 0.3em 1em 0 0;
+			margin: 0.3em 0 0 0;
 			@extend %flexcontainer;
 			flex-direction: row;
 			align-items: center;

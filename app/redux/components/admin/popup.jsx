@@ -5,6 +5,8 @@ import { map } from 'underscore'
 import DIV from 'components/tags/div'
 import P from 'components/tags/p'
 import BR from 'components/tags/br'
+import HR from 'components/tags/hr'
+import A from 'components/tags/a'
 
 import FORM from 'components/tags/form'
 import INPUT from 'components/tags/input'
@@ -61,7 +63,7 @@ class popup extends Component {
 	render () {
 
 		const { feature, materials, deleteContribution, updateContribution } = this.props
-		const { contribution_id, contribution_uid, contribution_material } = feature
+		const { contribution_id, contribution_uid, contribution_material, contribution_comment } = feature
 
 		const { verified, materialVerified, example, intro, closeup } = this.state
 
@@ -80,6 +82,7 @@ class popup extends Component {
 		]
 
 		const formID = "contribution_" + contribution_id
+		const url = "uploads/" + contribution_uid + ".jpg"
 
 		if( !contribution_uid ){
 
@@ -97,11 +100,14 @@ class popup extends Component {
 			return(
 
 				<DIV id="Popup" className={ style.popup } >
+					<DIV className={ style.bar }><A href={ url } className="material-icons">open_in_new</A></DIV>
 					<DIV className={ style.top } style={ { backgroundImage: 'url("uploads/' + contribution_uid +'.jpg")' } } ></DIV>
 					<FORM id={ formID } action="#" className={ style.form }>
 						<INPUT form={ formID } type="hidden" name="contribution_id" value={ contribution_id + '' } />
 						<P>ID: { contribution_id }</P>
-						<P>Material user: { contribution_material }</P>
+						<P>User material: { contribution_material }</P>
+						<P>User comment: { contribution_comment }</P>
+						<HR />
 						<SELECTGROUP preferPlaceholder={ false } form={ formID } label="Material verified" name="contribution_material_verified" options={ options } value={ materialVerified } onChange={ this._setMaterial.bind( this ) } /><BR/>
 						<RADIOGROUP preferPlaceholder={ false } checked={ verified } label="Verified" form={ formID } name="contribution_verified" options={ yesNo } value={ verified } onChange={ this._setVerified.bind( this ) } /><BR/>
 						<RADIOGROUP preferPlaceholder={ false } checked={ closeup } label="Closeup" form={ formID } name="contribution_closeup" options={ yesNo } value={ closeup } onChange={ this._setCloseup.bind( this ) } /><BR/>
@@ -109,8 +115,8 @@ class popup extends Component {
 						<RADIOGROUP preferPlaceholder={ false } checked={ intro } label="Intro" form={ formID } name="contribution_intro" options={ yesNo } value={ intro } onChange={ this._setIntro.bind( this ) } /><BR/>
 					</FORM>
 					<DIV className={ style.actions }>
-						<GO onClick={ updateContribution.bind( this, formID ) } label="UPDATE" className={ style.update } />
 						<GO onClick={ deleteContribution.bind( this, contribution_id, contribution_uid ) } label="DELETE" className={ style.delete } />
+						<GO onClick={ updateContribution.bind( this, formID ) } label="UPDATE" className={ style.update } />
 					</DIV>
 
 				</DIV>

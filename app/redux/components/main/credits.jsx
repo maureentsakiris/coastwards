@@ -16,7 +16,7 @@ const credits = ( { showDialog } ) => {
 	return(
 
 		<DIV className={ style.credits } dir="ltr">
-			<A className={ clsCopy } target="_blank" onClick={ showDialog.bind( this, 'CREDITS' ) } >info</A>
+			<A className={ clsCopy } target="_blank" onClick={ showDialog.bind( this, 'CREDITS' ) } >info_outline</A>
 			<A className={ clsLogo } target="_blank" href="https://www.mapbox.com/" aria-label="Mapbox logo"></A>
 		</DIV>
 
