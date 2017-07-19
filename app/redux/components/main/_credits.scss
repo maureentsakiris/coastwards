@@ -1,0 +1,46 @@
+@import 'app/styles/base';
+
+.credits{
+
+	position: absolute;
+	bottom: $mobile-margin;
+	right: $mobile-margin;
+
+	.logo{
+
+		display: inline-block;
+		opacity: 0.3;
+
+		&:hover{
+
+			opacity: 1;
+
+		}
+
+	}
+
+	.copy{
+
+		color: #a5b6bf;
+		font-size: 24px;
+		vertical-align: bottom;
+		opacity: 0.6;
+		margin-right: 5px;
+		position: relative;
+    	top: 1px;
+
+		&:hover{
+
+			opacity: 1;
+
+		}
+
+	}
+
+	@include min( $tablet ){
+
+		right: 60px;
+
+	}
+
+}

@@ -80,12 +80,10 @@ export const displayMap = ( ) => {
 				map.dragRotate.disable()
 				map.touchZoomRotate.disableRotation()
 				map.addControl( mapboxAttributionControl(), 'bottom-left' );
-				if( !Modernizr.touchevents ){
+		
 
-					map.addControl( mapboxGeocoder( { accessToken: ACCESSTOKEN/*, placeholder: "sdfg"*/ } ), 'top-left' )
-					map.addControl( mapboxNavigationControl(), 'bottom-right' )
-
-				} 
+				map.addControl( mapboxGeocoder( { accessToken: ACCESSTOKEN/*, placeholder: "sdfg"*/ } ), 'top-left' )
+				map.addControl( mapboxNavigationControl(), 'bottom-right' )
 
 				const popup = mapboxPopup( { closeButton: false, closeOnClick: false, anchor: 'bottom' } )
 				const featureDOM = document.getElementById( 'Popup' )

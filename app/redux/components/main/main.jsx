@@ -15,6 +15,7 @@ import Popup from 'containers/main/popup'
 import Loader from 'containers/main/loader'
 import Legend from 'containers/main/legend'
 
+import Credits from 'containers/main/credits'
 import DIV from 'components/tags/div'
 import P from 'components/tags/p'
 import I from 'components/tags/i'
@@ -90,6 +91,7 @@ const main = ( { intl, uploadSupported, jazzSupported, useraction, clipped, uncl
 				<Statuses className={ style.screen } />
 				<Errors className={ style.screen } />
 				<Form />
+				<Credits />
 				<Legend />
 				<Popup />
 				<DIV className={ clsArrow } >

@@ -3,11 +3,13 @@
 .legend{
 
 	position: absolute;
-	bottom: 0;
-	left: 0;
+	bottom: $mobile-margin;
+	left: $mobile-margin;
 	pointer-events: none;
-	padding: $mobile-margin;
+	padding: 10px;
 	z-index: 1;
+	background-color: rgba(255, 255, 255, 0.7);
+	border-radius: $border-radius;
 
 	@extend %hide;
 
@@ -49,6 +51,12 @@
 				display: inline-block;
 
 			}
+
+		}
+
+		.material:first-child{
+
+			margin-top: 0;
 
 		}
 

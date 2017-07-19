@@ -8,6 +8,7 @@ import DEFINEMATERIAL from 'containers/ui/dialogs/definematerial'
 import SHARE from './dialogs/share'
 import IMPRINT from './dialogs/imprint'
 import TERMS from './dialogs/terms'
+import CREDITS from './dialogs/credits'
 
 import REPORT from 'containers/ui/dialogs/report'
 
@@ -56,6 +57,7 @@ const dialog = ( { intl, component, active/*, jazzSupported*/, closeDialog } ) =
 					{ component == 'IMPRINT' && <IMPRINT /> }
 					{ component == 'TERMS' && <TERMS /> }
 					{ component == 'REPORT' && <REPORT /> }
+					{ component == 'CREDITS' && <CREDITS /> }
 					<CLOSE onClick={ closeDialog } title={ formatMessage( messages.close_dialog ) } />
 				</DIV>
 			</DIV>
