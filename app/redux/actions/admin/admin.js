@@ -3,138 +3,18 @@ import { promiseXHR } from 'actions/util/request/xhr'
 import { sendErrorMail } from 'actions/util/error/error'
 import { setMapData } from 'actions/admin/mapbox'
 
-
-export const setMaterial = ( e ) => {
-
-	const value = typeof( e ) === 'string' ? e : e.currentTarget.value
-
-	return function ( dispatch ){
-
-		dispatch( { type: types.SET_MATERIAL, to: value } )
-		dispatch( fetch() )
-
-	}
-
-}
-
-export const setMaterialVerified = ( e ) => {
+export const setFilter = ( type, e ) => {
 
 	const value = typeof( e ) === 'string' ? e : e.currentTarget.value
 
 	return function ( dispatch ){
 
-		dispatch( { type: types.SET_MATERIAL_VERIFIED, to: value } )
+		dispatch( { type: types[ type ], to: value } )
 		dispatch( fetch() )
 
 	}
 
 }
-
-export const setVerified = ( e ) => {
-
-	const value = typeof( e ) === 'string' ? e : e.currentTarget.value
-
-	return function ( dispatch ){
-
-		dispatch( { type: types.SET_VERIFIED, to: value } )
-		dispatch( fetch() )
-
-	}
-
-}
-
-export const setID = ( e ) => {
-
-	return function ( dispatch ){
-
-		const val = e.currentTarget.value
-		const value = val == '' ? '%' : val
-
-		dispatch( { type: types.SET_ID, to: value } )
-		dispatch( fetch() )
-
-	}
-
-}
-
-export const setExample = ( e ) => {
-
-	const value = typeof( e ) === 'string' ? e : e.currentTarget.value
-
-	return function ( dispatch ){
-
-		dispatch( { type: types.SET_EXAMPLE, to: value } )
-		dispatch( fetch() )
-
-	}
-
-}
-
-export const setIntro = ( e ) => {
-
-	const value = typeof( e ) === 'string' ? e : e.currentTarget.value
-
-	return function ( dispatch ){
-
-		dispatch( { type: types.SET_INTRO, to: value } )
-		dispatch( fetch() )
-
-	}
-
-}
-
-export const setCloseup = ( e ) => {
-
-	const value = typeof( e ) === 'string' ? e : e.currentTarget.value
-
-	return function ( dispatch ){
-
-		dispatch( { type: types.SET_CLOSEUP, to: value } )
-		dispatch( fetch() )
-
-	}
-
-}
-
-export const setPointManual = ( e ) => {
-
-	const value = typeof( e ) === 'string' ? e : e.currentTarget.value
-
-	return function ( dispatch ){
-
-		dispatch( { type: types.SET_POINTMANUAL, to: value } )
-		dispatch( fetch() )
-
-	}
-
-}
-
-export const setPointCorrected = ( e ) => {
-
-	const value = typeof( e ) === 'string' ? e : e.currentTarget.value
-
-	return function ( dispatch ){
-
-		dispatch( { type: types.SET_POINTCORRECTED, to: value } )
-		dispatch( fetch() )
-
-	}
-
-}
-
-/*export const toggleFormVisibility = ( ) => {
-
-	return function ( dispatch, getState ){
-
-		const state = getState()
-		const showForm = state.form.show
-
-		dispatch( { type: types.SET_FORM_VISIBILITY, to: !showForm } )
-
-	}
-
-}*/
-
 
 export const fetch = ( ) => {
 
@@ -173,7 +53,6 @@ export const fetch = ( ) => {
 				}else{
 
 					dispatch( { type: types.SET_RESULTS, to: parsed.json } )
-					//dispatch( { type: types.SET_FORM_VISIBILITY, to: false } )
 					dispatch( setMapData( parsed.json ) )
 
 				}
@@ -183,7 +62,6 @@ export const fetch = ( ) => {
 			} )
 			.catch( ( error ) => {
 
-				console.log( error )
 				dispatch( sendErrorMail( error ) )
 
 			} )

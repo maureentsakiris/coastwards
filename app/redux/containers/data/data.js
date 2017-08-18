@@ -1,22 +1,17 @@
 import { connect } from 'react-redux'
-import { setFilter } from 'actions/admin/admin'
+import { setFilter } from 'actions/data/data'
 
-import ADMIN from 'components/admin/admin'
+import DATA from 'components/data/data'
 
 
 const mapStateToProps = ( state ) => {
 
 	return {
 
-		showForm: state.form.show,
-		results: state.form.results,
 		materials: state.materials, 
 		material: state.form.material,
 		materialverified: state.form.materialverified,
 		verified: state.form.verified,
-		example: state.form.example,
-		intro: state.form.intro,
-		id: state.form.id,
 		closeup: state.form.closeup,
 		pointmanual: state.form.pointmanual,
 		pointcorrected: state.form.pointcorrected
@@ -40,11 +35,11 @@ const mapDispatchToProps = ( dispatch ) => {
 }
 
 
-const admin = connect(
+const data = connect(
 
 	mapStateToProps,
 	mapDispatchToProps
 
-)( ADMIN )
+)( DATA )
 
-export default admin
+export default data

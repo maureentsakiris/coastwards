@@ -5,7 +5,6 @@ const formidable = require( 'formidable' )
 const _ = require( 'underscore' )
 const fs = require( 'fs' )
 const path = require( 'path' )
-const stringify = require( 'csv-stringify' )
 
 const PROJECT_ROOT = path.resolve( './' )
 const UPLOADS = path.join( PROJECT_ROOT, 'public/uploads/' )
@@ -131,19 +130,19 @@ const _fetch = ( fields ) => {
 router.post( '/fetch', function ( req, res ) {
 
 	_promiseFetchForm( req )
-	.then( _fetch )
-	.then( JSON.parse )
-	.then( ( geojson ) => {
+		.then( _fetch )
+		.then( JSON.parse )
+		.then( ( geojson ) => {
 
-		res.json( { status: 'OK', json: geojson } )
-		return geojson;
+			res.json( { status: 'OK', json: geojson } )
+			return geojson;
 
-	} )
-	.catch( ( error ) => {
+		} )
+		.catch( ( error ) => {
 
-		res.json( { status: 'KO', message: error.toString() } )
+			res.json( { status: 'KO', message: error.toString() } )
 
-	} )
+		} )
 
 } )
 
@@ -221,20 +220,20 @@ const _unlink = ( uid ) => {
 router.post( '/delete', function ( req, res ) {
 
 	_promiseFetchForm( req )
-	.then( _delete )
-	.then( _unlink )
-	.then( ( uid ) => {
+		.then( _delete )
+		.then( _unlink )
+		.then( ( uid ) => {
 
-		res.json( { status: 'OK', uid: uid } )
-		
-		return uid
+			res.json( { status: 'OK', uid: uid } )
+			
+			return uid
 
-	} )
-	.catch( ( error ) => {
+		} )
+		.catch( ( error ) => {
 
-		res.json( { status: 'KO', message: error.toString() } )
+			res.json( { status: 'KO', message: error.toString() } )
 
-	} )
+		} )
 
 } )
 
@@ -297,19 +296,19 @@ const _update = ( fields ) => {
 router.post( '/update', function ( req, res ) {
 
 	_promiseFetchForm( req )
-	.then( _update )
-	.then( ( affectedRows ) => {
+		.then( _update )
+		.then( ( affectedRows ) => {
 
-		res.json( { status: 'OK', affectedRows: affectedRows } )
-		
-		return affectedRows
+			res.json( { status: 'OK', affectedRows: affectedRows } )
+			
+			return affectedRows
 
-	} )
-	.catch( ( error ) => {
+		} )
+		.catch( ( error ) => {
 
-		res.json( { status: 'KO', message: error.toString() } )
+			res.json( { status: 'KO', message: error.toString() } )
 
-	} )
+		} )
 
 } )
 
@@ -378,111 +377,20 @@ function promiseFetchExamples (){
 router.get( '/examples', function ( req, res ) {
 
 	promiseFetchExamples()
-	.then( ( json ) => {
+		.then( ( json ) => {
 
-		res.json( { status: 'OK', json: json } )
-		return json;
+			res.json( { status: 'OK', json: json } )
+			return json;
 
-	} )
-	.catch( ( error ) => {
+		} )
+		.catch( ( error ) => {
 
-		res.json( { status: 'KO', message: error.toString() } )
-
-	} )
-
-} )
-
-
-function promiseFetchCSV (){
-
-	return new Promise( function ( resolve, reject ) {
-
-		pool.getConnection( function ( error, connection ) {
-
-			if( error ){
-
-				reject( error )
-
-			}else{
-
-				var sql = 'SELECT ST_AsText(??) as Point, ?? as Material FROM ??'
-				var inserts = [
-
-					"contribution_point",
-					"contribution_material_verified",
-
-
-					"contributions"
-
-				]
-
-				var query = mysql.format( sql, inserts )
-
-				connection.query( query, function ( err, results ) {
-
-					if( error ){
-
-						reject( error )
-
-					}else{
-
-						if( results === undefined ){
-
-							reject( Error( 'contributions/promiseFetchCSV/Could not read result from query (Update schema?)' ) )
-
-						}else{
-
-							resolve( results )
-
-						}
-
-					}
-					
-					connection.release()
-
-				} )
-
-			}
+			res.json( { status: 'KO', message: error.toString() } )
 
 		} )
 
-	} )
-
-}
-
-router.get( '/csv', function ( req, res ) {
-
-	promiseFetchCSV()
-	.then( ( results ) => {
-
-		//res.send( new Buffer( results ) )
-		let columns = {
-
-			point: "Point",
-			material: "Material"
-
-		}
-
-		stringify( results, { header: true }, function ( err, output ){
-
-			const date = new Date()
-
-			res.set( 'Content-Type', 'text/csv' )
-			res.set( { "Content-Disposition": "attachment; filename=coastwards" + "-" + date.getFullYear() + "-" + ( date.getMonth() + 1 ) + "-" + date.getDate() + "_" + date.getHours() + "-" + date.getMinutes() + "-" + date.getSeconds() + ".csv" } )
-			res.send( output )
-
-		} )
-
-		return results;
-
-	} )
-	.catch( ( error ) => {
-
-		res.json( { status: 'KO', message: error.toString() } )
-
-	} )
-
 } )
+
 
 function promiseFetchContribution ( id ){
 
@@ -543,17 +451,17 @@ function promiseFetchContribution ( id ){
 router.get( '/:contribution_id', function ( req, res ) {
 
 	promiseFetchContribution( req.params.contribution_id )
-	.then( ( json ) => {
+		.then( ( json ) => {
 
-		res.json( { status: 'OK', json: json } )
-		return json;
+			res.json( { status: 'OK', json: json } )
+			return json;
 
-	} )
-	.catch( ( error ) => {
+		} )
+		.catch( ( error ) => {
 
-		res.json( { status: 'KO', message: error.toString() } )
+			res.json( { status: 'KO', message: error.toString() } )
 
-	} )
+		} )
 
 } )
 

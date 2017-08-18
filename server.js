@@ -7,6 +7,7 @@ const globalConfigs = require ( './config/' );
 const contribute = require( './server/contribute' );
 const contact = require( './server/contact' );
 const administrate = require( './server/administrate' );
+const data = require( './server/data' );
 
 const publicPath = path.resolve( __dirname, 'public' );
 
@@ -32,7 +33,7 @@ app.set( 'views', path.resolve( __dirname, './app/views' ) );
 
 app.get( '/', function ( req, res ) {
 
-	var lang = req.acceptsLanguages( [ 'en', 'es', 'ar', 'de', 'zh', 'el', 'hi' ] );
+	var lang = req.acceptsLanguages( [ 'en', 'es', 'ar', 'de', 'zh', 'el', 'hi', 'pt' ] );
 	res.render( 'index', { lang: lang } );
 
 } );
@@ -40,6 +41,13 @@ app.get( '/', function ( req, res ) {
 app.use( '/contribute', contribute );
 app.use( '/contact', contact );
 app.use( '/administrate', administrate );
+app.use( '/data', data );
+
+app.get( '/data', function ( req, res ) {
+
+	res.render( 'data' );
+
+} );
 
 
 const passport = require( 'passport' )
@@ -106,8 +114,8 @@ app.get( '/login', ( req, res ) => {
 
 app.get( '/login/github', passport.authenticate( 'github', { scope: [ 'user:email' ] } ), ( ) => {
 
-		// The request will be redirected to GitHub for authentication, so this
-		// function will not be called.
+	// The request will be redirected to GitHub for authentication, so this
+	// function will not be called.
 
 } )
 

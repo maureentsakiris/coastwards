@@ -1,26 +1,26 @@
 import React from 'react'
 import { PropTypes } from 'prop-types'
 import { chain } from 'underscore'
-import ClassNames from 'classnames'
+//import ClassNames from 'classnames'
 
 import DIV from 'components/tags/div'
-import A from 'components/tags/a'
+//import A from 'components/tags/a'
 //import P from 'components/tags/p'
 import H from 'components/tags/h'
 
 import FORM from 'components/tags/form'
-import INPUT from 'components/form/input/input'
+//import INPUT from 'components/form/input/input'
 import TOGGLE from 'components/ui/toggle'
 import ICONRADIOGROUP from 'components/form/radiogroup/iconradiogroup'
 //import GO from 'components/form/button/go'
 
 //import CONTRIBUTION from 'containers/admin/contribution'
-import Mapbox from 'containers/admin/mapbox'
-import Popup from 'containers/admin/popup'
+import Mapbox from 'containers/data/mapbox'
+import Popup from 'containers/data/popup'
 
-import style from './_admin'
+import style from './_data'
 
-const admin = ( { materials, material, materialverified, verified, id, example, intro, closeup, pointmanual, pointcorrected, setFilter } ) => {
+const data = ( { materials, material, materialverified, verified, closeup, pointmanual, pointcorrected, setFilter } ) => {
 
 	const all = [ { label: 'All', value: '%' } ]
 	const mats = chain( materials )
@@ -54,52 +54,21 @@ const admin = ( { materials, material, materialverified, verified, id, example, 
 
 	]
 
-	/*const clsForm = ClassNames( style.corset, {
 
-		[ style.hide ]: !showForm
-
-	} )*/
-
-	const clsLogger = ClassNames( style.link, style.logger )
-	//const clsToggle = ClassNames( style.link, style.toggle )
-
-	//console.log( results );
-
-	//const noresults = results === null ? true : false;
-
-	/*const list = _renderResults( results )
-
-	const noresults = results && list.length == 0*/
-
-
-	/*<CHECKBOX form="Admin" label="Verified" name="verified" preferPlaceholder={ false } value="1" onChange={ setVerified } />*/
-	/*<Mapbox className={ style.mapbox } />*/
-
-	/*<GO className={ style.go } onClick={ fetch } label="GO" />
-					{ noresults && <P className={ style.noresults } >Sorry, no results</P> }*/
-
-	/*<DIV className={ style.toolbar } >
-				<A target="_self" href="/logout" className={ clsLogger } >Logout</A>
-				<A target="_self" onClick={ toggleFormVisibility } className={ clsToggle } >Show/Hide Form</A>
-			</DIV>*/
 	return(
 
 		<DIV className={ style.admin }>
 			<Popup />
 			<DIV className={ style.form } >
-				<A target="_self" href="/logout" className={ clsLogger } >Logout</A>
 				<FORM id="Admin" action="javascript:;" onSubmit={ fetch } >
 					<H priority={ 1 } >Hi there! Go ahead, make your selection...</H>
 					<ICONRADIOGROUP form="Admin" label="Verified: " name="verified" preferPlaceholder={ false } options={ allYesNo } onClick={ setFilter.bind( this, 'SET_VERIFIED' ) } checkedValue={ verified } />
 					<TOGGLE priority={ 4 } className={ style.toggle } text="Other filters" >
-						<INPUT form="Admin" label="ID: " name="id" preferPlaceholder={ false } placeholder="ID" onChange={ setFilter.bind( this, 'SET_ID' ) } checkedValue={ id } />
 						<ICONRADIOGROUP form="Admin" label="Material contributor: " name="material" preferPlaceholder={ false } options={ materialOptions } onClick={ setFilter.bind( this, 'SET_MATERIAL' ) } checkedValue={ material } />
 						<ICONRADIOGROUP form="Admin" label="Material verified: " name="materialverified" preferPlaceholder={ false } options={ materialOptions } onClick={ setFilter.bind( this, 'SET_MATERIAL_VERIFIED' ) } checkedValue={ materialverified } />
 						<ICONRADIOGROUP form="Admin" label="Position manual: " name="pointmanual" preferPlaceholder={ false } options={ allYesNo } onClick={ setFilter.bind( this, 'SET_POINTMANUAL' ) } checkedValue={ pointmanual } />
 						<ICONRADIOGROUP form="Admin" label="Position corrected: " name="pointcorrected" preferPlaceholder={ false } options={ allYesNo } onClick={ setFilter.bind( this, 'SET_POINTCORRECTED' ) } checkedValue={ pointcorrected } />
 						<ICONRADIOGROUP form="Admin" label="Closeup: " name="closeup" preferPlaceholder={ false } options={ allYesNo } onClick={ setFilter.bind( this, 'SET_CLOSEUP' ) } checkedValue={ closeup } />
-						<ICONRADIOGROUP form="Admin" label="Intro: " name="intro" preferPlaceholder={ false } options={ allYesNo } onClick={ setFilter.bind( this, 'SET_INTRO' ) } checkedValue={ intro } />
-						<ICONRADIOGROUP form="Admin" label="Example: " name="example" preferPlaceholder={ false } options={ allYesNo } onClick={ setFilter.bind( this, 'SET_EXAMPLE' ) } checkedValue={ example } />
 					</TOGGLE>
 				</FORM>
 			</DIV>
@@ -110,17 +79,12 @@ const admin = ( { materials, material, materialverified, verified, id, example, 
 
 }
 
-admin.propTypes = {
+data.propTypes = {
 
-	showForm: PropTypes.bool,
-	results: PropTypes.object,
 	materials: PropTypes.array,
 	material: PropTypes.string,
 	materialverified: PropTypes.string,
 	verified: PropTypes.string,
-	id: PropTypes.string,
-	example: PropTypes.string,
-	intro: PropTypes.string,
 	closeup: PropTypes.string,
 	pointmanual: PropTypes.string,
 	pointcorrected: PropTypes.string,
@@ -129,4 +93,4 @@ admin.propTypes = {
 
 }
 
-export default admin
+export default data

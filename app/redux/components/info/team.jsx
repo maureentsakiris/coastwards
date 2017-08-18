@@ -97,6 +97,11 @@ const messages = defineMessages( {
 		description: "P - ",
 		defaultMessage: "For translating this site into Hindi"
 	},
+	diana:{
+		id: "diana",
+		description: "P - ",
+		defaultMessage: "For translating this site into Portuguese"
+	},
 	legal_notice:{
 		id: "legal_notice",
 		description: "A - ",
@@ -156,6 +161,7 @@ const team = ( { intl, jazzSupported, showDialog } ) => {
 					<P><A href="https://github.com/basselAlshK" target="_blank">Bassel Alsheekh Kassem</A> - { formatMessage( messages.bassel ) }</P>
 					<P><A href="https://www.facebook.com/jing.liu.127" target="_blank">Jing Liu</A> - { formatMessage( messages.jing ) }</P>
 					<P><A href="https://www.linkedin.com/in/atul-kumar/" target="_blank">Atul Kumar Yadav</A> - { formatMessage( messages.atul ) }</P>
+					<P>Diana Abreu, Michele Braña Bradin, Sofia Oliveira - { formatMessage( messages.diana ) }</P>
 
 				</TOGGLE>
 				<A className={ style.imprint } onClick={ showDialog.bind( this, 'IMPRINT' ) } >{ formatMessage( messages.legal_notice ) }</A>

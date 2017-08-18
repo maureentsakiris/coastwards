@@ -32,7 +32,8 @@ module.exports = {
 		vendor: 'mapbox-gl',
 		index: './app/entries/index.jsx',
 		login: './app/entries/login.jsx',
-		admin: './app/entries/admin.jsx'
+		admin: './app/entries/admin.jsx',
+		data: './app/entries/data.jsx'
 
 	},
 
