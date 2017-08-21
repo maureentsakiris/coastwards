@@ -102,6 +102,11 @@ const messages = defineMessages( {
 		description: "P - ",
 		defaultMessage: "For translating this site into Portuguese"
 	},
+	hugo:{
+		id: "hugo",
+		description: "P - ",
+		defaultMessage: "For translating this site into French"
+	},
 	legal_notice:{
 		id: "legal_notice",
 		description: "A - ",
@@ -162,6 +167,7 @@ const team = ( { intl, jazzSupported, showDialog } ) => {
 					<P><A href="https://www.facebook.com/jing.liu.127" target="_blank">Jing Liu</A> - { formatMessage( messages.jing ) }</P>
 					<P><A href="https://www.linkedin.com/in/atul-kumar/" target="_blank">Atul Kumar Yadav</A> - { formatMessage( messages.atul ) }</P>
 					<P>Diana Abreu, Michele Braña Bradin, Sofia Oliveira - { formatMessage( messages.diana ) }</P>
+					<P>Hugo Vanhove, <A href="http://elisaganivet.com/" target="_blank">Elisa Ganivet</A> - { formatMessage( messages.hugo ) }</P>
 
 				</TOGGLE>
 				<A className={ style.imprint } onClick={ showDialog.bind( this, 'IMPRINT' ) } >{ formatMessage( messages.legal_notice ) }</A>

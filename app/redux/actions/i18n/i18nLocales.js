@@ -50,6 +50,11 @@ export const Locales = [
 		locale: 'hi',
 		name: 'हिन्दी, हिंदी',
 		en: 'Hindi'
+	},
+	{
+		locale: 'fr',
+		name: 'Français',
+		en: 'French'
 	}/*,
 	{
 		locale: 'ru',
@@ -392,6 +397,47 @@ loaders.hi = ( done ) => {
 
 			},
 			'hi'
+
+		);
+
+	}
+
+}
+
+loaders.fr = ( done ) => {
+
+	if ( !hasIntl ){
+
+		require.ensure(
+
+			[ 'intl/locale-data/jsonp/fr.js', 'react-intl/locale-data/fr', '../../../i18n/locales/fr' ],
+			( require ) => {
+
+				require( 'intl/locale-data/jsonp/fr.js' ); 
+				var localeData = require( 'react-intl/locale-data/fr' );
+				addLocaleData( localeData );
+				var i18n = require( '../../../i18n/locales/fr' );
+				done ( null, i18n );
+
+			},
+			'fr-polyfill'
+
+		);
+
+	}else{
+
+		require.ensure(
+
+			[ 'react-intl/locale-data/fr', '../../../i18n/locales/fr' ],
+			( require ) => {
+
+				var localeData = require( 'react-intl/locale-data/fr' );
+				addLocaleData( localeData );
+				var i18n = require( '../../../i18n/locales/fr' );
+				done ( null, i18n );
+
+			},
+			'fr'
 
 		);
 
