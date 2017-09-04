@@ -2,9 +2,9 @@ const express = require( 'express' )
 const router = express.Router()
 const formidable = require( 'formidable' )
 const _ = require( 'underscore' )
-const nodemailer = require( 'nodemailer' )
+//const nodemailer = require( 'nodemailer' )
 
-var transporter = nodemailer.createTransport( 'smtps://go%40coastwards.org:EK.cc74q{q@6ykn-r2f5.accessdomain.com' )
+//var transporter = nodemailer.createTransport( 'smtps://go%40coastwards.org:EK.cc74q{q@6ykn-r2f5.accessdomain.com' )
 
 
 const _promiseFetchForm = ( req ) => {
@@ -70,7 +70,9 @@ const _sendAsk = ( fields ) => {
 
 		}
 
-		transporter.sendMail( mailOptions, function ( error, info ){
+		resolve( 'OK' )
+
+		/*transporter.sendMail( mailOptions, function ( error, info ){
  
 			if( error ){
 
@@ -80,7 +82,7 @@ const _sendAsk = ( fields ) => {
 
 			resolve( info.response )
 
-		} );
+		} );*/
 
 	} )
 
