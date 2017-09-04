@@ -64,7 +64,7 @@ const _sendAsk = ( fields ) => {
 		let mailOptions = {
 
 			from: '"' + fields.email + '" <' + fields.email + '>',
-			to: 'tsakiris@geographie.uni-kiel.de',
+			to: 'go@coastwards.org',
 			subject: 'Still have a question...',
 			text: fields.comment
 
