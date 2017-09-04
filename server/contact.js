@@ -70,8 +70,6 @@ const _sendAsk = ( fields ) => {
 
 		}
 
-		resolve( 'OK' )
-
 		transporter.sendMail( mailOptions, function ( error, info ){
  
 			if( error ){
