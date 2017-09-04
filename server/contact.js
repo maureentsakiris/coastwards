@@ -89,18 +89,18 @@ const _sendAsk = ( fields ) => {
 router.post( '/ask', function ( req, res ) {
 
 	_promiseFetchForm( req )
-	.then( _sendAsk )
-	.then( ( response ) => {
+		.then( _sendAsk )
+		.then( ( response ) => {
 
-		res.send( 'OK' )
-		return response
+			res.send( 'OK' )
+			return response
 
-	} )
-	.catch( ( error ) => {
+		} )
+		.catch( ( error ) => {
 
-		res.send( error.message )
+			res.send( error.message )
 
-	} )
+		} )
 
 } )
 
@@ -139,18 +139,18 @@ const _requestBatchUpload = ( fields ) => {
 router.post( '/requestBatchUpload', function ( req, res ) {
 
 	_promiseFetchForm( req )
-	.then( _requestBatchUpload )
-	.then( ( response ) => {
+		.then( _requestBatchUpload )
+		.then( ( response ) => {
 
-		res.send( 'OK' )
-		return response
+			res.send( 'OK' )
+			return response
 
-	} )
-	.catch( ( error ) => {
+		} )
+		.catch( ( error ) => {
 
-		res.send( error.message )
+			res.send( error.message )
 
-	} )
+		} )
 
 } )
 
@@ -188,18 +188,18 @@ const _sendReport = ( fields ) => {
 router.post( '/report', function ( req, res ) {
 
 	_promiseFetchForm( req )
-	.then( _sendReport )
-	.then( ( response ) => {
+		.then( _sendReport )
+		.then( ( response ) => {
 
-		res.send( 'OK' )
-		return response
+			res.send( 'OK' )
+			return response
 
-	} )
-	.catch( ( error ) => {
+		} )
+		.catch( ( error ) => {
 
-		res.send( error.message )
+			res.send( error.message )
 
-	} )
+		} )
 
 } )
 
@@ -236,18 +236,18 @@ const _sendError = ( fields ) => {
 router.post( '/error', function ( req, res ) {
 
 	_promiseFetchForm( req )
-	.then( _sendError )
-	.then( ( response ) => {
+		.then( _sendError )
+		.then( ( response ) => {
 
-		res.send( 'OK' )
-		return response
+			res.send( 'OK' )
+			return response
 
-	} )
-	.catch( ( error ) => {
+		} )
+		.catch( ( error ) => {
 
-		res.send( error.message )
+			res.send( error.message )
 
-	} )
+		} )
 
 } )
 
