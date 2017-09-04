@@ -4,7 +4,7 @@ import { promiseInitMapbox, mapboxPopup, mapboxLngLatConvert, mapboxNavigationCo
 import { isNull, findWhere, pluck, map } from 'underscore'
 import { promiseGet, promiseJSONOK } from 'actions/util/request/get'
 //import { resetMain } from 'actions/main/main'
-import Modernizr from 'modernizr'
+//import Modernizr from 'modernizr'
 
 const _map = map
 

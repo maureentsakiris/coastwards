@@ -64,7 +64,7 @@ const _sendAsk = ( fields ) => {
 		let mailOptions = {
 
 			from: '"' + fields.email + '" <' + fields.email + '>',
-			to: 'go@coastwards.org',
+			to: 'tsakiris@geographie.uni-kiel.de',
 			subject: 'Still have a question...',
 			text: fields.comment
 
@@ -107,7 +107,7 @@ router.post( '/ask', function ( req, res ) {
 
 
 
-const _requestBatchUpload = ( fields ) => {
+/*const _requestBatchUpload = ( fields ) => {
 
 	return new Promise( ( resolve, reject ) => { 
 
@@ -152,7 +152,7 @@ router.post( '/requestBatchUpload', function ( req, res ) {
 
 		} )
 
-} )
+} )*/
 
 
 
@@ -177,7 +177,7 @@ const _sendReport = ( fields ) => {
 
 			}
 
-			resolve( info.response )
+			resolve( info.response )		
 
 		} );
 

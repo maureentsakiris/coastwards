@@ -1,6 +1,5 @@
 import { connect } from 'react-redux'
 import { hidePopup } from 'actions/data/mapbox'
-import { deleteContribution, updateContribution } from 'actions/data/data'
 import POPUP from 'components/data/popup'
 
 
@@ -23,24 +22,6 @@ const mapDispatchToProps = ( dispatch ) => {
 
 			e.preventDefault()
 			dispatch( hidePopup() )
-
-		},
-		deleteContribution: ( id, uid, e ) => {
-
-			e.preventDefault()
-			
-			if ( confirm( 'YOU COMPLETELY SURE YOU WANT TO DELETE THIS CONTRIBUTION?' ) ) {
-
-				dispatch( deleteContribution( id, uid ) )
-
-			} 
-
-		},
-		updateContribution: ( formID, e ) => {
-
-			e.preventDefault()
-			
-			dispatch( updateContribution( formID ) )
 
 		}
 
