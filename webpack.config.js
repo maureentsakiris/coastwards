@@ -3,7 +3,7 @@
 const webpack = require( 'webpack' )
 const ExtractTextPlugin = require( 'extract-text-webpack-plugin' )
 const CompressionPlugin = require( 'compression-webpack-plugin' )
-const BundleAnalyzerPlugin = require( 'webpack-bundle-analyzer' ).BundleAnalyzerPlugin
+//const BundleAnalyzerPlugin = require( 'webpack-bundle-analyzer' ).BundleAnalyzerPlugin
 const { resolve } = require( 'path' )
 
 
@@ -144,6 +144,8 @@ module.exports = {
 			allChunks: true 
 
 		} ),
+		//https://forum-archive.vuejs.org/topic/4059/adding-gzip-to-webpack-using-compression-plugin/4
+		//https://medium.com/@rajaraodv/two-quick-ways-to-reduce-react-apps-size-in-production-82226605771a
 		new CompressionPlugin( {
 
 			asset: "[path].gz[query]",
@@ -151,7 +153,7 @@ module.exports = {
 			test: /\.js$|\.css$|\.html$/,
 			//threshold: 10240,
 			minRatio: 0.8,
-			deleteOriginalAssets: true
+			//deleteOriginalAssets: true
 
 		} ),
 		//new BundleAnalyzerPlugin()
