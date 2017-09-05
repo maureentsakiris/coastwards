@@ -4,7 +4,22 @@ const formidable = require( 'formidable' )
 const _ = require( 'underscore' )
 const nodemailer = require( 'nodemailer' )
 
-var transporter = nodemailer.createTransport( 'smtps://go%40coastwards.org:EK.cc74q{q@6ykn-r2f5.accessdomain.com' )
+//var transporter = nodemailer.createTransport( 'smtps://go%40coastwards.org:EK.cc74q{q@6ykn-r2f5.accessdomain.com' )
+
+var poolConfig = {
+
+	pool: true,
+	host: '6ykn-r2f5.accessdomain.com',
+	port: 465,
+	secure: true,
+	auth: {
+
+		user: 'go@coastwards.org',
+		pass: 'EK.cc74q{q'
+
+	}
+
+}
 
 
 const _promiseFetchForm = ( req ) => {
@@ -70,17 +85,21 @@ const _sendAsk = ( fields ) => {
 
 		}
 
+		let transporter = nodemailer.createTransport( poolConfig )
+
 		transporter.sendMail( mailOptions, function ( error, info ){
  
 			if( error ){
 
 				reject( Error( error ) )
 
+			}else{
+
+				resolve( info.response )
+
 			}
 
-			resolve( info.response )
-
-		} );
+		} )
 
 	} )
 
@@ -169,17 +188,21 @@ const _sendReport = ( fields ) => {
 
 		}
 
+		let transporter = nodemailer.createTransport( poolConfig )
+
 		transporter.sendMail( mailOptions, function ( error, info ){
- 
+		
 			if( error ){
 
 				reject( Error( error ) )
 
+			}else{
+
+				resolve( info.response )
+
 			}
 
-			resolve( info.response )		
-
-		} );
+		} )
 
 	} )
 
@@ -217,17 +240,21 @@ const _sendError = ( fields ) => {
 
 		}
 
+		let transporter = nodemailer.createTransport( poolConfig )
+
 		transporter.sendMail( mailOptions, function ( error, info ){
- 
+		
 			if( error ){
 
 				reject( Error( error ) )
 
+			}else{
+
+				resolve( info.response )
+
 			}
 
-			resolve( info.response )
-
-		} );
+		} )
 
 	} )
 
