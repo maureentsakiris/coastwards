@@ -10,8 +10,8 @@ var poolConfig = {
 
 	pool: true,
 	host: '6ykn-r2f5.accessdomain.com',
-	port: 465,
-	secure: true,
+	port: 587,
+	secure: false,
 	auth: {
 
 		user: 'go@coastwards.org',
