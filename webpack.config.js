@@ -2,7 +2,8 @@
 
 const webpack = require( 'webpack' )
 const ExtractTextPlugin = require( 'extract-text-webpack-plugin' )
-//const BundleAnalyzerPlugin = require( 'webpack-bundle-analyzer' ).BundleAnalyzerPlugin
+const CompressionPlugin = require( 'compression-webpack-plugin' )
+const BundleAnalyzerPlugin = require( 'webpack-bundle-analyzer' ).BundleAnalyzerPlugin
 const { resolve } = require( 'path' )
 
 
@@ -17,7 +18,7 @@ const STYLES = resolve( __dirname, 'app/styles/' )
 
 module.exports = {
 
-	devtool: 'nosources-source-map',
+	//devtool: 'nosources-source-map',
 
 	stats: {
 
@@ -141,6 +142,16 @@ module.exports = {
 
 			filename: "[name].css",
 			allChunks: true 
+
+		} ),
+		new CompressionPlugin( {
+
+			asset: "[path].gz[query]",
+			algorithm: "gzip",
+			test: /\.js$|\.css$|\.html$/,
+			//threshold: 10240,
+			minRatio: 0.8,
+			deleteOriginalAssets: true
 
 		} ),
 		//new BundleAnalyzerPlugin()
