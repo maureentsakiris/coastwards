@@ -67,3 +67,49 @@ export const fetch = ( ) => {
 	}
 
 }
+
+export const downloadCSV = ( ) => {
+
+	return function ( dispatch, getState ){
+
+		const state = getState()
+
+		const { material, verified, materialverified, closeup, pointmanual, pointcorrected } = state.form
+
+		window.open( 'http://coastwards.org/data/csv?material=' + material + '&verified=' + verified + '&materialverified=' + materialverified + '&closeup=' + closeup + '&pointmanual=' + pointmanual + '&pointcorrected=' + pointcorrected )
+
+		/*let formData = new FormData()
+		formData.append( 'material', material )
+		formData.append( 'verified', verified )
+		formData.append( 'materialverified', materialverified )
+		formData.append( 'closeup', closeup )
+		formData.append( 'pointmanual', pointmanual )
+		formData.append( 'pointcorrected', pointcorrected )
+
+		let options = {
+
+			data: formData,
+			url: '/data/csv',
+			responseType: 'document'
+			//url: '/data/csv?material=' + material + '&verified=' + verified + '&materialverified=' + materialverified + '&closeup=' + closeup + '&pointmanual=' + pointmanual + '&pointcorrected=' + pointcorrected,
+			//method: 'GET'
+
+		}
+
+		promiseXHR( options )
+			.then( ( response ) => {
+
+				console.log( response )
+
+				return response
+
+			} )
+			.catch( ( error ) => {
+
+				dispatch( sendErrorMail( error ) )
+
+			} )*/
+
+	}
+
+}

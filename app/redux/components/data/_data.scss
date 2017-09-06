@@ -23,6 +23,12 @@ $padding: 5vh 5vh 10vh 5vh;
         overflow-y: scroll;
         padding: $padding;
 
+        @include max( $tablet ){
+
+            display: none;
+
+        }
+
     }
 
     .mapbox{
@@ -31,6 +37,29 @@ $padding: 5vh 5vh 10vh 5vh;
         flex-grow: 3;
         //width: 1000px;
         height: 100%;
+
+        @include max( $tablet ){
+
+            display: none;
+
+        }
+
+    }
+
+    .desktop{
+
+        @extend %flexitem;
+        align-self: center;
+        text-align: center;
+        padding: $padding;
+        width: 100%;
+        display: none;
+
+        @include max( $tablet ){
+
+            display: block;
+
+        }
 
     }
 

@@ -2,7 +2,6 @@ import * as types from 'types'
 import { promiseInitMapbox, mapboxPopup, mapboxLngLatConvert } from 'actions/mapbox/mapbox'
 import { map } from 'underscore'
 import { fetch } from 'actions/data/data'
-import { promiseGet, promiseJSONOK } from 'actions/util/request/get'
 //import { promiseGet, promiseJSONOK } from 'actions/util/request/get'
 
 const _map = map
@@ -48,14 +47,14 @@ export const displayMap = ( ) => {
 				popup.setDOMContent( featureDOM )
 				dispatch( { type: types.SET_POPUP_INSTANCE, to: popup } )
 
-				map.on( 'mousemove', ( e ) => {
+				/*map.on( 'mousemove', ( e ) => {
 				
 					let features = map.queryRenderedFeatures( e.point, { layers: [ 'markers' ] } )
 					map.getCanvas().style.cursor = ( features.length ) ? 'pointer' : ''
 			
-				} )
+				} )*/
 
-				map.on( 'click', ( e ) => {
+				/*map.on( 'click', ( e ) => {
 
 					let features = map.queryRenderedFeatures( e.point, { layers: [ 'markers' ] } )
 
@@ -66,12 +65,9 @@ export const displayMap = ( ) => {
 
 					}
 
-					/*let feature = features[ 0 ]
-				feature.point = e.point*/
-
 					dispatch( _onMarkerClick( features ) )
 
-				} )
+				} )*/
 
 				let geojson = {
 
@@ -164,7 +160,7 @@ export const setMapData = ( data ) => {
 
 }
 
-const _onMarkerClick = ( features ) => {
+/*const _onMarkerClick = ( features ) => {
 
 	return function ( dispatch ){
 
@@ -190,7 +186,7 @@ const _onMarkerClick = ( features ) => {
 
 	}
 
-}
+}*/
 
 export const showPopup = ( feature ) => {
 

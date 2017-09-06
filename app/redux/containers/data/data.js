@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { setFilter } from 'actions/data/data'
+import { setFilter, downloadCSV } from 'actions/data/data'
 
 import DATA from 'components/data/data'
 
@@ -27,6 +27,11 @@ const mapDispatchToProps = ( dispatch ) => {
 		setFilter: ( e, type ) => {
 
 			dispatch( setFilter( e, type ) )
+
+		},
+		downloadCSV: ( e, type ) => {
+
+			dispatch( downloadCSV( e, type ) )
 
 		}
 

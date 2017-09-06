@@ -12,7 +12,7 @@ import FORM from 'components/tags/form'
 //import INPUT from 'components/form/input/input'
 import TOGGLE from 'components/ui/toggle'
 import ICONRADIOGROUP from 'components/form/radiogroup/iconradiogroup'
-//import GO from 'components/form/button/go'
+import GO from 'components/form/button/go'
 
 //import CONTRIBUTION from 'containers/admin/contribution'
 import Mapbox from 'containers/data/mapbox'
@@ -20,7 +20,7 @@ import Popup from 'containers/data/popup'
 
 import style from './_data'
 
-const data = ( { materials, material, materialverified, verified, closeup, pointmanual, pointcorrected, setFilter } ) => {
+const data = ( { materials, material, materialverified, verified, closeup, pointmanual, pointcorrected, setFilter, downloadCSV } ) => {
 
 	const all = [ { label: 'All', value: '%' } ]
 	const mats = chain( materials )
@@ -58,6 +58,7 @@ const data = ( { materials, material, materialverified, verified, closeup, point
 	return(
 
 		<DIV className={ style.admin }>
+			<DIV className={ style.desktop }>Sorry, this part of the web is not available on small screens. Please visit on a desktop computer!</DIV>
 			<Popup />
 			<DIV className={ style.form } >
 				<FORM id="Admin" action="javascript:;" onSubmit={ fetch } >
@@ -70,6 +71,7 @@ const data = ( { materials, material, materialverified, verified, closeup, point
 						<ICONRADIOGROUP form="Admin" label="Position corrected: " name="pointcorrected" preferPlaceholder={ false } options={ allYesNo } onClick={ setFilter.bind( this, 'SET_POINTCORRECTED' ) } checkedValue={ pointcorrected } />
 						<ICONRADIOGROUP form="Admin" label="Closeup: " name="closeup" preferPlaceholder={ false } options={ allYesNo } onClick={ setFilter.bind( this, 'SET_CLOSEUP' ) } checkedValue={ closeup } />
 					</TOGGLE>
+					<GO onClick={ downloadCSV } label="DOWNLOAD CSV" className={ style.download } />
 				</FORM>
 			</DIV>
 			<Mapbox className={ style.mapbox } />
@@ -89,7 +91,8 @@ data.propTypes = {
 	pointmanual: PropTypes.string,
 	pointcorrected: PropTypes.string,
 
-	setFilter: PropTypes.func
+	setFilter: PropTypes.func,
+	downloadCSV: PropTypes.func
 
 }
 

@@ -1,19 +1,14 @@
 import React, { Component } from 'react'
 import { PropTypes } from 'prop-types'
-import { map } from 'underscore'
+import PureRenderMixin from 'react-addons-pure-render-mixin'
+import { findWhere } from 'underscore'
 import { unescape } from 'validator'
+import Classnames from 'classnames'
 
 import DIV from 'components/tags/div'
-import P from 'components/tags/p'
-import BR from 'components/tags/br'
-import HR from 'components/tags/hr'
 import A from 'components/tags/a'
-
-import FORM from 'components/tags/form'
-import INPUT from 'components/tags/input'
-import SELECTGROUP from 'components/form/selectgroup/selectgroup'
-import RADIOGROUP from 'components/form/radiogroup/radiogroup'
-import GO from 'components/form/button/go'
+import I from 'components/tags/i'
+import P from 'components/tags/p'
 
 import style from './_popup'
 
@@ -25,37 +20,18 @@ class popup extends Component {
 		feature: PropTypes.object,
 		materials: PropTypes.array,
 
-		hidePopup: PropTypes.func,
-		deleteContribution: PropTypes.func,
-		updateContribution: PropTypes.func
-
-	}
-
-	componentWillReceiveProps ( p ){
-
-		this.setState( { 
-
-			verified: p.feature.contribution_verified == 1 ? true : false,
-			materialVerified: p.feature.contribution_material_verified ?  p.feature.contribution_material_verified : p.feature.contribution_material,
-			example: p.feature.contribution_example == 1 ? true : false,
-			intro: p.feature.contribution_intro == 1 ? true : false,
-			closeup: p.feature.contribution_closeup == 1 ? true : false,
-
-		} )
+		hidePopup: PropTypes.func
 
 	}
 
 	constructor ( props ) {
 
 		super ( props )
+		this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind( this )
 
 		this.state = {
 
-			verified: this.props.feature.contribution_verified == 1 ? "1" : "0",
-			materialVerified: this.props.feature.contribution_verified ?  this.props.feature.contribution_material_verified : 'notset',
-			example: this.props.feature.contribution_example == 1 ? "1" : "0",
-			intro: this.props.feature.contribution_intro == 1 ? "1" : "0",
-			closeup: this.props.feature.contribution_closeup == 1 ? "1" : "0"
+			commentToggled: false
 
 		}
 
@@ -63,65 +39,59 @@ class popup extends Component {
 
 	render () {
 
-		const { feature, materials, deleteContribution, updateContribution } = this.props
-		const { contribution_id, contribution_uid, contribution_material, contribution_comment } = feature
+		const { feature, materials, hidePopup } = this.props
+		const { commentToggled } = this.state
 
-		const { verified, materialVerified, example, intro, closeup } = this.state
+		if( !feature.contribution_uid ){
 
-
-		if( !contribution_uid ){
-
-			return(
-
-				<DIV id="Popup" className={ style.popup } style={ { 'display': 'none' } } >
+			return (
+				
+				<DIV id="Popup" className={ style.popup } style={ { 'display': 'none' } }>
 					<DIV className={ style.spinner }></DIV>
 				</DIV>
 
 			)
-			
 
 		}else{
 
-			const options = map( materials, ( material ) => {
+			const { contribution_verified, contribution_material, contribution_material_verified, contribution_comment, contribution_uid, contribution_exif_datetime/*, contribution_hashtag*/ } = feature
 
-				let checked = material.value == contribution_material ? true : false
-				return { label: material.label, value: material.value, checked: checked }
 
-			} )
+			const material = contribution_verified ? contribution_material_verified : contribution_material
+			const m = findWhere( materials, { value: contribution_material_verified } )
+			const color = m.color
+			
 
-			const yesNo = [
-
-				{ label: 'Yes', value: '1' },
-				{ label: 'No', value: '0' }
-
-			]
-
-			const formID = "contribution_" + contribution_id
-			const url = "uploads/" + contribution_uid + ".jpg"
 			const usercomment = unescape( contribution_comment )
+			const hascomment = usercomment != ''
+			const showcomment = commentToggled && hascomment
+			const commentIcon = showcomment ? 'insert_comment' : 'mode_comment'
+
+			const date = contribution_exif_datetime == '0999-12-31T23:00:00.000Z' ? false : new Date( contribution_exif_datetime )
+
+			const clsVerified = Classnames( "material-icons", style.verified )
+
+			const showVerified = contribution_verified == 1 && material != 'notclose' && material != 'notsure'
+
+			console.log( date )
 
 			return(
 
 				<DIV id="Popup" className={ style.popup } >
-					<DIV className={ style.bar }><A href={ url } className="material-icons">open_in_new</A></DIV>
-					<DIV className={ style.top } style={ { backgroundImage: 'url("uploads/' + contribution_uid +'.jpg")' } } ></DIV>
-					<FORM id={ formID } action="#" className={ style.form }>
-						<INPUT form={ formID } type="hidden" name="contribution_id" value={ contribution_id + '' } />
-						<P>ID: { contribution_id }</P>
-						<P>User material: { contribution_material }</P>
-						<P>User comment: { usercomment }</P>
-						<HR />
-						<SELECTGROUP preferPlaceholder={ false } form={ formID } label="Material verified" name="contribution_material_verified" options={ options } value={ materialVerified } onChange={ this._setMaterial.bind( this ) } /><BR/>
-						<RADIOGROUP preferPlaceholder={ false } checked={ verified } label="Verified" form={ formID } name="contribution_verified" options={ yesNo } value={ verified } onChange={ this._setVerified.bind( this ) } /><BR/>
-						<RADIOGROUP preferPlaceholder={ false } checked={ closeup } label="Closeup" form={ formID } name="contribution_closeup" options={ yesNo } value={ closeup } onChange={ this._setCloseup.bind( this ) } /><BR/>
-						<RADIOGROUP preferPlaceholder={ false } checked={ example } label="Example" form={ formID } name="contribution_example" options={ yesNo } value={ example } onChange={ this._setExample.bind( this ) } /><BR/>
-						<RADIOGROUP preferPlaceholder={ false } checked={ intro } label="Intro" form={ formID } name="contribution_intro" options={ yesNo } value={ intro } onChange={ this._setIntro.bind( this ) } /><BR/>
-					</FORM>
-					<DIV className={ style.actions }>
-						<GO onClick={ deleteContribution.bind( this, contribution_id, contribution_uid ) } label="DELETE" className={ style.delete } />
-						<GO onClick={ updateContribution.bind( this, formID ) } label="UPDATE" className={ style.update } />
+					
+					<DIV className={ style.top } style={ { backgroundImage: 'url("uploads/' + contribution_uid +'.jpg")' } } >
+						{ showcomment && <P className={ style.comment } >{ usercomment }</P> }
 					</DIV>
-
+					<DIV className={ style.actions }>
+						{ material != 'notset' && <P className={ style.label } style={ { backgroundColor: color } } >{ m.label }{ showVerified && <I className={ clsVerified } >check_circle</I> }</P> }
+						
+						{ hascomment && <A onClick={ this._toggleComment } className={ style.showcomment } title="Toggle comment" >
+							<I className="material-icons">{ commentIcon }</I>
+						</A> }
+						<A onClick={ hidePopup } className={ style.close } title="Close Popup" >
+							<I className="material-icons">clear</I>
+						</A>
+					</DIV>
 				</DIV>
 
 			)
@@ -130,33 +100,9 @@ class popup extends Component {
 
 	}
 
-	_setMaterial = ( e ) => {
+	_toggleComment = () => {
 
-		this.setState( { materialVerified: e.currentTarget.value } )
-
-	}
-
-	_setVerified = ( e ) => {
-
-		this.setState( { verified: e.currentTarget.value } )
-
-	}
-
-	_setExample = ( e ) => {
-
-		this.setState( { example: e.currentTarget.value } )
-
-	}
-
-	_setIntro = ( e ) => {
-
-		this.setState( { intro: e.currentTarget.value } )
-
-	}
-
-	_setCloseup = ( e ) => {
-
-		this.setState( { closeup: e.currentTarget.value } )
+		this.setState( { commentToggled: !this.state.commentToggled } )
 
 	}
 

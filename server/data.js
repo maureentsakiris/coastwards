@@ -59,7 +59,7 @@ const _promiseFetchForm = ( req ) => {
 
 }
 
-const _fetch = ( fields ) => {
+const _promiseFetchGeoJson = ( fields ) => {
 
 	return new Promise( ( resolve, reject ) => { 
 
@@ -98,7 +98,7 @@ const _fetch = ( fields ) => {
 
 						if( results[ 1 ][ 0 ].geojson === undefined ){
 
-							reject( Error( 'administrate/_fetch/Could not read result from query (Update schema?)' ) )
+							reject( Error( 'data/_promiseFetchGeoJson/Could not read result from query (Update schema?)' ) )
 
 						}else{
 
@@ -123,7 +123,7 @@ const _fetch = ( fields ) => {
 router.post( '/fetch', function ( req, res ) {
 
 	_promiseFetchForm( req )
-		.then( _fetch )
+		.then( _promiseFetchGeoJson )
 		.then( JSON.parse )
 		.then( ( geojson ) => {
 
@@ -139,9 +139,13 @@ router.post( '/fetch', function ( req, res ) {
 
 } )
 
-function promiseFetchCSV (){
+
+
+function _promiseFetchResults ( params ){
 
 	return new Promise( function ( resolve, reject ) {
+
+		const { material, materialverified, verified, closeup, pointmanual, pointcorrected } = params
 
 		pool.getConnection( function ( error, connection ) {
 
@@ -151,7 +155,7 @@ function promiseFetchCSV (){
 
 			}else{
 
-				var sql = 'SELECT ST_AsText(??) as Point, ?? as Material FROM ??'
+				/*var sql = 'SELECT ST_AsText(??) as Point, ?? as Material FROM ??'
 				var inserts = [
 
 					"contribution_point",
@@ -186,7 +190,76 @@ function promiseFetchCSV (){
 					
 					connection.release()
 
-				} )
+				} )*/
+
+				if( error ){
+
+					reject( error )
+
+				}else{
+
+					var sql = 'SELECT contribution_id FROM contributions WHERE contribution_material LIKE ? && contribution_material_verified LIKE ? && contribution_verified LIKE ? && contribution_closeup LIKE ? && contribution_point_manual LIKE ? && contribution_point_corrected LIKE ?';
+
+					var inserts = [
+
+						material,
+						materialverified,
+						verified,
+						closeup,
+						pointmanual,
+						pointcorrected
+
+					]
+
+					var query = mysql.format( sql, inserts )
+
+					connection.query( query, function ( err, results ) {
+
+						if( error ){
+
+							reject( error )
+
+						}else{
+
+							if( results === undefined ){
+
+								reject( Error( 'data/_promiseFetchCSV/Could not read result from query (Update schema?)' ) )
+
+							}else{
+
+								resolve( results )
+
+							}
+
+						}
+						
+						connection.release()
+
+					} )
+
+				}
+
+			}
+
+		} )
+
+	} )
+
+}
+
+function _promiseOutputCSV ( results ){
+
+	return new Promise( function ( resolve, reject ) {
+
+		stringify( results, { header: true }, function ( error, output ){
+
+			if( error ){
+
+				reject( error )
+
+			}else{
+
+				resolve( output )
 
 			}
 
@@ -198,28 +271,18 @@ function promiseFetchCSV (){
 
 router.get( '/csv', function ( req, res ) {
 
-	promiseFetchCSV()
-		.then( ( results ) => {
+	_promiseFetchResults( req.query )
+	// _promiseFetchForm( req )
+	// 	.then( _promiseFetchResults )
+		.then( _promiseOutputCSV )
+		.then( ( output ) => {
 
-			//res.send( new Buffer( results ) )
-			/*let columns = {
+			const date = new Date()
 
-				point: "Point",
-				material: "Material"
-
-			}*/
-
-			stringify( results, { header: true }, function ( err, output ){
-
-				const date = new Date()
-
-				res.set( 'Content-Type', 'text/csv' )
-				res.set( { "Content-Disposition": "attachment; filename=coastwards" + "-" + date.getFullYear() + "-" + ( date.getMonth() + 1 ) + "-" + date.getDate() + "_" + date.getHours() + "-" + date.getMinutes() + "-" + date.getSeconds() + ".csv" } )
-				res.send( output )
-
-			} )
-
-			return results;
+			res.setHeader( 'Content-Type', 'text/csv' )
+			res.setHeader( 'Content-disposition', 'attachment; filename=coastwards' + '-' + date.getFullYear() + '-' + ( date.getMonth() + 1 ) + '-' + date.getDate() + '_' + date.getHours() + '-' + date.getMinutes() + '-' + date.getSeconds() + '.csv' )
+			res.send( output )
+			return output;
 
 		} )
 		.catch( ( error ) => {
