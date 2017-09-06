@@ -90,7 +90,7 @@ export const downloadCSV = ( ) => {
 
 			data: formData,
 			url: '/data/csv',
-			responseType: 'document'
+			//responseType: 'document'
 			//url: '/data/csv?material=' + material + '&verified=' + verified + '&materialverified=' + materialverified + '&closeup=' + closeup + '&pointmanual=' + pointmanual + '&pointcorrected=' + pointcorrected,
 			//method: 'GET'
 

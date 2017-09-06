@@ -198,7 +198,7 @@ function _promiseFetchResults ( params ){
 
 				}else{
 
-					var sql = 'SELECT contribution_id FROM contributions WHERE contribution_material LIKE ? && contribution_material_verified LIKE ? && contribution_verified LIKE ? && contribution_closeup LIKE ? && contribution_point_manual LIKE ? && contribution_point_corrected LIKE ?';
+					var sql = 'SELECT contribution_id, Y(contribution_point) AS contribution_longitude, X(contribution_point) AS contribution_latitude, contribution_verified, contribution_material, contribution_material_verified, contribution_point_manual, contribution_point_corrected, contribution_closeup FROM contributions WHERE contribution_material LIKE ? && contribution_material_verified LIKE ? && contribution_verified LIKE ? && contribution_closeup LIKE ? && contribution_point_manual LIKE ? && contribution_point_corrected LIKE ?';
 
 					var inserts = [
 
@@ -292,5 +292,29 @@ router.get( '/csv', function ( req, res ) {
 		} )
 
 } )
+
+router.post( '/csv', function ( req, res ) {
+
+	_promiseFetchForm( req )
+		.then( _promiseFetchResults )
+		.then( _promiseOutputCSV )
+		.then( ( output ) => {
+
+			const date = new Date()
+
+			res.setHeader( 'Content-Type', 'text/csv' )
+			res.setHeader( 'Content-disposition', 'attachment; filename=coastwards' + '-' + date.getFullYear() + '-' + ( date.getMonth() + 1 ) + '-' + date.getDate() + '_' + date.getHours() + '-' + date.getMinutes() + '-' + date.getSeconds() + '.csv' )
+			res.send( output )
+			return output;
+
+		} )
+		.catch( ( error ) => {
+
+			res.json( { status: 'KO', message: error.toString() } )
+
+		} )
+
+} )
+
 
 module.exports = router
