@@ -251,7 +251,7 @@ function _promiseOutputCSV ( results ){
 
 	return new Promise( function ( resolve, reject ) {
 
-		stringify( results, { header: true }, function ( error, output ){
+		stringify( results, { header: true, delimiter: ';' }, function ( error, output ){
 
 			if( error ){
 
