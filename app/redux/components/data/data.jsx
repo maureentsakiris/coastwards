@@ -4,10 +4,12 @@ import { chain } from 'underscore'
 import ClassNames from 'classnames'
 
 import DIV from 'components/tags/div'
-//import A from 'components/tags/a'
-//import P from 'components/tags/p'
+import STRONG from 'components/tags/strong'
+import P from 'components/tags/p'
 import H from 'components/tags/h'
 import I from 'components/tags/i'
+import UL from 'components/tags/ul'
+import LI from 'components/tags/li'
 
 import FORM from 'components/tags/form'
 //import INPUT from 'components/form/input/input'
@@ -66,6 +68,24 @@ const data = ( { materials, material, materialverified, verified, closeup, point
 			<DIV className={ style.form } >
 				<FORM id="Admin" action="javascript:;" onSubmit={ fetch } >
 					<H priority={ 1 } >Hi there! Go ahead, make your selection...</H>
+					<P>This is the data portal of 'coastwards.org'. Here you can generate a CSV from the data collected so far by our participants.</P>
+					<TOGGLE priority={ 5 } className={ style.more } text="More info" >
+						<P>The CSV will include the following information:</P>
+						<UL className={ style.ul } >
+							<LI><STRONG>id</STRONG> (our internal identifier)</LI>
+							<LI><STRONG>uid</STRONG> (the image identifier)</LI>
+							<LI><STRONG>longitude</STRONG> of the image</LI>
+							<LI><STRONG>latitude</STRONG> of the image</LI>
+							<LI><STRONG>verified</STRONG> (whether the contribution has been verified by our staff)</LI>
+							<LI><STRONG>material</STRONG> (as selected by the participant)</LI>
+							<LI><STRONG>material_verified</STRONG> (by our staff)</LI>
+							<LI><STRONG>point_manual</STRONG> (if the image was positioned manually or programatically via the embedded GPS data)</LI>
+							<LI><STRONG>point_corrected</STRONG> (whether or not the image position has been corrected by the participant)</LI>
+							<LI><STRONG>closeup</STRONG> (whether or not the image has been labelled a closeup -as opposed to a panorama shot- by our staff)</LI>
+							<LI><STRONG>comment</STRONG> (of the participant)</LI>
+							<LI><STRONG>exif_datetime</STRONG> (of the image as extracted from its EXIF data - if available)</LI>
+						</UL>
+					</TOGGLE>
 					<ICONRADIOGROUP form="Admin" label="Verified: " name="verified" preferPlaceholder={ false } options={ allYesNo } onClick={ setFilter.bind( this, 'SET_VERIFIED' ) } checkedValue={ verified } >
 						<I className={ clsHelp } title="Include images verified by our staff">help_outline</I>
 					</ICONRADIOGROUP>
