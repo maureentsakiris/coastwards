@@ -486,16 +486,16 @@ function _promiseInsertRivagesCSV ( formData ){
 
 						}else{
 
-							//const url = "http://geolittoral.application.developpement-durable.gouv.fr/telechargement/tc_smartphone/photos/" + filename + ".jpg"
+							const url = "http://geolittoral.application.developpement-durable.gouv.fr/telechargement/tc_smartphone/photos/" + filename + ".jpg"
 
-							var options = { 
+							/*var options = { 
 
 								host: 'geolittoral.application.developpement-durable.gouv.fr',
 								path: '/telechargement/tc_smartphone/photos/' + filename + 's.jpg'
 
-							}
+							}*/
 
-							http.get( options, ( res ) => {
+							http.get( url, ( res ) => {
 
 								//res.setEncoding( 'binary' )
 
