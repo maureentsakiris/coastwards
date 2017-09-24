@@ -12,6 +12,7 @@ import FORM from 'components/tags/form'
 import INPUT from 'components/form/input/input'
 import TOGGLE from 'components/ui/toggle'
 import ICONRADIOGROUP from 'components/form/radiogroup/iconradiogroup'
+import FILE from 'components/form/input/file'
 //import GO from 'components/form/button/go'
 
 //import CONTRIBUTION from 'containers/admin/contribution'
@@ -20,7 +21,7 @@ import Popup from 'containers/admin/popup'
 
 import style from './_admin'
 
-const admin = ( { materials, material, materialverified, verified, id, example, intro, closeup, pointmanual, pointcorrected, setFilter } ) => {
+const admin = ( { materials, material, materialverified, verified, id, example, intro, closeup, pointmanual, pointcorrected, setFilter, importRivagesCSV } ) => {
 
 	const all = [ { label: 'All', value: '%' } ]
 	const mats = chain( materials )
@@ -54,41 +55,15 @@ const admin = ( { materials, material, materialverified, verified, id, example, 
 
 	]
 
-	/*const clsForm = ClassNames( style.corset, {
-
-		[ style.hide ]: !showForm
-
-	} )*/
-
 	const clsLogger = ClassNames( style.link, style.logger )
-	//const clsToggle = ClassNames( style.link, style.toggle )
 
-	//console.log( results );
-
-	//const noresults = results === null ? true : false;
-
-	/*const list = _renderResults( results )
-
-	const noresults = results && list.length == 0*/
-
-
-	/*<CHECKBOX form="Admin" label="Verified" name="verified" preferPlaceholder={ false } value="1" onChange={ setVerified } />*/
-	/*<Mapbox className={ style.mapbox } />*/
-
-	/*<GO className={ style.go } onClick={ fetch } label="GO" />
-					{ noresults && <P className={ style.noresults } >Sorry, no results</P> }*/
-
-	/*<DIV className={ style.toolbar } >
-				<A target="_self" href="/logout" className={ clsLogger } >Logout</A>
-				<A target="_self" onClick={ toggleFormVisibility } className={ clsToggle } >Show/Hide Form</A>
-			</DIV>*/
 	return(
 
 		<DIV className={ style.admin }>
 			<Popup />
 			<DIV className={ style.form } >
 				<A target="_self" href="/logout" className={ clsLogger } >Logout</A>
-				<FORM id="Admin" action="javascript:;" onSubmit={ fetch } >
+				<FORM id="Admin" action="javascript:;" >
 					<H priority={ 1 } >Hi there! Go ahead, make your selection...</H>
 					<ICONRADIOGROUP form="Admin" label="Verified: " name="verified" preferPlaceholder={ false } options={ allYesNo } onClick={ setFilter.bind( this, 'SET_VERIFIED' ) } checkedValue={ verified } />
 					<TOGGLE priority={ 4 } className={ style.toggle } text="Other filters" >
@@ -101,6 +76,9 @@ const admin = ( { materials, material, materialverified, verified, id, example, 
 						<ICONRADIOGROUP form="Admin" label="Intro: " name="intro" preferPlaceholder={ false } options={ allYesNo } onClick={ setFilter.bind( this, 'SET_INTRO' ) } checkedValue={ intro } />
 						<ICONRADIOGROUP form="Admin" label="Example: " name="example" preferPlaceholder={ false } options={ allYesNo } onClick={ setFilter.bind( this, 'SET_EXAMPLE' ) } checkedValue={ example } />
 					</TOGGLE>
+				</FORM>
+				<FORM id="Rivages" action="javascript:;" >
+					<FILE form="Rivages" name="csv" onChange={ importRivagesCSV } accept=".csv" />
 				</FORM>
 			</DIV>
 			<Mapbox className={ style.mapbox } />
@@ -125,7 +103,8 @@ admin.propTypes = {
 	pointmanual: PropTypes.string,
 	pointcorrected: PropTypes.string,
 
-	setFilter: PropTypes.func
+	setFilter: PropTypes.func,
+	importRivagesCSV: PropTypes.func
 
 }
 

@@ -72,6 +72,15 @@ $action-height: 45px;
 		overflow-y: auto;
 		-webkit-overflow-scrolling: touch;
 		white-space: pre-wrap;
+		direction: ltr;
+		padding-bottom: 3em;
+
+		.googleplay{
+
+			display: block;
+			margin-top: 1em;
+
+		}
 
 	}
 
@@ -171,6 +180,13 @@ $action-height: 45px;
     padding: 0.1em 1em;
     border-radius: 2px;
     position: relative;
+    font-size: 0.8em;
+
+    @include min( $minitablet ){
+
+    	font-size: 1em;
+
+    }
 
 }
 

@@ -29,7 +29,7 @@
 	%screen{
 
 		@extend %fullscreen;
-		z-index: 2;
+		z-index: 1;
 		background-color: $screen-overlay-color;
 
 		@extend %flexcontainer;
@@ -78,7 +78,7 @@
 
 		@extend %nodrag;
 		position: fixed;
-		z-index: 2;
+		z-index: 1;
 		top: 0;
 		width: 100%;
 		pointer-events: none;

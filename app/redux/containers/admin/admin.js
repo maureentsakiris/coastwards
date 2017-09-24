@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { setFilter } from 'actions/admin/admin'
+import { setFilter, importRivagesCSV } from 'actions/admin/admin'
 
 import ADMIN from 'components/admin/admin'
 
@@ -32,6 +32,11 @@ const mapDispatchToProps = ( dispatch ) => {
 		setFilter: ( e, type ) => {
 
 			dispatch( setFilter( e, type ) )
+
+		},
+		importRivagesCSV: ( e ) => {
+
+			dispatch( importRivagesCSV( e ) )
 
 		}
 

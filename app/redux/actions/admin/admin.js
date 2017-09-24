@@ -2,6 +2,7 @@ import * as types from 'types-admin'
 import { promiseXHR } from 'actions/util/request/xhr'
 import { sendErrorMail } from 'actions/util/error/error'
 import { setMapData } from 'actions/admin/mapbox'
+import parse from 'csv-parse'
 
 export const setFilter = ( type, e ) => {
 
@@ -149,6 +150,121 @@ export const updateContribution = ( formID ) => {
 			} )
 			.catch( ( error ) => {
 
+				dispatch( sendErrorMail( error ) )
+
+			} )
+
+	}
+
+}
+
+export const _promiseRivagesCSV = ( e ) => {
+
+	return new Promise( ( resolve, reject ) => {
+
+		let from = prompt( "Start from row:", "" )
+		//let to = prompt( "End at row:", "" )
+
+		const reader = new FileReader()
+		reader.onload = ( ) => {
+
+			let csv = reader.result
+			parse( csv, { columns: true, from: from }, ( error, output ) => {
+
+				if( error ){
+
+					reject( error )
+
+				}else{
+
+					//console.log( output )
+					resolve( output )
+
+				}
+
+			} )
+
+		}
+
+		reader.onerror = ( error ) => {
+
+			reject( error )
+
+		}
+
+		reader.readAsText( e.currentTarget.files[ 0 ] )
+
+	} )
+
+}
+
+export const _promiseImport = ( output ) => {
+
+	return new Promise( ( resolve, reject ) => {
+
+		let formData = new FormData()
+		formData.append( 'csv', JSON.stringify( output ) )
+
+		let options = {
+
+			data: formData,
+			url: '/administrate/importRivagesCSV'
+
+		}
+
+		promiseXHR( options )
+			.then( JSON.parse )
+			.then( ( parsed ) => {
+
+				if( parsed.status == 'KO' ){
+
+					throw Error( parsed.message )
+
+				}else{
+
+					resolve( parsed )
+
+				}
+
+				return parsed
+
+			} )
+			.catch( ( error ) => {
+
+				reject( error )
+
+			} )
+
+	} )
+
+}
+
+export const importRivagesCSV = ( e ) => {
+
+	return function ( dispatch ){
+
+		_promiseRivagesCSV( e )
+			.then( _promiseImport )
+			.then( ( parsed ) => {
+
+				if( parsed.status == 'KO' ){
+
+					throw Error( parsed.message )
+
+				}else{
+
+					console.log( "GREAT! THE IMAGES HAVE BEEN IMPORTED" )
+					console.log( parsed.array )
+					document.getElementById( 'Rivages' ).reset()
+					dispatch( fetch() )
+
+				}
+				return parsed
+
+			} )
+			.catch( ( error ) => {
+
+				document.getElementById( 'Rivages' ).reset()
 				dispatch( sendErrorMail( error ) )
 
 			} )

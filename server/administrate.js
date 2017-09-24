@@ -5,6 +5,8 @@ const formidable = require( 'formidable' )
 const _ = require( 'underscore' )
 const fs = require( 'fs' )
 const path = require( 'path' )
+const util = require( 'util' )
+const http = require( 'http' )
 
 const PROJECT_ROOT = path.resolve( './' )
 const UPLOADS = path.join( PROJECT_ROOT, 'public/uploads/' )
@@ -29,6 +31,8 @@ const _promiseFetchForm = ( req ) => {
 
 	return new Promise( ( resolve, reject ) => {
 
+		var formData = {}
+
 		form.parse( req, function ( error, fields ) {
 
 			if( error ){
@@ -41,7 +45,19 @@ const _promiseFetchForm = ( req ) => {
 
 			}else{
 
-				resolve( fields )
+				// http://stackoverflow.com/questions/10849687/express-js-how-to-get-remote-client-address
+				//var ip = req.ip
+
+				// https://github.com/indutny/node-ip
+				var ip = req.headers[ 'x-forwarded-for' ] || req.connection.remoteAddress || req.socket.remoteAddress || req.connection.socket.remoteAddress
+
+				//var ip = "192.168.100.87, 195.90.21.11"
+				//http://stackoverflow.com/questions/8107856/how-to-determine-a-users-ip-address-in-node
+				var ip_array = ip.split( ',' )
+
+				formData.ip = ip_array[ 0 ]
+
+				formData.fields = fields
 
 			}
 
@@ -58,16 +74,22 @@ const _promiseFetchForm = ( req ) => {
 			reject( Error( 'contact/_promiseFetchForm/on(aborted)/' + error ) )
 
 		} )
+
+		form.on( 'end', function ( ){
+
+			resolve( formData )
+
+		} )
 	
 	} )
 
 }
 
-const _fetch = ( fields ) => {
+const _fetch = ( formData ) => {
 
 	return new Promise( ( resolve, reject ) => { 
 
-		const { material, materialverified, verified, id, example, intro, closeup, pointmanual, pointcorrected } = fields
+		const { material, materialverified, verified, id, example, intro, closeup, pointmanual, pointcorrected } = formData.fields
 
 		pool.getConnection( function ( error, connection ) {
 
@@ -147,11 +169,11 @@ router.post( '/fetch', function ( req, res ) {
 } )
 
 
-const _delete = ( fields ) => {
+const _delete = ( formData ) => {
 
 	return new Promise( ( resolve, reject ) => { 
 
-		const { id, uid } = fields
+		const { id, uid } = formData.fields
 
 		pool.getConnection( function ( error, connection ) {
 
@@ -237,11 +259,11 @@ router.post( '/delete', function ( req, res ) {
 
 } )
 
-const _update = ( fields ) => {
+const _update = ( formData ) => {
 
 	return new Promise( ( resolve, reject ) => { 
 
-		const { contribution_id, contribution_verified, contribution_material_verified, contribution_example, contribution_intro, contribution_closeup } = fields
+		const { contribution_id, contribution_verified, contribution_material_verified, contribution_example, contribution_intro, contribution_closeup } = formData.fields
 
 		pool.getConnection( function ( error, connection ) {
 
@@ -313,7 +335,7 @@ router.post( '/update', function ( req, res ) {
 } )
 
 
-function promiseFetchExamples (){
+function _promiseFetchExamples (){
 
 	return new Promise( function ( resolve, reject ) {
 
@@ -376,7 +398,7 @@ function promiseFetchExamples (){
 
 router.get( '/examples', function ( req, res ) {
 
-	promiseFetchExamples()
+	_promiseFetchExamples()
 		.then( ( json ) => {
 
 			res.json( { status: 'OK', json: json } )
@@ -391,8 +413,177 @@ router.get( '/examples', function ( req, res ) {
 
 } )
 
+function _promiseInsertRivagesCSV ( formData ){
 
-function promiseFetchContribution ( id ){
+	const output = JSON.parse( formData.fields.csv )
+
+	return Promise.all( _.map( output, ( row ) => {
+
+		return new Promise( ( resolve, reject ) => {
+
+			const { Longitude, Latitude, Filename } = row
+			const ip = formData.ip
+			const exif_datetime = row[ 'Date and t' ]
+			const filename = path.parse( Filename ).name
+			const point = util.format( 'POINT(%s %s)', Longitude, Latitude )
+
+			var sql = 'INSERT INTO ??.?? ( ??, ??, ??, ??, ??, ??, ??, ?? ) VALUES ( (ST_PointFromText(?)), ?, ?, ?, ?,(INET6_ATON(?)), ?, ? )'
+
+			var inserts = [ 
+				'coastwards', 
+				'contributions',
+
+
+				'contribution_point',
+				'contribution_point_manual',
+				'contribution_point_corrected',
+				'contribution_uid',
+				"contribution_comment",
+				//'contribution_labels',
+				//'contribution_exif',
+				'contribution_ip',
+				'contribution_exif_datetime',
+				'contribution_source',
+
+
+				point,
+				'0',
+				'0',
+				filename,
+				'',
+				//'labels',
+				//'exifdata',
+				ip,
+				//CAREFULL!!!!
+				exif_datetime,
+				'rivages'
+
+			]
+
+			var query = mysql.format( sql, inserts )
+
+			pool.getConnection( function ( error, connection ) {
+
+				if( error ){
+
+					reject( error )
+
+				}else{
+
+					connection.query( query, function ( error, rows ) {
+
+						if( error ){
+
+							if( error.code == 'ER_DUP_ENTRY' ){
+
+								resolve( 'duplicate' )
+
+							}else{
+
+								reject( error )
+
+							}
+
+						}else{
+
+							//const url = "http://geolittoral.application.developpement-durable.gouv.fr/telechargement/tc_smartphone/photos/" + filename + ".jpg"
+
+							var options = { 
+
+								host: 'geolittoral.application.developpement-durable.gouv.fr',
+								path: '/telechargement/tc_smartphone/photos/' + filename + 's.jpg'
+
+							}
+
+							http.get( options, ( res ) => {
+
+								//res.setEncoding( 'binary' )
+
+								const body = [ ]
+
+								res.on( 'data', ( chunk ) => { 
+
+									body.push( chunk )
+
+								} )
+
+								res.on( 'end', ( ) => {
+
+									var uploadDir = path.join( __dirname, '../public/uploads' )
+									var buffer = Buffer.concat( body )
+
+									fs.writeFile( uploadDir + '/'+ filename + '.jpg', buffer, 'binary', function ( error ) {
+
+										if( error ){
+
+											formData.fields.id = rows.insertId
+
+											_delete( formData )
+												.then( ( uid ) => {
+
+													resolve( 'Could not fetch image' )
+													return uid
+
+												} )
+												.catch( ( error ) => {
+
+													reject( error )
+
+												} )
+
+										}else{
+
+											resolve( rows.insertId )
+
+										}
+
+									} )
+									
+								} )
+
+							} ).on( 'error', ( error ) => {
+
+								resolve( error.code + ':' + filename )
+
+							} )
+
+						}
+
+						connection.release()
+
+					} )
+
+				}
+
+			} )
+
+		} )
+
+
+	} ) )
+
+}
+
+router.post( '/importRivagesCSV', function ( req, res ) {
+
+	_promiseFetchForm( req )
+		.then( _promiseInsertRivagesCSV )
+		.then( ( resultArray ) => {
+
+			res.json( { status: 'OK', array: resultArray } )
+			return resultArray
+
+		} )
+		.catch( ( error ) => {
+
+			res.json( { status: 'KO', message: error.toString() } )
+
+		} )
+
+} )
+
+
+function _promiseFetchContribution ( id ){
 
 	return new Promise( function ( resolve, reject ) {
 
@@ -450,7 +641,7 @@ function promiseFetchContribution ( id ){
 
 router.get( '/:contribution_id', function ( req, res ) {
 
-	promiseFetchContribution( req.params.contribution_id )
+	_promiseFetchContribution( req.params.contribution_id )
 		.then( ( json ) => {
 
 			res.json( { status: 'OK', json: json } )

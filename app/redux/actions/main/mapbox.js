@@ -241,11 +241,18 @@ export const displayMap = ( ) => {
 
 				dispatch( { type: types.ADD_INTERACTIVE_LAYER, layer: { layer: 'uploads', onClick: _onMarkerClick } } )
 
+				
+
+				return geojson
+
+			} )
+			.then( ( csv ) => {
+
 				dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'prompts', to: true } )
 				dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'upload', to: true } )
 				dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'loader', to: false } )
 
-				return geojson
+				return csv
 
 			} )
 			.catch( ( error ) => {

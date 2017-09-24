@@ -64,7 +64,7 @@ class popup extends Component {
 	render () {
 
 		const { feature, materials, deleteContribution, updateContribution } = this.props
-		const { contribution_id, contribution_uid, contribution_material, contribution_comment } = feature
+		const { contribution_id, contribution_uid, contribution_material, contribution_comment, contribution_source } = feature
 
 		const { verified, materialVerified, example, intro, closeup } = this.state
 
@@ -97,14 +97,16 @@ class popup extends Component {
 			]
 
 			const formID = "contribution_" + contribution_id
+			//const url = contribution_source == 'webapp' ? "uploads/" + contribution_uid + ".jpg" : "http://geolittoral.application.developpement-durable.gouv.fr/telechargement/tc_smartphone/photos/" + contribution_uid + ".jpg"
 			const url = "uploads/" + contribution_uid + ".jpg"
+
 			const usercomment = unescape( contribution_comment )
 
 			return(
 
 				<DIV id="Popup" className={ style.popup } >
 					<DIV className={ style.bar }><A href={ url } className="material-icons">open_in_new</A></DIV>
-					<DIV className={ style.top } style={ { backgroundImage: 'url("uploads/' + contribution_uid +'.jpg")' } } ></DIV>
+					<DIV className={ style.top } style={ { backgroundImage: 'url("' + url +'")' } } ></DIV>
 					<FORM id={ formID } action="#" className={ style.form }>
 						<INPUT form={ formID } type="hidden" name="contribution_id" value={ contribution_id + '' } />
 						<P>ID: { contribution_id }</P>

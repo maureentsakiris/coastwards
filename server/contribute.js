@@ -271,7 +271,7 @@ router.post( '/upload', ( req, res ) => {
 
 } )
 
-function promiseFetchGeojson ( ){
+function _promiseFetchGeojson ( ){
 
 	return new Promise( function ( resolve, reject ) {
 
@@ -326,7 +326,7 @@ function promiseFetchGeojson ( ){
 
 router.get( '/geojson', function ( req, res ) {
 
-	promiseFetchGeojson()
+	_promiseFetchGeojson()
 		.then( JSON.parse )
 		.then( ( geojson ) => {
 
@@ -342,7 +342,7 @@ router.get( '/geojson', function ( req, res ) {
 
 } )
 
-function promiseFetchCount ( ){
+function _promiseFetchCount ( ){
 
 	return new Promise( function ( resolve, reject ) {
 
@@ -390,7 +390,7 @@ function promiseFetchCount ( ){
 
 router.get( '/count', function ( req, res ) {
 
-	promiseFetchCount()
+	_promiseFetchCount()
 		.then( ( count ) => {
 
 			res.json( { status: 'OK', count: count } )
@@ -405,7 +405,7 @@ router.get( '/count', function ( req, res ) {
 
 } )
 
-function promiseFetchIntro ( ){
+function _promiseFetchIntro ( ){
 
 	return new Promise( function ( resolve, reject ) {
 
@@ -455,7 +455,7 @@ function promiseFetchIntro ( ){
 
 router.get( '/intro', function ( req, res ) {
 
-	promiseFetchIntro()
+	_promiseFetchIntro()
 		.then( ( intro ) => {
 
 			res.json( { status: 'OK', intro: intro } )
@@ -471,7 +471,7 @@ router.get( '/intro', function ( req, res ) {
 } )
 
 
-function promiseFetchContribution ( id ){
+function _promiseFetchContribution ( id ){
 
 	return new Promise( function ( resolve, reject ) {
 
@@ -483,7 +483,7 @@ function promiseFetchContribution ( id ){
 
 			}else{
 
-				var sql = 'SELECT ??, ??, ??, ??, ??, ??, ??, ??, ?? FROM ?? WHERE ??=?'
+				var sql = 'SELECT ??, ??, ??, ??, ??, ??, ??, ??, ??, ?? FROM ?? WHERE ??=?'
 				var inserts = [
 
 					"contribution_uid",
@@ -495,6 +495,7 @@ function promiseFetchContribution ( id ){
 					"contribution_point",
 					"contribution_id",
 					"contribution_hashtag",
+					"contribution_source",
 
 					"contributions",
 
@@ -515,7 +516,7 @@ function promiseFetchContribution ( id ){
 
 						if( results[ 0 ] === undefined ){
 
-							reject( Error( 'contributions/promiseFetchContribution/Could not read result from query (Update schema?)' ) )
+							reject( Error( 'contribute/_promiseFetchContribution/Could not read result from query (Update schema?)' ) )
 
 						}else{
 
@@ -539,7 +540,7 @@ function promiseFetchContribution ( id ){
 
 router.get( '/:contribution_id', function ( req, res ) {
 
-	promiseFetchContribution( req.params.contribution_id )
+	_promiseFetchContribution( req.params.contribution_id )
 		.then( ( json ) => {
 
 			res.json( { status: 'OK', json: json } )
