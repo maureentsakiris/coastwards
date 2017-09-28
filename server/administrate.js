@@ -521,7 +521,7 @@ function _promiseInsertRivagesCSV ( formData ){
 
 				if( error ){
 
-					resolve( 'pool.getConnection' + error.code + ':' + filename )
+					resolve( 'pool.getConnection: ' + error.code + ': ' + filename )
 
 				}else{
 
@@ -529,13 +529,13 @@ function _promiseInsertRivagesCSV ( formData ){
 
 						if( error ){
 
-							if( error.code == 'ER_DUP_ENTRY' ){
+							if( error.code === 'ER_DUP_ENTRY' ){
 
 								resolve( 'duplicate' )
 
 							}else{
 
-								resolve( 'connection.query ' + error.code + ':' + filename )
+								resolve( 'connection.query: ' + error.code + ': ' + filename )
 
 							}
 
@@ -576,7 +576,7 @@ function _promiseInsertRivagesCSV ( formData ){
 											_delete( formData )
 												.then( ( uid ) => {
 
-													resolve( 'fs.writeFile ' + error.code + ':' + filename )
+													resolve( 'fs.writeFile: ' + error.code + ': ' + filename )
 													return uid
 
 												} )
