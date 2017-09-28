@@ -212,6 +212,7 @@ export const importRivagesCSV = ( e ) => {
 
 				}else{
 
+					console.log( parsed.array )
 					dispatch( { type: types.SET_RIVAGES_RESULTS, to: parsed.array } )
 					dispatch( resetImportRivagesCSV() )
 					dispatch( fetch() )
