@@ -5,6 +5,7 @@ const formidable = require( 'formidable' )
 const _ = require( 'underscore' )
 const fs = require( 'fs' )
 const path = require( 'path' )
+const parse = require( 'csv-parse' )
 const util = require( 'util' )
 const http = require( 'http' )
 
@@ -28,12 +29,22 @@ const pool  = mysql.createPool( {
 const _promiseFetchForm = ( req ) => {
 
 	var form = new formidable.IncomingForm()
+	var uploadDir = path.join( __dirname, '../public/temp' )
+
+	if ( !fs.existsSync( uploadDir ) ){
+
+		fs.mkdirSync( uploadDir )
+
+	}
+
+	form.uploadDir = uploadDir;
+	form.keepExtensions = true;
 
 	return new Promise( ( resolve, reject ) => {
 
 		var formData = {}
 
-		form.parse( req, function ( error, fields ) {
+		form.parse( req, function ( error, fields, files ) {
 
 			if( error ){
 
@@ -58,6 +69,7 @@ const _promiseFetchForm = ( req ) => {
 				formData.ip = ip_array[ 0 ]
 
 				formData.fields = fields
+				formData.files = files
 
 			}
 
@@ -72,6 +84,13 @@ const _promiseFetchForm = ( req ) => {
 		form.on( 'aborted', function ( error ){
 
 			reject( Error( 'contact/_promiseFetchForm/on(aborted)/' + error ) )
+
+		} )
+
+		form.on( 'fileBegin', function ( name, file ){
+
+			var dirname = path.dirname( file.path )			
+			file.path = path.join( dirname, file.name ) 
 
 		} )
 
@@ -413,11 +432,45 @@ router.get( '/examples', function ( req, res ) {
 
 } )
 
+function _promiseParseRivagesCSV ( formData ){
+
+	return new Promise( ( resolve, reject ) => {
+
+		const from = formData.fields.from
+		fs.readFile( formData.files.csv.path, ( error, data ) => {
+
+			if( error ){
+
+				reject( error )
+
+			}else{
+
+				parse( data.toString(), { columns: true, from: from }, ( error, output ) => {
+
+					if( error ){
+
+						reject( error )
+
+					}else{
+
+						formData.output = output
+						resolve( formData )
+
+					}
+
+				} )
+
+			}
+
+		} )
+
+	} )
+
+}
+
 function _promiseInsertRivagesCSV ( formData ){
 
-	const output = JSON.parse( formData.fields.csv )
-
-	return Promise.all( _.map( output, ( row ) => {
+	return Promise.all( _.map( formData.output, ( row ) => {
 
 		return new Promise( ( resolve, reject ) => {
 
@@ -601,6 +654,7 @@ function _promiseInsertRivagesCSV ( formData ){
 router.post( '/importRivagesCSV', function ( req, res ) {
 
 	_promiseFetchForm( req )
+		.then( _promiseParseRivagesCSV )
 		.then( _promiseInsertRivagesCSV )
 		.then( ( resultArray ) => {
 

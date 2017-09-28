@@ -61,7 +61,6 @@ const admin = ( { rivages, spinner, materials, material, materialverified, verif
 
 	const rivagesGroups = groupBy( rivages )
 	const rivagesResults = _renderRivagesResults( rivagesGroups, 'key' )
-	console.log( rivagesGroups )
 
 	return(
 

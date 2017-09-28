@@ -2,7 +2,6 @@ import * as types from 'types-admin'
 import { promiseXHR } from 'actions/util/request/xhr'
 import { sendErrorMail } from 'actions/util/error/error'
 import { setMapData } from 'actions/admin/mapbox'
-import parse from 'csv-parse'
 
 export const setFilter = ( type, e ) => {
 
@@ -162,81 +161,17 @@ export const _promiseRivagesCSV = ( e ) => {
 
 	return new Promise( ( resolve, reject ) => {
 
-		let from = prompt( "Start from row:", "" )
-		//let to = prompt( "End at row:", "" )
+		const files = e.dataTransfer ? e.dataTransfer.files : e.currentTarget.files
 
-		const reader = new FileReader()
-		reader.onloadend = ( ) => {
+		if( files[ 0 ] ){
 
-			let csv = reader.result
+			resolve( files[ 0 ] )
 
-			console.log( csv )
+		}else{
 
-			parse( csv, { columns: true, from: from }, ( error, output ) => {
-
-				if( error ){
-
-					reject( "parser.error" + error )
-
-				}else{
-
-					console.log( output )
-					resolve( output )
-
-				}
-
-			} )
+			reject( 'No CSV selected' )
 
 		}
-
-		reader.onerror = ( error ) => {
-
-			reject( "reader.onerror" + error )
-
-		}
-
-		reader.readAsText( e.currentTarget.files[ 0 ] )
-
-	} )
-
-}
-
-export const _promiseImport = ( output ) => {
-
-	return new Promise( ( resolve, reject ) => {
-
-		let formData = new FormData()
-		formData.append( 'csv', JSON.stringify( output ) )
-
-		let options = {
-
-			data: formData,
-			url: '/administrate/importRivagesCSV'
-
-		}
-
-		promiseXHR( options )
-			.then( JSON.parse )
-			.then( ( parsed ) => {
-
-				if( parsed.status == 'KO' ){
-
-					throw Error( parsed.message )
-
-				}else{
-
-					resolve( parsed )
-
-				}
-
-				return parsed
-
-			} )
-			.catch( ( error ) => {
-
-				reject( error )
-
-			} )
 
 	} )
 
@@ -249,7 +184,26 @@ export const importRivagesCSV = ( e ) => {
 		dispatch( { type: types.SET_SPINNER_VISIBILITY, to: true } )
 
 		_promiseRivagesCSV( e )
-			.then( _promiseImport )
+			.then( ( csv ) => {
+
+				let from = prompt( "Start from row:", "" )
+		
+				let formData = new FormData()
+				formData.append( 'from', from )
+				formData.append( 'csv', csv, 'rivages.csv' )
+
+				let options = {
+
+					data: formData,
+					url: '/administrate/importRivagesCSV'
+
+				}
+
+				return options
+
+			} )
+			.then( promiseXHR )
+			.then( JSON.parse )
 			.then( ( parsed ) => {
 
 				if( parsed.status == 'KO' ){
