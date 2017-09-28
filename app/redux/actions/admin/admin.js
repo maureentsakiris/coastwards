@@ -180,7 +180,7 @@ export const _promiseRivagesCSV = ( e ) => {
 
 				}else{
 
-					//console.log( output )
+					console.log( output )
 					resolve( output )
 
 				}
