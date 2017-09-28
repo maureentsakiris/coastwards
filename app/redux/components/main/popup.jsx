@@ -139,7 +139,7 @@ class popup extends Component {
 
 			//const url = contribution_source == 'webapp' ? "uploads/" + contribution_uid + ".jpg" : "http://geolittoral.application.developpement-durable.gouv.fr/telechargement/tc_smartphone/photos/" + contribution_uid + ".jpg"
 			const url = "uploads/" + contribution_uid + ".jpg"
-			const usercomment = contribution_source == 'webapp' ? unescape( contribution_comment ) : 'This image was uploaded in collaboration with "Rivages", a Citizen Science project developed by CEREMA. The goal of "Rivages" is to monitor changes of shorelines by asking participants to trace them with their mobile phones.\n\nLive at the coast? Get involved and download their app at Google Play!'
+			const usercomment = contribution_source == 'webapp' ? unescape( contribution_comment ) : 'This image was uploaded in collaboration with "Rivages", a Citizen Science project developed by Cerema. The goal of "Rivages" is to monitor changes of shorelines by asking participants to trace them with their mobile phones.\n\nLive at the coast? Get involved and download their app at Google Play!'
 
 			const hascomment = usercomment != ''
 			const showcomment = commentToggled && hascomment
@@ -150,6 +150,12 @@ class popup extends Component {
 			const clsVerified = Classnames( "material-icons", style.verified )
 
 			const showVerified = contribution_verified == 1 && material != 'notclose' && material != 'notsure'
+
+			const clsTop = Classnames( style.top, {
+
+				[ style.rivages ]: contribution_source == 'rivages'
+
+			} )
 
 
 			return(
@@ -165,7 +171,7 @@ class popup extends Component {
 							month="long"
 						/> }
 					</DIV> }
-					<DIV className={ style.top } style={ { backgroundImage: 'url("' + url +'")' } } >
+					<DIV className={ clsTop } style={ { backgroundImage: 'url("' + url +'")' } } >
 						{ showcomment && <DIV className={ style.comment } >
 							{ contribution_source == 'rivages' && <H priority={ 1 } >Rivages</H> }
 							{ usercomment }

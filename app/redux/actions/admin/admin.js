@@ -243,6 +243,8 @@ export const importRivagesCSV = ( e ) => {
 
 	return function ( dispatch ){
 
+		dispatch( { type: types.SET_SPINNER_VISIBILITY, to: true } )
+
 		_promiseRivagesCSV( e )
 			.then( _promiseImport )
 			.then( ( parsed ) => {
@@ -253,9 +255,8 @@ export const importRivagesCSV = ( e ) => {
 
 				}else{
 
-					console.log( "GREAT! THE IMAGES HAVE BEEN IMPORTED" )
-					console.log( parsed.array )
-					document.getElementById( 'Rivages' ).reset()
+					dispatch( { type: types.SET_RIVAGES_RESULTS, to: parsed.array } )
+					dispatch( resetImportRivagesCSV() )
 					dispatch( fetch() )
 
 				}
@@ -264,10 +265,21 @@ export const importRivagesCSV = ( e ) => {
 			} )
 			.catch( ( error ) => {
 
-				document.getElementById( 'Rivages' ).reset()
+				dispatch( resetImportRivagesCSV() )
 				dispatch( sendErrorMail( error ) )
 
 			} )
+
+	}
+
+}
+
+export const resetImportRivagesCSV = () => {
+
+	return function ( dispatch ){
+
+		document.getElementById( 'Rivages' ).reset()
+		dispatch( { type: types.SET_SPINNER_VISIBILITY, to: false } )
 
 	}
 

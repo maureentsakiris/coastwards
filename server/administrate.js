@@ -427,7 +427,7 @@ function _promiseInsertRivagesCSV ( formData ){
 			const filename = path.parse( Filename ).name
 			const point = util.format( 'POINT(%s %s)', Longitude, Latitude )
 
-			var sql = 'INSERT INTO ??.?? ( ??, ??, ??, ??, ??, ??, ??, ?? ) VALUES ( (ST_PointFromText(?)), ?, ?, ?, ?,(INET6_ATON(?)), ?, ? )'
+			var sql = 'INSERT INTO ??.?? ( ??, ??, ??, ??, ??, ??, ??, ??, ?? ) VALUES ( (ST_PointFromText(?)), ?, ?, ?, ?,(INET6_ATON(?)), ?, ?, ? )'
 
 			var inserts = [ 
 				'coastwards', 
@@ -443,6 +443,7 @@ function _promiseInsertRivagesCSV ( formData ){
 				//'contribution_exif',
 				'contribution_ip',
 				'contribution_exif_datetime',
+				'contribution_closeup',
 				'contribution_source',
 
 
@@ -456,6 +457,7 @@ function _promiseInsertRivagesCSV ( formData ){
 				ip,
 				//CAREFULL!!!!
 				exif_datetime,
+				'1',
 				'rivages'
 
 			]
@@ -466,7 +468,7 @@ function _promiseInsertRivagesCSV ( formData ){
 
 				if( error ){
 
-					reject( error )
+					resolve( 'pool.getConnection' + error.code + ':' + filename )
 
 				}else{
 
@@ -480,7 +482,7 @@ function _promiseInsertRivagesCSV ( formData ){
 
 							}else{
 
-								reject( error )
+								resolve( 'connection.query ' + error.code + ':' + filename )
 
 							}
 
@@ -521,7 +523,7 @@ function _promiseInsertRivagesCSV ( formData ){
 											_delete( formData )
 												.then( ( uid ) => {
 
-													resolve( 'Could not fetch image' )
+													resolve( 'fs.writeFile ' + error.code + ':' + filename )
 													return uid
 
 												} )
@@ -533,7 +535,7 @@ function _promiseInsertRivagesCSV ( formData ){
 
 										}else{
 
-											resolve( rows.insertId )
+											resolve( 'imported' )
 
 										}
 
@@ -541,9 +543,41 @@ function _promiseInsertRivagesCSV ( formData ){
 									
 								} )
 
+								res.on( 'error', ( error ) => {
+
+									formData.fields.id = rows.insertId
+
+									_delete( formData )
+										.then( ( uid ) => {
+
+											resolve( 'res.onError ' + error.code + ':' + filename )
+											return uid
+
+										} )
+										.catch( ( error ) => {
+
+											reject( error )
+
+										} )
+
+								} ) 	
+
 							} ).on( 'error', ( error ) => {
 
-								resolve( error.code + ':' + filename )
+								formData.fields.id = rows.insertId
+
+								_delete( formData )
+									.then( ( uid ) => {
+
+										resolve( 'http.onError ' + error.code + ':' + filename )
+										return uid
+
+									} )
+									.catch( ( error ) => {
+
+										reject( error )
+
+									} )
 
 							} )
 

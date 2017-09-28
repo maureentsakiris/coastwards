@@ -8,8 +8,8 @@ const mapStateToProps = ( state ) => {
 
 	return {
 
-		showForm: state.form.show,
-		results: state.form.results,
+		rivages: state.rivages,
+		spinner: state.spinner,
 		materials: state.materials, 
 		material: state.form.material,
 		materialverified: state.form.materialverified,

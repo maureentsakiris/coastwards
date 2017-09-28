@@ -519,6 +519,17 @@ module.exports = {
 		"hi": "कानूनी नोटिस",
 		"fr": "Mentions légales"
 	},
+	"collaboration_with": {
+		"en": "In collaboration with",
+		"de": "In Zusammenarbeit mit",
+		"es": "En colaboración con",
+		"ar": "بالتعاون مع",
+		"pt": "Em colaboração com", //Felix
+		"zh": "与合作",
+		"el": "Σε συνεργασία με",
+		"hi": "के सहयोग से",
+		"fr": "En collaboration avec"
+	},
 	"who_are_you": {
 		"en": "Who's Science?",
 		"de": "Wer ist mit 'Wissenschaft' gemeint?",

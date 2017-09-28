@@ -7,6 +7,7 @@ import P from 'components/tags/p'
 import H from 'components/tags/h'
 import A from 'components/tags/a'
 import DIV from 'components/tags/div'
+import IMG from 'components/tags/img'
 
 import style from './_team'
 

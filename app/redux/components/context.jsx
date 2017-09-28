@@ -16,6 +16,7 @@ import How from 'containers/info/how'
 import Guidelines from 'containers/info/guidelines'
 import Team from 'containers/info/team'
 import Ask from 'containers/info/ask'
+import Logos from 'containers/info/logos'
  
 import DIV from 'components/tags/div'
 import A from 'components/tags/a'
@@ -121,6 +122,7 @@ const context = ( { intl, lang, dir, jazzSupported, clipped, infosState, setInfo
 							<Guidelines />
 							<Team />
 							<Ask />
+							<Logos />
 						</DIV>
 					</DIV>
 					<Main />

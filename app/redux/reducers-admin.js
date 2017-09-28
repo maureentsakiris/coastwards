@@ -4,12 +4,36 @@ import { extend } from 'underscore'
 
 import materials from 'config'
 
-const form = ( state = { show: true, results: undefined, material: '%', materialverified: '%', verified: '0', id: '%', example:'%', intro:'%', closeup: '%', pointmanual: '%', pointcorrected: '%' }, action ) => {
+const spinner = ( state = false, action ) => {
 
 	switch ( action.type ){
 
-	case types.SET_FORM_VISIBILITY:
-		return extend( {}, state, { show: action.to } )
+	case types.SET_SPINNER_VISIBILITY:
+		return action.to
+	default:
+		return state
+
+	}
+
+} 
+
+const rivages = ( state = null, action ) => {
+
+	switch ( action.type ){
+
+	case types.SET_RIVAGES_RESULTS:
+		return action.to
+	default:
+		return state
+
+	}
+
+} 
+
+const form = ( state = { results: undefined, material: '%', materialverified: '%', verified: '0', id: '%', example:'%', intro:'%', closeup: '%', pointmanual: '%', pointcorrected: '%' }, action ) => {
+
+	switch ( action.type ){
+
 	case types.SET_RESULTS:
 		return extend( {}, state, { results: action.to } )
 	case types.SET_MATERIAL:
@@ -67,6 +91,8 @@ const popup = ( state = { popup: undefined, feature: {} }, action ) => {
 
 const admin = combineReducers( {
 
+	spinner,
+	rivages,
 	form,
 	materials,
 	mapbox,

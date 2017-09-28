@@ -4,6 +4,9 @@
 
 	text-align: center;
 	margin-top: 2em;
+	color: $color-primary;
+	border-top: 1px dotted #a9a9a9;
+    padding-top: 10vh;
 
 	p{
 
@@ -11,11 +14,17 @@
 
 	}
 
+	.collaboration{
+
+		margin-top: 3em;
+
+	}
+
 	a{
 
 		img{
 
-			width: 100px;
+			width: 150px;
 			margin: 0 3%;
 			max-width: 26%;
 
