@@ -166,16 +166,17 @@ export const _promiseRivagesCSV = ( e ) => {
 		//let to = prompt( "End at row:", "" )
 
 		const reader = new FileReader()
-		reader.onload = ( ) => {
-
-			console.log( "loaded csv" )
+		reader.onloadend = ( ) => {
 
 			let csv = reader.result
+
+			console.log( csv )
+
 			parse( csv, { columns: true, from: from }, ( error, output ) => {
 
 				if( error ){
 
-					reject( error )
+					reject( "parser.error" + error )
 
 				}else{
 
@@ -190,7 +191,7 @@ export const _promiseRivagesCSV = ( e ) => {
 
 		reader.onerror = ( error ) => {
 
-			reject( error )
+			reject( "reader.onerror" + error )
 
 		}
 
