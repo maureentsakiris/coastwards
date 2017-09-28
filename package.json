@@ -20,8 +20,8 @@
     "body-parser": "^1.17.2",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.3",
-    "csv-stringify": "^1.0.4",
     "csv-parse": "^1.2.3",
+    "csv-stringify": "^1.0.4",
     "express": "^4.15.4",
     "express-session": "^1.15.5",
     "formidable": "^1.1.1",
@@ -38,6 +38,7 @@
     "react-dom": "^15.6.1",
     "react-hot-loader": "^3.0.0-beta.7",
     "underscore": "^1.8.3",
+    "webpack": "^3.5.5",
     "webpack-dev-middleware": "^1.12.0",
     "webpack-hot-middleware": "^2.18.2",
     "xss": "^0.3.4"
@@ -93,7 +94,6 @@
     "url-loader": "^0.5.9",
     "uuid": "^3.1.0",
     "validator": "^8.1.0",
-    "webpack": "^3.5.5",
     "webpack-bundle-analyzer": "^2.9.0"
   }
 }

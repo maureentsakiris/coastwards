@@ -168,6 +168,8 @@ export const _promiseRivagesCSV = ( e ) => {
 		const reader = new FileReader()
 		reader.onload = ( ) => {
 
+			console.log( "loaded csv" )
+
 			let csv = reader.result
 			parse( csv, { columns: true, from: from }, ( error, output ) => {
 
