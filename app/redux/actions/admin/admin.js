@@ -187,6 +187,12 @@ export const importRivagesCSV = ( e ) => {
 			.then( ( csv ) => {
 
 				let from = prompt( "Start from row:", "" )
+
+				if( from == null ){
+
+					throw Error( 'aborted' )
+
+				}
 		
 				let formData = new FormData()
 				formData.append( 'from', from )

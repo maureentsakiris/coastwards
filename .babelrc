@@ -1,12 +1,13 @@
 {
   "presets": [
-    ["es2015", {"modules": false}],
+    ["env", {"modules": false}],
     // webpack understands the native import syntax, and uses it for tree shaking
     "stage-0",
     "react"
     // Transpile React components to JavaScript
   ],
   "plugins": [
+    "syntax-async-functions",
     "react-hot-loader/babel"
     // Enables React code to work with HMR.
   ]

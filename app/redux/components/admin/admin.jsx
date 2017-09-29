@@ -15,9 +15,7 @@ import INPUT from 'components/form/input/input'
 import TOGGLE from 'components/ui/toggle'
 import ICONRADIOGROUP from 'components/form/radiogroup/iconradiogroup'
 import FILE from 'components/form/input/file'
-//import GO from 'components/form/button/go'
 
-//import CONTRIBUTION from 'containers/admin/contribution'
 import Mapbox from 'containers/admin/mapbox'
 import Popup from 'containers/admin/popup'
 
