@@ -354,7 +354,7 @@ function _promiseFetchAnnotations ( ){
 
 			}else{
 
-				var query = 'SELECT contribution_id, contribution_uid, Y(contribution_point) AS contribution_longitude, X(contribution_point) AS contribution_latitude, contribution_verified, contribution_material, contribution_material_verified, contribution_point_manual, contribution_point_corrected, contribution_closeup, contribution_comment, contribution_exif_datetime FROM contributions';
+				var query = 'SELECT contribution_id, Y(contribution_point) AS contribution_longitude, X(contribution_point) AS contribution_latitude, contribution_material_verified FROM contributions';
 
 				connection.query( query, function ( err, results ) {
 
