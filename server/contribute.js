@@ -342,6 +342,70 @@ router.get( '/geojson', function ( req, res ) {
 
 } )
 
+function _promiseFetchAnnotations ( ){
+
+	return new Promise( function ( resolve, reject ) {
+
+		pool.getConnection( function ( error, connection ) {
+
+			if( error ){
+
+				reject( error )
+
+			}else{
+
+				var query = 'SELECT contribution_id, contribution_uid, Y(contribution_point) AS contribution_longitude, X(contribution_point) AS contribution_latitude, contribution_verified, contribution_material, contribution_material_verified, contribution_point_manual, contribution_point_corrected, contribution_closeup, contribution_comment, contribution_exif_datetime FROM contributions';
+
+				connection.query( query, function ( err, results ) {
+
+					if( error ){
+
+						reject( error )
+
+					}else{
+
+						if( results === undefined ){
+
+							reject( Error( 'data/_promiseFetchAnnotations/Could not read result from query (Update schema?)' ) )
+
+						}else{
+
+							resolve( results )
+
+						}
+
+					}
+					
+					connection.release()
+
+				} )
+
+			}
+
+		} )
+
+	} )
+
+}
+
+router.get( '/annotations', function ( req, res ) {
+
+	_promiseFetchAnnotations()
+		.then( JSON.parse )
+		.then( ( json ) => {
+
+			res.json( { status: 'OK', json: json } )
+			return json;
+
+		} )
+		.catch( ( error ) => {
+
+			res.json( { status: 'KO', message: error.toString() } )
+
+		} )
+
+} )
+
 function _promiseFetchCount ( ){
 
 	return new Promise( function ( resolve, reject ) {

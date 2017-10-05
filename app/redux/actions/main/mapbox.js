@@ -169,7 +169,7 @@ export const displayMap = ( ) => {
 					paint: {
 						'circle-radius': {
 							'base': 1.75,
-							'stops': [ [ 0, 6 ], [ 10, 15 ], [ 22, 50 ] ]
+							'stops': [ [ 0, 4 ], [ 10, 15 ], [ 22, 50 ] ]
 						},
 						'circle-color': {
 							property: 'materialverified',

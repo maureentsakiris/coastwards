@@ -66,6 +66,17 @@ module.exports = {
 		"hi": "कोई खाता नहीं। बस खींचें और ड्रॉप करें",
 		"fr": "Pas besoin de compte. Simplement envoyer"
 	},
+	"no_account_native": {
+		"en": "(No account necessary)",
+		"de": "(Kein Konto notwendig)",
+		"es": "(No necesitas crear una cuenta)",
+		"ar": "(لا يوجد تسجيل حساب.)", //Bassel
+		"pt": "(Sem conta)",
+		"zh": "(无需注册帐户)",
+		"el": "(Δεν χρειάζεται  λογαριασμός)",
+		"hi": "(कोई खाता नहीं)",
+		"fr": "(Pas besoin de compte)"
+	},
 	"more_info": {
 		"en": "More info",
 		"de": "Weitere Infos",
@@ -222,17 +233,17 @@ module.exports = {
 		"hi": "बस कोई भी तस्वीर?",
 		"fr": "N´importe quelle photo ?"
 	}, 
-	/*"any_picture_title": {
-			"en": "Some quick guidelines",
-			"de": "Unsere Richtlinien",
-			"es": "Aquí van unos breves consejos.",
-			"ar": "بعض الإرشادات السريعة",
-			"pt": "Algumas recomendações rápidas",
-			"zh": "快速指南",
-			"el": "Μερικές γρήγορες κατευθυντήριες γραμμές",
-			"hi": " कुछ शीघ्र दिशानिर्देश "
-,			"fr": "Quelques recommendations rapides"
-		},*/
+	"any_picture_title": {
+		"en": "Some quick guidelines",
+		"de": "Unsere Richtlinien",
+		"es": "Aquí van unos breves consejos.",
+		"ar": "بعض الإرشادات السريعة",
+		"pt": "Algumas recomendações rápidas",
+		"zh": "快速指南",
+		"el": "Μερικές γρήγορες κατευθυντήριες γραμμές",
+		"hi": " कुछ शीघ्र दिशानिर्देश ",
+		"fr": "Quelques recommendations rapides"
+	},
 	"any_coast": {
 		"en": "Any coast but not any picture. We need these pictures to get a closer look at coasts (not people) and we need to know where these coasts are. So these are our guidelines:",
 		"de": "Irgendeine Küste aber nicht irgendein Foto. Wir brauchen diese Fotos, um uns Küsten (nicht Menschen) aus der Nähe anzusehen und wir müssen wissen wo sich diese Küsten befinden. Unsere Richtlinen sind also folgende:",
@@ -357,11 +368,11 @@ module.exports = {
 	"guideline_closer_text": {
 		"en": "We need close-up pictures of coasts. Basically, the coast you see in the picture should be the same as the coast you stood on when you took the picture.",
 		"de": "Wir brauchen Küstenselfies. Wichtig ist, dass die Küste im Foto dieselbe Küste ist auf der Du standest, als Du das Foto gemacht hast.",
-		"es": "", // Claudio
-		"ar": "", // Bassel
+		"es": "Buscamos 'selfies' de costas. Lo importante es que la costa en la foto sea la misma que estabas pisando cuando tomaste la foto.", // !!!
+		"ar": "", // !!!
 		"pt": "Nós precisamos de fotografias aproximadas das costas. Basicamente, a costa que você vê na fotografia deve ser a mesma costa que você viu quando tirou a fotografia.", // Felix
-		"zh": "", // Jing
-		"el": "", // Baba,
+		"zh": "", // !!!
+		"el": "", // !!!
 		"hi": "हमें समुद्र तटों की नज़दीकी तस्वीरों की आवश्यकता है। असल में, तस्वीर में दिखाई देने वाला तटीय किनारा एैसा होना चाहिए, जिस पर खड़े होकर आप तस्वीर लेते हैं।",
 		"fr": "Nous avons besoin de gros plans des côtes. En bref, la côte que tu vois sur la photo doit être la même que celle où tu étais quand tu as prit la photo."
 	},
@@ -1103,7 +1114,7 @@ module.exports = {
 		"fr": "Envoyer"
 	},
 	"cancel": {
-		"en": "CANCEL",
+		"en": "Cancel",
 		"de": "Abbrechen",
 		"es": "Cancelar",
 		"ar": "الغاء",
@@ -1964,6 +1975,64 @@ module.exports = {
 		"hi": "और यह एक अंतर लाएगा!",
 		"pt": "E vai fazer a diferença!",
 		"fr": "Est cela va faire la différence"
+	},
+
+	//NATIVE
+	"take_photo": {
+		"en": "Take a photo ...",
+		"de": "Mach ein Foto ...",
+		"es": "Tomar foto ...",
+		"ar": "التقاط صورة ...",
+		"pt": "Tirar foto ...",
+		"zh": "拍个照",
+		"el": "Βγάλε μια φωτογραφία ...",
+		"hi": "एक तस्वीर लें ...",
+		"fr": "Prendre une photo ..."
+	},
+	"photo_library": {
+		"en": "Photo Library",
+		"de": "Fotomediathek",
+		"es": "Fototeca",
+		"ar": "مكتبة الصور",
+		"pt": "Fototeca",
+		"zh": "照片库",
+		"el": "Βιβλιοθήκη φωτογραφιών",
+		"hi": "चित्र पुस्तकालय",
+		"fr": "Galerie de photos"
+	},
+	"permission_denied": {
+		"en": "Permission denied",
+		"de": "Erlaubnis verweigert",
+		"es": "Permiso denegado",
+		"ar": "طلب الاذن مرفوض",
+		"pt": "Permissão negada",
+		"zh": "没有权限",
+		"el": "Η άδεια απορρίφθηκε",
+		"hi": "अनुमति नहीं मिली",
+		"fr": "Permission refusée"
+	},
+	"permission_denied_text": {
+		"en": "To be able to take pictures with your camera and choose images from your library",
+		"de": "Für den Zugang zur Kamera und zur Fotomediathek",
+		"es": "Para tener acceso a la fototeca y a la camera",
+		"ar": "To be able to take pictures with your camera and choose images from your library", // !!!
+		"pt": "To be able to take pictures with your camera and choose images from your library", // !!!
+		"zh": "To be able to take pictures with your camera and choose images from your library", // !!!
+		"el": "To be able to take pictures with your camera and choose images from your library", // !!!
+		"hi": "To be able to take pictures with your camera and choose images from your library", // !!!
+		"fr": "To be able to take pictures with your camera and choose images from your library" // !!!
+	},
+	"permission_denied_reTryTitle": {
+		"en": "Re-try",
+		"de": "Nochmals versuchen",
+		"es": "Repetir", // !
+		"ar": "إعادة المحاولة", // !
+		"pt": "Tente novamente", // !
+		"zh": "再试一次", // !
+		"el": "Προσπάθησε ξανά", // !
+		"hi": "पुनः प्रयास करें", // !
+		"fr": "Réessayer" // !
 	}
+
 
 }
