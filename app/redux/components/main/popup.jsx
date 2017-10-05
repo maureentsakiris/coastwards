@@ -12,6 +12,7 @@ import I from 'components/tags/i'
 import P from 'components/tags/p'
 import IMG from 'components/tags/img'
 import H from 'components/tags/h'
+import BR from 'components/tags/br'
 
 import style from './_popup'
 
@@ -139,9 +140,9 @@ class popup extends Component {
 
 			//const url = contribution_source == 'webapp' ? "uploads/" + contribution_uid + ".jpg" : "http://geolittoral.application.developpement-durable.gouv.fr/telechargement/tc_smartphone/photos/" + contribution_uid + ".jpg"
 			const url = "uploads/" + contribution_uid + ".jpg"
-			const usercomment = contribution_source == 'webapp' ? unescape( contribution_comment ) : 'This image was uploaded in collaboration with "Rivages", a Citizen Science project developed by Cerema. The goal of "Rivages" is to monitor changes of shorelines by asking participants to trace them with their mobile phones.\n\nLive at the coast? Get involved and download their app at Google Play!'
+			const usercomment = unescape( contribution_comment )
 
-			const hascomment = usercomment != ''
+			const hascomment = usercomment != '' || contribution_source == 'rivages'
 			const showcomment = commentToggled && hascomment
 			const commentIcon = showcomment ? 'insert_comment' : 'mode_comment'
 
@@ -174,7 +175,12 @@ class popup extends Component {
 					<DIV className={ clsTop } style={ { backgroundImage: 'url("' + url +'")' } } >
 						{ showcomment && <DIV className={ style.comment } >
 							{ contribution_source == 'rivages' && <H priority={ 1 } >Rivages</H> }
-							{ usercomment }
+							{ contribution_source == 'webapp' && <P>{ usercomment }</P> }
+							{ contribution_source == 'rivages' && 
+								<P>This image was uploaded in collaboration with "Rivages", a Citizen Science project developed by Cerema. The goal of "Rivages" is to monitor changes of shorelines by asking participants to trace them with their mobile phones.
+									<BR/><BR/>
+								Live at the coast? <A href="http://www.geolittoral.developpement-durable.gouv.fr/suivi-du-trait-de-cote-par-smartphone-r489.html" >Find out more</A> about the project and <A href="https://play.google.com/store/apps/details?id=fr.cerema.rivages&hl=en">download their app</A> at Google Play!</P> 
+							}
 							{ contribution_source == 'rivages' && <A href="https://play.google.com/store/apps/details?id=fr.cerema.rivages&hl=en"><IMG className={ style.googleplay } src="assets/googleplay.png" alt="Get it on Google Play" /></A> }
 						</DIV> }
 					</DIV>
