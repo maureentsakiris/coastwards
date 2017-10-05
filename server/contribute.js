@@ -391,11 +391,10 @@ function _promiseFetchAnnotations ( ){
 router.get( '/annotations', function ( req, res ) {
 
 	_promiseFetchAnnotations()
-		.then( JSON.parse )
-		.then( ( json ) => {
+		.then( ( results ) => {
 
-			res.json( { status: 'OK', json: json } )
-			return json;
+			res.json( { status: 'OK', json: results } )
+			return results;
 
 		} )
 		.catch( ( error ) => {
