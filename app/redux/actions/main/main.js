@@ -162,7 +162,7 @@ const _promiseSafe = ( image ) => {
 
 				}
 
-				let coast = filter( annotations.labelAnnotations, { description: 'coast' } )
+				/*let coast = filter( annotations.labelAnnotations, { description: 'coast' } )
 				let shore = filter( annotations.labelAnnotations, { description: 'shore' } )
 				let harbor = filter( annotations.labelAnnotations, { description: 'harbor' } )
 				let beach = filter( annotations.labelAnnotations, { description: 'beach' } )
@@ -176,11 +176,11 @@ const _promiseSafe = ( image ) => {
 				let skyline = filter( annotations.labelAnnotations, { description: 'skyline' } )
 				let horizon = filter( annotations.labelAnnotations, { description: 'horizon' } )
 
-				if( !coast.length && !shore.length && !harbor.length && !beach.length && !sea.length && !natural_environment.length && !bodyofwater.length && !geographical_feature.length && !loch.length /*&& !habitat.length*/ && !landform.length && !skyline.length && !horizon.length ){
+				if( !coast.length && !shore.length && !harbor.length && !beach.length && !sea.length && !natural_environment.length && !bodyofwater.length && !geographical_feature.length && !loch.length && !landform.length && !skyline.length && !horizon.length ){ // && !habitat.length
 
 					reject( Error( "not_a_coast" ) )
 
-				}
+				}*/
 			
 				image.labels = annotations.labelAnnotations
 				resolve( image )
