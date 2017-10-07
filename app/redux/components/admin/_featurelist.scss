@@ -1,0 +1,45 @@
+@import 'app/styles/base';
+
+$padding: 5vh 5vh 10vh 5vh;
+
+.featureList{
+
+	position: absolute;
+	z-index: 2;
+	top: 0;
+	width: 100%;
+	height: 100%;
+
+	.tab{
+
+		background-color: $color-primary;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 50px;
+		padding-left: 5vh;
+
+	}
+
+	.listContainer{
+
+		@extend %flexcontainer;
+		flex-direction: row;
+		flex-wrap: wrap;
+		width: 100%;
+	    height: 100%;
+	    background-color: #fff;
+	    z-index: 2;
+	    padding: $padding;
+	    height: 100%;
+	    overflow-y: scroll;
+
+	    .listItem{
+
+	    	width: 400px;
+
+	    }
+
+	}
+
+}

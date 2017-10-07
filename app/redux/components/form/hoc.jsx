@@ -18,7 +18,8 @@ const hoc = ( ComposedComponent ) => class extends Component {
 		name: PropTypes.string.isRequired,
 		className: PropTypes.string,
 		preferPlaceholder: PropTypes.bool,
-		children: PropTypes.node
+		children: PropTypes.node,
+		inline: PropTypes.bool
 
 	}
 
@@ -36,9 +37,13 @@ const hoc = ( ComposedComponent ) => class extends Component {
 
 	render () {
 
-		const { form, label, name, className, preferPlaceholder, children } = this.props
+		const { form, label, name, className, preferPlaceholder, children, inline } = this.props
 
-		const cls = Classnames( className, style.label )
+		const cls = Classnames( className, style.label, {
+
+			[ style.inline ]: inline
+
+		} )
 
 		const showLabel = !Modernizr.placeholder ? true : preferPlaceholder ? false : true
 

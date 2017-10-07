@@ -120,7 +120,7 @@ export const displayMap = ( ) => {
 
 			} )
 			.then( ( map ) => {
-
+				
 				dispatch( fetch() )
 				return map
 

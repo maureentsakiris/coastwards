@@ -42,6 +42,8 @@ $padding: 5vh 5vh 10vh 5vh;
         height: 100vh;
         overflow-y: scroll;
         padding: $padding;
+        box-shadow: 0px 0px 10px rgba(0,0,0,.3), 0px 0px 10px rgba(0,0,0,.22);
+        z-index: 3;
 
         .toggle{
 
@@ -58,12 +60,27 @@ $padding: 5vh 5vh 10vh 5vh;
 
     }
 
-    .mapbox{
+    .results{
 
         @extend %flexitem;
         flex-grow: 3;
-        //width: 1000px;
         height: 100%;
+        position: relative;
+        height: 100%;
+        overflow: hidden;
+
+        .hide{
+
+            @extend %hide;
+
+        }
+
+        .show{
+
+            @extend %show;
+            //display: flex;
+
+        }
 
     }
 

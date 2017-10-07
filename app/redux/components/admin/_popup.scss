@@ -29,13 +29,7 @@ $action-height: 45px;
 
 	.bar{
 
-		position: absolute;
-		width: 100%;
-		top: 0;
-		left: 0;
-		background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%,rgba(0,0,0,0) 100%);
-		padding: 10px 10px 20px 10px;
-		direction: ltr;
+		@extend %popupBar;
 		text-align: right;
 
 		a{

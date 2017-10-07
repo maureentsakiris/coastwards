@@ -30,7 +30,7 @@ const rivages = ( state = null, action ) => {
 
 } 
 
-const form = ( state = { results: undefined, material: '%', materialverified: '%', verified: '0', id: '%', example:'%', intro:'%', closeup: '%', pointmanual: '%', pointcorrected: '%' }, action ) => {
+const form = ( state = { display: 'map', results: [], material: '%', materialverified: '%', verified: '1', id: '%', example:'%', intro:'%', closeup: '%', pointmanual: '%', pointcorrected: '%' }, action ) => {
 
 	switch ( action.type ){
 
@@ -54,6 +54,8 @@ const form = ( state = { results: undefined, material: '%', materialverified: '%
 		return extend( {}, state, { pointmanual: action.to } )
 	case types.SET_POINTCORRECTED:
 		return extend( {}, state, { pointcorrected: action.to } )
+	case types.SET_DISPLAY:
+		return extend( {}, state, { display: action.to } )
 	default:
 		return state
 
@@ -88,6 +90,7 @@ const popup = ( state = { popup: undefined, feature: {} }, action ) => {
 	}
 
 }
+
 
 const admin = combineReducers( {
 

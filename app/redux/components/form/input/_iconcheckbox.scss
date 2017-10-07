@@ -1,0 +1,45 @@
+.iconcheckbox{
+
+    display: inline-block;
+    margin-top: 0.5em;
+
+	span{
+
+		white-space: nowrap;
+
+	}
+
+	&>label{
+
+		display: inline-block;
+
+	}
+
+}
+
+.icon{
+
+    display: inline-block;
+    margin-top: 0.5em;
+
+}
+
+html[dir="ltr"]{
+
+	.iconcheckbox, .icon{
+
+		margin-right: 1em;
+
+	}
+
+}
+
+html[dir="rtl"]{
+
+	.iconcheckbox, .icon{
+
+		margin-left: 1em;
+
+	}
+
+}

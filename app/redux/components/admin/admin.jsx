@@ -3,6 +3,7 @@ import { PropTypes } from 'prop-types'
 import { chain } from 'underscore'
 import ClassNames from 'classnames'
 import { groupBy, map } from 'underscore'
+import Classnames from 'classnames'
 
 import DIV from 'components/tags/div'
 import A from 'components/tags/a'
@@ -18,10 +19,11 @@ import FILE from 'components/form/input/file'
 
 import Mapbox from 'containers/admin/mapbox'
 import Popup from 'containers/admin/popup'
+import Featurelist from 'containers/admin/featurelist'
 
 import style from './_admin'
 
-const admin = ( { rivages, spinner, materials, material, materialverified, verified, id, example, intro, closeup, pointmanual, pointcorrected, setFilter, importRivagesCSV } ) => {
+const admin = ( { rivages, spinner, materials, material, materialverified, verified, id, example, intro, closeup, pointmanual, pointcorrected, display, setFilter, importRivagesCSV } ) => {
 
 	const all = [ { label: 'All', value: '%' } ]
 	const mats = chain( materials )
@@ -55,10 +57,25 @@ const admin = ( { rivages, spinner, materials, material, materialverified, verif
 
 	]
 
+	const listOrMap = [
+
+		{ label: 'List', value: 'list' },
+		{ label: 'Map', value: 'map' }
+
+	]
+
 	const clsLogger = ClassNames( style.link, style.logger )
 
 	const rivagesGroups = groupBy( rivages )
 	const rivagesResults = _renderRivagesResults( rivagesGroups, 'key' )
+
+
+	const clsList = Classnames( {
+
+		[ style.hide ]: display === 'map',
+		[ style.show ]: display === 'list'
+
+	} )
 
 	return(
 
@@ -73,6 +90,7 @@ const admin = ( { rivages, spinner, materials, material, materialverified, verif
 				<H priority={ 1 } >Hi there! Go ahead, make your selection...</H>
 				<TOGGLE priority={ 3 } className={ style.toggle } text="Verify contributions" expanded={ true } >
 					<FORM id="Admin" action="javascript:;" >
+						<ICONRADIOGROUP form="Admin" label="Display as: " name="display" preferPlaceholder={ false } options={ listOrMap } onClick={ setFilter.bind( this, 'SET_DISPLAY' ) } checkedValue={ display } />
 						<ICONRADIOGROUP form="Admin" label="Verified: " name="verified" preferPlaceholder={ false } options={ allYesNo } onClick={ setFilter.bind( this, 'SET_VERIFIED' ) } checkedValue={ verified } />
 						<TOGGLE priority={ 4 } text="Other filters" >
 							<INPUT form="Admin" label="ID: " name="id" preferPlaceholder={ false } placeholder="ID" onChange={ setFilter.bind( this, 'SET_ID' ) } checkedValue={ id } />
@@ -96,10 +114,14 @@ const admin = ( { rivages, spinner, materials, material, materialverified, verif
 					</UL> }
 				</TOGGLE>
 			</DIV>
-			<Mapbox className={ style.mapbox } />
+			<DIV className={ style.results } >
+				<Mapbox  />
+				<Featurelist className={ clsList } />
+			</DIV>
 		</DIV>
 
 	)
+
 
 }
 
@@ -117,6 +139,7 @@ const _renderRivagesResults = ( groups ) => {
 
 }
 
+
 admin.propTypes = {
 
 	rivages: PropTypes.array,
@@ -131,6 +154,7 @@ admin.propTypes = {
 	closeup: PropTypes.string,
 	pointmanual: PropTypes.string,
 	pointcorrected: PropTypes.string,
+	display: PropTypes.string,
 
 	setFilter: PropTypes.func,
 	importRivagesCSV: PropTypes.func

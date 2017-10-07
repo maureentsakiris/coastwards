@@ -10,8 +10,13 @@ export const setFilter = ( type, e ) => {
 	return function ( dispatch ){
 
 		dispatch( { type: types[ type ], to: value } )
-		dispatch( fetch() )
 
+		if( type != 'SET_DISPLAY' ){
+
+			dispatch( fetch() )
+
+		}
+		
 	}
 
 }
@@ -52,7 +57,9 @@ export const fetch = ( ) => {
 
 				}else{
 
-					dispatch( { type: types.SET_RESULTS, to: parsed.json } )
+					const features = parsed.json ? parsed.json.features : []
+					
+					dispatch( { type: types.SET_RESULTS, to: features } )
 					dispatch( setMapData( parsed.json ) )
 
 				}
