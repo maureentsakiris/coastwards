@@ -1,13 +1,19 @@
-.icon{
+.iconradio{
 
     display: inline-block;
     margin-top: 0.5em;
+
+	span{
+
+		white-space: nowrap;
+
+	}
 
 }
 
 html[dir="ltr"]{
 
-	.radio{
+	.iconradio{
 
 		margin-right: 1em;
 
@@ -17,7 +23,7 @@ html[dir="ltr"]{
 
 html[dir="rtl"]{
 
-	.radio{
+	.iconradio{
 
 		margin-left: 1em;
 

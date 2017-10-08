@@ -92,7 +92,7 @@ export const deleteContribution = ( contribution_id, contribution_uid ) => {
 
 		}
 
-		promiseXHR( options )
+		/*promiseXHR( options )
 			.then( JSON.parse )
 			.then( ( parsed ) => {
 
@@ -113,7 +113,7 @@ export const deleteContribution = ( contribution_id, contribution_uid ) => {
 
 				dispatch( sendErrorMail( error ) )
 
-			} )
+			} )*/
 
 	}
 
@@ -133,7 +133,7 @@ export const updateContribution = ( formID ) => {
 
 		}
 
-		promiseXHR( options )
+		/*promiseXHR( options )
 			.then( JSON.parse )
 			.then( ( parsed ) => {
 
@@ -158,7 +158,7 @@ export const updateContribution = ( formID ) => {
 
 				dispatch( sendErrorMail( error ) )
 
-			} )
+			} )*/
 
 	}
 

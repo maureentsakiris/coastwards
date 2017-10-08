@@ -14,9 +14,9 @@ import A from 'components/tags/a'
 
 import FORM from 'components/tags/form'
 import INPUT from 'components/tags/input'
-import SELECTGROUP from 'components/form/selectgroup/selectgroup'
-import RADIOGROUP from 'components/form/radiogroup/radiogroup'
-// import GO from 'components/form/button/go'
+//import SELECTGROUP from 'components/form/selectgroup/selectgroup'
+import ICONRADIOGROUP from 'components/form/radiogroup/iconradiogroup'
+import GO from 'components/form/button/go'
 
 import style from './_feature'
 
@@ -45,11 +45,11 @@ class feature extends Component {
 				this.feature = feature
 				this.setState( { 
 
-					verified: feature.contribution_verified == 1 ? true : false,
-					materialVerified: feature.contribution_material_verified ?  feature.contribution_material_verified : 'notset',
-					example: feature.contribution_example == 1 ? true : false,
-					intro: feature.contribution_intro == 1 ? true : false,
-					closeup: feature.contribution_closeup == 1 ? true : false
+					verified: feature.contribution_verified == 1 ? '1' : '0',
+					materialverified: feature.contribution_material_verified ?  feature.contribution_material_verified : 'notset',
+					example: feature.contribution_example == 1 ? '1' : '0',
+					intro: feature.contribution_intro == 1 ? '1' : '0',
+					closeup: feature.contribution_closeup == 1 ? '1' : '0'
 
 				} )
 
@@ -73,7 +73,7 @@ class feature extends Component {
 	render () {
 
 		const { properties, tabs, materials, deleteContribution, updateContribution } = this.props
-		const { id, materialverified } = properties
+		const { id/*, materialverified*/ } = properties
 
 		if( !this.feature ){
 
@@ -85,14 +85,14 @@ class feature extends Component {
 
 		}else{
 
-			const { contribution_id, contribution_uid, contribution_material, contribution_comment, contribution_source } = this.feature
+			const { contribution_id, contribution_uid, contribution_material, contribution_comment/*, contribution_source*/ } = this.feature
 
-			const { verified, materialVerified, example, intro, closeup } = this.state
+			const { verified, materialverified, example, intro, closeup } = this.state
 
-			const options = map( materials, ( material ) => {
+			const materialOptions = map( materials, ( material ) => {
 
-				let checked = material.value == contribution_material ? true : false
-				return { label: material.label, value: material.value, checked: checked }
+				let { value, color, label } = material
+				return { label: label, value: value, color: color }
 
 			} )
 
@@ -100,6 +100,14 @@ class feature extends Component {
 
 				{ label: 'Yes', value: '1' },
 				{ label: 'No', value: '0' }
+
+			]
+
+			const yesNoNotset = [
+
+				{ label: 'Yes', value: '1' },
+				{ label: 'No', value: '0' },
+				{ label: 'Not set', value: 'notset' }
 
 			]
 
@@ -118,13 +126,17 @@ class feature extends Component {
 						<INPUT form={ formID } type="hidden" name="contribution_id" value={ contribution_id + '' } />
 						<P>{ contribution_id } / { contribution_material }</P>
 						<HR />
-						{ tabs.material && <SELECTGROUP preferPlaceholder={ false } form={ formID } label="Material verified:" name="contribution_material_verified" options={ options } value={ materialVerified } onChange={ this._setMaterial.bind( this ) } /> }
-						{ tabs.verified && <RADIOGROUP preferPlaceholder={ false } checked={ verified } label="Verified:" form={ formID } name="contribution_verified" options={ yesNo } value={ verified } onChange={ this._setVerified.bind( this ) } /> }
-						{ tabs.closeup && <RADIOGROUP preferPlaceholder={ false } checked={ closeup } label="Closeup:" form={ formID } name="contribution_closeup" options={ yesNo } value={ closeup } onChange={ this._setCloseup.bind( this ) } /> }
-						{ tabs.example && <RADIOGROUP preferPlaceholder={ false } checked={ example } label="Example:" form={ formID } name="contribution_example" options={ yesNo } value={ example } onChange={ this._setExample.bind( this ) } /> }
-						{ tabs.intro && <RADIOGROUP preferPlaceholder={ false } checked={ intro } label="Intro:" form={ formID } name="contribution_intro" options={ yesNo } value={ intro } onChange={ this._setIntro.bind( this ) } /> }
+						{ tabs.material && <ICONRADIOGROUP preferPlaceholder={ false } form={ formID } label="Material verified: " name="materialverified" options={ materialOptions } onChange={ this._setMaterialVerified.bind( this ) } selected={ materialverified } /> }
+						{ tabs.verified && <ICONRADIOGROUP preferPlaceholder={ false } form={ formID } label="Verified:" name="contribution_verified" options={ yesNo } value={ verified } onChange={ this._setVerified.bind( this ) } selected={ verified } /> }
+						{ tabs.closeup && <ICONRADIOGROUP preferPlaceholder={ false } form={ formID } label="Closeup:" name="contribution_closeup" options={ yesNoNotset } value={ closeup } onChange={ this._setCloseup.bind( this ) } selected={ closeup } /> }
+						{ tabs.example && <ICONRADIOGROUP preferPlaceholder={ false } form={ formID } label="Example:" name="contribution_example" options={ yesNo } value={ example } onChange={ this._setExample.bind( this ) } selected={ example } /> }
+						{ tabs.intro && <ICONRADIOGROUP preferPlaceholder={ false } form={ formID } label="Intro:" name="contribution_intro" options={ yesNo } value={ intro } onChange={ this._setIntro.bind( this ) } selected={ intro } /> }
 						{ tabs.comment && <P className={ style.comment } >{ usercomment }</P> }
 					</FORM>
+					<DIV className={ style.actions }>
+						<GO onClick={ deleteContribution.bind( this, contribution_id, contribution_uid ) } label="DELETE" className={ style.delete } />
+						<GO onClick={ updateContribution.bind( this, formID ) } label="UPDATE" className={ style.update } />
+					</DIV>
 				</DIV>
 
 			)
@@ -133,33 +145,39 @@ class feature extends Component {
 
 	}
 
-	_setMaterial = ( e ) => {
+	_setMaterial = ( value ) => {
 
-		this.setState( { materialVerified: e.currentTarget.value } )
-
-	}
-
-	_setVerified = ( e ) => {
-
-		this.setState( { verified: e.currentTarget.value } )
+		this.setState( { materialVerified: value } )
 
 	}
 
-	_setExample = ( e ) => {
+	_setVerified = ( value ) => {
 
-		this.setState( { example: e.currentTarget.value } )
-
-	}
-
-	_setIntro = ( e ) => {
-
-		this.setState( { intro: e.currentTarget.value } )
+		this.setState( { verified: value } )
 
 	}
 
-	_setCloseup = ( e ) => {
+	_setExample = ( value ) => {
 
-		this.setState( { closeup: e.currentTarget.value } )
+		this.setState( { example: value } )
+
+	}
+
+	_setIntro = ( value ) => {
+
+		this.setState( { intro: value } )
+
+	}
+
+	_setCloseup = ( value ) => {
+
+		this.setState( { closeup: value } )
+
+	}
+
+	_setMaterialVerified = ( value ) => {
+
+		this.setState( { materialverified: value } )
 
 	}
 

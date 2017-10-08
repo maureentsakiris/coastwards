@@ -1,8 +1,7 @@
 import React from 'react'
 import { PropTypes } from 'prop-types'
-import ClassNames from 'classnames'
 import hoc from 'components/form/hoc'
-import ICON from 'components/form/button/icon'
+import ICONBUTTON from 'components/form/button/iconbutton'
 import SPAN from 'components/tags/span'
 
 import style from './_iconcheckbox'
@@ -10,15 +9,16 @@ import style from './_iconcheckbox'
 
 const iconcheckbox = ( { hocProps } ) => {
 
-	const { label, onClick, value, isChecked, className } = hocProps
+	const { form, name, label, onChange, value, selected } = hocProps
 
-	const icon = isChecked ? "check_box" : "check_box_outline_blank"
-
-	const clsIcon = ClassNames( className, style.iconcheckbox )
+	const icon = selected ? "check_box" : "check_box_outline_blank"
 
 	return(
 
-		<ICON className={ clsIcon } materialIcon={ icon } onClick={ onClick.bind( this, isChecked, value ) } ><SPAN>{ label }</SPAN></ICON>
+		<SPAN>
+			<input type="checkbox" form={ form } name={ name } label={ label } value={ value } onChange={ () => {} } checked={ selected } />
+			<ICONBUTTON className={ style.iconcheckbox } materialIcon={ icon } onChange={ onChange.bind( this, selected, value ) } ><SPAN>{ label }</SPAN></ICONBUTTON>
+		</SPAN>
 
 	)
 	
@@ -26,7 +26,7 @@ const iconcheckbox = ( { hocProps } ) => {
 
 iconcheckbox.defaultProps = {
 
-	isChecked: false
+	selected: false
 
 }
 
@@ -34,11 +34,12 @@ iconcheckbox.propTypes = {
 
 	hocProps: PropTypes.shape( {
 
+
 		label: PropTypes.string.isRequired,
 		value: PropTypes.string.isRequired,
-		isChecked: PropTypes.bool.isRequired,
+		selected: PropTypes.bool.isRequired,
 
-		onClick: PropTypes.func
+		onChange: PropTypes.func.isRequired
 
 	} )
 

@@ -10,9 +10,9 @@ import A from 'components/tags/a'
 import UL from 'components/tags/ul'
 import LI from 'components/tags/li'
 import H from 'components/tags/h'
-
 import FORM from 'components/tags/form'
-import INPUT from 'components/form/input/input'
+import INPUT from 'components/tags/input'
+
 import TOGGLE from 'components/ui/toggle'
 import ICONRADIOGROUP from 'components/form/radiogroup/iconradiogroup'
 import FILE from 'components/form/input/file'
@@ -90,17 +90,17 @@ const admin = ( { rivages, spinner, materials, material, materialverified, verif
 				<H priority={ 1 } >Hi there! Go ahead, make your selection...</H>
 				<TOGGLE priority={ 3 } className={ style.toggle } text="Verify contributions" expanded={ true } >
 					<FORM id="Admin" action="javascript:;" >
-						<ICONRADIOGROUP form="Admin" label="Display as: " name="display" preferPlaceholder={ false } options={ listOrMap } onClick={ setFilter.bind( this, 'SET_DISPLAY' ) } checkedValue={ display } />
-						<ICONRADIOGROUP form="Admin" label="Verified: " name="verified" preferPlaceholder={ false } options={ allYesNo } onClick={ setFilter.bind( this, 'SET_VERIFIED' ) } checkedValue={ verified } />
+						<ICONRADIOGROUP form="Admin" label="Display as: " name="display" preferPlaceholder={ false } options={ listOrMap } onChange={ setFilter.bind( this, 'SET_DISPLAY' ) } selected={ display } />
+						<ICONRADIOGROUP form="Admin" label="Verified: " name="verified" preferPlaceholder={ false } options={ allYesNo } onChange={ setFilter.bind( this, 'SET_VERIFIED' ) } selected={ verified } />
 						<TOGGLE priority={ 4 } text="Other filters" >
-							<INPUT form="Admin" label="ID: " name="id" preferPlaceholder={ false } placeholder="ID" onChange={ setFilter.bind( this, 'SET_ID' ) } checkedValue={ id } />
-							<ICONRADIOGROUP form="Admin" label="Material contributor: " name="material" preferPlaceholder={ false } options={ materialOptions } onClick={ setFilter.bind( this, 'SET_MATERIAL' ) } checkedValue={ material } />
-							<ICONRADIOGROUP form="Admin" label="Material verified: " name="materialverified" preferPlaceholder={ false } options={ materialOptions } onClick={ setFilter.bind( this, 'SET_MATERIAL_VERIFIED' ) } checkedValue={ materialverified } />
-							<ICONRADIOGROUP form="Admin" label="Position manual: " name="pointmanual" preferPlaceholder={ false } options={ allYesNo } onClick={ setFilter.bind( this, 'SET_POINTMANUAL' ) } checkedValue={ pointmanual } />
-							<ICONRADIOGROUP form="Admin" label="Position corrected: " name="pointcorrected" preferPlaceholder={ false } options={ allYesNo } onClick={ setFilter.bind( this, 'SET_POINTCORRECTED' ) } checkedValue={ pointcorrected } />
-							<ICONRADIOGROUP form="Admin" label="Closeup: " name="closeup" preferPlaceholder={ false } options={ allYesNo } onClick={ setFilter.bind( this, 'SET_CLOSEUP' ) } checkedValue={ closeup } />
-							<ICONRADIOGROUP form="Admin" label="Intro: " name="intro" preferPlaceholder={ false } options={ allYesNo } onClick={ setFilter.bind( this, 'SET_INTRO' ) } checkedValue={ intro } />
-							<ICONRADIOGROUP form="Admin" label="Example: " name="example" preferPlaceholder={ false } options={ allYesNo } onClick={ setFilter.bind( this, 'SET_EXAMPLE' ) } checkedValue={ example } />
+							<INPUT form="Admin" label="ID: " name="id" preferPlaceholder={ false } placeholder="ID" onChange={ setFilter.bind( this, 'SET_ID' ) } />
+							<ICONRADIOGROUP form="Admin" label="Material contributor: " name="material" preferPlaceholder={ false } options={ materialOptions } onChange={ setFilter.bind( this, 'SET_MATERIAL' ) } selected={ material } />
+							<ICONRADIOGROUP form="Admin" label="Material verified: " name="materialverified" preferPlaceholder={ false } options={ materialOptions } onChange={ setFilter.bind( this, 'SET_MATERIAL_VERIFIED' ) } selected={ materialverified } />
+							<ICONRADIOGROUP form="Admin" label="Position manual: " name="pointmanual" preferPlaceholder={ false } options={ allYesNo } onChange={ setFilter.bind( this, 'SET_POINTMANUAL' ) } selected={ pointmanual } />
+							<ICONRADIOGROUP form="Admin" label="Position corrected: " name="pointcorrected" preferPlaceholder={ false } options={ allYesNo } onChange={ setFilter.bind( this, 'SET_POINTCORRECTED' ) } selected={ pointcorrected } />
+							<ICONRADIOGROUP form="Admin" label="Closeup: " name="closeup" preferPlaceholder={ false } options={ allYesNo } onChange={ setFilter.bind( this, 'SET_CLOSEUP' ) } selected={ closeup } />
+							<ICONRADIOGROUP form="Admin" label="Intro: " name="intro" preferPlaceholder={ false } options={ allYesNo } onChange={ setFilter.bind( this, 'SET_INTRO' ) } selected={ intro } />
+							<ICONRADIOGROUP form="Admin" label="Example: " name="example" preferPlaceholder={ false } options={ allYesNo } onChange={ setFilter.bind( this, 'SET_EXAMPLE' ) } selected={ example } />
 						</TOGGLE>
 					</FORM>
 				</TOGGLE>

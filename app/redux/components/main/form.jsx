@@ -16,7 +16,7 @@ import P from 'components/tags/p'
 import SPAN from 'components/tags/span'
 import SMALL from 'components/tags/small'
 
-import RADIOGROUP from 'components/form/radiogroup/radiogroup'
+//import RADIOGROUP from 'components/form/radiogroup/radiogroup'
 import ICONRADIOGROUP from 'components/form/radiogroup/iconradiogroup'
 import COMMENT from 'components/form/input/comment'
 import CANCEL from 'components/form/button/cancel'
@@ -171,14 +171,16 @@ const form = ( { intl, className, jazzSupported, show, image, checkedValue, mate
 		//ARRRRG!
 		//Would like to use CHECKBOX component but don't know how to pass a FormattedMessage (containing html) as label
 
+		/*<RADIOGROUP controlled={ false } form="Form" label={ formatMessage( messages.select_material ) } name="material" options={ mats } onChange={ setMaterial } preferPlaceholder={ false } >
+					{ " " }<A onClick={ showDialog.bind( this, 'DEFINEMATERIAL' ) }>{ formatMessage( messages.define_material ) }</A>
+				</RADIOGROUP>*/
+
 		return(
 
 			<FORM id="Form" action="javascript:;" className={ clsNoJazz } >
 				{ image.dataURL && <IMG src={ image.dataURL } alt={ formatMessage( messages.img_alt ) } /> }
 				<H priority={ 2 }>{ formatMessage( messages.hurray ) }</H>
-				<RADIOGROUP controlled={ false } form="Form" label={ formatMessage( messages.select_material ) } name="material" options={ mats } onChange={ setMaterial } preferPlaceholder={ false } >
-					{ " " }<A onClick={ showDialog.bind( this, 'DEFINEMATERIAL' ) }>{ formatMessage( messages.define_material ) }</A>
-				</RADIOGROUP>
+				
 				<COMMENT form="Form" label={ formatMessage( messages.comment ) } preferPlaceholder={ false } placeholder={ formatMessage( messages.comment_placeholder ) } name="comment" onChange={ setComment } />
 				<FORMDATA />
 				<P className={ style.terms } >
@@ -206,7 +208,7 @@ const form = ( { intl, className, jazzSupported, show, image, checkedValue, mate
 					{ image.dataURL && <DIV className={ style.image } style={ { backgroundImage: 'url(' + image.dataURL + ')' } } ></DIV> }
 					<DIV className={ style.content } >
 						<H priority={ 2 }>{ formatMessage( messages.hurray ) }</H>
-						<ICONRADIOGROUP className={ style.iconradiogroup } checkedValue={ checkedValue } form="Form" label={ formatMessage( messages.select_material ) } name="material" options={ mats } onClick={ setMaterial } preferPlaceholder={ false } >
+						<ICONRADIOGROUP className={ style.iconradiogroup } selected={ checkedValue } form="Form" label={ formatMessage( messages.select_material ) } name="material" options={ mats } onChange={ setMaterial } preferPlaceholder={ false } >
 							{ " " }<SMALL><A onClick={ showDialog.bind( this, 'DEFINEMATERIAL' ) }>{ formatMessage( messages.define_material ) }</A></SMALL>
 						</ICONRADIOGROUP>
 						<COMMENT form="Form" label={ formatMessage( messages.comment ) } preferPlaceholder={ false } placeholder={ formatMessage( messages.comment_placeholder ) } name="comment" onChange={ setComment } />

@@ -1,45 +1,45 @@
 import React from 'react'
 import { PropTypes } from 'prop-types'
-import ClassNames from 'classnames'
 
-import ICON from 'components/form/button/icon'
+import ICONBUTTON from 'components/form/button/iconbutton'
 import SPAN from 'components/tags/span'
 
-import style from './_radio'
+import style from './_iconradio'
 
 
-const radio = ( { label, value, checked, className, backgroundColor, onClick } ) => {
+const iconradio = ( { form, label, name, value, selected, color, onChange } ) => {
 
-	const icon = checked ? "radio_button_checked" : "radio_button_unchecked"
-
-	const clsIcon = ClassNames( className, style.icon )
+	const icon = selected ? "radio_button_checked" : "radio_button_unchecked"
 
 	return(
 
-		<ICON style={ { 'backgroundColor': backgroundColor } } className={ clsIcon } materialIcon={ icon } onClick={ onClick.bind( this, value ) }><SPAN>{ label }</SPAN></ICON>
+		<SPAN>
+			<input type="radio" form={ form } label={ label } name={ name } value={ value } onChange={ () => {} } checked={ selected } />
+			<ICONBUTTON style={ { 'backgroundColor': color } } className={ style.icon } materialIcon={ icon } onChange={ onChange.bind( this, value ) }><SPAN>{ label }</SPAN></ICONBUTTON>
+		</SPAN>
 
 	)
 	
 }
 
-radio.defaultProps = {
+iconradio.defaultProps = {
 
-	checked: false,
-	jazz: true
+	selected: false
 
 }
 
 
-radio.propTypes = {
+iconradio.propTypes = {
 
+	form: PropTypes.string.isRequired,
 	label: PropTypes.string.isRequired,
+	name: PropTypes.string.isRequired,
 	value: PropTypes.string.isRequired,
-	checked: PropTypes.bool,
-	className: PropTypes.string,
-	backgroundColor: PropTypes.string,
+	selected: PropTypes.bool.isRequired,
+	color: PropTypes.string,
 
-	onClick: PropTypes.func.isRequired
+	onChange: PropTypes.func.isRequired
 
 }
 
-export default radio
+export default iconradio

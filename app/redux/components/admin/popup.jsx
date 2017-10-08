@@ -12,7 +12,7 @@ import A from 'components/tags/a'
 import FORM from 'components/tags/form'
 import INPUT from 'components/tags/input'
 import SELECTGROUP from 'components/form/selectgroup/selectgroup'
-import RADIOGROUP from 'components/form/radiogroup/radiogroup'
+import ICONRADIOGROUP from 'components/form/radiogroup/iconradiogroup'
 import GO from 'components/form/button/go'
 
 import style from './_popup'
@@ -35,11 +35,11 @@ class popup extends Component {
 
 		this.setState( { 
 
-			verified: p.feature.contribution_verified == 1 ? true : false,
-			materialVerified: p.feature.contribution_material_verified ?  p.feature.contribution_material_verified : p.feature.contribution_material,
-			example: p.feature.contribution_example == 1 ? true : false,
-			intro: p.feature.contribution_intro == 1 ? true : false,
-			closeup: p.feature.contribution_closeup == 1 ? true : false,
+			verified: p.feature.contribution_verified == 1 ? '1' : '0',
+			material: p.feature.contribution_material_verified ?  p.feature.contribution_material_verified : 'notset',
+			example: p.feature.contribution_example == 1 ? '1' : '0',
+			intro: p.feature.contribution_intro == 1 ? '1' : '0',
+			closeup: p.feature.contribution_closeup == 1 ? '1' : '0',
 
 		} )
 
@@ -51,11 +51,11 @@ class popup extends Component {
 
 		this.state = {
 
-			verified: this.props.feature.contribution_verified == 1 ? "1" : "0",
-			materialVerified: this.props.feature.contribution_verified ?  this.props.feature.contribution_material_verified : 'notset',
-			example: this.props.feature.contribution_example == 1 ? "1" : "0",
-			intro: this.props.feature.contribution_intro == 1 ? "1" : "0",
-			closeup: this.props.feature.contribution_closeup == 1 ? "1" : "0"
+			verified: this.props.feature.contribution_verified == 1 ? '1' : '0',
+			material: this.props.feature.contribution_verified ?  this.props.feature.contribution_verified : 'notset',
+			example: this.props.feature.contribution_example == 1 ? '1' : '0',
+			intro: this.props.feature.contribution_intro == 1 ? '1' : '0',
+			closeup: this.props.feature.contribution_closeup == 1 ? '1' : '0'
 
 		}
 
@@ -66,8 +66,7 @@ class popup extends Component {
 		const { feature, materials, deleteContribution, updateContribution } = this.props
 		const { contribution_id, contribution_uid, contribution_material, contribution_comment, contribution_source } = feature
 
-		const { verified, materialVerified, example, intro, closeup } = this.state
-
+		const { verified, material, example, intro, closeup } = this.state
 
 		if( !contribution_uid ){
 
@@ -82,10 +81,10 @@ class popup extends Component {
 
 		}else{
 
-			const options = map( materials, ( material ) => {
+			const materialOptions = map( materials, ( material ) => {
 
-				let checked = material.value == contribution_material ? true : false
-				return { label: material.label, value: material.value, checked: checked }
+				let { value, color, label } = material
+				return { label: label, value: value, color: color }
 
 			} )
 
@@ -113,11 +112,11 @@ class popup extends Component {
 						<P>User material: { contribution_material }</P>
 						<P>User comment: { usercomment }</P>
 						<HR />
-						<SELECTGROUP preferPlaceholder={ false } form={ formID } label="Material verified" name="contribution_material_verified" options={ options } value={ materialVerified } onChange={ this._setMaterial.bind( this ) } /><BR/>
-						<RADIOGROUP preferPlaceholder={ false } checked={ verified } label="Verified" form={ formID } name="contribution_verified" options={ yesNo } value={ verified } onChange={ this._setVerified.bind( this ) } /><BR/>
-						<RADIOGROUP preferPlaceholder={ false } checked={ closeup } label="Closeup" form={ formID } name="contribution_closeup" options={ yesNo } value={ closeup } onChange={ this._setCloseup.bind( this ) } /><BR/>
-						<RADIOGROUP preferPlaceholder={ false } checked={ example } label="Example" form={ formID } name="contribution_example" options={ yesNo } value={ example } onChange={ this._setExample.bind( this ) } /><BR/>
-						<RADIOGROUP preferPlaceholder={ false } checked={ intro } label="Intro" form={ formID } name="contribution_intro" options={ yesNo } value={ intro } onChange={ this._setIntro.bind( this ) } /><BR/>
+						<ICONRADIOGROUP form={ formID } label="Material verified" name="material" preferPlaceholder={ false } options={ materialOptions } onChange={ this._setMaterial.bind( this ) } selected={ material } />
+						<ICONRADIOGROUP form={ formID } label="Verified" name="verified" preferPlaceholder={ false } options={ yesNo } onChange={ this._setVerified.bind( this ) } selected={ verified } /><BR/>
+						<ICONRADIOGROUP form={ formID } label="Closeup" name="closeup" preferPlaceholder={ false } options={ yesNo } onChange={ this._setCloseup.bind( this ) } selected={ closeup } /><BR/>
+						<ICONRADIOGROUP form={ formID } label="Example" name="example" preferPlaceholder={ false } options={ yesNo } onChange={ this._setExample.bind( this ) } selected={ example } /><BR/>
+						<ICONRADIOGROUP form={ formID } label="Intro" name="ntro" preferPlaceholder={ false } options={ yesNo } onChange={ this._setIntro.bind( this ) } selected={ intro } /><BR/>
 					</FORM>
 					<DIV className={ style.actions }>
 						<GO onClick={ deleteContribution.bind( this, contribution_id, contribution_uid ) } label="DELETE" className={ style.delete } />
@@ -134,31 +133,31 @@ class popup extends Component {
 
 	_setMaterial = ( e ) => {
 
-		this.setState( { materialVerified: e.currentTarget.value } )
+		this.setState( { material: e.currentTarget.value } )
 
 	}
 
-	_setVerified = ( e ) => {
+	_setVerified = ( value ) => {
 
-		this.setState( { verified: e.currentTarget.value } )
-
-	}
-
-	_setExample = ( e ) => {
-
-		this.setState( { example: e.currentTarget.value } )
+		this.setState( { verified: value } )
 
 	}
 
-	_setIntro = ( e ) => {
+	_setExample = ( value ) => {
 
-		this.setState( { intro: e.currentTarget.value } )
+		this.setState( { example: value } )
 
 	}
 
-	_setCloseup = ( e ) => {
+	_setIntro = ( value ) => {
 
-		this.setState( { closeup: e.currentTarget.value } )
+		this.setState( { intro: value } )
+
+	}
+
+	_setCloseup = ( value ) => {
+
+		this.setState( { closeup: value } )
 
 	}
 

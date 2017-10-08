@@ -1,5 +1,6 @@
 @import 'app/styles/base';
 
+$action-height: 45px;
 
 .feature{
 
@@ -10,6 +11,7 @@
 	border-radius: 3px;
 	margin-right: 20px;
 	position: relative;
+	overflow: hidden;
 
 	.bar{
 
@@ -42,7 +44,7 @@
 
 	.form{
 
-		padding: 1em;
+		padding: 1em 1em $action-height 1em;
 		max-height: 400px;
 		overflow-y: scroll;
 
@@ -52,6 +54,38 @@
 			font-style: italic;
 
 		}
+
+	}
+
+	.actions{
+
+		@extend %flexcontainer;
+		flex-direction: row;
+		justify-content: flex-end;
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		background-color: #fff;
+		width: 100%;
+	    padding: 1vh;
+	    border-top: 1px solid #e1e1e1;
+	    box-shadow: 0 19px 60px rgba(0,0,0,.3),0 15px 20px rgba(0,0,0,.22);
+
+	    .delete{
+
+	    	background-color: $color-signal;
+	    	margin-right: 1em;
+
+	    }
+
+	    button{
+
+	    	@extend %flexitem;
+	    	flex-grow: 0;
+	    	padding: 1em 2em;
+	    	//width: 28vh;
+
+	    }
 
 	}
 

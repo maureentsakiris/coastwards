@@ -72,12 +72,12 @@ export default class Featurelist extends Component {
 
 				<DIV className={ clsList } >
 					<DIV className={ style.tab } >
-						<ICONCHECKBOX inline={ true } form="Listoptions" name="material" label="Material" value="material" onClick={ this._setTabs } isChecked={ material } />
-						<ICONCHECKBOX inline={ true } form="Listoptions" name="verified" label="Verified" value="verified" onClick={ this._setTabs } isChecked={ verified } />
-						<ICONCHECKBOX inline={ true } form="Listoptions" name="closeup" label="Closeup" value="closeup" onClick={ this._setTabs } isChecked={ closeup } />
-						<ICONCHECKBOX inline={ true } form="Listoptions" name="example" label="Example" value="example" onClick={ this._setTabs } isChecked={ example } />
-						<ICONCHECKBOX inline={ true } form="Listoptions" name="intro" label="Intro" value="intro" onClick={ this._setTabs } isChecked={ intro } />
-						<ICONCHECKBOX inline={ true } form="Listoptions" name="comment" label="Comment" value="comment" onClick={ this._setTabs } isChecked={ comment } />
+						<ICONCHECKBOX inline={ true } form="Listoptions" name="material" label="Material" value="material" onChange={ this._setTabs } selected={ material } />
+						<ICONCHECKBOX inline={ true } form="Listoptions" name="verified" label="Verified" value="verified" onChange={ this._setTabs } selected={ verified } />
+						<ICONCHECKBOX inline={ true } form="Listoptions" name="closeup" label="Closeup" value="closeup" onChange={ this._setTabs } selected={ closeup } />
+						<ICONCHECKBOX inline={ true } form="Listoptions" name="example" label="Example" value="example" onChange={ this._setTabs } selected={ example } />
+						<ICONCHECKBOX inline={ true } form="Listoptions" name="intro" label="Intro" value="intro" onChange={ this._setTabs } selected={ intro } />
+						<ICONCHECKBOX inline={ true } form="Listoptions" name="comment" label="Comment" value="comment" onChange={ this._setTabs } selected={ comment } />
 					</DIV>
 					<DIV className={ style.listContainer } >
 						{ featureList }
@@ -103,9 +103,9 @@ export default class Featurelist extends Component {
 
 	}
 
-	_setTabs = ( isChecked, value ) => {
+	_setTabs = ( selected, value ) => {
 
-		this.setState( { [ value ]: !isChecked } )
+		this.setState( { [ value ]: !selected } )
 
 	}
 

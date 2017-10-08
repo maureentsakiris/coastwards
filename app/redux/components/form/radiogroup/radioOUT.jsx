@@ -1,18 +1,18 @@
-import React from 'react'
+/*import React from 'react'
 import { PropTypes } from 'prop-types'
 import SPAN from 'components/tags/span'
 import INPUT from 'components/tags/input'
 
 import style from './_radio'
 
-const radio = ( { form, label, name, value, isChecked, controlled, onChange } ) => {
+const radio = ( { form, label, name, value, selected, controlled, onChange } ) => {
 
-	if( !controlled ){
+	if( controlled ){
 
 		return(
 
 			<SPAN className={ style.radio }>
-				<INPUT type="radio" form={ form } name={ name } value={ value } onChange={ onChange } defaultChecked={ isChecked } />
+				<INPUT type="radio" form={ form } name={ name } value={ value } onChange={ onChange } checked={ selected } />
 				<SPAN>{ label }</SPAN>
 			</SPAN>
 
@@ -23,7 +23,7 @@ const radio = ( { form, label, name, value, isChecked, controlled, onChange } ) 
 		return(
 
 			<SPAN className={ style.radio }>
-				<INPUT type="radio" form={ form } name={ name } value={ value } onChange={ onChange } checked={ isChecked } />
+				<INPUT type="radio" form={ form } name={ name } value={ value } defaultChecked={ selected } />
 				<SPAN>{ label }</SPAN>
 			</SPAN>
 
@@ -35,8 +35,8 @@ const radio = ( { form, label, name, value, isChecked, controlled, onChange } ) 
 
 radio.defaultProps = {
 
-	isChecked: false,
-	controlled: true
+	selected: false,
+	controlled: false
 
 }
 
@@ -47,11 +47,11 @@ radio.propTypes = {
 	label: PropTypes.string.isRequired,
 	name: PropTypes.string.isRequired,
 	value: PropTypes.string.isRequired,
-	isChecked: PropTypes.bool,
+	selected: PropTypes.bool,
 	controlled: PropTypes.bool,
 
-	onChange: PropTypes.func.isRequired
+	onChange: PropTypes.func
 
 }
 
-export default radio
+export default radio*/

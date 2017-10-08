@@ -12,7 +12,6 @@ import UL from 'components/tags/ul'
 import LI from 'components/tags/li'
 
 import FORM from 'components/tags/form'
-//import INPUT from 'components/form/input/input'
 import TOGGLE from 'components/ui/toggle'
 import ICONRADIOGROUP from 'components/form/radiogroup/iconradiogroup'
 import GO from 'components/form/button/go'

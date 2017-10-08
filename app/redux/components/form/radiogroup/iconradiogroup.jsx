@@ -7,8 +7,8 @@ import ICONRADIO from 'components/form/radiogroup/iconradio'
 
 const iconradiogroup = ( { hocProps } ) => {
 
-	const { form, name, options, checkedValue, className, onClick } = hocProps
-	const radios = _renderOptions( form, name, options, checkedValue, onClick )
+	const { form, name, options, selected, className, onChange } = hocProps
+	const radios = _renderOptions( form, name, options, selected, onChange )
 
 	return(
 
@@ -20,12 +20,12 @@ const iconradiogroup = ( { hocProps } ) => {
 
 }
 
-const _renderOptions = ( form, name, options, checkedValue, onClick ) => {
+const _renderOptions = ( form, name, options, selected, onChange ) => {
 
 	return map( options, ( option, key ) => {
 
 		let { label, value, color } = option
-		let checked = checkedValue == value ? true : false
+		let isSelected = selected == value ? true : false
 
 		return React.createElement( ICONRADIO, {
 
@@ -34,9 +34,9 @@ const _renderOptions = ( form, name, options, checkedValue, onClick ) => {
 			label: label,
 			name: name,
 			value: value,
-			onClick: onClick,
-			checked: checked,
-			backgroundColor: color
+			onChange: onChange,
+			selected: isSelected,
+			color: color
 
 		} )
 
@@ -48,15 +48,10 @@ iconradiogroup.propTypes = {
 
 	hocProps: PropTypes.shape( {
 
-		form: PropTypes.string.isRequired,
-		name: PropTypes.string.isRequired,
-
-		onClick: PropTypes.func,
 		options: PropTypes.array.isRequired,
-		className: PropTypes.string,
-		defaultChecked: PropTypes.bool,
+		selected: PropTypes.string,
 
-		checkedValue: PropTypes.string
+		onChange: PropTypes.func.isRequired
 
 	} )
 

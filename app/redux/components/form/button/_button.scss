@@ -35,7 +35,7 @@
 
 }
 
-.icon{
+.iconbutton{
 
 	@extend %button;
 	background-color: $color-primary;
@@ -58,7 +58,7 @@
 
 }
 
-.icon:focus{
+.iconbutton:focus{
 
 	outline: none;
 

@@ -14,8 +14,9 @@ const hoc = ( ComposedComponent ) => class extends Component {
 	static propTypes = {
 
 		form: PropTypes.string.isRequired,
-		label: PropTypes.string,
 		name: PropTypes.string.isRequired,
+		
+		label: PropTypes.string,
 		className: PropTypes.string,
 		preferPlaceholder: PropTypes.bool,
 		children: PropTypes.node,
