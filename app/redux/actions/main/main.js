@@ -8,7 +8,7 @@ import { promiseXHR } from 'actions/util/request/xhr'
 import { promiseGet, promiseJSONOK } from 'actions/util/request/get'
 import { fly, resetMap, hidePopup, addDropMarker, removeLastDrop, addUploadMarker, setMarkerVisibility, trackZoom } from 'actions/main/mapbox'
 import uuid from 'uuid'
-import { indexOf, contains, filter, omit } from 'underscore'
+import { indexOf, contains, omit } from 'underscore'
 
 export const getCount = ( ) => {
 
@@ -456,6 +456,8 @@ export const setMaterial = ( e ) => {
 
 	const value = typeof( e ) === 'string' ? e : e.currentTarget.value
 
+	console.log( value )
+
 	return function ( dispatch ){
 
 		dispatch( { type: types.SET_MATERIAL, to: value } )
@@ -494,7 +496,7 @@ export const uploadImage = ( ) => {
 		promiseDataURLtoBlob( image.dataURL )
 			.then( ( blob ) => {
 
-				const { image, material, adaptation, comment, hashtag, uid } = state.form
+				const { image, material, comment, uid } = state.form
 
 				const { exifdata, lat, long, manual, labels, corrected } = image
 
@@ -516,23 +518,22 @@ export const uploadImage = ( ) => {
 				formData.append( 'datetime', datetime )
 				formData.append( 'labels', JSON.stringify( devLabels ) )
 				formData.append( 'material', material )
-				formData.append( 'adaptation', adaptation )
 				formData.append( 'comment', comment )
-				formData.append( 'hashtag', hashtag )
+				//formData.append( 'adaptation', adaptation )
+				//formData.append( 'hashtag', hashtag )
 
 				//UPDATE the table in formdata.jsx if something changes here!!!!
-				
 
 				return formData
 
 			} )
 			.then( ( formData ) => {
 
-				/*for ( var pair of formData.entries() ) {
+				for ( var pair of formData.entries() ) {
 
 					console.log( pair[ 0 ]+ ', ' + pair[ 1 ] )
 
-				}*/
+				}
 
 				let options = {
 

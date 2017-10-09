@@ -30,7 +30,7 @@ const rivages = ( state = null, action ) => {
 
 } 
 
-const form = ( state = { display: 'map', results: [], material: '%', materialverified: '%', verified: '1', id: '%', example:'%', intro:'%', closeup: '%', pointmanual: '%', pointcorrected: '%' }, action ) => {
+const form = ( state = { display: 'map', results: [], material: '%', materialverified: '%', verified: '0', id: '%', example:'%', intro:'%', closeup: '%', pointmanual: '%', pointcorrected: '%' }, action ) => {
 
 	switch ( action.type ){
 

@@ -5,7 +5,14 @@ import { setMapData } from 'actions/admin/mapbox'
 
 export const setFilter = ( type, e ) => {
 
-	const value = typeof( e ) === 'string' ? e : e.currentTarget.value
+	let value = typeof( e ) === 'string' ? e : e.currentTarget.value
+
+	// if its the input turn empty string into %
+	if( e.currentTarget && e.currentTarget.name == 'id' && value == '' ){
+
+		value = '%'
+
+	}
 
 	return function ( dispatch ){
 
@@ -92,7 +99,7 @@ export const deleteContribution = ( contribution_id, contribution_uid ) => {
 
 		}
 
-		/*promiseXHR( options )
+		promiseXHR( options )
 			.then( JSON.parse )
 			.then( ( parsed ) => {
 
@@ -113,7 +120,7 @@ export const deleteContribution = ( contribution_id, contribution_uid ) => {
 
 				dispatch( sendErrorMail( error ) )
 
-			} )*/
+			} )
 
 	}
 
@@ -126,6 +133,12 @@ export const updateContribution = ( formID ) => {
 		let form = document.getElementById( formID )
 		let formData = new FormData( form )
 
+		for ( var pair of formData.entries() ) {
+
+			console.log( pair[ 0 ]+ ', ' + pair[ 1 ] )
+
+		}
+
 		let options = {
 
 			data: formData,
@@ -133,7 +146,7 @@ export const updateContribution = ( formID ) => {
 
 		}
 
-		/*promiseXHR( options )
+		promiseXHR( options )
 			.then( JSON.parse )
 			.then( ( parsed ) => {
 
@@ -158,7 +171,7 @@ export const updateContribution = ( formID ) => {
 
 				dispatch( sendErrorMail( error ) )
 
-			} )*/
+			} )
 
 	}
 

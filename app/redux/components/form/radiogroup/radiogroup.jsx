@@ -1,4 +1,4 @@
-/*import React from 'react'
+import React from 'react'
 import { PropTypes } from 'prop-types'
 import { map } from 'underscore'
 
@@ -9,9 +9,9 @@ import RADIO from 'components/form/radiogroup/radio'
 
 const radiogroup = ( { hocProps } ) => {
 
-	const { form, name, options, checked, onChange, className, controlled } = hocProps
+	const { className, form, name, options, selected, onChange } = hocProps
 
-	const radios = _renderOptions( form, name, options, checked, onChange, controlled )
+	const radios = _renderOptions( form, name, options, selected, onChange )
 
 	return(
 
@@ -23,12 +23,12 @@ const radiogroup = ( { hocProps } ) => {
 	
 }
 
-const _renderOptions = ( form, name, options, checked, onChange, controlled ) => {
+const _renderOptions = ( form, name, options, selected, onChange ) => {
 
 	return map( options, ( option, key ) => {
 
 		let { label, value } = option
-		let isChecked = value == checked ? true : false
+		let isSelected = value == selected ? true : false
 
 		return React.createElement( RADIO, {
 
@@ -37,9 +37,8 @@ const _renderOptions = ( form, name, options, checked, onChange, controlled ) =>
 			label: label,
 			name: name,
 			value: value,
-			onChange: onChange,
-			isChecked: isChecked,
-			controlled: controlled
+			checked: isSelected,
+			onChange: onChange
 
 		} )
 
@@ -51,13 +50,14 @@ radiogroup.propTypes = {
 
 	hocProps: PropTypes.shape( {
 
-		onChange: PropTypes.func,
 		options: PropTypes.array.isRequired,
 		className: PropTypes.string,
-		controlled: PropTypes.bool
+		selected: PropTypes.string,
+
+		onChange: PropTypes.func
 
 	} )
 
 }
 
-export default hoc( radiogroup )*/
+export default hoc( radiogroup )

@@ -12,7 +12,7 @@ const mapStateToProps = ( state ) => {
 		jazzSupported: state.browser.jazzSupported,
 		show: state.layers.form,
 		image: state.form.image,
-		checkedValue: state.form.material,
+		material: state.form.material,
 		materials: state.materials
 
 	}

@@ -55,7 +55,23 @@ $action-height: 45px;
 		width: 100%;
 		padding: 1vh;
 
-		label{
+		.id{
+
+			margin-bottom: 1em;
+
+		}
+
+		.comment{
+
+			font-size: 12px;
+			font-style: italic;
+			margin-bottom: 2em;
+			height: 10em;
+			overflow-y: scroll;
+
+		}
+
+		/* label{
 
 			margin: 0;
 
@@ -73,7 +89,7 @@ $action-height: 45px;
 
 			}
 
-		}
+		} */
 
 	}
 

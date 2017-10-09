@@ -328,7 +328,7 @@ const _update = ( formData ) => {
 
 	return new Promise( ( resolve, reject ) => { 
 
-		const { contribution_id, contribution_verified, contribution_material_verified, contribution_example, contribution_intro, contribution_closeup } = formData.fields
+		const { id, verified, material, example, intro, closeup } = formData.fields
 
 		pool.getConnection( function ( error, connection ) {
 
@@ -344,13 +344,13 @@ const _update = ( formData ) => {
 
 					"contributions",
 
-					contribution_verified,
-					contribution_material_verified,
-					contribution_example,
-					contribution_intro,
-					contribution_closeup,
+					verified,
+					material,
+					example,
+					intro,
+					closeup,
 
-					contribution_id
+					id
 
 				]
 

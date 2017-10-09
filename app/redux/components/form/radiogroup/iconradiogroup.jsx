@@ -25,6 +25,7 @@ const _renderOptions = ( form, name, options, selected, onChange ) => {
 	return map( options, ( option, key ) => {
 
 		let { label, value, color } = option
+
 		let isSelected = selected == value ? true : false
 
 		return React.createElement( ICONRADIO, {

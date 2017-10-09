@@ -45,11 +45,11 @@ class feature extends Component {
 				this.feature = feature
 				this.setState( { 
 
-					verified: feature.contribution_verified == 1 ? '1' : '0',
-					materialverified: feature.contribution_material_verified ?  feature.contribution_material_verified : 'notset',
-					example: feature.contribution_example == 1 ? '1' : '0',
-					intro: feature.contribution_intro == 1 ? '1' : '0',
-					closeup: feature.contribution_closeup == 1 ? '1' : '0'
+					verified: feature.contribution_verified.toString(),
+					materialverified: feature.contribution_material_verified.toString(),
+					example: feature.contribution_example.toString(),
+					intro: feature.contribution_intro.toString(),
+					closeup: feature.contribution_closeup.toString()
 
 				} )
 
@@ -115,6 +115,8 @@ class feature extends Component {
 			const formID = "contribution_" + contribution_id
 			const usercomment = unescape( contribution_comment )
 
+
+
 			return(
 
 				<DIV className={ style.feature } >
@@ -123,15 +125,14 @@ class feature extends Component {
 					</DIV>
 					<DIV className={ style.image } style={ { backgroundImage: 'url("' + url +'")' } } ></DIV>
 					<FORM id={ formID } action="#" className={ style.form }>
-						<INPUT form={ formID } type="hidden" name="contribution_id" value={ contribution_id + '' } />
-						<P>{ contribution_id } / { contribution_material }</P>
-						<HR />
-						{ tabs.material && <ICONRADIOGROUP preferPlaceholder={ false } form={ formID } label="Material verified: " name="materialverified" options={ materialOptions } onChange={ this._setMaterialVerified.bind( this ) } selected={ materialverified } /> }
-						{ tabs.verified && <ICONRADIOGROUP preferPlaceholder={ false } form={ formID } label="Verified:" name="contribution_verified" options={ yesNo } value={ verified } onChange={ this._setVerified.bind( this ) } selected={ verified } /> }
-						{ tabs.closeup && <ICONRADIOGROUP preferPlaceholder={ false } form={ formID } label="Closeup:" name="contribution_closeup" options={ yesNoNotset } value={ closeup } onChange={ this._setCloseup.bind( this ) } selected={ closeup } /> }
-						{ tabs.example && <ICONRADIOGROUP preferPlaceholder={ false } form={ formID } label="Example:" name="contribution_example" options={ yesNo } value={ example } onChange={ this._setExample.bind( this ) } selected={ example } /> }
-						{ tabs.intro && <ICONRADIOGROUP preferPlaceholder={ false } form={ formID } label="Intro:" name="contribution_intro" options={ yesNo } value={ intro } onChange={ this._setIntro.bind( this ) } selected={ intro } /> }
-						{ tabs.comment && <P className={ style.comment } >{ usercomment }</P> }
+						<INPUT form={ formID } type="hidden" name="id" value={ contribution_id + '' } />
+						<P className={ style.id } >{ contribution_id } / { contribution_material }</P>
+						<ICONRADIOGROUP style={ { display: tabs.material ? 'block' : 'none' } } preferPlaceholder={ false } form={ formID } label="Material verified: " name="material" options={ materialOptions } onChange={ this._setMaterialVerified.bind( this ) } selected={ materialverified } />
+						<ICONRADIOGROUP style={ { display: tabs.verified ? 'block' : 'none' } } preferPlaceholder={ false } form={ formID } label="Verified:" name="verified" options={ yesNo } value={ verified } onChange={ this._setVerified.bind( this ) } selected={ verified } />
+						<ICONRADIOGROUP style={ { display: tabs.closeup ? 'block' : 'none' } } preferPlaceholder={ false } form={ formID } label="Closeup:" name="closeup" options={ yesNoNotset } value={ closeup } onChange={ this._setCloseup.bind( this ) } selected={ closeup } />
+						<ICONRADIOGROUP style={ { display: tabs.example ? 'block' : 'none' } } preferPlaceholder={ false } form={ formID } label="Example:" name="example" options={ yesNo } value={ example } onChange={ this._setExample.bind( this ) } selected={ example } />
+						<ICONRADIOGROUP style={ { display: tabs.intro ? 'block' : 'none' } } preferPlaceholder={ false } form={ formID } label="Intro:" name="intro" options={ yesNo } value={ intro } onChange={ this._setIntro.bind( this ) } selected={ intro } />
+						<P className={ style.comment } style={ { display: tabs.comment ? 'block' : 'none' } } >{ usercomment }</P>
 					</FORM>
 					<DIV className={ style.actions }>
 						<GO onClick={ deleteContribution.bind( this, contribution_id, contribution_uid ) } label="DELETE" className={ style.delete } />

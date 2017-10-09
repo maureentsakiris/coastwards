@@ -5,7 +5,7 @@ import Modernizr from 'modernizr'
 import LABEL from 'components/tags/label'
 import SPAN from 'components/tags/span'
 
-import style from './_hoc'
+import styles from './_hoc'
 
 const hoc = ( ComposedComponent ) => class extends Component {
 
@@ -18,6 +18,7 @@ const hoc = ( ComposedComponent ) => class extends Component {
 		
 		label: PropTypes.string,
 		className: PropTypes.string,
+		style: PropTypes.object,
 		preferPlaceholder: PropTypes.bool,
 		children: PropTypes.node,
 		inline: PropTypes.bool
@@ -38,11 +39,11 @@ const hoc = ( ComposedComponent ) => class extends Component {
 
 	render () {
 
-		const { form, label, name, className, preferPlaceholder, children, inline } = this.props
+		const { form, label, name, className, style, preferPlaceholder, children, inline } = this.props
 
-		const cls = Classnames( className, style.label, {
+		const cls = Classnames( className, styles.label, {
 
-			[ style.inline ]: inline
+			[ styles.inline ]: inline
 
 		} )
 
@@ -50,7 +51,7 @@ const hoc = ( ComposedComponent ) => class extends Component {
 
 		return(
 
-			<LABEL htmlFor={ name } form={ form } className={ cls } >
+			<LABEL htmlFor={ name } form={ form } className={ cls } style={ style } >
 				{ showLabel && <SPAN>{ label }</SPAN> }
 				{ children }
 				<ComposedComponent hocProps={ this.props } />

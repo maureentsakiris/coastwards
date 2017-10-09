@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { PropTypes } from 'prop-types'
 import Classnames from 'classnames'
-import { map } from 'underscore'
+import { map, first } from 'underscore'
 import Feature from 'containers/admin/feature'
 import ICONCHECKBOX from 'components/form/input/iconcheckbox'
 
@@ -44,23 +44,15 @@ export default class Featurelist extends Component {
 
 		const clsList = Classnames( style.featureList, className )
 
-
-		/*const tabs = chain( this.state )
-			.pick( ( value ) => {
-
-				return value
-
-			} )
-			.keys().value()*/
-
 		if( results && results.length ){
 
 
-			const featureList = map( results, ( result ) => {
+			const truncated = first( results, 10 )
+			const featureList = map( truncated, ( result ) => {
 
 				return (
 
-					<DIV className={ style.listItem } key={ result.properties.id }>
+					<DIV key={ result.properties.id }>
 						<Feature properties={ result.properties } tabs={ this.state } />
 					</DIV>
 

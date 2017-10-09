@@ -91,7 +91,7 @@ const _sendAsk = ( fields ) => {
  
 			if( error ){
 
-				reject( Error( error ) )
+				reject( error )
 
 			}else{
 

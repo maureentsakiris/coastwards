@@ -178,6 +178,7 @@ const _onMarkerClick = ( features ) => {
 			.then( ( parsed ) => {
 
 				const json = parsed.json
+				dispatch( { type: types.SET_POPUP_FEATURE, to: json } )
 				dispatch( showPopup( json ) )
 				return json
 
@@ -209,7 +210,6 @@ export const showPopup = ( feature ) => {
 		let ll = mapboxLngLatConvert( feature.contribution_point.x, feature.contribution_point.y )
 		let wrapped = ll.wrap()
 
-		dispatch( { type: types.SET_POPUP_FEATURE, to: feature } )
 		popup.setLngLat( wrapped ).addTo( map )
 
 		let cz = map.getZoom();

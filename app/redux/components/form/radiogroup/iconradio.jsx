@@ -3,6 +3,7 @@ import { PropTypes } from 'prop-types'
 
 import ICONBUTTON from 'components/form/button/iconbutton'
 import SPAN from 'components/tags/span'
+import INPUT from 'components/tags/input'
 
 import style from './_iconradio'
 
@@ -14,8 +15,8 @@ const iconradio = ( { form, label, name, value, selected, color, onChange } ) =>
 	return(
 
 		<SPAN>
-			<input type="radio" form={ form } label={ label } name={ name } value={ value } onChange={ () => {} } checked={ selected } />
-			<ICONBUTTON style={ { 'backgroundColor': color } } className={ style.icon } materialIcon={ icon } onChange={ onChange.bind( this, value ) }><SPAN>{ label }</SPAN></ICONBUTTON>
+			<INPUT style={ { display: 'none' } } type="radio" form={ form } label={ label } name={ name } value={ value } onChange={ () => {} } checked={ selected } />
+			<ICONBUTTON style={ { 'backgroundColor': color } } className={ style.iconradio } materialIcon={ icon } onChange={ onChange.bind( this, value ) }><SPAN>{ label }</SPAN></ICONBUTTON>
 		</SPAN>
 
 	)

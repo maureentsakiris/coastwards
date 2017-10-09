@@ -16,7 +16,8 @@ import P from 'components/tags/p'
 import SPAN from 'components/tags/span'
 import SMALL from 'components/tags/small'
 
-//import RADIOGROUP from 'components/form/radiogroup/radiogroup'
+
+import RADIOGROUP from 'components/form/radiogroup/radiogroup'
 import ICONRADIOGROUP from 'components/form/radiogroup/iconradiogroup'
 import COMMENT from 'components/form/input/comment'
 import CANCEL from 'components/form/button/cancel'
@@ -134,7 +135,7 @@ const messages = defineMessages( {
 
 } )
 
-const form = ( { intl, className, jazzSupported, show, image, checkedValue, materials, setMaterial, setComment, uploadImage, resetMain, showDialog, setSnackbarMessage } ) => {
+const form = ( { intl, className, jazzSupported, show, image, material, materials, setMaterial, setComment, uploadImage, resetMain, showDialog, setSnackbarMessage } ) => {
 
 	const { formatMessage } = intl
 
@@ -180,7 +181,9 @@ const form = ( { intl, className, jazzSupported, show, image, checkedValue, mate
 			<FORM id="Form" action="javascript:;" className={ clsNoJazz } >
 				{ image.dataURL && <IMG src={ image.dataURL } alt={ formatMessage( messages.img_alt ) } /> }
 				<H priority={ 2 }>{ formatMessage( messages.hurray ) }</H>
-				
+				<RADIOGROUP form="Form" label={ formatMessage( messages.select_material ) } name="material" options={ mats } preferPlaceholder={ false } onChange={ setMaterial } selected={ material } >
+					{ " " }<A onClick={ showDialog.bind( this, 'DEFINEMATERIAL' ) }>{ formatMessage( messages.define_material ) }</A>
+				</RADIOGROUP>
 				<COMMENT form="Form" label={ formatMessage( messages.comment ) } preferPlaceholder={ false } placeholder={ formatMessage( messages.comment_placeholder ) } name="comment" onChange={ setComment } />
 				<FORMDATA />
 				<P className={ style.terms } >
@@ -208,7 +211,7 @@ const form = ( { intl, className, jazzSupported, show, image, checkedValue, mate
 					{ image.dataURL && <DIV className={ style.image } style={ { backgroundImage: 'url(' + image.dataURL + ')' } } ></DIV> }
 					<DIV className={ style.content } >
 						<H priority={ 2 }>{ formatMessage( messages.hurray ) }</H>
-						<ICONRADIOGROUP className={ style.iconradiogroup } selected={ checkedValue } form="Form" label={ formatMessage( messages.select_material ) } name="material" options={ mats } onChange={ setMaterial } preferPlaceholder={ false } >
+						<ICONRADIOGROUP className={ style.iconradiogroup } form="Form" label={ formatMessage( messages.select_material ) } name="material" options={ mats } onChange={ setMaterial } preferPlaceholder={ false } selected={ material }  >
 							{ " " }<SMALL><A onClick={ showDialog.bind( this, 'DEFINEMATERIAL' ) }>{ formatMessage( messages.define_material ) }</A></SMALL>
 						</ICONRADIOGROUP>
 						<COMMENT form="Form" label={ formatMessage( messages.comment ) } preferPlaceholder={ false } placeholder={ formatMessage( messages.comment_placeholder ) } name="comment" onChange={ setComment } />
@@ -258,7 +261,7 @@ form.propTypes = {
 	jazzSupported: PropTypes.bool,
 	show: PropTypes.bool,
 	image: PropTypes.object,
-	checkedValue: PropTypes.string,
+	material: PropTypes.string,
 	materials: PropTypes.array,
 
 	setMaterial: PropTypes.func,

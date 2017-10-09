@@ -163,6 +163,12 @@ class ask extends Component {
 
 		let formData = new FormData( document.getElementById( 'Ask' ) )
 
+		/*for ( var pair of formData.entries() ) {
+
+			console.log( pair[ 0 ]+ ', ' + pair[ 1 ] )
+
+		}*/
+
 		let options = { 
 
 			url: '/contact/ask',

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { PropTypes } from 'prop-types'
 import { map } from 'underscore'
 import { unescape } from 'validator'
+import { isEmpty } from 'underscore'
 
 import DIV from 'components/tags/div'
 import P from 'components/tags/p'
@@ -11,7 +12,6 @@ import A from 'components/tags/a'
 
 import FORM from 'components/tags/form'
 import INPUT from 'components/tags/input'
-import SELECTGROUP from 'components/form/selectgroup/selectgroup'
 import ICONRADIOGROUP from 'components/form/radiogroup/iconradiogroup'
 import GO from 'components/form/button/go'
 
@@ -33,15 +33,21 @@ class popup extends Component {
 
 	componentWillReceiveProps ( p ){
 
-		this.setState( { 
+		if( !isEmpty( p.feature ) ){
 
-			verified: p.feature.contribution_verified == 1 ? '1' : '0',
-			material: p.feature.contribution_material_verified ?  p.feature.contribution_material_verified : 'notset',
-			example: p.feature.contribution_example == 1 ? '1' : '0',
-			intro: p.feature.contribution_intro == 1 ? '1' : '0',
-			closeup: p.feature.contribution_closeup == 1 ? '1' : '0',
+			console.log( p )
 
-		} )
+			this.setState( { 
+
+				verified: p.feature.contribution_verified.toString(),
+				material: p.feature.contribution_material_verified.toString(),
+				example: p.feature.contribution_example.toString(),
+				intro: p.feature.contribution_intro.toString(),
+				closeup: p.feature.contribution_closeup.toString(),
+
+			} )
+
+		}
 
 	}
 
@@ -51,11 +57,11 @@ class popup extends Component {
 
 		this.state = {
 
-			verified: this.props.feature.contribution_verified == 1 ? '1' : '0',
-			material: this.props.feature.contribution_verified ?  this.props.feature.contribution_verified : 'notset',
-			example: this.props.feature.contribution_example == 1 ? '1' : '0',
-			intro: this.props.feature.contribution_intro == 1 ? '1' : '0',
-			closeup: this.props.feature.contribution_closeup == 1 ? '1' : '0'
+			verified: this.props.feature.contribution_verified ? this.props.feature.contribution_verified.toString() : null,
+			material: this.props.feature.contribution_material_verified ? this.props.feature.contribution_material_verified.toString() : null,
+			example: this.props.feature.contribution_example ? this.props.feature.contribution_example.toString() : null,
+			intro: this.props.feature.contribution_intro ? this.props.feature.contribution_intro.toString() : null,
+			closeup: this.props.feature.contribution_closeup ? this.props.feature.contribution_closeup.toString() : null,
 
 		}
 
@@ -65,8 +71,6 @@ class popup extends Component {
 
 		const { feature, materials, deleteContribution, updateContribution } = this.props
 		const { contribution_id, contribution_uid, contribution_material, contribution_comment, contribution_source } = feature
-
-		const { verified, material, example, intro, closeup } = this.state
 
 		if( !contribution_uid ){
 
@@ -80,6 +84,8 @@ class popup extends Component {
 			
 
 		}else{
+
+			const { verified, material, example, intro, closeup } = this.state
 
 			const materialOptions = map( materials, ( material ) => {
 
@@ -95,8 +101,15 @@ class popup extends Component {
 
 			]
 
+			const yesNoNotset = [
+
+				{ label: 'Yes', value: '1' },
+				{ label: 'No', value: '0' },
+				{ label: 'Not set', value: 'notset' }
+
+			]
+
 			const formID = "contribution_" + contribution_id
-			//const url = contribution_source == 'webapp' ? "uploads/" + contribution_uid + ".jpg" : "http://geolittoral.application.developpement-durable.gouv.fr/telechargement/tc_smartphone/photos/" + contribution_uid + ".jpg"
 			const url = "uploads/" + contribution_uid + ".jpg"
 
 			const usercomment = unescape( contribution_comment )
@@ -107,16 +120,14 @@ class popup extends Component {
 					<DIV className={ style.bar }><A href={ url } className="material-icons">open_in_new</A></DIV>
 					<DIV className={ style.top } style={ { backgroundImage: 'url("' + url +'")' } } ></DIV>
 					<FORM id={ formID } action="#" className={ style.form }>
-						<INPUT form={ formID } type="hidden" name="contribution_id" value={ contribution_id + '' } />
-						<P>ID: { contribution_id }</P>
-						<P>User material: { contribution_material }</P>
-						<P>User comment: { usercomment }</P>
-						<HR />
-						<ICONRADIOGROUP form={ formID } label="Material verified" name="material" preferPlaceholder={ false } options={ materialOptions } onChange={ this._setMaterial.bind( this ) } selected={ material } />
-						<ICONRADIOGROUP form={ formID } label="Verified" name="verified" preferPlaceholder={ false } options={ yesNo } onChange={ this._setVerified.bind( this ) } selected={ verified } /><BR/>
-						<ICONRADIOGROUP form={ formID } label="Closeup" name="closeup" preferPlaceholder={ false } options={ yesNo } onChange={ this._setCloseup.bind( this ) } selected={ closeup } /><BR/>
-						<ICONRADIOGROUP form={ formID } label="Example" name="example" preferPlaceholder={ false } options={ yesNo } onChange={ this._setExample.bind( this ) } selected={ example } /><BR/>
-						<ICONRADIOGROUP form={ formID } label="Intro" name="ntro" preferPlaceholder={ false } options={ yesNo } onChange={ this._setIntro.bind( this ) } selected={ intro } /><BR/>
+						<INPUT form={ formID } type="hidden" name="id" value={ contribution_id.toString() } />
+						<P className={ style.id } >{ contribution_id } / { contribution_material }</P>
+						<ICONRADIOGROUP form={ formID } label="Material verified:" name="material" preferPlaceholder={ false } options={ materialOptions } onChange={ this._setMaterial.bind( this ) } selected={ material } />
+						<ICONRADIOGROUP form={ formID } label="Verified:" name="verified" preferPlaceholder={ false } options={ yesNo } onChange={ this._setVerified.bind( this ) } selected={ verified } />
+						<ICONRADIOGROUP form={ formID } label="Closeup:" name="closeup" preferPlaceholder={ false } options={ yesNoNotset } onChange={ this._setCloseup.bind( this ) } selected={ closeup } />
+						<ICONRADIOGROUP form={ formID } label="Example:" name="example" preferPlaceholder={ false } options={ yesNo } onChange={ this._setExample.bind( this ) } selected={ example } />
+						<ICONRADIOGROUP form={ formID } label="Intro:" name="intro" preferPlaceholder={ false } options={ yesNo } onChange={ this._setIntro.bind( this ) } selected={ intro } />
+						<P className={ style.comment } >{ usercomment }</P>
 					</FORM>
 					<DIV className={ style.actions }>
 						<GO onClick={ deleteContribution.bind( this, contribution_id, contribution_uid ) } label="DELETE" className={ style.delete } />
@@ -131,9 +142,9 @@ class popup extends Component {
 
 	}
 
-	_setMaterial = ( e ) => {
+	_setMaterial = ( value ) => {
 
-		this.setState( { material: e.currentTarget.value } )
+		this.setState( { material: value } )
 
 	}
 
