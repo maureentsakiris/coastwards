@@ -11,12 +11,31 @@ import style from './_iconradio'
 const iconradio = ( { form, label, name, value, selected, color, onChange } ) => {
 
 	const icon = selected ? "radio_button_checked" : "radio_button_unchecked"
+	const c = color ? color : 'inherit'
+	const outline = selected ? false : true
+
+	const styleSelected = {
+
+		borderColor: c,
+		backgroundColor: c,
+		color: '#fff'
+
+	}
+
+	const styleUnselected = {
+
+		color: c,
+		borderColor: c
+
+	}
+
+	const myStyle = color ? selected ? styleSelected : styleUnselected : {}
 
 	return(
 
 		<SPAN>
 			<INPUT style={ { display: 'none' } } type="radio" form={ form } label={ label } name={ name } value={ value } onChange={ () => {} } checked={ selected } />
-			<ICONBUTTON style={ { 'backgroundColor': color } } className={ style.iconradio } materialIcon={ icon } onChange={ onChange.bind( this, value ) }><SPAN>{ label }</SPAN></ICONBUTTON>
+			<ICONBUTTON style={ myStyle } className={ style.iconradio } outline={ outline } materialIcon={ icon } onChange={ onChange.bind( this, value ) }><SPAN>{ label }</SPAN></ICONBUTTON>
 		</SPAN>
 
 	)

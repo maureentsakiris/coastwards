@@ -6,14 +6,14 @@ import { isEmpty } from 'underscore'
 
 import DIV from 'components/tags/div'
 import P from 'components/tags/p'
-import BR from 'components/tags/br'
-import HR from 'components/tags/hr'
 import A from 'components/tags/a'
 
 import FORM from 'components/tags/form'
 import INPUT from 'components/tags/input'
 import ICONRADIOGROUP from 'components/form/radiogroup/iconradiogroup'
 import GO from 'components/form/button/go'
+import LABEL from 'components/tags/label'
+import SPAN from 'components/tags/span'
 
 import style from './_popup'
 
@@ -70,7 +70,7 @@ class popup extends Component {
 	render () {
 
 		const { feature, materials, deleteContribution, updateContribution } = this.props
-		const { contribution_id, contribution_uid, contribution_material, contribution_comment, contribution_source } = feature
+		const { contribution_id, contribution_uid, contribution_material, contribution_comment, contribution_source, contribution_point_manual, contribution_point_corrected } = feature
 
 		if( !contribution_uid ){
 
@@ -117,17 +117,19 @@ class popup extends Component {
 			return(
 
 				<DIV id="Popup" className={ style.popup } >
-					<DIV className={ style.bar }><A href={ url } className="material-icons">open_in_new</A></DIV>
-					<DIV className={ style.top } style={ { backgroundImage: 'url("' + url +'")' } } ></DIV>
+					<DIV className={ style.bar }>
+						<SPAN>{ contribution_id } / { contribution_material } / { contribution_source } { contribution_point_manual == 0 ? '/ gps' : '/ manual' } { ( contribution_point_corrected && contribution_point_manual == 0 ) ? '/ corrected' : '/ not corrected' }</SPAN>
+						<P>{ usercomment }</P>
+						<A href={ url } className="material-icons">open_in_new</A>
+					</DIV>
+					<DIV className={ style.image } style={ { backgroundImage: 'url("' + url +'")' } } ></DIV>
 					<FORM id={ formID } action="#" className={ style.form }>
 						<INPUT form={ formID } type="hidden" name="id" value={ contribution_id.toString() } />
-						<P className={ style.id } >{ contribution_id } / { contribution_material }</P>
-						<ICONRADIOGROUP form={ formID } label="Material verified:" name="material" preferPlaceholder={ false } options={ materialOptions } onChange={ this._setMaterial.bind( this ) } selected={ material } />
 						<ICONRADIOGROUP form={ formID } label="Verified:" name="verified" preferPlaceholder={ false } options={ yesNo } onChange={ this._setVerified.bind( this ) } selected={ verified } />
+						<ICONRADIOGROUP form={ formID } label="Material verified:" name="material" preferPlaceholder={ false } options={ materialOptions } onChange={ this._setMaterial.bind( this ) } selected={ material } />
 						<ICONRADIOGROUP form={ formID } label="Closeup:" name="closeup" preferPlaceholder={ false } options={ yesNoNotset } onChange={ this._setCloseup.bind( this ) } selected={ closeup } />
 						<ICONRADIOGROUP form={ formID } label="Example:" name="example" preferPlaceholder={ false } options={ yesNo } onChange={ this._setExample.bind( this ) } selected={ example } />
 						<ICONRADIOGROUP form={ formID } label="Intro:" name="intro" preferPlaceholder={ false } options={ yesNo } onChange={ this._setIntro.bind( this ) } selected={ intro } />
-						<P className={ style.comment } >{ usercomment }</P>
 					</FORM>
 					<DIV className={ style.actions }>
 						<GO onClick={ deleteContribution.bind( this, contribution_id, contribution_uid ) } label="DELETE" className={ style.delete } />

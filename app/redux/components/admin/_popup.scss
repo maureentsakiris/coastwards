@@ -1,6 +1,6 @@
 @import 'app/styles/base';
 
-$action-height: 45px;
+$action-height: 55px;
 
 %action{
 
@@ -30,17 +30,23 @@ $action-height: 45px;
 	.bar{
 
 		@extend %popupBar;
-		text-align: right;
+
+		font-size: 14px;
 
 		a{
 
+			position: absolute;
+			top: 10px;
+			right: 10px;
 			color: #fff;
+			vertical-align: middle;
+			margin-left: 0.5em;
 
 		}
 
 	}
 
-	.top{
+	.image{
 
 		background-size: cover;
 		background-position: center;
@@ -51,45 +57,9 @@ $action-height: 45px;
 
 	.form{
 
-		overflow-y: scroll;
+		padding: 1em;
 		width: 100%;
-		padding: 1vh;
-
-		.id{
-
-			margin-bottom: 1em;
-
-		}
-
-		.comment{
-
-			font-size: 12px;
-			font-style: italic;
-			margin-bottom: 2em;
-			height: 10em;
-			overflow-y: scroll;
-
-		}
-
-		/* label{
-
-			margin: 0;
-
-			&>span{
-
-				display: inline-block;
-				margin-right: 1em;
-				width: 140px;
-
-			}
-
-			div{
-
-				display: inline-block;
-
-			}
-
-		} */
+		overflow-y: scroll;
 
 	}
 
@@ -119,7 +89,6 @@ $action-height: 45px;
 	    	@extend %flexitem;
 	    	flex-grow: 0;
 	    	padding: 1em 2em;
-	    	//width: 28vh;
 
 	    }
 

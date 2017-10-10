@@ -9,12 +9,11 @@ import { unescape } from 'validator'
 
 
 import P from 'components/tags/p'
-import HR from 'components/tags/hr'
 import A from 'components/tags/a'
+import SPAN from 'components/tags/span'
 
 import FORM from 'components/tags/form'
 import INPUT from 'components/tags/input'
-//import SELECTGROUP from 'components/form/selectgroup/selectgroup'
 import ICONRADIOGROUP from 'components/form/radiogroup/iconradiogroup'
 import GO from 'components/form/button/go'
 
@@ -72,20 +71,15 @@ class feature extends Component {
 
 	render () {
 
-		const { properties, tabs, materials, deleteContribution, updateContribution } = this.props
-		const { id/*, materialverified*/ } = properties
+		const { tabs, materials, deleteContribution, updateContribution } = this.props
 
 		if( !this.feature ){
 
-			return (
-
-				<DIV>{ id }</DIV>
-
-			)
+			return null
 
 		}else{
 
-			const { contribution_id, contribution_uid, contribution_material, contribution_comment/*, contribution_source*/ } = this.feature
+			const { contribution_id, contribution_uid, contribution_material, contribution_comment, contribution_source, contribution_point_manual, contribution_point_corrected } = this.feature
 
 			const { verified, materialverified, example, intro, closeup } = this.state
 
@@ -121,18 +115,18 @@ class feature extends Component {
 
 				<DIV className={ style.feature } >
 					<DIV className={ style.bar }>
+						<SPAN>{ contribution_id } / { contribution_material } / { contribution_source } { contribution_point_manual == 0 ? '/ gps' : '/ manual' } { ( contribution_point_corrected && contribution_point_manual == 0 ) ? '/ corrected' : '/ not corrected' }</SPAN>
+						<P>{ usercomment }</P>
 						<A href={ url } className="material-icons">open_in_new</A>
 					</DIV>
 					<DIV className={ style.image } style={ { backgroundImage: 'url("' + url +'")' } } ></DIV>
 					<FORM id={ formID } action="#" className={ style.form }>
 						<INPUT form={ formID } type="hidden" name="id" value={ contribution_id + '' } />
-						<P className={ style.id } >{ contribution_id } / { contribution_material }</P>
-						<ICONRADIOGROUP style={ { display: tabs.material ? 'block' : 'none' } } preferPlaceholder={ false } form={ formID } label="Material verified: " name="material" options={ materialOptions } onChange={ this._setMaterialVerified.bind( this ) } selected={ materialverified } />
 						<ICONRADIOGROUP style={ { display: tabs.verified ? 'block' : 'none' } } preferPlaceholder={ false } form={ formID } label="Verified:" name="verified" options={ yesNo } value={ verified } onChange={ this._setVerified.bind( this ) } selected={ verified } />
+						<ICONRADIOGROUP style={ { display: tabs.material ? 'block' : 'none' } } preferPlaceholder={ false } form={ formID } label="Material verified: " name="material" options={ materialOptions } onChange={ this._setMaterialVerified.bind( this ) } selected={ materialverified } />
 						<ICONRADIOGROUP style={ { display: tabs.closeup ? 'block' : 'none' } } preferPlaceholder={ false } form={ formID } label="Closeup:" name="closeup" options={ yesNoNotset } value={ closeup } onChange={ this._setCloseup.bind( this ) } selected={ closeup } />
 						<ICONRADIOGROUP style={ { display: tabs.example ? 'block' : 'none' } } preferPlaceholder={ false } form={ formID } label="Example:" name="example" options={ yesNo } value={ example } onChange={ this._setExample.bind( this ) } selected={ example } />
 						<ICONRADIOGROUP style={ { display: tabs.intro ? 'block' : 'none' } } preferPlaceholder={ false } form={ formID } label="Intro:" name="intro" options={ yesNo } value={ intro } onChange={ this._setIntro.bind( this ) } selected={ intro } />
-						<P className={ style.comment } style={ { display: tabs.comment ? 'block' : 'none' } } >{ usercomment }</P>
 					</FORM>
 					<DIV className={ style.actions }>
 						<GO onClick={ deleteContribution.bind( this, contribution_id, contribution_uid ) } label="DELETE" className={ style.delete } />

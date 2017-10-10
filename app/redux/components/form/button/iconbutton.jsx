@@ -8,9 +8,13 @@ import I from 'components/tags/i'
 import styleSheet from './_button'
 
 
-const iconbutton = ( { onChange, children, className, disabled, materialIcon, style } ) => {
+const iconbutton = ( { onChange, children, className, disabled, materialIcon, style, outline } ) => {
 
-	const cls = Classnames( styleSheet.iconbutton, className )
+	const cls = Classnames( styleSheet.iconbutton, className, {
+
+		[ styleSheet.outline ]: outline
+
+	} )	
 
 	return(
 
@@ -20,6 +24,12 @@ const iconbutton = ( { onChange, children, className, disabled, materialIcon, st
 	
 }
 
+iconbutton.defaultProps = {
+
+	outline: false
+
+}
+
 iconbutton.propTypes = {
 
 	onChange: PropTypes.func.isRequired,
@@ -27,7 +37,8 @@ iconbutton.propTypes = {
 	className: PropTypes.string,
 	disabled: PropTypes.bool,
 	materialIcon: PropTypes.string,
-	style: PropTypes.object
+	style: PropTypes.object,
+	outline: PropTypes.bool
 
 }
 

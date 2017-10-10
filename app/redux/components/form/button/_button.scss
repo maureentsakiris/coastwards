@@ -38,6 +38,7 @@
 .iconbutton{
 
 	@extend %button;
+	border: 2px solid $color-primary;
 	background-color: $color-primary;
 	color: #ffffff;
 
@@ -55,6 +56,14 @@
 		top: 2px;
 
 	}
+
+}
+
+.outline{
+
+	border: 2px solid $color-primary;
+	color: $color-primary;
+	background-color: transparent;
 
 }
 

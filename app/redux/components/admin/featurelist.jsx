@@ -2,10 +2,13 @@ import React, { Component } from 'react'
 import { PropTypes } from 'prop-types'
 import Classnames from 'classnames'
 import { map, first } from 'underscore'
+
 import Feature from 'containers/admin/feature'
-import ICONCHECKBOX from 'components/form/input/iconcheckbox'
 
 import DIV from 'components/tags/div'
+
+import ICONCHECKBOX from 'components/form/input/iconcheckbox'
+import GO from 'components/form/button/go'
 
 import style from './_featurelist'
 
@@ -27,11 +30,10 @@ export default class Featurelist extends Component {
 
 			material: true,
 			verified: true,
-			closeup: false,
-			example: false,
-			intro: false,
-			comment: false
-
+			closeup: true,
+			example: true,
+			intro: true,
+			offset: 10
 
 		}
 
@@ -40,14 +42,16 @@ export default class Featurelist extends Component {
 	render () {
 
 		const { results, className } = this.props
-		const { material, verified, closeup, example, intro, comment } = this.state
+		const { material, verified, closeup, example, intro, offset } = this.state
 
 		const clsList = Classnames( style.featureList, className )
 
 		if( results && results.length ){
 
+			const truncated = first( results, offset )
 
-			const truncated = first( results, 10 )
+			const hasMore = results.length > offset
+
 			const featureList = map( truncated, ( result ) => {
 
 				return (
@@ -64,15 +68,15 @@ export default class Featurelist extends Component {
 
 				<DIV className={ clsList } >
 					<DIV className={ style.tab } >
-						<ICONCHECKBOX inline={ true } form="Listoptions" name="material" label="Material" value="material" onChange={ this._setTabs } selected={ material } />
 						<ICONCHECKBOX inline={ true } form="Listoptions" name="verified" label="Verified" value="verified" onChange={ this._setTabs } selected={ verified } />
+						<ICONCHECKBOX inline={ true } form="Listoptions" name="material" label="Material" value="material" onChange={ this._setTabs } selected={ material } />
 						<ICONCHECKBOX inline={ true } form="Listoptions" name="closeup" label="Closeup" value="closeup" onChange={ this._setTabs } selected={ closeup } />
 						<ICONCHECKBOX inline={ true } form="Listoptions" name="example" label="Example" value="example" onChange={ this._setTabs } selected={ example } />
 						<ICONCHECKBOX inline={ true } form="Listoptions" name="intro" label="Intro" value="intro" onChange={ this._setTabs } selected={ intro } />
-						<ICONCHECKBOX inline={ true } form="Listoptions" name="comment" label="Comment" value="comment" onChange={ this._setTabs } selected={ comment } />
 					</DIV>
 					<DIV className={ style.listContainer } >
 						{ featureList }
+						{ hasMore && <GO className={ style.loadMore } onClick={ this._setOffset } label="Load more" /> }
 					</DIV>
 				</DIV>
 
@@ -98,6 +102,14 @@ export default class Featurelist extends Component {
 	_setTabs = ( selected, value ) => {
 
 		this.setState( { [ value ]: !selected } )
+
+	}
+
+	_setOffset = ( ) => {
+
+		const currentOffset = this.state.offset
+
+		this.setState( { offset: currentOffset + 10 } )
 
 	}
 

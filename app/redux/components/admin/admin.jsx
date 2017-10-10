@@ -27,12 +27,12 @@ const admin = ( { rivages, spinner, materials, material, materialverified, verif
 
 	const all = [ { label: 'All', value: '%' } ]
 	const mats = chain( materials )
-		.filter( ( material ) => {
+		/*.filter( ( material ) => {
 
 			let { value } = material
 			return value !== 'notset'
 
-		} )
+		} )*/
 		.filter( ( material ) => {
 
 			let { value } = material

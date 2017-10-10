@@ -1,7 +1,7 @@
 @import 'app/styles/base';
 
 $action-height: 55px;
-$image-length: 400px;
+$image-length: 390px;
 
 .feature{
 
@@ -18,18 +18,17 @@ $image-length: 400px;
 	.bar{
 
 		@extend %popupBar;
-		text-align: right;
+
+		font-size: 14px;
 
 		a{
 
+			position: absolute;
+			top: 10px;
+			right: 10px;
 			color: #fff;
-			opacity: 0.5;
-
-			&:hover{
-
-				opacity: 1;
-
-			}
+			vertical-align: middle;
+			margin-left: 0.5em;
 
 		}
 
@@ -47,25 +46,7 @@ $image-length: 400px;
 	.form{
 
 		padding: 1em;
-		/* max-height: 500px;
-		overflow-y: scroll; */
 		margin-bottom: $action-height;
-
-		.id{
-
-			margin-bottom: 1em;
-
-		}
-
-		.comment{
-
-			font-size: 12px;
-			font-style: italic;
-			margin-bottom: 2em;
-			height: 10em;
-			overflow-y: scroll;
-
-		}
 
 	}
 
@@ -96,7 +77,6 @@ $image-length: 400px;
 	    	@extend %flexitem;
 	    	flex-grow: 0;
 	    	padding: 1em 2em;
-	    	//width: 28vh;
 
 	    }
 
