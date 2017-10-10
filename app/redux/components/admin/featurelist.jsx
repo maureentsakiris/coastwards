@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { PropTypes } from 'prop-types'
 import Classnames from 'classnames'
-import { map, first } from 'underscore'
+import { map, last } from 'underscore'
 
 import Feature from 'containers/admin/feature'
 
@@ -59,11 +59,11 @@ export default class Featurelist extends Component {
 
 		if( results && results.length ){
 
-			const truncated = first( results, offset )
+			const truncated = last( results, offset )
 
 			const hasMore = results.length > offset
 
-			const featureList = map( truncated, ( result ) => {
+			const featureList = map( truncated.reverse(), ( result ) => {
 
 				return (
 
