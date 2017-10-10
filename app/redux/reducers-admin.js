@@ -30,7 +30,7 @@ const rivages = ( state = null, action ) => {
 
 } 
 
-const form = ( state = { display: 'map', results: [], material: '%', materialverified: '%', verified: '0', id: '%', example:'%', intro:'%', closeup: '%', pointmanual: '%', pointcorrected: '%' }, action ) => {
+const form = ( state = { display: 'map', results: [], material: '%', materialverified: '%', verified: '0', id: '%', example:'%', intro:'%', closeup: '%', pointmanual: '%', pointcorrected: '%', source: '%', reported: '%' }, action ) => {
 
 	switch ( action.type ){
 
@@ -54,6 +54,10 @@ const form = ( state = { display: 'map', results: [], material: '%', materialver
 		return extend( {}, state, { pointmanual: action.to } )
 	case types.SET_POINTCORRECTED:
 		return extend( {}, state, { pointcorrected: action.to } )
+	case types.SET_SOURCE:
+		return extend( {}, state, { source: action.to } )
+	case types.SET_REPORTED:
+		return extend( {}, state, { reported: action.to } )
 	case types.SET_DISPLAY:
 		return extend( {}, state, { display: action.to } )
 	default:

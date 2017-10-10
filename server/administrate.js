@@ -154,7 +154,7 @@ const _fetch = ( formData ) => {
 
 	return new Promise( ( resolve, reject ) => { 
 
-		const { material, materialverified, verified, id, example, intro, closeup, pointmanual, pointcorrected } = formData.fields
+		const { material, materialverified, verified, id, example, intro, closeup, pointmanual, pointcorrected, source, reported } = formData.fields
 
 		pool.getConnection( function ( error, connection ) {
 
@@ -164,7 +164,7 @@ const _fetch = ( formData ) => {
 
 			}else{
 
-				var sql = 'SET group_concat_max_len = 100000000; SELECT CONCAT( \'{ "type": "FeatureCollection", "features": [\', GROUP_CONCAT(\' { "type": "Feature", "geometry": \', ST_AsGeoJSON(contribution_point), \', "properties": { "id": "\',contribution_id,\'", "materialverified": "\',IFNULL(contribution_material_verified, "notset" ),\'" } } \'), \'] }\' ) as geojson FROM contributions WHERE contribution_material LIKE ? && contribution_material_verified LIKE ? && contribution_verified LIKE ? && contribution_id LIKE ? && contribution_example LIKE ? && contribution_intro LIKE ? && contribution_closeup LIKE ? && contribution_point_manual LIKE ? && contribution_point_corrected LIKE ?';
+				var sql = 'SET group_concat_max_len = 100000000; SELECT CONCAT( \'{ "type": "FeatureCollection", "features": [\', GROUP_CONCAT(\' { "type": "Feature", "geometry": \', ST_AsGeoJSON(contribution_point), \', "properties": { "id": "\',contribution_id,\'", "materialverified": "\',IFNULL(contribution_material_verified, "notset" ),\'" } } \'), \'] }\' ) as geojson FROM contributions WHERE contribution_material LIKE ? && contribution_material_verified LIKE ? && contribution_verified LIKE ? && contribution_id LIKE ? && contribution_example LIKE ? && contribution_intro LIKE ? && contribution_closeup LIKE ? && contribution_point_manual LIKE ? && contribution_point_corrected LIKE ? && contribution_source LIKE ? && contribution_reported LIKE ?';
 
 				var inserts = [
 
@@ -176,7 +176,9 @@ const _fetch = ( formData ) => {
 					intro,
 					closeup,
 					pointmanual,
-					pointcorrected
+					pointcorrected,
+					source,
+					reported
 
 				]
 
@@ -328,7 +330,7 @@ const _update = ( formData ) => {
 
 	return new Promise( ( resolve, reject ) => { 
 
-		const { id, verified, material, example, intro, closeup } = formData.fields
+		const { id, verified, material, example, intro, closeup, reported } = formData.fields
 
 		pool.getConnection( function ( error, connection ) {
 
@@ -338,7 +340,7 @@ const _update = ( formData ) => {
 
 			}else{
 
-				var sql = 'UPDATE ?? SET contribution_verified=?, contribution_material_verified=?, contribution_example=?, contribution_intro=?, contribution_closeup=? WHERE contribution_id=?';
+				var sql = 'UPDATE ?? SET contribution_verified=?, contribution_material_verified=?, contribution_example=?, contribution_intro=?, contribution_closeup=?, contribution_reported=? WHERE contribution_id=?';
 
 				var inserts = [
 
@@ -349,6 +351,7 @@ const _update = ( formData ) => {
 					example,
 					intro,
 					closeup,
+					reported,
 
 					id
 

@@ -12,7 +12,6 @@ import FORM from 'components/tags/form'
 import INPUT from 'components/tags/input'
 import ICONRADIOGROUP from 'components/form/radiogroup/iconradiogroup'
 import GO from 'components/form/button/go'
-import LABEL from 'components/tags/label'
 import SPAN from 'components/tags/span'
 
 import style from './_popup'
@@ -42,6 +41,7 @@ class popup extends Component {
 				example: p.feature.contribution_example.toString(),
 				intro: p.feature.contribution_intro.toString(),
 				closeup: p.feature.contribution_closeup.toString(),
+				reported: p.feature.contribution_reported.toString()
 
 			} )
 
@@ -60,6 +60,7 @@ class popup extends Component {
 			example: this.props.feature.contribution_example ? this.props.feature.contribution_example.toString() : null,
 			intro: this.props.feature.contribution_intro ? this.props.feature.contribution_intro.toString() : null,
 			closeup: this.props.feature.contribution_closeup ? this.props.feature.contribution_closeup.toString() : null,
+			reported: this.props.feature.contribution_reported ? this.props.feature.contribution_reported.toString() : null
 
 		}
 
@@ -83,7 +84,7 @@ class popup extends Component {
 
 		}else{
 
-			const { verified, material, example, intro, closeup } = this.state
+			const { verified, material, example, intro, closeup, reported } = this.state
 
 			const materialOptions = map( materials, ( material ) => {
 
@@ -126,6 +127,7 @@ class popup extends Component {
 						<ICONRADIOGROUP form={ formID } label="Verified:" name="verified" preferPlaceholder={ false } options={ yesNo } onChange={ this._setVerified.bind( this ) } selected={ verified } />
 						<ICONRADIOGROUP form={ formID } label="Material verified:" name="material" preferPlaceholder={ false } options={ materialOptions } onChange={ this._setMaterial.bind( this ) } selected={ material } />
 						<ICONRADIOGROUP form={ formID } label="Closeup:" name="closeup" preferPlaceholder={ false } options={ yesNoNotset } onChange={ this._setCloseup.bind( this ) } selected={ closeup } />
+						<ICONRADIOGROUP form={ formID } label="Reported:" name="reported" preferPlaceholder={ false } options={ yesNo } onChange={ this._setReported.bind( this ) } selected={ reported } />
 						<ICONRADIOGROUP form={ formID } label="Example:" name="example" preferPlaceholder={ false } options={ yesNo } onChange={ this._setExample.bind( this ) } selected={ example } />
 						<ICONRADIOGROUP form={ formID } label="Intro:" name="intro" preferPlaceholder={ false } options={ yesNo } onChange={ this._setIntro.bind( this ) } selected={ intro } />
 					</FORM>
@@ -169,6 +171,12 @@ class popup extends Component {
 	_setCloseup = ( value ) => {
 
 		this.setState( { closeup: value } )
+
+	}
+
+	_setReported = ( value ) => {
+
+		this.setState( { reported: value } )
 
 	}
 

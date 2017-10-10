@@ -20,6 +20,8 @@ const mapStateToProps = ( state ) => {
 		closeup: state.form.closeup,
 		pointmanual: state.form.pointmanual,
 		pointcorrected: state.form.pointcorrected,
+		source: state.form.source,
+		reported: state.form.reported,
 		display: state.form.display
 
 	}

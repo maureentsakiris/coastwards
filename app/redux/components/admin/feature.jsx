@@ -48,7 +48,8 @@ class feature extends Component {
 					materialverified: feature.contribution_material_verified.toString(),
 					example: feature.contribution_example.toString(),
 					intro: feature.contribution_intro.toString(),
-					closeup: feature.contribution_closeup.toString()
+					closeup: feature.contribution_closeup.toString(),
+					reported: feature.contribution_reported.toString()
 
 				} )
 
@@ -81,7 +82,7 @@ class feature extends Component {
 
 			const { contribution_id, contribution_uid, contribution_material, contribution_comment, contribution_source, contribution_point_manual, contribution_point_corrected } = this.feature
 
-			const { verified, materialverified, example, intro, closeup } = this.state
+			const { verified, materialverified, example, intro, closeup, reported } = this.state
 
 			const materialOptions = map( materials, ( material ) => {
 
@@ -125,6 +126,7 @@ class feature extends Component {
 						<ICONRADIOGROUP style={ { display: tabs.verified ? 'block' : 'none' } } preferPlaceholder={ false } form={ formID } label="Verified:" name="verified" options={ yesNo } value={ verified } onChange={ this._setVerified.bind( this ) } selected={ verified } />
 						<ICONRADIOGROUP style={ { display: tabs.material ? 'block' : 'none' } } preferPlaceholder={ false } form={ formID } label="Material verified: " name="material" options={ materialOptions } onChange={ this._setMaterialVerified.bind( this ) } selected={ materialverified } />
 						<ICONRADIOGROUP style={ { display: tabs.closeup ? 'block' : 'none' } } preferPlaceholder={ false } form={ formID } label="Closeup:" name="closeup" options={ yesNoNotset } value={ closeup } onChange={ this._setCloseup.bind( this ) } selected={ closeup } />
+						<ICONRADIOGROUP style={ { display: tabs.reported ? 'block' : 'none' } } preferPlaceholder={ false } form={ formID } label="Reported:" name="reported" options={ yesNo } value={ reported } onChange={ this._setReported.bind( this ) } selected={ reported } />
 						<ICONRADIOGROUP style={ { display: tabs.example ? 'block' : 'none' } } preferPlaceholder={ false } form={ formID } label="Example:" name="example" options={ yesNo } value={ example } onChange={ this._setExample.bind( this ) } selected={ example } />
 						<ICONRADIOGROUP style={ { display: tabs.intro ? 'block' : 'none' } } preferPlaceholder={ false } form={ formID } label="Intro:" name="intro" options={ yesNo } value={ intro } onChange={ this._setIntro.bind( this ) } selected={ intro } />
 					</FORM>
@@ -167,6 +169,12 @@ class feature extends Component {
 	_setCloseup = ( value ) => {
 
 		this.setState( { closeup: value } )
+
+	}
+
+	_setReported= ( value ) => {
+
+		this.setState( { reported: value } )
 
 	}
 

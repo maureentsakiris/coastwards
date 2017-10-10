@@ -130,7 +130,7 @@ class popup extends Component {
 
 		}else{
 
-			const { contribution_verified, contribution_material, contribution_material_verified, contribution_comment, contribution_uid, contribution_exif_datetime/*, contribution_hashtag*/, contribution_source } = feature
+			const { contribution_verified, contribution_material, contribution_material_verified, contribution_comment, contribution_uid, contribution_exif_datetime/*, contribution_hashtag*/, contribution_source, contribution_reported } = feature
 
 
 			const material = contribution_verified ? contribution_material_verified : contribution_material
@@ -139,7 +139,8 @@ class popup extends Component {
 			
 
 			//const url = contribution_source == 'webapp' ? "uploads/" + contribution_uid + ".jpg" : "http://geolittoral.application.developpement-durable.gouv.fr/telechargement/tc_smartphone/photos/" + contribution_uid + ".jpg"
-			const url = "uploads/" + contribution_uid + ".jpg"
+			const url = contribution_reported == '1' ? "assets/reported.jpg" : "uploads/" + contribution_uid + ".jpg"
+			console.log( contribution_reported )
 			const usercomment = unescape( contribution_comment )
 
 			const hascomment = usercomment != '' || contribution_source == 'rivages'
@@ -163,9 +164,9 @@ class popup extends Component {
 
 				<DIV id="Popup" className={ style.popup } >
 					{ !showcomment && <DIV className={ style.bar }>
-						<A onClick={ showDialog.bind( this, 'REPORT' ) } className={ style.report } title={ formatMessage( messages.report_image ) } >
+						{ !contribution_reported && <A onClick={ showDialog.bind( this, 'REPORT' ) } className={ style.report } title={ formatMessage( messages.report_image ) } >
 							<I className="material-icons">report_problem</I>
-						</A>
+						</A> }
 						{ date && <FormattedDate
 							value={ new Date( contribution_exif_datetime ) }
 							year="numeric"

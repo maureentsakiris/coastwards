@@ -43,6 +43,7 @@ export default class Featurelist extends Component {
 			closeup: true,
 			example: true,
 			intro: true,
+			reported: true,
 			offset: 10
 
 		}
@@ -52,7 +53,7 @@ export default class Featurelist extends Component {
 	render () {
 
 		const { results, className } = this.props
-		const { material, verified, closeup, example, intro, offset } = this.state
+		const { material, verified, closeup, example, intro, reported, offset } = this.state
 
 		const clsList = Classnames( style.featureList, className )
 
@@ -81,6 +82,7 @@ export default class Featurelist extends Component {
 						<ICONCHECKBOX inline={ true } form="Listoptions" name="verified" label="Verified" value="verified" onChange={ this._setTabs } selected={ verified } />
 						<ICONCHECKBOX inline={ true } form="Listoptions" name="material" label="Material" value="material" onChange={ this._setTabs } selected={ material } />
 						<ICONCHECKBOX inline={ true } form="Listoptions" name="closeup" label="Closeup" value="closeup" onChange={ this._setTabs } selected={ closeup } />
+						<ICONCHECKBOX inline={ true } form="Listoptions" name="reported" label="Reported" value="reported" onChange={ this._setTabs } selected={ reported } />
 						<ICONCHECKBOX inline={ true } form="Listoptions" name="example" label="Example" value="example" onChange={ this._setTabs } selected={ example } />
 						<ICONCHECKBOX inline={ true } form="Listoptions" name="intro" label="Intro" value="intro" onChange={ this._setTabs } selected={ intro } />
 					</DIV>

@@ -23,7 +23,7 @@ import Featurelist from 'containers/admin/featurelist'
 
 import style from './_admin'
 
-const admin = ( { rivages, spinner, materials, material, materialverified, verified, example, intro, closeup, pointmanual, pointcorrected, display, setFilter, importRivagesCSV } ) => {
+const admin = ( { rivages, spinner, materials, material, materialverified, verified, example, intro, closeup, pointmanual, pointcorrected, source, reported, display, setFilter, importRivagesCSV } ) => {
 
 	const all = [ { label: 'All', value: '%' } ]
 	const mats = chain( materials )
@@ -73,6 +73,15 @@ const admin = ( { rivages, spinner, materials, material, materialverified, verif
 
 	]
 
+	const sources = [
+
+		{ label: 'All', value: '%' },
+		{ label: 'Webapp', value: 'webapp' },
+		{ label: 'Rivages', value: 'rivages' },
+		{ label: 'App', value: 'app' }
+
+	]
+
 	const clsLogger = ClassNames( style.link, style.logger )
 
 	const rivagesGroups = groupBy( rivages )
@@ -108,6 +117,8 @@ const admin = ( { rivages, spinner, materials, material, materialverified, verif
 							<ICONRADIOGROUP form="Admin" label="Closeup: " name="closeup" preferPlaceholder={ false } options={ allYesNoNotset } onChange={ setFilter.bind( this, 'SET_CLOSEUP' ) } selected={ closeup } />
 							<ICONRADIOGROUP form="Admin" label="Position manual: " name="pointmanual" preferPlaceholder={ false } options={ allYesNo } onChange={ setFilter.bind( this, 'SET_POINTMANUAL' ) } selected={ pointmanual } />
 							<ICONRADIOGROUP form="Admin" label="Position corrected: " name="pointcorrected" preferPlaceholder={ false } options={ allYesNo } onChange={ setFilter.bind( this, 'SET_POINTCORRECTED' ) } selected={ pointcorrected } />
+							<ICONRADIOGROUP form="Admin" label="Source: " name="source" preferPlaceholder={ false } options={ sources } onChange={ setFilter.bind( this, 'SET_SOURCE' ) } selected={ source } />
+							<ICONRADIOGROUP form="Admin" label="Reported: " name="reported" preferPlaceholder={ false } options={ allYesNo } onChange={ setFilter.bind( this, 'SET_REPORTED' ) } selected={ reported } />
 							<ICONRADIOGROUP form="Admin" label="Intro: " name="intro" preferPlaceholder={ false } options={ allYesNo } onChange={ setFilter.bind( this, 'SET_INTRO' ) } selected={ intro } />
 							<ICONRADIOGROUP form="Admin" label="Example: " name="example" preferPlaceholder={ false } options={ allYesNo } onChange={ setFilter.bind( this, 'SET_EXAMPLE' ) } selected={ example } />
 						</TOGGLE>
@@ -163,6 +174,8 @@ admin.propTypes = {
 	closeup: PropTypes.string,
 	pointmanual: PropTypes.string,
 	pointcorrected: PropTypes.string,
+	source: PropTypes.string,
+	reported: PropTypes.string,
 	display: PropTypes.string,
 
 	setFilter: PropTypes.func,

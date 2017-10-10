@@ -34,7 +34,7 @@ export const fetch = ( ) => {
 
 		const state = getState()
 
-		const { material, verified, materialverified, id, example, intro, closeup, pointmanual, pointcorrected } = state.form
+		const { material, verified, materialverified, id, example, intro, closeup, pointmanual, pointcorrected, source, reported } = state.form
 
 		let formData = new FormData()
 		formData.append( 'material', material )
@@ -46,6 +46,8 @@ export const fetch = ( ) => {
 		formData.append( 'closeup', closeup )
 		formData.append( 'pointmanual', pointmanual )
 		formData.append( 'pointcorrected', pointcorrected )
+		formData.append( 'source', source )
+		formData.append( 'reported', reported )
 
 		let options = {
 
@@ -133,11 +135,11 @@ export const updateContribution = ( formID ) => {
 		let form = document.getElementById( formID )
 		let formData = new FormData( form )
 
-		for ( var pair of formData.entries() ) {
+		/*for ( var pair of formData.entries() ) {
 
 			console.log( pair[ 0 ]+ ', ' + pair[ 1 ] )
 
-		}
+		}*/
 
 		let options = {
 
@@ -238,7 +240,6 @@ export const importRivagesCSV = ( e ) => {
 
 				}else{
 
-					console.log( parsed.array )
 					dispatch( { type: types.SET_RIVAGES_RESULTS, to: parsed.array } )
 					dispatch( resetImportRivagesCSV() )
 					dispatch( fetch() )
