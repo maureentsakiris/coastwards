@@ -22,6 +22,16 @@ export default class Featurelist extends Component {
 
 	}
 
+	componentWillReceiveProps () {
+
+		this.setState( { 
+
+			offset: 10
+
+		} )
+
+	}
+
 	constructor ( props ) {
 
 		super ( props )

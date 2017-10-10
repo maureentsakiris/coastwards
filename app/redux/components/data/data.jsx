@@ -16,7 +16,6 @@ import TOGGLE from 'components/ui/toggle'
 import ICONRADIOGROUP from 'components/form/radiogroup/iconradiogroup'
 import GO from 'components/form/button/go'
 
-//import CONTRIBUTION from 'containers/admin/contribution'
 import Mapbox from 'containers/data/mapbox'
 import Popup from 'containers/data/popup'
 
@@ -26,12 +25,12 @@ const data = ( { materials, material, materialverified, verified, closeup, point
 
 	const all = [ { label: 'All', value: '%' } ]
 	const mats = chain( materials )
-		.filter( ( material ) => {
+		/*.filter( ( material ) => {
 
 			let { value } = material
 			return value !== 'notset'
 
-		} )
+		} )*/
 		.filter( ( material ) => {
 
 			let { value } = material
@@ -53,6 +52,15 @@ const data = ( { materials, material, materialverified, verified, closeup, point
 		{ label: 'All', value: '%' },
 		{ label: 'Yes', value: '1' },
 		{ label: 'No', value: '0' }
+
+	]
+
+	const allYesNoNotset = [
+
+		{ label: 'All', value: '%' },
+		{ label: 'Yes', value: '1' },
+		{ label: 'No', value: '0' },
+		{ label: 'Not set', value: 'notset' }
 
 	]
 
@@ -85,23 +93,23 @@ const data = ( { materials, material, materialverified, verified, closeup, point
 							<LI><STRONG>exif_datetime</STRONG> (of the image as extracted from its EXIF data - if available)</LI>
 						</UL>
 					</TOGGLE>
-					<ICONRADIOGROUP form="Admin" label="Verified: " name="verified" preferPlaceholder={ false } options={ allYesNo } onClick={ setFilter.bind( this, 'SET_VERIFIED' ) } checkedValue={ verified } >
+					<ICONRADIOGROUP form="Admin" label="Verified: " name="verified" preferPlaceholder={ false } options={ allYesNo } onChange={ setFilter.bind( this, 'SET_VERIFIED' ) } selected={ verified } >
 						<I className={ clsHelp } title="Include images verified by our staff">help_outline</I>
 					</ICONRADIOGROUP>
 					<TOGGLE priority={ 4 } className={ style.toggle } text="Other filters" >
-						<ICONRADIOGROUP form="Admin" label="Material contributor: " name="material" preferPlaceholder={ false } options={ materialOptions } onClick={ setFilter.bind( this, 'SET_MATERIAL' ) } checkedValue={ material } >
+						<ICONRADIOGROUP form="Admin" label="Material contributor: " name="material" preferPlaceholder={ false } options={ materialOptions } onChange={ setFilter.bind( this, 'SET_MATERIAL' ) } selected={ material } >
 							<I className={ clsHelp } title="Include images categorized by the participant as one of the following">help_outline</I>
 						</ICONRADIOGROUP>
-						<ICONRADIOGROUP form="Admin" label="Material verified: " name="materialverified" preferPlaceholder={ false } options={ materialOptions } onClick={ setFilter.bind( this, 'SET_MATERIAL_VERIFIED' ) } checkedValue={ materialverified } >
+						<ICONRADIOGROUP form="Admin" label="Material verified: " name="materialverified" preferPlaceholder={ false } options={ materialOptions } onChange={ setFilter.bind( this, 'SET_MATERIAL_VERIFIED' ) } selected={ materialverified } >
 							<I className={ clsHelp } title="Include images categorized by our staff as one of the following">help_outline</I>
 						</ICONRADIOGROUP>
-						<ICONRADIOGROUP form="Admin" label="Position manual: " name="pointmanual" preferPlaceholder={ false } options={ allYesNo } onClick={ setFilter.bind( this, 'SET_POINTMANUAL' ) } checkedValue={ pointmanual } >
+						<ICONRADIOGROUP form="Admin" label="Position manual: " name="pointmanual" preferPlaceholder={ false } options={ allYesNo } onChange={ setFilter.bind( this, 'SET_POINTMANUAL' ) } selected={ pointmanual } >
 							<I className={ clsHelp } title="Include images placed manually by the participant (as opposed to programatically via the embedded GPS)">help_outline</I>
 						</ICONRADIOGROUP>
-						<ICONRADIOGROUP form="Admin" label="Position corrected: " name="pointcorrected" preferPlaceholder={ false } options={ allYesNo } onClick={ setFilter.bind( this, 'SET_POINTCORRECTED' ) } checkedValue={ pointcorrected } >
+						<ICONRADIOGROUP form="Admin" label="Position corrected: " name="pointcorrected" preferPlaceholder={ false } options={ allYesNo } onChange={ setFilter.bind( this, 'SET_POINTCORRECTED' ) } selected={ pointcorrected } >
 							<I className={ clsHelp } title="Include images where the location has been corrected by the participant">help_outline</I>
 						</ICONRADIOGROUP>
-						<ICONRADIOGROUP form="Admin" label="Closeup: " name="closeup" preferPlaceholder={ false } options={ allYesNo } onClick={ setFilter.bind( this, 'SET_CLOSEUP' ) } checkedValue={ closeup } >
+						<ICONRADIOGROUP form="Admin" label="Closeup: " name="closeup" preferPlaceholder={ false } options={ allYesNoNotset } onChange={ setFilter.bind( this, 'SET_CLOSEUP' ) } selected={ closeup } >
 							<I className={ clsHelp } title="Include images labelled as a closeup by our staff (as opposed to a panorama shot)">help_outline</I>
 						</ICONRADIOGROUP>
 					</TOGGLE>

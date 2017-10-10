@@ -155,43 +155,6 @@ function _promiseFetchResults ( params ){
 
 			}else{
 
-				/*var sql = 'SELECT ST_AsText(??) as Point, ?? as Material FROM ??'
-				var inserts = [
-
-					"contribution_point",
-					"contribution_material_verified",
-
-
-					"contributions"
-
-				]
-
-				var query = mysql.format( sql, inserts )
-
-				connection.query( query, function ( err, results ) {
-
-					if( error ){
-
-						reject( error )
-
-					}else{
-
-						if( results === undefined ){
-
-							reject( Error( 'data/promiseFetchCSV/Could not read result from query (Update schema?)' ) )
-
-						}else{
-
-							resolve( results )
-
-						}
-
-					}
-					
-					connection.release()
-
-				} )*/
-
 				if( error ){
 
 					reject( error )
@@ -293,7 +256,7 @@ router.get( '/csv', function ( req, res ) {
 
 } )
 
-router.post( '/csv', function ( req, res ) {
+/*router.post( '/csv', function ( req, res ) {
 
 	_promiseFetchForm( req )
 		.then( _promiseFetchResults )
@@ -314,7 +277,7 @@ router.post( '/csv', function ( req, res ) {
 
 		} )
 
-} )
+} )*/
 
 
 module.exports = router

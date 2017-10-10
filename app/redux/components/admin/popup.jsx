@@ -35,8 +35,6 @@ class popup extends Component {
 
 		if( !isEmpty( p.feature ) ){
 
-			console.log( p )
-
 			this.setState( { 
 
 				verified: p.feature.contribution_verified.toString(),

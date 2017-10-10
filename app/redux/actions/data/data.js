@@ -76,7 +76,8 @@ export const downloadCSV = ( ) => {
 
 		const { material, verified, materialverified, closeup, pointmanual, pointcorrected } = state.form
 
-		window.open( 'http://coastwards.org/data/csv?material=' + material + '&verified=' + verified + '&materialverified=' + materialverified + '&closeup=' + closeup + '&pointmanual=' + pointmanual + '&pointcorrected=' + pointcorrected )
+		//window.open( 'http://coastwards.org/data/csv?material=' + material + '&verified=' + verified + '&materialverified=' + materialverified + '&closeup=' + closeup + '&pointmanual=' + pointmanual + '&pointcorrected=' + pointcorrected )
+		window.open( 'http://' + window.location.host + '/data/csv?material=' + material + '&verified=' + verified + '&materialverified=' + materialverified + '&closeup=' + closeup + '&pointmanual=' + pointmanual + '&pointcorrected=' + pointcorrected )
 
 		/*let formData = new FormData()
 		formData.append( 'material', material )
