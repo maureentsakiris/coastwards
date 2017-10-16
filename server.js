@@ -127,7 +127,7 @@ app.get( '/login/callback', passport.authenticate( 'github', { failureRedirect: 
 
 app.get( '/admin', ensureAuthenticated, ( req, res ) => {
 
-	if( req.user.username == 'maureentsakiris' ){
+	if( req.user.username == 'maureentsakiris' || req.user.username == 'ClaudiaCAU' ){
 
 		res.render( 'admin', { user: req.user } )
 
