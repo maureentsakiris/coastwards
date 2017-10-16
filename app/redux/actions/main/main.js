@@ -529,11 +529,11 @@ export const uploadImage = ( ) => {
 			} )
 			.then( ( formData ) => {
 
-				for ( var pair of formData.entries() ) {
+				/*for ( var pair of formData.entries() ) {
 
 					console.log( pair[ 0 ]+ ', ' + pair[ 1 ] )
 
-				}
+				}*/
 
 				let options = {
 
