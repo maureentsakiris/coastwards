@@ -68,6 +68,18 @@ $action-height: 45px;
 		direction: ltr;
 		padding-bottom: 3em;
 
+		h1{
+
+			font-size: 1.5em;
+
+			@include min( $minitablet ){
+
+				font-size: 2em;
+
+			}
+
+		}
+
 		.googleplay{
 
 			display: block;

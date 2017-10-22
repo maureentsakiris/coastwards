@@ -140,9 +140,8 @@ class popup extends Component {
 
 			//const url = contribution_source == 'webapp' ? "uploads/" + contribution_uid + ".jpg" : "http://geolittoral.application.developpement-durable.gouv.fr/telechargement/tc_smartphone/photos/" + contribution_uid + ".jpg"
 			const url = contribution_reported == '1' ? "assets/reported.jpg" : "uploads/" + contribution_uid + ".jpg"
-			console.log( contribution_reported )
+			
 			const usercomment = unescape( contribution_comment )
-
 			const hascomment = usercomment != '' || contribution_source == 'rivages'
 			const showcomment = commentToggled && hascomment
 			const commentIcon = showcomment ? 'insert_comment' : 'mode_comment'
