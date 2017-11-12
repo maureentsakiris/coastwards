@@ -1479,7 +1479,7 @@ module.exports = {
 	},
 	"upload_ok": {
 		"en": "WOHOO! Nice one! Your image was uploaded. Next one! :)",
-		"de": "Yeah! Dein Foto wurde hochgelanden! Noch eins!! :)",
+		"de": "Yeah! Dein Foto wurde hochgeladen! Noch eins!! :)",
 		"es": "¡¡GENIAL!! Tu imágen se ha subido. ¡Otra! :)",
 		"ar": "هذا لطيف! تم تحميل الصورة. التالي! :)",
 		"pt": "WOHOO! Boa! A sua imagem está online. Próxima! :)",
