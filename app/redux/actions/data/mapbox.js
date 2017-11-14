@@ -8,6 +8,7 @@ const _map = map
 
 const ZOOM = 1
 const CENTER = [ 0, 39 ]
+const STOPS = [ [ 0, 4 ], [ 5, 6 ], [ 10, 15 ], [ 22, 50 ] ]
 const ACCESSTOKEN = 'pk.eyJ1IjoibWF1cmVlbnRzYWtpcmlzIiwiYSI6ImNpanB0NzgwMjAxZDB0b2tvamNpYXQyeTMifQ.HVQAxH-RQKZBss1u3zIoxA'
 
 const OPTIONS = {
@@ -99,7 +100,7 @@ export const displayMap = ( ) => {
 					paint: {
 						'circle-radius': {
 							'base': 1.75,
-							'stops': [ [ 0, 7 ], [ 10, 15 ], [ 22, 50 ] ]
+							'stops': STOPS
 						},
 						'circle-color': {
 							property: 'materialverified',

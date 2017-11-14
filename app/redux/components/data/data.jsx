@@ -10,6 +10,8 @@ import H from 'components/tags/h'
 import I from 'components/tags/i'
 import UL from 'components/tags/ul'
 import LI from 'components/tags/li'
+import A from 'components/tags/a'
+import IMG from 'components/tags/img'
 
 import FORM from 'components/tags/form'
 import TOGGLE from 'components/ui/toggle'
@@ -70,12 +72,16 @@ const data = ( { materials, material, materialverified, verified, closeup, point
 	return(
 
 		<DIV className={ style.admin }>
-			<DIV className={ style.desktop }>Sorry, this part of the web is not available on small screens. Please visit on a desktop computer!</DIV>
+			<DIV className={ style.desktop }>
+				<A href="http://coastwards.org"><IMG className={ style.logo } src="./assets/coastwards-avatar.png" alt="Logo coastwards: A turtle on a mission" /></A>
+				<P>Sorry, this part of the web is not available on small screens. Please visit on a desktop computer!</P>
+			</DIV>
 			<Popup />
-			<DIV className={ style.form } >
-				<FORM id="Admin" action="javascript:;" onSubmit={ fetch } >
+			<DIV className={ style.drawer } >
+				<A href="http://coastwards.org"><IMG className={ style.logo } src="./assets/coastwards-avatar.png" alt="Logo coastwards: A turtle on a mission" /></A>
+				<FORM className={ style.form } id="Admin" action="javascript:;" onSubmit={ fetch } >
 					<H priority={ 1 } >Hi there! Go ahead, make your selection...</H>
-					<P>This is the data portal of 'coastwards.org'. Here you can generate a CSV from the data collected so far by our participants.</P>
+					<P>This is the data portal of <A href="http://coastwards.org">coastwards.org</A>. Here you can generate a CSV from the data collected so far by our participants.</P>
 					<TOGGLE priority={ 5 } className={ style.more } text="More info" >
 						<P>The CSV will include the following information:</P>
 						<UL className={ style.ul } >

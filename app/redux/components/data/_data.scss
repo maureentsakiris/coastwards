@@ -3,6 +3,12 @@
 
 $padding: 5vh 5vh 10vh 5vh;
 
+%logo{
+
+    width: 150px;
+
+}
+
 .login{
 
     padding: $padding;
@@ -14,7 +20,7 @@ $padding: 5vh 5vh 10vh 5vh;
     @extend %flexcontainer;
     height: 100vh;
 
-    .form{
+    .drawer{
 
         @extend %flexitem;
         flex-grow: 0;
@@ -22,8 +28,22 @@ $padding: 5vh 5vh 10vh 5vh;
         height: 100vh;
         overflow-y: scroll;
         padding: $padding;
+        //text-align: center;
 
-        @include max( $tablet ){
+        .logo{
+
+            @extend %logo;
+            width: 90px;
+
+        }
+
+        .form{
+
+            //text-align: left;
+
+        }
+
+        @include max( $desktop ){
 
             display: none;
 
@@ -69,7 +89,7 @@ $padding: 5vh 5vh 10vh 5vh;
         //width: 1000px;
         height: 100%;
 
-        @include max( $tablet ){
+        @include max( $desktop ){
 
             display: none;
 
@@ -86,7 +106,14 @@ $padding: 5vh 5vh 10vh 5vh;
         width: 100%;
         display: none;
 
-        @include max( $tablet ){
+        .logo{
+
+            @extend %logo;
+            margin-bottom: 2em;
+
+        }
+
+        @include max( $desktop ){
 
             display: block;
 
