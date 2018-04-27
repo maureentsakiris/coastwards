@@ -700,7 +700,9 @@ export const disableAndreasPinch = ( ) => {
 	return function ( dispatch ){
 
 		//https://stackoverflow.com/questions/40345723/how-does-one-prevent-pinch-zooming-on-ios-10-devices-in-safari
-		document.documentElement.addEventListener( 'touchstart', function ( e ) {
+		document.documentElement.addEventListener( 'touchmove', function ( e ) {
+
+			e.preventDefault()
 
 			if ( e.touches.length > 1 ) {
 

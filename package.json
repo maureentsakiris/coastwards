@@ -73,7 +73,7 @@
     "glob": "^7.1.2",
     "img-loader": "^2.0.0",
     "intl": "^1.2.5",
-    "mapbox-gl": "0.39.1",
+    "mapbox-gl": "0.45.0-beta.1",
     "modernizr": "^3.5.0",
     "modernizr-loader": "1.0.1",
     "node-sass": "^4.5.3",

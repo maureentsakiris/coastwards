@@ -1,0 +1,194 @@
+//############################################################################################ OVERRIDES
+
+
+.mapboxgl-map {
+    font: inherit;
+}
+
+.mapboxgl-popup {
+
+    z-index: 2;
+    
+}
+
+.mapboxgl-popup-content {
+
+    padding: 0;
+    box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14),
+                0 6px 30px 5px rgba(0, 0, 0, 0.12),
+                0 8px 10px -5px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+
+}
+
+.mapboxgl-ctrl-top-left{
+
+    padding-top: 20px;
+    padding-left: 20px;
+
+}
+
+.mapboxgl-ctrl-bottom-right {
+
+    right: 20px;
+    bottom: 20px;
+
+}
+
+.mapboxgl-ctrl-top-left .mapboxgl-ctrl, .mapboxgl-ctrl-bottom-right .mapboxgl-ctrl {
+
+    margin: 0;
+
+}
+
+/*.mapboxgl-ctrl.mapboxgl-ctrl-group{
+
+    margin-top: 15px;
+
+}*/
+
+.mapboxgl-ctrl-geocoder{
+
+    direction: ltr;
+
+}
+
+.mapboxgl-ctrl-geocoder, .mapboxgl-ctrl.mapboxgl-ctrl-group{
+
+    display: none;
+
+}
+
+@media (min-width: 768px) { 
+
+    .mapboxgl-ctrl-geocoder, .mapboxgl-ctrl.mapboxgl-ctrl-group{
+
+        display: block;
+
+    }
+
+}
+
+.mapboxgl-ctrl-top-left .mapboxgl-ctrl-geocoder{
+
+    float: none;
+    min-width: auto;
+    max-width: auto;
+    box-shadow: 0 1px 1.5px 0 rgba(0, 0, 0, 0.12), 0 1px 1px 0 rgba(0, 0, 0, 0.24);
+    width: auto;
+    border-radius: 0;
+
+}
+
+.mapboxgl-ctrl-top-left .mapboxgl-ctrl-geocoder ul {
+
+    border-radius: 0;
+    box-shadow: 0 1px 1.5px 0 rgba(0, 0, 0, 0.12), 0 1px 1px 0 rgba(0, 0, 0, 0.24);
+
+}
+
+.mapboxgl-ctrl-top-left .mapboxgl-ctrl-geocoder ul > li > a{
+
+    padding: 10px;
+    border-bottom: none;
+
+}
+
+.mapboxgl-ctrl-top-left .mapboxgl-ctrl-geocoder input[type='text']{
+
+    font-size: 16px;
+
+}
+
+.mapboxgl-ctrl-icon.mapboxgl-ctrl-compass{
+
+    display: none;
+
+}
+
+.mapboxgl-ctrl-bottom-left{
+
+    display: none;
+
+}
+
+/*.mapboxgl-ctrl-bottom-left{
+
+    width: 100%;
+    text-align: center;
+
+}
+
+.mapboxgl-ctrl-bottom-left .mapboxgl-ctrl{
+
+    width: 100%;
+    margin: 0;
+
+}
+
+.mapboxgl-ctrl-bottom-left .mapboxgl-ctrl-attrib{
+
+    font-size: 11px;
+    background: transparent;
+    width: 100%;
+
+}
+
+.mapboxgl-ctrl-bottom-left .mapboxgl-ctrl-attrib a{
+
+    color: rgba(0, 118, 183, 0.4);
+
+}
+
+.mapboxgl-ctrl-bottom-left .mapboxgl-ctrl-attrib a:hover{
+
+    color: rgba(0, 118, 183, 1);
+    
+}
+
+.mapboxgl-ctrl-bottom-left .mapboxgl-ctrl .mapboxgl-ctrl-logo{
+
+    opacity: 0.15;
+    display: inline-block;
+    display: none;
+
+}
+
+.mapboxgl-ctrl-bottom-left .mapboxgl-ctrl .mapboxgl-ctrl-logo:hover{
+
+    opacity: 1;
+
+}
+
+.mapboxgl-ctrl-bottom-left .mapboxgl-ctrl-attrib{
+
+    visibility: visible;
+    padding: 0;
+
+}
+
+.mapboxgl-ctrl-bottom-left .mapboxgl-ctrl-attrib.mapboxgl-compact:after{
+
+    visibility: hidden;
+
+}*/
+
+/*.mapboxgl-ctrl.mapboxgl-ctrl-attrib{
+
+    font-size: 11px;
+    background: transparent;
+    width: 100%;
+
+}
+
+.mapboxgl-ctrl.mapboxgl-ctrl-attrib a{
+
+    color: rgba(0, 118, 183, 0.15);
+
+}
+
+.mapboxgl-ctrl.mapboxgl-ctrl-attrib a:hover{
+
+    color: rgba(0, 118, 183, 1);
+
+}*/

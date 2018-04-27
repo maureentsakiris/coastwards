@@ -83,7 +83,7 @@ export const displayMap = ( ) => {
 				map.addControl( mapboxAttributionControl(), 'bottom-left' );
 		
 
-				map.addControl( mapboxGeocoder( { accessToken: ACCESSTOKEN/*, placeholder: "sdfg"*/ } ), 'top-left' )
+				//map.addControl( mapboxGeocoder( { accessToken: ACCESSTOKEN/*, placeholder: "sdfg"*/ } ), 'top-left' )
 				map.addControl( mapboxNavigationControl(), 'bottom-right' )
 
 				const popup = mapboxPopup( { closeButton: false, closeOnClick: false, anchor: 'bottom' } )
