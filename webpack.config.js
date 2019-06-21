@@ -1,36 +1,30 @@
 //https://stackoverflow.com/questions/42286331/how-to-get-react-hot-loader-working-with-webpack-2-and-webpackdevmiddleware
 
-const webpack = require( 'webpack' )
-const ExtractTextPlugin = require( 'extract-text-webpack-plugin' )
-//const CompressionPlugin = require( 'compression-webpack-plugin' )
-//const BundleAnalyzerPlugin = require( 'webpack-bundle-analyzer' ).BundleAnalyzerPlugin
+//const webpack = require( 'webpack' )
+//const ExtractTextPlugin = require( 'extract-text-webpack-plugin' )
 const { resolve } = require( 'path' )
+const TerserPlugin = require( 'terser-webpack-plugin' )
 
 
-const BUILD_ROOT = resolve( __dirname, 'public/build' )
+//const BUILD_ROOT = resolve( __dirname, 'public/build' )
 
 const NODEMODULES = resolve( __dirname, 'node_modules/' )
-const APP = resolve( __dirname, 'app/' )
+//const APP = resolve( __dirname, 'app/' )
 const ASSETS = resolve( __dirname, 'app/assets/' )
 const I18N = resolve( __dirname, 'app/i18n/' )
 const REDUX = resolve( __dirname, 'app/redux/' )
 const STYLES = resolve( __dirname, 'app/styles/' )
 
+const MiniCssExtractPlugin = require( "mini-css-extract-plugin" );
+
 module.exports = {
 
-	//devtool: 'nosources-source-map',
+	mode: 'production',
 
-	stats: {
-
-		cached: false,
-		modules: false,
-		chunks: false
-
-	},
+	devtool: 'nosources-source-map',
 
 	entry: {
 
-		vendor: 'mapbox-gl',
 		index: './app/entries/index.jsx',
 		login: './app/entries/login.jsx',
 		admin: './app/entries/admin.jsx',
@@ -40,10 +34,8 @@ module.exports = {
 
 	output: {
 
-		filename: '[name].bundle.js', // the output bundle
-		path: BUILD_ROOT,
-		publicPath: '/build/', // necessary for HMR to know where to load the hot update chunks
-		chunkFilename: '[name].js'
+		path: __dirname + '/public/build',
+		filename: "[name].[chunkhash:8].js"
 
 	},
 
@@ -59,105 +51,115 @@ module.exports = {
 
 	module: {
 
-		noParse: /(mapbox-gl)\.js$/,
-
 		rules: [
 
 			{
+				test: /\.(js|jsx)$/,
+				exclude: /node_modules/,
+				use: {
+					loader: "babel-loader",
+					options: {
 
-				test: /\.jsx?$/,
-				include: APP,
-				use: [ 
+						presets: [
 
-					{ loader: 'babel-loader', options: { cacheDirectory: true } },
-					{ loader: 'eslint-loader' } 
+							"@babel/env",
+							"@babel/react"
 
-				]
+						]
+
+					}
+
+				}
 
 			},
+
+			{
+				test: /\.scss$/,
+				use: [
+
+					MiniCssExtractPlugin.loader,
+					"css-loader",
+					"sass-loader",
+
+				]
+			},
+
 			{
 
 				test: /\.modernizrrc$/,
 				use: [ 
 
 					{ loader: 'modernizr-loader' },
-					{ loader: 'json-loader' } 
+					{ loader: 'json-loader' },
 
 				]
 
 			},
-			{ 
-
-				test: /\.(jpe?g|png|gif|svg)$/i,
-				include: ASSETS,
-				use: [ 
-
-					{ loader: 'url-loader', options: { limit: 10000 } },
-					{ loader: 'img-loader', options: { progressive: true } }
-					
-				]
-
-			},
-			{
-
-				test: /\.scss$/,
-				include: APP,
-				use: ExtractTextPlugin.extract( { 
-
-					fallback: "style-loader",
-					use: [
-
-						{ loader: 'css-loader', options: { modules: true, importLoaders: 1, localIdentName: '[name]_[local]' } },
-						{ loader: 'postcss-loader' },
-						{ loader: 'sass-loader' }
-
-					]
-
-				} )
-
-			}
-
 		]
 	},
 
 	plugins: [
 
-		new webpack.DefinePlugin( {
+		new MiniCssExtractPlugin( { filename: "[name]-[contenthash:8].css" } )
 
-			'process.env.NODE_ENV': JSON.stringify( 'production' )
+	],
 
-		} ),
-		new webpack.LoaderOptionsPlugin( {
+	optimization: {
 
-			minimize: true,
-			debug: false
+		minimize: true,
+		minimizer: [ new TerserPlugin( {
 
-		} ),
-		new webpack.optimize.CommonsChunkPlugin( {
+			parallel: true,
+			extractComments: true,
 
-			names: [ 'vendor', 'manifest' ]
+		} ) ],
+		runtimeChunk: true,
+		mangleWasmImports: true,
+		removeAvailableModules: true,
+		removeEmptyChunks: true,
+		mergeDuplicateChunks: true,
+		flagIncludedChunks: true,
+		occurrenceOrder: true,
+		providedExports: true,
+		usedExports: true,
+		concatenateModules: true,
+		splitChunks: {
 
-		} ),
-		new ExtractTextPlugin( {
+			chunks: 'all',
+			name: false,
+			//minSize: 30000,
+			//maxSize: 40000,
+			/*minChunks: 1,
+			maxAsyncRequests: 5,
+			maxInitialRequests: 3,
+			automaticNameDelimiter: '~',
+			name: true,
+			cacheGroups: {
 
-			filename: "[name].css",
-			allChunks: true 
+				vendors: {
 
-		} )
-		//https://forum-archive.vuejs.org/topic/4059/adding-gzip-to-webpack-using-compression-plugin/4
-		//https://medium.com/@rajaraodv/two-quick-ways-to-reduce-react-apps-size-in-production-82226605771a
-		/*new CompressionPlugin( {
+					test: /[\\/]node_modules[\\/]/,
+					priority: -10
 
-			asset: "[path].gz[query]",
-			algorithm: "gzip",
-			test: /\.js$|\.css$|\.html$/,
-			//threshold: 10240,
-			minRatio: 0.8,
-			//deleteOriginalAssets: true
+				},
+				default: {
 
-		} ),*/
-		//new BundleAnalyzerPlugin()
-		
-	]
+					minChunks: 2,
+					priority: -20,
+					reuseExistingChunk: true
+
+				}
+			}*/
+		}
+
+	},
+
+	stats: {
+
+		modules: false,
+		assets: true,
+		children: false,
+
+	}
 
 }

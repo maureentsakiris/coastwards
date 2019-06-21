@@ -44,7 +44,7 @@ const render = ( ) => {
 
 render( )
 
-// Hot Module Replacement API
+/*// Hot Module Replacement API
 if ( module.hot ) {
 
 	module.hot.accept( 'containers/context', () => {
@@ -53,4 +53,4 @@ if ( module.hot ) {
 
 	} )
 
-}
+}*/

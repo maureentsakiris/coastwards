@@ -86,16 +86,16 @@ function promiseFetchForm ( req ) {
 router.post( '/validate', function ( req, res ) {
 
 	promiseFetchForm( req )
-	.then( function ( formData ){
+		.then( function ( formData ){
 
-		res.json( { status: 'OK', json: JSON.stringify( formData ) } );
-		return formData;
+			res.json( { status: 'OK', json: JSON.stringify( formData ) } );
+			return formData;
 
-	} ).catch( function ( error ) {
+		} ).catch( function ( error ) {
 
-		res.json( { status: 'KO', message: error.toString() } );
+			res.json( { status: 'KO', message: error.toString() } );
 
-	} );
+		} );
 
 } );
 

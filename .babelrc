@@ -1,4 +1,4 @@
-{
+/*{
   "presets": [
     ["env", {"modules": false}],
     // webpack understands the native import syntax, and uses it for tree shaking
@@ -11,4 +11,10 @@
     "react-hot-loader/babel"
     // Enables React code to work with HMR.
   ]
+}*/
+
+{
+
+  "plugins": [ "@babel/plugin-proposal-class-properties" ]
+
 }

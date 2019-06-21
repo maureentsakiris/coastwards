@@ -293,7 +293,7 @@ function _promiseFetchGeojson ( ){
 				// SET group_concat_max_len = 100000000; SELECT CONCAT( '{ "type": "FeatureCollection", "features": [', GROUP_CONCAT(' { "type": "Feature", "geometry": ', ST_AsGeoJSON(contribution_point), ', "properties": { "marker-symbol": "marker-primary-dark", "comment": "',IFNULL(contribution_comment, "" ),'", "material": "',IFNULL(contribution_material, "" ),'","datetime": "',IFNULL(contribution_exif_datetime, "" ),'","verified": "',contribution_verified,'", "image": "./uploads/',contribution_uid,'.jpg" } } '), '] }' ) as geojson FROM contributions
 
 
-				connection.query( query, function ( err, results ) {
+				connection.query( query, function ( error, results ) {
 
 					if( error ){
 
@@ -357,7 +357,7 @@ function _promiseFetchAnnotations ( ){
 
 				var query = 'SELECT contribution_id, Y(contribution_point) AS contribution_longitude, X(contribution_point) AS contribution_latitude, contribution_material_verified FROM contributions';
 
-				connection.query( query, function ( err, results ) {
+				connection.query( query, function ( error, results ) {
 
 					if( error ){
 
@@ -420,7 +420,7 @@ function _promiseFetchCount ( ){
 
 				var query = 'SELECT COUNT(*) as count from contributions'
 
-				connection.query( query, function ( err, results ) {
+				connection.query( query, function ( error, results ) {
 
 					if( error ){
 
@@ -485,7 +485,7 @@ function _promiseFetchIntro ( ){
 
 				var query = 'SELECT contribution_uid from contributions WHERE contribution_intro="1" ORDER BY RAND() LIMIT 30'
 
-				connection.query( query, function ( err, results ) {
+				connection.query( query, function ( error, results ) {
 
 					if( error ){
 
@@ -571,7 +571,7 @@ function _promiseFetchContribution ( id ){
 
 				var query = mysql.format( sql, inserts )
 
-				connection.query( query, function ( err, results ) {
+				connection.query( query, function ( error, results ) {
 
 					if( error ){
 
