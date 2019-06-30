@@ -184,7 +184,7 @@ const _fetch = ( formData ) => {
 
 				var query = mysql.format( sql, inserts )
 
-				connection.query( query, function ( err, results ) {
+				connection.query( query, function ( error, results ) {
 
 					if( error ){
 
@@ -359,7 +359,7 @@ const _update = ( formData ) => {
 
 				var query = mysql.format( sql, inserts )
 
-				connection.query( query, function ( err, result ) {
+				connection.query( query, function ( error, result ) {
 
 					if( error ){
 
@@ -432,7 +432,7 @@ function _promiseFetchExamples (){
 
 				var query = mysql.format( sql, inserts )
 
-				connection.query( query, function ( err, results ) {
+				connection.query( query, function ( error, results ) {
 
 					if( error ){
 
@@ -1120,7 +1120,7 @@ function _promiseFetchContribution ( id ){
 
 				var query = mysql.format( sql, inserts )
 
-				connection.query( query, function ( err, results ) {
+				connection.query( query, function ( error, results ) {
 
 					if( error ){
 

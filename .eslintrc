@@ -39,9 +39,20 @@
 		"promise/param-names": 2,
         "promise/always-return": 2,
         "promise/catch-or-return": 2,
-        "react/no-unescaped-entities": 0
+        "react/no-unescaped-entities": 0,
+        "react/prop-types": 1
 	},
 	"globals": {
 		"Promise": true
+	},
+	"settings":{
+
+		"react": {
+
+			"pragma": "React",
+			"version": "15.6.1"
+
+		}
+
 	}
 }

@@ -88,7 +88,7 @@ const _promiseFetchGeoJson = ( fields ) => {
 
 				var query = mysql.format( sql, inserts )
 
-				connection.query( query, function ( err, results ) {
+				connection.query( query, function ( error, results ) {
 
 					if( error ){
 
@@ -176,7 +176,7 @@ function _promiseFetchResults ( params ){
 
 					var query = mysql.format( sql, inserts )
 
-					connection.query( query, function ( err, results ) {
+					connection.query( query, function ( error, results ) {
 
 						if( error ){
 
