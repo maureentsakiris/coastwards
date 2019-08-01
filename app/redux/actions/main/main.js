@@ -133,7 +133,7 @@ const _promiseSafe = ( image ) => {
 
 		let options = { 
 
-			url: 'https://vision.googleapis.com/v1/images:annotate?fields=responses&key=AIzaSyBL_zQUvMQNSnljycIZbHTYvscgYNLsp50',
+			url: 'https://vision.googleapis.com/v1/images:annotate?fields=responses&key=' + process.env.GOOGLE_API_KEY,
 			data: data
 
 		}
