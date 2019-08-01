@@ -21,6 +21,7 @@ input.propTypes = {
 
 	hocProps: PropTypes.shape( { 
 
+		children: PropTypes.node,
 		accept: PropTypes.string,
 		alt: PropTypes.string,
 		autoComplete: PropTypes.oneOf( [ 'on', 'off' ] ),

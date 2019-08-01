@@ -23,6 +23,7 @@ a.propTypes = {
 
 		active: PropTypes.bool,
 		onClick: PropTypes.func,
+		children: PropTypes.node,
 
 		download: PropTypes.bool,
 		href: PropTypes.string,

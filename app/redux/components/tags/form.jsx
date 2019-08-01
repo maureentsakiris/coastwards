@@ -21,6 +21,7 @@ form.propTypes = {
 
 	hocProps: PropTypes.shape( { 
 
+		children: PropTypes.node,
 		acceptCharset: PropTypes.string,
 		action: PropTypes.string,
 		autoComplete: PropTypes.oneOf( [ 'on', 'off' ] ),

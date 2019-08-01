@@ -21,6 +21,7 @@ table.propTypes = {
 
 	hocProps: PropTypes.shape( { 
 
+		children: PropTypes.node,
 		border: PropTypes.oneOf( [ 0, 1 ] )
 
 	} )

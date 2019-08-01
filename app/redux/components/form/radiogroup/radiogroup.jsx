@@ -53,6 +53,8 @@ radiogroup.propTypes = {
 		options: PropTypes.array.isRequired,
 		className: PropTypes.string,
 		selected: PropTypes.string,
+		form: PropTypes.string,
+		name: PropTypes.sting,
 
 		onChange: PropTypes.func
 

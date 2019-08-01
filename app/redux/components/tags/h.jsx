@@ -24,7 +24,8 @@ h.propTypes = {
 
 	hocProps: PropTypes.shape( {
 
-		priority: PropTypes.number.isRequired
+		priority: PropTypes.number.isRequired,
+		children: PropTypes.node,
 
 	} )
 

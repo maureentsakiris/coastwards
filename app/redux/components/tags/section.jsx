@@ -19,7 +19,9 @@ const section = ( { hocProps } ) => {
 
 section.propTypes = {
 
-	hocProps: PropTypes.shape( { } )
+	hocProps: PropTypes.shape( { 
+		children: PropTypes.node,
+	} )
 
 }
 

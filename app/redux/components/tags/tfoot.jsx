@@ -19,7 +19,9 @@ const tfoot = ( { hocProps } ) => {
 
 tfoot.propTypes = {
 
-	hocProps: PropTypes.shape( { } )
+	hocProps: PropTypes.shape( { 
+		children: PropTypes.node,
+	} )
 
 }
 

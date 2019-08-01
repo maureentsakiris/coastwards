@@ -23,7 +23,7 @@ export default class MapboxGL extends Component {
 	componentDidMount (){
 
 		this.props.displayMap()
-		this.props.disableAndreasPinch()
+		//this.props.disableAndreasPinch()
 
 	}
 

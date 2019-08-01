@@ -19,7 +19,9 @@ const button = ( { hocProps } ) => {
 
 button.propTypes = {
 
-	hocProps: PropTypes.shape( { } ),
+	hocProps: PropTypes.shape( { 
+		children: PropTypes.node,
+	} ),
 	autoFocus: PropTypes.bool,
 	disabled: PropTypes.bool,
 	form: PropTypes.string,

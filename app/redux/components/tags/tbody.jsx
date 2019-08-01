@@ -19,7 +19,9 @@ const tbody = ( { hocProps } ) => {
 
 tbody.propTypes = {
 
-	hocProps: PropTypes.shape( { } )
+	hocProps: PropTypes.shape( { 
+		children: PropTypes.node,
+	} )
 
 }
 

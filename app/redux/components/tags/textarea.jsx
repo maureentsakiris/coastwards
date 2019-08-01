@@ -21,6 +21,7 @@ textarea.propTypes = {
 
 	hocProps: PropTypes.shape( { 
 
+		children: PropTypes.node,
 		autoFocus: PropTypes.bool,
 		cols: PropTypes.number, 
 		dirname: PropTypes.string,

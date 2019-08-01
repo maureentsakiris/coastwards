@@ -35,7 +35,7 @@
 		"arrow-spacing": [2, { "before": true, "after": true }],
 		"arrow-parens": [2, "always"],
 		"no-console": 1,
-		"no-unused-vars": 1,
+		"no-unused-vars": 2,
 		"promise/param-names": 2,
         "promise/always-return": 2,
         "promise/catch-or-return": 2,

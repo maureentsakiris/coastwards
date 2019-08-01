@@ -22,6 +22,8 @@ input.propTypes = {
 	hocProps: PropTypes.shape( {
 
 		placeholder: PropTypes.string,
+		form: PropTypes.string,
+		name: PropTypes.sting,
 
 		onChange: PropTypes.func
 

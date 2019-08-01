@@ -51,7 +51,10 @@ iconradiogroup.propTypes = {
 
 		options: PropTypes.array.isRequired,
 		selected: PropTypes.string,
-
+		form: PropTypes.string,
+		name: PropTypes.sting,
+		className: PropTypes.string,
+		
 		onChange: PropTypes.func.isRequired
 
 	} )

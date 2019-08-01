@@ -21,7 +21,9 @@ file.propTypes = {
 	hocProps: PropTypes.shape( {
 
 		onChange: PropTypes.func,
-		accept: PropTypes.string
+		accept: PropTypes.string,
+		form: PropTypes.string,
+		name: PropTypes.sting
 
 
 	} )

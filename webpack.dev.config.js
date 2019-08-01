@@ -3,6 +3,7 @@
 const webpack = require( 'webpack' )
 const ExtractTextPlugin = require( 'extract-text-webpack-plugin' )
 const { resolve } = require( 'path' )
+const { parsed: localEnv } = require( 'dotenv' ).config()
 
 
 const BUILD_ROOT = resolve( __dirname, 'public/build' )
@@ -146,7 +147,8 @@ module.exports = {
 			filename: "[name].css",
 			allChunks: true 
 
-		} )
+		} ),
+		new webpack.EnvironmentPlugin( localEnv )
 
 	]
 

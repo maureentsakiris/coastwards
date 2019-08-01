@@ -19,7 +19,9 @@ const thead = ( { hocProps } ) => {
 
 thead.propTypes = {
 
-	hocProps: PropTypes.shape( { } )
+	hocProps: PropTypes.shape( { 
+		children: PropTypes.node,
+	} )
 
 }
 

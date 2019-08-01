@@ -3,7 +3,7 @@ import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder'
 
 
 export const promiseInitMapbox = ( accesstoken, options ) => {
-
+	
 	return new Promise( ( resolve, reject ) => {
 
 		mapboxgl.accessToken = accesstoken

@@ -2,6 +2,7 @@
 
 const webpack = require( 'webpack' )
 const ExtractTextPlugin = require( 'extract-text-webpack-plugin' )
+const { parsed: localEnv } = require( 'dotenv' ).config()
 //const CompressionPlugin = require( 'compression-webpack-plugin' )
 //const BundleAnalyzerPlugin = require( 'webpack-bundle-analyzer' ).BundleAnalyzerPlugin
 const { resolve } = require( 'path' )
@@ -143,7 +144,8 @@ module.exports = {
 			filename: "[name].css",
 			allChunks: true 
 
-		} )
+		} ),
+		new webpack.EnvironmentPlugin( localEnv )
 		//https://forum-archive.vuejs.org/topic/4059/adding-gzip-to-webpack-using-compression-plugin/4
 		//https://medium.com/@rajaraodv/two-quick-ways-to-reduce-react-apps-size-in-production-82226605771a
 		/*new CompressionPlugin( {

@@ -19,7 +19,9 @@ const nav = ( { hocProps } ) => {
 
 nav.propTypes = {
 
-	hocProps: PropTypes.shape( { } )
+	hocProps: PropTypes.shape( {
+		children: PropTypes.node,
+	} )
 
 }
 

@@ -19,7 +19,9 @@ const tr = ( { hocProps } ) => {
 
 tr.propTypes = {
 
-	hocProps: PropTypes.shape( { } )
+	hocProps: PropTypes.shape( { 
+		children: PropTypes.node,
+	} )
 
 }
 

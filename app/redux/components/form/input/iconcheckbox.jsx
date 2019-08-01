@@ -39,6 +39,8 @@ iconcheckbox.propTypes = {
 		label: PropTypes.string.isRequired,
 		value: PropTypes.string.isRequired,
 		selected: PropTypes.bool.isRequired,
+		form: PropTypes.string,
+		name: PropTypes.sting,
 
 		onChange: PropTypes.func.isRequired
 

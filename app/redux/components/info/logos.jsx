@@ -6,7 +6,6 @@ import DIV from 'components/tags/div'
 import A from 'components/tags/a'
 import P from 'components/tags/p'
 import IMG from 'components/tags/img'
-import BR from 'components/tags/br'
 
 import style from './_logos'
 

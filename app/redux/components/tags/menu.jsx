@@ -21,6 +21,7 @@ menu.propTypes = {
 
 	hocProps: PropTypes.shape( { 
 
+		children: PropTypes.node,
 		label: PropTypes.string,
 		type: PropTypes.oneOf( [ 'list', 'toolbar', 'context' ] )
 		

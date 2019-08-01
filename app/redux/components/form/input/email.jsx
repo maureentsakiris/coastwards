@@ -21,7 +21,9 @@ email.propTypes = {
 	hocProps: PropTypes.shape( {
 
 		onChange: PropTypes.func,
-		placeholder: PropTypes.string
+		placeholder: PropTypes.string,
+		form: PropTypes.string,
+		name: PropTypes.sting
 
 	} )
 

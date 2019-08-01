@@ -19,7 +19,9 @@ const strong = ( { hocProps } ) => {
 
 strong.propTypes = {
 
-	hocProps: PropTypes.shape( { } )
+	hocProps: PropTypes.shape( { 
+		children: PropTypes.node,
+	} )
 
 }
 

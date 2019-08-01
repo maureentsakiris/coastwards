@@ -3,19 +3,20 @@ const router = express.Router()
 const formidable = require( 'formidable' )
 const _ = require( 'underscore' )
 const nodemailer = require( 'nodemailer' )
+require( 'dotenv' ).config()
 
 //var transporter = nodemailer.createTransport( 'smtps://go%40coastwards.org:EK.cc74q{q@6ykn-r2f5.accessdomain.com' )
 
 var poolConfig = {
 
 	pool: true,
-	host: '6ykn-r2f5.accessdomain.com',
-	port: 587,
+	host: process.env.SMTP_HOST,
+	port: process.env.SMTP_PORT,
 	secure: false,
 	auth: {
 
-		user: 'go@coastwards.org',
-		pass: 'EK.cc74q{q'
+		user: process.env.SMTP_AUTH_USER,
+		pass: process.env.SMTP_AUTH_PASSWORD
 
 	}
 
@@ -79,7 +80,7 @@ const _sendAsk = ( fields ) => {
 		let mailOptions = {
 
 			from: '"' + fields.email + '" <' + fields.email + '>',
-			to: 'go@coastwards.org',
+			to: process.env.CONTACT_TO,
 			subject: 'Still have a question...',
 			text: fields.comment
 
@@ -182,7 +183,7 @@ const _sendReport = ( fields ) => {
 		let mailOptions = {
 
 			from: '"' + fields.email + '" <' + fields.email + '>',
-			to: 'go@coastwards.org',
+			to: process.env.REPORT_TO,
 			subject: 'Reporting image with id: ' + fields.id,
 			text: fields.comment
 
@@ -233,8 +234,8 @@ const _sendError = ( fields ) => {
 
 		let mailOptions = {
 
-			from: 'go@coastwards.org',
-			to: 'error@coastwards.org',
+			from: process.env.SMTP_AUTH_USER,
+			to: process.env.ERROR_TO,
 			subject: fields.message,
 			text: fields.stack
 

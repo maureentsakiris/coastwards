@@ -1,6 +1,6 @@
 import * as types from 'types'
 import { sendErrorMail } from 'actions/util/error/error'
-import { promiseInitMapbox, mapboxPopup, mapboxLngLatConvert, mapboxNavigationControl, mapboxAttributionControl, mapboxGeocoder } from 'actions/mapbox/mapbox'
+import { promiseInitMapbox, mapboxPopup, mapboxLngLatConvert, mapboxNavigationControl, mapboxAttributionControl } from 'actions/mapbox/mapbox'
 import { isNull, findWhere, pluck, map } from 'underscore'
 import { promiseGet, promiseJSONOK } from 'actions/util/request/get'
 //import { resetMain } from 'actions/main/main'
@@ -9,9 +9,10 @@ import { promiseGet, promiseJSONOK } from 'actions/util/request/get'
 const _map = map
 
 const CENTER = [ 0, 39 ]
-const STOPS = [ [ 0, 4 ], [ 5, 6 ], [ 10, 15 ], [ 22, 50 ] ]
+const STOPS = [ [ 0, 5.5 ], [ 5, 7 ], [ 10, 15 ], [ 22, 50 ] ]
 const ZOOM = 1
-const ACCESSTOKEN = 'pk.eyJ1IjoibWF1cmVlbnRzYWtpcmlzIiwiYSI6ImNpanB0NzgwMjAxZDB0b2tvamNpYXQyeTMifQ.HVQAxH-RQKZBss1u3zIoxA'
+//const ACCESSTOKEN = 'pk.eyJ1IjoibWF1cmVlbnRzYWtpcmlzIiwiYSI6ImNpanB0NzgwMjAxZDB0b2tvamNpYXQyeTMifQ.HVQAxH-RQKZBss1u3zIoxA'
+const ACCESSTOKEN = process.env.MAPBOX_API_ACCESSTOKEN
 const OPTIONS = {
 
 	container: 'Mapbox',

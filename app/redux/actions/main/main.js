@@ -695,7 +695,7 @@ export const unclipPage = ( ) => {
 
 }
 
-export const disableAndreasPinch = ( ) => {
+/*export const disableAndreasPinch = ( ) => {
 
 	return function ( dispatch ){
 
@@ -719,7 +719,7 @@ export const disableAndreasPinch = ( ) => {
 
 	}
 
-}
+}*/
 
 export const fetchExamples = () => {
 

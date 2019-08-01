@@ -21,6 +21,7 @@ select.propTypes = {
 
 	hocProps: PropTypes.shape( { 
 
+		children: PropTypes.node,
 		form: PropTypes.string.isRequired,
 		name: PropTypes.string.isRequired
 		

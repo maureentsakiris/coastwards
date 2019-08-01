@@ -21,6 +21,7 @@ label.propTypes = {
 
 	hocProps: PropTypes.shape( { 
 
+		children: PropTypes.node,
 		htmlFor: PropTypes.string.isRequired,
 		form: PropTypes.string.isRequired
 		

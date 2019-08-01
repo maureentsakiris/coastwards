@@ -55,6 +55,11 @@ export const Locales = [
 		locale: 'fr',
 		name: 'Français',
 		en: 'French'
+	},
+	{
+		locale: 'it',
+		name: 'Italiano',
+		en: 'Italian'
 	}/*,
 	{
 		locale: 'ru',
@@ -65,11 +70,6 @@ export const Locales = [
 		locale: 'bn',
 		name: 'বাংলা',
 		en: 'Bengali'
-	},
-	{
-		locale: 'it',
-		name: 'Italiano',
-		en: 'Italian'
 	}*/
 ]
 
@@ -445,7 +445,7 @@ loaders.fr = ( done ) => {
 
 }
 
-/*loaders.it = ( done ) => {
+loaders.it = ( done ) => {
 
 	if ( !hasIntl ){
 
@@ -486,7 +486,7 @@ loaders.fr = ( done ) => {
 
 }
 
-loaders.ru = ( done ) => {
+/*loaders.ru = ( done ) => {
 
 	if ( !hasIntl ){
 

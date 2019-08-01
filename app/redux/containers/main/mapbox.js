@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { displayMap } from 'actions/main/mapbox'
-import { disableAndreasPinch } from 'actions/main/main'
+//import { disableAndreasPinch } from 'actions/main/main'
 import MAPBOX from 'components/main/mapbox'
 
 const mapStateToProps = ( state ) => {
@@ -21,12 +21,12 @@ const mapDispatchToProps = ( dispatch ) => {
 
 			dispatch( displayMap() )
 
-		},
+		}/*,
 		disableAndreasPinch: ( ) => {
 
 			dispatch( disableAndreasPinch() )
 
-		}
+		}*/
 
 	}
 

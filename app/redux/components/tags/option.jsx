@@ -21,6 +21,7 @@ option.propTypes = {
 
 	hocProps: PropTypes.shape( { 
 
+		children: PropTypes.node,
 		value: PropTypes.string.isRequired
 		
 	} )
