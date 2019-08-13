@@ -45,6 +45,7 @@ const logos = ( { intl, jazzSupported } ) => {
 
 				<P className={ style.collaboration }>{ formatMessage( messages.in_collaboration_with ) }</P>
 				<A target="_blank" href="http://www.cerema.fr/" ><IMG src="assets/cerema.jpg" alt="Cerema" /></A>
+				<A target="_blank" href="https://www.planet2084.org" ><IMG src="assets/planet2084.png" alt="Cerema" /></A>
 			</DIV>
 
 		)
@@ -61,6 +62,7 @@ const logos = ( { intl, jazzSupported } ) => {
 
 				<P className={ style.collaboration } >{ formatMessage( messages.in_collaboration_with ) }</P>
 				<A target="_blank" href="http://www.cerema.fr/" ><IMG src="assets/cerema.jpg" alt="Cerema" /></A>
+				<A target="_blank" href="https://www.planet2084.org" ><IMG src="assets/planet2084.png" alt="Cerema" /></A>
 			</DIV>
 
 		)
