@@ -2,6 +2,7 @@ const express = require( 'express' )
 const router = express.Router()
 const mysql = require( 'mysql' )
 const formidable = require( 'formidable' )
+//const query_overpass = require( 'query-overpass' )
 // For node 7+
 var os = require( 'os' ); 
 os.tmpDir = os.tmpdir;
@@ -342,6 +343,49 @@ router.get( '/geojson', function ( req, res ) {
 		} )
 
 } )
+
+/*function _promiseFetchOSM ( ){
+
+	const sandQuery = '[out:json];(node["natural"="coastline"]["surface"="sand"];way["natural"="coastline"]["surface"="sand"];relation["natural"="coastline"]["surface"="sand"];);out body;>;out skel qt;'
+	//const sandQuery = '[out:json];(node["surface"="sand"];way["surface"="sand"];relation["surface"="sand"];);out body;>;out skel qt;'
+
+	return new Promise( function ( resolve, reject ) {
+
+		query_overpass( sandQuery, ( error, data ) => {
+
+			if( error ){
+
+				reject( error )
+
+			} else {
+
+				resolve( data )
+
+			}
+
+		}, { flatProperties: true } )
+
+	} )
+
+}
+
+router.get( '/osm', function ( req, res ) {
+
+	_promiseFetchOSM()
+		//.then( JSON.parse )
+		.then( ( geojson ) => {
+
+			res.json( { status: 'OK', json: geojson } )
+			return geojson;
+
+		} )
+		.catch( ( error ) => {
+
+			res.json( { status: 'KO', message: error.toString() } )
+
+		} )
+
+} )*/
 
 function _promiseFetchAnnotations ( ){
 

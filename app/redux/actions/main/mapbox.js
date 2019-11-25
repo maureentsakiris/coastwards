@@ -37,6 +37,12 @@ const _promiseFetchGeojson = () => {
 
 }
 
+/*const _promiseFetchOSM = () => {
+
+	return  promiseGet( '/contribute/osm' )
+
+}*/
+
 
 const _onMarkerClick = ( features ) => {
 
@@ -257,6 +263,86 @@ export const displayMap = ( ) => {
 				return csv
 
 			} )
+			/*.then( _promiseFetchOSM )
+			.then( JSON.parse )
+			.then( promiseJSONOK )
+			.then( ( parsed ) => {
+
+				const geojsonOSM = parsed.json
+
+				console.log( "json", geojsonOSM )
+				
+				if( isNull( geojsonOSM ) ){
+
+					dispatch( { type: types.SET_PROMPT_MSG, to: 'osm_empty' } )
+
+				}
+
+				const state = getState()
+				const map = state.mapbox.map
+
+				map.addSource( 'geojsonOSM', {
+
+					type: 'geojson',
+					data: geojsonOSM,
+					cluster: false,
+					clusterMaxZoom: 10, // Max zoom to cluster points on
+					clusterRadius: 20 // Radius of each cluster when clustering points (defaults to 50)
+				
+				} )
+
+				const stops = _map( state.materials, ( material ) => {
+
+					let { value, color } = material
+					return [ value, color ]
+
+				} )
+
+				console.log( stops )
+
+				map.addLayer( {
+			
+					id: 'markersOSMPolygon',
+					type: 'fill',
+					source: 'geojsonOSM',
+					"paint": {
+
+						"fill-color": "#f00",
+						"fill-opacity": 0.4
+
+					},
+					"filter": [ "==", "$type", "Polygon" ]
+				}, 'water_label' )
+
+				map.addLayer( {
+					id: 'markersOSMLineString',
+					type: 'line',
+					source: 'geojsonOSM',
+					"paint": {
+						'line-width': 3,
+						"line-color": "#f00"
+					},
+					"filter": [ "==", "$type", "LineString" ],
+				} );
+
+				map.addLayer( {
+					id: 'markersOSMPoint',
+					type: 'circle',
+					source: 'geojsonOSM',
+					paint: {
+						'circle-radius': {
+							'base': 1.75,
+							'stops': STOPS
+						},
+						'circle-color': "#f00"
+
+					},
+					"filter": [ "==", "$type", "Point" ],
+				} );
+
+				return geojsonOSM
+
+			} )	*/		
 			.catch( ( error ) => {
 
 				let msg = error.message ? error.message : 'an_error_occurred'
