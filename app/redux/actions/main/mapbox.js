@@ -11,12 +11,11 @@ const _map = map
 const CENTER = [ 0, 39 ]
 const STOPS = [ [ 0, 5.5 ], [ 5, 7 ], [ 10, 15 ], [ 22, 50 ] ]
 const ZOOM = 1
-//const ACCESSTOKEN = 'pk.eyJ1IjoibWF1cmVlbnRzYWtpcmlzIiwiYSI6ImNpanB0NzgwMjAxZDB0b2tvamNpYXQyeTMifQ.HVQAxH-RQKZBss1u3zIoxA'
 const ACCESSTOKEN = process.env.MAPBOX_API_ACCESSTOKEN
 const OPTIONS = {
 
 	container: 'Mapbox',
-	style: 'mapbox://styles/maureentsakiris/cj04f0nru00ai2rmv7kb1b0s2',
+	style: process.env.MAPBOX_STYLE,
 	zoom: ZOOM,
 	maxZoom: 17,
 	center: CENTER,
