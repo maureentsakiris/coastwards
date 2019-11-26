@@ -36,7 +36,7 @@ module.exports = {
 		login: './app/entries/login.jsx',
 		admin: './app/entries/admin.jsx',
 		data: './app/entries/data.jsx',
-		main: './app/entries/main.jsx'
+		map: './app/entries/map.jsx'
 
 	},
 
