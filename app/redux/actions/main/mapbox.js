@@ -92,7 +92,7 @@ export const displayMap = ( ) => {
 				//map.addControl( mapboxGeocoder( { accessToken: ACCESSTOKEN/*, placeholder: "sdfg"*/ } ), 'top-left' )
 				map.addControl( mapboxNavigationControl(), 'bottom-right' )
 
-				const popup = mapboxPopup( { closeButton: false, closeOnClick: false, anchor: 'bottom' } )
+				const popup = mapboxPopup( { closeButton: false, closeOnClick: false, anchor: 'bottom', maxWidth: 'auto' } )
 				const featureDOM = document.getElementById( 'Popup' )
 				popup.setDOMContent( featureDOM )
 				dispatch( { type: types.SET_POPUP_INSTANCE, to: popup } )
@@ -344,7 +344,7 @@ export const displayMap = ( ) => {
 			} )	*/		
 			.catch( ( error ) => {
 
-				let msg = error.message ? error.message : 'an_error_occurred'
+				let msg = error.message ? error.message : 'an_error_occurred' + error
 				dispatch( { type: types.SET_ERROR_MSG, to: msg } )
 
 				dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'errors', to: true } )
