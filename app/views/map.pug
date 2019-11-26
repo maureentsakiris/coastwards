@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+html(lang="en", dir="ltr", class="no-js")
+	head
+		meta(charset="utf-8")
+		meta(http-equiv="x-ua-compatible", content="ie=edge")
+		title="COASTWARDS - Map"
+		
+		meta(name="viewport", content="user-scalable=no,initial-scale=1.0,maximum-scale=1,width=device-width,minimal-ui")
+
+		link(rel="stylesheet", href="https://fonts.googleapis.com/icon?family=Material+Icons", type="text/css")
+		link(rel="stylesheet", href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700", type="text/css")
+		link(rel="stylesheet", href="./build/map.css", type="text/css")
+		link(rel="stylesheet", href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.2/mapbox-gl.css", type="text/css")
+		link(rel="stylesheet", href="./css/mapbox-gl-overrides.css", type="text/css")
+
+	body
+		div(id="Body")
+		script(src="./build/manifest.bundle.js")
+		script(src="./build/vendor.bundle.js")
+		script(src="./build/map.bundle.js")

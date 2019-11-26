@@ -49,6 +49,13 @@ app.get( '/data', function ( req, res ) {
 
 } );
 
+app.get( '/map', function ( req, res ) {
+
+	var lang = req.acceptsLanguages( [ 'en', 'es', 'ar', 'de', 'zh', 'el', 'hi', 'pt', 'fr', 'it' ] );
+	res.render( 'map', { lang: lang } );
+
+} );
+
 
 const passport = require( 'passport' )
 const session = require( 'express-session' )
