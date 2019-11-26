@@ -15,9 +15,10 @@ export const promiseInitMapbox = ( accesstoken, options ) => {
 
 		} )
 
-		map.on( 'error', ( ) => {
+		map.on( 'error', ( err ) => {
 
-			reject( Error( 'error_loading_mapbox' ) )  
+			// reject( Error( 'error_loading_mapbox' ) )  
+			reject( err )
 
 		} )
 
