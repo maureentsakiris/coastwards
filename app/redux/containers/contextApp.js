@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import CONTEXTAPP from 'components/contextapp'
+import CONTEXTAPP from 'components/contextApp'
 
 const mapStateToProps = ( state ) => {
 
