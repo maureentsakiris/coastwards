@@ -89,7 +89,7 @@ export const displayMap = ( ) => {
 				map.addControl( mapboxAttributionControl(), 'bottom-left' );
 		
 
-				//map.addControl( mapboxGeocoder( { accessToken: ACCESSTOKEN/*, placeholder: "sdfg"*/ } ), 'top-left' )
+				//map.addControl( mapboxGeocoder( { accessToken: ACCESSTOKEN, placeholder: "sdfg" } ), 'top-left' )
 				map.addControl( mapboxNavigationControl(), 'bottom-right' )
 
 				const popup = mapboxPopup( { closeButton: false, closeOnClick: false, anchor: 'bottom', maxWidth: 'auto' } )
@@ -344,8 +344,8 @@ export const displayMap = ( ) => {
 			} )	*/		
 			.catch( ( error ) => {
 
-				//const alt = typeof error === 'object' ? JSON.stringify( alt ) : alt
-				let msg = error.message ? error.message : 'an_error_occurred'
+				const msg = typeof error === 'object' ? JSON.stringify( error ) : error
+				//let msg = error.message ? error.message : 'an_error_occurred'
 				dispatch( { type: types.SET_ERROR_MSG, to: msg } )
 
 				dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'errors', to: true } )

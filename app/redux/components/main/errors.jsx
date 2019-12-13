@@ -123,7 +123,7 @@ const errors = ( { intl, className, jazzSupported, show, error, upload } ) => {
 		return (
 
 			<DIV id="Errors" className={ clsJazz } >
-				<H priority={ 2 }>{ str }</H>
+				<H priority={ 2 } style={ { wordBreak: 'break-all' } }>{ str }</H>
 				{ upload && <ACTIONS /> }
 			</DIV>
 
