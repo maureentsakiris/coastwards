@@ -344,8 +344,8 @@ export const displayMap = ( ) => {
 			} )	*/		
 			.catch( ( error ) => {
 
-				const msg = typeof error === 'object' ? JSON.stringify( error ) : error
-				//let msg = error.message ? error.message : 'an_error_occurred'
+				// const msg = typeof error === 'object' ? JSON.stringify( error ) : error
+				let msg = error.message ? error.message : 'an_error_occurred'
 				dispatch( { type: types.SET_ERROR_MSG, to: msg } )
 
 				dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'errors', to: true } )

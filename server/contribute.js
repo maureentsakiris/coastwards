@@ -2,6 +2,7 @@ const express = require( 'express' )
 const router = express.Router()
 const mysql = require( 'mysql' )
 const formidable = require( 'formidable' )
+const fetch = require( 'node-fetch' ) 
 //const query_overpass = require( 'query-overpass' )
 // For node 7+
 var os = require( 'os' ); 
@@ -30,18 +31,20 @@ const pool  = mysql.createPool( {
 
 } )
 
+const UPLOADDIR = path.join( __dirname, '../public/uploads' )
+
 const _promiseFetchForm = ( req ) => {
 
 	var form = new formidable.IncomingForm()
-	var uploadDir = path.join( __dirname, '../public/uploads' )
+	// var uploadDir = path.join( __dirname, '../public/uploads' )
 
-	if ( !fs.existsSync( uploadDir ) ){
+	if ( !fs.existsSync( UPLOADDIR ) ){
 
-		fs.mkdirSync( uploadDir )
+		fs.mkdirSync( UPLOADDIR )
 
 	}
 
-	form.uploadDir = uploadDir;
+	form.uploadDir = UPLOADDIR;
 	form.keepExtensions = true;
 
 	return new Promise( ( resolve, reject ) => {
@@ -49,6 +52,8 @@ const _promiseFetchForm = ( req ) => {
 		var formData = {}
 
 		form.parse( req, function ( error, fields, files ) {
+
+			
 
 			if( error ){
 
@@ -164,12 +169,95 @@ const _promiseValidDate = ( formData ) => {
 
 }
 
+const _promiseLabels = ( formData ) => {
+
+	return new Promise( ( resolve, reject ) => {
+
+		const { fields, files } = formData
+		const { labels } = fields
+
+
+		if( labels ){
+
+			formData.labels = labels
+			resolve( formData )
+
+		}else{
+
+
+			const data = JSON.stringify( {
+
+				"requests":[
+					{
+						"image": { "source": {
+
+							// imageUri: files.file.path'
+							imageUri: 'http://coastwards.org/uploads/61688e90-cbed-11e8-a630-7d60b7289fc1.jpg'
+
+						} },
+						"features":[
+							{
+								"type":"LABEL_DETECTION"
+							},
+							{
+								"type":"SAFE_SEARCH_DETECTION"
+							}
+
+						]
+					}
+				]
+			} )
+
+			fetch( 'https://vision.googleapis.com/v1/images:annotate?fields=responses&key=AIzaSyAUyFoB1T1cAfkXJfcd4NT0dEYm1agojYU', {
+
+				method: 'POST',
+				body: data,
+
+			} )
+				.then( ( response ) => response.json() )
+				.then( ( responseJson ) => {
+
+					if ( responseJson.responses ) {
+
+						const annotations = responseJson.responses[ 0 ]
+
+						if( _.contains( annotations.safeSearchAnnotation, 'LIKELY' ) || _.contains( annotations.safeSearchAnnotation, 'VERY_LIKELY' ) ){
+						
+							reject( 'spam_detected' )
+
+						}
+
+						formData.labels = JSON.stringify( annotations.labelAnnotations )
+						resolve( formData )
+						return formData
+
+					} else {
+
+						reject( responseJson.error.message ) 
+
+						return formData
+
+					}
+
+				} )
+				.catch( ( error ) => {
+
+					reject( error ) 
+
+				} )
+
+		}
+
+	} )
+
+}
+
 const _promiseInsertContribution = ( formData ) => {
 
 	return new Promise( function ( resolve, reject ) {
 
-		const { ip, fields, validDate } = formData
-		const { long, lat, manual, corrected, uid, labels, exifdata, material, adaptation, comment, hashtag } = fields
+		const { ip, fields, validDate, labels } = formData
+		const { long, lat, manual, corrected, uid, exifdata, material, source, adaptation, comment, hashtag } = fields
 		const point = util.format( 'POINT(%s %s)', long, lat )
 
 		const sanitizedComment = xss( comment )
@@ -180,7 +268,7 @@ const _promiseInsertContribution = ( formData ) => {
 
 		// Truncate table coastwards.contributions
 		//(INET6_ATON(?))
-		var sql = 'INSERT INTO ??.?? ( ??, ??, ??, ??, ??, ??, ??, ??, ??, ??, ??, ?? ) VALUES ( (ST_PointFromText(?)), ?, ?, ?, ?, ?,(INET6_ATON(?)) , ?, ?, ?, ?, ? )'
+		var sql = 'INSERT INTO ??.?? ( ??, ??, ??, ??, ??, ??, ??, ??, ??, ??, ??, ??, ?? ) VALUES ( (ST_PointFromText(?)), ?, ?, ?, ?, ?,(INET6_ATON(?)), ? , ?, ?, ?, ?, ? )'
 		//var sql = 'INSERT INTO ??.?? ( ??, ??, ??, ??, ??, ??, ??, ??, ??, ??, ?? ) VALUES ( (ST_PointFromText(?)), ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )'
 		var inserts = [ 
 			'coastwards', 
@@ -196,6 +284,7 @@ const _promiseInsertContribution = ( formData ) => {
 			'contribution_exif',
 			'contribution_ip',
 			'contribution_material',
+			'contribution_source',
 
 			'contribution_exif_datetime',
 			'contribution_adaptation',
@@ -210,6 +299,7 @@ const _promiseInsertContribution = ( formData ) => {
 			exifdata,
 			ip,
 			material,
+			source,
 
 
 			//CAREFULL!!!!
@@ -259,6 +349,7 @@ router.post( '/upload', ( req, res ) => {
 
 	_promiseFetchForm( req )
 		.then( _promiseValidDate )
+		.then( _promiseLabels )
 		.then( _promiseInsertContribution )
 		.then( ( formData ) => {
 

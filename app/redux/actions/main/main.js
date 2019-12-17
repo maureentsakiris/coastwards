@@ -370,8 +370,8 @@ export const validateFile = ( e ) => {
 
 				dispatch( resetMain() )
 
-				const msg = typeof error === 'object' ? JSON.stringify( error ) : error
-				// let msg = error.message ? error.message : 'an_error_occurred'
+				// const msg = typeof error === 'object' ? JSON.stringify( error ) : error
+				let msg = error.message ? error.message : 'an_error_occurred'
 				dispatch( { type: types.SET_ERROR_MSG, to: msg } )
 				dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'errors', to: true } )
 				dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'prompts', to: false } )
@@ -520,6 +520,7 @@ export const uploadImage = ( ) => {
 				formData.append( 'labels', JSON.stringify( devLabels ) )
 				formData.append( 'material', material )
 				formData.append( 'comment', comment )
+				formData.append( 'source', 'webapp' )
 				//formData.append( 'adaptation', adaptation )
 				//formData.append( 'hashtag', hashtag )
 
