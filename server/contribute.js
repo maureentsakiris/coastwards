@@ -208,7 +208,7 @@ const _promiseLabels = ( formData ) => {
 				]
 			} )
 
-			fetch( 'https://vision.googleapis.com/v1/images:annotate?fields=responses&key=AIzaSyAUyFoB1T1cAfkXJfcd4NT0dEYm1agojYU', {
+			fetch( 'https://vision.googleapis.com/v1/images:annotate?fields=responses&key=' + process.env.GOOGLE_API_KEY_SERVER, {
 
 				method: 'POST',
 				body: data,
