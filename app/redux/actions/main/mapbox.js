@@ -79,7 +79,6 @@ export const displayMap = ( ) => {
 		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'upload', to: false } )
 		dispatch( { type: types.SET_LAYER_VISIBILITY, layer: 'prompts', to: false } )
 
-
 		promiseInitMapbox( ACCESSTOKEN, OPTIONS )
 			.then( ( map ) => {
 

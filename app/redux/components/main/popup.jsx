@@ -141,7 +141,11 @@ class popup extends Component {
 			//const url = contribution_source == 'webapp' ? "uploads/" + contribution_uid + ".jpg" : "http://geolittoral.application.developpement-durable.gouv.fr/telechargement/tc_smartphone/photos/" + contribution_uid + ".jpg"
 			const url = contribution_reported == '1' ? "assets/reported.jpg" : "uploads/" + contribution_uid + ".jpg"
 			
+
+			
+
 			const usercomment = unescape( contribution_comment )
+			
 			const hascomment = usercomment != '' || contribution_source == 'rivages'
 			const showcomment = commentToggled && hascomment
 			const commentIcon = showcomment ? 'insert_comment' : 'mode_comment'
@@ -174,8 +178,9 @@ class popup extends Component {
 					</DIV> }
 					<DIV className={ clsTop } style={ { backgroundImage: 'url("' + url +'")' } } >
 						{ showcomment && <DIV className={ style.comment } >
-							{ contribution_source == 'rivages' && <H priority={ 1 } >Rivages</H> }
 							{ contribution_source == 'webapp' && <P>{ usercomment }</P> }
+							{ contribution_source == 'app' && <P>{ usercomment }</P> }
+							{ contribution_source == 'rivages' && <H priority={ 1 } >Rivages</H> }
 							{ contribution_source == 'rivages' && 
 								<P>This image was uploaded in collaboration with "Rivages", a Citizen Science project developed by Cerema. The goal of "Rivages" is to monitor changes of shorelines by asking participants to trace them with their mobile phones.
 									<BR/><BR/>
