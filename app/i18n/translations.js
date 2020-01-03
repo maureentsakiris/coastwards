@@ -1920,7 +1920,7 @@ module.exports = {
 		"zh": "上传此图片即表示您同意放弃您的版权，并将图片放置在{license}下的公共领域。",
 		"el": "Με τη μεταφόρτωση αυτής της εικόνας  συμφωνείς και παραιτείσαι από τα δικαιώματα πνευματικής ιδιοκτησίας και τοποθετείς την εικόνα αυτή στον δημόσιο τομέα υπό την {license}.",
 		"hi": "इस छवि को अपलोड करके आप अपने कॉपीराइट को छोड़ने और सार्वजनिक डोमेन में छवि को स्थान देने के लिए सहमत हैं। ({license})",
-		"fr": "Par l'envoi de cette image, tu confirmes que tu renonces à ces droits d'auteurs et que tu places cette image dans le domaine publique sous la {license}",
+		"fr": "Par l'envoi de cette image, tu confirmes que tu renonces à ces droits d'auteurs et que tu places cette image dans le domaine publique sous la {licence}",
 		"it": "Caricando questa immagine sei d'accordo con le regole di copyright e di mettere l'immagine a disposizione del pubblico sotto la {license}."
 	},
 	"license": {

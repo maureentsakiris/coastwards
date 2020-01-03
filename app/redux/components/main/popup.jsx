@@ -178,8 +178,8 @@ class popup extends Component {
 					</DIV> }
 					<DIV className={ clsTop } style={ { backgroundImage: 'url("' + url +'")' } } >
 						{ showcomment && <DIV className={ style.comment } >
-							{ contribution_source == 'webapp' && <P>{ usercomment }</P> }
-							{ contribution_source == 'app' && <P>{ usercomment }</P> }
+							{ contribution_source !== 'rivages' && <P>{ usercomment }</P> }
+							
 							{ contribution_source == 'rivages' && <H priority={ 1 } >Rivages</H> }
 							{ contribution_source == 'rivages' && 
 								<P>This image was uploaded in collaboration with "Rivages", a Citizen Science project developed by Cerema. The goal of "Rivages" is to monitor changes of shorelines by asking participants to trace them with their mobile phones.
