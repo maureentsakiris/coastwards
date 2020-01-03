@@ -176,7 +176,6 @@ const _promiseLabels = ( formData ) => {
 		const { fields, files } = formData
 		const { labels } = fields
 
-
 		if( labels ){
 
 			formData.labels = labels
@@ -191,8 +190,8 @@ const _promiseLabels = ( formData ) => {
 					{
 						"image": { "source": {
 
-							// imageUri: files.file.path'
-							imageUri: 'http://coastwards.org/uploads/61688e90-cbed-11e8-a630-7d60b7289fc1.jpg'
+							imageUri: files.file.path
+							// imageUri: 'http://coastwards.org/uploads/61688e90-cbed-11e8-a630-7d60b7289fc1.jpg'
 
 						} },
 						"features":[
