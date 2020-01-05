@@ -8,6 +8,7 @@ const contribute = require( './server/contribute' );
 const contact = require( './server/contact' );
 const administrate = require( './server/administrate' );
 const data = require( './server/data' );
+// const map = require( './server/map')
 
 const publicPath = path.resolve( __dirname, 'public' );
 
@@ -49,6 +50,7 @@ app.get( '/data', function ( req, res ) {
 
 } );
 
+// app.use( '/map', map );
 app.get( '/map', function ( req, res ) {
 
 	var lang = req.acceptsLanguages( [ 'en', 'es', 'ar', 'de', 'zh', 'el', 'hi', 'pt', 'fr', 'it' ] );
