@@ -183,6 +183,7 @@ const _promiseLabels = ( formData ) => {
 
 		}else{
 
+			console.log( files.file.path )
 
 			const data = JSON.stringify( {
 
@@ -190,7 +191,7 @@ const _promiseLabels = ( formData ) => {
 					{
 						"image": { "source": {
 
-							imageUri: files.file.path
+							imageUri: 'http://coastwards.org/' + files.file.path
 							// imageUri: 'http://coastwards.org/uploads/61688e90-cbed-11e8-a630-7d60b7289fc1.jpg'
 
 						} },
@@ -219,6 +220,8 @@ const _promiseLabels = ( formData ) => {
 					if ( responseJson.responses ) {
 
 						const annotations = responseJson.responses[ 0 ]
+
+						console.log(responseJson.responses[ 0 ])
 
 						if( _.contains( annotations.safeSearchAnnotation, 'LIKELY' ) || _.contains( annotations.safeSearchAnnotation, 'VERY_LIKELY' ) ){
 						
