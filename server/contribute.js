@@ -190,7 +190,7 @@ const _promiseLabels = ( formData ) => {
 					{
 						"image": { "source": {
 
-							imageUri: 'http://coastwards.org/uploads' + files.file.name
+							imageUri: 'http://coastwards.org/uploads/' + files.file.name
 							// imageUri: 'http://coastwards.org/uploads/61688e90-cbed-11e8-a630-7d60b7289fc1.jpg'
 
 						} },
