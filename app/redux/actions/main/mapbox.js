@@ -4,12 +4,13 @@ import { promiseInitMapbox, mapboxPopup, mapboxLngLatConvert, mapboxNavigationCo
 import { isNull, findWhere, pluck, map } from 'underscore'
 import { promiseGet, promiseJSONOK } from 'actions/util/request/get'
 //import { resetMain } from 'actions/main/main'
-//import Modernizr from 'modernizr'
+// import Modernizr from 'modernizr'
+
 
 const _map = map
 
 const CENTER = [ 0, 39 ]
-const STOPS = [ [ 0, 5.5 ], [ 5, 7 ], [ 10, 15 ], [ 22, 50 ] ]
+const STOPS = window.screen.width > 1024 ? [ [ 0, 5.5 ], [ 5, 7 ], [ 10, 15 ], [ 22, 50 ] ] : [ [ 0, 7 ], [ 5, 10 ], [ 10, 15 ], [ 22, 50 ] ]
 const ZOOM = 1
 const ACCESSTOKEN = process.env.MAPBOX_API_ACCESSTOKEN
 const OPTIONS = {
