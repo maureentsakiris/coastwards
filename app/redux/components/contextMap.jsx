@@ -11,8 +11,7 @@ import DIV from 'components/tags/div'
 
 import style from './_context'
 
- 
-const contextApp = ( { lang, dir } ) => {
+const contextMap = ( { lang, dir } ) => {
 
 	//const { formatMessage } = intl
 
@@ -31,13 +30,13 @@ const contextApp = ( { lang, dir } ) => {
 
 }
 
-contextApp.propTypes = {
+contextMap.propTypes = {
 
 	lang: PropTypes.string,
 	dir: PropTypes.string,
 
 }
 
-export default contextApp
+export default contextMap
 
 

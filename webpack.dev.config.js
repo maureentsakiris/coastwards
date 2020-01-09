@@ -38,7 +38,8 @@ module.exports = {
 		login: './app/entries/login.jsx',
 		admin: './app/entries/admin.jsx',
 		data: './app/entries/data.jsx',
-		map: './app/entries/map.jsx'
+		map: './app/entries/map.jsx',
+		privacypolicy: './app/entries/privacypolicy.jsx'
 
 	},
 

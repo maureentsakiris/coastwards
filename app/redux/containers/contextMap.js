@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import CONTEXTAPP from 'components/contextApp'
+import CONTEXTMAP from 'components/contextMap'
 
 const mapStateToProps = ( state ) => {
 
@@ -15,10 +15,10 @@ const mapStateToProps = ( state ) => {
 }
 
 
-const contextApp = connect(
+const contextMap = connect(
 
 	mapStateToProps
 
-)( CONTEXTAPP )
+)( CONTEXTMAP )
 
-export default contextApp
+export default contextMap

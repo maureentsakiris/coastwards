@@ -8,7 +8,7 @@ const contribute = require( './server/contribute' );
 const contact = require( './server/contact' );
 const administrate = require( './server/administrate' );
 const data = require( './server/data' );
-// const map = require( './server/map')
+// const app = require( './server/app' );
 
 const publicPath = path.resolve( __dirname, 'public' );
 
@@ -23,38 +23,45 @@ const portToListen = isProduction ? server.port : 8888;
 
 
 
-const app = express();
+const exp = express();
 
-app.enable( 'trust proxy' );
-app.use( helmet() );
-app.use( express.static( publicPath ) );
+exp.enable( 'trust proxy' );
+exp.use( helmet() );
+exp.use( express.static( publicPath ) );
 
-app.set( 'view engine', 'pug' );
-app.set( 'views', path.resolve( __dirname, './app/views' ) );
+exp.set( 'view engine', 'pug' );
+exp.set( 'views', path.resolve( __dirname, './app/views' ) );
 
-app.get( '/', function ( req, res ) {
+exp.get( '/', function ( req, res ) {
 
 	var lang = req.acceptsLanguages( [ 'en', 'es', 'ar', 'de', 'zh', 'el', 'hi', 'pt', 'fr', 'it' ] );
 	res.render( 'index', { lang: lang } );
 
 } );
 
-app.use( '/contribute', contribute );
-app.use( '/contact', contact );
-app.use( '/administrate', administrate );
-app.use( '/data', data );
+exp.use( '/contribute', contribute );
+exp.use( '/contact', contact );
+exp.use( '/administrate', administrate );
+exp.use( '/data', data );
 
-app.get( '/data', function ( req, res ) {
+exp.get( '/data', function ( req, res ) {
 
 	res.render( 'data' );
 
 } );
 
-// app.use( '/map', map );
-app.get( '/map', function ( req, res ) {
+// exp.use( '/app', app );
+exp.get( '/map', function ( req, res ) {
 
-	var lang = req.acceptsLanguages( [ 'en', 'es', 'ar', 'de', 'zh', 'el', 'hi', 'pt', 'fr', 'it' ] );
+	var lang = req.acceptsLanguages( [ 'en' ] );
 	res.render( 'map', { lang: lang } );
+
+} );
+
+exp.get( '/privacypolicy', function ( req, res ) {
+
+	var lang = req.acceptsLanguages( [ 'en' ] );
+	res.render( 'privacypolicy', { lang: lang } );
 
 } );
 
@@ -95,13 +102,13 @@ passport.use( new GitHubStrategy( {
 } ) )
 
 
-app.use( bodyParser.json() )
-app.use( bodyParser.urlencoded( {
+exp.use( bodyParser.json() )
+exp.use( bodyParser.urlencoded( {
 
 	extended: true
 
 } ) )
-app.use( session( { 
+exp.use( session( { 
 
 	secret: 'figuiiiin',
 	resave: false,
@@ -110,31 +117,31 @@ app.use( session( {
 } ) )
 
 
-app.use( passport.initialize() )  
-app.use( passport.session() )  
+exp.use( passport.initialize() )  
+exp.use( passport.session() )  
 
 
-app.get( '/login', ( req, res ) => {
+exp.get( '/login', ( req, res ) => {
 
 	res.render( 'login', { user: req.user } )
 
 } );
 
 
-app.get( '/login/github', passport.authenticate( 'github', { scope: [ 'user:email' ] } ), ( ) => {
+exp.get( '/login/github', passport.authenticate( 'github', { scope: [ 'user:email' ] } ), ( ) => {
 
 	// The request will be redirected to GitHub for authentication, so this
 	// function will not be called.
 
 } )
 
-app.get( '/login/callback', passport.authenticate( 'github', { failureRedirect: '/login' } ), ( req, res ) => {
+exp.get( '/login/callback', passport.authenticate( 'github', { failureRedirect: '/login' } ), ( req, res ) => {
 
 	res.redirect( '/admin' )
 
 } ) 
 
-app.get( '/admin', ensureAuthenticated, ( req, res ) => {
+exp.get( '/admin', ensureAuthenticated, ( req, res ) => {
 
 	if( req.user.username == 'maureentsakiris' || req.user.username == 'ClaudiaCAU' ){
 
@@ -148,7 +155,7 @@ app.get( '/admin', ensureAuthenticated, ( req, res ) => {
 
 } )
 
-app.get( '/logout', ( req, res ) => {
+exp.get( '/logout', ( req, res ) => {
 
 	req.logout()
 	res.redirect( '/' )
@@ -173,14 +180,14 @@ if( !isProduction ){
 
 	const compiler = webpack( webpackConfig );
 
-	app.use( webpackDevMiddleware( compiler, {
+	exp.use( webpackDevMiddleware( compiler, {
 
 		publicPath: "/build/", // Same as `output.publicPath` in most cases.
 		stats: "errors-only"
 		
 	} ) );
 
-	app.use( webpackHotMiddleware( compiler, {
+	exp.use( webpackHotMiddleware( compiler, {
 
 		log: console.log
 		
@@ -189,7 +196,7 @@ if( !isProduction ){
 }
 
 
-app.listen( portToListen, function () {
+exp.listen( portToListen, function () {
 
 	console.log( "Listening on port " + portToListen );
 

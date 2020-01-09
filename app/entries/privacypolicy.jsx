@@ -8,7 +8,7 @@ import thunk from 'redux-thunk'
 import coastwards from 'reducers'
 import { loadLanguage } from 'actions/i18n/i18n'
 import I18nProvider from 'containers/i18n/i18nProvider'
-import ContextMap from 'containers/contextMap'
+import ContextPrivacyPolicy from 'containers/contextPrivacyPolicy'
 
 import 'babel-polyfill'
 require( 'smoothscroll-polyfill' ).polyfill()
@@ -32,7 +32,7 @@ const render = ( ) => {
 		<AppContainer>
 			<Provider store={ store } >
 				<I18nProvider>
-					<ContextMap />
+					<ContextPrivacyPolicy />
 				</I18nProvider>
 			</Provider>
 		</AppContainer>,
