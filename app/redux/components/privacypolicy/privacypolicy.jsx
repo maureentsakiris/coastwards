@@ -1,5 +1,4 @@
 import React from 'react'
-import { PropTypes } from 'prop-types'
 import { defineMessages, injectIntl, intlShape } from 'react-intl'
 
 
@@ -10,7 +9,7 @@ import UL from 'components/tags/ul'
 import LI from 'components/tags/li'
 
 
-// import style from './_privacypolicy'
+import style from './_privacypolicy'
 
 const messages = defineMessages( {
 
@@ -34,18 +33,18 @@ const messages = defineMessages( {
 } )
 
 
-const privacypolicy = ( { intl, className } ) => {
+const privacypolicy = ( { intl } ) => {
 
 	const { formatMessage } = intl
 
 	return(
 
-		<DIV className={ className } >
+		<DIV className={style.pp}>
 
-			<H priority={1}>{formatMessage( messages.privacy_policy )}</H>
+			<H priority={1} >{formatMessage( messages.privacy_policy )} for Coastwards</H>
 
-			<P>Your privacy is of great importance to us. For this reason, participation was kept completely anonymous and does not require an account.</P>
-			<P>The information we collect through the App is:</P>
+			<P>Your privacy is of great importance to us. For this reason, participation in Coastwards was kept completely anonymous and does not require an account.</P>
+			<P>The information we collect at Coastwards is:</P>
 			<UL>
 				<LI>the image you take through the App, together with its EXIF data (we strip information on the author, if present)</LI>
 				<LI>your location at the time the image was taken</LI>
@@ -70,7 +69,6 @@ const privacypolicy = ( { intl, className } ) => {
 privacypolicy.propTypes = {
 
 	intl: intlShape.isRequired,
-	className: PropTypes.string
 
 }
 

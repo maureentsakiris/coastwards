@@ -1,21 +1,21 @@
 @import 'app/styles/base';
 
 
-.toggle{
-
-	@extend %toggle;
-	border-top: $toggle-border;
-
-	&>div>p{
-
-		padding: 0;
-
-	}
-
+.pp{
+	font-family: 'Roboto', Helvetica, sans-serif;
+	padding: 15px;
+	padding-bottom: 70px;
 }
 
-.toggleFirst{
+h1{
+	margin-top: 0;
+}
 
-	@extend %toggle;
+p{
+	    margin: 1em 0;
+}
 
+ul{
+	margin: 0 0 0 1em;
+	list-style: disc;
 }
