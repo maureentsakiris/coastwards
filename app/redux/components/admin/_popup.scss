@@ -17,8 +17,6 @@ $action-height: 55px;
 	max-width: 600px;
 	max-height: 600px;
 	padding-bottom: $action-height;
-	width: 80vh;
-	height: 80vh;
 	font-size: 16px;
 
 	.spinner{
@@ -93,5 +91,29 @@ $action-height: 55px;
 	    }
 
 	}
+
+}
+
+@media all and (orientation:landscape) {
+
+	.popup{
+
+		width: 80vh;
+		height: 80vh;
+
+	}
+
+
+}
+
+@media all and (orientation:portrait) {
+
+	.popup{
+
+		width: 80vw;
+		height: 80vw;
+
+	}
+
 
 }

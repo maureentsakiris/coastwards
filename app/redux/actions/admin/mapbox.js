@@ -44,7 +44,7 @@ export const displayMap = ( ) => {
 				map.dragRotate.disable()
 				map.touchZoomRotate.disableRotation()
 
-				const popup = mapboxPopup( { closeButton: false, closeOnClick: false, anchor: 'bottom' } )
+				const popup = mapboxPopup( { closeButton: false, closeOnClick: false, anchor: 'bottom', maxWidth: 'auto' } )
 				const featureDOM = document.getElementById( 'Popup' )
 				popup.setDOMContent( featureDOM )
 				dispatch( { type: types.SET_POPUP_INSTANCE, to: popup } )
