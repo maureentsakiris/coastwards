@@ -1,0 +1,56 @@
+diff --git a/app/redux/actions/admin/mapbox.js b/app/redux/actions/admin/mapbox.js
+index eecfb93..f4b05aa 100644
+--- a/app/redux/actions/admin/mapbox.js
++++ b/app/redux/actions/admin/mapbox.js
+@@ -44,7 +44,7 @@ export const displayMap = ( ) => {
+ 				map.dragRotate.disable()
+ 				map.touchZoomRotate.disableRotation()
+ 
+-				const popup = mapboxPopup( { closeButton: false, closeOnClick: false, anchor: 'bottom' } )
++				const popup = mapboxPopup( { closeButton: false, closeOnClick: false, anchor: 'bottom', maxWidth: 'auto' } )
+ 				const featureDOM = document.getElementById( 'Popup' )
+ 				popup.setDOMContent( featureDOM )
+ 				dispatch( { type: types.SET_POPUP_INSTANCE, to: popup } )
+diff --git a/app/redux/components/admin/_popup.scss b/app/redux/components/admin/_popup.scss
+index fe38927..73fc209 100644
+--- a/app/redux/components/admin/_popup.scss
++++ b/app/redux/components/admin/_popup.scss
+@@ -17,8 +17,6 @@ $action-height: 55px;
+ 	max-width: 600px;
+ 	max-height: 600px;
+ 	padding-bottom: $action-height;
+-	width: 80vh;
+-	height: 80vh;
+ 	font-size: 16px;
+ 
+ 	.spinner{
+@@ -94,4 +92,28 @@ $action-height: 55px;
+ 
+ 	}
+ 
++}
++
++@media all and (orientation:landscape) {
++
++	.popup{
++
++		width: 80vh;
++		height: 80vh;
++
++	}
++
++
++}
++
++@media all and (orientation:portrait) {
++
++	.popup{
++
++		width: 80vw;
++		height: 80vw;
++
++	}
++
++
+ }
+\ No newline at end of file

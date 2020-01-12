@@ -37,6 +37,12 @@ const _promiseFetchGeojson = () => {
 
 }
 
+const _promiseFetchGeojsonLive = () => {
+
+	return  promiseGet( '/contribute/geojsonLive' )
+
+}
+
 /*const _promiseFetchOSM = () => {
 
 	return  promiseGet( '/contribute/osm' )
@@ -172,7 +178,7 @@ export const displayMap = ( ) => {
 					id: 'markers',
 					type: 'circle',
 					source: 'geojson',
-					filter: [ '!has', 'point_count' ],
+					// filter: [ '!has', 'point_count' ],
 					paint: {
 						'circle-radius': {
 							'base': 1.75,
@@ -252,6 +258,46 @@ export const displayMap = ( ) => {
 
 				return geojson
 
+			} )
+			.then( _promiseFetchGeojsonLive )
+			.then( JSON.parse )
+			.then( promiseJSONOK )
+			.then( ( parsed ) => {
+
+				const geojsonLive = parsed.json
+
+				if( !isNull( geojsonLive ) ){
+
+					const state = getState()
+					const map = state.mapbox.map
+
+					// const pulsingDot = require( './../../../../public/assets/loader.gif' )
+
+					// map.addImage( 'pulsing-dot', pulsingDot, { pixelRatio: 2 } );
+
+					map.addSource( 'live', {
+
+						type: 'geojson',
+						data: geojsonLive
+					
+					} )
+
+					map.addLayer( {
+					
+						id: 'live',
+						type: 'symbol',
+						source: 'live',
+						layout: {
+
+							'icon-image': '{marker-symbol}'
+
+						}
+
+					}, 'country_label_1' )
+
+				}
+				return geojsonLive
+			
 			} )
 			.then( ( csv ) => {
 

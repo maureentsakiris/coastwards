@@ -434,6 +434,78 @@ router.get( '/geojson', function ( req, res ) {
 
 } )
 
+function _promiseFetchGeojsonLive ( ){
+
+	return new Promise( function ( resolve, reject ) {
+
+		pool.getConnection( function ( error, connection ) {
+
+			if( error ){
+
+				reject( error )
+
+			}else{
+
+				// GETS TRUNCATED. WOULD HAVE TO SET: set group_concat_max_len = 100000000; (MAX VALUES: 32-bit: 4294967295, 64-bit: 18446744073709551615)
+				// SELECT CONCAT('{ "type": "FeatureCollection", "features": [', GROUP_CONCAT(' { "type": "Feature", "geometry": ', ST_AsGeoJSON(contribution_point), ', "properties": { "marker-symbol": "marker-primary-dark", "comment": "This is a comment", "image": "./uploads/',contribution_filename,'" } } '), '] }' ) as geojson FROM contributions
+				//var query = 'SET group_concat_max_len = 100000000; SELECT CONCAT( \'{ "type": "FeatureCollection", "features": [\', GROUP_CONCAT(\' { "type": "Feature", "geometry": \', ST_AsGeoJSON(contribution_point), \', "properties": { "id": "\',contribution_id,\'", "marker-symbol": "marker-accent", "comment": "\',IFNULL(contribution_comment, "" ),\'", "material": "\',IFNULL(contribution_material, "" ),\'","datetime": "\',IFNULL(contribution_exif_datetime, "" ),\'","verified": "\',contribution_verified,\'", "image": "./uploads/\',contribution_uid,\'.jpg" } } \'), \'] }\' ) as geojson FROM contributions';
+				var query = 'SET group_concat_max_len = 100000000; SELECT CONCAT( \'{ "type": "FeatureCollection", "features": [\', GROUP_CONCAT(\' { "type": "Feature", "geometry": \', ST_AsGeoJSON(contribution_point), \', "properties": { "id": "\',contribution_id,\'", "timestamp": "\',contribution_timestamp,\'", "marker-symbol": "marker-accent-flat", "materialverified": "\',IFNULL(contribution_material_verified, "notset" ),\'" } } \'), \'] }\' ) as geojson FROM contributions WHERE contribution_material_verified !="notsure" AND `contribution_timestamp` >= addtime(now(), "-00:15:00")';
+				//var query = 'SET group_concat_max_len = 100000000; SELECT CONCAT( \'{ "type": "FeatureCollection", "features": [\', GROUP_CONCAT(\' { "type": "Feature", "geometry": \', ST_AsGeoJSON(contribution_point), \', "properties": { "id": "\',contribution_id,\'", "material": "\',IFNULL(contribution_material, "" ),\'" } } \'), \'] }\' ) as geojson FROM contributions';
+				//SELECT CONCAT( '{ "type": "FeatureCollection", "features": [', GROUP_CONCAT(' { "type": "Feature", "geometry": ', ST_AsGeoJSON(contribution_point), ', "properties": { "id": "',contribution_id,'", "material_verified": "',IFNULL(contribution_material_verified, "notset" ),'" } } '), '] }' ) as geojson FROM contributions
+				// SET group_concat_max_len = 100000000; SELECT CONCAT( '{ "type": "FeatureCollection", "features": [', GROUP_CONCAT(' { "type": "Feature", "geometry": ', ST_AsGeoJSON(contribution_point), ', "properties": { "marker-symbol": "marker-primary-dark", "comment": "',IFNULL(contribution_comment, "" ),'", "material": "',IFNULL(contribution_material, "" ),'","datetime": "',IFNULL(contribution_exif_datetime, "" ),'","verified": "',contribution_verified,'", "image": "./uploads/',contribution_uid,'.jpg" } } '), '] }' ) as geojson FROM contributions
+
+
+				connection.query( query, function ( error, results ) {
+
+					if( error ){
+
+						reject( error )
+
+					}else{
+
+						if( results[ 1 ][ 0 ].geojson === undefined ){
+
+							reject( Error( 'contributions/promiseFetchGeojson/Could not read result from query (Update schema?)' ) )
+
+						}else{
+
+							resolve( results[ 1 ][ 0 ].geojson )
+
+						}
+
+					}
+					
+					connection.release()
+
+				} )
+
+			}
+
+		} )
+
+	} )
+
+}
+
+router.get( '/geojsonLive', function ( req, res ) {
+
+	_promiseFetchGeojsonLive()
+		.then( JSON.parse )
+		.then( ( geojson ) => {
+
+			res.json( { status: 'OK', json: geojson } )
+			return geojson;
+
+		} )
+		.catch( ( error ) => {
+
+			res.json( { status: 'KO', message: error.toString() } )
+
+		} )
+
+} )
+
+
 /*function _promiseFetchOSM ( ){
 
 	const sandQuery = '[out:json];(node["natural"="coastline"]["surface"="sand"];way["natural"="coastline"]["surface"="sand"];relation["natural"="coastline"]["surface"="sand"];);out body;>;out skel qt;'
