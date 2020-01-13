@@ -79,6 +79,7 @@ const context = ( { intl, lang, dir, jazzSupported, clipped, infosState, setInfo
 						<IMG className={ style.logo } src="./assets/coastwards.png" alt="Logo coastwards: A turtle on a mission" />
 						<H priority={ 1 } className={ style.headline } >{ formatMessage( messages.help_science ) } { formatMessage( messages.by ) }</H>
 						<H priority={ 2 } className={ style.tagline } >{ formatMessage( messages.no_account ) }</H>
+
 						<A className={ clsMore } onClick={ setInfosState.bind( this, !infosState ) } >{ formatMessage( messages.more_info ) }</A>
 					</DIV>
 					<DIV className={ clsInfo }>
@@ -115,6 +116,10 @@ const context = ( { intl, lang, dir, jazzSupported, clipped, infosState, setInfo
 							<IMG className={ style.logo } src="./assets/coastwards.svg" alt="Logo coastwards: A turtle on a mission" />
 							<H priority={ 1 } className={ style.headline } >{ formatMessage( messages.help_science ) } { formatMessage( messages.by ) }</H>
 							<H priority={ 2 } className={ style.tagline } >{ formatMessage( messages.no_account ) }</H>
+							<DIV className={style.apps}>
+								<A href="https://play.google.com/store/apps/details?id=org.coastwards.app"><IMG className={style.appIcon} src="./assets/googleplay.png" alt="Google Play" /></A>
+								<A href="https://apps.apple.com/de/app/coastwards/id1494338545?l=en"><IMG className={style.appIcon} src="./assets/appstore.png" alt="App Store" /></A>
+							</DIV>
 							<A className={ clsMore } onClick={ setInfosState.bind( this, !infosState ) } >{ formatMessage( messages.more_info ) }</A>
 						</DIV>
 						<DIV className={ clsInfo }>

@@ -53,7 +53,7 @@ exp.get( '/data', function ( req, res ) {
 // exp.use( '/app', app );
 exp.get( '/map', function ( req, res ) {
 
-	var lang = req.acceptsLanguages( [ 'en' ] );
+	var lang = req.acceptsLanguages( [ 'en', 'es', 'ar', 'de', 'zh', 'el', 'hi', 'pt', 'fr', 'it' ] );
 	res.render( 'map', { lang: lang } );
 
 } );
