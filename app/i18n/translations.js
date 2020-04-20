@@ -1248,7 +1248,7 @@ module.exports = {
 		"el": "Έχω διαβάσει και αποδέχομαι τους {terms}",
 		"hi": "{terms} को पढ़ और स्वीकार कर लिया है",
 		"fr": "J'ai lu et j'accepte les {terms}",
-		"it": "Ho letto e accetto le condizioni"
+		"it": "Ho letto e accetto le {terms}"
 	},
 	"terms": {
 		"en": "Terms",
