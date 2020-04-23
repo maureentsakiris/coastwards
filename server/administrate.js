@@ -330,7 +330,8 @@ const _update = ( formData ) => {
 
 	return new Promise( ( resolve, reject ) => { 
 
-		const { id, verified, material, example, intro, closeup, reported } = formData.fields
+		const { id, verified, material, example, intro, closeup, reported, long, lat, corrected } = formData.fields
+		const point = util.format( 'POINT(%s %s)', long, lat )
 
 		pool.getConnection( function ( error, connection ) {
 
@@ -340,7 +341,7 @@ const _update = ( formData ) => {
 
 			}else{
 
-				var sql = 'UPDATE ?? SET contribution_verified=?, contribution_material_verified=?, contribution_example=?, contribution_intro=?, contribution_closeup=?, contribution_reported=? WHERE contribution_id=?';
+				var sql = 'UPDATE ?? SET contribution_verified=?, contribution_material_verified=?, contribution_example=?, contribution_intro=?, contribution_closeup=?, contribution_reported=?, contribution_point=(ST_PointFromText(?)), contribution_point_corrected=? WHERE contribution_id=?';
 
 				var inserts = [
 
@@ -352,6 +353,8 @@ const _update = ( formData ) => {
 					intro,
 					closeup,
 					reported,
+					point,
+					corrected,
 
 					id
 

@@ -10,9 +10,18 @@ import A from 'components/tags/a'
 
 import FORM from 'components/tags/form'
 import INPUT from 'components/tags/input'
+import FORMINPUT from 'components/form/input/input'
 import ICONRADIOGROUP from 'components/form/radiogroup/iconradiogroup'
 import GO from 'components/form/button/go'
 import SPAN from 'components/tags/span'
+
+import TOGGLE from 'components/ui/toggle'
+
+import TABLE from 'components/tags/table'
+import TBODY from 'components/tags/tbody'
+import TR from 'components/tags/tr'
+import TD from 'components/tags/td'
+
 
 import style from './_popup'
 
@@ -41,7 +50,10 @@ class popup extends Component {
 				example: p.feature.contribution_example.toString(),
 				intro: p.feature.contribution_intro.toString(),
 				closeup: p.feature.contribution_closeup.toString(),
-				reported: p.feature.contribution_reported.toString()
+				reported: p.feature.contribution_reported.toString(),
+				x: p.feature.contribution_point.x.toString(),
+				y: p.feature.contribution_point.y.toString(),
+				corrected: p.feature.contribution_point_corrected.toString()
 
 			} )
 
@@ -60,7 +72,10 @@ class popup extends Component {
 			example: this.props.feature.contribution_example ? this.props.feature.contribution_example.toString() : null,
 			intro: this.props.feature.contribution_intro ? this.props.feature.contribution_intro.toString() : null,
 			closeup: this.props.feature.contribution_closeup ? this.props.feature.contribution_closeup.toString() : null,
-			reported: this.props.feature.contribution_reported ? this.props.feature.contribution_reported.toString() : null
+			reported: this.props.feature.contribution_reported ? this.props.feature.contribution_reported.toString() : null,
+			x: this.props.feature.contribution_point ? this.props.feature.contribution_point.x.toString() : null,
+			y: this.props.feature.contribution_point ? this.props.feature.contribution_point.y.toString() : null,
+			corrected: this.props.feature.contribution_point_corrected ? this.props.feature.contribution_point_corrected.toString() : null,
 
 		}
 
@@ -69,8 +84,30 @@ class popup extends Component {
 	render () {
 
 		const { feature, materials, deleteContribution, updateContribution } = this.props
-		const { contribution_id, contribution_uid, contribution_material, contribution_comment, contribution_source, contribution_point_manual, contribution_point_corrected } = feature
+		const { contribution_id, contribution_uid, contribution_material, contribution_comment, contribution_source, contribution_point_manual, contribution_point_corrected, contribution_exif } = feature
+	
+		let exifTable
 
+		if( contribution_exif ){
+
+			exifTable = map( JSON.parse( contribution_exif ), ( exif, key ) => {
+
+				const data = exif !== undefined ? exif.toString() : 'undefined'
+
+				return(
+
+					<TR key={ key }>
+						<TD>{ key }</TD>
+						<TD>{ data }</TD>
+					</TR>
+
+				)
+
+			} )
+
+		}
+
+		
 		if( !contribution_uid ){
 
 			return(
@@ -84,7 +121,7 @@ class popup extends Component {
 
 		}else{
 
-			const { verified, material, example, intro, closeup, reported } = this.state
+			const { verified, material, example, intro, closeup, reported, x, y, corrected } = this.state
 
 			const materialOptions = map( materials, ( material ) => {
 
@@ -130,6 +167,19 @@ class popup extends Component {
 						<ICONRADIOGROUP form={ formID } label="Reported:" name="reported" preferPlaceholder={ false } options={ yesNo } onChange={ this._setReported.bind( this ) } selected={ reported } />
 						<ICONRADIOGROUP form={ formID } label="Example:" name="example" preferPlaceholder={ false } options={ yesNo } onChange={ this._setExample.bind( this ) } selected={ example } />
 						<ICONRADIOGROUP form={ formID } label="Intro:" name="intro" preferPlaceholder={ false } options={ yesNo } onChange={ this._setIntro.bind( this ) } selected={ intro } />
+
+						<FORMINPUT form={ formID } label="Longitude:" name="long" preferPlaceholder={ false } value={ x } onChange={ this._setPointX.bind( this ) } />
+						<FORMINPUT form={ formID } label="Latitude:" name="lat" preferPlaceholder={ false } value={ y } onChange={ this._setPointY.bind( this ) } />
+
+						<ICONRADIOGROUP form={ formID } label="Corrected:" name="corrected" preferPlaceholder={ false } options={ yesNo } onChange={ this._setCorrected.bind( this ) } selected={ corrected } />
+
+						<TOGGLE priority={ 4 } text="SHOW EXIFDATA"  >
+							<TABLE>
+								<TBODY>
+									{exifTable}
+								</TBODY>
+							</TABLE>
+						</TOGGLE>
 					</FORM>
 					<DIV className={ style.actions }>
 						<GO onClick={ deleteContribution.bind( this, contribution_id, contribution_uid ) } label="DELETE" className={ style.delete } />
@@ -177,6 +227,24 @@ class popup extends Component {
 	_setReported = ( value ) => {
 
 		this.setState( { reported: value } )
+
+	}
+
+	_setPointX = ( e ) => {
+
+		this.setState( { x: e.currentTarget.value } )
+
+	}
+
+	_setPointY = ( e ) => {
+
+		this.setState( { y: e.currentTarget.value } )
+
+	}
+
+	_setCorrected = ( value ) => {
+
+		this.setState( { corrected: value } )
 
 	}
 
