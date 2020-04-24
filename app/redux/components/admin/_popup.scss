@@ -58,6 +58,7 @@ $action-height: 55px;
 		padding: 1em;
 		width: 100%;
 		overflow-y: scroll;
+		padding-bottom: 3em;
 
 	}
 
@@ -91,6 +92,20 @@ $action-height: 55px;
 	    }
 
 	}
+
+	.danger{
+		background-color: #ff00001c;
+    	padding: 10px;
+    	border: 2px solid red;
+    	border-radius: 3px;
+    	margin: 3em 0;
+
+    	h3{
+    		margin: 0 0 1em 0;
+    		color: red;
+    	}
+	}
+
 
 }
 

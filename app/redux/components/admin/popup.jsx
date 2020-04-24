@@ -8,6 +8,8 @@ import DIV from 'components/tags/div'
 import P from 'components/tags/p'
 import A from 'components/tags/a'
 
+import H from 'components/tags/h'
+
 import FORM from 'components/tags/form'
 import INPUT from 'components/tags/input'
 import FORMINPUT from 'components/form/input/input'
@@ -87,8 +89,17 @@ class popup extends Component {
 		const { contribution_id, contribution_uid, contribution_material, contribution_comment, contribution_source, contribution_point_manual, contribution_point_corrected, contribution_exif } = feature
 	
 		let exifTable
+		let longRef
+		let latRef
+
+		
 
 		if( contribution_exif ){
+
+			const exif = JSON.parse( contribution_exif )
+
+			longRef = exif.GPSLongitudeRef
+			latRef = exif.GPSLatitudeRef
 
 			exifTable = map( JSON.parse( contribution_exif ), ( exif, key ) => {
 
@@ -168,11 +179,15 @@ class popup extends Component {
 						<ICONRADIOGROUP form={ formID } label="Example:" name="example" preferPlaceholder={ false } options={ yesNo } onChange={ this._setExample.bind( this ) } selected={ example } />
 						<ICONRADIOGROUP form={ formID } label="Intro:" name="intro" preferPlaceholder={ false } options={ yesNo } onChange={ this._setIntro.bind( this ) } selected={ intro } />
 
-						<FORMINPUT form={ formID } label="Longitude:" name="long" preferPlaceholder={ false } value={ x } onChange={ this._setPointX.bind( this ) } />
-						<FORMINPUT form={ formID } label="Latitude:" name="lat" preferPlaceholder={ false } value={ y } onChange={ this._setPointY.bind( this ) } />
+						<DIV className={style.danger}>
 
-						<ICONRADIOGROUP form={ formID } label="Corrected:" name="corrected" preferPlaceholder={ false } options={ yesNo } onChange={ this._setCorrected.bind( this ) } selected={ corrected } />
+							<H priority={3}>DANGERZONE</H>
 
+							<FORMINPUT form={ formID } label={"Longitude: (" + longRef + ")"} name="long" preferPlaceholder={ false } value={ x } onChange={ this._setPointX.bind( this ) } />
+							<FORMINPUT form={ formID } label={"Latidute: (" + latRef + ")"} name="lat" preferPlaceholder={ false } value={ y } onChange={ this._setPointY.bind( this ) } />
+
+							<ICONRADIOGROUP form={ formID } label="Corrected:" name="corrected" preferPlaceholder={ false } options={ yesNo } onChange={ this._setCorrected.bind( this ) } selected={ corrected } />
+						</DIV>
 						<TOGGLE priority={ 4 } text="SHOW EXIFDATA"  >
 							<TABLE>
 								<TBODY>
