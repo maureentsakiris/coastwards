@@ -96,14 +96,14 @@ class popup extends Component {
 
 		if( contribution_exif ){
 
-			const exif = JSON.parse( contribution_exif )
+			const parsedExif = JSON.parse( contribution_exif )
 
-			longRef = exif.GPSLongitudeRef
-			latRef = exif.GPSLatitudeRef
+			longRef = parsedExif.GPSLongitudeRef
+			latRef = parsedExif.GPSLatitudeRef
 
-			exifTable = map( JSON.parse( contribution_exif ), ( exif, key ) => {
+			exifTable = map( parsedExif, ( exif, key ) => {
 
-				const data = exif !== undefined ? exif.toString() : 'undefined'
+				const data = exif !== undefined ? exif : 'undefined'
 
 				return(
 
@@ -184,7 +184,7 @@ class popup extends Component {
 							<H priority={3}>DANGERZONE</H>
 
 							<FORMINPUT form={ formID } label={"Longitude: (" + longRef + ")"} name="long" preferPlaceholder={ false } value={ x } onChange={ this._setPointX.bind( this ) } />
-							<FORMINPUT form={ formID } label={"Latidute: (" + latRef + ")"} name="lat" preferPlaceholder={ false } value={ y } onChange={ this._setPointY.bind( this ) } />
+							<FORMINPUT form={ formID } label={"Latitude: (" + latRef + ")"} name="lat" preferPlaceholder={ false } value={ y } onChange={ this._setPointY.bind( this ) } />
 
 							<ICONRADIOGROUP form={ formID } label="Corrected:" name="corrected" preferPlaceholder={ false } options={ yesNo } onChange={ this._setCorrected.bind( this ) } selected={ corrected } />
 						</DIV>
