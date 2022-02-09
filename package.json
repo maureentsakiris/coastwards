@@ -74,7 +74,7 @@
     "mapbox-gl": "1.5.0",
     "modernizr": "^3.5.0",
     "modernizr-loader": "1.0.1",
-    "node-sass": "^4.5.3",
+    "node-sass": "^7.0.0",
     "postcss-loader": "^2.0.6",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
