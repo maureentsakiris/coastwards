@@ -1,0 +1,27 @@
+version: "3.6"
+
+services:
+  mysql:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'coastwards'
+      # So you don't have to use root, but you can if you like
+      MYSQL_USER: 'mysql'
+      # You can use whatever password you like
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      # Password for root access
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      ports:
+        # <Port exposed> : < MySQL Port running inside container>
+        - '3306:3306'
+      expose:
+        # Opens port 3306 on the container
+        - '3306'
+        # Where our data will be persisted
+      volumes:
+        - my-db:/var/lib/mysql
+    # Names our volume
+    volumes:
+      my-db:.tmp/mysql
+

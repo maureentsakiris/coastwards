@@ -7,3 +7,4 @@ public/uploads/*
 public/build
 .env
 myDiffFile.diff
+.tmp
