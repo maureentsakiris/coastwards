@@ -60,6 +60,8 @@ module.exports = {
 		extensions: [ '.js', '.jsx', '.scss' ],
 		fallback: {
 			url: require.resolve( 'url/' ),
+			stream: require.resolve( "stream-browserify" ),
+			buffer: require.resolve( 'buffer/' ),
 			http: require.resolve( "stream-http" )
 		}
 
@@ -137,7 +139,13 @@ module.exports = {
 			filename: "[name].css",
 
 		} ),
-		new webpack.EnvironmentPlugin( localEnv )
+		new webpack.EnvironmentPlugin( localEnv ),
+		new webpack.ProvidePlugin( {
+			Buffer: [ 'buffer', 'Buffer' ],
+		} ),
+		new webpack.ProvidePlugin( {
+			process: 'process/browser',
+		} ),
 		//https://forum-archive.vuejs.org/topic/4059/adding-gzip-to-webpack-using-compression-plugin/4
 		//https://medium.com/@rajaraodv/two-quick-ways-to-reduce-react-apps-size-in-production-82226605771a
 		/*new CompressionPlugin( {
