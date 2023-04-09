@@ -1,4 +1,6 @@
+require( 'dotenv' ).config();
 var envName = process.env.NODE_ENV || 'production';
 
-module.exports = require ( './' + envName + '.json' );
+const config = require ( './' + envName + '.js' );
+module.exports = config;
 module.exports.env = envName;

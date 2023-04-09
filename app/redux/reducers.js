@@ -2,27 +2,11 @@ import { combineReducers } from 'redux'
 import * as types from 'types'
 import { extend } from 'underscore'
 import Modernizr from 'modernizr'
-import mapboxgl from 'mapbox-gl'
 
 import materials from 'config'
 
-
-Modernizr.addTest( 'draganddrop', function () {
-
-	var div = document.createElement( 'div' )
-	return ( 'draggable' in div ) || ( 'ondragstart' in div && 'ondrop' in div )
-
-} )
-
-Modernizr.addTest( 'mapbox', function () {
-
-	return mapboxgl.supported()
-
-} )
-
-const uploadSupported = Modernizr.xhr2 && Modernizr.filereader && Modernizr.blobconstructor && Modernizr.canvas && true
-const jazzSupported = Modernizr.mapbox && Modernizr.draganddrop && Modernizr.flexbox && Modernizr.flexwrap && Modernizr.csspointerevents && Modernizr.cssanimations && Modernizr.csstransitions && Modernizr.cssvwunit && Modernizr.svg && true
-
+const uploadSupported = true;
+const jazzSupported = true;
 
 const browser = ( state = { uploadSupported: uploadSupported, jazzSupported: jazzSupported, touchevents: Modernizr.touchevents }, action ) => {
 
