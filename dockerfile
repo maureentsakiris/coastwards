@@ -10,6 +10,8 @@ RUN npm install
 
 ADD . .
 
+COPY build-and-run.sh .
+
 EXPOSE 8080
 
-CMD node server.js
+CMD ./build-and-run.sh
