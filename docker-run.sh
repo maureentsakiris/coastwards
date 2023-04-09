@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 set -e
 
-main() {
+CONTAINER_NAME="coastwards-mysql"
+
+create_container() {
 
   if [[ ! -f ".env" ]]; then
     echo -e "Env file is missing!"
@@ -20,4 +22,12 @@ main() {
     -d mysql:5.7
 }
 
-main "${@}"
+CONTAINER_ID=$(docker ps --filter "name=${CONTAINER_NAME}" -q)
+
+if [[ -z $CONTAINER_ID ]]; then
+  echo "No such container. Creating new container"
+  create_container
+else
+  echo "Found container $CONTAINER_ID. Starting..."
+  docker start $CONTAINER_NAME
+fi
