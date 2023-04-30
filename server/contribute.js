@@ -17,19 +17,7 @@ const validator = require( 'validator' )
 
 const xss = require( 'xss' )
 
-const globalConfigs = require ( '../config/' )
-const config = globalConfigs.mysql;
-
-const pool  = mysql.createPool( {
-
-	host: config.host,
-	user: config.user,	
-	password: config.password,
-	database : config.database,
-	multipleStatements: true,
-	charset: 'UTF8MB4_UNICODE_CI'
-
-} )
+const pool  = require('./mysql').pool
 
 const UPLOADDIR = path.join( __dirname, '../public/uploads' )
 
