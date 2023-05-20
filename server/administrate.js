@@ -8,24 +8,21 @@ const path = require( 'path' )
 const parse = require( 'csv-parse' )
 const util = require( 'util' )
 const http = require( 'http' )
+const { PICTURE_UPLOADS_PATH, TEMP_UPLOADS_PATH } = require( '../config/paths' )
 
-const PROJECT_ROOT = path.resolve( './' )
-const UPLOAD_DIR = path.join( PROJECT_ROOT, 'public/uploads/' )
-
-const pool  = require('./mysql').pool
+const pool  = require( './mysql' ).pool
 
 const _promiseFetchForm = ( req ) => {
 
 	var form = new formidable.IncomingForm()
-	var uploadDir = path.join( __dirname, '../public/temp' )
+	
+	if ( !fs.existsSync( TEMP_UPLOADS_PATH ) ){
 
-	if ( !fs.existsSync( uploadDir ) ){
-
-		fs.mkdirSync( uploadDir )
+		fs.mkdirSync( TEMP_UPLOADS_PATH )
 
 	}
 
-	form.uploadDir = uploadDir;
+	form.uploadDir = TEMP_UPLOADS_PATH;
 	form.keepExtensions = true;
 
 	return new Promise( ( resolve, reject ) => {
@@ -276,7 +273,7 @@ const _unlink = ( uid ) => {
 
 	return new Promise( ( resolve, reject ) => { 
 
-		fs.unlink( path.join( UPLOAD_DIR, uid + '.jpg' ), ( error ) => {
+		fs.unlink( path.join( PICTURE_UPLOADS_PATH, uid + '.jpg' ), ( error ) => {
 
 			if( error ){
 
@@ -512,7 +509,7 @@ function _promiseFetchRivagesImage ( filename ){
 
 	const url = "http://geolittoral.application.developpement-durable.gouv.fr/telechargement/tc_smartphone/photos/" + filename + ".jpg"
 
-	const localFile = UPLOAD_DIR + filename + ".jpg"
+	const localFile = PICTURE_UPLOADS_PATH + filename + ".jpg"
 	const writable = fs.createWriteStream( localFile )
 
 	return new Promise( ( resolve, reject ) => {
@@ -542,119 +539,6 @@ function _promiseFetchRivagesImage ( filename ){
 	} )
 
 }
-
-/*async function executeSequentially() {
-    const tasks = [fn1, fn2, fn3]
-
-    for (const fn of tasks) {
-        await fn()
-    }
-}
-*/
-
-/*async function _promiseInsertRivagesCSV ( formData ){
-
-	const rows = formData.output
-
-	for( const row of rows ){
-
-		await _promiseInsertRivagesRow( formData, row )
-
-	}
-
-}*/
-
-/*function _promiseInsertRivagesRow ( formData, row ) {
-
-	const { Longitude, Latitude, Filename } = row
-	const ip = formData.ip
-	const exif_datetime = row[ 'Date and t' ]
-	const filename = path.parse( Filename ).name
-	const point = util.format( 'POINT(%s %s)', Longitude, Latitude )
-
-	var sql = 'INSERT INTO ??.?? ( ??, ??, ??, ??, ??, ??, ??, ??, ?? ) VALUES ( (ST_PointFromText(?)), ?, ?, ?, ?,(INET6_ATON(?)), ?, ?, ? )'
-
-	var inserts = [ 
-		'coastwards', 
-		'contributions',
-
-
-		'contribution_point',
-		'contribution_point_manual',
-		'contribution_point_corrected',
-		'contribution_uid',
-		"contribution_comment",
-		//'contribution_labels',
-		//'contribution_exif',
-		'contribution_ip',
-		'contribution_exif_datetime',
-		'contribution_closeup',
-		'contribution_source',
-
-
-		point,
-		'0',
-		'0',
-		filename,
-		'',
-		//'labels',
-		//'exifdata',
-		ip,
-		//CAREFULL!!!!
-		exif_datetime,
-		'1',
-		'rivages'
-
-	]
-
-	var query = mysql.format( sql, inserts )
-
-
-	return _promiseFetchRivagesImage( filename ) //copy image to server
-		.then( _createConnection ) //connect to db
-		.then( ( connection ) => {
-
-			return _queryConnection( connection, query ) //insert in db
-
-		} )
-		.catch( ( error ) => {
-
-			console.log( error )
-
-			if( error.code == 'ER_DUP_ENTRY' ){ //the only error we wave through
-
-				return 'duplicate'
-
-			}else{
-
-				_unlink( filename )
-				//throw Error( error )
-
-			}
-
-		} )
-
-}*/
-
-/*idsToDelete.reduce(function(cur, next) {
-    return cur.then(function() {
-        return http.post("/delete.php?id=" + next);
-    });
-}, RSVP.resolve()).then(function() {
-    //all executed
-});*/
-
-/*function _promiseInsertRivagesCSV ( formData ){
-
-	const rows = formData.output
-
-	rows._reduce( ( current, next ) => {
-
-		return current.then( _promiseInsertRivagesRow( formData, next ) )
-
-	}, Promise.resolve() ).then( )
-
-}*/
 
 function _promiseInsertRivagesRow ( row ) {
 
@@ -731,299 +615,9 @@ function _promiseInsertRivagesRow ( row ) {
 
 			} )
 
-		/*return _promiseFetchRivagesImage( filename ) //copy image to server
-			.then( _createConnection ) //connect to db
-			.then( ( connection ) => {
-
-				return _queryConnection( connection, query ) //insert in db
-
-			} )
-			.then( ( rows ) => {
-
-				resolve( 'imported' )
-				return rows
-
-			} )
-			.catch( ( error ) => {
-
-				if( error.code == 'ER_DUP_ENTRY' ){ //the only error we wave through
-
-					resolve( 'duplicate' )
-
-				}else{
-
-					//console.log( error )
-					_unlink( filename )
-					reject( error )
-
-				}
-
-			} )*/
-
-
 	} )
 
 }
-
-/*idsToDelete.reduce(function(cur, next) {
-    return cur.then(function() {
-        return http.post("/delete.php?id=" + next);
-    });
-}, RSVP.resolve()).then(function() {
-    //all executed
-});*/
-
-/*function _promiseInsertRivagesCSV ( formData ){
-
-	return Promise.all( _.map( formData.output, ( row ) => {
-
-		const { Longitude, Latitude, Filename } = row
-		const ip = formData.ip
-		const exif_datetime = row[ 'Date and t' ]
-		const filename = path.parse( Filename ).name
-		const point = util.format( 'POINT(%s %s)', Longitude, Latitude )
-
-		var sql = 'INSERT INTO ??.?? ( ??, ??, ??, ??, ??, ??, ??, ??, ?? ) VALUES ( (ST_PointFromText(?)), ?, ?, ?, ?,(INET6_ATON(?)), ?, ?, ? )'
-
-		var inserts = [ 
-			'coastwards', 
-			'contributions',
-
-
-			'contribution_point',
-			'contribution_point_manual',
-			'contribution_point_corrected',
-			'contribution_uid',
-			"contribution_comment",
-			//'contribution_labels',
-			//'contribution_exif',
-			'contribution_ip',
-			'contribution_exif_datetime',
-			'contribution_closeup',
-			'contribution_source',
-
-
-			point,
-			'0',
-			'0',
-			filename,
-			'',
-			//'labels',
-			//'exifdata',
-			ip,
-			//CAREFULL!!!!
-			exif_datetime,
-			'1',
-			'rivages'
-
-		]
-
-		var query = mysql.format( sql, inserts )
-
-
-		return _promiseFetchRivagesImage( filename ) //copy image to server
-			.then( _createConnection ) //connect to db
-			.then( ( connection ) => {
-
-				return _queryConnection( connection, query ) //insert in db
-
-			} )
-			.catch( ( error ) => {
-
-				console.log( error )
-
-				if( error.code == 'ER_DUP_ENTRY' ){ //the only error we wave through
-
-					return 'duplicate'
-
-				}else{
-
-					_unlink( filename )
-					//throw Error( error )
-
-				}
-
-			} )
-
-
-		return new Promise( ( resolve, reject ) => {
-
-			const { Longitude, Latitude, Filename } = row
-			const ip = formData.ip
-			const exif_datetime = row[ 'Date and t' ]
-			const filename = path.parse( Filename ).name
-			const point = util.format( 'POINT(%s %s)', Longitude, Latitude )
-
-			var sql = 'INSERT INTO ??.?? ( ??, ??, ??, ??, ??, ??, ??, ??, ?? ) VALUES ( (ST_PointFromText(?)), ?, ?, ?, ?,(INET6_ATON(?)), ?, ?, ? )'
-
-			var inserts = [ 
-				'coastwards', 
-				'contributions',
-
-
-				'contribution_point',
-				'contribution_point_manual',
-				'contribution_point_corrected',
-				'contribution_uid',
-				"contribution_comment",
-				//'contribution_labels',
-				//'contribution_exif',
-				'contribution_ip',
-				'contribution_exif_datetime',
-				'contribution_closeup',
-				'contribution_source',
-
-
-				point,
-				'0',
-				'0',
-				filename,
-				'',
-				//'labels',
-				//'exifdata',
-				ip,
-				//CAREFULL!!!!
-				exif_datetime,
-				'1',
-				'rivages'
-
-			]
-
-			var query = mysql.format( sql, inserts )
-
-			pool.getConnection( function ( error, connection ) {
-
-				if( error ){
-
-					resolve( 'pool.getConnection: ' + error.code + ': ' + filename )
-
-				}else{
-
-					connection.query( query, function ( error, rows ) {
-
-						if( error ){
-
-							if( error.code === 'ER_DUP_ENTRY' ){
-
-								resolve( 'duplicate' )
-
-							}else{
-
-								resolve( 'connection.query: ' + error.code + ': ' + filename )
-
-							}
-
-						}else{
-
-							const url = "http://geolittoral.application.developpement-durable.gouv.fr/telechargement/tc_smartphone/photos/" + filename + ".jpg"
-
-							var options = { 
-
-								host: 'geolittoral.application.developpement-durable.gouv.fr',
-								path: '/telechargement/tc_smartphone/photos/' + filename + 's.jpg'
-
-							}
-
-							http.get( url, ( res ) => {
-
-								//res.setEncoding( 'binary' )
-
-								const body = [ ]
-
-								res.on( 'data', ( chunk ) => { 
-
-									body.push( chunk )
-
-								} )
-
-								res.on( 'end', ( ) => {
-
-									var uploadDir = path.join( __dirname, '../public/uploads' )
-									var buffer = Buffer.concat( body )
-
-									fs.writeFile( uploadDir + '/'+ filename + '.jpg', buffer, 'binary', function ( error ) {
-
-										if( error ){
-
-											formData.fields.id = rows.insertId
-
-											_delete( formData )
-												.then( ( uid ) => {
-
-													resolve( 'fs.writeFile: ' + error.code + ': ' + filename )
-													return uid
-
-												} )
-												.catch( ( error ) => {
-
-													reject( error )
-
-												} )
-
-										}else{
-
-											resolve( 'imported' )
-
-										}
-
-									} )
-									
-								} )
-
-								res.on( 'error', ( error ) => {
-
-									formData.fields.id = rows.insertId
-
-									_delete( formData )
-										.then( ( uid ) => {
-
-											resolve( 'res.onError ' + error.code + ':' + filename )
-											return uid
-
-										} )
-										.catch( ( error ) => {
-
-											reject( error )
-
-										} )
-
-								} ) 	
-
-							} ).on( 'error', ( error ) => {
-
-								formData.fields.id = rows.insertId
-
-								_delete( formData )
-									.then( ( uid ) => {
-
-										resolve( 'http.onError ' + error.code + ':' + filename )
-										return uid
-
-									} )
-									.catch( ( error ) => {
-
-										reject( error )
-
-									} )
-
-							} )
-
-						}
-
-						connection.release()
-
-					} )
-
-				}
-
-			} )
-
-		} )
-
-
-	} ) )
-
-}*/
 
 router.post( '/importRivagesCSV', function ( req, res ) {
 
