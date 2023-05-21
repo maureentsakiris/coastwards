@@ -3,6 +3,7 @@ const fs = require( 'fs' );
 const path = require( 'path' );
 
 const globalConfigs = require ( './config/' );
+const { UPLOADS } = require( './config/paths' );
 const config = globalConfigs.mysql;
 
 var connection = mysql.createPool( {
@@ -67,7 +68,7 @@ function _promiseTruncate (){
 
 function _promiseRemoveUploads (){
 
-	var uploadDir = path.join( __dirname, '/public/uploads' );
+	var uploadDir = UPLOADS;
 
 	return new Promise( ( resolve, reject ) => {
 

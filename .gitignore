@@ -3,7 +3,7 @@ intl/
 node_modules/
 src/.DS_Store
 npm-debug.log
-public/uploads/*
+static/*
 public/build
 .env
 myDiffFile.diff

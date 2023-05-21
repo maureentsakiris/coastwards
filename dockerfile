@@ -1,7 +1,5 @@
 FROM node:12-slim
 
-RUN apt-get update -qq && apt-get install -y gcc make libpng-dev
-
 WORKDIR /coastwards
 
 COPY package.json .
