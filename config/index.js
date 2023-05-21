@@ -1,6 +1,5 @@
 require( 'dotenv' ).config();
-var envName = process.env.NODE_ENV || 'production';
 
-const config = require ( './' + envName + '.js' );
+const config = require ( './env' );
 module.exports = config;
-module.exports.env = envName;
+module.exports.env = process.env.NODE_ENV || 'production';

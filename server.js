@@ -2,15 +2,19 @@ const express = require( 'express' );
 const path = require( 'path' );
 const helmet = require( 'helmet' );
 
+require( 'dotenv' ).config();
+
 const globalConfigs = require ( './config/' );
 
 const contribute = require( './server/contribute' );
 const contact = require( './server/contact' );
 const administrate = require( './server/administrate' );
 const data = require( './server/data' );
-// const app = require( './server/app' );
-
-const publicPath = path.resolve( __dirname, 'public' );
+const passport = require( 'passport' )
+const session = require( 'express-session' )
+const bodyParser = require( 'body-parser' );
+const { PUBLIC_PATH, PICTURE_UPLOADS_PATH } = require( './config/paths' );
+const GitHubStrategy = require( 'passport-github2' ).Strategy;
 
 const webpackDevMiddleware = require( "webpack-dev-middleware" );
 const webpackHotMiddleware = require( "webpack-hot-middleware" );
@@ -27,7 +31,8 @@ const exp = express();
 
 exp.enable( 'trust proxy' );
 exp.use( helmet() );
-exp.use( express.static( publicPath ) );
+exp.use( express.static( PUBLIC_PATH ) );
+exp.use( '/uploads', express.static( PICTURE_UPLOADS_PATH ) );
 
 exp.set( 'view engine', 'pug' );
 exp.set( 'views', path.resolve( __dirname, './app/views' ) );
@@ -65,11 +70,6 @@ exp.get( '/privacypolicy', function ( req, res ) {
 
 } );
 
-
-const passport = require( 'passport' )
-const session = require( 'express-session' )
-const bodyParser = require( 'body-parser' )
-const GitHubStrategy = require( 'passport-github2' ).Strategy;
 
 
 passport.serializeUser( ( user, done ) => {
