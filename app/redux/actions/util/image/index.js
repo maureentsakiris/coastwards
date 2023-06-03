@@ -1,7 +1,6 @@
 import EXIF from './exif'
 import { isEmpty, isArray } from 'underscore'
 import accepts from 'attr-accept'
-import Modernirz from 'modernizr'
 
 
 export const promiseType = ( file, type='image/*' ) => {
@@ -54,45 +53,37 @@ export const promiseMinimumWidth = ( image, width ) => {
 
 		}
 
-		if( Modernirz.filereader ){
+		let reader = new FileReader()
 
-			let reader = new FileReader()
+		reader.onload = function ( e ){
 
-			reader.onload = function ( e ){
+			let img = new Image()
 
-				let img = new Image()
+			img.onload = function ( ){
 
-				img.onload = function ( ){
+				if( img.width < width ){
 
-					if( img.width < width ){
+					reject( Error( 'image_too_small' ) )
 
-						reject( Error( 'image_too_small' ) )
+				}else{
 
-					}else{
-
-						resolve( image )
-
-					}
+					resolve( image )
 
 				}
 
-				img.src = e.target.result
-
 			}
 
-			reader.onerror = function ( error ) {
-
-				reject( error )
-
-			}
-
-			reader.readAsDataURL( image )
-
-		}else{
-
-			reject( Error( 'dimensions_undefined' ) )
+			img.src = e.target.result
 
 		}
+
+		reader.onerror = function ( error ) {
+
+			reject( error )
+
+		}
+
+		reader.readAsDataURL( image )
 
 	} )
 
@@ -124,40 +115,34 @@ export const promiseMinimumBoxDimensions = ( image, boxlength ) => {
 
 		}
 
-		if( Modernirz.filereader ){
 
-			let reader = new FileReader()
+		let reader = new FileReader()
 
-			reader.onload = function ( e ){
+		reader.onload = function ( e ){
 
-				let img = new Image()
+			let img = new Image()
 
-				img.onload = function ( ){
+			img.onload = function ( ){
 
-					image.width = img.width
-					image.height = img.height
+				image.width = img.width
+				image.height = img.height
 
-					_dotheMath( img.width, img.height )
-
-				}
-
-				img.src = e.target.result
+				_dotheMath( img.width, img.height )
 
 			}
 
-			reader.onerror = function ( error ) {
-
-				reject( error )
-
-			}
-
-			reader.readAsDataURL( image )
-
-		}else{
-
-			reject( Error( 'dimensions_undefined' ) )
+			img.src = e.target.result
 
 		}
+
+		reader.onerror = function ( error ) {
+
+			reject( error )
+
+		}
+
+		reader.readAsDataURL( image )
+
 
 	} )
 
@@ -166,12 +151,6 @@ export const promiseMinimumBoxDimensions = ( image, boxlength ) => {
 export const promiseCanvasBoxResize = ( image, boxlength ) => {
 
 	return new Promise ( ( resolve, reject ) => {
-
-		if( !Modernirz.filereader || !Modernirz.canvas ){
-
-			reject( Error( 'unsupported' ) )
-
-		}
 
 		if( !image.exifdata ){ //empty exif is dealt with in promiseEXIF
 
