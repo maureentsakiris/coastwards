@@ -11,6 +11,27 @@ const http = require( 'http' )
 const { PICTURE_UPLOADS_PATH, TEMP_UPLOADS_PATH } = require( '../config/paths' )
 
 const pool  = require( './mysql' ).pool
+const { requireAdmin } = require( './auth' )
+
+// Everything here is admin-only, except the example pictures the public site shows
+router.use( ( req, res, next ) => {
+
+	if( req.method === 'GET' && /^\/examples\/?$/.test( req.path ) ){
+
+		return next()
+
+	}
+
+	requireAdmin( req, res, next )
+
+} )
+
+// Uids are uuids for uploads, CSV filenames for rivages imports. Either way: a plain name, no folders
+const isSafeUid = ( uid ) => {
+
+	return typeof uid === 'string' && uid.length > 0 && uid === path.basename( uid ) && uid !== '..' && uid.indexOf( '\0' ) === -1
+
+}
 
 const _promiseFetchForm = ( req ) => {
 
@@ -18,7 +39,7 @@ const _promiseFetchForm = ( req ) => {
 	
 	if ( !fs.existsSync( TEMP_UPLOADS_PATH ) ){
 
-		fs.mkdirSync( TEMP_UPLOADS_PATH )
+		fs.mkdirSync( TEMP_UPLOADS_PATH, { recursive: true } )
 
 	}
 
@@ -74,8 +95,9 @@ const _promiseFetchForm = ( req ) => {
 
 		form.on( 'fileBegin', function ( name, file ){
 
-			var dirname = path.dirname( file.path )			
-			file.path = path.join( dirname, file.name ) 
+			// basename: never let the client's filename pick a folder
+			var dirname = path.dirname( file.path )
+			file.path = path.join( dirname, path.basename( file.name ) )
 
 		} )
 
@@ -227,6 +249,12 @@ const _delete = ( formData ) => {
 
 		const { id, uid } = formData.fields
 
+		if( !isSafeUid( uid ) ){
+
+			return reject( Error( 'administrate/_delete/invalid uid' ) )
+
+		}
+
 		pool.getConnection( function ( error, connection ) {
 
 			if( error ){
@@ -271,7 +299,13 @@ const _delete = ( formData ) => {
 
 const _unlink = ( uid ) => {
 
-	return new Promise( ( resolve, reject ) => { 
+	return new Promise( ( resolve, reject ) => {
+
+		if( !isSafeUid( uid ) ){
+
+			return reject( Error( 'administrate/_unlink/invalid uid' ) )
+
+		}
 
 		fs.unlink( path.join( PICTURE_UPLOADS_PATH, uid + '.jpg' ), ( error ) => {
 
