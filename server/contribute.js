@@ -20,34 +20,74 @@ const { PICTURE_UPLOADS_PATH, BASE_URL } = require( '../config/paths' )
 
 const pool  = require( './mysql' ).pool
 
+// The client names uploads "<uuid v1>.jpg" (see app/redux/actions/main/main.js)
+const UPLOAD_NAME_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\.jpg$/i
+
+// JPEG files start with the bytes FF D8 FF
+const _isJpeg = ( filePath ) => {
+
+	try {
+
+		const fd = fs.openSync( filePath, 'r' )
+		const buffer = Buffer.alloc( 3 )
+		fs.readSync( fd, buffer, 0, 3, 0 )
+		fs.closeSync( fd )
+		return buffer[ 0 ] === 0xFF && buffer[ 1 ] === 0xD8 && buffer[ 2 ] === 0xFF
+
+	} catch ( error ) {
+
+		return false
+
+	}
+
+}
+
+const _removeFiles = ( files ) => {
+
+	_.each( files || {}, ( file ) => {
+
+		fs.unlink( file.path, () => {} )
+
+	} )
+
+}
+
 const _promiseFetchForm = ( req ) => {
 
 	var form = new formidable.IncomingForm()
 
 	if ( !fs.existsSync( PICTURE_UPLOADS_PATH ) ){
 
-		fs.mkdirSync( PICTURE_UPLOADS_PATH )
+		fs.mkdirSync( PICTURE_UPLOADS_PATH, { recursive: true } )
 
 	}
 
 	form.uploadDir = PICTURE_UPLOADS_PATH;
-	form.keepExtensions = true;
+	// Never keep the client's extension: a rejected upload must not end up as e.g. .html in the public folder
+	form.keepExtensions = false;
+	form.maxFileSize = 20 * 1024 * 1024; // same limit as nginx
 
 	return new Promise( ( resolve, reject ) => {
 
 		var formData = {}
+		var badFile = false
 
 		form.parse( req, function ( error, fields, files ) {
 
-			
-
 			if( error ){
 
+				_removeFiles( files )
 				reject( Error( 'contributions/promiseFetchForm/parse(error)/' + error ) )
 
 			}else if ( _.isEmpty( fields ) ){
 
+				_removeFiles( files )
 				reject( Error( 'Form is empty' ) )
+
+			}else if ( badFile || !files.file || !_isJpeg( files.file.path ) || fields.uid + '.jpg' !== files.file.name ){
+
+				_removeFiles( files )
+				reject( Error( 'contributions/promiseFetchForm/invalid file' ) )
 
 			}else{
 
@@ -85,8 +125,19 @@ const _promiseFetchForm = ( req ) => {
 
 		form.on( 'fileBegin', function ( name, file ){
 
-			var dirname = path.dirname( file.path )			
-			file.path = path.join( dirname, file.name ) 
+			// Only accept "<uuid>.jpg" in the "file" field, and never overwrite an existing picture.
+			// Anything else keeps formidable's random name and gets deleted in the parse callback.
+			var target = path.join( PICTURE_UPLOADS_PATH, path.basename( file.name || '' ) )
+
+			if( name === 'file' && UPLOAD_NAME_PATTERN.test( file.name ) && !fs.existsSync( target ) ){
+
+				file.path = target
+
+			}else{
+
+				badFile = true
+
+			}
 
 		} )
 

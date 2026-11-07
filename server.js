@@ -15,6 +15,22 @@ const session = require( 'express-session' )
 const bodyParser = require( 'body-parser' );
 const { PUBLIC_PATH, PICTURE_UPLOADS_PATH } = require( './config/paths' );
 const GitHubStrategy = require( 'passport-github2' ).Strategy;
+const crypto = require( 'crypto' );
+const { isAdmin } = require( './server/auth' );
+
+// Without SESSION_SECRET in .env, a random secret is used: works, but logins reset on every restart
+const sessionSecret = () => {
+
+	if( process.env.SESSION_SECRET ){
+
+		return process.env.SESSION_SECRET
+
+	}
+
+	console.warn( 'SESSION_SECRET not set, using a random one (admin logins reset on restart)' )
+	return crypto.randomBytes( 32 ).toString( 'hex' )
+
+}
 
 const webpackDevMiddleware = require( "webpack-dev-middleware" );
 const webpackHotMiddleware = require( "webpack-hot-middleware" );
@@ -43,6 +59,18 @@ exp.get( '/', function ( req, res ) {
 	res.render( 'index', { lang: lang } );
 
 } );
+
+// Sessions must be set up before the routers, so /administrate can check who is logged in
+exp.use( session( {
+
+	secret: sessionSecret(),
+	resave: false,
+	saveUninitialized: false
+
+} ) )
+
+exp.use( passport.initialize() )
+exp.use( passport.session() )
 
 exp.use( '/contribute', contribute );
 exp.use( '/contact', contact );
@@ -108,19 +136,6 @@ exp.use( bodyParser.urlencoded( {
 	extended: true
 
 } ) )
-exp.use( session( { 
-
-	secret: 'figuiiiin',
-	resave: false,
-	saveUninitialized: false
-
-} ) )
-
-
-exp.use( passport.initialize() )  
-exp.use( passport.session() )  
-
-
 exp.get( '/login', ( req, res ) => {
 
 	res.render( 'login', { user: req.user } )
@@ -143,7 +158,7 @@ exp.get( '/login/callback', passport.authenticate( 'github', { failureRedirect: 
 
 exp.get( '/admin', ensureAuthenticated, ( req, res ) => {
 
-	if( req.user.username == 'maureentsakiris' || req.user.username == 'ClaudiaCAU' ){
+	if( isAdmin( req ) ){
 
 		res.render( 'admin', { user: req.user } )
 
